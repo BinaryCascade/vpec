@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webfeed/webfeed.dart';
 
@@ -63,11 +62,6 @@ class _NewsScreenState extends State<NewsScreen> {
     return _feed == null || _feed.items == null;
   }
 
-  Future<void> _openUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
