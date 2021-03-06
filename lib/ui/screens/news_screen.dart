@@ -72,19 +72,6 @@ class _NewsScreenState extends State<NewsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Новости'),
-          actions: [
-            IconButton(
-                icon: Icon(Icons.language_outlined),
-                tooltip: 'Открыть сайт колледжа',
-                onPressed: () => _openUrl('http://energocollege.ru')),
-            IconButton(
-                icon: Icon(Icons.language_outlined),
-                tooltip: 'Открыть группу ВК колледжа',
-                onPressed: () => _openUrl('https://vk.com/club158846769')),
-          ],
-        ),
         body: isFeedEmpty()
             ? Center(
                 child: CircularProgressIndicator(),
@@ -100,37 +87,34 @@ class _NewsScreenState extends State<NewsScreen> {
                         item.description.indexOf("src=") + 5,
                         item.description.indexOf('alt=') - 2);
                     return Card(
-
                       clipBehavior: Clip.antiAlias,
                       child: InkWell(
                         onTap: () => openFeed(item.link),
                         child: Column(
                           children: <Widget>[
-                            Image.network(
-                              imgUrl,
-                              frameBuilder: (BuildContext context, Widget child,
-                                      int frame, bool wasSynchronouslyLoaded) =>
-                                  wasSynchronouslyLoaded
-                                      ? child
-                                      : AnimatedOpacity(
-                                          child: child,
-                                          opacity: frame == null ? 0 : 1,
-                                          duration: const Duration(seconds: 2),
-                                          curve: Curves.easeOut,
-                                        ),
-                              loadingBuilder: (context, child, progress) =>
-                                  progress == null
-                                      ? child
-                                      : LinearProgressIndicator(
-                                          valueColor: AlwaysStoppedAnimation<
-                                                  Color>(
-                                              Theme.of(context).accentColor),
-                                        ),
-                              // imageUrl: imgUrl,
-                              // fit: BoxFit.fill,
-                              // placeholder: (context, url) => Container(
-                              //     height: 200,
-                              //     child: Image.memory(kTransparentImage)),
+                            Container(
+                              
+                              child: Image.network(
+                                imgUrl,
+                                frameBuilder: (BuildContext context, Widget child,
+                                        int frame, bool wasSynchronouslyLoaded) =>
+                                    wasSynchronouslyLoaded
+                                        ? child
+                                        : AnimatedOpacity(
+                                            child: child,
+                                            opacity: frame == null ? 0 : 1,
+                                            duration: const Duration(seconds: 2),
+                                            curve: Curves.easeOut,
+                                          ),
+                                loadingBuilder: (context, child, progress) =>
+                                    progress == null
+                                        ? child
+                                        : LinearProgressIndicator(
+                                            valueColor: AlwaysStoppedAnimation<
+                                                    Color>(
+                                                Theme.of(context).accentColor),
+                                          ),
+                              ),
                             ),
                             Padding(
                               padding: EdgeInsets.all(10),
