@@ -123,7 +123,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                   children: snapshot.data.docs
                       .map((document) {
                         return AnnouncementCard(
-                            announcement: Announcement.fromMap(
+                            announcement: AnnouncementModel.fromMap(
                                 document.data(), document.id));
                       })
                       .toList()

@@ -43,6 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
     //make all our date on russian
     await Jiffy.locale("ru");
     await Firebase.initializeApp();
+
     FirebaseAuth auth = FirebaseAuth.instance;
     if (auth.currentUser == null) {
       auth.signInAnonymously();
@@ -52,7 +53,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     _loadingSettings();
-
     return widget.child;
   }
 }

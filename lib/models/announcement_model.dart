@@ -1,4 +1,4 @@
-class Announcement {
+class AnnouncementModel {
   final String author;
   final String content;
   final String pubDate;
@@ -6,7 +6,7 @@ class Announcement {
   final String docId;
   final bool isPublic;
 
-  const Announcement({
+  const AnnouncementModel({
     this.author,
     this.content,
     this.pubDate,
@@ -15,7 +15,7 @@ class Announcement {
     this.isPublic,
   });
 
-  Announcement.fromMap(Map<String, dynamic> data, String id)
+  AnnouncementModel.fromMap(Map<String, dynamic> data, String id)
       : this(
           pubDate: data['pubDate'],
           author: data['author'],

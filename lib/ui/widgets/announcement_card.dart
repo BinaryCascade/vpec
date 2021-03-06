@@ -7,7 +7,7 @@ import 'package:vpec/models/announcement_model.dart';
 import 'package:vpec/utils/rounded_modal_sheet.dart';
 
 class AnnouncementCard extends StatelessWidget {
-  final Announcement announcement;
+  final AnnouncementModel announcement;
 
   AnnouncementCard({@required this.announcement});
 

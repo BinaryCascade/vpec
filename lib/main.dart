@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:vpec/splash.dart';
 import 'package:vpec/ui/screens/bottom_bar_screen.dart';
 import 'package:flutter/scheduler.dart' as schedule;
 import 'package:vpec/ui/screens/settings_screen.dart';
 import 'package:vpec/ui/theme.dart';
 
-void main() {
+Future<void> main() async {
+  await Hive.initFlutter();
+  await Hive.openBox('settings');
   runApp(MyApp());
 }
 
