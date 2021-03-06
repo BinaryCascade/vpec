@@ -55,6 +55,10 @@ ThemeData themeData(BuildContext context) {
               color: Theme.of(context).accentColor,
             ))),
     scaffoldBackgroundColor: backgroundColor,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: secondLevelColor,
+      foregroundColor: accentColor,
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: accentColor,
       unselectedItemColor: mediumContrast,
@@ -120,6 +124,10 @@ ThemeData darkThemeData(BuildContext context) {
             ))),
     scaffoldBackgroundColor: backgroundColor,
 
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: secondLevelColor,
+      foregroundColor: accentColor,
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: accentColor,
       unselectedItemColor: mediumContrast,
