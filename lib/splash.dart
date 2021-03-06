@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' as schedule;
+import 'package:jiffy/jiffy.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/';
@@ -22,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     var brightness =
         schedule.SchedulerBinding.instance.window.platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
       statusBarIconBrightness: isDarkMode ? Brightness.light : Brightness.dark,
@@ -29,7 +31,9 @@ class _SplashScreenState extends State<SplashScreen> {
     ));
   }
 
-  void _initApp() {}
+  Future<void> _initApp() async {
+    await Jiffy.locale("ru");
+  }
 
   @override
   Widget build(BuildContext context) {
