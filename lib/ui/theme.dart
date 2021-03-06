@@ -18,6 +18,7 @@ ThemeData themeData(BuildContext context) {
         selectionHandleColor: Color(0xFF000000)),
     primaryColor: secondLevelColor,
     accentColor: accentColor,
+    cardColor: firstLevelColor,
     textTheme: TextTheme(
         subtitle1: TextStyle(fontSize: 15, color: Color(0xFF666666)),
         bodyText1: TextStyle(
@@ -74,13 +75,14 @@ ThemeData darkThemeData(BuildContext context) {
   const lowContrast = Color(0x61FFFFFF);
 
   return ThemeData.dark().copyWith(
-    brightness: Brightness.dark,
+  brightness: Brightness.dark,
     textSelectionTheme: TextSelectionThemeData(
       selectionColor: Color(0xFF777777),
       selectionHandleColor: highContrast,
     ),
     primaryColor: secondLevelColor,
     accentColor: accentColor,
+    cardColor: firstLevelColor,
     textTheme: TextTheme(
         subtitle1: TextStyle(fontSize: 15, color: highContrast),
         bodyText1: TextStyle(
