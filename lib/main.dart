@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:vpec/splash.dart';
 import 'package:vpec/ui/screens/bottom_bar_screen.dart';
 import 'package:flutter/scheduler.dart' as schedule;
+import 'package:vpec/ui/screens/settings_screen.dart';
 import 'package:vpec/ui/theme.dart';
 
 void main() {
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         SplashScreen.routeName: (context) =>
             SplashScreen(child: BottomBarScreen()),
         BottomBarScreen.routeName: (context) => BottomBarScreen(),
+        SettingsScreen.routeName: (context) => SettingsScreen(),
       },
     );
   }
