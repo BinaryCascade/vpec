@@ -15,12 +15,14 @@ dependencies:
     sdk: flutter
   intl: ^0.17.0 # https://pub.dev/packages/intl
   webfeed: # https://pub.dev/packages/webfeed
-    git: https://github.com/mukhtarfauzi/webfeed.git
+    git: https://github.com/Tembeon/webfeed.git
   http: ^0.13.0 # https://pub.dev/packages/http
   url_launcher: ^6.0.2 # https://pub.dev/packages/url_launcher
   transparent_image: ^2.0.0-nullsafety.0 # https://pub.dev/packages/transparent_image/
-
-
+  jiffy: ^4.0.0 # https://pub.dev/packages/jiffy
+  cached_network_image: ^3.0.0-nullsafety
+  flutter_cache_manager: ^3.0.0-nullsafety.1
+  xml: ^5.0.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

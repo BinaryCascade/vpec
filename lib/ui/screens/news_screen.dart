@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:transparent_image/transparent_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webfeed/webfeed.dart';
+import 'package:intl/intl.dart';
 
 class NewsScreen extends StatefulWidget {
   NewsScreen() : super();
@@ -62,7 +65,6 @@ class _NewsScreenState extends State<NewsScreen> {
     return _feed == null || _feed.items == null;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,32 +90,12 @@ class _NewsScreenState extends State<NewsScreen> {
                             child: Column(
                               children: <Widget>[
                                 Container(
-                                  child: Image.network(
-                                    imgUrl,
-                                    frameBuilder: (BuildContext context,
-                                            Widget child,
-                                            int frame,
-                                            bool wasSynchronouslyLoaded) =>
-                                        wasSynchronouslyLoaded
-                                            ? child
-                                            : AnimatedOpacity(
-                                                child: child,
-                                                opacity: frame == null ? 0 : 1,
-                                                duration:
-                                                    const Duration(seconds: 2),
-                                                curve: Curves.easeOut,
-                                              ),
-                                    loadingBuilder:
-                                        (context, child, progress) =>
-                                            progress == null
-                                                ? child
-                                                : LinearProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                                Color>(
-                                                            Theme.of(context)
-                                                                .accentColor),
-                                                  ),
+                                  child: CachedNetworkImage(
+                                    imageUrl: imgUrl,
+                                    fit: BoxFit.fill,
+                                    placeholder: (context, url) => Container(
+                                        height: 200,
+                                        child: Image.memory(kTransparentImage)),
                                   ),
                                 ),
                                 Padding(
@@ -131,7 +113,8 @@ class _NewsScreenState extends State<NewsScreen> {
                                         child: Row(
                                           children: <Widget>[
                                             Spacer(),
-                                            Text(item.pubDate),
+                                            Text(DateFormat('d MMM yyyy, HH:mm')
+                                                .format(item.pubDate)),
                                           ],
                                         ),
                                       ),
