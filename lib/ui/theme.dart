@@ -90,24 +90,24 @@ ThemeData darkThemeData(BuildContext context) {
     textTheme: TextTheme(
         subtitle1: TextStyle(fontSize: 15, color: highContrast),
         bodyText1: TextStyle(
-            color: Colors.white, fontSize: 15, fontWeight: FontWeight.normal),
+            color: highContrast, fontSize: 15, fontWeight: FontWeight.normal),
         headline3: TextStyle(
-            color: Colors.white,
+            color: highContrast,
             fontSize: 15,
             fontFamily: "Montserrat-Regular",
             fontWeight: FontWeight.bold),
         headline4: TextStyle(
-            color: Colors.white,
+            color: highContrast,
             fontSize: 20,
             fontFamily: "Montserrat-SemiBold"),
         headline5: TextStyle(
           //used in time schedule for any time
-            color: Colors.white,
+            color: highContrast,
             fontSize: 36,
             fontFamily: "Montserrat"),
         headline6: TextStyle(
           //used in time schedule for any other
-            color: Colors.white,
+            color: highContrast,
             fontSize: 18,
             fontFamily: "Montserrat")),
     iconTheme: Theme.of(context).iconTheme.copyWith(size: 20.0),
