@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:vpec/splash.dart';
 import 'package:vpec/ui/screens/bottom_bar_screen.dart';
 import 'package:flutter/scheduler.dart' as schedule;
@@ -14,6 +15,13 @@ class MyApp extends StatelessWidget {
     var brightness =
         schedule.SchedulerBinding.instance.window.platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark,
+          //set brightness for icons, like dark background light icons
+        )
+    );
 
     return MaterialApp(
       theme: isDarkMode ? darkThemeData(context) : themeData(context),
