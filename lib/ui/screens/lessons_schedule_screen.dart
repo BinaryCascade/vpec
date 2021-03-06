@@ -9,9 +9,6 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Расписание пар'),
-      ),
       body: Center(
         child: Text('LessonsSchedule'),
       ),

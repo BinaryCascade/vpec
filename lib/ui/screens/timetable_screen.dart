@@ -9,9 +9,6 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Расписание звонков'),
-      ),
       body: Center(
         child: Text('TimeTable'),
       ),
