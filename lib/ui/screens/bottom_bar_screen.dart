@@ -4,6 +4,7 @@ import 'package:vpec/ui/screens/lessons_schedule_screen.dart';
 import 'package:vpec/ui/screens/menu_screen.dart';
 import 'package:vpec/ui/screens/news_screen.dart';
 import 'package:vpec/ui/screens/timetable_screen.dart';
+import 'package:vpec/utils/icons.dart';
 
 class BottomBarScreen extends StatefulWidget {
   static final routeName = '/home';
@@ -41,15 +42,28 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
         },
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.style), label: 'Новости'),
+              backgroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+              icon: Icon(VEKiconPack.news),
+              label: 'Новости'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.notifications_outlined), label: 'Объявления'),
+              backgroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+              icon: Icon(Icons.notifications_outlined),
+              label: 'Объявления'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.schedule_outlined), label: 'Звонки'),
+              backgroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+              icon: Icon(Icons.schedule_outlined),
+              label: 'Звонки'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard_outlined), label: 'Расписание'),
+              backgroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+              icon: Icon(Icons.dashboard_outlined),
+              label: 'Расписание'),
           BottomNavigationBarItem(
-            label: 'Меню', icon: Icon(Icons.menu),
+            label: 'Меню',
+            icon: Icon(Icons.menu),
           ),
         ],
       ),

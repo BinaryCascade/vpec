@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vpec/ui/screens/bottom_bar_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/';
@@ -21,10 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     _initApp();
   }
 
-  void _initApp() {
-
-  }
-
+  void _initApp() {}
 
   @override
   Widget build(BuildContext context) {
