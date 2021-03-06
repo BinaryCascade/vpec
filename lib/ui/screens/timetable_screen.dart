@@ -13,22 +13,25 @@ class TimeTableScreen extends StatefulWidget {
 
 class TimeTableScreenState extends State<TimeTableScreen> {
   int pausesCount = 0;
+  var settings = Hive.box('settings');
 
   @override
   void initState() {
-    var settings = Hive.box('settings');
     settings.put('isLastTime', true);
     super.initState();
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     CollectionReference collectionReference =
-    FirebaseFirestore.instance.collection('time_schedule');
+        FirebaseFirestore.instance.collection('time_schedule');
     Stream<QuerySnapshot> stream;
     stream = collectionReference.snapshots();
-
-
     return Scaffold(
       body: Stack(children: <Widget>[
         // SnowWidget(
