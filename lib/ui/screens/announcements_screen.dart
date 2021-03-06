@@ -40,6 +40,12 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                 ],
               )
             : _buildAlerts(publicStream),
+        floatingActionButton: isEmployee
+            ? FloatingActionButton(
+                onPressed: () {},
+                child: Icon(Icons.rate_review_outlined),
+              )
+            : null,
         bottomNavigationBar: isEmployee
             ? Container(
                 height: kToolbarHeight,
