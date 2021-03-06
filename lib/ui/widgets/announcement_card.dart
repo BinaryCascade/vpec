@@ -17,6 +17,9 @@ class AnnouncementCard extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 5.0),
       child: Card(
         clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: GestureDetector(
           onDoubleTap: () => _listPicked(context),
           child: Padding(
