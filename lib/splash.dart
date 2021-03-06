@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
         schedule.SchedulerBinding.instance.window.platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Theme.of(context).primaryColor.withOpacity(0.7),
+      statusBarColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
       statusBarIconBrightness: isDarkMode ? Brightness.light : Brightness.dark,
       //set brightness for icons, like dark background light icons
     ));
