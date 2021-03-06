@@ -66,13 +66,13 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                         children: [
                           Icon(
                             Icons.group_outlined,
-                            size: 28,
+                            size: 30,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Text(
                               'Всем',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 15),
                             ),
                           )
                         ],
@@ -90,7 +90,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Text(
                               'Сотрудникам',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 15),
                             ),
                           )
                         ],
