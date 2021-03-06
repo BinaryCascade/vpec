@@ -48,24 +48,51 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                 child: TabBar(
                   indicator: UnderlineTabIndicator(
                     borderSide: BorderSide(
-                        color: Theme.of(context).accentColor, width: 2.0),
-                    insets: EdgeInsets.only(bottom: kToolbarHeight),
+                      color: Theme.of(context).accentColor,
+                      width: 3.0,
+                    ),
+                    insets: EdgeInsets.only(bottom: kToolbarHeight - 4),
                   ),
+                  labelColor: Theme.of(context).accentColor,
+                  unselectedLabelColor: Theme.of(context)
+                      .bottomNavigationBarTheme
+                      .unselectedItemColor,
                   indicatorSize: TabBarIndicatorSize.label,
                   indicatorColor: Theme.of(context).accentColor,
                   tabs: [
                     Tab(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Icon(Icons.group_outlined), Text('Всем')],
+                        children: [
+                          Icon(
+                            Icons.group_outlined,
+                            size: 28,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              'Всем',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                     Tab(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(VEKiconPack.account_cog_outline),
-                          Text('Сотрудникам')
+                          Icon(
+                            VEKiconPack.account_cog_outline,
+                            size: 28,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              'Сотрудникам',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          )
                         ],
                       ),
                     ),
