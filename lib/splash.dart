@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' as schedule;
@@ -32,7 +34,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _initApp() async {
+    //make all  our date on russian
     await Jiffy.locale("ru");
+    await Firebase.initializeApp();
+    FirebaseAuth auth = FirebaseAuth.instance;
+    if (auth.currentUser == null) {
+      auth.signInAnonymously();
+    }
   }
 
   @override

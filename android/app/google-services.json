@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "55220801987",
+    "firebase_url": "https://vec-mobile.firebaseio.com",
+    "project_id": "vec-mobile",
+    "storage_bucket": "vec-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55220801987:android:d801cbdebb27bc9b0aed76",
+        "android_client_info": {
+          "package_name": "tem.apps.vec_schedule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55220801987-n1i7fgqu9iht5rm09rvshv3bre6ovcrv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARxMwtUkt8pp17YiY-U-JOfgGBQoSXqTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55220801987-n1i7fgqu9iht5rm09rvshv3bre6ovcrv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55220801987:android:2532b01553ccf0dd0aed76",
+        "android_client_info": {
+          "package_name": "tem.apps.vpec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55220801987-n1i7fgqu9iht5rm09rvshv3bre6ovcrv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARxMwtUkt8pp17YiY-U-JOfgGBQoSXqTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55220801987-n1i7fgqu9iht5rm09rvshv3bre6ovcrv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
