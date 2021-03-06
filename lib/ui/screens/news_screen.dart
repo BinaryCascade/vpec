@@ -85,11 +85,19 @@ class _NewsScreenState extends State<NewsScreen> {
                             item.description.indexOf('alt=') - 2);
                         return Card(
                           clipBehavior: Clip.antiAlias,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                           child: InkWell(
                             onTap: () => openFeed(item.link),
                             child: Column(
                               children: <Widget>[
                                 Container(
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
                                   child: CachedNetworkImage(
                                     imageUrl: imgUrl,
                                     fit: BoxFit.fill,
