@@ -23,6 +23,8 @@ dependencies:
   cached_network_image: ^3.0.0-nullsafety
   flutter_cache_manager: ^3.0.0-nullsafety.1
   xml: ^5.0.2
+  draggable_scrollbar: ^0.0.4
+  flutter_linkify: ^5.0.0
   flutter_launcher_icons: ^0.9.0
   firebase_core: "^1.0.0"
   firebase_auth: "^1.0.0"
