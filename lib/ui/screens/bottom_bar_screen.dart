@@ -62,6 +62,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               icon: Icon(Icons.dashboard_outlined),
               label: 'Расписание'),
           BottomNavigationBarItem(
+            backgroundColor:
+                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
             label: 'Меню',
             icon: Icon(Icons.menu),
           ),
