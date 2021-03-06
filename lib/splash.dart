@@ -26,15 +26,21 @@ class _SplashScreenState extends State<SplashScreen> {
         schedule.SchedulerBinding.instance.window.platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
 
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
-      statusBarIconBrightness: isDarkMode ? Brightness.light : Brightness.dark,
-      //set brightness for icons, like dark background light icons
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          statusBarColor:
+              Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
+          statusBarIconBrightness:
+              isDarkMode ? Brightness.light : Brightness.dark,
+          systemNavigationBarColor:
+              Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+          systemNavigationBarIconBrightness:
+              isDarkMode ? Brightness.light : Brightness.dark),
+    );
   }
 
   Future<void> _initApp() async {
-    //make all  our date on russian
+    //make all our date on russian
     await Jiffy.locale("ru");
     await Firebase.initializeApp();
     FirebaseAuth auth = FirebaseAuth.instance;
