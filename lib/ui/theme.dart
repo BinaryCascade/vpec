@@ -1,5 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+const thin = FontWeight.w100;
+const extraLight = FontWeight.w200;
+const light = FontWeight.w300;
+const regular = FontWeight.w400;
+const medium = FontWeight.w500;
+const semiBold = FontWeight.w600;
+const bold = FontWeight.w700;
+const extraBold = FontWeight.w800;
+const black = FontWeight.w900;
 
 ThemeData themeData(BuildContext context) {
   //light theme
@@ -14,35 +23,38 @@ ThemeData themeData(BuildContext context) {
   return ThemeData(
     brightness: Brightness.light,
     textSelectionTheme: TextSelectionThemeData(
-        selectionColor: Color(0xFF777777),
-        selectionHandleColor: Color(0xFF000000)),
+        selectionColor: accentColor.withOpacity(0.5),
+        selectionHandleColor: accentColor),
     primaryColor: secondLevelColor,
     accentColor: accentColor,
     cardColor: firstLevelColor,
     textTheme: TextTheme(
-        subtitle1: TextStyle(fontSize: 15, color: Color(0xFF666666)),
-        bodyText1: TextStyle(
-            color: Colors.black, fontSize: 15, fontWeight: FontWeight.normal),
+        subtitle1:
+            TextStyle(fontSize: 15, color: mediumContrast, fontWeight: medium),
+        bodyText1:
+            TextStyle(color: highContrast, fontSize: 15, fontWeight: regular),
         headline3: TextStyle(
-            color: Colors.black,
-            fontSize: 15,
-            fontFamily: "Montserrat-Regular",
-            fontWeight: FontWeight.bold),
+            //News Card Title
+            color: highContrast,
+            fontSize: 16,
+            fontFamily: 'Montserrat',
+            fontWeight: medium),
         headline4: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontFamily: "Montserrat-Regular",
-            fontWeight: FontWeight.bold),
+            //Alert Card Title
+            color: highContrast,
+            fontSize: 17,
+            fontFamily: 'Montserrat',
+            fontWeight: semiBold),
         headline5: TextStyle(
-          //used in time schedule for time
-            color: Colors.black,
+            //used in time schedule for any time
+            color: highContrast,
             fontSize: 36,
-            fontFamily: "Montserrat"),
+            fontFamily: 'Montserrat'),
         headline6: TextStyle(
-          //used in time schedule for any other
-            color: Colors.black,
+            //used in time schedule for any other
+            color: highContrast,
             fontSize: 18,
-            fontFamily: "Montserrat")),
+            fontFamily: 'Montserrat')),
     iconTheme: Theme.of(context).iconTheme.copyWith(size: 20.0),
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
@@ -51,9 +63,9 @@ ThemeData themeData(BuildContext context) {
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
             side: BorderSide(
-              width: 1,
-              color: Theme.of(context).accentColor,
-            ))),
+      width: 1,
+      color: Theme.of(context).accentColor,
+    ))),
     scaffoldBackgroundColor: backgroundColor,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: secondLevelColor,
@@ -64,7 +76,6 @@ ThemeData themeData(BuildContext context) {
       unselectedItemColor: mediumContrast,
       backgroundColor: secondLevelColor,
     ),
-
   );
 }
 
@@ -79,39 +90,45 @@ ThemeData darkThemeData(BuildContext context) {
   const lowContrast = Color(0x61FFFFFF);
 
   return ThemeData.dark().copyWith(
-  brightness: Brightness.dark,
+    brightness: Brightness.light,
     textSelectionTheme: TextSelectionThemeData(
-      selectionColor: Color(0xFF777777),
-      selectionHandleColor: highContrast,
-    ),
+        selectionColor: accentColor.withOpacity(0.5),
+        selectionHandleColor: accentColor),
     primaryColor: secondLevelColor,
     accentColor: accentColor,
     cardColor: firstLevelColor,
     textTheme: TextTheme(
-        subtitle1: TextStyle(fontSize: 15, color: highContrast),
+        subtitle1: TextStyle(
+            fontSize: 15,
+            color: mediumContrast,
+            fontWeight: medium),
         bodyText1: TextStyle(
-            color: highContrast, fontSize: 15, fontWeight: FontWeight.normal),
-        headline3: TextStyle(
             color: highContrast,
             fontSize: 15,
-            fontFamily: "Montserrat-Regular",
-            fontWeight: FontWeight.bold),
-        headline4: TextStyle(
+            fontWeight: regular),
+        headline3: TextStyle(
+            //News Card Title
             color: highContrast,
-            fontSize: 20,
-            fontFamily: "Montserrat-SemiBold"),
+            fontSize: 16,
+            fontFamily: 'Montserrat',
+            fontWeight: medium),
+        headline4: TextStyle(
+            //Alert Card Title
+            color: highContrast,
+            fontSize: 17,
+            fontFamily: 'Montserrat',
+            fontWeight: semiBold),
         headline5: TextStyle(
-          //used in time schedule for any time
+            //used in time schedule for any time
             color: highContrast,
             fontSize: 36,
-            fontFamily: "Montserrat"),
+            fontFamily: 'Montserrat'),
         headline6: TextStyle(
-          //used in time schedule for any other
+            //used in time schedule for any other
             color: highContrast,
             fontSize: 18,
-            fontFamily: "Montserrat")),
+            fontFamily: 'Montserrat')),
     iconTheme: Theme.of(context).iconTheme.copyWith(size: 20.0),
-
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
             overlayColor: MaterialStateProperty.all<Color>(
@@ -119,11 +136,10 @@ ThemeData darkThemeData(BuildContext context) {
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
             side: BorderSide(
-              width: 1,
-              color: accentColor,
-            ))),
+      width: 1,
+      color: Theme.of(context).accentColor,
+    ))),
     scaffoldBackgroundColor: backgroundColor,
-
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: secondLevelColor,
       foregroundColor: accentColor,

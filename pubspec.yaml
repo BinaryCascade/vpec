@@ -34,6 +34,7 @@ dependencies:
   fdottedline: ^1.0.1
   hive: ^2.0.0
   hive_flutter: ^1.0.0
+  flutter_statusbar_manager: ^2.0.0
 
 flutter_icons:
   image_path: "assets/launcher/ic_launcher_android.png"
@@ -61,16 +62,13 @@ flutter:
   fonts:
     - family: Montserrat
       fonts:
-        - asset: fonts/montserrat.ttf
+        - asset: fonts/Montserrat-Regular.ttf
+          weight: 400
+        - asset: fonts/Montserrat-Medium.ttf
+          weight: 500
+        - asset: fonts/Montserrat-SemiBold.ttf
+          weight: 600
 
-    - family: Montserrat-Regular
-      fonts:
-        - asset: fonts/montserrat-regular.ttf
-
-    - family: Montserrat-SemiBold
-      fonts:
-        - asset: fonts/montserrat-medium.ttf
-
-    - family:  VEKiconPack
+    - family: VEKiconPack
       fonts:
         - asset: fonts/VEKiconPack.ttf
