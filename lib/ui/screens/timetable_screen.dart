@@ -41,30 +41,23 @@ class TimeTableScreenState extends State<TimeTableScreen> {
         //   snowColor: Get.isDarkMode ? [Colors.white] : [Color(0xFFD6D6D6)],
         // ),
         SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 30,
-                width: 1,
-              ),
-              StreamBuilder(
-                stream: stream,
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (!snapshot.hasData) return _buildLoadingIndicator();
-                  return ListView(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: snapshot.data.docs.map((document) {
-                      return TimeScheduleCard(
-                        time: TimeModel.fromMap(document.data(), document.id),
-                      );
-                    }).toList(),
+          padding: EdgeInsets.only(top: 30),
+          child: StreamBuilder(
+            stream: stream,
+            builder: (BuildContext context,
+                AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData) return _buildLoadingIndicator();
+              return ListView(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                physics: NeverScrollableScrollPhysics(),
+                children: snapshot.data.docs.map((document) {
+                  return TimeScheduleCard(
+                    time: TimeModel.fromMap(document.data(), document.id),
                   );
-                },
-              ),
-            ],
+                }).toList(),
+              );
+            },
           ),
         ),
       ]),

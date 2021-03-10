@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
     bool isDarkMode = brightness == Brightness.dark;
 
     return MaterialApp(
-      theme: isDarkMode ? darkThemeData(context) : themeData(context),
+      theme: themeData(context),
+      darkTheme: darkThemeData(context),
       initialRoute: SplashScreen.routeName,
       routes: {
         SplashScreen.routeName: (context) =>

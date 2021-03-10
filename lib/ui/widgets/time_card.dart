@@ -80,8 +80,8 @@ class _TimeScheduleCardState extends State<TimeScheduleCard> {
                 dottedLength: 3,
                 space: 0.0,
                 color: timeText().isEmpty
-                    ? Theme.of(context).textSelectionTheme.selectionColor
-                    : Theme.of(context).textSelectionTheme.selectionHandleColor,
+                    ? Theme.of(context).textTheme.subtitle1.color
+                    : Theme.of(context).textTheme.bodyText1.color,
               ),
               FDottedLine(
                 height: 55,
@@ -89,8 +89,8 @@ class _TimeScheduleCardState extends State<TimeScheduleCard> {
                 dottedLength: 3,
                 space: 3.0,
                 color: timeText().isEmpty
-                    ? Theme.of(context).textSelectionTheme.selectionColor
-                    : Theme.of(context).textSelectionTheme.selectionHandleColor,
+                    ? Theme.of(context).textTheme.subtitle1.color
+                    : Theme.of(context).textTheme.bodyText1.color,
               ),
             ],
           ),
@@ -110,7 +110,7 @@ class _TimeScheduleCardState extends State<TimeScheduleCard> {
                         .color
                         .withOpacity(0.60))
                     : Theme.of(context).textTheme.headline5.copyWith(
-                    color: Theme.of(context).textSelectionTheme.selectionHandleColor),
+                    color: Theme.of(context).textTheme.bodyText1.color),
               ),
               Text(widget.time.name,
                   style: timeText().isEmpty
@@ -121,11 +121,11 @@ class _TimeScheduleCardState extends State<TimeScheduleCard> {
                           .color
                           .withOpacity(0.60))
                       : Theme.of(context).textTheme.headline6.copyWith(
-                      color: Theme.of(context).textSelectionTheme.selectionHandleColor)),
+                      color: Theme.of(context).textTheme.bodyText1.color)),
               Text(
                 timeText(),
                 style: Theme.of(context).textTheme.headline6.copyWith(
-                    color: Theme.of(context).textSelectionTheme.selectionHandleColor),
+                    color: Theme.of(context).textTheme.bodyText1.color),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 20),
@@ -139,7 +139,7 @@ class _TimeScheduleCardState extends State<TimeScheduleCard> {
                           .color
                           .withOpacity(0.60))
                       : Theme.of(context).textTheme.headline6.copyWith(
-                      color: Theme.of(context).textSelectionTheme.selectionHandleColor),
+                      color: Theme.of(context).textTheme.bodyText1.color),
                 ),
               ),
             ],

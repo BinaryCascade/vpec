@@ -29,32 +29,38 @@ ThemeData themeData(BuildContext context) {
     accentColor: accentColor,
     cardColor: firstLevelColor,
     textTheme: TextTheme(
-        subtitle1:
-            TextStyle(fontSize: 15, color: mediumContrast, fontWeight: medium),
-        bodyText1:
-            TextStyle(color: highContrast, fontSize: 15, fontWeight: regular),
+        subtitle1: TextStyle(
+            fontSize: 15,
+            color: mediumContrast,
+            fontWeight: medium),
+        bodyText1: TextStyle(
+            color: highContrast,
+            fontSize: 15,
+            fontWeight: regular),
         headline3: TextStyle(
-            //News Card Title
+          //News Card Title
             color: highContrast,
             fontSize: 16,
             fontFamily: 'Montserrat',
             fontWeight: medium),
         headline4: TextStyle(
-            //Alert Card Title
+          //Alert Card Title
             color: highContrast,
             fontSize: 17,
             fontFamily: 'Montserrat',
             fontWeight: semiBold),
         headline5: TextStyle(
-            //used in time schedule for any time
+          //used in time schedule for any time
             color: highContrast,
             fontSize: 36,
-            fontFamily: 'Montserrat'),
+            fontFamily: 'Montserrat',
+            fontWeight: semiBold),
         headline6: TextStyle(
-            //used in time schedule for any other
+          //used in time schedule for any other
             color: highContrast,
             fontSize: 18,
-            fontFamily: 'Montserrat')),
+            fontFamily: 'Montserrat',
+            fontWeight: semiBold)),
     iconTheme: Theme.of(context).iconTheme.copyWith(size: 20.0),
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
@@ -122,12 +128,14 @@ ThemeData darkThemeData(BuildContext context) {
             //used in time schedule for any time
             color: highContrast,
             fontSize: 36,
-            fontFamily: 'Montserrat'),
+            fontFamily: 'Montserrat',
+            fontWeight: semiBold),
         headline6: TextStyle(
             //used in time schedule for any other
             color: highContrast,
             fontSize: 18,
-            fontFamily: 'Montserrat')),
+            fontFamily: 'Montserrat',
+            fontWeight: semiBold)),
     iconTheme: Theme.of(context).iconTheme.copyWith(size: 20.0),
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
