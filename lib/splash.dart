@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' as schedule;
-import 'package:flutter_statusbar_manager/flutter_statusbar_manager.dart';
 import 'package:jiffy/jiffy.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -50,15 +49,6 @@ class _SplashScreenState extends State<SplashScreen> {
       auth.signInAnonymously();
     }
 
-    var brightness =
-        schedule.SchedulerBinding.instance.window.platformBrightness;
-    bool isDarkMode = brightness == Brightness.dark;
-
-    await FlutterStatusbarManager.setColor(
-        Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7));
-    await FlutterStatusbarManager.setStyle(isDarkMode
-        ? StatusBarStyle.LIGHT_CONTENT
-        : StatusBarStyle.DARK_CONTENT);
   }
 
   @override
