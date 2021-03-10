@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
         schedule.SchedulerBinding.instance.window.platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
 
-
     return MaterialApp(
       theme: isDarkMode ? darkThemeData(context) : themeData(context),
       initialRoute: SplashScreen.routeName,

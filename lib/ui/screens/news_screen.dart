@@ -116,14 +116,13 @@ class _NewsScreenState extends State<NewsScreen> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.all(10),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 15, vertical: 13),
                                       child: Column(
                                         children: <Widget>[
                                           Text(
                                             item.title,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline3,
+                                            style: Theme.of(context).textTheme.headline3,
                                           ),
                                           Padding(
                                             padding: EdgeInsets.only(top: 6),
@@ -131,9 +130,12 @@ class _NewsScreenState extends State<NewsScreen> {
                                               children: <Widget>[
                                                 Spacer(),
                                                 Text(DateFormat(
-                                                        'd MMM yyyy, HH:mm')
-                                                    .format(item.pubDate)),
-                                              ],
+                                                        'd MMMM yyyy, HH:mm')
+                                                    .format(item.pubDate),
+                                                    style: Theme.of(context)
+                                                    .textTheme
+                                                    .subtitle1,
+                                                )],
                                             ),
                                           ),
                                         ],

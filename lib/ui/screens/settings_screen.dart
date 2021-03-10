@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/scheduler.dart' as schedule;
 import 'package:vpec/utils/rounded_modal_sheet.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -14,9 +16,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var brightness =
+        schedule.SchedulerBinding.instance.window.platformBrightness;
+    bool isDarkMode = brightness == Brightness.dark;
+
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Theme.of(context).scaffoldBackgroundColor,
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Настройки'),
+        brightness: isDarkMode ? Brightness.dark : Brightness.light,
       ),
       body: ListView(
         children: [
