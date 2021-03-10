@@ -34,7 +34,6 @@ dependencies:
   fdottedline: ^1.0.1
   hive: ^2.0.0
   hive_flutter: ^1.0.0
-  flutter_statusbar_manager: ^2.0.0
 
 flutter_icons:
   image_path: "assets/launcher/ic_launcher_android.png"
