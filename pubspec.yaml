@@ -13,29 +13,29 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.17.0 # https://pub.dev/packages/intl
-  webfeed: # https://pub.dev/packages/webfeed
+  intl: ^0.17.0 # for DateFormat
+  webfeed: # for news
     git: https://github.com/Tembeon/webfeed.git
-  http: ^0.13.0 # https://pub.dev/packages/http
-  url_launcher: ^6.0.2 # https://pub.dev/packages/url_launcher
-  transparent_image: ^2.0.0-nullsafety.0 # https://pub.dev/packages/transparent_image/
-  jiffy: ^4.0.0 # https://pub.dev/packages/jiffy
-  cached_network_image: ^3.0.0-nullsafety
-  flutter_cache_manager: ^3.0.0-nullsafety.1
-  xml: ^5.0.2
-  draggable_scrollbar: ^0.0.4
-  flutter_linkify: ^5.0.0
-  flutter_launcher_icons: ^0.9.0
+  http: ^0.13.0 # for load data from web
+  url_launcher: ^6.0.2 # for launch any url
+  transparent_image: ^2.0.0-nullsafety.0 # for placeholders
+  jiffy: ^4.0.0 # for russian date localize
+  cached_network_image: ^3.0.0-nullsafety # for display most images
+  flutter_cache_manager: ^3.0.0-nullsafety.1 # for cached_network_image
+  xml: ^5.0.2 # for cached_network_image
+  draggable_scrollbar: ^0.0.4 # for announcements scroll
+  flutter_linkify: ^5.0.0 # text to links
+  flutter_launcher_icons: ^0.9.0 # launcher icons
   firebase_core: "^1.0.0"
   firebase_auth: "^1.0.0"
   cloud_firestore: "^1.0.0"
-  get: ^3.26.0
-  duration: ^2.0.15
-  fdottedline: ^1.0.1
-  hive: ^2.0.0
+  get: ^3.26.0 # useful things
+  duration: ^2.0.15 # print duration for timetable
+  fdottedline: ^1.0.1 # lines for timetable
+  hive: ^2.0.0 # db
   hive_flutter: ^1.0.0
-  share: ^2.0.1
-  path_provider: ^2.0.1
+  share: ^2.0.1 # share anything
+  path_provider: ^2.0.1 # work with storage paths
 
 flutter_icons:
   image_path: "assets/launcher/ic_launcher_android.png"
