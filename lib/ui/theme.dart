@@ -29,34 +29,30 @@ ThemeData themeData(BuildContext context) {
     accentColor: accentColor,
     cardColor: firstLevelColor,
     textTheme: TextTheme(
-        subtitle1: TextStyle(
-            fontSize: 15,
-            color: mediumContrast,
-            fontWeight: medium),
-        bodyText1: TextStyle(
-            color: highContrast,
-            fontSize: 15,
-            fontWeight: regular),
+        subtitle1:
+            TextStyle(fontSize: 15, color: mediumContrast, fontWeight: medium),
+        bodyText1:
+            TextStyle(color: highContrast, fontSize: 15, fontWeight: regular),
         headline3: TextStyle(
-          //News Card Title
+            //News Card Title
             color: highContrast,
             fontSize: 16,
             fontFamily: 'Montserrat',
             fontWeight: medium),
         headline4: TextStyle(
-          //Alert Card Title
+            //Alert Card Title
             color: highContrast,
             fontSize: 17,
             fontFamily: 'Montserrat',
             fontWeight: semiBold),
         headline5: TextStyle(
-          //used in time schedule for any time
+            //used in time schedule for any time
             color: highContrast,
             fontSize: 36,
             fontFamily: 'Montserrat',
             fontWeight: semiBold),
         headline6: TextStyle(
-          //used in time schedule for any other
+            //used in time schedule for any other
             color: highContrast,
             fontSize: 18,
             fontFamily: 'Montserrat',
@@ -96,22 +92,35 @@ ThemeData darkThemeData(BuildContext context) {
   const lowContrast = Color(0x61FFFFFF);
 
   return ThemeData.dark().copyWith(
-    brightness: Brightness.light,
+    brightness: Brightness.dark,
     textSelectionTheme: TextSelectionThemeData(
         selectionColor: accentColor.withOpacity(0.5),
         selectionHandleColor: accentColor),
     primaryColor: secondLevelColor,
     accentColor: accentColor,
     cardColor: firstLevelColor,
+    // TODO: тебе надо будет вот эту хрень для каждой из тем
+    // TODO: проделать. Мб она будет адекватнее, чем то, как мы сейчас берём цвета
+    // colorScheme: ColorScheme(
+    //     primary: primary,
+    //     primaryVariant: primaryVariant,
+    //     secondary: secondary,
+    //     secondaryVariant: secondaryVariant,
+    //     surface: surface,
+    //     background: background,
+    //     error: error,
+    //     onPrimary: onPrimary,
+    //     onSecondary: onSecondary,
+    //     onSurface: onSurface,
+    //     onBackground: onBackground,
+    //     onError: onError,
+    //     brightness: brightness),
+
     textTheme: TextTheme(
-        subtitle1: TextStyle(
-            fontSize: 15,
-            color: mediumContrast,
-            fontWeight: medium),
-        bodyText1: TextStyle(
-            color: highContrast,
-            fontSize: 15,
-            fontWeight: regular),
+        subtitle1:
+            TextStyle(fontSize: 15, color: mediumContrast, fontWeight: medium),
+        bodyText1:
+            TextStyle(color: highContrast, fontSize: 15, fontWeight: regular),
         headline3: TextStyle(
             //News Card Title
             color: highContrast,
