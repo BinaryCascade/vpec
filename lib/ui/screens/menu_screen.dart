@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:vpec/ui/screens/settings_screen.dart';
 import 'package:flutter/scheduler.dart' as schedule;
+import 'settings/settings_screen.dart';
 
 class MenuScreen extends StatefulWidget {
   @override

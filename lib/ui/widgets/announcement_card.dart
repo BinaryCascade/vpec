@@ -75,7 +75,7 @@ class AnnouncementCard extends StatelessWidget {
       roundedModalSheet(
         context: context,
         title: 'Редактировать объявление',
-        contentChild: Column(
+        child: Column(
           children: [
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),

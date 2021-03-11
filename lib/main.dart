@@ -6,8 +6,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:vpec/splash.dart';
 import 'package:vpec/ui/screens/bottom_bar_screen.dart';
 import 'package:flutter/scheduler.dart' as schedule;
-import 'package:vpec/ui/screens/settings_screen.dart';
 import 'package:vpec/ui/theme.dart';
+
+import 'ui/screens/settings/settings_screen.dart';
 
 Future<void> main() async {
   await Hive.initFlutter();
