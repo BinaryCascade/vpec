@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:vpec/splash.dart';
@@ -21,9 +22,10 @@ class MyApp extends StatelessWidget {
         schedule.SchedulerBinding.instance.window.platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
 
-    return MaterialApp(
+    return GetMaterialApp(
       theme: themeData(context),
       darkTheme: darkThemeData(context),
+      themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
       initialRoute: SplashScreen.routeName,
       routes: {
         SplashScreen.routeName: (context) =>
