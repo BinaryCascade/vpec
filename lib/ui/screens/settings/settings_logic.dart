@@ -1,83 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/scheduler.dart' as schedule;
 import 'package:vpec/utils/rounded_modal_sheet.dart';
 
-class SettingsScreen extends StatefulWidget {
-  static final routeName = '/settings';
-
-  @override
-  _SettingsScreenState createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  FirebaseAuth auth = FirebaseAuth.instance;
-
-  @override
-  Widget build(BuildContext context) {
-    var brightness =
-        schedule.SchedulerBinding.instance.window.platformBrightness;
-    bool isDarkMode = brightness == Brightness.dark;
-
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Theme.of(context).scaffoldBackgroundColor,
-      ),
-    );
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Настройки'),
-        brightness: isDarkMode ? Brightness.dark : Brightness.light,
-      ),
-      body: ListView(
-        children: [
-          ListTile(
-            onTap: _accountLogin,
-            leading: Container(
-              height: double.infinity,
-              child: Icon(
-                Icons.account_circle_outlined,
-                color: Theme.of(context).accentColor,
-                size: 32,
-              ),
-            ),
-            title: GestureDetector(
-              onTap: () => print('_changeMyName'),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2),
-                child: Row(
-                  children: <Widget>[
-                    Text(
-                      'userName',
-                      style: Theme.of(context).textTheme.headline3,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 8, top: 2, bottom: 2),
-                      child: Icon(Icons.create_outlined,
-                          color: Theme.of(context).accentColor, size: 16.0),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            subtitle: Text('Нажмите, чтобы войти в аккаунт'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _accountLogin() {
+class SettingsLogic {
+  void accountLogin(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
 
     roundedModalSheet(
       context: context,
       title: 'Войти в аккаунт',
-      contentChild: Column(
+      child: Column(
         children: [
           Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
@@ -151,6 +84,60 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       content: Text("Данные введены неверно"),
                     ));
                   }
+                },
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void changeName(BuildContext context){
+    TextEditingController nameController = TextEditingController();
+
+    roundedModalSheet(
+      title: 'Изменить имя',
+      context: context,
+      child: Column(
+        children: [
+          Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: TextFormField(
+                controller: nameController,
+                textInputAction: TextInputAction.done,
+                keyboardType: TextInputType.text,
+                style: Theme.of(context).textTheme.headline3,
+                decoration: InputDecoration(
+                    labelText: 'Введите имя',
+                    labelStyle: Theme.of(context).textTheme.headline3,
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).accentColor)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).accentColor))),
+              )),
+          ButtonBar(
+            children: <Widget>[
+              TextButton(
+                style: Theme.of(context).textButtonTheme.style,
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  'Отмена',
+                  style: Theme.of(context).textTheme.bodyText1
+                ),
+              ),
+              OutlinedButton(
+                style: Theme.of(context).outlinedButtonTheme.style,
+                child: Text(
+                  'Сохранить',
+                  style: Theme.of(context).textTheme.bodyText1
+                ),
+                onPressed: () {
+
+                  Navigator.pop(context);
                 },
               )
             ],
