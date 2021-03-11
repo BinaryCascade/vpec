@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void roundedModalSheet(
-    {BuildContext context, String title, Widget contentChild}) {
+    {@required BuildContext context, String title, Widget child}) {
   showModalBottomSheet(
       context: context,
       isDismissible: true,
@@ -21,10 +21,10 @@ void roundedModalSheet(
                   padding: EdgeInsets.only(bottom: 8),
                   child: Text(
                     title,
-                    style: TextStyle(fontSize: 22),
+                    style: Theme.of(context).textTheme.headline4,
                   ),
                 ),
-                contentChild,
+                child,
               ],
             ),
           ));
