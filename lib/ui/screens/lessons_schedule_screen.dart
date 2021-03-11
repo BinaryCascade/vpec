@@ -1,6 +1,14 @@
+import 'dart:io';
+import 'dart:typed_data';
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share/share.dart';
 
 class LessonsScheduleScreen extends StatefulWidget {
   @override
@@ -8,26 +16,51 @@ class LessonsScheduleScreen extends StatefulWidget {
 }
 
 class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
-  bool todayController = true;
+  bool showForToday = true;
+  String baseUrl = 'http://energocollege.ru/vec_assistant/'
+      '%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5/';
+  String endUrl = '.jpg';
   String imgUrl = '';
 
   @override
+  void initState() {
+    imgUrl = _getUrl(forToday: true);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    imgUrl = _getUrl(true);
 
     return Scaffold(
-      body: InteractiveViewer(
-        child: Center(
-          child: CachedNetworkImage(
-            imageUrl: imgUrl,
-            key: UniqueKey(),
-            errorWidget: (context, url, error) => Center(
-              child: Text(error),
-            ),
-            placeholder: (context, url) => Center(
-              child: CircularProgressIndicator(),
-            ),
+      body: CachedNetworkImage(
+        imageUrl: imgUrl,
+        errorWidget: (context, url, error) => Center(
+          child: SelectableText(
+            'Расписание не найдено',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headline3,
           ),
+        ),
+        placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+        imageBuilder: (context, imageProvider) => ColorFiltered(
+          colorFilter: Get.isDarkMode // TODO: Сделать новые фильтры
+              ? ColorFilter.matrix([
+            //R G  B  A  Const
+            -0.81176,        0,        0, 0, 255,
+            0, -0.81176,        0, 0, 255,
+            0,        0, -0.81176, 0, 255,
+            0,        0,        0, 1, 0,
+          ])
+              : ColorFilter.matrix([
+            0.98039,        0,        0,  0, 0,
+            0,  0.98039,        0,  0, 0,
+            0,        0,  0.98039,  0, 0,
+            0,        0,        0,  1, 0,
+          ]),
+          child: InteractiveViewer(
+              minScale: 1.0,
+              maxScale: 10,
+              child: Center(child: Image(image: imageProvider))),
         ),
       ),
       floatingActionButton: Column(
@@ -35,29 +68,28 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-            backgroundColor: Theme.of(context).primaryColor,
-            foregroundColor: Theme.of(context).accentColor,
             mini: true,
             child: Icon(Icons.share_outlined),
-            onPressed: () => print('_onShareFABPressed'),
+            onPressed: () => _shareLessonImage(imgUrl),
           ),
           Padding(
             padding: EdgeInsets.only(bottom: 4),
             child: FloatingActionButton(
-              backgroundColor: Theme.of(context).primaryColor,
-              foregroundColor: Theme.of(context).accentColor,
               mini: true,
               child: Icon(Icons.today_outlined),
-              onPressed: () => print('date'),
+              onPressed: () => _chooseDate(context),
             ),
           ),
           FloatingActionButton(
-            backgroundColor: Theme.of(context).primaryColor,
-            foregroundColor: Theme.of(context).accentColor,
-            child: Icon(todayController ? Icons.arrow_forward_ios_rounded : Icons.arrow_back_ios_rounded, size: 24),
-            onPressed: () {todayController = !todayController;
-              imgUrl = _getUrl(todayController);
-
+            child: Icon(
+                showForToday
+                    ? Icons.arrow_forward_ios_rounded
+                    : Icons.arrow_back_ios_rounded,
+                size: 24),
+            onPressed: () {
+              // this FAB used for switch between schedule for today or tomorrow
+              showForToday = !showForToday;
+              imgUrl = _getUrl(forToday: showForToday);
               setState(() {});
             },
           ),
@@ -66,35 +98,62 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
     );
   }
 
-  String _getUrl(bool forToday) {
-    String baseUrl =
-        'http://energocollege.ru/vec_assistant/%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5/';
-    String endUrl = '.jpg';
+  String _getUrl({bool forToday}) {
+    // get next day to show lesson schedule
+    DateTime date = DateTime.now();
+    DateFormat formatter = DateFormat('d-M-yyyy');
 
-    var now = DateTime.now();
-    int _plusDays = 0;
-    var today = now.weekday;
-    switch (today) {
-      case DateTime.friday:
-        _plusDays = 3;
-        break;
-      case DateTime.saturday:
-        _plusDays = 2;
-        break;
-      case DateTime.sunday:
-        _plusDays = 1;
-        break;
-      default:
-        _plusDays = 1;
-        break;
+    // if we need to show lessons for tomorrow, then we plus days from now
+    if (!forToday) {
+      int _plusDays = 0;
+      int today = date.weekday;
+      switch (today) {
+        case DateTime.friday:
+          _plusDays = 3;
+          break;
+        case DateTime.saturday:
+          _plusDays = 2;
+          break;
+        case DateTime.sunday:
+          _plusDays = 1;
+          break;
+        default:
+          _plusDays = 1;
+          break;
+      }
+
+      date = date.add(Duration(days: _plusDays));
     }
 
-    var nextDay = now.add(Duration(days: _plusDays));
-    var formatter = DateFormat('d-M-yyyy');
+    return baseUrl + formatter.format(date) + endUrl;
+  }
 
-    print(todayController);
-    return baseUrl +
-        (forToday ? formatter.format(now) : formatter.format(nextDay)) +
-        endUrl;
+  Future<void> _shareLessonImage(String downloadUrl) async {
+    // download image from given url
+    HttpClientRequest request =
+        await HttpClient().getUrl(Uri.parse(downloadUrl));
+    HttpClientResponse response = await request.close();
+    Uint8List bytes = await consolidateHttpClientResponseBytes(response);
+
+    // get temp directory, write and share image file
+    final Directory tempDir = await getTemporaryDirectory();
+    final File file = await File('${tempDir.path}/share.jpg').create();
+    await file.writeAsBytes(bytes);
+
+    Share.shareFiles([file.path]);
+  }
+
+  Future<void> _chooseDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime.now().add(const Duration(days: 30)),
+    );
+    if (picked != null && picked != DateTime.now())
+      setState(() {
+        imgUrl =
+            baseUrl + "${picked.day}-${picked.month}-${picked.year}" + endUrl;
+      });
   }
 }
