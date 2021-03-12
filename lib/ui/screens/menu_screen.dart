@@ -19,7 +19,10 @@ class _MenuScreenState extends State<MenuScreen> {
               'Настройки',
               style: Theme.of(context).textTheme.headline3,
             ),
-            subtitle: Text('Изменить имя, тему, стартовый экран'),
+            subtitle: Text(
+              'Изменить имя, тему, стартовый экран',
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
             leading: Container(
               height: double.infinity,
               child: Icon(Icons.settings_outlined,
