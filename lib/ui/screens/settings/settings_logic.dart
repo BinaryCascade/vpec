@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:vpec/utils/rounded_modal_sheet.dart';
 
-class SettingsLogic {
+class SettingsLogic extends NotificationListener {
   void accountLogin(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
@@ -93,7 +94,7 @@ class SettingsLogic {
     );
   }
 
-  void changeName(BuildContext context){
+  void changeName(BuildContext context) {
     TextEditingController nameController = TextEditingController();
 
     roundedModalSheet(
@@ -113,30 +114,26 @@ class SettingsLogic {
                     labelStyle: Theme.of(context).textTheme.headline3,
                     border: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).accentColor)),
+                        borderSide:
+                            BorderSide(color: Theme.of(context).accentColor)),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).accentColor))),
+                        borderSide:
+                            BorderSide(color: Theme.of(context).accentColor))),
               )),
           ButtonBar(
             children: <Widget>[
               TextButton(
                 style: Theme.of(context).textButtonTheme.style,
                 onPressed: () => Navigator.pop(context),
-                child: Text(
-                  'Отмена',
-                  style: Theme.of(context).textTheme.bodyText1
-                ),
+                child: Text('Отмена',
+                    style: Theme.of(context).textTheme.bodyText1),
               ),
               OutlinedButton(
                 style: Theme.of(context).outlinedButtonTheme.style,
-                child: Text(
-                  'Сохранить',
-                  style: Theme.of(context).textTheme.bodyText1
-                ),
+                child: Text('Сохранить',
+                    style: Theme.of(context).textTheme.bodyText1),
                 onPressed: () {
-
+                  saveNewName(nameController.value.text);
                   Navigator.pop(context);
                 },
               )
@@ -145,5 +142,18 @@ class SettingsLogic {
         ],
       ),
     );
+  }
+
+  String getAccountEmail() {
+    if (FirebaseAuth.instance.currentUser.email != null) {
+      return FirebaseAuth.instance.currentUser.email;
+    } else {
+      return 'Нажмите, чтобы войти в аккаунт';
+    }
+  }
+
+  void saveNewName(String newName) {
+    Box settings = Hive.box('settings');
+    settings.put('username', newName);
   }
 }
