@@ -3,6 +3,8 @@ import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vpec/models/announcement_model.dart';
+import 'package:vpec/ui/screens/announcements/announcements_logic.dart';
+import 'package:vpec/ui/screens/announcements/announcements_ui.dart';
 import 'package:vpec/ui/widgets/announcement_card.dart';
 import 'package:vpec/utils/icons.dart';
 
@@ -12,20 +14,8 @@ class AnnouncementsScreen extends StatefulWidget {
 }
 
 class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
-  ScrollController _semicircleController = ScrollController();
-
   @override
   Widget build(BuildContext context) {
-    CollectionReference collectionReference =
-        FirebaseFirestore.instance.collection('alerts');
-    Stream<QuerySnapshot> publicStream;
-    publicStream = collectionReference.snapshots();
-
-    CollectionReference collectionPrivateReference =
-        FirebaseFirestore.instance.collection('privateAlerts');
-    Stream<QuerySnapshot> privateStream;
-    privateStream = collectionPrivateReference.snapshots();
-
     FirebaseAuth user = FirebaseAuth.instance;
     bool isEmployee = user.currentUser.email != null;
 
@@ -35,14 +25,15 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
         body: isEmployee
             ? TabBarView(
                 children: [
-                  _buildAlerts(publicStream),
-                  _buildAlerts(privateStream),
+                  buildAlerts('alerts'),
+                  buildAlerts('privateAlerts'),
                 ],
               )
-            : _buildAlerts(publicStream),
+            : buildAlerts('alerts'),
         floatingActionButton: isEmployee
             ? FloatingActionButton(
-                onPressed: () {},
+                onPressed: () =>
+                    AnnouncementsLogic().createNewAnnouncement(context),
                 child: Icon(Icons.rate_review_outlined),
               )
             : null,
@@ -107,43 +98,6 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
               )
             : null,
       ),
-    );
-  }
-
-  Widget _buildAlerts(Stream<QuerySnapshot> stream) {
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: StreamBuilder(
-            stream: stream,
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (!snapshot.hasData)
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              return DraggableScrollbar.semicircle(
-                backgroundColor: Theme.of(context).primaryColor,
-                child: ListView(
-                  controller: _semicircleController,
-                  children: snapshot.data.docs
-                      .map((document) {
-                        return AnnouncementCard(
-                            announcement: AnnouncementModel.fromMap(
-                                document.data(), document.id));
-                      })
-                      .toList()
-                      .reversed
-                      .toList(),
-                ),
-                controller: _semicircleController,
-                labelConstraints:
-                    BoxConstraints.tightFor(width: 80.0, height: 30.0),
-              );
-            },
-          ),
-        ),
-      ],
     );
   }
 }
