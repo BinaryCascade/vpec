@@ -1,11 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/models/announcement_model.dart';
 import 'package:vpec/ui/screens/announcements/announcements_logic.dart';
 import 'package:vpec/ui/screens/announcements/announcements_ui.dart';
-import 'package:vpec/ui/widgets/announcement_card.dart';
 import 'package:vpec/utils/icons.dart';
 
 class AnnouncementsScreen extends StatefulWidget {
