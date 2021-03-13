@@ -4,7 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:vpec/models/time_model.dart';
+import 'package:vpec/ui/widgets/snow_widget.dart';
 import 'package:vpec/ui/widgets/time_card.dart';
+import 'package:vpec/utils/holiday_helper.dart';
+import 'package:vpec/utils/theme_helper.dart';
 
 class TimeTableScreen extends StatefulWidget {
   @override
@@ -34,12 +37,12 @@ class TimeTableScreenState extends State<TimeTableScreen> {
     stream = collectionReference.snapshots();
     return Scaffold(
       body: Stack(children: <Widget>[
-        // SnowWidget(
-        //   isRunning: isNewYear,
-        //   totalSnow: 20,
-        //   speed: 0.4,
-        //   snowColor: Get.isDarkMode ? [Colors.white] : [Color(0xFFD6D6D6)],
-        // ),
+        SnowWidget(
+          isRunning: HolidayHelper().isNewYear(),
+          totalSnow: 20,
+          speed: 0.4,
+          snowColor: ThemeHelper().isDarkMode() ? Colors.white : Color(0xFFD6D6D6),
+        ),
         SingleChildScrollView(
           padding: EdgeInsets.only(top: 30),
           child: StreamBuilder(
