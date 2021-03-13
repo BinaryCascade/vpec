@@ -5,10 +5,12 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share/share.dart';
+import 'package:vpec/ui/widgets/snow_widget.dart';
+import 'package:vpec/utils/holiday_helper.dart';
+import 'package:vpec/utils/theme_helper.dart';
 
 class LessonsScheduleScreen extends StatefulWidget {
   @override
@@ -32,36 +34,46 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: CachedNetworkImage(
-        imageUrl: imgUrl,
-        errorWidget: (context, url, error) => Center(
-          child: SelectableText(
-            'Расписание не найдено',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline3,
+      body: Stack(
+        children: [
+          SnowWidget(
+            isRunning: HolidayHelper().isNewYear(),
+            totalSnow: 20,
+            speed: 0.4,
+            snowColor: ThemeHelper().isDarkMode() ? Colors.white : Color(0xFFD6D6D6),
           ),
-        ),
-        placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-        imageBuilder: (context, imageProvider) => ColorFiltered(
-          colorFilter: Get.isDarkMode // TODO: Сделать новые фильтры
-              ? ColorFilter.matrix([
-            //R G  B  A  Const
-            -0.81176,        0,        0, 0, 255,
-            0, -0.81176,        0, 0, 255,
-            0,        0, -0.81176, 0, 255,
-            0,        0,        0, 1, 0,
-          ])
-              : ColorFilter.matrix([
-            0.98039,        0,        0,  0, 0,
-            0,  0.98039,        0,  0, 0,
-            0,        0,  0.98039,  0, 0,
-            0,        0,        0,  1, 0,
-          ]),
-          child: InteractiveViewer(
-              minScale: 1.0,
-              maxScale: 10,
-              child: Center(child: Image(image: imageProvider))),
-        ),
+          CachedNetworkImage(
+            imageUrl: imgUrl,
+            errorWidget: (context, url, error) => Center(
+              child: SelectableText(
+                'Расписание не найдено',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headline3,
+              ),
+            ),
+            placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+            imageBuilder: (context, imageProvider) => ColorFiltered(
+              colorFilter: ThemeHelper().isDarkMode() // TODO: Сделать новые фильтры
+                  ? ColorFilter.matrix([
+                //R G  B  A  Const
+                -0.81176,        0,        0, 0, 255,
+                0, -0.81176,        0, 0, 255,
+                0,        0, -0.81176, 0, 255,
+                0,        0,        0, 1, 0,
+              ])
+                  : ColorFilter.matrix([
+                0.98039,        0,        0,  0, 0,
+                0,  0.98039,        0,  0, 0,
+                0,        0,  0.98039,  0, 0,
+                0,        0,        0,  1, 0,
+              ]),
+              child: InteractiveViewer(
+                  minScale: 1.0,
+                  maxScale: 10,
+                  child: Center(child: Image(image: imageProvider))),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
