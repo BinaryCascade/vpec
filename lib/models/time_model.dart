@@ -1,3 +1,5 @@
+// this model used in TimeTable
+
 class TimeModel {
   final String startLesson;
   final String endLesson;

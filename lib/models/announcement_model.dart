@@ -1,3 +1,5 @@
+// this model used for AnnouncementsScreen
+
 class AnnouncementModel {
   final String author;
   final String content;

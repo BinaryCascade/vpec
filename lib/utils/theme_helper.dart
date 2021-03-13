@@ -19,7 +19,8 @@ class ThemeHelper {
     return isDarkMode;
   }
 
-  void colorStatusBar({@required BuildContext context, @required bool isTransparent}) {
+  void colorStatusBar(
+      {@required BuildContext context, @required bool isTransparent}) {
     // [isTransparent] = true if you use AppBar in page
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
