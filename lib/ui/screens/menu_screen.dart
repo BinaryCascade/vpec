@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/scheduler.dart' as schedule;
+import 'package:vpec/utils/theme_helper.dart';
 import 'settings/settings_screen.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -30,23 +29,7 @@ class _MenuScreenState extends State<MenuScreen> {
             ),
             onTap: () async {
               await Navigator.pushNamed(context, SettingsScreen.routeName);
-              var brightness =
-                  schedule.SchedulerBinding.instance.window.platformBrightness;
-              bool isDarkMode = brightness == Brightness.dark;
-
-              SystemChrome.setSystemUIOverlayStyle(
-                SystemUiOverlayStyle(
-                    statusBarColor: Theme.of(context)
-                        .scaffoldBackgroundColor
-                        .withOpacity(0.7),
-                    statusBarIconBrightness:
-                        isDarkMode ? Brightness.light : Brightness.dark,
-                    systemNavigationBarColor: Theme.of(context)
-                        .bottomNavigationBarTheme
-                        .backgroundColor,
-                    systemNavigationBarIconBrightness:
-                        isDarkMode ? Brightness.light : Brightness.dark),
-              );
+              ThemeHelper().colorStatusBar(context: context, isTransparent: false);
             },
           ),
         ],

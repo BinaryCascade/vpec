@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/scheduler.dart' as schedule;
 import 'package:jiffy/jiffy.dart';
+
+import 'utils/theme_helper.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/';
@@ -22,21 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _loadingSettings() {
-    var brightness =
-        schedule.SchedulerBinding.instance.window.platformBrightness;
-    bool isDarkMode = brightness == Brightness.dark;
-
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-          statusBarColor:
-              Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
-          statusBarIconBrightness:
-              isDarkMode ? Brightness.light : Brightness.dark,
-          systemNavigationBarColor:
-              Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-          systemNavigationBarIconBrightness:
-              isDarkMode ? Brightness.light : Brightness.dark),
-    );
+    ThemeHelper().colorStatusBar(context: context, isTransparent: false);
   }
 
   Future<void> _initApp() async {

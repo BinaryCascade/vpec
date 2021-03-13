@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/scheduler.dart' as schedule;
-import 'package:vpec/ui/screens/settings/setting_ui.dart';
+import 'package:vpec/utils/theme_helper.dart';
+import 'settings_ui.dart';
 
 class SettingsScreen extends StatefulWidget {
   static final routeName = '/settings';
@@ -13,21 +13,12 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    var brightness =
-        schedule.SchedulerBinding.instance.window.platformBrightness;
-    bool isDarkMode = brightness == Brightness.dark;
-
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Theme.of(context).scaffoldBackgroundColor,
-      ),
-    );
+    ThemeHelper().colorStatusBar(context: context, isTransparent: true);
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Настройки'),
-        brightness: isDarkMode ? Brightness.dark : Brightness.light,
+        brightness: ThemeHelper().isDarkMode() ? Brightness.dark : Brightness.light,
       ),
       body: ListView(
         children: [
