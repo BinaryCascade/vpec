@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/ui/screens/announcements/announcements_logic.dart';
-import 'package:vpec/ui/screens/announcements/announcements_ui.dart';
 import 'package:vpec/utils/icons.dart';
+
+import 'announcements_logic.dart';
+import 'announcements_ui.dart';
 
 class AnnouncementsScreen extends StatefulWidget {
   @override
@@ -21,11 +22,11 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
         body: isEmployee
             ? TabBarView(
                 children: [
-                  buildAlerts('alerts'),
-                  buildAlerts('privateAlerts'),
+                  buildAnnouncementsList('alerts'),
+                  buildAnnouncementsList('privateAlerts'),
                 ],
               )
-            : buildAlerts('alerts'),
+            : buildAnnouncementsList('alerts'),
         floatingActionButton: isEmployee
             ? FloatingActionButton(
                 onPressed: () =>

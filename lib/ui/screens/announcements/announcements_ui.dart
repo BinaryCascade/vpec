@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:vpec/models/announcement_model.dart';
 import 'package:vpec/ui/widgets/announcement_card.dart';
 
-Widget buildAlerts(String streamName) {
+// ListView with data from Firestore
+Widget buildAnnouncementsList(String streamName) {
   ScrollController _semicircleController = ScrollController();
   Stream<QuerySnapshot> stream =
       FirebaseFirestore.instance.collection(streamName).snapshots();
