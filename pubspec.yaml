@@ -36,6 +36,19 @@ dependencies:
   hive_flutter: ^1.0.0
   share: ^2.0.1 # share anything
   path_provider: ^2.0.1 # work with storage paths
+  flutter_native_splash: ^1.0.3 # splash
+
+flutter_native_splash:
+  color: "#E8E8E8"
+  image: assets/splash/light.png
+  color_dark: "#121212"
+  image_dark: assets/splash/dark.png
+  android: true
+  ios: true
+  web: true
+  android_gravity: center
+  ios_content_mode: center
+  web_image_mode: center
 
 flutter_icons:
   image_path: "assets/launcher/ic_launcher_android.png"
