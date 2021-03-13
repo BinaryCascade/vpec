@@ -116,25 +116,30 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
     DateFormat formatter = DateFormat('d-M-yyyy');
 
     // if we need to show lessons for tomorrow, then we plus days from now
-    if (!forToday) {
+    // isWeekend used for auto showing schedule for next day from screen start
       int _plusDays = 0;
       int today = date.weekday;
+      bool isWeekend = false;
       switch (today) {
         case DateTime.friday:
           _plusDays = 3;
           break;
         case DateTime.saturday:
           _plusDays = 2;
+          isWeekend = true;
           break;
         case DateTime.sunday:
           _plusDays = 1;
+          isWeekend = true;
           break;
         default:
           _plusDays = 1;
           break;
       }
 
+    if (!forToday || isWeekend) {
       date = date.add(Duration(days: _plusDays));
+      if (isWeekend) showForToday = false;
     }
 
     return baseUrl + formatter.format(date) + endUrl;
