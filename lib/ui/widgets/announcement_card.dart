@@ -14,7 +14,7 @@ class AnnouncementCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5.0),
+      padding: EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
       child: Card(
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
