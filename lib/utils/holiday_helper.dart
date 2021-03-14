@@ -7,4 +7,5 @@ class HolidayHelper {
       return false;
     }
   }
+  // add more holidays if need...
 }

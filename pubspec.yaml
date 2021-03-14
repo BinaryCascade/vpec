@@ -37,7 +37,8 @@ dependencies:
   share: ^2.0.1 # share anything
   path_provider: ^2.0.1 # work with storage paths
   flutter_native_splash: ^1.0.3 # splash
-  quick_actions: ^0.5.0
+  quick_actions: ^0.5.0 # shortcuts from launcher
+  flutter_cached_pdfview: ^0.4.0-nullsafety # for document viewer
 
 flutter_native_splash:
   color: "#E8E8E8"
