@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vpec/ui/widgets/styled_widgets.dart';
+import 'package:vpec/utils/icons.dart';
 import 'package:vpec/utils/theme_helper.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -12,25 +14,77 @@ class _MenuScreenState extends State<MenuScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          ListTile(
-            title: Text(
-              'Настройки',
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            subtitle: Text(
-              'Изменить имя, тему, стартовый экран',
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            leading: Container(
-              height: double.infinity,
-              child: Icon(Icons.settings_outlined,
+          // settings block
+          styledListTile(
+              context: context,
+              icon: Icon(Icons.settings_outlined,
                   color: Theme.of(context).accentColor, size: 32),
-            ),
-            onTap: () async {
-              await Navigator.pushNamed(context, '/settings');
-              ThemeHelper().colorStatusBar(context: context, isTransparent: false);
-            },
-          ),
+              title: 'Настройки',
+              subtitle: 'Изменить имя, тему, стартовый экран',
+              onTap: () async {
+                await Navigator.pushNamed(context, '/settings');
+                ThemeHelper()
+                    .colorStatusBar(context: context, isTransparent: false);
+              }),
+          // information block
+          Divider(),
+          styledListTile(
+              context: context,
+              icon: Icon(Icons.layers_outlined,
+                  color: Theme.of(context).accentColor, size: 32),
+              title: 'Список кабинетов',
+              subtitle: 'В виде карты',
+              onTap: () async {
+                await Navigator.pushNamed(context, '/settings');
+                ThemeHelper()
+                    .colorStatusBar(context: context, isTransparent: false);
+              }),
+          styledListTile(
+              context: context,
+              icon: Icon(Icons.group_outlined,
+                  color: Theme.of(context).accentColor, size: 32),
+              title: 'Список преподавателей',
+              subtitle: 'Их имена, кабинеты',
+              onTap: () async {
+                await Navigator.pushNamed(context, '/settings');
+                ThemeHelper()
+                    .colorStatusBar(context: context, isTransparent: false);
+              }),
+          styledListTile(
+              context: context,
+              icon: Icon(VEKiconPack.account_cog_outline,
+                  color: Theme.of(context).accentColor, size: 32),
+              title: 'Администрация колледжа',
+              subtitle: 'Вопросы, проблемы и предложения',
+              onTap: () async {
+                await Navigator.pushNamed(context, '/settings');
+                ThemeHelper()
+                    .colorStatusBar(context: context, isTransparent: false);
+              }),
+          // documents block
+          Divider(),
+          styledListTile(
+              context: context,
+              icon: Icon(Icons.description_outlined,
+                  color: Theme.of(context).accentColor, size: 32),
+              title: 'Объяснительная записка',
+              subtitle: 'Образец составления',
+              onTap: () async {
+                await Navigator.pushNamed(context, '/settings');
+                ThemeHelper()
+                    .colorStatusBar(context: context, isTransparent: false);
+              }),
+          styledListTile(
+              context: context,
+              icon: Icon(Icons.description_outlined,
+                  color: Theme.of(context).accentColor, size: 32),
+              title: 'Заявление на уважительные пропуски',
+              subtitle: 'Образец составления',
+              onTap: () async {
+                await Navigator.pushNamed(context, '/settings');
+                ThemeHelper()
+                    .colorStatusBar(context: context, isTransparent: false);
+              }),
         ],
       ),
     );
