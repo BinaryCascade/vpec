@@ -6,7 +6,6 @@ import 'package:jiffy/jiffy.dart';
 import 'utils/theme_helper.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const routeName = '/';
   final Widget child;
 
   const SplashScreen({Key key, this.child}) : super(key: key);

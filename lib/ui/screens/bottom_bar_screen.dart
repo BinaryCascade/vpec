@@ -8,7 +8,6 @@ import 'package:vpec/utils/icons.dart';
 import 'announcements/announcements_screen.dart';
 
 class BottomBarScreen extends StatefulWidget {
-  static final routeName = '/home';
   @override
   _BottomBarScreenState createState() => _BottomBarScreenState();
 }

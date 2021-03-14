@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vpec/utils/theme_helper.dart';
-import 'settings/settings_screen.dart';
 
 class MenuScreen extends StatefulWidget {
   @override
@@ -28,7 +27,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   color: Theme.of(context).accentColor, size: 32),
             ),
             onTap: () async {
-              await Navigator.pushNamed(context, SettingsScreen.routeName);
+              await Navigator.pushNamed(context, '/settings');
               ThemeHelper().colorStatusBar(context: context, isTransparent: false);
             },
           ),

@@ -4,8 +4,6 @@ import 'package:vpec/utils/theme_helper.dart';
 import 'settings_ui.dart';
 
 class SettingsScreen extends StatefulWidget {
-  static final routeName = '/settings';
-
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -18,7 +16,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Настройки'),
-        brightness: ThemeHelper().isDarkMode() ? Brightness.dark : Brightness.light,
+        brightness:
+            ThemeHelper().isDarkMode() ? Brightness.dark : Brightness.light,
       ),
       body: ListView(
         children: [
