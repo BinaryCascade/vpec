@@ -14,7 +14,7 @@ class BottomBarScreen extends StatefulWidget {
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
   final PageStorageBucket bucket = PageStorageBucket();
-  int _bbarIndex = 0;
+  int bottomBarIndex = 0;
 
   // List of screens for navigation
   final List<Widget> pages = [
@@ -29,15 +29,15 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageStorage(
-        child: pages[_bbarIndex],
+        child: pages[bottomBarIndex],
         bucket: bucket,
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
-        currentIndex: _bbarIndex,
+        currentIndex: bottomBarIndex,
         onTap: (index) {
           setState(() {
-            _bbarIndex = index;
+            bottomBarIndex = index;
           });
         },
         items: [

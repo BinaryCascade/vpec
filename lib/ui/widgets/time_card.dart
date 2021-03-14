@@ -1,3 +1,5 @@
+// WARNING: this code is so weird, so pls be patient while reading
+
 import 'package:duration/duration.dart';
 import 'package:duration/locale.dart';
 import 'package:fdottedline/fdottedline.dart';

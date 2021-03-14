@@ -54,7 +54,7 @@ Widget buildAccountBlock(BuildContext context) {
 }
 
 Widget buildThemeChooser(BuildContext context) {
-  return styledListTile(
+  return hivedListTile(
     context: context,
     title: 'Тема приложения',
     subtitleKey: 'theme',
