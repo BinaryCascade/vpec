@@ -32,16 +32,17 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Stack(
         children: [
-          SnowWidget(
-            isRunning: HolidayHelper().isNewYear(),
-            totalSnow: 20,
-            speed: 0.4,
-            snowColor: ThemeHelper().isDarkMode() ? Colors.white : Color(0xFFD6D6D6),
-          ),
+          if (HolidayHelper().isNewYear())
+            SnowWidget(
+              isRunning: true,
+              totalSnow: 20,
+              speed: 0.4,
+              snowColor:
+                  ThemeHelper().isDarkMode() ? Colors.white : Color(0xFFD6D6D6),
+            ),
           CachedNetworkImage(
             imageUrl: imgUrl,
             errorWidget: (context, url, error) => Center(
@@ -51,22 +52,40 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
                 style: Theme.of(context).textTheme.headline3,
               ),
             ),
-            placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+            placeholder: (context, url) =>
+                Center(child: CircularProgressIndicator()),
             imageBuilder: (context, imageProvider) => ColorFiltered(
-              colorFilter: ThemeHelper().isDarkMode() // TODO: Сделать новые фильтры
-                  ? ColorFilter.matrix([
-                //R G  B  A  Const
-                -0.81176,        0,        0, 0, 255,
-                0, -0.81176,        0, 0, 255,
-                0,        0, -0.81176, 0, 255,
-                0,        0,        0, 1, 0,
-              ])
-                  : ColorFilter.matrix([
-                0.98039,        0,        0,  0, 0,
-                0,  0.98039,        0,  0, 0,
-                0,        0,  0.98039,  0, 0,
-                0,        0,        0,  1, 0,
-              ]),
+              colorFilter:
+                  ThemeHelper().isDarkMode() // TODO: Сделать новые фильтры
+                      ? ColorFilter.matrix([
+                          //R G  B  A  Const
+                          -0.81176, 0, 0, 0, 255,
+                          0, -0.81176, 0, 0, 255,
+                          0, 0, -0.81176, 0, 255,
+                          0, 0, 0, 1, 0,
+                        ])
+                      : ColorFilter.matrix([
+                          0.98039,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0.98039,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0.98039,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          1,
+                          0,
+                        ]),
               child: InteractiveViewer(
                   minScale: 1.0,
                   maxScale: 10,
@@ -81,10 +100,10 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
         children: <Widget>[
           if (!kIsWeb)
             FloatingActionButton(
-            mini: true,
-            child: Icon(Icons.share_outlined),
-            onPressed: () => _shareLessonImage(imgUrl),
-          ),
+              mini: true,
+              child: Icon(Icons.share_outlined),
+              onPressed: () => _shareLessonImage(imgUrl),
+            ),
           Padding(
             padding: EdgeInsets.only(bottom: 4),
             child: FloatingActionButton(
@@ -118,25 +137,25 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
 
     // if we need to show lessons for tomorrow, then we plus days from now
     // isWeekend used for auto showing schedule for next day from screen start
-      int _plusDays = 0;
-      int today = date.weekday;
-      bool isWeekend = false;
-      switch (today) {
-        case DateTime.friday:
-          _plusDays = 3;
-          break;
-        case DateTime.saturday:
-          _plusDays = 2;
-          isWeekend = true;
-          break;
-        case DateTime.sunday:
-          _plusDays = 1;
-          isWeekend = true;
-          break;
-        default:
-          _plusDays = 1;
-          break;
-      }
+    int _plusDays = 0;
+    int today = date.weekday;
+    bool isWeekend = false;
+    switch (today) {
+      case DateTime.friday:
+        _plusDays = 3;
+        break;
+      case DateTime.saturday:
+        _plusDays = 2;
+        isWeekend = true;
+        break;
+      case DateTime.sunday:
+        _plusDays = 1;
+        isWeekend = true;
+        break;
+      default:
+        _plusDays = 1;
+        break;
+    }
 
     if (!forToday || isWeekend) {
       date = date.add(Duration(days: _plusDays));

@@ -37,18 +37,20 @@ class TimeTableScreenState extends State<TimeTableScreen> {
     stream = collectionReference.snapshots();
     return Scaffold(
       body: Stack(children: <Widget>[
-        SnowWidget(
-          isRunning: HolidayHelper().isNewYear(),
-          totalSnow: 20,
-          speed: 0.4,
-          snowColor: ThemeHelper().isDarkMode() ? Colors.white : Color(0xFFD6D6D6),
-        ),
+        if (HolidayHelper().isNewYear())
+          SnowWidget(
+            isRunning: true,
+            totalSnow: 20,
+            speed: 0.4,
+            snowColor:
+                ThemeHelper().isDarkMode() ? Colors.white : Color(0xFFD6D6D6),
+          ),
         SingleChildScrollView(
           padding: EdgeInsets.only(top: 30),
           child: StreamBuilder(
             stream: stream,
-            builder: (BuildContext context,
-                AsyncSnapshot<QuerySnapshot> snapshot) {
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) return _buildLoadingIndicator();
               return ListView(
                 shrinkWrap: true,
