@@ -184,7 +184,12 @@ class SettingsLogic {
           return Column(
             children: [
               RadioListTile(
-                  title: Text('Светлая тема'),
+                  secondary: Icon(Icons.brightness_5_outlined,
+                      color: Theme.of(context).accentColor),
+                  title: Text(
+                    'Светлая тема',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
                   value: 0,
                   activeColor: Theme.of(context).accentColor,
                   groupValue: selectedItem,
@@ -198,7 +203,12 @@ class SettingsLogic {
                     });
                   }),
               RadioListTile(
-                  title: Text('Тёмная тема'),
+                  secondary: Icon(Icons.brightness_2_outlined,
+                      color: Theme.of(context).accentColor),
+                  title: Text(
+                    'Тёмная тема',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
                   value: 1,
                   activeColor: Theme.of(context).accentColor,
                   groupValue: selectedItem,
@@ -212,7 +222,12 @@ class SettingsLogic {
                     });
                   }),
               RadioListTile(
-                  title: Text('Системная тема'),
+                  secondary: Icon(Icons.phonelink_setup_outlined,
+                      color: Theme.of(context).accentColor),
+                  title: Text(
+                    'Системная тема',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
                   value: 2,
                   activeColor: Theme.of(context).accentColor,
                   groupValue: selectedItem,
