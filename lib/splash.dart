@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:quick_actions/quick_actions.dart';
 
 import 'utils/theme_helper.dart';
 
@@ -14,6 +15,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   void initState() {
     _initApp();
@@ -34,6 +36,20 @@ class _SplashScreenState extends State<SplashScreen> {
     if (auth.currentUser == null) {
       auth.signInAnonymously();
     }
+
+    // TODO: сделать шорткаты
+    final QuickActions quickActions = QuickActions();
+    quickActions.initialize((shortcutType) {
+      if (shortcutType == 'action_main') {
+        print('The user tapped on the "Main view" action.');
+      }
+      // More handling code...
+    });
+
+    quickActions.setShortcutItems(<ShortcutItem>[
+      const ShortcutItem(type: 'action_main', localizedTitle: 'Main view', icon: 'icon_main'),
+      const ShortcutItem(type: 'action_help', localizedTitle: 'Help', icon: 'icon_help')
+    ]);
   }
 
   @override
