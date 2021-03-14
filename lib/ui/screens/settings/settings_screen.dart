@@ -23,6 +23,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: ListView(
         children: [
           buildAccountBlock(context),
+          buildThemeChooser(context),
         ],
       ),
     );

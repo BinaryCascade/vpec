@@ -18,6 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     _initApp();
+
     super.initState();
   }
 
@@ -34,7 +35,6 @@ class _SplashScreenState extends State<SplashScreen> {
     if (auth.currentUser == null) {
       auth.signInAnonymously();
     }
-
   }
 
   @override

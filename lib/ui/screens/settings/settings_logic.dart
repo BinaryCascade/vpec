@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:vpec/utils/rounded_modal_sheet.dart';
 
-class SettingsLogic extends NotificationListener {
+class SettingsLogic {
+  // show roundedModalSheet() for account login
   void accountLogin(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
@@ -68,6 +70,7 @@ class SettingsLogic extends NotificationListener {
                 ),
                 onPressed: () async {
                   try {
+                    // trying to login
                     await FirebaseAuth.instance.signOut();
                     await FirebaseAuth.instance.signInWithEmailAndPassword(
                         email: emailController.text,
@@ -78,6 +81,7 @@ class SettingsLogic extends NotificationListener {
                       content: Text("Вход в аккаунт выполнен успешно"),
                     ));
                   } on FirebaseAuthException {
+                    // something went wrong, make anonymously login
                     await FirebaseAuth.instance.signInAnonymously();
                     Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -94,6 +98,8 @@ class SettingsLogic extends NotificationListener {
     );
   }
 
+  // show roundedModalSheet() for editing user's name
+  // (name used for announcements post)
   void changeName(BuildContext context) {
     TextEditingController nameController = TextEditingController();
 
@@ -133,10 +139,10 @@ class SettingsLogic extends NotificationListener {
                 child: Text('Сохранить',
                     style: Theme.of(context).textTheme.bodyText1),
                 onPressed: () {
-                  saveNewName(nameController.value.text);
+                  saveValue(key: 'username', value: nameController.value.text);
                   Navigator.pop(context);
                 },
-              )
+              ),
             ],
           ),
         ],
@@ -152,8 +158,74 @@ class SettingsLogic extends NotificationListener {
     }
   }
 
-  void saveNewName(String newName) {
+  void saveValue({String key, dynamic value}) {
     Box settings = Hive.box('settings');
-    settings.put('username', newName);
+    settings.put(key, value);
+  }
+
+  void removeValue(String key) {
+    Box settings = Hive.box('settings');
+    settings.delete(key);
+  }
+
+  void chooseTheme(BuildContext context) {
+    var settings = Hive.box('settings');
+    int selectedItem = 0;
+    if (settings.get('theme') == null) {
+      selectedItem = 2;
+    } else {
+      selectedItem = settings.get('theme') == 'Светлая тема' ? 0 : 1;
+    }
+
+    roundedModalSheet(
+        context: context,
+        title: 'Выберите тему',
+        child: StatefulBuilder(builder: (context, setModalState) {
+          return Column(
+            children: [
+              RadioListTile(
+                  title: Text('Светлая тема'),
+                  value: 0,
+                  activeColor: Theme.of(context).accentColor,
+                  groupValue: selectedItem,
+                  controlAffinity: ListTileControlAffinity.trailing,
+                  onChanged: (value) {
+                    setModalState(() {
+                      SettingsLogic()
+                          .saveValue(key: 'theme', value: 'Светлая тема');
+                      Get.changeThemeMode(ThemeMode.light);
+                      selectedItem = value;
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('Тёмная тема'),
+                  value: 1,
+                  activeColor: Theme.of(context).accentColor,
+                  groupValue: selectedItem,
+                  controlAffinity: ListTileControlAffinity.trailing,
+                  onChanged: (value) {
+                    setModalState(() {
+                      SettingsLogic()
+                          .saveValue(key: 'theme', value: 'Тёмная тема');
+                      Get.changeThemeMode(ThemeMode.dark);
+                      selectedItem = value;
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('Системная тема'),
+                  value: 2,
+                  activeColor: Theme.of(context).accentColor,
+                  groupValue: selectedItem,
+                  controlAffinity: ListTileControlAffinity.trailing,
+                  onChanged: (value) {
+                    setModalState(() {
+                      Get.changeThemeMode(ThemeMode.system);
+                      selectedItem = value;
+                      SettingsLogic().removeValue('theme');
+                    });
+                  }),
+            ],
+          );
+        }));
   }
 }

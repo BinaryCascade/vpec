@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:vpec/ui/screens/settings/settings_logic.dart';
+import 'package:vpec/ui/widgets/styled_widgets.dart';
+import 'package:vpec/utils/icons.dart';
+import 'settings_logic.dart';
 
+// Two ListTiles for account management
 Widget buildAccountBlock(BuildContext context) {
   return Column(
     children: [
       ListTile(
-        onTap: () {
-          SettingsLogic().accountLogin(context);
-        },
+        onTap: () => SettingsLogic().accountLogin(context),
         leading: Container(
           height: double.infinity,
           child: Icon(
@@ -24,7 +25,7 @@ Widget buildAccountBlock(BuildContext context) {
         ),
         subtitle: Text(
           SettingsLogic().getAccountEmail(),
-          style: Theme.of(context).textTheme.headline3,
+          style: Theme.of(context).textTheme.subtitle1,
         ),
       ),
       ListTile(
@@ -43,11 +44,28 @@ Widget buildAccountBlock(BuildContext context) {
           builder: (context, box, child) {
             return Text(
               box.get('username', defaultValue: 'Изменить имя'),
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.subtitle1,
             );
           },
         ),
       ),
     ],
+  );
+}
+
+Widget buildThemeChooser(BuildContext context) {
+  return styledListTile(
+    context: context,
+    title: 'Тема приложения',
+    subtitleKey: 'theme',
+    defaultValue: 'Системная тема',
+    icon: Icon(
+      VEKiconPack.battery_saver_line,
+      size: 32,
+      color: Theme.of(context).accentColor,
+    ),
+    onTap: () async {
+      SettingsLogic().chooseTheme(context);
+    },
   );
 }

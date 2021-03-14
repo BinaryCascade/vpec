@@ -15,13 +15,37 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isDarkTheme = ThemeHelper().isDarkMode();
+
+  @override
+  void initState() {
+    final window = WidgetsBinding.instance.window;
+    window.onPlatformBrightnessChanged = () {
+      Box settings = Hive.box('settings');
+      // This callback gets invoked every time brightness changes
+      setState(() {
+        if (settings.get('theme') == null) {
+          isDarkTheme = window.platformBrightness == Brightness.dark;
+        } else {
+          isDarkTheme = ThemeHelper().isDarkMode();
+        }
+      });
+    };
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: themeData(context),
       darkTheme: darkThemeData(context),
-      themeMode: ThemeHelper().isDarkMode() ? ThemeMode.dark : ThemeMode.light,
+      themeMode: isDarkTheme ? ThemeMode.dark : ThemeMode.light,
       initialRoute: SplashScreen.routeName,
       routes: {
         SplashScreen.routeName: (context) =>

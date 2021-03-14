@@ -13,11 +13,12 @@ class ThemeHelper {
     // get user-chosen theme
     Box settings = Hive.box('settings');
     if (settings.get('theme') != null) {
-      settings.get('theme') == 'dark' ? isDarkMode = true : isDarkMode = false;
+      settings.get('theme') == 'Тёмная тема' ? isDarkMode = true : isDarkMode = false;
     }
 
     return isDarkMode;
   }
+
 
   void colorStatusBar(
       {@required BuildContext context, @required bool isTransparent}) {
