@@ -79,7 +79,8 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          FloatingActionButton(
+          if (!kIsWeb)
+            FloatingActionButton(
             mini: true,
             child: Icon(Icons.share_outlined),
             onPressed: () => _shareLessonImage(imgUrl),
