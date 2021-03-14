@@ -151,7 +151,7 @@ class _TimeScheduleCardState extends State<TimeScheduleCard> {
 
   String printStart() {
     return 'До начала: ' +
-        printDuration(timeUntilLessonStart,
+        prettyDuration(timeUntilLessonStart,
             locale: DurationLocale.fromLanguageCode('ru'));
   }
 

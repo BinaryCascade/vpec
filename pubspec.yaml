@@ -30,7 +30,7 @@ dependencies:
   firebase_auth: "^1.0.0"
   cloud_firestore: "^1.0.0"
   get: ^3.26.0 # useful things
-  duration: ^2.0.15 # print duration for timetable
+  duration: ^3.0.6 # print duration for timetable
   fdottedline: ^1.0.1 # lines for timetable
   hive: ^2.0.0 # db
   hive_flutter: ^1.0.0
