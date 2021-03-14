@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-Widget styledListTile(
+Widget hivedListTile(
     {@required BuildContext context,
     String title,
     @required String subtitleKey,
@@ -10,7 +10,11 @@ Widget styledListTile(
     GestureTapCallback onTap,
     Icon icon}) {
   return ListTile(
-    leading: icon,
+    leading: Container(
+        //  cringe fix to center icon. If you want to use Center()
+        //  instead Container - you will get bamboozled
+        height: double.infinity,
+        child: icon),
     title: Text(
       title,
       style: Theme.of(context).textTheme.headline3,
@@ -23,6 +27,26 @@ Widget styledListTile(
           style: Theme.of(context).textTheme.subtitle1,
         );
       },
+    ),
+    onTap: onTap,
+  );
+}
+
+ListTile styledListTile(
+    {@required BuildContext context,
+    String title,
+    String subtitle,
+    Widget icon,
+    GestureTapCallback onTap}) {
+  return ListTile(
+    leading: Container(height: double.infinity, child: icon),
+    title: Text(
+      title,
+      style: Theme.of(context).textTheme.headline3,
+    ),
+    subtitle: Text(
+      subtitle,
+      style: Theme.of(context).textTheme.subtitle1,
     ),
     onTap: onTap,
   );
