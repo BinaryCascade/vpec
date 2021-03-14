@@ -132,12 +132,14 @@ class SettingsLogic {
                 style: Theme.of(context).textButtonTheme.style,
                 onPressed: () => Navigator.pop(context),
                 child: Text('Отмена',
-                    style: Theme.of(context).textTheme.bodyText1),
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1.color),),
               ),
               OutlinedButton(
                 style: Theme.of(context).outlinedButtonTheme.style,
                 child: Text('Сохранить',
-                    style: Theme.of(context).textTheme.bodyText1),
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1.color),),
                 onPressed: () {
                   saveValue(key: 'username', value: nameController.value.text);
                   Navigator.pop(context);
