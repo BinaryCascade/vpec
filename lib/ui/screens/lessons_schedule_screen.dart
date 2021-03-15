@@ -184,9 +184,10 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2015, 8),
+      firstDate: DateTime(2018, 8),
       lastDate: DateTime.now().add(const Duration(days: 30)),
     );
+
     if (picked != null && picked != DateTime.now())
       setState(() {
         imgUrl =

@@ -25,9 +25,33 @@ ThemeData themeData(BuildContext context) {
     textSelectionTheme: TextSelectionThemeData(
         selectionColor: accentColor.withOpacity(0.5),
         selectionHandleColor: accentColor),
+    inputDecorationTheme: InputDecorationTheme(
+        labelStyle: TextStyle(color: accentColor),
+        hoverColor: accentColor,
+        border: OutlineInputBorder(),
+        enabledBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: accentColor)),
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: accentColor))),
     primaryColor: secondLevelColor,
     accentColor: accentColor,
     cardColor: firstLevelColor,
+    splashColor: accentColor.withOpacity(0.2),
+    colorScheme: ColorScheme(
+        primary: accentColor,
+        primaryVariant: accentColor,
+        secondary: accentColor,
+        secondaryVariant: accentColor,
+        surface: secondLevelColor,
+        background: accentColor,
+        error: Colors.redAccent,
+        onPrimary: Color(0xDEFFFFFF),
+        onSecondary: highContrast,
+        onSurface: highContrast,
+        onBackground: highContrast,
+        onError: Color(0xDEFFFFFF),
+        brightness: Brightness.light),
+    dialogBackgroundColor: firstLevelColor,
     textTheme: TextTheme(
         subtitle1:
             TextStyle(fontSize: 15, color: mediumContrast, fontWeight: medium),
@@ -61,12 +85,12 @@ ThemeData themeData(BuildContext context) {
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
             overlayColor: MaterialStateProperty.all<Color>(
-                Theme.of(context).accentColor.withOpacity(0.20)))),
+                accentColor.withOpacity(0.20)))),
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
             side: BorderSide(
       width: 1,
-      color: Theme.of(context).accentColor,
+      color: accentColor,
     ))),
     scaffoldBackgroundColor: backgroundColor,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -96,26 +120,33 @@ ThemeData darkThemeData(BuildContext context) {
     textSelectionTheme: TextSelectionThemeData(
         selectionColor: accentColor.withOpacity(0.5),
         selectionHandleColor: accentColor),
+    inputDecorationTheme: InputDecorationTheme(
+        labelStyle: TextStyle(color: accentColor),
+        hoverColor: accentColor,
+        border: OutlineInputBorder(),
+        enabledBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: accentColor)),
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: accentColor))),
     primaryColor: secondLevelColor,
     accentColor: accentColor,
     cardColor: firstLevelColor,
-    // TODO: тебе надо будет вот эту хрень для каждой из тем
-    // TODO: проделать. Мб она будет адекватнее, чем то, как мы сейчас берём цвета
-    // colorScheme: ColorScheme(
-    //     primary: primary,
-    //     primaryVariant: primaryVariant,
-    //     secondary: secondary,
-    //     secondaryVariant: secondaryVariant,
-    //     surface: surface,
-    //     background: background,
-    //     error: error,
-    //     onPrimary: onPrimary,
-    //     onSecondary: onSecondary,
-    //     onSurface: onSurface,
-    //     onBackground: onBackground,
-    //     onError: onError,
-    //     brightness: brightness),
-
+    splashColor: accentColor.withOpacity(0.2),
+    colorScheme: ColorScheme(
+        primary: accentColor,
+        primaryVariant: accentColor,
+        secondary: accentColor,
+        secondaryVariant: accentColor,
+        surface: secondLevelColor,
+        background: backgroundColor,
+        error: Colors.redAccent,
+        onPrimary: highContrast,
+        onSecondary: highContrast,
+        onSurface: highContrast,
+        onBackground: highContrast,
+        onError: highContrast,
+        brightness: Brightness.dark),
+    dialogBackgroundColor: firstLevelColor,
     textTheme: TextTheme(
         subtitle1:
             TextStyle(fontSize: 15, color: mediumContrast, fontWeight: medium),
@@ -149,12 +180,12 @@ ThemeData darkThemeData(BuildContext context) {
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
             overlayColor: MaterialStateProperty.all<Color>(
-                Theme.of(context).accentColor.withOpacity(0.20)))),
+                accentColor.withOpacity(0.20)))),
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
             side: BorderSide(
       width: 1,
-      color: Theme.of(context).accentColor,
+      color: accentColor,
     ))),
     scaffoldBackgroundColor: backgroundColor,
     floatingActionButtonTheme: FloatingActionButtonThemeData(

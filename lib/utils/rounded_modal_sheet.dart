@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 void roundedModalSheet(
     {@required BuildContext context, String title, Widget child}) {
   showModalBottomSheet(
+      backgroundColor: Theme.of(context).dialogBackgroundColor,
       context: context,
       isDismissible: true,
       isScrollControlled: true,
