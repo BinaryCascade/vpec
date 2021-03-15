@@ -56,40 +56,26 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
                 Center(child: CircularProgressIndicator()),
             imageBuilder: (context, imageProvider) => ColorFiltered(
               colorFilter:
-                  ThemeHelper().isDarkMode() // TODO: Сделать новые фильтры
+                  ThemeHelper().isDarkMode()
                       ? ColorFilter.matrix([
                           //R G  B  A  Const
-                          -0.81176, 0, 0, 0, 255,
-                          0, -0.81176, 0, 0, 255,
-                          0, 0, -0.81176, 0, 255,
+                          -0.87843, 0, 0, 0, 255,
+                          0, -0.87843, 0, 0, 255,
+                          0, 0, -0.87843, 0, 255,
                           0, 0, 0, 1, 0,
                         ])
                       : ColorFilter.matrix([
-                          0.98039,
-                          0,
-                          0,
-                          0,
-                          0,
-                          0,
-                          0.98039,
-                          0,
-                          0,
-                          0,
-                          0,
-                          0,
-                          0.98039,
-                          0,
-                          0,
-                          0,
-                          0,
-                          0,
-                          1,
-                          0,
+                          0.96078, 0, 0, 0, 0,
+                          0, 0.96078, 0, 0, 0,
+                          0, 0, 0.96078, 0, 0,
+                          0, 0, 0, 1, 0,
                         ]),
               child: InteractiveViewer(
                   minScale: 1.0,
                   maxScale: 10,
-                  child: Center(child: Image(image: imageProvider))),
+                  child: Center(
+                      child: Image(
+                          image: imageProvider))),
             ),
           ),
         ],

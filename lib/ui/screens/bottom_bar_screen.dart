@@ -15,6 +15,7 @@ class BottomBarScreen extends StatefulWidget {
 class _BottomBarScreenState extends State<BottomBarScreen> {
   final PageStorageBucket bucket = PageStorageBucket();
   int bottomBarIndex = 0;
+  bool isQuickActions = false;
 
   // List of screens for navigation
   final List<Widget> pages = [
@@ -27,6 +28,13 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (ModalRoute.of(context).settings.arguments != null || isQuickActions) {
+      int givenIndex = ModalRoute.of(context).settings.arguments;
+      setState(() {
+        bottomBarIndex = givenIndex;
+      });
+    }
+
     return Scaffold(
       body: PageStorage(
         child: pages[bottomBarIndex],

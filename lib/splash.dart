@@ -40,15 +40,23 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: сделать шорткаты
     final QuickActions quickActions = QuickActions();
     quickActions.initialize((shortcutType) {
-      if (shortcutType == 'action_main') {
-        print('The user tapped on the "Main view" action.');
+      switch (shortcutType) {
+        case 'action_timetable':
+          Navigator.popAndPushNamed(context, '/', arguments: 2);
+          break;
+        case 'action_schedule':
+          Navigator.popAndPushNamed(context, '/', arguments: 3);
+          break;
+        default:
+          Navigator.popAndPushNamed(context, '/', arguments: null);
+          break;
       }
       // More handling code...
     });
 
     quickActions.setShortcutItems(<ShortcutItem>[
-      const ShortcutItem(type: 'action_main', localizedTitle: 'Main view', icon: 'icon_main'),
-      const ShortcutItem(type: 'action_help', localizedTitle: 'Help', icon: 'icon_help')
+      const ShortcutItem(type: 'action_timetable', localizedTitle: 'Звонки', icon: 'icon_main'),
+      const ShortcutItem(type: 'action_schedule', localizedTitle: 'Расписание', icon: 'icon_help')
     ]);
   }
 
