@@ -3,10 +3,12 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:share/share.dart';
 import 'package:vpec/ui/widgets/snow_widget.dart';
 import 'package:vpec/utils/holiday_helper.dart';
@@ -18,6 +20,8 @@ class LessonsScheduleScreen extends StatefulWidget {
 }
 
 class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
+  final imageZoomController = TransformationController();
+  TapDownDetails _doubleTapDetails = TapDownDetails();
   bool showForToday = true;
   String baseUrl = 'http://energocollege.ru/vec_assistant/'
       '%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5/';
@@ -32,6 +36,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Stack(
         children: [
@@ -70,12 +75,11 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
                           0, 0, 0.96078, 0, 0,
                           0, 0, 0, 1, 0,
                         ]),
-              child: InteractiveViewer(
-                  minScale: 1.0,
-                  maxScale: 10,
-                  child: Center(
-                      child: Image(
-                          image: imageProvider))),
+              child: Center(
+                  child: ExtendedImage(
+                      image: imageProvider,
+
+                  )),
             ),
           ),
         ],
@@ -179,5 +183,25 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
         imgUrl =
             baseUrl + "${picked.day}-${picked.month}-${picked.year}" + endUrl;
       });
+  }
+
+  void _handleDoubleTapDown(TapDownDetails details) {
+    _doubleTapDetails = details;
+  }
+
+  void zoomImage() {
+    if (imageZoomController.value != Matrix4.identity()) {
+      imageZoomController.value = Matrix4.identity();
+    } else {
+      final position = _doubleTapDetails.localPosition;
+      // For a 3x zoom
+      imageZoomController.value = Matrix4.identity()
+        ..translate(-position.dx * 2, -position.dy * 2)
+        ..scale(3.0);
+      // Fox a 2x zoom
+      // ..translate(-position.dx, -position.dy)
+      // ..scale(2.0);
+
+    }
   }
 }
