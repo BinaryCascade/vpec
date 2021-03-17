@@ -20,9 +20,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ThemeHelper().isDarkMode() ? Brightness.dark : Brightness.light,
       ),
       body: ListView(
+        padding: const EdgeInsets.all(8),
         children: [
-          buildAccountBlock(context),
+          Card(
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: buildAccountBlock(context)),
           buildThemeChooser(context),
+          buildLaunchOnStartChooser(context),
         ],
       ),
     );

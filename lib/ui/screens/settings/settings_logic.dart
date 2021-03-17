@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:vpec/utils/icons.dart';
 import 'package:vpec/utils/rounded_modal_sheet.dart';
 
 class SettingsLogic {
@@ -131,15 +132,19 @@ class SettingsLogic {
               TextButton(
                 style: Theme.of(context).textButtonTheme.style,
                 onPressed: () => Navigator.pop(context),
-                child: Text('Отмена',
+                child: Text(
+                  'Отмена',
                   style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1.color),),
+                      color: Theme.of(context).textTheme.bodyText1.color),
+                ),
               ),
               OutlinedButton(
                 style: Theme.of(context).outlinedButtonTheme.style,
-                child: Text('Сохранить',
+                child: Text(
+                  'Сохранить',
                   style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1.color),),
+                      color: Theme.of(context).textTheme.bodyText1.color),
+                ),
                 onPressed: () {
                   saveValue(key: 'username', value: nameController.value.text);
                   Navigator.pop(context);
@@ -244,5 +249,79 @@ class SettingsLogic {
             ],
           );
         }));
+  }
+
+  void chooseLaunchOnStart(BuildContext context) {
+    int selectedItem = 0;
+
+    roundedModalSheet(
+        context: context,
+        title: 'Открывать при запуске',
+        child: StatefulBuilder(
+          builder: (BuildContext context,
+              void Function(void Function()) setModalState) {
+            return Column(
+              children: [
+                RadioListTile(
+                    secondary: Icon(VEKiconPack.news,
+                        color: Theme.of(context).accentColor),
+                    title: Text(
+                      'Новости',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    value: 0,
+                    activeColor: Theme.of(context).accentColor,
+                    groupValue: selectedItem,
+                    controlAffinity: ListTileControlAffinity.trailing,
+                    onChanged: (value) {
+                      setModalState(() {
+                        SettingsLogic()
+                            .saveValue(key: 'theme', value: 'Тёмная тема');
+                        Get.changeThemeMode(ThemeMode.dark);
+                        selectedItem = value;
+                      });
+                    }),
+                RadioListTile(
+                    secondary: Icon(Icons.notifications_outlined,
+                        color: Theme.of(context).accentColor),
+                    title: Text(
+                      'Объявления',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    value: 1,
+                    activeColor: Theme.of(context).accentColor,
+                    groupValue: selectedItem,
+                    controlAffinity: ListTileControlAffinity.trailing,
+                    onChanged: (value) {
+                      setModalState(() {
+                        SettingsLogic()
+                            .saveValue(key: 'theme', value: 'Тёмная тема');
+                        Get.changeThemeMode(ThemeMode.dark);
+                        selectedItem = value;
+                      });
+                    }),
+                RadioListTile(
+                    secondary: Icon(Icons.access_time_outlinedc,
+                        color: Theme.of(context).accentColor),
+                    title: Text(
+                      'Звонки',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    value: 2,
+                    activeColor: Theme.of(context).accentColor,
+                    groupValue: selectedItem,
+                    controlAffinity: ListTileControlAffinity.trailing,
+                    onChanged: (value) {
+                      setModalState(() {
+                        SettingsLogic()
+                            .saveValue(key: 'theme', value: 'Тёмная тема');
+                        Get.changeThemeMode(ThemeMode.dark);
+                        selectedItem = value;
+                      });
+                    }),
+              ],
+            );
+          },
+        ));
   }
 }

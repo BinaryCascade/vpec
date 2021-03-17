@@ -53,7 +53,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           BottomNavigationBarItem(
               backgroundColor:
                   Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-              icon: Icon(VEKiconPack.news),
+              icon: const Icon(VEKiconPack.news),
               label: 'Новости'),
           BottomNavigationBarItem(
               backgroundColor:

@@ -15,7 +15,7 @@ Widget buildAccountBlock(BuildContext context) {
           color: Theme.of(context).accentColor,
           size: 32,
         ),
-        title: 'Аккаунт',
+        title: 'Аккаунт сотрудника',
         subtitle: SettingsLogic().getAccountEmail(),
       ),
       hivedListTile(
@@ -26,9 +26,9 @@ Widget buildAccountBlock(BuildContext context) {
             color: Theme.of(context).accentColor,
             size: 32,
           ),
-          title: 'Имя',
+          title: 'Имя для объявлений',
           subtitleKey: 'username',
-          defaultValue: 'Нажмите, чтобы изменить имя'),
+          defaultValue: 'Текущее: нет (нажмите, чтобы изменить)'),
     ],
   );
 }
@@ -40,12 +40,26 @@ Widget buildThemeChooser(BuildContext context) {
     subtitleKey: 'theme',
     defaultValue: 'Системная тема',
     icon: Icon(
-      VEKiconPack.battery_saver_line,
+      Icons.brightness_6_outlined,
       size: 32,
       color: Theme.of(context).accentColor,
     ),
-    onTap: () async {
+    onTap: () {
       SettingsLogic().chooseTheme(context);
     },
   );
+}
+
+Widget buildLaunchOnStartChooser(BuildContext context) {
+  return hivedListTile(
+    onTap: () => SettingsLogic().chooseLaunchOnStart(context),
+      context: context,
+      subtitleKey: 'launchOnStart',
+      defaultValue: 'Новости',
+      title: 'Открывать при запуске',
+      icon: Icon(
+        Icons.launch_outlined,
+        color: Theme.of(context).accentColor,
+        size: 32,
+      ));
 }
