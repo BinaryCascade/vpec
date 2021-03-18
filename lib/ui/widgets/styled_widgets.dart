@@ -38,22 +38,16 @@ Widget styledListTile(
     String subtitle,
     Widget icon,
     GestureTapCallback onTap}) {
-  return Container(
-    clipBehavior: Clip.antiAlias,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.all(Radius.circular(10)),
+  return ListTile(
+    leading: Container(height: double.infinity, child: icon),
+    title: Text(
+      title,
+      style: Theme.of(context).textTheme.headline3,
     ),
-    child: ListTile(
-      leading: Container(height: double.infinity, child: icon),
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.headline3,
-      ),
-      subtitle: Text(
-        subtitle,
-        style: Theme.of(context).textTheme.subtitle1,
-      ),
-      onTap: onTap,
+    subtitle: Text(
+      subtitle,
+      style: Theme.of(context).textTheme.subtitle1,
     ),
+    onTap: onTap,
   );
 }
