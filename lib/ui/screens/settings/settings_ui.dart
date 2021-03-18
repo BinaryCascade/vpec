@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vpec/ui/widgets/styled_widgets.dart';
-import 'package:vpec/utils/icons.dart';
 import 'settings_logic.dart';
 
 // Two ListTiles for account management
@@ -16,19 +15,22 @@ Widget buildAccountBlock(BuildContext context) {
           size: 32,
         ),
         title: 'Аккаунт сотрудника',
-        subtitle: SettingsLogic().getAccountEmail(),
+        subtitle: SettingsLogic().getAccountEmail().isEmpty
+            ? 'Нажмите, чтобы войти в аккаунт'
+            : SettingsLogic().getAccountEmail(),
       ),
-      hivedListTile(
-          context: context,
-          onTap: () => SettingsLogic().changeName(context),
-          icon: Icon(
-            Icons.edit_outlined,
-            color: Theme.of(context).accentColor,
-            size: 32,
-          ),
-          title: 'Имя для объявлений',
-          subtitleKey: 'username',
-          defaultValue: 'Текущее: нет (нажмите, чтобы изменить)'),
+      if (SettingsLogic().getAccountEmail().isNotEmpty)
+        hivedListTile(
+            context: context,
+            onTap: () => SettingsLogic().changeName(context),
+            icon: Icon(
+              Icons.edit_outlined,
+              color: Theme.of(context).accentColor,
+              size: 32,
+            ),
+            title: 'Имя для объявлений',
+            subtitleKey: 'username',
+            defaultValue: 'Текущее: нет (нажмите, чтобы изменить)'),
     ],
   );
 }
@@ -52,7 +54,7 @@ Widget buildThemeChooser(BuildContext context) {
 
 Widget buildLaunchOnStartChooser(BuildContext context) {
   return hivedListTile(
-    onTap: () => SettingsLogic().chooseLaunchOnStart(context),
+      onTap: () => SettingsLogic().chooseLaunchOnStart(context),
       context: context,
       subtitleKey: 'launchOnStart',
       defaultValue: 'Новости',

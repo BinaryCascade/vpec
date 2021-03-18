@@ -161,7 +161,7 @@ class SettingsLogic {
     if (FirebaseAuth.instance.currentUser.email != null) {
       return FirebaseAuth.instance.currentUser.email;
     } else {
-      return 'Нажмите, чтобы войти в аккаунт';
+      return '';
     }
   }
 
