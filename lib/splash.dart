@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:quick_actions/quick_actions.dart';
@@ -15,7 +16,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     _initApp();
@@ -37,27 +37,32 @@ class _SplashScreenState extends State<SplashScreen> {
       auth.signInAnonymously();
     }
 
-    // TODO: сделать шорткаты
-    final QuickActions quickActions = QuickActions();
-    quickActions.initialize((shortcutType) {
-      switch (shortcutType) {
-        case 'action_timetable':
-          Navigator.popAndPushNamed(context, '/', arguments: 2);
-          break;
-        case 'action_schedule':
-          Navigator.popAndPushNamed(context, '/', arguments: 3);
-          break;
-        default:
-          Navigator.popAndPushNamed(context, '/', arguments: null);
-          break;
-      }
-      // More handling code...
-    });
+    // if app running on Android or iOS, make QuickActions
+    if (defaultTargetPlatform == TargetPlatform.android ||
+        defaultTargetPlatform == TargetPlatform.iOS) {
+      final QuickActions quickActions = QuickActions();
+      quickActions.initialize((shortcutType) {
+        switch (shortcutType) {
+          case 'action_timetable':
+            Navigator.popAndPushNamed(context, '/home', arguments: 2);
+            break;
+          case 'action_schedule':
+            Navigator.popAndPushNamed(context, '/home', arguments: 3);
+            break;
+        }
+      });
 
-    quickActions.setShortcutItems(<ShortcutItem>[
-      const ShortcutItem(type: 'action_timetable', localizedTitle: 'Звонки', icon: 'icon_main'),
-      const ShortcutItem(type: 'action_schedule', localizedTitle: 'Расписание', icon: 'icon_help')
-    ]);
+      quickActions.setShortcutItems(<ShortcutItem>[
+        const ShortcutItem(
+            type: 'action_timetable',
+            localizedTitle: 'Звонки',
+            icon: 'icon_main'),
+        const ShortcutItem(
+            type: 'action_schedule',
+            localizedTitle: 'Расписание',
+            icon: 'icon_help')
+      ]);
+    }
   }
 
   @override
