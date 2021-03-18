@@ -301,7 +301,7 @@ class SettingsLogic {
                       });
                     }),
                 RadioListTile(
-                    secondary: Icon(Icons.access_time_outlinedc,
+                    secondary: Icon(Icons.access_time_outlined,
                         color: Theme.of(context).accentColor),
                     title: Text(
                       'Звонки',
