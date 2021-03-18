@@ -39,7 +39,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   title: 'Список кабинетов',
                   subtitle: 'В виде карты',
                   onTap: () async {
-                    await Navigator.pushNamed(context, '/settings');
+                    await Navigator.pushNamed(context, '/cabinets');
                     ThemeHelper()
                         .colorStatusBar(context: context, isTransparent: false);
                   }),
