@@ -18,83 +18,101 @@ class SettingsLogic {
       title: 'Войти в аккаунт',
       child: Column(
         children: [
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: TextFormField(
-                controller: emailController,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.emailAddress,
-                style: Theme.of(context).textTheme.headline3,
-                decoration: InputDecoration(
-                    labelText: 'Введите email',
-                    labelStyle: Theme.of(context).textTheme.headline3,
-                    border: OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide:
+          AutofillGroup(
+              child: Column(
+                children: [
+                  Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: TextFormField(
+                        controller: emailController,
+                        autofillHints: [AutofillHints.username],
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.emailAddress,
+                        style: Theme.of(context).textTheme.headline3,
+                        decoration: InputDecoration(
+                            labelText: 'Введите email',
+                            labelStyle: Theme.of(context).textTheme.headline3,
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Theme.of(context).accentColor)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Theme.of(context).accentColor))),
+                      )),
+                  TextFormField(
+                    controller: passwordController,
+                    autofillHints: [AutofillHints.password],
+                    textInputAction: TextInputAction.done,
+                    obscureText: true,
+                    keyboardType: TextInputType.visiblePassword,
+                    style: Theme.of(context).textTheme.headline3,
+                    decoration: InputDecoration(
+                        labelText: 'Введите пароль',
+                        labelStyle: Theme.of(context).textTheme.headline3,
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide:
                             BorderSide(color: Theme.of(context).accentColor)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide:
+                        focusedBorder: OutlineInputBorder(
+                            borderSide:
                             BorderSide(color: Theme.of(context).accentColor))),
-              )),
-          TextFormField(
-            controller: passwordController,
-            textInputAction: TextInputAction.done,
-            obscureText: true,
-            keyboardType: TextInputType.visiblePassword,
-            style: Theme.of(context).textTheme.headline3,
-            decoration: InputDecoration(
-                labelText: 'Введите пароль',
-                labelStyle: Theme.of(context).textTheme.headline3,
-                border: OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Theme.of(context).accentColor)),
-                focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Theme.of(context).accentColor))),
-          ),
-          ButtonBar(
-            children: [
-              TextButton(
-                style: Theme.of(context).textButtonTheme.style,
-                onPressed: () => Navigator.pop(context),
-                child: Text(
-                  'Отмена',
-                  style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1.color),
-                ),
-              ),
-              OutlinedButton(
-                style: Theme.of(context).outlinedButtonTheme.style,
-                child: Text(
-                  'Войти',
-                  style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1.color),
-                ),
-                onPressed: () async {
-                  try {
-                    // trying to login
-                    await FirebaseAuth.instance.signOut();
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text);
-                    Navigator.pop(context);
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      behavior: SnackBarBehavior.floating,
-                      content: Text("Вход в аккаунт выполнен успешно"),
-                    ));
-                  } on FirebaseAuthException {
-                    // something went wrong, make anonymously login
-                    await FirebaseAuth.instance.signInAnonymously();
-                    Navigator.pop(context);
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      behavior: SnackBarBehavior.floating,
-                      content: Text("Данные введены неверно"),
-                    ));
-                  }
-                },
+                  ),
+                ],
               )
-            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            child: ButtonBar(
+              buttonPadding: EdgeInsets.zero,
+              children: [
+                Wrap(
+                  spacing: 12,
+                  children: [
+                    TextButton(
+                      style: Theme.of(context).textButtonTheme.style,
+                      onPressed: () => Navigator.pop(context),
+                      child: Text(
+                        'Отмена',
+                        style: TextStyle(
+                            color: Theme.of(context).textTheme.bodyText1.color),
+                      ),
+                    ),
+                    OutlinedButton(
+                      style: Theme.of(context).outlinedButtonTheme.style,
+                      child: Text(
+                        'Войти',
+                        style: TextStyle(
+                            color: Theme.of(context).textTheme.bodyText1.color),
+                      ),
+                      onPressed: () async {
+                        try {
+                          // trying to login
+                          await FirebaseAuth.instance.signOut();
+                          await FirebaseAuth.instance.signInWithEmailAndPassword(
+                              email: emailController.text,
+                              password: passwordController.text);
+                          Navigator.pop(context);
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            content: Text("Вход в аккаунт выполнен успешно"),
+                          ));
+                        } on FirebaseAuthException {
+                          // something went wrong, make anonymously login
+                          await FirebaseAuth.instance.signInAnonymously();
+                          Navigator.pop(context);
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            content: Text("Данные введены неверно"),
+                          ));
+                        }
+                      },
+                    )
+                  ],
+                ),
+
+              ],
+            ),
           ),
         ],
       ),
