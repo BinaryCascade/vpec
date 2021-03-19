@@ -7,6 +7,7 @@ import 'package:vpec/utils/rounded_modal_sheet.dart';
 
 class SettingsLogic {
   // show roundedModalSheet() for account login
+
   void accountLogin(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
@@ -165,16 +166,6 @@ class SettingsLogic {
     }
   }
 
-  void saveValue({String key, dynamic value}) {
-    Box settings = Hive.box('settings');
-    settings.put(key, value);
-  }
-
-  void removeValue(String key) {
-    Box settings = Hive.box('settings');
-    settings.delete(key);
-  }
-
   void chooseTheme(BuildContext context) {
     var settings = Hive.box('settings');
     int selectedItem = 0;
@@ -253,7 +244,9 @@ class SettingsLogic {
 
   void chooseLaunchOnStart(BuildContext context) {
     int selectedItem = 0;
-
+    if(HiveHelper().getValue('launchOnStart') != null) {
+      selectedItem = HiveHelper().getValue('launchOnStart');
+    }
     roundedModalSheet(
         context: context,
         title: 'Открывать при запуске',
@@ -275,9 +268,11 @@ class SettingsLogic {
                     controlAffinity: ListTileControlAffinity.trailing,
                     onChanged: (value) {
                       setModalState(() {
-                        SettingsLogic()
-                            .saveValue(key: 'theme', value: 'Тёмная тема');
-                        Get.changeThemeMode(ThemeMode.dark);
+                        print(value);
+                        HiveHelper()
+                            .saveValue(key: 'launchOnStart', value: value);
+                        HiveHelper()
+                            .saveValue(key: 'launchOnStartString', value: 'Новости');
                         selectedItem = value;
                       });
                     }),
@@ -294,9 +289,11 @@ class SettingsLogic {
                     controlAffinity: ListTileControlAffinity.trailing,
                     onChanged: (value) {
                       setModalState(() {
-                        SettingsLogic()
-                            .saveValue(key: 'theme', value: 'Тёмная тема');
-                        Get.changeThemeMode(ThemeMode.dark);
+                        print(value);
+                        HiveHelper()
+                            .saveValue(key: 'launchOnStart', value: value);
+                        HiveHelper()
+                            .saveValue(key: 'launchOnStartString', value: 'Объявления');
                         selectedItem = value;
                       });
                     }),
@@ -313,9 +310,11 @@ class SettingsLogic {
                     controlAffinity: ListTileControlAffinity.trailing,
                     onChanged: (value) {
                       setModalState(() {
-                        SettingsLogic()
-                            .saveValue(key: 'theme', value: 'Тёмная тема');
-                        Get.changeThemeMode(ThemeMode.dark);
+                        print(value);
+                        HiveHelper()
+                            .saveValue(key: 'launchOnStart', value: value);
+                        HiveHelper()
+                            .saveValue(key: 'launchOnStartString', value: 'Звонки');
                         selectedItem = value;
                       });
                     }),
