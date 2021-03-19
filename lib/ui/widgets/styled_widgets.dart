@@ -2,6 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+
+ /// create ListTile where subtitle value getting from Hive.
+ /// [subtitleKey] - Hive key to get value
+ /// [defaultValue] - If key have no value, show this text
+///
+/// Example:
+/// ```dart
+/// hivedListTile(
+///            context: context,
+///             onTap: () => SettingsLogic().changeName(context),
+///             icon: Icon(
+///               Icons.edit_outlined,
+///               color: Theme.of(context).accentColor,
+///               size: 32,
+///             ),
+///             title: Name',
+///             subtitleKey: 'username',
+///             defaultValue: 'Current: empty (tap to edit)'),
+/// ```
 Widget hivedListTile(
     {@required BuildContext context,
     String title,
@@ -16,7 +35,7 @@ Widget hivedListTile(
         height: double.infinity,
         child: icon),
     title: Text(
-      title,
+      title ?? 'Не указано',
       style: Theme.of(context).textTheme.headline3,
     ),
     subtitle: ValueListenableBuilder(
@@ -32,6 +51,8 @@ Widget hivedListTile(
   );
 }
 
+
+/// Just create normal ListTile with styled text
 Widget styledListTile(
     {@required BuildContext context,
     String title,

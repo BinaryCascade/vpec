@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// creating modal sheet with rounded corners
 void roundedModalSheet(
     {@required BuildContext context, String title, Widget child}) {
   showModalBottomSheet(

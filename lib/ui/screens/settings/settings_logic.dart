@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:vpec/utils/hive_helper.dart';
 import 'package:vpec/utils/icons.dart';
 import 'package:vpec/utils/rounded_modal_sheet.dart';
 
@@ -147,7 +148,7 @@ class SettingsLogic {
                       color: Theme.of(context).textTheme.bodyText1.color),
                 ),
                 onPressed: () {
-                  saveValue(key: 'username', value: nameController.value.text);
+                  HiveHelper().saveValue(key: 'username', value: nameController.value.text);
                   Navigator.pop(context);
                 },
               ),
@@ -194,7 +195,7 @@ class SettingsLogic {
                   controlAffinity: ListTileControlAffinity.trailing,
                   onChanged: (value) {
                     setModalState(() {
-                      SettingsLogic()
+                      HiveHelper()
                           .saveValue(key: 'theme', value: 'Светлая тема');
                       Get.changeThemeMode(ThemeMode.light);
                       selectedItem = value;
@@ -213,7 +214,7 @@ class SettingsLogic {
                   controlAffinity: ListTileControlAffinity.trailing,
                   onChanged: (value) {
                     setModalState(() {
-                      SettingsLogic()
+                      HiveHelper()
                           .saveValue(key: 'theme', value: 'Тёмная тема');
                       Get.changeThemeMode(ThemeMode.dark);
                       selectedItem = value;
@@ -234,7 +235,7 @@ class SettingsLogic {
                     setModalState(() {
                       Get.changeThemeMode(ThemeMode.system);
                       selectedItem = value;
-                      SettingsLogic().removeValue('theme');
+                      HiveHelper().removeValue('theme');
                     });
                   }),
             ],

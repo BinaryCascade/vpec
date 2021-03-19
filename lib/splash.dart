@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:quick_actions/quick_actions.dart';
+import 'package:vpec/utils/hive_helper.dart';
 
 import 'utils/theme_helper.dart';
 
@@ -62,6 +62,12 @@ class _SplashScreenState extends State<SplashScreen> {
             icon: 'icon_help')
       ]);
     }
+
+    if (HiveHelper().getValue('launchOnStart') != null) {
+      int givenIndex = HiveHelper().getValue('launchOnStart');
+      Navigator.popAndPushNamed(context, '/home', arguments: givenIndex);
+    }
+
   }
 
   @override

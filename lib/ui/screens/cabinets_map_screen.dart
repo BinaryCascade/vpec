@@ -16,11 +16,11 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
   String thirdMap = '';
   var photoController = PhotoViewController();
   bool isLoadingComplete = false;
-  String appBarScaleText = '';
+  String appBarScaleText = ''; // used for debugging (delete later)
 
   @override
   void initState() {
-    _init();
+    loadMaps();
     photoController = photoController..outputStateStream.listen(listener);
     super.initState();
   }
@@ -31,10 +31,10 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
     super.dispose();
   }
 
-  Future<void> _init() async {
-    firstMap = await _getMap('map_01');
-    secondMap = await _getMap('map_02');
-    thirdMap = await _getMap('map_03');
+  Future<void> loadMaps() async {
+    firstMap = await getMap('map_01');
+    secondMap = await getMap('map_02');
+    thirdMap = await getMap('map_03');
     if (firstMap.isNotEmpty && secondMap.isNotEmpty && thirdMap.isNotEmpty) {
       isLoadingComplete = true;
     }
@@ -43,10 +43,10 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
     });
   }
 
-  Future<String> _getMap(String _doc) async {
+  Future<String> getMap(String docID) async {
     DocumentSnapshot cabMap = await FirebaseFirestore.instance
         .collection('cabinets_map')
-        .doc(_doc)
+        .doc(docID)
         .get();
     return cabMap['imageUrl'].toString();
   }
