@@ -30,7 +30,6 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _initApp() async {
     //make all our date on russian
     await Jiffy.locale("ru");
-    await Firebase.initializeApp();
 
     FirebaseAuth auth = FirebaseAuth.instance;
     if (auth.currentUser == null) {

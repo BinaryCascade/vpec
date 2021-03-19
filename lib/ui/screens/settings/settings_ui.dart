@@ -56,7 +56,7 @@ Widget buildLaunchOnStartChooser(BuildContext context) {
   return hivedListTile(
       onTap: () => SettingsLogic().chooseLaunchOnStart(context),
       context: context,
-      subtitleKey: 'launchOnStart',
+      subtitleKey: 'launchOnStartString',
       defaultValue: 'Новости',
       title: 'Открывать при запуске',
       icon: Icon(
