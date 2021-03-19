@@ -28,13 +28,13 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (ModalRoute.of(context).settings.arguments != null && isFirstAction) {
-      int givenIndex = ModalRoute.of(context).settings.arguments;
-      setState(() {
-        bottomBarIndex = givenIndex;
-        isFirstAction = false;
-      });
-    }
+      if (ModalRoute.of(context).settings.arguments != null && isFirstAction) {
+        int givenIndex = ModalRoute.of(context).settings.arguments;
+        setState(() {
+          isFirstAction = false;
+          bottomBarIndex = givenIndex;
+        });
+      }
 
     return Scaffold(
       body: PageStorage(

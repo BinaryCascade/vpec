@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -10,7 +11,7 @@ import 'package:vpec/utils/theme_helper.dart';
 Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox('settings');
-  runApp(MyApp());
+  await Firebase.initializeApp().whenComplete(() => runApp(MyApp()));
 }
 
 class MyApp extends StatefulWidget {
