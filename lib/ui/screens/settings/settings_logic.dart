@@ -265,7 +265,7 @@ class SettingsLogic {
     int selectedItem = 0;
     if(HiveHelper().getValue('launchOnStart') != null) {
       selectedItem = HiveHelper().getValue('launchOnStart');
-    }
+    } //Show previously selected item on modal open
     roundedModalSheet(
         context: context,
         title: 'Открывать при запуске',
@@ -287,7 +287,6 @@ class SettingsLogic {
                     controlAffinity: ListTileControlAffinity.trailing,
                     onChanged: (value) {
                       setModalState(() {
-                        print(value);
                         HiveHelper()
                             .saveValue(key: 'launchOnStart', value: value);
                         HiveHelper()
@@ -308,7 +307,6 @@ class SettingsLogic {
                     controlAffinity: ListTileControlAffinity.trailing,
                     onChanged: (value) {
                       setModalState(() {
-                        print(value);
                         HiveHelper()
                             .saveValue(key: 'launchOnStart', value: value);
                         HiveHelper()
@@ -329,11 +327,30 @@ class SettingsLogic {
                     controlAffinity: ListTileControlAffinity.trailing,
                     onChanged: (value) {
                       setModalState(() {
-                        print(value);
                         HiveHelper()
                             .saveValue(key: 'launchOnStart', value: value);
                         HiveHelper()
                             .saveValue(key: 'launchOnStartString', value: 'Звонки');
+                        selectedItem = value;
+                      });
+                    }),
+                RadioListTile(
+                    secondary: Icon(Icons.dashboard_outlined,
+                        color: Theme.of(context).accentColor),
+                    title: Text(
+                      'Расписание занятий',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    value: 3,
+                    activeColor: Theme.of(context).accentColor,
+                    groupValue: selectedItem,
+                    controlAffinity: ListTileControlAffinity.trailing,
+                    onChanged: (value) {
+                      setModalState(() {
+                        HiveHelper()
+                            .saveValue(key: 'launchOnStart', value: value);
+                        HiveHelper()
+                            .saveValue(key: 'launchOnStartString', value: 'Расписание занятий');
                         selectedItem = value;
                       });
                     }),
