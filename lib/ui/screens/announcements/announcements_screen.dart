@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:vpec/ui/screens/settings/settings_logic.dart';
+import 'package:vpec/utils/hive_helper.dart';
 import 'package:vpec/utils/icons.dart';
 
 import 'announcements_logic.dart';
@@ -29,8 +31,13 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
             : buildAnnouncementsList('alerts'),
         floatingActionButton: isEmployee
             ? FloatingActionButton(
-                onPressed: () =>
-                    AnnouncementsLogic().createNewAnnouncement(context),
+                onPressed: () {
+                  if (HiveHelper().getValue('username') == null){
+                    SettingsLogic().changeName(context);
+                  } else {
+                    AnnouncementsLogic().createNewAnnouncement(context);
+                  }
+                },
                 child: Icon(Icons.rate_review_outlined),
               )
             : null,
