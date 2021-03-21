@@ -28,7 +28,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
 
   @override
   void initState() {
-    imgUrl = _getUrl(forToday: true);
+    imgUrl = getUrl(forToday: true);
     super.initState();
   }
 
@@ -117,7 +117,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
             onPressed: () {
               // this FAB used for switch between schedule for today or tomorrow
               showForToday = !showForToday;
-              imgUrl = _getUrl(forToday: showForToday);
+              imgUrl = getUrl(forToday: showForToday);
               setState(() {});
             },
           ),
@@ -126,7 +126,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
     );
   }
 
-  String _getUrl({bool forToday}) {
+  String getUrl({bool forToday}) {
     // get next day to show lesson schedule
     DateTime date = DateTime.now();
     DateFormat formatter = DateFormat('d-M-yyyy');

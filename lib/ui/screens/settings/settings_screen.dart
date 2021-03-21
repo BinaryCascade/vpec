@@ -30,6 +30,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: buildAccountBlock(context)),
           buildThemeChooser(context),
           buildLaunchOnStartChooser(context),
+          buildBackgroundTaskWidgets(context),
         ],
       ),
     );

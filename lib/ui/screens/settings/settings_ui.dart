@@ -1,5 +1,7 @@
+import 'package:battery_optimization/battery_optimization.dart';
 import 'package:flutter/material.dart';
 import 'package:vpec/ui/widgets/styled_widgets.dart';
+import 'package:vpec/utils/icons.dart';
 import 'settings_logic.dart';
 
 // Two ListTiles for account management
@@ -64,4 +66,33 @@ Widget buildLaunchOnStartChooser(BuildContext context) {
         color: Theme.of(context).accentColor,
         size: 32,
       ));
+}
+
+Widget buildBackgroundTaskWidgets(BuildContext context) {
+  return Column(
+    children: [
+      hivedListTile(
+          context: context,
+          title: 'Проверять расписание в фоне',
+          icon: Icon(
+            Icons.history_outlined,
+            color: Theme.of(context).accentColor,
+            size: 32.0,
+          ),
+          onTap: () => SettingsLogic().changeBackgroundCheck(context),
+          subtitleKey: 'backgroundCheck',
+          defaultValue: 'Выключено'),
+      styledListTile(
+        context: context,
+        icon: Icon(
+          VEKiconPack.battery_saver_line,
+          color: Theme.of(context).accentColor,
+          size: 32.0,
+        ),
+        title: 'Отключить оптимизацию батареи',
+        subtitle: 'Улучшить качество фоновой проверки',
+        onTap: () => SettingsLogic().checkForBackgroundRestrict,
+      ),
+    ],
+  );
 }

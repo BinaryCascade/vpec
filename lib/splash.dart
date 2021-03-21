@@ -3,8 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:quick_actions/quick_actions.dart';
+import 'package:vpec/utils/background_check.dart';
 import 'package:vpec/utils/hive_helper.dart';
+import 'package:workmanager/workmanager.dart';
 
+import 'main.dart';
 import 'utils/theme_helper.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -61,12 +64,22 @@ class _SplashScreenState extends State<SplashScreen> {
             icon: 'icon_help')
       ]);
     }
-
+    // open bottom bar index by setting "launch on start"
     if (HiveHelper().getValue('launchOnStart') != null) {
       int givenIndex = HiveHelper().getValue('launchOnStart');
       Navigator.popAndPushNamed(context, '/home', arguments: givenIndex);
     }
 
+    if (HiveHelper().getValue('backgroundCheckIndex') == 1) {
+      print('launchedBackgroundCheck');
+
+      Workmanager.initialize(callbackDispatcher, isInDebugMode: true);
+      Workmanager.registerPeriodicTask(
+        '1',
+        'background_check',
+        frequency: Duration(minutes: 15),
+      );
+    }
   }
 
   @override

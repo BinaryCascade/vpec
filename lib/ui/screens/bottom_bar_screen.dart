@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:vpec/ui/screens/lessons_schedule_screen.dart';
 import 'package:vpec/ui/screens/news_screen.dart';
 import 'package:vpec/ui/screens/timetable_screen.dart';
 import 'package:vpec/utils/icons.dart';
 
 import 'announcements/announcements_screen.dart';
+import 'lessons_schedule_screen.dart';
 import 'menu/menu_screen.dart';
 
 class BottomBarScreen extends StatefulWidget {

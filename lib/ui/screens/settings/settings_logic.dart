@@ -1,3 +1,4 @@
+import 'package:battery_optimization/battery_optimization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,6 +6,7 @@ import 'package:hive/hive.dart';
 import 'package:vpec/utils/hive_helper.dart';
 import 'package:vpec/utils/icons.dart';
 import 'package:vpec/utils/rounded_modal_sheet.dart';
+import 'package:workmanager/workmanager.dart';
 
 class SettingsLogic {
   // show roundedModalSheet() for account login
@@ -20,47 +22,46 @@ class SettingsLogic {
         children: [
           AutofillGroup(
               child: Column(
-                children: [
-                  Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: TextFormField(
-                        controller: emailController,
-                        autofillHints: [AutofillHints.username],
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        style: Theme.of(context).textTheme.headline3,
-                        decoration: InputDecoration(
-                            labelText: 'Введите email',
-                            labelStyle: Theme.of(context).textTheme.headline3,
-                            border: OutlineInputBorder(),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Theme.of(context).accentColor)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Theme.of(context).accentColor))),
-                      )),
-                  TextFormField(
-                    controller: passwordController,
-                    autofillHints: [AutofillHints.password],
-                    textInputAction: TextInputAction.done,
-                    obscureText: true,
-                    keyboardType: TextInputType.visiblePassword,
+            children: [
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: TextFormField(
+                    controller: emailController,
+                    autofillHints: [AutofillHints.username],
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.emailAddress,
                     style: Theme.of(context).textTheme.headline3,
                     decoration: InputDecoration(
-                        labelText: 'Введите пароль',
+                        labelText: 'Введите email',
                         labelStyle: Theme.of(context).textTheme.headline3,
                         border: OutlineInputBorder(),
                         enabledBorder: OutlineInputBorder(
-                            borderSide:
-                            BorderSide(color: Theme.of(context).accentColor)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).accentColor)),
                         focusedBorder: OutlineInputBorder(
-                            borderSide:
+                            borderSide: BorderSide(
+                                color: Theme.of(context).accentColor))),
+                  )),
+              TextFormField(
+                controller: passwordController,
+                autofillHints: [AutofillHints.password],
+                textInputAction: TextInputAction.done,
+                obscureText: true,
+                keyboardType: TextInputType.visiblePassword,
+                style: Theme.of(context).textTheme.headline3,
+                decoration: InputDecoration(
+                    labelText: 'Введите пароль',
+                    labelStyle: Theme.of(context).textTheme.headline3,
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Theme.of(context).accentColor)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide:
                             BorderSide(color: Theme.of(context).accentColor))),
-                  ),
-                ],
-              )
-          ),
+              ),
+            ],
+          )),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 6),
             child: ButtonBar(
@@ -89,9 +90,10 @@ class SettingsLogic {
                         try {
                           // trying to login
                           await FirebaseAuth.instance.signOut();
-                          await FirebaseAuth.instance.signInWithEmailAndPassword(
-                              email: emailController.text,
-                              password: passwordController.text);
+                          await FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: emailController.text,
+                                  password: passwordController.text);
                           Navigator.pop(context);
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             behavior: SnackBarBehavior.floating,
@@ -110,7 +112,6 @@ class SettingsLogic {
                     )
                   ],
                 ),
-
               ],
             ),
           ),
@@ -166,7 +167,8 @@ class SettingsLogic {
                       color: Theme.of(context).textTheme.bodyText1.color),
                 ),
                 onPressed: () {
-                  HiveHelper().saveValue(key: 'username', value: nameController.value.text);
+                  HiveHelper().saveValue(
+                      key: 'username', value: nameController.value.text);
                   Navigator.pop(context);
                 },
               ),
@@ -263,7 +265,7 @@ class SettingsLogic {
 
   void chooseLaunchOnStart(BuildContext context) {
     int selectedItem = 0;
-    if(HiveHelper().getValue('launchOnStart') != null) {
+    if (HiveHelper().getValue('launchOnStart') != null) {
       selectedItem = HiveHelper().getValue('launchOnStart');
     } //Show previously selected item on modal open
     roundedModalSheet(
@@ -289,8 +291,8 @@ class SettingsLogic {
                       setModalState(() {
                         HiveHelper()
                             .saveValue(key: 'launchOnStart', value: value);
-                        HiveHelper()
-                            .saveValue(key: 'launchOnStartString', value: 'Новости');
+                        HiveHelper().saveValue(
+                            key: 'launchOnStartString', value: 'Новости');
                         selectedItem = value;
                       });
                     }),
@@ -309,8 +311,8 @@ class SettingsLogic {
                       setModalState(() {
                         HiveHelper()
                             .saveValue(key: 'launchOnStart', value: value);
-                        HiveHelper()
-                            .saveValue(key: 'launchOnStartString', value: 'Объявления');
+                        HiveHelper().saveValue(
+                            key: 'launchOnStartString', value: 'Объявления');
                         selectedItem = value;
                       });
                     }),
@@ -329,8 +331,8 @@ class SettingsLogic {
                       setModalState(() {
                         HiveHelper()
                             .saveValue(key: 'launchOnStart', value: value);
-                        HiveHelper()
-                            .saveValue(key: 'launchOnStartString', value: 'Звонки');
+                        HiveHelper().saveValue(
+                            key: 'launchOnStartString', value: 'Звонки');
                         selectedItem = value;
                       });
                     }),
@@ -349,8 +351,9 @@ class SettingsLogic {
                       setModalState(() {
                         HiveHelper()
                             .saveValue(key: 'launchOnStart', value: value);
-                        HiveHelper()
-                            .saveValue(key: 'launchOnStartString', value: 'Расписание занятий');
+                        HiveHelper().saveValue(
+                            key: 'launchOnStartString',
+                            value: 'Расписание занятий');
                         selectedItem = value;
                       });
                     }),
@@ -358,5 +361,107 @@ class SettingsLogic {
             );
           },
         ));
+  }
+
+  void changeBackgroundCheck(BuildContext context) {
+    int selectedIndex = 0;
+    if (HiveHelper().getValue('backgroundCheckIndex') != null) {
+      selectedIndex = HiveHelper().getValue('backgroundCheckIndex');
+    }
+
+    roundedModalSheet(
+        context: context,
+        title: 'Выберите значение',
+        child: StatefulBuilder(builder: (BuildContext context,
+            void Function(void Function()) setModalState) {
+          return Column(
+            children: [
+              RadioListTile(
+                  secondary: Icon(Icons.sync_disabled_outlined,
+                      color: Theme.of(context).accentColor),
+                  title: Text(
+                    'Выключить проверку',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  value: 0,
+                  activeColor: Theme.of(context).accentColor,
+                  groupValue: selectedIndex,
+                  controlAffinity: ListTileControlAffinity.trailing,
+                  onChanged: (value) {
+                    setModalState(() {
+                      HiveHelper()
+                          .saveValue(key: 'backgroundCheckIndex', value: value);
+                      HiveHelper().saveValue(
+                          key: 'backgroundCheck', value: 'Выключено');
+                      selectedIndex = value;
+                      Workmanager.cancelAll();
+                    });
+                  }),
+              RadioListTile(
+                  secondary: Icon(Icons.sync_outlined,
+                      color: Theme.of(context).accentColor),
+                  title: Text(
+                    'Включить проверку',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  value: 1,
+                  activeColor: Theme.of(context).accentColor,
+                  groupValue: selectedIndex,
+                  controlAffinity: ListTileControlAffinity.trailing,
+                  onChanged: (value) {
+                    setModalState(() {
+                      HiveHelper()
+                          .saveValue(key: 'backgroundCheckIndex', value: value);
+                      HiveHelper()
+                          .saveValue(key: 'backgroundCheck', value: 'Включено');
+                      selectedIndex = value;
+                    });
+                    showDialog<void>(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext dialogContext) {
+                        return AlertDialog(
+                          title: Text('Внимание'),
+                          content: Text(
+                              'Фоновая проверка расписания будет активирована '
+                              'при следующем запуске приложения. Также '
+                              'обратите внимание, что для того, чтобы '
+                              'проверка была быстрой, то лучше отключить '
+                              'оптимизацию батареи для этого приложения. '
+                              'Сделать это можно с помощью пункта ниже'),
+                          actions: <Widget>[
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  'Закрыть',
+                                  style: TextStyle(
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1
+                                        .color,
+                                  ),
+                                ))
+                          ],
+                        );
+                      },
+                    );
+                  }),
+            ],
+          );
+        }));
+  }
+
+  void checkForBackgroundRestrict(BuildContext context) {
+    BatteryOptimization.isIgnoringBatteryOptimizations().then((onValue) {
+      if (onValue) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Уже оптимизировано'),
+        ));
+      } else {
+        BatteryOptimization.openBatteryOptimizationSettings();
+      }
+    });
   }
 }

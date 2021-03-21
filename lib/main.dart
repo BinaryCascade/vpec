@@ -6,12 +6,23 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:vpec/ui/theme.dart';
 import 'package:vpec/utils/routes.dart';
 import 'package:vpec/utils/theme_helper.dart';
+import 'package:workmanager/workmanager.dart';
+
+import 'utils/background_check.dart';
 
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('settings');
   await Firebase.initializeApp().whenComplete(() => runApp(MyApp()));
+}
+
+void callbackDispatcher() {
+  Workmanager.executeTask((task, inputData) {
+    BackgroundCheck().checkForLessons();
+    return Future.value(true);
+  });
 }
 
 class MyApp extends StatefulWidget {
