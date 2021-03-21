@@ -23,22 +23,20 @@ class AnnouncementCard extends StatelessWidget {
         ),
         child: GestureDetector(
           onDoubleTap: () => editAnnouncement(context),
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.0),
-            child: Column(
-              children: [
-                if (announcement.photoUrl != null)
-                  Container(
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child:
-                            CachedNetworkImage(imageUrl: announcement.photoUrl),
-                      )),
-                ListTile(
+          child: Column(
+            children: [
+              if (announcement.photoUrl != null)
+                Container(
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                  child:
+                        CachedNetworkImage(imageUrl: announcement.photoUrl),
+                ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: ListTile(
                   title: Text(
                     announcement.title,
                     style: Theme.of(context).textTheme.headline4,
@@ -71,8 +69,8 @@ class AnnouncementCard extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
