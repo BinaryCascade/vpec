@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,41 +22,56 @@ class AnnouncementCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: GestureDetector(
-          onDoubleTap: () => _listPicked(context),
+          onDoubleTap: () => editAnnouncement(context),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0),
-            child: ListTile(
-              title: Text(
-                announcement.title,
-                style: Theme.of(context).textTheme.headline4,
-              ),
-              subtitle: Padding(
-                padding: EdgeInsets.only(top: 6),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Linkify(
-                      text: announcement.content,
-                      style: Theme.of(context).textTheme.bodyText1,
-                      options: LinkifyOptions(humanize: true),
-                      onOpen: (link) async {
-                        if (await canLaunch(link.url)) {
-                          await launch(link.url);
-                        } else {
-                          throw ('Could not launch ${link.url}');
-                        }
-                      },
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 6),
-                      child: Text(
-                        announcement.author + ' • ' + announcement.pubDate,
-                        style: Theme.of(context).textTheme.subtitle1,
+            child: Column(
+              children: [
+                if (announcement.photoUrl != null)
+                  Container(
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child:
+                            CachedNetworkImage(imageUrl: announcement.photoUrl),
+                      )),
+                ListTile(
+                  title: Text(
+                    announcement.title,
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  subtitle: Padding(
+                    padding: EdgeInsets.only(top: 6),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Linkify(
+                          text: announcement.content,
+                          style: Theme.of(context).textTheme.bodyText1,
+                          options: LinkifyOptions(humanize: true),
+                          onOpen: (link) async {
+                            if (await canLaunch(link.url)) {
+                              await launch(link.url);
+                            } else {
+                              throw ('Could not launch ${link.url}');
+                            }
+                          },
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 6),
+                          child: Text(
+                            announcement.author + ' • ' + announcement.pubDate,
+                            style: Theme.of(context).textTheme.subtitle1,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ),
@@ -63,7 +79,7 @@ class AnnouncementCard extends StatelessWidget {
     );
   }
 
-  void _listPicked(BuildContext context) {
+  void editAnnouncement(BuildContext context) {
     TextEditingController titleController = TextEditingController();
     TextEditingController contentController = TextEditingController();
 
@@ -121,7 +137,7 @@ class AnnouncementCard extends StatelessWidget {
               children: <Widget>[
                 TextButton(
                   style: Theme.of(context).textButtonTheme.style,
-                  onPressed: () => _confirmDelete(context),
+                  onPressed: () => confirmDelete(context),
                   child: Text(
                     'Удалить',
                     style: TextStyle(
@@ -144,8 +160,11 @@ class AnnouncementCard extends StatelessWidget {
                     style: TextStyle(
                         color: Theme.of(context).textTheme.bodyText1.color),
                   ),
-                  onPressed: () => _updateAlert(context, announcement.docId,
-                      titleController.text, contentController.text),
+                  onPressed: () => updateAnnouncement(
+                      context,
+                      announcement.docId,
+                      titleController.text,
+                      contentController.text),
                 ),
               ],
             ),
@@ -155,19 +174,19 @@ class AnnouncementCard extends StatelessWidget {
     }
   }
 
-  void _updateAlert(BuildContext context, String docId, String titleText,
+  void updateAnnouncement(BuildContext context, String docId, String titleText,
       String contentText) {
     CollectionReference alerts = FirebaseFirestore.instance
         .collection(announcement.isPublic ? 'alerts' : 'privateAlerts');
     alerts
         .doc(docId)
         .update({'title': titleText, 'content': contentText})
-        .then((value) => print("Alert Updated"))
-        .catchError((error) => print("Failed to update alert: $error"));
+        .then((value) => print("Announcement Updated"))
+        .catchError((error) => print("Failed to update announcement: $error"));
     Navigator.pop(context);
   }
 
-  void _confirmDelete(BuildContext context) {
+  void confirmDelete(BuildContext context) {
     Navigator.pop(context);
     showModalBottomSheet(
         context: context,
@@ -209,7 +228,7 @@ class AnnouncementCard extends StatelessWidget {
                     width: double.infinity,
                     child: OutlinedButton(
                       style: Theme.of(context).outlinedButtonTheme.style,
-                      onPressed: () => _deleteAlert(context),
+                      onPressed: () => deleteAnnouncement(context),
                       child: Text(
                         'Удалить',
                         style: TextStyle(
@@ -222,14 +241,14 @@ class AnnouncementCard extends StatelessWidget {
             ));
   }
 
-  void _deleteAlert(BuildContext context) {
+  void deleteAnnouncement(BuildContext context) {
     CollectionReference alerts = FirebaseFirestore.instance
         .collection(announcement.isPublic ? 'alerts' : 'privateAlerts');
     alerts
         .doc(announcement.docId)
         .delete()
-        .then((value) => print("Alert deleted"))
-        .catchError((error) => print("Failed to delete alert: $error"));
+        .then((value) => print("Announcement deleted"))
+        .catchError((error) => print("Failed to delete Announcement: $error"));
     Navigator.pop(context);
   }
 }

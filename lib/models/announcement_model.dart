@@ -7,6 +7,7 @@ class AnnouncementModel {
   final String title;
   final String docId;
   final bool isPublic;
+  final String photoUrl;
 
   const AnnouncementModel({
     this.author,
@@ -15,6 +16,7 @@ class AnnouncementModel {
     this.title,
     this.docId,
     this.isPublic,
+    this.photoUrl,
   });
 
   AnnouncementModel.fromMap(Map<String, dynamic> data, String id)
@@ -24,6 +26,7 @@ class AnnouncementModel {
           content: data['content'],
           title: data['title'],
           isPublic: data['isPublic'],
+          photoUrl : data['photo'],
           docId: id,
         );
 }
