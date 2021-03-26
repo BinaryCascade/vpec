@@ -1,3 +1,6 @@
+// Snow by https://github.com/windwp/
+// Repo: https://github.com/windwp/flutter-snow-effect
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
