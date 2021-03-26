@@ -20,14 +20,17 @@ class TimeScheduleCard extends StatefulWidget {
 
 class _TimeScheduleCardState extends State<TimeScheduleCard> {
   var settings = Hive.box('settings');
-  var isLastTime;
+  bool isLastTime;
   bool isNowBeforeWidgetTimeStart;
   bool isNowBeforeWidgetTimeEnd;
   Duration timeUntilLessonStart;
   Duration timeUntilLessonEnd;
 
+  // this text return text with time until start or end of lesson
+  // or empty text if this lesson is not next (or currently)
   String timeText() {
     if (isNowBeforeWidgetTimeStart && isLastTime) {
+      // we need show text only once, that's why i save value
       settings.put('isLastTime', false);
       return printStart();
     } else {
@@ -42,7 +45,10 @@ class _TimeScheduleCardState extends State<TimeScheduleCard> {
 
   @override
   void initState() {
+    // get value from storage, is 'isLastTime' is true, then we don't need
+    // to show duration text on card
     isLastTime = settings.get('isLastTime');
+    // a very weird check if now is before the start of the lesson or after
     isNowBeforeWidgetTimeStart = DateTime.now().isBefore(DateTime(
       DateTime.now().year,
       DateTime.now().month,
@@ -57,6 +63,8 @@ class _TimeScheduleCardState extends State<TimeScheduleCard> {
       DateFormat('HH:mm').parse(widget.time.endLesson).hour,
       DateFormat('HH:mm').parse(widget.time.endLesson).minute,
     ));
+
+    // get time until start and end lesson in milliseconds
     timeUntilLessonStart = Duration(
         milliseconds: Jiffy(widget.time.startLesson, "HH:mm")
             .diff(Jiffy(Jiffy().Hm, "HH:m"), Units.MILLISECOND));
@@ -68,7 +76,6 @@ class _TimeScheduleCardState extends State<TimeScheduleCard> {
 
   @override
   Widget build(BuildContext context) {
-    isLastTime = settings.get('isLastTime');
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -106,24 +113,24 @@ class _TimeScheduleCardState extends State<TimeScheduleCard> {
                 widget.time.startLesson + '-' + widget.time.endLesson,
                 style: timeText().isEmpty
                     ? Theme.of(context).textTheme.headline5.copyWith(
-                    color: Theme.of(context)
-                        .textTheme
-                        .headline5
-                        .color
-                        .withOpacity(0.60))
+                        color: Theme.of(context)
+                            .textTheme
+                            .headline5
+                            .color
+                            .withOpacity(0.60))
                     : Theme.of(context).textTheme.headline5.copyWith(
-                    color: Theme.of(context).textTheme.bodyText1.color),
+                        color: Theme.of(context).textTheme.bodyText1.color),
               ),
               Text(widget.time.name,
                   style: timeText().isEmpty
                       ? Theme.of(context).textTheme.headline6.copyWith(
-                      color: Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .color
-                          .withOpacity(0.60))
+                          color: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              .color
+                              .withOpacity(0.60))
                       : Theme.of(context).textTheme.headline6.copyWith(
-                      color: Theme.of(context).textTheme.bodyText1.color)),
+                          color: Theme.of(context).textTheme.bodyText1.color)),
               Text(
                 timeText(),
                 style: Theme.of(context).textTheme.headline6.copyWith(
@@ -135,13 +142,13 @@ class _TimeScheduleCardState extends State<TimeScheduleCard> {
                   widget.time.isLast ? "" : 'Перемена: ${widget.time.pause}',
                   style: timeText().isEmpty
                       ? Theme.of(context).textTheme.headline6.copyWith(
-                      color: Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .color
-                          .withOpacity(0.60))
+                          color: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              .color
+                              .withOpacity(0.60))
                       : Theme.of(context).textTheme.headline6.copyWith(
-                      color: Theme.of(context).textTheme.bodyText1.color),
+                          color: Theme.of(context).textTheme.bodyText1.color),
                 ),
               ),
             ],
@@ -159,9 +166,9 @@ class _TimeScheduleCardState extends State<TimeScheduleCard> {
 
   String printEnd() {
     var hourText = DateFormat('HH:mm')
-        .parse(timeUntilLessonEnd.toString().replaceAll(":00.000000", ''))
-        .hour
-        .toString() +
+            .parse(timeUntilLessonEnd.toString().replaceAll(":00.000000", ''))
+            .hour
+            .toString() +
         ' ч. ';
     return 'До конца: ' +
         hourText.replaceAll("0 ч.", "") +
