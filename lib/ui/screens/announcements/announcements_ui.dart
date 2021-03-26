@@ -17,10 +17,20 @@ Widget buildAnnouncementsList(String streamName) {
           stream: stream,
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError)
+              return Center(
+                child: Text(
+                  'Произошла ошибка при получении данных, пожалуйста, '
+                      'войдите в аккаунт',
+                  style: Theme.of(context).textTheme.bodyText1,
+                  textAlign: TextAlign.center,
+                ),
+              );
             if (!snapshot.hasData)
               return Center(
                 child: CircularProgressIndicator(),
               );
+
             return DraggableScrollbar.semicircle(
               backgroundColor: Theme.of(context).primaryColor,
               child: ListView(
