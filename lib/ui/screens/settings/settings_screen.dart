@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:vpec/ui/widgets/styled_widgets.dart';
 import 'package:vpec/utils/theme_helper.dart';
 import 'settings_ui.dart';
 
@@ -30,7 +31,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: buildAccountBlock(context)),
           buildThemeChooser(context),
           buildLaunchOnStartChooser(context),
-          buildBackgroundTaskWidgets(context),
+          // buildBackgroundTaskWidgets(context), // low-priority
+          Divider(),
+          styledListTile(
+              context: context,
+              icon: Icon(
+                Icons.info_outlined,
+                size: 32,
+                color: Theme.of(context).accentColor,
+              ),
+              title: 'О приложении',
+              subtitle: 'Просмотреть техническую информацию',
+              onTap: () => Navigator.pushNamed(context, '/about')),
         ],
       ),
     );
