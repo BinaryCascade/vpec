@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:photo_view/photo_view.dart';
 import 'package:share/share.dart';
 import 'package:vpec/ui/widgets/snow_widget.dart';
 import 'package:vpec/utils/holiday_helper.dart';
@@ -18,8 +17,12 @@ class LessonsScheduleScreen extends StatefulWidget {
   _LessonsScheduleScreenState createState() => _LessonsScheduleScreenState();
 }
 
-class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
-  final imageZoomController = TransformationController();
+class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with TickerProviderStateMixin{
+  final _transformationController = TransformationController();
+  AnimationController _animationController;
+  Animation<Matrix4> _animation;
+  TapDownDetails _doubleTapDetails;
+
   bool showForToday = true;
   String baseUrl = 'http://energocollege.ru/vec_assistant/'
       '%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5/';
@@ -30,11 +33,23 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
   void initState() {
     imgUrl = getUrl(forToday: true);
     super.initState();
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 300),
+    )..addListener(() {
+      _transformationController.value = _animation.value;
+    });
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Stack(
         children: [
@@ -57,35 +72,34 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
             ),
             placeholder: (context, url) =>
                 Center(child: CircularProgressIndicator()),
-            imageBuilder: (context, imageProvider) => PhotoView.customChild(
-              backgroundDecoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor
-              ),
-              minScale: 1.0,
-              maxScale: 10.0,
-              child: ColorFiltered(
-                colorFilter:
-                    ThemeHelper().isDarkMode()
-                        ? ColorFilter.matrix([
-                            //R G  B  A  Const
-                            -0.87843, 0, 0, 0, 255,
-                            0, -0.87843, 0, 0, 255,
-                            0, 0, -0.87843, 0, 255,
-                            0, 0, 0, 1, 0,
-                          ])
-                        : ColorFilter.matrix([
-                            0.96078, 0, 0, 0, 0,
-                            0, 0.96078, 0, 0, 0,
-                            0, 0, 0.96078, 0, 0,
-                            0, 0, 0, 1, 0,
-                          ]),
+            imageBuilder: (context, imageProvider) => GestureDetector(
+              onDoubleTapDown: _handleDoubleTapDown,
+              onDoubleTap: _handleDoubleTap,
+              child: InteractiveViewer(
+                minScale: 1.0,
+                maxScale: 10.0,
+                transformationController: _transformationController,
+                child: ColorFiltered(
+                colorFilter: ThemeHelper().isDarkMode()
+                    ? ColorFilter.matrix([
+                  //R G  B  A  Const
+                  -0.87843, 0, 0, 0, 255,
+                  0, -0.87843, 0, 0, 255,
+                  0, 0, -0.87843, 0, 255,
+                  0, 0, 0, 1, 0,
+                ])
+                    : ColorFilter.matrix([
+                  0.96078, 0, 0, 0, 0,
+                  0, 0.96078, 0, 0, 0,
+                  0, 0, 0.96078, 0, 0,
+                  0, 0, 0, 1, 0,
+                ]),
                 child: Center(
                   child: Image(
-                        image: imageProvider,
-
-                    ),
+                    image: imageProvider,
+                  ),
                 ),
-              ),
+              ),),
             ),
           ),
         ],
@@ -190,4 +204,34 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> {
             baseUrl + "${picked.day}-${picked.month}-${picked.year}" + endUrl;
       });
   }
+
+  void _handleDoubleTapDown(TapDownDetails details) {
+    // get details about offset of interactive viewer
+    _doubleTapDetails = details;
+  }
+
+  void _handleDoubleTap() {
+    Matrix4 _endMatrix;
+    Offset position = _doubleTapDetails.localPosition;
+
+    if (_transformationController.value != Matrix4.identity()) {
+      // zoom out
+      _endMatrix = Matrix4.identity();
+    } else {
+      // zoom in
+      _endMatrix = Matrix4.identity()
+        ..translate(-position.dx * 2, -position.dy * 2)
+        ..scale(3.5);
+    }
+
+    // animate zooming
+    _animation = Matrix4Tween(
+      begin: _transformationController.value,
+      end: _endMatrix,
+    ).animate(
+      CurveTween(curve: Curves.easeOut).animate(_animationController),
+    );
+    _animationController.forward(from: 0);
+  }
+
 }
