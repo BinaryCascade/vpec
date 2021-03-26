@@ -77,7 +77,9 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
   Widget build(BuildContext context) {
     ThemeHelper().colorStatusBar(context: context, isTransparent: true);
     return Scaffold(
-      appBar: AppBar(title: Text('$appBarScaleText')),
+      appBar: AppBar(
+          title: Text('$appBarScaleText'), // TODO: Change title when maps is done
+      ),
       body: Center(
           child: nowImageUrl.isEmpty
               ? CircularProgressIndicator()

@@ -46,7 +46,6 @@ class BackgroundCheck {
         var newResponseBody = responseBody.outerXml.substring(
             responseBody.outerXml.indexOf('<h1>') + 4,
             responseBody.outerXml.indexOf('</h1>'));
-        print(newResponseBody);
         if (newResponseBody == 'Not Found') {
           print('Расписание не найдено');
         }
