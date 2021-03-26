@@ -43,9 +43,12 @@ Widget styledListTile(
     String title,
     String subtitle,
     Widget icon,
+    Widget trailing,
     GestureTapCallback onTap}) {
   return ListTile(
-    leading: Container(height: double.infinity, child: icon),
+    trailing: trailing == null ? null : trailing,
+    leading:
+        icon == null ? null : Container(height: double.infinity, child: icon),
     title: Text(
       title,
       style: Theme.of(context).textTheme.headline3,
