@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:vpec/models/time_model.dart';
 import 'package:vpec/ui/widgets/snow_widget.dart';
 import 'package:vpec/ui/widgets/time_card.dart';
+import 'package:vpec/utils/hive_helper.dart';
 import 'package:vpec/utils/holiday_helper.dart';
 import 'package:vpec/utils/theme_helper.dart';
 
@@ -16,17 +16,11 @@ class TimeTableScreen extends StatefulWidget {
 
 class TimeTableScreenState extends State<TimeTableScreen> {
   int pausesCount = 0;
-  var settings = Hive.box('settings');
 
   @override
   void initState() {
-    settings.put('isLastTime', true);
+    HiveHelper().saveValue(key: 'isLastTime', value: true);
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override
