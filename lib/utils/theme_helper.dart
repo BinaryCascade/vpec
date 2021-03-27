@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 
 class ThemeHelper {
+  /// return true, if system or user-chosen theme is dark
   bool isDarkMode() {
     // get system theme
     var brightness =
@@ -13,16 +14,17 @@ class ThemeHelper {
     // get user-chosen theme
     Box settings = Hive.box('settings');
     if (settings.get('theme') != null) {
-      settings.get('theme') == 'Тёмная тема' ? isDarkMode = true : isDarkMode = false;
+      settings.get('theme') == 'Тёмная тема'
+          ? isDarkMode = true
+          : isDarkMode = false;
     }
 
     return isDarkMode;
   }
 
-
+  /// [isTransparent] = true if you use AppBar in page
   void colorStatusBar(
       {@required BuildContext context, @required bool isTransparent}) {
-    // [isTransparent] = true if you use AppBar in page
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
           statusBarColor: isTransparent
