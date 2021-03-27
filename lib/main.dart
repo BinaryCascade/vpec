@@ -37,14 +37,9 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     final window = WidgetsBinding.instance.window;
     window.onPlatformBrightnessChanged = () {
-      Box settings = Hive.box('settings');
       // This callback gets invoked every time brightness changes
       setState(() {
-        if (settings.get('theme') == null) {
-          isDarkTheme = window.platformBrightness == Brightness.dark;
-        } else {
-          isDarkTheme = ThemeHelper().isDarkMode();
-        }
+        isDarkTheme = ThemeHelper().isDarkMode();
       });
     };
     super.initState();
