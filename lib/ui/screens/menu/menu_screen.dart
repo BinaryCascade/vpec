@@ -50,7 +50,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   title: 'Список преподавателей',
                   subtitle: 'Их имена, кабинеты',
                   onTap: () async {
-                    await Navigator.pushNamed(context, '/settings');
+                    await Navigator.pushNamed(context, '/teacher');
                     ThemeHelper()
                         .colorStatusBar(context: context, isTransparent: false);
                   }),
@@ -61,7 +61,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   title: 'Администрация колледжа',
                   subtitle: 'Вопросы, проблемы и предложения',
                   onTap: () async {
-                    await Navigator.pushNamed(context, '/settings');
+                    await Navigator.pushNamed(context, '/administration');
                     ThemeHelper()
                         .colorStatusBar(context: context, isTransparent: false);
                   }),

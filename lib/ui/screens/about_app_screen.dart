@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vpec/ui/widgets/styled_widgets.dart';
+import 'package:vpec/utils/icons.dart';
 
 class AboutAppScreen extends StatefulWidget {
   @override
@@ -80,7 +81,7 @@ class _AboutAppScreenState extends State<AboutAppScreen> {
                     IconButton(
                       tooltip: 'Открыть страницу в VK',
                       icon: Icon(
-                        Icons.info_outlined,
+                        VEKiconPack.vk,
                         size: 32,
                         color: Theme.of(context).accentColor,
                       ),
@@ -90,7 +91,7 @@ class _AboutAppScreenState extends State<AboutAppScreen> {
                     IconButton(
                       tooltip: 'Открыть страницу в Telegram',
                       icon: Icon(
-                        Icons.info_outlined,
+                        VEKiconPack.telegram,
                         size: 32,
                         color: Theme.of(context).accentColor,
                       ),

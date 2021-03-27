@@ -44,6 +44,12 @@ class _SplashScreenState extends State<SplashScreen> {
       final QuickActions quickActions = QuickActions();
       quickActions.initialize((shortcutType) {
         switch (shortcutType) {
+          case 'action_news':
+            Navigator.popAndPushNamed(context, '/home', arguments: 0);
+            break;
+          case 'action_alerts':
+            Navigator.popAndPushNamed(context, '/home', arguments: 1);
+            break;
           case 'action_timetable':
             Navigator.popAndPushNamed(context, '/home', arguments: 2);
             break;
@@ -55,13 +61,21 @@ class _SplashScreenState extends State<SplashScreen> {
 
       quickActions.setShortcutItems(<ShortcutItem>[
         const ShortcutItem(
+            type: 'action_news',
+            localizedTitle: 'Новости',
+            icon: 'news'),
+        const ShortcutItem(
+            type: 'action_alerts',
+            localizedTitle: 'Объявления',
+            icon: 'alerts'),
+        const ShortcutItem(
             type: 'action_timetable',
             localizedTitle: 'Звонки',
-            icon: 'icon_main'),
+            icon: 'timetable'),
         const ShortcutItem(
             type: 'action_schedule',
             localizedTitle: 'Расписание',
-            icon: 'icon_help')
+            icon: 'schedule')
       ]);
     }
     // open bottom bar index by setting "launch on start"
