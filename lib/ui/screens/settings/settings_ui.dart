@@ -1,4 +1,3 @@
-import 'package:battery_optimization/battery_optimization.dart';
 import 'package:flutter/material.dart';
 import 'package:vpec/ui/widgets/styled_widgets.dart';
 import 'package:vpec/utils/icons.dart';
@@ -38,19 +37,37 @@ Widget buildAccountBlock(BuildContext context) {
 }
 
 Widget buildThemeChooser(BuildContext context) {
-  return hivedListTile(
-    context: context,
-    title: 'Тема приложения',
-    subtitleKey: 'theme',
-    defaultValue: 'Системная тема',
-    icon: Icon(
-      Icons.brightness_6_outlined,
-      size: 32,
-      color: Theme.of(context).accentColor,
-    ),
-    onTap: () {
-      SettingsLogic().chooseTheme(context);
-    },
+  return Column(
+    children: [
+      hivedListTile(
+        context: context,
+        title: 'Тема приложения',
+        subtitleKey: 'theme',
+        defaultValue: 'Системная тема',
+        icon: Icon(
+          Icons.brightness_6_outlined,
+          size: 32,
+          color: Theme.of(context).accentColor,
+        ),
+        onTap: () {
+          SettingsLogic().chooseTheme(context: context, isAppThemeSetting: true);
+        },
+      ),
+      hivedListTile(
+        context: context,
+        title: 'Тема документов',
+        subtitleKey: 'pdfTheme',
+        defaultValue: 'Системная тема',
+        icon: Icon(
+          Icons.tonality_outlined,
+          size: 32,
+          color: Theme.of(context).accentColor,
+        ),
+        onTap: () {
+          SettingsLogic().chooseTheme(context: context, isAppThemeSetting: false);
+        },
+      ),
+    ],
   );
 }
 

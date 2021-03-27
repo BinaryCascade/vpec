@@ -2,10 +2,10 @@ import 'package:battery_optimization/battery_optimization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:vpec/utils/hive_helper.dart';
 import 'package:vpec/utils/icons.dart';
 import 'package:vpec/utils/rounded_modal_sheet.dart';
+import 'package:vpec/utils/theme_helper.dart';
 import 'package:workmanager/workmanager.dart';
 
 class SettingsLogic {
@@ -187,13 +187,13 @@ class SettingsLogic {
     }
   }
 
-  void chooseTheme(BuildContext context) {
-    var settings = Hive.box('settings');
+  void chooseTheme({BuildContext context, bool isAppThemeSetting}) {
+    String hiveKey = isAppThemeSetting ? 'theme' : 'pdfTheme';
     int selectedItem = 0;
-    if (settings.get('theme') == null) {
+    if (HiveHelper().getValue(hiveKey) == null) {
       selectedItem = 2;
     } else {
-      selectedItem = settings.get('theme') == 'Светлая тема' ? 0 : 1;
+      selectedItem = HiveHelper().getValue(hiveKey) == 'Светлая тема' ? 0 : 1;
     }
 
     roundedModalSheet(
@@ -216,9 +216,16 @@ class SettingsLogic {
                   onChanged: (value) {
                     setModalState(() {
                       HiveHelper()
-                          .saveValue(key: 'theme', value: 'Светлая тема');
-                      Get.changeThemeMode(ThemeMode.light);
+                          .saveValue(key: hiveKey, value: 'Светлая тема');
+
                       selectedItem = value;
+                      if (isAppThemeSetting) {
+                        Get.changeThemeMode(ThemeMode.light);
+                        ThemeHelper().colorStatusBar(
+                            context: context, isTransparent: true);
+                      }
+
+                      Navigator.pop(context);
                     });
                   }),
               RadioListTile(
@@ -235,9 +242,16 @@ class SettingsLogic {
                   onChanged: (value) {
                     setModalState(() {
                       HiveHelper()
-                          .saveValue(key: 'theme', value: 'Тёмная тема');
-                      Get.changeThemeMode(ThemeMode.dark);
+                          .saveValue(key: hiveKey, value: 'Тёмная тема');
                       selectedItem = value;
+
+                      if (isAppThemeSetting) {
+                        Get.changeThemeMode(ThemeMode.dark);
+                        ThemeHelper().colorStatusBar(
+                            context: context, isTransparent: true);
+                      }
+
+                      Navigator.pop(context);
                     });
                   }),
               RadioListTile(
@@ -255,7 +269,11 @@ class SettingsLogic {
                     setModalState(() {
                       Get.changeThemeMode(ThemeMode.system);
                       selectedItem = value;
-                      HiveHelper().removeValue('theme');
+                      HiveHelper().removeValue(hiveKey);
+                      if (isAppThemeSetting)
+                        ThemeHelper().colorStatusBar(
+                            context: context, isTransparent: true);
+                      Navigator.pop(context);
                     });
                   }),
             ],
