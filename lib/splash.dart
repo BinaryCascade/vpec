@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:quick_actions/quick_actions.dart';
-import 'package:vpec/utils/background_check.dart';
 import 'package:vpec/utils/hive_helper.dart';
 import 'package:workmanager/workmanager.dart';
 
@@ -63,19 +62,19 @@ class _SplashScreenState extends State<SplashScreen> {
         const ShortcutItem(
             type: 'action_news',
             localizedTitle: 'Новости',
-            icon: 'news'),
+            icon: 'ic_news'),
         const ShortcutItem(
             type: 'action_alerts',
             localizedTitle: 'Объявления',
-            icon: 'alerts'),
+            icon: 'ic_alerts'),
         const ShortcutItem(
             type: 'action_timetable',
             localizedTitle: 'Звонки',
-            icon: 'timetable'),
+            icon: 'ic_timetable'),
         const ShortcutItem(
             type: 'action_schedule',
             localizedTitle: 'Расписание',
-            icon: 'schedule')
+            icon: 'ic_schedule')
       ]);
     }
     // open bottom bar index by setting "launch on start"
