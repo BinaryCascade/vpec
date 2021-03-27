@@ -6,13 +6,14 @@
 ## Особенности
 * Быстрый и удобный доступ к всегда актуальному расписанию занятий и звонков
 * Светлая и тёмная тема
+* Различная полезная информация (список преподавателей, карта кабинетов и прочее)
 * Объявления от администрации колледжа
 * Новости колледжа
 
 ## Скачать
-* С моего сайта - [TemApps Store](https://tem-apps.web.app/#/app/vec)
+* [С Github](https://github.com/Volgograd-Power-Engineering-College/vpec/releases/latest)
+* [TemApps Store](https://tem-apps.web.app/#/app/vec)
 * Google Play (в процессе)
-* С Github
 
 ## Принять участие в разработке
 Присоединиться к бета-тестированию: [Telegram](https://t.me/Tembeon)
