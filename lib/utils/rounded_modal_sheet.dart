@@ -15,7 +15,11 @@ void roundedModalSheet(
         ),
       ),
       builder: (context) => Container(
-            margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
+            margin: EdgeInsets.only(
+                top: 15,
+                left: 15,
+                right: 15,
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
