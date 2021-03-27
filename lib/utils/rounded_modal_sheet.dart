@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 /// creating modal sheet with rounded corners
-void roundedModalSheet(
-    {@required BuildContext context, String title, Widget child}) {
-  showModalBottomSheet(
+Future<void> roundedModalSheet(
+    {@required BuildContext context, String title, Widget child}) async {
+  await showModalBottomSheet(
       backgroundColor: Theme.of(context).dialogBackgroundColor,
       context: context,
       isDismissible: true,
