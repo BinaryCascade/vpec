@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:vpec/utils/hive_helper.dart';
-import 'package:workmanager/workmanager.dart';
 
-import 'main.dart';
 import 'utils/theme_helper.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -25,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _loadingSettings() {
-    ThemeHelper().colorStatusBar(context: context, isTransparent: false);
+    ThemeHelper().colorStatusBar(context: context, haveAppbar: false);
   }
 
   Future<void> _initApp() async {

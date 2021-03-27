@@ -22,18 +22,18 @@ class ThemeHelper {
     return isDarkMode;
   }
 
-  /// [isTransparent] = true if you use AppBar in page
+  /// [haveAppbar] = set to true if you use AppBar in page
   void colorStatusBar(
-      {@required BuildContext context, @required bool isTransparent}) {
+      {@required BuildContext context, @required bool haveAppbar}) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-          statusBarColor: isTransparent
+          statusBarColor: haveAppbar
               ? Colors.transparent
               : Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
           statusBarIconBrightness:
               isDarkMode() ? Brightness.light : Brightness.dark,
-          systemNavigationBarColor: isTransparent
-              ? Theme.of(context).scaffoldBackgroundColor
+          systemNavigationBarColor: haveAppbar
+              ? Colors.transparent
               : Theme.of(context).bottomNavigationBarTheme.backgroundColor,
           systemNavigationBarIconBrightness:
               isDarkMode() ? Brightness.light : Brightness.dark),

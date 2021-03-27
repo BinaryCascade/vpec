@@ -49,8 +49,9 @@ Widget buildThemeChooser(BuildContext context) {
           size: 32,
           color: Theme.of(context).accentColor,
         ),
-        onTap: () {
-          SettingsLogic().chooseTheme(context: context, isAppThemeSetting: true);
+        onTap: () async {
+          await SettingsLogic().chooseTheme(context: context, isAppThemeSetting: true);
+          // ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
         },
       ),
       hivedListTile(

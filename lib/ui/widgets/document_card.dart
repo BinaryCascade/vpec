@@ -20,7 +20,7 @@ class DocumentCard extends StatelessWidget {
         subtitle: document.subtitle ?? 'Не указано',
         onTap: () async {
           await Navigator.pushNamed(context, '/document', arguments: document);
-          ThemeHelper().colorStatusBar(context: context, isTransparent: false);
+          ThemeHelper().colorStatusBar(context: context, haveAppbar: false);
         });
   }
 }

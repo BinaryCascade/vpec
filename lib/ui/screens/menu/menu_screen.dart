@@ -28,7 +28,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   onTap: () async {
                     await Navigator.pushNamed(context, '/settings');
                     ThemeHelper()
-                        .colorStatusBar(context: context, isTransparent: false);
+                        .colorStatusBar(context: context, haveAppbar: false);
                   }),
               // information block
               Divider(),
@@ -41,7 +41,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   onTap: () async {
                     await Navigator.pushNamed(context, '/cabinets');
                     ThemeHelper()
-                        .colorStatusBar(context: context, isTransparent: false);
+                        .colorStatusBar(context: context, haveAppbar: false);
                   }),
               styledListTile(
                   context: context,
@@ -52,7 +52,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   onTap: () async {
                     await Navigator.pushNamed(context, '/teacher');
                     ThemeHelper()
-                        .colorStatusBar(context: context, isTransparent: false);
+                        .colorStatusBar(context: context, haveAppbar: false);
                   }),
               styledListTile(
                   context: context,
@@ -63,7 +63,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   onTap: () async {
                     await Navigator.pushNamed(context, '/administration');
                     ThemeHelper()
-                        .colorStatusBar(context: context, isTransparent: false);
+                        .colorStatusBar(context: context, haveAppbar: false);
                   }),
               // documents block
               Divider(),

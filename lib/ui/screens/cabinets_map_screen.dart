@@ -75,7 +75,7 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper().colorStatusBar(context: context, isTransparent: true);
+    ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
     return Scaffold(
       appBar: AppBar(
           title: Text('$appBarScaleText'), // TODO: Change title when maps is done

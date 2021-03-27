@@ -1,6 +1,7 @@
 import 'package:battery_optimization/battery_optimization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:vpec/utils/hive_helper.dart';
 import 'package:vpec/utils/icons.dart';
@@ -187,7 +188,8 @@ class SettingsLogic {
     }
   }
 
-  void chooseTheme({BuildContext context, bool isAppThemeSetting}) {
+  Future<bool> chooseTheme(
+      {BuildContext context, bool isAppThemeSetting}) async {
     String hiveKey = isAppThemeSetting ? 'theme' : 'pdfTheme';
     int selectedItem = 0;
     if (HiveHelper().getValue(hiveKey) == null) {
@@ -196,7 +198,7 @@ class SettingsLogic {
       selectedItem = HiveHelper().getValue(hiveKey) == 'Светлая тема' ? 0 : 1;
     }
 
-    roundedModalSheet(
+    await roundedModalSheet(
         context: context,
         title: 'Выберите тему',
         child: StatefulBuilder(builder: (context, setModalState) {
@@ -221,8 +223,6 @@ class SettingsLogic {
                       selectedItem = value;
                       if (isAppThemeSetting) {
                         Get.changeThemeMode(ThemeMode.light);
-                        ThemeHelper().colorStatusBar(
-                            context: context, isTransparent: true);
                       }
 
                       Navigator.pop(context);
@@ -247,10 +247,7 @@ class SettingsLogic {
 
                       if (isAppThemeSetting) {
                         Get.changeThemeMode(ThemeMode.dark);
-                        ThemeHelper().colorStatusBar(
-                            context: context, isTransparent: true);
                       }
-
                       Navigator.pop(context);
                     });
                   }),
@@ -270,15 +267,14 @@ class SettingsLogic {
                       Get.changeThemeMode(ThemeMode.system);
                       selectedItem = value;
                       HiveHelper().removeValue(hiveKey);
-                      if (isAppThemeSetting)
-                        ThemeHelper().colorStatusBar(
-                            context: context, isTransparent: true);
                       Navigator.pop(context);
                     });
                   }),
             ],
           );
         }));
+    ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
+    return true;
   }
 
   void chooseLaunchOnStart(BuildContext context) {
