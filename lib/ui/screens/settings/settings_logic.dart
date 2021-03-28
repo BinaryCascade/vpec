@@ -273,7 +273,15 @@ class SettingsLogic {
             ],
           );
         }));
-    ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness:
+              ThemeHelper().isDarkMode() ? Brightness.light : Brightness.dark,
+          systemNavigationBarColor: Colors.transparent,
+          systemNavigationBarIconBrightness:
+              ThemeHelper().isDarkMode() ? Brightness.light : Brightness.dark),
+    );
     return true;
   }
 
