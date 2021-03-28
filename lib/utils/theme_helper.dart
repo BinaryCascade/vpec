@@ -33,7 +33,7 @@ class ThemeHelper {
           statusBarIconBrightness:
               isDarkMode() ? Brightness.light : Brightness.dark,
           systemNavigationBarColor: haveAppbar
-              ? Colors.transparent
+              ? Theme.of(context).scaffoldBackgroundColor
               : Theme.of(context).bottomNavigationBarTheme.backgroundColor,
           systemNavigationBarIconBrightness:
               isDarkMode() ? Brightness.light : Brightness.dark),
