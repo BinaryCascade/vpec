@@ -3,7 +3,7 @@ import 'package:vpec/splash.dart';
 import 'package:vpec/ui/screens/admin_screen.dart';
 import 'package:vpec/ui/screens/about_app_screen.dart';
 import 'package:vpec/ui/screens/bottom_bar_screen.dart';
-import 'package:vpec/ui/screens/cabinets_map_screen.dart';
+import 'package:vpec/ui/screens/cabinets_map/cabinets_map_screen.dart';
 import 'package:vpec/ui/screens/settings/settings_screen.dart';
 import 'package:vpec/ui/screens/teacher_screen.dart';
 import 'package:vpec/ui/screens/view_document.dart';
