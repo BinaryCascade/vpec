@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/ui/screens/settings/settings_logic.dart';
-import 'package:vpec/utils/hive_helper.dart';
-import 'package:vpec/utils/icons.dart';
+
+import '../../../ui/screens/settings/settings_logic.dart';
+import '../../../utils/hive_helper.dart';
+import '../../../utils/icons.dart';
 
 import 'announcements_logic.dart';
 import 'announcements_ui.dart';

@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/models/time_model.dart';
-import 'package:vpec/ui/widgets/snow_widget.dart';
-import 'package:vpec/ui/widgets/time_card.dart';
-import 'package:vpec/utils/hive_helper.dart';
-import 'package:vpec/utils/holiday_helper.dart';
-import 'package:vpec/utils/theme_helper.dart';
+import '../../models/time_model.dart';
+import '../../ui/widgets/snow_widget.dart';
+import '../../ui/widgets/time_card.dart';
+import '../../utils/hive_helper.dart';
+import '../../utils/holiday_helper.dart';
+import '../../utils/theme_helper.dart';
 
 class TimeTableScreen extends StatefulWidget {
   @override

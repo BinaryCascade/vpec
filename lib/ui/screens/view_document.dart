@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
-import 'package:vpec/models/document_model.dart';
-import 'package:vpec/utils/hive_helper.dart';
-import 'package:vpec/utils/theme_helper.dart';
+
+import '../../models/document_model.dart';
+import '../../utils/hive_helper.dart';
+import '../../utils/theme_helper.dart';
 
 class DocumentViewScreen extends StatelessWidget {
   @override

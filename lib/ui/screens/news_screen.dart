@@ -14,7 +14,7 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
-  static const String FEED_URL = 'http://energocollege.ru/rss.xml';
+  static const String FEED_URL = 'https://energocollege.ru/rss.xml';
   RssFeed _feed;
 
   void updateFeed(feed) {
@@ -72,7 +72,8 @@ class _NewsScreenState extends State<NewsScreen> {
             : SafeArea(
                 top: false,
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 6.5, vertical: 5.5),
                   child: ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -105,6 +106,23 @@ class _NewsScreenState extends State<NewsScreen> {
                                     placeholder: (context, url) => Container(
                                         height: 200,
                                         child: Image.memory(kTransparentImage)),
+                                    errorWidget: (context, url, error) => Container(
+                                      height: 200,
+                                      child:
+                                      Stack(
+                                        children: [
+                                          Image.memory(kTransparentImage),
+                                          Center(
+                                            child: Text(
+                                              error.toString(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Padding(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:vpec/ui/widgets/styled_widgets.dart';
-import 'package:vpec/utils/icons.dart';
+import '../../ui/widgets/styled_widgets.dart';
+import '../../utils/icons.dart';
 
 class AboutAppScreen extends StatefulWidget {
   @override

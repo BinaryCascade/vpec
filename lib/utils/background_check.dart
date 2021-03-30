@@ -2,7 +2,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
-import 'package:vpec/utils/hive_helper.dart';
+import 'hive_helper.dart';
 import 'package:xml/xml.dart';
 
 class BackgroundCheck {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:vpec/ui/screens/menu/menu_ui.dart';
-import 'package:vpec/ui/widgets/styled_widgets.dart';
-import 'package:vpec/utils/icons.dart';
-import 'package:vpec/utils/theme_helper.dart';
+import 'menu_ui.dart';
+import '../../../ui/widgets/styled_widgets.dart';
+import '../../../utils/icons.dart';
+import '../../../utils/theme_helper.dart';
 
 class MenuScreen extends StatefulWidget {
   @override

@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/models/announcement_model.dart';
-import 'package:vpec/ui/widgets/announcement_card.dart';
+
+import '../../../models/announcement_model.dart';
+import '../../../ui/widgets/announcement_card.dart';
 
 // ListView with data from Firestore
 Widget buildAnnouncementsList(String streamName) {

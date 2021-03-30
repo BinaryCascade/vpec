@@ -8,9 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share/share.dart';
-import 'package:vpec/ui/widgets/snow_widget.dart';
-import 'package:vpec/utils/holiday_helper.dart';
-import 'package:vpec/utils/theme_helper.dart';
+
+import '../../ui/widgets/snow_widget.dart';
+import '../../utils/holiday_helper.dart';
+import '../../utils/theme_helper.dart';
 
 class LessonsScheduleScreen extends StatefulWidget {
   @override
@@ -24,7 +25,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with Tick
   TapDownDetails _doubleTapDetails;
 
   bool showForToday = true;
-  String baseUrl = 'http://energocollege.ru/vec_assistant/'
+  String baseUrl = 'https://energocollege.ru/vec_assistant/'
       '%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5/';
   String endUrl = '.jpg';
   String imgUrl = '';
