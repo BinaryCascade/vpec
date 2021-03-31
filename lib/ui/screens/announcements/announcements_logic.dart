@@ -6,7 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:vpec/utils/rounded_modal_sheet.dart';
+
+import '../../../utils/rounded_modal_sheet.dart';
 
 class AnnouncementsLogic {
   void createNewAnnouncement(BuildContext context) {

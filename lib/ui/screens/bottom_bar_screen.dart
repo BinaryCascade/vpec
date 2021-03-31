@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vpec/ui/screens/news_screen.dart';
-import 'package:vpec/ui/screens/timetable_screen.dart';
-import 'package:vpec/utils/icons.dart';
+import '../../ui/screens/news_screen.dart';
+import '../../ui/screens/timetable_screen.dart';
+import '../../utils/icons.dart';
 
 import 'announcements/announcements_screen.dart';
 import 'lessons_schedule_screen.dart';

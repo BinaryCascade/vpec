@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:vpec/ui/theme.dart';
-import 'package:vpec/utils/routes.dart';
-import 'package:vpec/utils/theme_helper.dart';
+import 'ui/theme.dart';
+import 'utils/routes.dart';
+import 'utils/theme_helper.dart';
 import 'package:workmanager/workmanager.dart';
 
 import 'utils/background_check.dart';

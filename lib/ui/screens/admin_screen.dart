@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/models/admin_model.dart';
-import 'package:vpec/ui/widgets/admin_card.dart';
-import 'package:vpec/utils/theme_helper.dart';
+import '../../models/admin_model.dart';
+import '../../ui/widgets/admin_card.dart';
+import '../../utils/theme_helper.dart';
 
 class AdminScreen extends StatelessWidget {
   final Stream<QuerySnapshot> stream =

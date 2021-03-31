@@ -3,10 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:vpec/utils/hive_helper.dart';
-import 'package:vpec/utils/icons.dart';
-import 'package:vpec/utils/rounded_modal_sheet.dart';
-import 'package:vpec/utils/theme_helper.dart';
+import '../../../utils/hive_helper.dart';
+import '../../../utils/icons.dart';
+import '../../../utils/rounded_modal_sheet.dart';
+import '../../../utils/theme_helper.dart';
 import 'package:workmanager/workmanager.dart';
 
 class SettingsLogic {

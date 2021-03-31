@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:vpec/ui/screens/cabinets_map/cabinets_map_logic.dart';
+import 'cabinets_map_logic.dart';
 
 Widget buildLoadingIndicator() {
   return Center(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vpec/ui/widgets/styled_widgets.dart';
-import 'package:vpec/utils/icons.dart';
+import '../../../ui/widgets/styled_widgets.dart';
+import '../../../utils/icons.dart';
 import 'settings_logic.dart';
 
 // Two ListTiles for account management
