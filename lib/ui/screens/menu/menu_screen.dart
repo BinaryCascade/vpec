@@ -65,6 +65,17 @@ class _MenuScreenState extends State<MenuScreen> {
                     ThemeHelper()
                         .colorStatusBar(context: context, haveAppbar: false);
                   }),
+              styledListTile(
+                  context: context,
+                  icon: Icon(Icons.rule_outlined,
+                      color: Theme.of(context).accentColor, size: 32),
+                  title: 'Моя профессоинальная направленность',
+                  subtitle: 'Узнать свою предрасположенность',
+                  onTap: () async {
+                    await Navigator.pushNamed(context, '/job_quiz');
+                    ThemeHelper()
+                        .colorStatusBar(context: context, haveAppbar: false);
+                  }),
               // documents block
               Divider(),
               buildDocuments(context),

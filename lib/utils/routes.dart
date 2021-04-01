@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../ui/screens/job_quiz/job_quiz_screen.dart';
 import '../splash.dart';
 import '../ui/screens/admin_screen.dart';
 import '../ui/screens/about_app_screen.dart';
@@ -18,5 +19,6 @@ class Routes {
     '/administration': (context) => AdminScreen(),
     '/teacher': (context) => TeacherScreen(),
     '/about': (context) => AboutAppScreen(),
+    '/job_quiz': (context) => JobQuizScreen(),
   };
 }
