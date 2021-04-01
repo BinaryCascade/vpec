@@ -21,9 +21,10 @@ class _JobQuizScreenState extends State<JobQuizScreen> {
   @override
   Widget build(BuildContext context) {
     ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Профессиональная направленность'),
+        title: Text('Проф. направленность'),
         brightness:
             ThemeHelper().isDarkMode() ? Brightness.dark : Brightness.light,
       ),
