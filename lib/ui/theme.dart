@@ -56,7 +56,7 @@ ThemeData themeData(BuildContext context) {
         subtitle1:
             TextStyle(fontSize: 15, color: mediumContrast, fontWeight: medium),
         bodyText1:
-            TextStyle(color: highContrast, fontSize: 15, fontWeight: regular),
+            TextStyle(color: highContrast, fontSize: 17, fontWeight: regular),
         headline3: TextStyle(
             //News Card Title
             color: highContrast,
@@ -151,7 +151,7 @@ ThemeData darkThemeData(BuildContext context) {
         subtitle1:
             TextStyle(fontSize: 15, color: mediumContrast, fontWeight: medium),
         bodyText1:
-            TextStyle(color: highContrast, fontSize: 15, fontWeight: regular),
+            TextStyle(color: highContrast, fontSize: 17, fontWeight: regular),
         headline3: TextStyle(
             //News Card Title
             color: highContrast,
