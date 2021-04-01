@@ -11,19 +11,22 @@ class JobQuizScreen extends StatefulWidget {
 
 class _JobQuizScreenState extends State<JobQuizScreen> {
   JobQuizStorage storage = Get.put(JobQuizStorage());
+  RxInt chlen = 1.obs;
 
   @override
   void dispose() {
     Get.reset();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Профессиональная направленность'),
+        title: Text('Проф. направленность'),
         brightness:
             ThemeHelper().isDarkMode() ? Brightness.dark : Brightness.light,
       ),
