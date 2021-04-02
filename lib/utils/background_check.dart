@@ -1,4 +1,3 @@
-import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
@@ -6,7 +5,7 @@ import 'hive_helper.dart';
 import 'package:xml/xml.dart';
 
 class BackgroundCheck {
-  String baseUrl = 'http://energocollege.ru/vec_assistant/'
+  String baseUrl = 'https://energocollege.ru/vec_assistant/'
       '%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5/';
   String endUrl = '.jpg';
 
@@ -38,7 +37,7 @@ class BackgroundCheck {
   }
 
   Future<void> checkForLessons() async {
-    bool hasConnection = await DataConnectionChecker().hasConnection;
+    bool hasConnection = true; // TODO: when start make background check, make connectivity check
     if (hasConnection) {
       var response = await http.get(Uri.parse(getUrl()));
       var responseBody = XmlDocument.parse(response.body);
@@ -59,8 +58,7 @@ class BackgroundCheck {
         }
       }
     } else {
-      print('No internet, skip check. Reason:');
-      print(DataConnectionChecker().lastTryResults);
+      print('No internet, skip check');
     }
   }
   // for future: move notifications to other file,

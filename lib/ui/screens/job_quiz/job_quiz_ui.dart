@@ -16,7 +16,6 @@ Widget buildQuestion(BuildContext context) {
 
 Widget buildAnswersBlock(BuildContext context) {
   JobQuizStorage storage = Get.put(JobQuizStorage());
-  int groupValue = 0;
 
   return StatefulBuilder(
     builder: (BuildContext context, void Function(void Function()) setState) {
@@ -26,10 +25,9 @@ Widget buildAnswersBlock(BuildContext context) {
               context: context,
               title: storage.firstAnswer(),
               value: 1,
-              groupValue: groupValue,
+              groupValue: storage.selectedAnswer,
               onChanged: (num) {
                 setState(() {
-                  groupValue = num;
                   storage.selectedAnswer = num;
                 });
               }),
@@ -37,10 +35,9 @@ Widget buildAnswersBlock(BuildContext context) {
               context: context,
               title: storage.secondAnswer(),
               value: 2,
-              groupValue: groupValue,
+              groupValue: storage.selectedAnswer,
               onChanged: (num) {
                 setState(() {
-                  groupValue = num;
                   storage.selectedAnswer = num;
                 });
               }),
@@ -48,10 +45,9 @@ Widget buildAnswersBlock(BuildContext context) {
               context: context,
               title: storage.thirdAnswer(),
               value: 3,
-              groupValue: groupValue,
+              groupValue: storage.selectedAnswer,
               onChanged: (num) {
                 setState(() {
-                  groupValue = num;
                   storage.selectedAnswer = num;
                 });
               }),
@@ -59,10 +55,9 @@ Widget buildAnswersBlock(BuildContext context) {
               context: context,
               title: storage.fourthAnswer(),
               value: 4,
-              groupValue: groupValue,
+              groupValue: storage.selectedAnswer,
               onChanged: (num) {
                 setState(() {
-                  groupValue = num;
                   storage.selectedAnswer = num;
                 });
               }),
