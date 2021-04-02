@@ -11,12 +11,10 @@ class JobQuizScreen extends StatefulWidget {
 
 class _JobQuizScreenState extends State<JobQuizScreen> {
   JobQuizStorage storage = Get.put(JobQuizStorage());
-  RxInt chlen = 1.obs;
 
   @override
   void dispose() {
     Get.reset();
-
     super.dispose();
   }
 
