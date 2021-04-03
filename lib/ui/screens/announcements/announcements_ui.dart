@@ -20,11 +20,14 @@ Widget buildAnnouncementsList(String streamName) {
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError)
               return Center(
-                child: Text(
-                  'Произошла ошибка при получении данных, пожалуйста, '
-                      'войдите в аккаунт',
-                  style: Theme.of(context).textTheme.bodyText1,
-                  textAlign: TextAlign.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Text(
+                    'Произошла ошибка при получении данных, пожалуйста, '
+                    'войдите в аккаунт',
+                    style: Theme.of(context).textTheme.bodyText1,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               );
             if (!snapshot.hasData)
