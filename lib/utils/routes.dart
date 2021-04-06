@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vpec/ui/screens/documents_screen.dart';
 import '../ui/screens/job_quiz/job_quiz_screen.dart';
 import '../splash.dart';
 import '../ui/screens/admin_screen.dart';
@@ -14,11 +15,12 @@ class Routes {
     '/': (context) => SplashScreen(child: BottomBarScreen()),
     '/home': (context) => BottomBarScreen(),
     '/settings': (context) => SettingsScreen(),
-    '/document': (context) => DocumentViewScreen(),
+    '/view_document': (context) => DocumentViewScreen(),
     '/cabinets': (context) => CabinetsMapScreen(),
     '/administration': (context) => AdminScreen(),
     '/teacher': (context) => TeacherScreen(),
     '/about': (context) => AboutAppScreen(),
     '/job_quiz': (context) => JobQuizScreen(),
+    '/documents' : (context) => DocumentsScreen(),
   };
 }

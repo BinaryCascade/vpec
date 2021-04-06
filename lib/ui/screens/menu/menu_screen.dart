@@ -78,7 +78,20 @@ class _MenuScreenState extends State<MenuScreen> {
                   }),
               // documents block
               Divider(),
-              buildDocuments(context),
+              styledListTile(
+                  context: context,
+                  title: 'Документы',
+                  subtitle: 'Список документов',
+                  icon: Icon(
+                    Icons.description_outlined,
+                    size: 32,
+                    color: Theme.of(context).accentColor,
+                  ),
+                  onTap: () async {
+                    await Navigator.pushNamed(context, '/documents');
+                    ThemeHelper()
+                        .colorStatusBar(context: context, haveAppbar: false);
+                  }),
             ],
           ),
         ),

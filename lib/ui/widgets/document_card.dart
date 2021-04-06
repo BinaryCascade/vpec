@@ -11,16 +11,10 @@ class DocumentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return styledListTile(
         context: context,
-        icon: Icon(
-          Icons.description_outlined,
-          color: Theme.of(context).accentColor,
-          size: 32,
-        ),
         title: document.title ?? 'Не указано',
         subtitle: document.subtitle ?? 'Не указано',
-        onTap: () async {
-          await Navigator.pushNamed(context, '/document', arguments: document);
-          ThemeHelper().colorStatusBar(context: context, haveAppbar: false);
+        onTap: () {
+          Navigator.pushNamed(context, '/view_document', arguments: document);
         });
   }
 }
