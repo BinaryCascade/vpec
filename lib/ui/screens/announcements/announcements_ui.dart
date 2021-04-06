@@ -21,7 +21,7 @@ Widget buildAnnouncementsList(String streamName) {
             if (snapshot.hasError)
               return Center(
                 child: Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.all(4.0),
                   child: Text(
                     'Произошла ошибка при получении данных, пожалуйста, '
                     'войдите в аккаунт',
