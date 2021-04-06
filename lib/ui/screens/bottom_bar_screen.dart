@@ -55,27 +55,32 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               backgroundColor:
                   Theme.of(context).bottomNavigationBarTheme.backgroundColor,
               icon: const Icon(VEKiconPack.news),
+              activeIcon: const Icon(VEKiconPack.news), //TODO: add filled news icon to IconPack
               label: 'Новости'),
           BottomNavigationBarItem(
               backgroundColor:
                   Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-              icon: Icon(Icons.notifications_outlined),
+              icon: const Icon(Icons.notifications_outlined),
+              activeIcon: const Icon(Icons.notifications),
               label: 'Объявления'),
           BottomNavigationBarItem(
               backgroundColor:
                   Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-              icon: Icon(Icons.schedule_outlined),
+              icon: const Icon(Icons.schedule_outlined),
+              activeIcon: const Icon(Icons.watch_later),
               label: 'Звонки'),
           BottomNavigationBarItem(
               backgroundColor:
                   Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-              icon: Icon(Icons.dashboard_outlined),
+              icon: const Icon(Icons.dashboard_outlined),
+              activeIcon: const Icon(Icons.dashboard),
               label: 'Расписание'),
           BottomNavigationBarItem(
             backgroundColor:
                 Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+            icon: const Icon(Icons.menu_outlined),
+            activeIcon: const Icon(Icons.menu),
             label: 'Меню',
-            icon: Icon(Icons.menu),
           ),
         ],
       ),
