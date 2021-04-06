@@ -80,7 +80,8 @@ class _NewsScreenState extends State<NewsScreen> {
                     itemCount: _feed.items.length,
                     itemBuilder: (BuildContext context, int index) {
                       final item = _feed.items[index];
-                      String imgUrl = item.description.substring(
+                      String imgUrl = '';
+                      if (item.description.contains('src=') && item.description.contains('alt=')) imgUrl = item.description.substring(
                           item.description.indexOf("src=") + 5,
                           item.description.indexOf('alt=') - 2);
                       return Padding(
@@ -106,29 +107,14 @@ class _NewsScreenState extends State<NewsScreen> {
                                     placeholder: (context, url) => Container(
                                         height: 200,
                                         child: Image.memory(kTransparentImage)),
-                                    errorWidget: (context, url, error) => Container(
-                                      height: 200,
-                                      child:
-                                      Stack(
-                                        children: [
-                                          Image.memory(kTransparentImage),
-                                          Center(
-                                            child: Text(
-                                              error.toString(),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                    errorWidget: (context, url, error) => Container()
                                   ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 13),
                                   child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
                                         item.title,
