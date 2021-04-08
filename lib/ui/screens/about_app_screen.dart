@@ -81,7 +81,7 @@ class _AboutAppScreenState extends State<AboutAppScreen> {
                     IconButton(
                       tooltip: 'Открыть страницу в VK',
                       icon: Icon(
-                        VEKiconPack.vk,
+                        VpecIconPack.vk,
                         size: 32,
                         color: Theme.of(context).accentColor,
                       ),
@@ -91,7 +91,7 @@ class _AboutAppScreenState extends State<AboutAppScreen> {
                     IconButton(
                       tooltip: 'Открыть страницу в Telegram',
                       icon: Icon(
-                        VEKiconPack.telegram,
+                        VpecIconPack.telegram,
                         size: 32,
                         color: Theme.of(context).accentColor,
                       ),

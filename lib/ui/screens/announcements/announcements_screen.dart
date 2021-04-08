@@ -85,7 +85,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            VEKiconPack.account_cog_outline,
+                            VpecIconPack.account_cog_outline,
                             size: 28,
                           ),
                           Padding(

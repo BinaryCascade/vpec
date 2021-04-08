@@ -56,7 +56,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   }),
               styledListTile(
                   context: context,
-                  icon: Icon(VEKiconPack.account_cog_outline,
+                  icon: Icon(VpecIconPack.account_cog_outline,
                       color: Theme.of(context).accentColor, size: 32),
                   title: 'Администрация колледжа',
                   subtitle: 'Вопросы, проблемы и предложения',

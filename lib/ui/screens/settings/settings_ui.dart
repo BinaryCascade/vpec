@@ -103,7 +103,7 @@ Widget buildBackgroundTaskWidgets(BuildContext context) {
       styledListTile(
         context: context,
         icon: Icon(
-          VEKiconPack.battery_saver_line,
+          VpecIconPack.battery_saver_line,
           color: Theme.of(context).accentColor,
           size: 32.0,
         ),

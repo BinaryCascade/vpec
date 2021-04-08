@@ -92,6 +92,6 @@ flutter:
         - asset: fonts/Montserrat-SemiBold.ttf
           weight: 600
 
-    - family: VEKiconPack
+    - family: VpecIconPack
       fonts:
-        - asset: fonts/VEKiconPack.ttf
+        - asset: fonts/VpecIconPack.ttf

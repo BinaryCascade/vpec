@@ -54,8 +54,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           BottomNavigationBarItem(
               backgroundColor:
                   Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-              icon: const Icon(VEKiconPack.news),
-              activeIcon: const Icon(VEKiconPack.news), //TODO: add filled news icon to IconPack
+              icon: const Icon(VpecIconPack.news_outline),
+              activeIcon: const Icon(VpecIconPack.news),
               label: 'Новости'),
           BottomNavigationBarItem(
               backgroundColor:

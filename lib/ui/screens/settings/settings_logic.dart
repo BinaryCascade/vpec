@@ -299,7 +299,7 @@ class SettingsLogic {
             return Column(
               children: [
                 RadioListTile(
-                    secondary: Icon(VEKiconPack.news,
+                    secondary: Icon(VpecIconPack.news,
                         color: Theme.of(context).accentColor),
                     title: Text(
                       'Новости',
