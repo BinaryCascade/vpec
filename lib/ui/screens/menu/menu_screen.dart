@@ -31,17 +31,18 @@ class _MenuScreenState extends State<MenuScreen> {
                   }),
               // information block
               Divider(),
-              styledListTile(
-                  context: context,
-                  icon: Icon(Icons.layers_outlined,
-                      color: Theme.of(context).accentColor, size: 32),
-                  title: 'Список кабинетов',
-                  subtitle: 'В виде карты',
-                  onTap: () async {
-                    await Navigator.pushNamed(context, '/cabinets');
-                    ThemeHelper()
-                        .colorStatusBar(context: context, haveAppbar: false);
-                  }),
+              // This fragment is done, but we have no maps in our server, that's why we comment this
+              // styledListTile(
+              //     context: context,
+              //     icon: Icon(Icons.layers_outlined,
+              //         color: Theme.of(context).accentColor, size: 32),
+              //     title: 'Список кабинетов',
+              //     subtitle: 'В виде карты',
+              //     onTap: () async {
+              //       await Navigator.pushNamed(context, '/cabinets');
+              //       ThemeHelper()
+              //           .colorStatusBar(context: context, haveAppbar: false);
+              //     }),
               styledListTile(
                   context: context,
                   icon: Icon(Icons.group_outlined,
