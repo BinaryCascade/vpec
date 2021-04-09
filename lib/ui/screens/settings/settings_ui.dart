@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../ui/widgets/styled_widgets.dart';
-import '../../../utils/icons.dart';
 import 'settings_logic.dart';
 
 // Two ListTiles for account management
@@ -50,7 +49,8 @@ Widget buildThemeChooser(BuildContext context) {
           color: Theme.of(context).accentColor,
         ),
         onTap: () async {
-          await SettingsLogic().chooseTheme(context: context, isAppThemeSetting: true);
+          await SettingsLogic()
+              .chooseTheme(context: context, isAppThemeSetting: true);
           // ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
         },
       ),
@@ -65,7 +65,8 @@ Widget buildThemeChooser(BuildContext context) {
           color: Theme.of(context).accentColor,
         ),
         onTap: () {
-          SettingsLogic().chooseTheme(context: context, isAppThemeSetting: false);
+          SettingsLogic()
+              .chooseTheme(context: context, isAppThemeSetting: false);
         },
       ),
     ],
@@ -100,17 +101,6 @@ Widget buildBackgroundTaskWidgets(BuildContext context) {
           onTap: () => SettingsLogic().changeBackgroundCheck(context),
           subtitleKey: 'backgroundCheck',
           defaultValue: 'Выключено'),
-      styledListTile(
-        context: context,
-        icon: Icon(
-          VpecIconPack.battery_saver_line,
-          color: Theme.of(context).accentColor,
-          size: 32.0,
-        ),
-        title: 'Отключить оптимизацию батареи',
-        subtitle: 'Улучшить качество фоновой проверки',
-        onTap: () => SettingsLogic().checkForBackgroundRestrict,
-      ),
     ],
   );
 }

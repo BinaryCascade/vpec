@@ -25,7 +25,6 @@ dependencies:
   xml: ^5.0.2 # for cached_network_image
   draggable_scrollbar: ^0.0.4 # for announcements scroll
   flutter_linkify: ^5.0.0 # text to links
-  flutter_launcher_icons: ^0.9.0 # launcher icons
   firebase_core: ^1.0.2
   firebase_auth: ^1.0.1
   cloud_firestore: ^1.0.3
@@ -37,15 +36,12 @@ dependencies:
   hive_flutter: ^1.0.0
   share: ^2.0.1 # share anything
   path_provider: ^2.0.1 # work with storage paths
-  flutter_native_splash: ^1.1.5+1 # splash
   quick_actions: ^0.6.0 # shortcuts from launcher
   flutter_cached_pdfview: ^0.4.0-nullsafety # for document viewer
   photo_view: ^0.11.1
   workmanager: ^0.2.3
   file_picker: ^3.0.0
   flutter_local_notifications: ^5.0.0
-  battery_optimization: # check later for official lib - https://pub.dev/packages/battery_optimization
-    git: https://github.com/ChangJoo-Park/battery_optimization.git
 
 flutter_native_splash:
   color: "#E8E8E8"
@@ -74,6 +70,9 @@ dev_dependencies:
     sdk: flutter
   hive_generator: ^1.0.0
   build_runner: ^1.11.5
+  flutter_launcher_icons: ^0.9.0 # launcher icons
+  flutter_native_splash: ^1.1.5+1 # splash
+
 # The following section is specific to Flutter.
 flutter:
 

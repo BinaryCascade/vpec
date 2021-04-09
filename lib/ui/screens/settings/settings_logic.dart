@@ -1,4 +1,3 @@
-import 'package:battery_optimization/battery_optimization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -473,17 +472,5 @@ class SettingsLogic {
             ],
           );
         }));
-  }
-
-  void checkForBackgroundRestrict(BuildContext context) {
-    BatteryOptimization.isIgnoringBatteryOptimizations().then((onValue) {
-      if (onValue) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Уже оптимизировано'),
-        ));
-      } else {
-        BatteryOptimization.openBatteryOptimizationSettings();
-      }
-    });
   }
 }
