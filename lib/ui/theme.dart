@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-const thin = FontWeight.w100;
-const extraLight = FontWeight.w200;
-const light = FontWeight.w300;
-const regular = FontWeight.w400;
-const medium = FontWeight.w500;
-const semiBold = FontWeight.w600;
-const bold = FontWeight.w700;
-const extraBold = FontWeight.w800;
-const black = FontWeight.w900;
+const FontWeight thin = FontWeight.w100;
+const FontWeight extraLight = FontWeight.w200;
+const FontWeight light = FontWeight.w300;
+const FontWeight regular = FontWeight.w400;
+const FontWeight medium = FontWeight.w500;
+const FontWeight semiBold = FontWeight.w600;
+const FontWeight bold = FontWeight.w700;
+const FontWeight extraBold = FontWeight.w800;
+const FontWeight black = FontWeight.w900;
 
 ThemeData themeData() {
   //light theme
