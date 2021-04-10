@@ -6,8 +6,7 @@ import 'settings_logic.dart';
 Widget buildAccountBlock(BuildContext context) {
   return Column(
     children: [
-      styledListTile(
-        context: context,
+      StyledListTile(
         onTap: () => SettingsLogic().accountLogin(context),
         icon: Icon(
           Icons.account_circle_outlined,

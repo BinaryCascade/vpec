@@ -38,25 +38,35 @@ Widget hivedListTile(
 }
 
 /// Just create normal ListTile with styled text
-Widget styledListTile(
-    {@required BuildContext context,
-    String title,
-    String subtitle,
-    Widget icon,
-    Widget trailing,
-    GestureTapCallback onTap}) {
-  return ListTile(
-    trailing: trailing == null ? null : trailing,
-    leading:
-        icon == null ? null : Container(height: double.infinity, child: icon),
-    title: Text(
-      title,
-      style: Theme.of(context).textTheme.headline3,
-    ),
-    subtitle: Text(
-      subtitle,
-      style: Theme.of(context).textTheme.subtitle1,
-    ),
-    onTap: onTap,
-  );
+class StyledListTile extends StatelessWidget {
+  final Widget trailing, icon;
+  final String title, subtitle;
+  final GestureTapCallback onTap;
+
+  const StyledListTile(
+      {Key key,
+      this.trailing,
+      this.icon,
+      this.title,
+      this.subtitle,
+      this.onTap})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      trailing: trailing == null ? null : trailing,
+      leading:
+          icon == null ? null : Container(height: double.infinity, child: icon),
+      title: Text(
+        title,
+        style: Theme.of(context).textTheme.headline3,
+      ),
+      subtitle: Text(
+        subtitle,
+        style: Theme.of(context).textTheme.subtitle1,
+      ),
+      onTap: onTap,
+    );
+  }
 }

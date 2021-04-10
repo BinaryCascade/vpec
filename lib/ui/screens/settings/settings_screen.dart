@@ -33,8 +33,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           buildLaunchOnStartChooser(context),
           // buildBackgroundTaskWidgets(context), // low-priority
           Divider(),
-          styledListTile(
-              context: context,
+          StyledListTile(
               icon: Icon(
                 Icons.info_outlined,
                 size: 32,

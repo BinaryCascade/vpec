@@ -8,8 +8,7 @@ class DocumentCard extends StatelessWidget {
   const DocumentCard({Key key, this.document}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return styledListTile(
-        context: context,
+    return StyledListTile(
         title: document.title ?? 'Не указано',
         subtitle: document.subtitle ?? 'Не указано',
         onTap: () {

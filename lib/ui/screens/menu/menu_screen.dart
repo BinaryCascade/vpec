@@ -18,8 +18,7 @@ class _MenuScreenState extends State<MenuScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               // settings block
-              styledListTile(
-                  context: context,
+              StyledListTile(
                   icon: Icon(Icons.settings_outlined,
                       color: Theme.of(context).accentColor, size: 32),
                   title: 'Настройки',
@@ -43,8 +42,7 @@ class _MenuScreenState extends State<MenuScreen> {
               //       ThemeHelper()
               //           .colorStatusBar(context: context, haveAppbar: false);
               //     }),
-              styledListTile(
-                  context: context,
+              StyledListTile(
                   icon: Icon(Icons.group_outlined,
                       color: Theme.of(context).accentColor, size: 32),
                   title: 'Список преподавателей',
@@ -54,8 +52,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     ThemeHelper()
                         .colorStatusBar(context: context, haveAppbar: false);
                   }),
-              styledListTile(
-                  context: context,
+              StyledListTile(
                   icon: Icon(VpecIconPack.account_cog_outline,
                       color: Theme.of(context).accentColor, size: 32),
                   title: 'Администрация колледжа',
@@ -65,8 +62,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     ThemeHelper()
                         .colorStatusBar(context: context, haveAppbar: false);
                   }),
-              styledListTile(
-                  context: context,
+              StyledListTile(
                   icon: Icon(Icons.rule_outlined,
                       color: Theme.of(context).accentColor, size: 32),
                   title: 'Моя профессоинальная направленность',
@@ -78,8 +74,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   }),
               // documents block
               Divider(),
-              styledListTile(
-                  context: context,
+              StyledListTile(
                   title: 'Документы',
                   subtitle: 'Список документов',
                   icon: Icon(
