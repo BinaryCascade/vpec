@@ -78,18 +78,6 @@ class _SplashScreenState extends State<SplashScreen> {
       int givenIndex = HiveHelper().getValue('launchOnStart');
       Navigator.popAndPushNamed(context, '/home', arguments: givenIndex);
     }
-
-    // Background check for new lesson
-    // if (HiveHelper().getValue('backgroundCheckIndex') == 1) {
-    //   print('launchedBackgroundCheck');
-    //
-    //   Workmanager.initialize(callbackDispatcher, isInDebugMode: true);
-    //   Workmanager.registerPeriodicTask(
-    //     '1',
-    //     'background_check',
-    //     frequency: Duration(minutes: 15),
-    //   );
-    // }
   }
 
   @override
