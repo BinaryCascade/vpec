@@ -7,34 +7,44 @@ import 'package:hive_flutter/hive_flutter.dart';
 /// [subtitleKey] - Hive key to get value
 ///
 /// [defaultValue] - If key have no value, show this text
-Widget hivedListTile(
-    {@required BuildContext context,
-    String title,
-    @required String subtitleKey,
-    @required String defaultValue,
-    GestureTapCallback onTap,
-    Icon icon}) {
-  return ListTile(
-    leading: Container(
-        //  cringe fix to center icon. If you want to use Center()
-        //  instead Container - you will get bamboozled
-        height: double.infinity,
-        child: icon),
-    title: Text(
-      title ?? 'Не указано',
-      style: Theme.of(context).textTheme.headline3,
-    ),
-    subtitle: ValueListenableBuilder(
-      valueListenable: Hive.box('settings').listenable(keys: [subtitleKey]),
-      builder: (context, box, child) {
-        return Text(
-          box.get(subtitleKey, defaultValue: defaultValue),
-          style: Theme.of(context).textTheme.subtitle1,
-        );
-      },
-    ),
-    onTap: onTap,
-  );
+class HivedListTile extends StatelessWidget {
+  final String title, subtitleKey, defaultValue;
+  final GestureTapCallback onTap;
+  final Icon icon;
+
+  const HivedListTile(
+      {Key key,
+      @required this.title,
+      @required this.subtitleKey,
+      @required this.defaultValue,
+      this.onTap,
+      this.icon})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Container(
+          //  cringe fix to center icon. If you want to use Center()
+          //  instead Container - you will get bamboozled
+          height: double.infinity,
+          child: icon),
+      title: Text(
+        title ?? 'Не указано',
+        style: Theme.of(context).textTheme.headline3,
+      ),
+      subtitle: ValueListenableBuilder(
+        valueListenable: Hive.box('settings').listenable(keys: [subtitleKey]),
+        builder: (context, box, child) {
+          return Text(
+            box.get(subtitleKey, defaultValue: defaultValue),
+            style: Theme.of(context).textTheme.subtitle1,
+          );
+        },
+      ),
+      onTap: onTap,
+    );
+  }
 }
 
 /// Just create normal ListTile with styled text
