@@ -36,5 +36,3 @@ class FloorStorage {
     return cabMap[fieldName].toString();
   }
 }
-
-

@@ -18,7 +18,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
       ),
       body: Column(
         children: [
-          buildDocuments(context),
+          ViewDocuments(),
         ],
       ),
     );

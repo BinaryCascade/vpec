@@ -13,7 +13,6 @@ Widget buildLoadingIndicator() {
 Widget buildMapImage(String imageUrl, PhotoViewController photoController) {
   return Center(
     child: PhotoView.customChild(
-
       minScale: PhotoViewComputedScale.contained * 0.8,
       backgroundDecoration: BoxDecoration(color: Colors.transparent),
       controller: photoController,
@@ -40,7 +39,7 @@ class BuildChips extends StatefulWidget {
 class _BuildChipsState extends State<BuildChips> {
   @override
   Widget build(BuildContext context) {
-    var floorStorage = Get.put(FloorStorage());
+    FloorStorage floorStorage = Get.put(FloorStorage());
 
     return SingleChildScrollView(
         scrollDirection: Axis.horizontal,

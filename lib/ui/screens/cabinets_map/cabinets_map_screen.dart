@@ -93,8 +93,4 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
             ),
     );
   }
-
-  void updateScreen() {
-    setState(() {});
-  }
 }

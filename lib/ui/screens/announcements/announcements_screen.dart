@@ -25,11 +25,11 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
         body: isEmployee
             ? TabBarView(
                 children: [
-                  buildAnnouncementsList('alerts'),
-                  buildAnnouncementsList('privateAlerts'),
+                  AnnouncementsList(collectionPath: 'alerts'),
+                  AnnouncementsList(collectionPath: 'privateAlerts'),
                 ],
               )
-            : buildAnnouncementsList('alerts'),
+            : AnnouncementsList(collectionPath: 'alerts'),
         floatingActionButton: isEmployee
             ? FloatingActionButton(
                 onPressed: () {
