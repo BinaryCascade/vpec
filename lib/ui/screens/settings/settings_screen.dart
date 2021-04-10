@@ -28,9 +28,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: buildAccountBlock(context)),
-          buildThemeChooser(context),
-          buildLaunchOnStartChooser(context),
+              child: AccountBlock()),
+          AppThemeListTile(),
+          LaunchOnStartChooser(),
           // buildBackgroundTaskWidgets(context), // low-priority
           Divider(),
           StyledListTile(
