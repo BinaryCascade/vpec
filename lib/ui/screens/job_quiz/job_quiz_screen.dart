@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../utils/theme_helper.dart';
 import 'job_quiz_logic.dart';
 import 'job_quiz_ui.dart';
-import '../../../utils/theme_helper.dart';
 
 class JobQuizScreen extends StatefulWidget {
   @override

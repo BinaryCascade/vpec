@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../../../ui/screens/settings/settings_logic.dart';
 import '../../../utils/hive_helper.dart';
 import '../../../utils/icons.dart';
-
 import 'announcements_logic.dart';
 import 'announcements_ui.dart';
 

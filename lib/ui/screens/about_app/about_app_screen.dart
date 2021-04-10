@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vpec/ui/screens/about_app/about_app_logic.dart';
 import 'package:vpec/ui/screens/about_app/about_app_ui.dart';
+
 import '../../widgets/styled_widgets.dart';
 
 class AboutAppScreen extends StatelessWidget {

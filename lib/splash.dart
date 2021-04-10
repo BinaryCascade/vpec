@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:quick_actions/quick_actions.dart';
-import 'utils/hive_helper.dart';
 
+import 'utils/hive_helper.dart';
 import 'utils/theme_helper.dart';
 
 class SplashScreen extends StatefulWidget {

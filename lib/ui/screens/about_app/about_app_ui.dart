@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../ui/widgets/styled_widgets.dart';
 import '../../../utils/icons.dart';
 import 'about_app_logic.dart';
