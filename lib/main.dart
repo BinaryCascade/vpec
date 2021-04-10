@@ -6,31 +6,21 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'ui/theme.dart';
 import 'utils/routes.dart';
 import 'utils/theme_helper.dart';
-import 'package:workmanager/workmanager.dart';
-
-import 'utils/background_check.dart';
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('settings');
-  await Firebase.initializeApp().whenComplete(() => runApp(MyApp()));
+  await Firebase.initializeApp().whenComplete(() => runApp(VPECApp()));
 }
 
-void callbackDispatcher() {
-  Workmanager.executeTask((task, inputData) {
-    BackgroundCheck().checkForLessons();
-    return Future.value(true);
-  });
-}
 
-class MyApp extends StatefulWidget {
+class VPECApp extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _VPECAppState createState() => _VPECAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _VPECAppState extends State<VPECApp> {
   bool isDarkTheme = ThemeHelper().isDarkMode();
 
   @override
