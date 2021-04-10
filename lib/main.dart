@@ -48,8 +48,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: themeData(context),
-      darkTheme: darkThemeData(context),
+      theme: themeData(),
+      darkTheme: darkThemeData(),
       themeMode: isDarkTheme ? ThemeMode.dark : ThemeMode.light,
       initialRoute: '/',
       routes: Routes.map,

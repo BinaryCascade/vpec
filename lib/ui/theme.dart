@@ -10,7 +10,7 @@ const bold = FontWeight.w700;
 const extraBold = FontWeight.w800;
 const black = FontWeight.w900;
 
-ThemeData themeData(BuildContext context) {
+ThemeData themeData() {
   //light theme
   const backgroundColor = Color(0xFFE8E8E8);
   const firstLevelColor = Color(0xFFF5F5F5);
@@ -81,7 +81,9 @@ ThemeData themeData(BuildContext context) {
             fontSize: 18,
             fontFamily: 'Montserrat',
             fontWeight: semiBold)),
-    iconTheme: Theme.of(context).iconTheme.copyWith(size: 20.0),
+    iconTheme: IconThemeData().copyWith(
+      size: 20.0,
+    ),
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
             overlayColor: MaterialStateProperty.all<Color>(
@@ -105,7 +107,7 @@ ThemeData themeData(BuildContext context) {
   );
 }
 
-ThemeData darkThemeData(BuildContext context) {
+ThemeData darkThemeData() {
   //dark theme
   const backgroundColor = Color(0xFF121212);
   const firstLevelColor = Color(0xFF1F1F1F);
@@ -176,7 +178,9 @@ ThemeData darkThemeData(BuildContext context) {
             fontSize: 18,
             fontFamily: 'Montserrat',
             fontWeight: semiBold)),
-    iconTheme: Theme.of(context).iconTheme.copyWith(size: 20.0),
+    iconTheme: IconThemeData().copyWith(
+      size: 20.0,
+    ),
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
             overlayColor: MaterialStateProperty.all<Color>(
