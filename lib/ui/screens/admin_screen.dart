@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:vpec/ui/widgets/loading_indicator.dart';
 
 import '../../models/admin_model.dart';
 import '../../ui/widgets/admin_card.dart';
@@ -21,7 +22,7 @@ class AdminScreen extends StatelessWidget {
       body: StreamBuilder(
         stream: stream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) return _buildLoadingIndicator();
+          if (!snapshot.hasData) return LoadingIndicator();
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
             child: ListView(
@@ -37,12 +38,6 @@ class AdminScreen extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-
-  Center _buildLoadingIndicator() {
-    return Center(
-      child: CircularProgressIndicator(),
     );
   }
 }

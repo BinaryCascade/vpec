@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:vpec/models/teacher_model.dart';
+import 'package:vpec/ui/widgets/loading_indicator.dart';
 
 import '../../ui/widgets/teacher_card.dart';
 import '../../utils/theme_helper.dart';
@@ -21,7 +22,7 @@ class TeacherScreen extends StatelessWidget {
       body: StreamBuilder(
         stream: stream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) return _buildLoadingIndicator();
+          if (!snapshot.hasData) return LoadingIndicator();
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
             child: ListView(
@@ -37,12 +38,6 @@ class TeacherScreen extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-
-  Center _buildLoadingIndicator() {
-    return Center(
-      child: CircularProgressIndicator(),
     );
   }
 }

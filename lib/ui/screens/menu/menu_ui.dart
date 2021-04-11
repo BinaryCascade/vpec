@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:vpec/ui/widgets/loading_indicator.dart';
 
 import '../../../models/document_model.dart';
 import '../../../ui/widgets/document_card.dart';
@@ -14,9 +15,7 @@ class ViewDocuments extends StatelessWidget {
         stream: stream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData)
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+            return LoadingIndicator();
           return ListView(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,

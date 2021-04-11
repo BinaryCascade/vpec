@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share/share.dart';
+import 'package:vpec/ui/widgets/loading_indicator.dart';
 
 import '../../ui/widgets/snow_widget.dart';
 import '../../utils/holiday_helper.dart';
@@ -71,8 +72,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with Tick
                 style: Theme.of(context).textTheme.headline3,
               ),
             ),
-            placeholder: (context, url) =>
-                Center(child: CircularProgressIndicator()),
+            placeholder: (context, url) => LoadingIndicator(),
             imageBuilder: (context, imageProvider) => GestureDetector(
               onDoubleTapDown: _handleDoubleTapDown,
               onDoubleTap: _handleDoubleTap,

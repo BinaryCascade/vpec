@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:vpec/ui/widgets/loading_indicator.dart';
 import 'package:webfeed/webfeed.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -66,9 +67,7 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: isFeedEmpty()
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
+            ? LoadingIndicator()
             : SafeArea(
                 top: false,
                 child: SingleChildScrollView(

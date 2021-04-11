@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+import 'package:vpec/ui/widgets/loading_indicator.dart';
 
 import '../../models/document_model.dart';
 import '../../utils/hive_helper.dart';
@@ -32,9 +33,7 @@ class DocumentViewScreen extends StatelessWidget {
       body: Center(
         child:
             PDF(swipeHorizontal: true, nightMode: nightMode()).fromUrl(doc.url,
-                placeholder: (progress) => CircularProgressIndicator(
-                      value: progress,
-                    )),
+                placeholder: (progress) => LoadingIndicator()),
       ),
     );
   }
