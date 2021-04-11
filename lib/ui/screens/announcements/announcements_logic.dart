@@ -5,15 +5,17 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:jiffy/jiffy.dart';
+import 'package:intl/intl.dart';
+import 'package:vpec/utils/snackbars.dart';
 
 import '../../../utils/rounded_modal_sheet.dart';
 import 'announcements_ui.dart';
 
 class AnnouncementsLogic {
+  TextEditingController titleController = TextEditingController();
+  TextEditingController contentController = TextEditingController();
+
   void createNewAnnouncement(BuildContext context) {
-    TextEditingController titleController = TextEditingController();
-    TextEditingController contentController = TextEditingController();
     int docID = DateTime.now().millisecondsSinceEpoch;
     bool isUserAddPhoto = false;
     String userPhotoUrl = '';
@@ -46,7 +48,9 @@ class AnnouncementsLogic {
       CollectionReference users = FirebaseFirestore.instance
           .collection(isForStudent ? 'alerts' : 'privateAlerts');
 
-      String pubDate = Jiffy().format('HH:mm, d MMM yyyy');
+      DateFormat formatter = DateFormat('HH:mm, d MMM yyyy');
+      String pubDate = formatter.format(DateTime.now());
+
       users
           .doc(docID.toString())
           .set({
@@ -57,10 +61,8 @@ class AnnouncementsLogic {
             'title': titleController.text,
             'photo': isUserAddPhoto ? userPhotoUrl : null,
           })
-          .then((value) => ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('Объявление отправлено'))))
-          .catchError((error) => ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('Ошибка: $error'))));
+          .then((value) => showSnackbar(context, text: 'Объявление отправлено'))
+          .catchError((error) => showSnackbar(context, text: 'Ошибка: $error'));
       Navigator.pop(context);
     }
 
@@ -68,10 +70,50 @@ class AnnouncementsLogic {
       roundedModalSheet(
           context: context,
           title: 'Кому отправить?',
-          child: AnnouncementSendUI(
-            sendPrivate: () =>
-                sendNewAlert(context: context, isForStudent: false),
-            sendToAll: () => sendNewAlert(context: context, isForStudent: true),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    style: Theme.of(context).outlinedButtonTheme.style,
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(
+                      'Отмена',
+                      style: TextStyle(
+                          color: Theme.of(context).textTheme.bodyText1.color),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  style: Theme.of(context).outlinedButtonTheme.style,
+                  onPressed: () =>
+                      sendNewAlert(context: context, isForStudent: true),
+                  child: Text(
+                    'Отправить всем',
+                    style: TextStyle(
+                        color: Theme.of(context).textTheme.bodyText1.color),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  style: Theme.of(context).outlinedButtonTheme.style,
+                  onPressed: () =>
+                      sendNewAlert(context: context, isForStudent: false),
+                  child: Text(
+                    'Отправить сотрудникам',
+                    style: TextStyle(
+                        color: Theme.of(context).textTheme.bodyText1.color),
+                  ),
+                ),
+              )
+            ],
           ));
     }
 
