@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:jiffy/jiffy.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:quick_actions/quick_actions.dart';
 
 import 'utils/hive_helper.dart';
@@ -28,7 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _initApp() async {
     //make all our date on russian
-    await Jiffy.locale("ru");
+    await initializeDateFormatting('ru');
+    Intl.defaultLocale = 'ru';
+
 
     FirebaseAuth auth = FirebaseAuth.instance;
     if (auth.currentUser == null) {
