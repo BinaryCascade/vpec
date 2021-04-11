@@ -1,151 +1,165 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
 import 'job_quiz_logic.dart';
 
-Widget buildQuestion(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(13.0),
-    child: Text(
-      questionText(),
-      style: Theme.of(context).textTheme.headline4,
-      textAlign: TextAlign.center,
-    ),
-  );
-}
-
-Widget buildAnswersBlock(BuildContext context) {
-  JobQuizStorage storage = Get.put(JobQuizStorage());
-
-  return StatefulBuilder(
-    builder: (BuildContext context, void Function(void Function()) setState) {
-      return Column(
-        children: [
-          answerListTile(
-              context: context,
-              title: storage.firstAnswer(),
-              value: 1,
-              groupValue: storage.selectedAnswer,
-              onChanged: (num) {
-                setState(() {
-                  storage.selectedAnswer = num;
-                });
-              }),
-          answerListTile(
-              context: context,
-              title: storage.secondAnswer(),
-              value: 2,
-              groupValue: storage.selectedAnswer,
-              onChanged: (num) {
-                setState(() {
-                  storage.selectedAnswer = num;
-                });
-              }),
-          answerListTile(
-              context: context,
-              title: storage.thirdAnswer(),
-              value: 3,
-              groupValue: storage.selectedAnswer,
-              onChanged: (num) {
-                setState(() {
-                  storage.selectedAnswer = num;
-                });
-              }),
-          answerListTile(
-              context: context,
-              title: storage.fourthAnswer(),
-              value: 4,
-              groupValue: storage.selectedAnswer,
-              onChanged: (num) {
-                setState(() {
-                  storage.selectedAnswer = num;
-                });
-              }),
-        ],
-      );
-    },
-  );
-}
-
-Widget buildFAB(BuildContext context) {
-  JobQuizStorage storage = Get.put(JobQuizStorage());
-
-  return storage.showResults
-      ? null
-      : FloatingActionButton.extended(
-          label: Text('ВЫБРАТЬ'),
-          icon: Icon(Icons.check_outlined),
-          onPressed: () {
-            if (storage.selectedAnswer == 0) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text('Выберите вариант ответа'),
-                behavior: SnackBarBehavior.floating,
-              ));
-            } else {
-              storage.chooseAnswer();
-            }
-          },
-        );
-}
-
-Widget buildResults(BuildContext context) {
-  JobQuizStorage storage = Get.put(JobQuizStorage());
-
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
-    child: Card(
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+class QuestionBlock extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(13.0),
+      child: Text(
+        context.read<JobQuizStorage>().questionText,
+        style: Theme.of(context).textTheme.headline4,
+        textAlign: TextAlign.center,
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: Wrap(
-          children: [
-            ListTile(
-                title: Text(
-                  'Результаты теста',
-                  style: Theme.of(context).textTheme.headline4,
-                ),
-                subtitle: Text(
-                  storage.resultText(),
-                  style: Theme.of(context).textTheme.headline3,
-                )),
-            ButtonBar(
-              children: [
-                IconButton(
-                    tooltip: 'Поделиться результатом',
-                    onPressed: () {
-                      Share.share(storage.resultText());
-                    },
-                    icon: Icon(
-                      Icons.share_outlined,
-                      color: Theme.of(context).accentColor,
-                    ))
-              ],
-            ),
-          ],
+    );
+  }
+}
+
+
+class AnswersBlock extends StatefulWidget {
+  @override
+  _AnswersBlockState createState() => _AnswersBlockState();
+}
+
+class _AnswersBlockState extends State<AnswersBlock> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        AnswerListTile(
+            title: context.read<JobQuizStorage>().firstAnswer,
+            value: 1,
+            groupValue: context.read<JobQuizStorage>().selectedAnswer,
+            onChanged: (num) {
+              setState(() {
+                context.read<JobQuizStorage>().setAnswer(num);
+              });
+            }),
+        AnswerListTile(
+            title: context.read<JobQuizStorage>().secondAnswer,
+            value: 2,
+            groupValue: context.read<JobQuizStorage>().selectedAnswer,
+            onChanged: (num) {
+              setState(() {
+                context.read<JobQuizStorage>().setAnswer(num);
+              });
+            }),
+        AnswerListTile(
+            title: context.read<JobQuizStorage>().thirdAnswer,
+            value: 3,
+            groupValue: context.read<JobQuizStorage>().selectedAnswer,
+            onChanged: (num) {
+              setState(() {
+                context.read<JobQuizStorage>().setAnswer(num);
+              });
+            }),
+        AnswerListTile(
+            title: context.read<JobQuizStorage>().fourthAnswer,
+            value: 4,
+            groupValue: context.read<JobQuizStorage>().selectedAnswer,
+            onChanged: (num) {
+              setState(() {
+                context.read<JobQuizStorage>().setAnswer(num);
+              });
+            }),
+      ],
+    );
+  }
+}
+
+
+class JobQuizFAB extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final bool needShowResult = context.select((JobQuizStorage storage) => storage.showResults);
+    return needShowResult
+        ? Container()
+        : FloatingActionButton.extended(
+            label: Text('ВЫБРАТЬ'),
+            icon: Icon(Icons.check_outlined),
+            onPressed: () {
+              if (context.read<JobQuizStorage>().selectedAnswer == 0) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Выберите вариант ответа'),
+                  behavior: SnackBarBehavior.floating,
+                ));
+              } else {
+                context.read<JobQuizStorage>().chooseAnswer();
+              }
+            },
+          );
+  }
+}
+
+class JobQuizResults extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Wrap(
+            children: [
+              ListTile(
+                  title: Text(
+                    'Результаты теста',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  subtitle: Text(
+                    context.read<JobQuizStorage>().resultText,
+                    style: Theme.of(context).textTheme.headline3,
+                  )),
+              ButtonBar(
+                children: [
+                  IconButton(
+                      tooltip: 'Поделиться результатом',
+                      onPressed: () {
+                        Share.share(
+                          context.read<JobQuizStorage>().resultText,
+                        );
+                      },
+                      icon: Icon(
+                        Icons.share_outlined,
+                        color: Theme.of(context).accentColor,
+                      ))
+                ],
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
-Widget answerListTile(
-    {BuildContext context,
-    String title,
-    int value,
-    int groupValue,
-    void onChanged(int value)}) {
-  return RadioListTile(
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.bodyText1,
-      ),
-      activeColor: Theme.of(context).accentColor,
-      controlAffinity: ListTileControlAffinity.trailing,
-      value: value,
-      groupValue: groupValue,
-      onChanged: onChanged);
+class AnswerListTile extends StatelessWidget {
+  final String title;
+  final int value, groupValue;
+  final void Function(int) onChanged;
+
+  const AnswerListTile(
+      {Key key, this.title, this.value, this.groupValue, this.onChanged})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RadioListTile(
+        title: Text(
+          title,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
+        activeColor: Theme.of(context).accentColor,
+        controlAffinity: ListTileControlAffinity.trailing,
+        value: value,
+        groupValue: groupValue,
+        onChanged: onChanged);
+  }
 }

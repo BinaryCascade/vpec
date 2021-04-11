@@ -1,6 +1,6 @@
-import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
-class JobQuizStorage {
+class JobQuizStorage extends ChangeNotifier {
   int questionNumber = 0;
   int greenCards = 0;
   int blueCards = 0;
@@ -9,7 +9,11 @@ class JobQuizStorage {
   int selectedAnswer = 0;
   bool showResults = false;
 
-  String resultText() {
+  void setAnswer(int newAnswer) {
+    selectedAnswer = newAnswer;
+  }
+
+  String get resultText {
     if (greenCards > blueCards &&
         greenCards > yellowCards &&
         greenCards > purpleCards) {
@@ -26,7 +30,7 @@ class JobQuizStorage {
         yellowCards > blueCards &&
         yellowCards > purpleCards) {
       return 'Вам нужно задуматься о профессии, связанной с '
-          'гостичиным делом!';
+          'гостиничным делом!';
     }
 
     if (purpleCards > greenCards &&
@@ -60,7 +64,7 @@ class JobQuizStorage {
     }
   }
 
-  String firstAnswer() {
+  String get firstAnswer {
     switch (questionNumber) {
       case 0:
         return 'Научные открытия';
@@ -85,7 +89,7 @@ class JobQuizStorage {
     }
   }
 
-  String secondAnswer() {
+  String get secondAnswer {
     switch (questionNumber) {
       case 0:
         return 'Развитие производства';
@@ -110,7 +114,7 @@ class JobQuizStorage {
     }
   }
 
-  String thirdAnswer() {
+  String get thirdAnswer {
     switch (questionNumber) {
       case 0:
         return 'Взаимопонимание между людьми';
@@ -121,13 +125,13 @@ class JobQuizStorage {
       case 3:
         return 'Веду диалоги на разные темы';
       case 4:
-        return 'Во многомуровневом помещении, здании';
+        return 'Во многоуровневом помещении, здании';
       case 5:
         return 'Помогают другим, когда для этого предоставляется случай';
       case 6:
         return 'Обустройство территории';
       case 7:
-        return 'Найдёте и забронируете место жительства, интерсные экскурсии';
+        return 'Найдёте и забронируете место жительства, интересные экскурсии';
       case 8:
         return 'Общаться с самыми разными людьми';
       default:
@@ -135,14 +139,14 @@ class JobQuizStorage {
     }
   }
 
-  String fourthAnswer() {
+  String get fourthAnswer {
     switch (questionNumber) {
       case 0:
         return 'Стабильная экономика страны';
       case 1:
         return 'Честность, организованность, внимание к деталям';
       case 2:
-        return 'Ценость экспонатов';
+        return 'Ценность экспонатов';
       case 3:
         return 'Предпочитаю точность в общении';
       case 4:
@@ -165,15 +169,19 @@ class JobQuizStorage {
     switch (selectedAnswer) {
       case 1:
         greenCards++;
+        notifyListeners();
         break;
       case 2:
         blueCards++;
+        notifyListeners();
         break;
       case 3:
         yellowCards++;
+        notifyListeners();
         break;
       case 4:
         purpleCards++;
+        notifyListeners();
         break;
     }
 
@@ -181,35 +189,33 @@ class JobQuizStorage {
       showResults = true;
     }
     selectedAnswer = 0;
-    Get.appUpdate();
   }
-}
 
-String questionText() {
-  JobQuizStorage storage = Get.put(JobQuizStorage());
-  switch (storage.questionNumber) {
-    case 0:
-      return 'По моему мнению, будущее людей определяет:';
-    case 1:
-      return 'Больше всего в человеке я ценю: ';
-    case 2:
-      return 'Представьте, что Вы на выставке. '
-          'Что Вас больше привлекает в экспонатах?';
-    case 3:
-      return 'В общении с людьми обычно я: ';
-    case 4:
-      return 'Я предпочту работать: ';
-    case 5:
-      return 'Я рад(а), когда мои друзья: ';
-    case 6:
-      return 'Меня привлекает:  ';
-    case 7:
-      return 'Родители подарили Вам путёвку в другую страну. Незамедлительно Вы: ';
-    case 8:
-      return 'Мне хотелось бы в своей профессиональной деятельности: ';
-    case 9:
-      return 'Подведение итогов';
-    default:
-      return 'Неизвестный номер вопроса';
+  String get questionText {
+    switch (questionNumber) {
+      case 0:
+        return 'По моему мнению, будущее людей определяет:';
+      case 1:
+        return 'Больше всего в человеке я ценю: ';
+      case 2:
+        return 'Представьте, что Вы на выставке. '
+            'Что Вас больше привлекает в экспонатах?';
+      case 3:
+        return 'В общении с людьми обычно я: ';
+      case 4:
+        return 'Я предпочту работать: ';
+      case 5:
+        return 'Я рад(а), когда мои друзья: ';
+      case 6:
+        return 'Меня привлекает:  ';
+      case 7:
+        return 'Родители подарили Вам путёвку в другую страну. Незамедлительно Вы: ';
+      case 8:
+        return 'Мне хотелось бы в своей профессиональной деятельности: ';
+      case 9:
+        return 'Подведение итогов';
+      default:
+        return 'Неизвестный номер вопроса';
+    }
   }
 }

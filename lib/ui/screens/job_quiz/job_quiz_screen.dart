@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../../utils/theme_helper.dart';
 import 'job_quiz_logic.dart';
@@ -11,11 +11,8 @@ class JobQuizScreen extends StatefulWidget {
 }
 
 class _JobQuizScreenState extends State<JobQuizScreen> {
-  JobQuizStorage storage = Get.put(JobQuizStorage());
-
   @override
   void dispose() {
-    Get.reset();
     super.dispose();
   }
 
@@ -23,21 +20,28 @@ class _JobQuizScreenState extends State<JobQuizScreen> {
   Widget build(BuildContext context) {
     ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Проф. направленность'),
-        brightness:
-            ThemeHelper().isDarkMode() ? Brightness.dark : Brightness.light,
+    return ChangeNotifierProvider(
+      create: (_) => JobQuizStorage(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Проф. направленность'),
+          brightness:
+              ThemeHelper().isDarkMode() ? Brightness.dark : Brightness.light,
+        ),
+        body: Consumer<JobQuizStorage>(
+          builder: (context, storage, child) {
+            return storage.showResults
+                ? JobQuizResults()
+                : Column(
+                    children: [
+                      QuestionBlock(),
+                      AnswersBlock(),
+                    ],
+                  );
+          },
+        ),
+        floatingActionButton: JobQuizFAB(),
       ),
-      body: storage.showResults
-          ? buildResults(context)
-          : Column(
-              children: [
-                buildQuestion(context),
-                buildAnswersBlock(context),
-              ],
-            ),
-      floatingActionButton: buildFAB(context),
     );
   }
 }
