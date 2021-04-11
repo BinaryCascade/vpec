@@ -30,6 +30,7 @@ dependencies:
   cloud_firestore: ^1.0.4
   firebase_storage: ^8.0.3
   get: ^4.0.3 # used only for change theme mode
+  provider: ^5.0.0
   duration: ^3.0.6 # print duration for timetable
   fdottedline: ^1.0.1 # lines for timetable
   hive: ^2.0.2 # db
