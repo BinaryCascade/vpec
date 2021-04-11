@@ -199,7 +199,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with Tick
       lastDate: DateTime.now().add(const Duration(days: 30)),
     );
 
-    if (picked != null && picked != DateTime.now())
+    if (picked != null)
       setState(() {
         imgUrl =
             baseUrl + "${picked.day}-${picked.month}-${picked.year}" + endUrl;
