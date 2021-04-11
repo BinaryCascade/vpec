@@ -95,13 +95,13 @@ class LaunchOnStartChooser extends StatelessWidget {
 }
 
 class AccountLoginUI extends StatelessWidget {
-  final TextEditingController emailController, passwordController;
-
-  const AccountLoginUI({Key key, this.emailController, this.passwordController})
-      : super(key: key);
+  const AccountLoginUI({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+
     return Column(
       children: [
         AutofillGroup(
@@ -170,9 +170,11 @@ class AccountLoginUI extends StatelessWidget {
                       style: TextStyle(
                           color: Theme.of(context).textTheme.bodyText1.color),
                     ),
-                    onPressed: () => SettingsLogic().makeLogin(context,
-                        email: emailController.text,
-                        password: passwordController.text),
+                    onPressed: () {
+                      SettingsLogic().makeLogin(context,
+                          email: emailController.text,
+                          password: passwordController.text);
+                    },
                   )
                 ],
               ),

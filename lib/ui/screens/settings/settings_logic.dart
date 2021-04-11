@@ -11,7 +11,6 @@ import '../../../utils/theme_helper.dart';
 class SettingsLogic {
   // show roundedModalSheet() for account login
   void accountLogin(BuildContext context) {
-
     roundedModalSheet(
       context: context,
       title: 'Войти в аккаунт',
