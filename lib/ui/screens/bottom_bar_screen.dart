@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:vpec/ui/screens/timetable_test_screen.dart';
 
 import '../../ui/screens/news_screen.dart';
 import '../../ui/screens/timetable_screen.dart';
 import '../../utils/icons.dart';
-import 'announcements/announcements_screen.dart';
 import 'lessons_schedule_screen.dart';
 import 'menu/menu_screen.dart';
 
@@ -21,7 +21,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   // List of screens for navigation
   final List<Widget> pages = [
     NewsScreen(),
-    AnnouncementsScreen(),
+    TimeTableTestScreen(), // TODO: change to AnnouncementsScreen()
     TimeTableScreen(),
     LessonsScheduleScreen(),
     MenuScreen(),

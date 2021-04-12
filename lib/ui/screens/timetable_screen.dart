@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:vpec/ui/widgets/timetable_item/timetable_item_logic.dart';
 
 import '../../models/time_model.dart';
 import '../../ui/widgets/snow_widget.dart';
@@ -52,6 +53,7 @@ class TimeTableScreenState extends State<TimeTableScreen> {
                 scrollDirection: Axis.vertical,
                 physics: NeverScrollableScrollPhysics(),
                 children: snapshot.data.docs.map((document) {
+                  TimeTableItemLogic().updateItem(TimeModel.fromMap(document.data(), document.id));
                   return TimeScheduleCard(
                     time: TimeModel.fromMap(document.data(), document.id),
                   );
