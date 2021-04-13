@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vpec/ui/widgets/loading_indicator.dart';
 import 'package:vpec/ui/widgets/timetable_item/timetable_item.dart';
 
@@ -9,8 +10,27 @@ import '../../models/time_model.dart';
 import '../../ui/widgets/snow_widget.dart';
 import '../../utils/holiday_helper.dart';
 import '../../utils/theme_helper.dart';
+import '../widgets/timetable_item/timetable_item_logic.dart';
 
-class TimeTableTestScreen extends StatelessWidget {
+class TimeTableTestScreen extends StatefulWidget {
+  @override
+  _TimeTableTestScreenState createState() => _TimeTableTestScreenState();
+}
+
+class _TimeTableTestScreenState extends State<TimeTableTestScreen> {
+  @override
+  void initState() {
+    context.read<TimeTableItemLogic>().cancelTimer();
+    context.read<TimeTableItemLogic>().updateTime();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    context.read<TimeTableItemLogic>().cancelTimer();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Stream<QuerySnapshot> stream =

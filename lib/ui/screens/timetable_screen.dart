@@ -53,7 +53,6 @@ class TimeTableScreenState extends State<TimeTableScreen> {
                 scrollDirection: Axis.vertical,
                 physics: NeverScrollableScrollPhysics(),
                 children: snapshot.data.docs.map((document) {
-                  TimeTableItemLogic().updateItem(TimeModel.fromMap(document.data(), document.id));
                   return TimeScheduleCard(
                     time: TimeModel.fromMap(document.data(), document.id),
                   );

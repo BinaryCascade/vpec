@@ -1,6 +1,8 @@
 import 'package:fdottedline/fdottedline.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vpec/models/time_model.dart';
+import 'package:vpec/ui/widgets/timetable_item/timetable_item_logic.dart';
 
 class TimeTableItem extends StatefulWidget {
   final TimeModel timeModel;
@@ -12,6 +14,19 @@ class TimeTableItem extends StatefulWidget {
 }
 
 class _TimeTableItemState extends State<TimeTableItem> {
+
+  @override
+  void initState() {
+    context.read<TimeTableItemLogic>().updateTime();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    context.read<TimeTableItemLogic>().dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -46,6 +61,9 @@ class _TimeTableItemState extends State<TimeTableItem> {
                     color: Theme.of(context).textTheme.bodyText1.color),
               ),
               Text(widget.timeModel.name,
+                  style: Theme.of(context).textTheme.headline6.copyWith(
+                      color: Theme.of(context).textTheme.bodyText1.color)),
+              Text(context.watch<TimeTableItemLogic>().updateTimeItem(widget.timeModel),
                   style: Theme.of(context).textTheme.headline6.copyWith(
                       color: Theme.of(context).textTheme.bodyText1.color)),
             ],
