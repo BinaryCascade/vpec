@@ -4,46 +4,69 @@ import 'package:duration/duration.dart';
 import 'package:duration/locale.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:vpec/models/time_model.dart';
+
+import '../../../models/time_model.dart';
 
 class TimeTableItemLogic extends ChangeNotifier {
-  bool isCurrentItemNeedHighlight = true;
-  Timer updateTimer = Timer(Duration(seconds: 0), (){});
+  bool needPrintText = true;
+  Timer updateTimer = Timer(Duration(seconds: 0), () {});
+  Duration nowDuration = Duration();
+  Duration startDuration = Duration();
+  Duration endDuration = Duration();
+  Duration smallestUntilStartDuration = Duration(days: 2);
 
   String updateTimeItem(TimeModel model) {
-
     DateTime now = DateTime.now();
     DateTime dateStartLesson = DateFormat('HH:mm').parse(model.startLesson);
     DateTime dateEndLesson = DateFormat('HH:mm').parse(model.endLesson);
 
-    Duration nowDuration = Duration(hours: now.hour, minutes: now.minute);
-    Duration durationStartLesson =
+    nowDuration = Duration(hours: now.hour, minutes: now.minute);
+    startDuration =
         Duration(hours: dateStartLesson.hour, minutes: dateStartLesson.minute);
-    Duration durationEndLesson =
+    endDuration =
         Duration(hours: dateEndLesson.hour, minutes: dateEndLesson.minute);
 
-    if (isCurrentItemNeedHighlight) {
-      if (nowDuration >= durationStartLesson &&
-          nowDuration < durationEndLesson) {
-        isCurrentItemNeedHighlight = false;
-        debugPrint('first method for ${model.name}');
-        return 'До конца: ' +
-            prettyDuration(durationEndLesson - nowDuration,
-                locale: DurationLocale.fromLanguageCode('ru'));
+    if (nowDuration >= startDuration && nowDuration < endDuration) {
+      needPrintText = false;
+
+      if (endDuration - nowDuration <= Duration(minutes: 1)) {
+        smallestUntilStartDuration = Duration(days: 2);
+         updateAfterFewMoment();
+      }
+
+      return 'До конца: ' +
+          prettyDuration(endDuration - nowDuration,
+              locale: DurationLocale.fromLanguageCode('ru'));
+    } else {
+      if (nowDuration < startDuration && needPrintText) {
+        if (startDuration - nowDuration <= smallestUntilStartDuration) {
+          smallestUntilStartDuration = startDuration - nowDuration;
+          return 'До начала: ' +
+              prettyDuration(startDuration - nowDuration,
+                  locale: DurationLocale.fromLanguageCode('ru'));
+        } else {
+          return '';
+        }
+      } else {
+        return '';
       }
     }
+  }
 
-    if (isCurrentItemNeedHighlight) {
-      if (nowDuration < durationStartLesson) {
-        isCurrentItemNeedHighlight = false;
-        debugPrint('second method for ${model.name}');
-        return 'До начала: ' +
-            prettyDuration(durationStartLesson - nowDuration,
-                locale: DurationLocale.fromLanguageCode('ru'));
-      }
-    }
+  @override
+  void dispose() {
+    cancelTimer();
+    super.dispose();
+  }
 
-    return '';
+  @override
+  void removeListener(VoidCallback listener) {
+    cancelTimer();
+    super.removeListener(listener);
+  }
+
+  Future<void> updateAfterFewMoment() async {
+    await Future.delayed(Duration(minutes: 1), () => needPrintText = true);
   }
 
   void cancelTimer() {
@@ -51,8 +74,8 @@ class TimeTableItemLogic extends ChangeNotifier {
   }
 
   void updateTime() {
-    updateTimer = Timer.periodic(Duration(seconds: 10), (timer) {
-      isCurrentItemNeedHighlight = true;
+    cancelTimer();
+    updateTimer = Timer.periodic(Duration(seconds: 1), (timer) async {
       notifyListeners();
     });
   }
