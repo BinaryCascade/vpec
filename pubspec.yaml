@@ -19,21 +19,20 @@ dependencies:
   http: ^0.13.1 # for load data from web
   url_launcher: ^6.0.2 # for launch any url
   transparent_image: ^2.0.0 # for placeholders
-  jiffy: ^4.1.0 # for russian date localize
   cached_network_image: ^3.0.0 # for display most images
   flutter_cache_manager: ^3.0.1 # for cached_network_image
   xml: ^5.1.0 # for cached_network_image
   draggable_scrollbar: ^0.1.0 # for announcements scroll
-  flutter_linkify: ^5.0.0 # text to links
+  flutter_linkify: ^5.0.2 # text to links
   firebase_core: ^1.0.3
-  firebase_auth: ^1.0.3
-  cloud_firestore: ^1.0.4
+  firebase_auth: ^1.1.0
+  cloud_firestore: ^1.0.5
   firebase_storage: ^8.0.3
   get: ^4.0.3 # used only for change theme mode
   provider: ^5.0.0
   duration: ^3.0.6 # print duration for timetable
   fdottedline: ^1.0.1 # lines for timetable
-  hive: ^2.0.2 # db
+  hive: ^2.0.3 # db
   hive_flutter: ^1.0.0
   share: ^2.0.1 # share anything
   path_provider: ^2.0.1 # work with storage paths
