@@ -46,7 +46,7 @@ class AnnouncementCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Linkify(
+                        SelectableLinkify(
                           text: announcement.content,
                           style: Theme.of(context).textTheme.bodyText1,
                           options: LinkifyOptions(humanize: true),

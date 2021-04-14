@@ -40,7 +40,7 @@ class AdminCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: Linkify(
+                    child: SelectableLinkify(
                       text: admin.contact,
                       style: Theme.of(context).textTheme.subtitle1,
                       onOpen: (value) async {

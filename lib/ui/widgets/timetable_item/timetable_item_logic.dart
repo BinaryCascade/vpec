@@ -31,7 +31,7 @@ class TimeTableItemLogic extends ChangeNotifier {
 
       if (endDuration - nowDuration <= Duration(minutes: 1)) {
         smallestUntilStartDuration = Duration(days: 2);
-         updateAfterFewMoment();
+        updateAfterFewMoment();
       }
 
       return 'До конца: ' +
