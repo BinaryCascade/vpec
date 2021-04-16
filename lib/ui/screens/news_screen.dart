@@ -14,7 +14,7 @@ class NewsScreen extends StatefulWidget {
   _NewsScreenState createState() => _NewsScreenState();
 }
 
-class _NewsScreenState extends State<NewsScreen> {
+class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
   static const String FEED_URL = 'https://energocollege.ru/rss.xml';
   RssFeed _feed;
 
@@ -80,9 +80,11 @@ class _NewsScreenState extends State<NewsScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       final item = _feed.items[index];
                       String imgUrl = '';
-                      if (item.description.contains('src=') && item.description.contains('alt=')) imgUrl = item.description.substring(
-                          item.description.indexOf("src=") + 5,
-                          item.description.indexOf('alt=') - 2);
+                      if (item.description.contains('src=') &&
+                          item.description.contains('alt='))
+                        imgUrl = item.description.substring(
+                            item.description.indexOf("src=") + 5,
+                            item.description.indexOf('alt=') - 2);
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 2),
                         child: Card(
@@ -94,26 +96,37 @@ class _NewsScreenState extends State<NewsScreen> {
                             onTap: () => openFeed(item.link),
                             child: Column(
                               children: <Widget>[
-                                Container(
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
-                                  ),
-                                  child: CachedNetworkImage(
-                                    imageUrl: imgUrl,
-                                    fit: BoxFit.fill,
-                                    placeholder: (context, url) => Container(
-                                        height: 200,
-                                        child: Image.memory(kTransparentImage)),
-                                    errorWidget: (context, url, error) => Container()
+                                AnimatedSize(
+                                  vsync: this,
+                                  curve: Curves.fastOutSlowIn,
+                                  duration: Duration(milliseconds: 400),
+                                  child: Container(
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                    ),
+                                    child: CachedNetworkImage(
+                                        imageUrl: imgUrl,
+                                        fit: BoxFit.fill,
+                                        placeholder: (context, url) =>
+                                            Container(
+                                                height: 200,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                child: Image.memory(
+                                                    kTransparentImage)),
+                                        errorWidget: (context, url, error) =>
+                                            Container()),
                                   ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 13),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
                                         item.title,
