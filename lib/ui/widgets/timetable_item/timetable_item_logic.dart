@@ -10,9 +10,6 @@ import '../../../models/time_model.dart';
 class TimeTableItemLogic extends ChangeNotifier {
   bool needPrintText = true;
   Timer updateTimer = Timer(Duration(seconds: 0), () {});
-  Duration nowDuration = Duration();
-  Duration startDuration = Duration();
-  Duration endDuration = Duration();
   Duration smallestUntilStartDuration = Duration(days: 2);
 
   String updateTimeItem(TimeModel model) {
@@ -20,37 +17,34 @@ class TimeTableItemLogic extends ChangeNotifier {
     DateTime dateStartLesson = DateFormat('HH:mm').parse(model.startLesson);
     DateTime dateEndLesson = DateFormat('HH:mm').parse(model.endLesson);
 
-    nowDuration = Duration(hours: now.hour, minutes: now.minute);
-    startDuration =
+    Duration nowDuration =
+        Duration(hours: now.hour, minutes: now.minute, seconds: now.second);
+    Duration startDuration =
         Duration(hours: dateStartLesson.hour, minutes: dateStartLesson.minute);
-    endDuration =
+    Duration endDuration =
         Duration(hours: dateEndLesson.hour, minutes: dateEndLesson.minute);
 
     if (nowDuration >= startDuration && nowDuration < endDuration) {
       needPrintText = false;
 
-      if (endDuration - nowDuration <= Duration(minutes: 1)) {
+      if (endDuration - nowDuration <= Duration(seconds: 1)) {
         smallestUntilStartDuration = Duration(days: 2);
+        // updating with delay for user-invisible check
         updateAfterFewMoment();
       }
 
-      return 'До конца: ' +
-          prettyDuration(endDuration - nowDuration,
-              locale: DurationLocale.fromLanguageCode('ru'));
+      return 'До конца: ' + printUntilDuration(endDuration - nowDuration);
     } else {
       if (nowDuration < startDuration && needPrintText) {
         if (startDuration - nowDuration <= smallestUntilStartDuration) {
           smallestUntilStartDuration = startDuration - nowDuration;
           return 'До начала: ' +
-              prettyDuration(startDuration - nowDuration,
-                  locale: DurationLocale.fromLanguageCode('ru'));
-        } else {
-          return '';
+              printUntilDuration(startDuration - nowDuration);
         }
-      } else {
-        return '';
       }
     }
+
+    return '';
   }
 
   @override
@@ -66,11 +60,16 @@ class TimeTableItemLogic extends ChangeNotifier {
   }
 
   Future<void> updateAfterFewMoment() async {
-    await Future.delayed(Duration(minutes: 1), () => needPrintText = true);
+    await Future.delayed(Duration(seconds: 1), () => needPrintText = true);
   }
 
   void cancelTimer() {
     updateTimer.cancel();
+  }
+
+  String printUntilDuration(Duration duration) {
+    return prettyDuration(Duration(minutes: duration.inMinutes),
+        locale: DurationLocale.fromLanguageCode('ru'));
   }
 
   void updateTime() {
