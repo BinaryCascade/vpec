@@ -162,7 +162,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen>
 
   String get parseDateFromUrl {
     DateTime parsed = DateFormat('d-M-yyyy', 'ru').parse(dateFromUrl);
-    DateFormat formatter = DateFormat('d MMMM, yyyy');
+    DateFormat formatter = DateFormat('d MMMM yyyy');
 
     return formatter.format(parsed);
   }

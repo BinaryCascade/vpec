@@ -68,8 +68,8 @@ class TimeTableItemLogic extends ChangeNotifier {
   }
 
   String printUntilDuration(Duration duration) {
-    return prettyDuration(Duration(minutes: duration.inMinutes),
-        locale: DurationLocale.fromLanguageCode('ru'));
+    return prettyDuration(Duration(minutes: duration.inMinutes + 1),
+        locale: RussianDurationLanguage());
   }
 
   void updateTime() {
