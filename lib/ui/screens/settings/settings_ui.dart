@@ -42,38 +42,20 @@ class AccountBlock extends StatelessWidget {
 class AppThemeListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        HivedListTile(
-          title: 'Тема приложения',
-          subtitleKey: 'theme',
-          defaultValue: 'Системная тема',
-          icon: Icon(
-            Icons.brightness_6_outlined,
-            size: 32.0,
-            color: Theme.of(context).accentColor,
-          ),
-          onTap: () async {
-            await SettingsLogic()
-                .chooseTheme(context: context, isAppThemeSetting: true);
-            // ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
-          },
-        ),
-        HivedListTile(
-          title: 'Тема документов',
-          subtitleKey: 'pdfTheme',
-          defaultValue: 'Системная тема',
-          icon: Icon(
-            Icons.tonality_outlined,
-            size: 32.0,
-            color: Theme.of(context).accentColor,
-          ),
-          onTap: () {
-            SettingsLogic()
-                .chooseTheme(context: context, isAppThemeSetting: false);
-          },
-        ),
-      ],
+    return HivedListTile(
+      title: 'Тема приложения',
+      subtitleKey: 'theme',
+      defaultValue: 'Системная тема',
+      icon: Icon(
+        Icons.brightness_6_outlined,
+        size: 32.0,
+        color: Theme.of(context).accentColor,
+      ),
+      onTap: () async {
+        await SettingsLogic()
+            .chooseTheme(context: context, isAppThemeSetting: true);
+        // ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
+      },
     );
   }
 }
@@ -248,15 +230,19 @@ class EditNameUI extends StatelessWidget {
 }
 
 class ThemeChooserUI extends StatefulWidget {
-  final Function lightThemeSelected, darkThemeSelected, defaultThemeSelected;
+  final Function lightThemeSelected;
+  final Function darkThemeSelected;
+  final Function defaultThemeSelected;
   final String hiveKey;
+  final void Function(bool) alwaysLightThemeDocumentChanged;
 
   const ThemeChooserUI(
       {Key key,
       @required this.lightThemeSelected,
       @required this.darkThemeSelected,
       @required this.defaultThemeSelected,
-      @required this.hiveKey})
+      @required this.hiveKey,
+      @required this.alwaysLightThemeDocumentChanged})
       : super(key: key);
 
   @override
@@ -265,6 +251,7 @@ class ThemeChooserUI extends StatefulWidget {
 
 class _ThemeChooserUIState extends State<ThemeChooserUI> {
   int selectedItem = 0;
+  bool documentLightThemeSwitchState = false;
 
   @override
   void initState() {
@@ -274,6 +261,8 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
       selectedItem =
           HiveHelper().getValue(widget.hiveKey) == 'Светлая тема' ? 0 : 1;
     }
+    if (HiveHelper().getValue('alwaysLightThemeDocument'))
+      documentLightThemeSwitchState = true;
     super.initState();
   }
 
@@ -334,6 +323,23 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
                 selectedItem = value;
               });
             }),
+        Divider(),
+        SwitchListTile(
+            value: documentLightThemeSwitchState,
+            activeColor: Theme.of(context).accentColor,
+            secondary: Icon(
+              Icons.description_outlined,
+              color: Theme.of(context).accentColor,
+            ),
+            title: Text('Всегда светлая тема для документов',
+                style: Theme.of(context).textTheme.headline4),
+            onChanged: (value) {
+              widget.alwaysLightThemeDocumentChanged(value);
+              setState(() {
+                documentLightThemeSwitchState = value;
+              });
+            }),
+        SizedBox(height: 7),
       ],
     );
   }

@@ -87,6 +87,9 @@ class SettingsLogic {
               if (isAppThemeSetting) value.changeTheme(ThemeMode.system);
               Navigator.pop(context);
             },
+            alwaysLightThemeDocumentChanged: (value) {
+              HiveHelper().saveValue(key: 'alwaysLightThemeDocument', value: value);
+            },
           );
         },
       ),

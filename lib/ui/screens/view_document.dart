@@ -16,24 +16,40 @@ class DocumentViewScreen extends StatelessWidget {
       Navigator.popAndPushNamed(context, '/');
     }
 
-    bool nightMode() {
-      if (HiveHelper().getValue('pdfTheme') == 'Тёмная тема') {
-        return true;
+    ColorFilter darkModeFilter() {
+      if (HiveHelper().getValue('alwaysLightThemeDocument')) {
+        return ColorFilter.matrix([
+          0.96078, 0, 0, 0, 0,
+          0, 0.96078, 0, 0, 0,
+          0, 0, 0.96078, 0, 0,
+          0, 0, 0, 1, 0,
+        ]);
       } else {
-        if (HiveHelper().getValue('pdfTheme') == 'Светлая тема') {
-          return false;
-        } else {
-          return ThemeHelper().isDarkMode();
-        }
+        return ThemeHelper().isDarkMode()
+            ? ColorFilter.matrix([
+                //R G  B  A  Const
+                -0.87843, 0, 0, 0, 255,
+                0, -0.87843, 0, 0, 255,
+                0, 0, -0.87843, 0, 255,
+                0, 0, 0, 1, 0,
+              ])
+            : ColorFilter.matrix([
+                0.96078, 0, 0, 0, 0,
+                0, 0.96078, 0, 0, 0,
+                0, 0, 0.96078, 0, 0,
+                0, 0, 0, 1, 0,
+              ]);
       }
     }
 
     return Scaffold(
       appBar: AppBar(title: Text(doc.title)),
       body: Center(
-        child:
-            PDF(swipeHorizontal: true, nightMode: nightMode()).fromUrl(doc.url,
-                placeholder: (progress) => LoadingIndicator()),
+        child: ColorFiltered(
+          colorFilter: darkModeFilter(),
+          child: PDF(swipeHorizontal: true)
+              .fromUrl(doc.url, placeholder: (progress) => LoadingIndicator()),
+        ),
       ),
     );
   }
