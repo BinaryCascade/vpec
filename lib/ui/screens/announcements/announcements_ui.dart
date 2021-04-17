@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/ui/widgets/loading_indicator.dart';
-import 'package:vpec/utils/rounded_modal_sheet.dart';
 
 import '../../../models/announcement_model.dart';
 import '../../../ui/widgets/announcement_card.dart';
+import '../../../ui/widgets/loading_indicator.dart';
+import '../../../utils/icons.dart';
+import '../../../utils/rounded_modal_sheet.dart';
 
 /// ListView with data from Firestore
 class AnnouncementsList extends StatelessWidget {
@@ -294,3 +295,72 @@ class NewAnnouncementUI extends StatelessWidget {
     );
   }
 }
+
+class BottomTapBar extends StatelessWidget {
+  const BottomTapBar({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: kToolbarHeight,
+      color:
+      Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+      child: TabBar(
+        indicator: UnderlineTabIndicator(
+          borderSide: BorderSide(
+            color: Theme.of(context).accentColor,
+            width: 3.0,
+          ),
+          insets: EdgeInsets.only(bottom: kToolbarHeight - 4),
+        ),
+        labelColor: Theme.of(context).accentColor,
+        unselectedLabelColor: Theme.of(context)
+            .bottomNavigationBarTheme
+            .unselectedItemColor,
+        indicatorSize: TabBarIndicatorSize.label,
+        indicatorColor: Theme.of(context).accentColor,
+        tabs: [
+          Tab(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.group_outlined,
+                  size: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    'Всем',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Tab(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  VpecIconPack.account_cog_outline,
+                  size: 28,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    'Сотрудникам',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+

@@ -4,11 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
-import 'package:vpec/utils/snackbars.dart';
+import 'package:vpec/utils/hive_helper.dart';
 
 import '../../../utils/rounded_modal_sheet.dart';
+import '../../../utils/snackbars.dart';
 import 'announcements_ui.dart';
 
 class AnnouncementsLogic {
@@ -44,7 +44,6 @@ class AnnouncementsLogic {
 
     void sendNewAlert(
         {@required BuildContext context, @required bool isForStudent}) async {
-      var settings = Hive.box('settings');
       CollectionReference users = FirebaseFirestore.instance
           .collection(isForStudent ? 'alerts' : 'privateAlerts');
 
@@ -54,7 +53,7 @@ class AnnouncementsLogic {
       users
           .doc(docID.toString())
           .set({
-            'author': settings.get('username'),
+            'author': HiveHelper().getValue('username'),
             'content': contentController.text,
             'isPublic': isForStudent,
             'pubDate': pubDate,
