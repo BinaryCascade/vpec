@@ -19,7 +19,8 @@ class LessonsScheduleScreen extends StatefulWidget {
   _LessonsScheduleScreenState createState() => _LessonsScheduleScreenState();
 }
 
-class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with TickerProviderStateMixin{
+class _LessonsScheduleScreenState extends State<LessonsScheduleScreen>
+    with TickerProviderStateMixin {
   final _transformationController = TransformationController();
   AnimationController _animationController;
   Animation<Matrix4> _animation;
@@ -29,6 +30,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with Tick
   String baseUrl = 'https://energocollege.ru/vec_assistant/'
       '%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5/';
   String endUrl = '.jpg';
+  String dateFromUrl = '';
   String imgUrl = '';
 
   @override
@@ -40,8 +42,8 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with Tick
       vsync: this,
       duration: Duration(milliseconds: 300),
     )..addListener(() {
-      _transformationController.value = _animation.value;
-    });
+        _transformationController.value = _animation.value;
+      });
   }
 
   @override
@@ -66,8 +68,8 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with Tick
           CachedNetworkImage(
             imageUrl: imgUrl,
             errorWidget: (context, url, error) => Center(
-              child: SelectableText(
-                'Расписание не найдено',
+              child: Text(
+                'Расписание на\n$parseDateFromUrl\nне найдено',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headline3,
               ),
@@ -81,26 +83,43 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with Tick
                 maxScale: 10.0,
                 transformationController: _transformationController,
                 child: ColorFiltered(
-                colorFilter: ThemeHelper().isDarkMode()
-                    ? ColorFilter.matrix([
-                  //R G  B  A  Const
-                  -0.87843, 0, 0, 0, 255,
-                  0, -0.87843, 0, 0, 255,
-                  0, 0, -0.87843, 0, 255,
-                  0, 0, 0, 1, 0,
-                ])
-                    : ColorFilter.matrix([
-                  0.96078, 0, 0, 0, 0,
-                  0, 0.96078, 0, 0, 0,
-                  0, 0, 0.96078, 0, 0,
-                  0, 0, 0, 1, 0,
-                ]),
-                child: Center(
-                  child: Image(
-                    image: imageProvider,
+                  colorFilter: ThemeHelper().isDarkMode()
+                      ? ColorFilter.matrix([
+                          //R G  B  A  Const
+                          -0.87843, 0, 0, 0, 255,
+                          0, -0.87843, 0, 0, 255,
+                          0, 0, -0.87843, 0, 255,
+                          0, 0, 0, 1, 0,
+                        ])
+                      : ColorFilter.matrix([
+                          0.96078,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0.96078,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0.96078,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          1,
+                          0,
+                        ]),
+                  child: Center(
+                    child: Image(
+                      image: imageProvider,
+                    ),
                   ),
                 ),
-              ),),
+              ),
             ),
           ),
         ],
@@ -141,6 +160,13 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with Tick
     );
   }
 
+  String get parseDateFromUrl {
+    DateTime parsed = DateFormat('d-M-yyyy', 'ru').parse(dateFromUrl);
+    DateFormat formatter = DateFormat('d MMMM, yyyy');
+
+    return formatter.format(parsed);
+  }
+
   String getUrl({bool forToday}) {
     // get next day to show lesson schedule
     DateTime date = DateTime.now();
@@ -172,7 +198,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with Tick
       date = date.add(Duration(days: _plusDays));
       if (isWeekend) showForToday = false;
     }
-
+    dateFromUrl = formatter.format(date);
     return baseUrl + formatter.format(date) + endUrl;
   }
 
@@ -201,8 +227,8 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with Tick
 
     if (picked != null)
       setState(() {
-        imgUrl =
-            baseUrl + "${picked.day}-${picked.month}-${picked.year}" + endUrl;
+        dateFromUrl = '${picked.day}-${picked.month}-${picked.year}';
+        imgUrl = baseUrl + dateFromUrl + endUrl;
       });
   }
 
@@ -234,5 +260,4 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen> with Tick
     );
     _animationController.forward(from: 0);
   }
-
 }
