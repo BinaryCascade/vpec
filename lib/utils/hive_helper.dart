@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveHelper {
   dynamic getValue(String key) {
@@ -16,4 +17,8 @@ class HiveHelper {
     settings.delete(key);
   }
 
+  Future<void> initHive() async {
+    await Hive.initFlutter();
+    await Hive.openBox('settings');
+  }
 }
