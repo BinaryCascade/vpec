@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../../utils/hive_helper.dart';
 import '../../../utils/rounded_modal_sheet.dart';
@@ -68,22 +68,26 @@ class SettingsLogic {
     await roundedModalSheet(
       context: context,
       title: 'Выберите тему',
-      child: ThemeChooserUI(
-        hiveKey: hiveKey,
-        lightThemeSelected: () {
-          HiveHelper().saveValue(key: hiveKey, value: 'Светлая тема');
-          if (isAppThemeSetting) Get.changeThemeMode(ThemeMode.light);
-          Navigator.pop(context);
-        },
-        darkThemeSelected: () {
-          HiveHelper().saveValue(key: hiveKey, value: 'Тёмная тема');
-          if (isAppThemeSetting) Get.changeThemeMode(ThemeMode.dark);
-          Navigator.pop(context);
-        },
-        defaultThemeSelected: () {
-          HiveHelper().removeValue(hiveKey);
-          if (isAppThemeSetting) Get.changeThemeMode(ThemeMode.system);
-          Navigator.pop(context);
+      child: Consumer<ThemeNotifier>(
+        builder: (BuildContext context, value, Widget child) {
+          return ThemeChooserUI(
+            hiveKey: hiveKey,
+            lightThemeSelected: () {
+              HiveHelper().saveValue(key: hiveKey, value: 'Светлая тема');
+              if (isAppThemeSetting) value.changeTheme(ThemeMode.light);
+              Navigator.pop(context);
+            },
+            darkThemeSelected: () {
+              HiveHelper().saveValue(key: hiveKey, value: 'Тёмная тема');
+              if (isAppThemeSetting) value.changeTheme(ThemeMode.dark);
+              Navigator.pop(context);
+            },
+            defaultThemeSelected: () {
+              HiveHelper().removeValue(hiveKey);
+              if (isAppThemeSetting) value.changeTheme(ThemeMode.system);
+              Navigator.pop(context);
+            },
+          );
         },
       ),
     );

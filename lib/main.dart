@@ -1,6 +1,8 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import 'ui/theme.dart';
 import 'utils/hive_helper.dart';
@@ -10,7 +12,11 @@ import 'utils/theme_helper.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveHelper().initHive();
-  await Firebase.initializeApp().whenComplete(() => runApp(VPECApp()));
+  await Firebase.initializeApp().whenComplete(() => runApp(
+      ChangeNotifierProvider<ThemeNotifier>(
+          create: (_) => ThemeNotifier(
+              ThemeHelper().isDarkMode() ? ThemeMode.dark : ThemeMode.light),
+          child: VPECApp())));
 }
 
 class VPECApp extends StatefulWidget {
@@ -19,15 +25,14 @@ class VPECApp extends StatefulWidget {
 }
 
 class _VPECAppState extends State<VPECApp> {
-  bool isDarkTheme = ThemeHelper().isDarkMode();
-
   @override
   void initState() {
     final window = WidgetsBinding.instance.window;
     window.onPlatformBrightnessChanged = () {
       // This callback gets invoked every time brightness changes
       setState(() {
-        isDarkTheme = ThemeHelper().isDarkMode();
+        context.read<ThemeNotifier>().changeTheme(
+            ThemeHelper().isDarkMode() ? ThemeMode.dark : ThemeMode.light);
       });
     };
     super.initState();
@@ -35,12 +40,15 @@ class _VPECAppState extends State<VPECApp> {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       theme: themeData(),
       darkTheme: darkThemeData(),
-      themeMode: isDarkTheme ? ThemeMode.dark : ThemeMode.light,
+      themeMode: context.watch<ThemeNotifier>().themeMode,
       initialRoute: '/',
       routes: Routes.map,
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+      ],
     );
   }
 }

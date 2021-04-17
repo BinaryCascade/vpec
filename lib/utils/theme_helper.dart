@@ -41,3 +41,16 @@ class ThemeHelper {
     );
   }
 }
+
+class ThemeNotifier with ChangeNotifier {
+  ThemeMode themeMode;
+
+  ThemeNotifier(this.themeMode);
+
+  ThemeMode get getThemeMode => themeMode;
+
+  void changeTheme(ThemeMode mode){
+    themeMode = mode;
+    notifyListeners();
+  }
+}
