@@ -261,6 +261,8 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
       selectedItem =
           HiveHelper().getValue(widget.hiveKey) == 'Светлая тема' ? 0 : 1;
     }
+    if (HiveHelper().getValue('alwaysLightThemeDocument') == null)
+      HiveHelper().saveValue(key: 'alwaysLightThemeDocument', value: false);
     if (HiveHelper().getValue('alwaysLightThemeDocument'))
       documentLightThemeSwitchState = true;
     super.initState();
