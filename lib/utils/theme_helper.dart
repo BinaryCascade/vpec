@@ -49,7 +49,7 @@ class ThemeNotifier with ChangeNotifier {
 
   ThemeMode get getThemeMode => themeMode;
 
-  void changeTheme(ThemeMode mode){
+  void changeTheme(ThemeMode mode) {
     themeMode = mode;
     notifyListeners();
   }
