@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/ui/widgets/loading_indicator.dart';
 
 import '../../models/admin_model.dart';
 import '../../ui/widgets/admin_card.dart';
 import '../../utils/theme_helper.dart';
+import '../widgets/loading_indicator.dart';
 
 class AdminScreen extends StatelessWidget {
   final Stream<QuerySnapshot> stream =

@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/ui/widgets/loading_indicator.dart';
 
 import '../../../models/document_model.dart';
 import '../../../ui/widgets/document_card.dart';
+import '../../widgets/loading_indicator.dart';
 
 class ViewDocuments extends StatelessWidget {
   @override

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../ui/widgets/timetable_item/timetable_item_logic.dart';
 import '../../utils/icons.dart';
+import '../widgets/timetable_item/timetable_item_logic.dart';
 import 'announcements/announcements_screen.dart';
 import 'lessons_schedule_screen.dart';
 import 'menu/menu_screen.dart';

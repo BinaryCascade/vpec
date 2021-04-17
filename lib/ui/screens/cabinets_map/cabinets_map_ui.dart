@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/ui/widgets/loading_indicator.dart';
 
+import '../../widgets/loading_indicator.dart';
 import 'cabinets_map_logic.dart';
 
 class ImageMap extends StatelessWidget {

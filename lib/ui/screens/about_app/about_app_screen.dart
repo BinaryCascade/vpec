@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:vpec/ui/screens/about_app/about_app_logic.dart';
-import 'package:vpec/ui/screens/about_app/about_app_ui.dart';
 
 import '../../widgets/styled_widgets.dart';
+import 'about_app_logic.dart';
+import 'about_app_ui.dart';
 
 class AboutAppScreen extends StatelessWidget {
   @override

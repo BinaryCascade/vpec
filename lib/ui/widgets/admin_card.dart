@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:vpec/models/admin_model.dart';
+
+import '../../models/admin_model.dart';
 
 class AdminCard extends StatelessWidget {
   final AdminModel admin;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vpec/models/document_model.dart';
-import 'package:vpec/ui/widgets/styled_widgets.dart';
+
+import '../../models/document_model.dart';
+import '../widgets/styled_widgets.dart';
 
 class DocumentCard extends StatelessWidget {
   final DocumentModel document;

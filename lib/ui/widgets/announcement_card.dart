@@ -4,8 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:vpec/models/announcement_model.dart';
-import 'package:vpec/utils/rounded_modal_sheet.dart';
+
+import '../../models/announcement_model.dart';
+import '../../utils/rounded_modal_sheet.dart';
 
 class AnnouncementCard extends StatelessWidget {
   final AnnouncementModel announcement;

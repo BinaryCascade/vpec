@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vpec/models/teacher_model.dart';
+import '../../models/teacher_model.dart';
 
 class TeacherCard extends StatelessWidget {
   final TeacherModel teacher;

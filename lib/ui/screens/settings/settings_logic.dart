@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:vpec/ui/screens/settings/settings_ui.dart';
 
 import '../../../utils/hive_helper.dart';
 import '../../../utils/rounded_modal_sheet.dart';
 import '../../../utils/theme_helper.dart';
+import 'settings_ui.dart';
 
 class SettingsLogic {
   // show roundedModalSheet() for account login

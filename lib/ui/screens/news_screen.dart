@@ -4,8 +4,9 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:vpec/ui/widgets/loading_indicator.dart';
 import 'package:webfeed/webfeed.dart';
+
+import '../widgets/loading_indicator.dart';
 
 class NewsScreen extends StatefulWidget {
   NewsScreen() : super();

@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/models/teacher_model.dart';
-import 'package:vpec/ui/widgets/loading_indicator.dart';
 
+import '../../models/teacher_model.dart';
 import '../../ui/widgets/teacher_card.dart';
 import '../../utils/theme_helper.dart';
+import '../widgets/loading_indicator.dart';
 
 class TeacherScreen extends StatelessWidget {
   final Stream<QuerySnapshot> stream =

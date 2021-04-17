@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share/share.dart';
-import 'package:vpec/ui/widgets/loading_indicator.dart';
+import '../widgets/loading_indicator.dart';
 
 import '../../ui/widgets/snow_widget.dart';
 import '../../utils/holiday_helper.dart';
