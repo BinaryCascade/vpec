@@ -4,7 +4,8 @@ import 'package:provider/provider.dart';
 import '../splash.dart';
 import '../ui/screens/about_app/about_app_screen.dart';
 import '../ui/screens/admin_screen.dart';
-import '../ui/screens/bottom_bar_screen.dart';
+import '../ui/screens/bottom_bar/bottom_bar_logic.dart';
+import '../ui/screens/bottom_bar/bottom_bar_screen.dart';
 import '../ui/screens/cabinets_map/cabinets_map_logic.dart';
 import '../ui/screens/cabinets_map/cabinets_map_screen.dart';
 import '../ui/screens/documents_screen.dart';
@@ -15,7 +16,9 @@ import '../ui/screens/view_document.dart';
 
 class Routes {
   static final Map<String, WidgetBuilder> map = {
-    '/': (context) => SplashScreen(child: BottomBarScreen()),
+    '/': (context) => ChangeNotifierProvider(
+        create: (_) => BottomBarLogic(),
+        child:  SplashScreen(child: BottomBarScreen())),
     '/home': (context) => BottomBarScreen(),
     '/settings': (context) => SettingsScreen(),
     '/view_document': (context) => DocumentViewScreen(),

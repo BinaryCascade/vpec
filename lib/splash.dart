@@ -3,8 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 
+import 'ui/screens/bottom_bar/bottom_bar_logic.dart';
 import 'utils/hive_helper.dart';
 import 'utils/theme_helper.dart';
 
@@ -32,7 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
     await initializeDateFormatting('ru');
     Intl.defaultLocale = 'ru';
 
-
     FirebaseAuth auth = FirebaseAuth.instance;
     if (auth.currentUser == null) {
       auth.signInAnonymously();
@@ -45,16 +46,16 @@ class _SplashScreenState extends State<SplashScreen> {
       quickActions.initialize((shortcutType) {
         switch (shortcutType) {
           case 'action_news':
-            Navigator.popAndPushNamed(context, '/home', arguments: 0);
+            context.read<BottomBarLogic>().setIndex(0);
             break;
           case 'action_alerts':
-            Navigator.popAndPushNamed(context, '/home', arguments: 1);
+            context.read<BottomBarLogic>().setIndex(1);
             break;
           case 'action_timetable':
-            Navigator.popAndPushNamed(context, '/home', arguments: 2);
+            context.read<BottomBarLogic>().setIndex(2);
             break;
           case 'action_schedule':
-            Navigator.popAndPushNamed(context, '/home', arguments: 3);
+            context.read<BottomBarLogic>().setIndex(3);
             break;
         }
       });
@@ -79,7 +80,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // open bottom bar index by setting "launch on start"
     if (HiveHelper().getValue('launchOnStart') != null) {
       int givenIndex = HiveHelper().getValue('launchOnStart');
-      Navigator.popAndPushNamed(context, '/home', arguments: givenIndex);
+      context.read<BottomBarLogic>().setIndex(givenIndex);
     }
   }
 

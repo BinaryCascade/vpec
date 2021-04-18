@@ -1,57 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../utils/icons.dart';
-import '../widgets/timetable_item/timetable_item_logic.dart';
-import 'announcements/announcements_screen.dart';
-import 'lessons_schedule_screen.dart';
-import 'menu/menu_screen.dart';
-import 'news_screen.dart';
-import 'timetable_screen.dart';
+import '../../../utils/icons.dart';
+import 'bottom_bar_logic.dart';
 
-class BottomBarScreen extends StatefulWidget {
-  @override
-  _BottomBarScreenState createState() => _BottomBarScreenState();
-}
+class PageStorageUI extends StatelessWidget {
+  const PageStorageUI({
+    Key key,
+    @required this.pages,
+  }) : super(key: key);
 
-class _BottomBarScreenState extends State<BottomBarScreen> {
-  final PageStorageBucket bucket = PageStorageBucket();
-  int bottomBarIndex = 0;
-  // this bool used for a one-time arguments check
-  bool isFirstAction = true;
-
-  // List of screens for navigation
-  final List<Widget> pages = [
-    NewsScreen(),
-    AnnouncementsScreen(),
-    ChangeNotifierProvider(
-        create: (_) => TimeTableItemLogic(), child: TimeTableScreen()),
-    LessonsScheduleScreen(),
-    MenuScreen(),
-  ];
+  final List<Widget> pages;
 
   @override
   Widget build(BuildContext context) {
-    if (ModalRoute.of(context).settings.arguments != null && isFirstAction) {
-      int givenIndex = ModalRoute.of(context).settings.arguments;
-      setState(() {
-        isFirstAction = false;
-        bottomBarIndex = givenIndex;
-      });
-    }
-
-    return Scaffold(
-      body: PageStorage(
-        child: pages[bottomBarIndex],
-        bucket: bucket,
+    return Consumer<BottomBarLogic>(
+      builder: (context, storage, child) => PageStorage(
+        child: pages[storage.bottomBarIndex],
+        bucket: PageStorageBucket(),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+    );
+  }
+}
+
+class BottomBarUI extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<BottomBarLogic>(
+      builder: (context, storage, child) => BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
-        currentIndex: bottomBarIndex,
+        currentIndex: storage.bottomBarIndex,
         onTap: (index) {
-          setState(() {
-            bottomBarIndex = index;
-          });
+          storage.setIndex(index);
         },
         items: [
           BottomNavigationBarItem(
