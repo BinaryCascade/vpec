@@ -21,6 +21,12 @@ ThemeData themeData() {
   const lowContrast = Colors.black38;
 
   return ThemeData(
+    pageTransitionsTheme: PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        }
+    ),
     brightness: Brightness.light,
     textSelectionTheme: TextSelectionThemeData(
         selectionColor: accentColor.withOpacity(0.5),
@@ -118,6 +124,12 @@ ThemeData darkThemeData() {
   const lowContrast = Color(0x61FFFFFF);
 
   return ThemeData.dark().copyWith(
+    pageTransitionsTheme: PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        }
+    ),
     brightness: Brightness.dark,
     textSelectionTheme: TextSelectionThemeData(
         selectionColor: accentColor.withOpacity(0.5),
