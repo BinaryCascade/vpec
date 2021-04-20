@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       quickActions.setShortcutItems(<ShortcutItem>[
         const ShortcutItem(
-            type: 'action_news', localizedTitle: 'Новости', icon: 'ic_news'),
+            type: 'action_news', localizedTitle: 'События', icon: 'ic_news'),
         const ShortcutItem(
             type: 'action_alerts',
             localizedTitle: 'Объявления',

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +19,7 @@ class Routes {
   static final Map<String, WidgetBuilder> map = {
     '/': (context) => ChangeNotifierProvider(
         create: (_) => BottomBarLogic(),
-        child:  SplashScreen(child: BottomBarScreen())),
+        child: SplashScreen(child: BottomBarScreen())),
     '/home': (context) => BottomBarScreen(),
     '/settings': (context) => SettingsScreen(),
     '/view_document': (context) => DocumentViewScreen(),

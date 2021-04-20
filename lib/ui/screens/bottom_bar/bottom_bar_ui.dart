@@ -39,7 +39,7 @@ class BottomBarUI extends StatelessWidget {
                   Theme.of(context).bottomNavigationBarTheme.backgroundColor,
               icon: const Icon(VpecIconPack.news_outline),
               activeIcon: const Icon(VpecIconPack.news),
-              label: 'Новости'),
+              label: 'События'),
           BottomNavigationBarItem(
               backgroundColor:
                   Theme.of(context).bottomNavigationBarTheme.backgroundColor,

@@ -66,7 +66,7 @@ class LaunchOnStartChooser extends StatelessWidget {
     return HivedListTile(
         onTap: () => SettingsLogic().chooseLaunchOnStart(context),
         subtitleKey: 'launchOnStartString',
-        defaultValue: 'Новости',
+        defaultValue: 'События',
         title: 'Открывать при запуске',
         icon: Icon(
           Icons.launch_outlined,
@@ -371,7 +371,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             secondary:
                 Icon(VpecIconPack.news, color: Theme.of(context).accentColor),
             title: Text(
-              'Новости',
+              'События',
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 0,
@@ -382,7 +382,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               setState(() {
                 HiveHelper().saveValue(key: 'launchOnStart', value: value);
                 HiveHelper()
-                    .saveValue(key: 'launchOnStartString', value: 'Новости');
+                    .saveValue(key: 'launchOnStartString', value: 'События');
                 selectedItem = value;
               });
             }),
