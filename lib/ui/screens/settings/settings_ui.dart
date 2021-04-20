@@ -369,7 +369,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
       children: [
         RadioListTile(
             secondary:
-                Icon(VpecIconPack.news, color: Theme.of(context).accentColor),
+                Icon(VpecIconPack.news_outline, color: Theme.of(context).accentColor),
             title: Text(
               'События',
               style: Theme.of(context).textTheme.headline4,
