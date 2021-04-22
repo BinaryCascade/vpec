@@ -21,13 +21,13 @@ class AnnouncementsLogic {
     String userPhotoUrl = '';
 
     Future<void> pickPhoto() async {
-      FilePickerResult result = await FilePicker.platform.pickFiles(
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.image,
         allowMultiple: false,
       );
 
       if (result != null) {
-        File file = File(result.files.single.path);
+        File file = File(result.files.single.path!);
         isUserAddPhoto = true;
         try {
           var result = await FirebaseStorage.instance
@@ -37,13 +37,13 @@ class AnnouncementsLogic {
           userPhotoUrl = await result.ref.getDownloadURL();
         } on FirebaseException catch (e) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(e.message)));
+              .showSnackBar(SnackBar(content: Text(e.message!)));
         }
       }
     }
 
     void sendNewAlert(
-        {@required BuildContext context, @required bool isForStudent}) async {
+        {required BuildContext context, required bool isForStudent}) async {
       CollectionReference users = FirebaseFirestore.instance
           .collection(isForStudent ? 'alerts' : 'privateAlerts');
 
@@ -81,7 +81,7 @@ class AnnouncementsLogic {
                     child: Text(
                       'Отмена',
                       style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1.color),
+                          color: Theme.of(context).textTheme.bodyText1!.color),
                     ),
                   ),
                 ),
@@ -95,7 +95,7 @@ class AnnouncementsLogic {
                   child: Text(
                     'Отправить всем',
                     style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1.color),
+                        color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                 ),
               ),
@@ -108,7 +108,7 @@ class AnnouncementsLogic {
                   child: Text(
                     'Отправить сотрудникам',
                     style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1.color),
+                        color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                 ),
               )

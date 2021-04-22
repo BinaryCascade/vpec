@@ -11,7 +11,7 @@ import '../../utils/rounded_modal_sheet.dart';
 class AnnouncementCard extends StatelessWidget {
   final AnnouncementModel announcement;
 
-  AnnouncementCard({@required this.announcement});
+  AnnouncementCard({required this.announcement});
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +33,13 @@ class AnnouncementCard extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                   child:
-                        CachedNetworkImage(imageUrl: announcement.photoUrl),
+                        CachedNetworkImage(imageUrl: announcement.photoUrl!),
                 ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
                 child: ListTile(
                   title: Text(
-                    announcement.title,
+                    announcement.title!,
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   subtitle: Padding(
@@ -48,7 +48,7 @@ class AnnouncementCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         SelectableLinkify(
-                          text: announcement.content,
+                          text: announcement.content!,
                           style: Theme.of(context).textTheme.bodyText1,
                           options: LinkifyOptions(humanize: true),
                           onOpen: (link) async {
@@ -62,7 +62,7 @@ class AnnouncementCard extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(top: 6),
                           child: Text(
-                            announcement.author + ' • ' + announcement.pubDate,
+                            announcement.author! + ' • ' + announcement.pubDate!,
                             style: Theme.of(context).textTheme.subtitle1,
                           ),
                         ),
@@ -82,10 +82,10 @@ class AnnouncementCard extends StatelessWidget {
     TextEditingController titleController = TextEditingController();
     TextEditingController contentController = TextEditingController();
 
-    if (FirebaseAuth.instance.currentUser.email ==
+    if (FirebaseAuth.instance.currentUser!.email ==
         "employee@energocollege.ru") {
-      titleController.text = announcement.title;
-      contentController.text = announcement.content;
+      titleController.text = announcement.title!;
+      contentController.text = announcement.content!;
 
       roundedModalSheet(
         context: context,
@@ -140,7 +140,7 @@ class AnnouncementCard extends StatelessWidget {
                   child: Text(
                     'Удалить',
                     style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1.color),
+                        color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                 ),
                 TextButton(
@@ -149,7 +149,7 @@ class AnnouncementCard extends StatelessWidget {
                   child: Text(
                     'Отмена',
                     style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1.color),
+                        color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                 ),
                 OutlinedButton(
@@ -157,7 +157,7 @@ class AnnouncementCard extends StatelessWidget {
                   child: Text(
                     'Отредактировать',
                     style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1.color),
+                        color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                   onPressed: () => updateAnnouncement(
                       context,
@@ -173,10 +173,10 @@ class AnnouncementCard extends StatelessWidget {
     }
   }
 
-  void updateAnnouncement(BuildContext context, String docId, String titleText,
+  void updateAnnouncement(BuildContext context, String? docId, String titleText,
       String contentText) {
     CollectionReference alerts = FirebaseFirestore.instance
-        .collection(announcement.isPublic ? 'alerts' : 'privateAlerts');
+        .collection(announcement.isPublic! ? 'alerts' : 'privateAlerts');
     alerts
         .doc(docId)
         .update({'title': titleText, 'content': contentText})
@@ -218,7 +218,7 @@ class AnnouncementCard extends StatelessWidget {
                           'Отмена',
                           style: TextStyle(
                               color:
-                                  Theme.of(context).textTheme.bodyText1.color),
+                                  Theme.of(context).textTheme.bodyText1!.color),
                         ),
                       ),
                     ),
@@ -231,7 +231,7 @@ class AnnouncementCard extends StatelessWidget {
                       child: Text(
                         'Удалить',
                         style: TextStyle(
-                            color: Theme.of(context).textTheme.bodyText1.color),
+                            color: Theme.of(context).textTheme.bodyText1!.color),
                       ),
                     ),
                   ),
@@ -242,7 +242,7 @@ class AnnouncementCard extends StatelessWidget {
 
   void deleteAnnouncement(BuildContext context) {
     CollectionReference alerts = FirebaseFirestore.instance
-        .collection(announcement.isPublic ? 'alerts' : 'privateAlerts');
+        .collection(announcement.isPublic! ? 'alerts' : 'privateAlerts');
     alerts
         .doc(announcement.docId)
         .delete()

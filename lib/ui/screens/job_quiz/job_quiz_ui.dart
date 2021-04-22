@@ -35,7 +35,7 @@ class _AnswersBlockState extends State<AnswersBlock> {
             groupValue: context.read<JobQuizStorage>().selectedAnswer,
             onChanged: (num) {
               setState(() {
-                context.read<JobQuizStorage>().setAnswer(num);
+                context.read<JobQuizStorage>().setAnswer(num!);
               });
             }),
         AnswerListTile(
@@ -44,7 +44,7 @@ class _AnswersBlockState extends State<AnswersBlock> {
             groupValue: context.read<JobQuizStorage>().selectedAnswer,
             onChanged: (num) {
               setState(() {
-                context.read<JobQuizStorage>().setAnswer(num);
+                context.read<JobQuizStorage>().setAnswer(num!);
               });
             }),
         AnswerListTile(
@@ -53,7 +53,7 @@ class _AnswersBlockState extends State<AnswersBlock> {
             groupValue: context.read<JobQuizStorage>().selectedAnswer,
             onChanged: (num) {
               setState(() {
-                context.read<JobQuizStorage>().setAnswer(num);
+                context.read<JobQuizStorage>().setAnswer(num!);
               });
             }),
         AnswerListTile(
@@ -62,7 +62,7 @@ class _AnswersBlockState extends State<AnswersBlock> {
             groupValue: context.read<JobQuizStorage>().selectedAnswer,
             onChanged: (num) {
               setState(() {
-                context.read<JobQuizStorage>().setAnswer(num);
+                context.read<JobQuizStorage>().setAnswer(num!);
               });
             }),
       ],
@@ -141,19 +141,19 @@ class JobQuizResults extends StatelessWidget {
 }
 
 class AnswerListTile extends StatelessWidget {
-  final String title;
-  final int value, groupValue;
-  final void Function(int) onChanged;
+  final String? title;
+  final int? value, groupValue;
+  final void Function(int?)? onChanged;
 
   const AnswerListTile(
-      {Key key, this.title, this.value, this.groupValue, this.onChanged})
+      {Key? key, this.title, this.value, this.groupValue, required this.onChanged})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return RadioListTile(
+    return RadioListTile<int?>(
         title: Text(
-          title,
+          title!,
           style: Theme.of(context).textTheme.bodyText1,
         ),
         activeColor: Theme.of(context).accentColor,

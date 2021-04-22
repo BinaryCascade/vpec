@@ -29,7 +29,7 @@ class AdminScreen extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              children: snapshot.data.docs.map((document) {
+              children: snapshot.data!.docs.map((document) {
                 return AdminCard(
                   admin: AdminModel.fromMap(document.data(), document.id),
                 );

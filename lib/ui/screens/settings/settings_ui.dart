@@ -19,11 +19,11 @@ class AccountBlock extends StatelessWidget {
             size: 32,
           ),
           title: 'Аккаунт сотрудника',
-          subtitle: SettingsLogic().getAccountEmail().isEmpty
+          subtitle: SettingsLogic().getAccountEmail()!.isEmpty
               ? 'Нажмите, чтобы войти в аккаунт'
               : SettingsLogic().getAccountEmail(),
         ),
-        if (SettingsLogic().getAccountEmail().isNotEmpty)
+        if (SettingsLogic().getAccountEmail()!.isNotEmpty)
           HivedListTile(
               onTap: () => SettingsLogic().changeName(context),
               icon: Icon(
@@ -77,7 +77,7 @@ class LaunchOnStartChooser extends StatelessWidget {
 }
 
 class AccountLoginUI extends StatelessWidget {
-  const AccountLoginUI({Key key}) : super(key: key);
+  const AccountLoginUI({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +142,7 @@ class AccountLoginUI extends StatelessWidget {
                     child: Text(
                       'Отмена',
                       style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1.color),
+                          color: Theme.of(context).textTheme.bodyText1!.color),
                     ),
                   ),
                   OutlinedButton(
@@ -150,7 +150,7 @@ class AccountLoginUI extends StatelessWidget {
                     child: Text(
                       'Войти',
                       style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1.color),
+                          color: Theme.of(context).textTheme.bodyText1!.color),
                     ),
                     onPressed: () {
                       SettingsLogic().makeLogin(context,
@@ -170,8 +170,8 @@ class AccountLoginUI extends StatelessWidget {
 
 class EditNameUI extends StatelessWidget {
   const EditNameUI({
-    Key key,
-    @required this.nameController,
+    Key? key,
+    required this.nameController,
   }) : super(key: key);
 
   final TextEditingController nameController;
@@ -206,7 +206,7 @@ class EditNameUI extends StatelessWidget {
               child: Text(
                 'Отмена',
                 style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1.color),
+                    color: Theme.of(context).textTheme.bodyText1!.color),
               ),
             ),
             OutlinedButton(
@@ -214,7 +214,7 @@ class EditNameUI extends StatelessWidget {
               child: Text(
                 'Сохранить',
                 style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1.color),
+                    color: Theme.of(context).textTheme.bodyText1!.color),
               ),
               onPressed: () {
                 HiveHelper().saveValue(
@@ -237,12 +237,12 @@ class ThemeChooserUI extends StatefulWidget {
   final void Function(bool) alwaysLightThemeDocumentChanged;
 
   const ThemeChooserUI(
-      {Key key,
-      @required this.lightThemeSelected,
-      @required this.darkThemeSelected,
-      @required this.defaultThemeSelected,
-      @required this.hiveKey,
-      @required this.alwaysLightThemeDocumentChanged})
+      {Key? key,
+      required this.lightThemeSelected,
+      required this.darkThemeSelected,
+      required this.defaultThemeSelected,
+      required this.hiveKey,
+      required this.alwaysLightThemeDocumentChanged})
       : super(key: key);
 
   @override
@@ -250,7 +250,7 @@ class ThemeChooserUI extends StatefulWidget {
 }
 
 class _ThemeChooserUIState extends State<ThemeChooserUI> {
-  int selectedItem = 0;
+  int? selectedItem = 0;
   bool documentLightThemeSwitchState = false;
 
   @override
@@ -283,7 +283,7 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
             activeColor: Theme.of(context).accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (value) {
+            onChanged: (dynamic value) {
               widget.lightThemeSelected();
               setState(() {
                 selectedItem = value;
@@ -300,7 +300,7 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
             activeColor: Theme.of(context).accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (value) {
+            onChanged: (dynamic value) {
               setState(() {
                 widget.darkThemeSelected();
                 setState(() {
@@ -319,7 +319,7 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
             activeColor: Theme.of(context).accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (value) {
+            onChanged: (dynamic value) {
               widget.defaultThemeSelected();
               setState(() {
                 selectedItem = value;
@@ -353,7 +353,7 @@ class LaunchOnStartChooserUI extends StatefulWidget {
 }
 
 class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
-  int selectedItem = 0;
+  int? selectedItem = 0;
 
   @override
   void initState() {
@@ -378,7 +378,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             activeColor: Theme.of(context).accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (value) {
+            onChanged: (dynamic value) {
               setState(() {
                 HiveHelper().saveValue(key: 'launchOnStart', value: value);
                 HiveHelper()
@@ -397,7 +397,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             activeColor: Theme.of(context).accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (value) {
+            onChanged: (dynamic value) {
               setState(() {
                 HiveHelper().saveValue(key: 'launchOnStart', value: value);
                 HiveHelper()
@@ -416,7 +416,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             activeColor: Theme.of(context).accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (value) {
+            onChanged: (dynamic value) {
               setState(() {
                 HiveHelper().saveValue(key: 'launchOnStart', value: value);
                 HiveHelper()
@@ -435,7 +435,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             activeColor: Theme.of(context).accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (value) {
+            onChanged: (dynamic value) {
               setState(() {
                 HiveHelper().saveValue(key: 'launchOnStart', value: value);
                 HiveHelper().saveValue(

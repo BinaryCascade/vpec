@@ -1,8 +1,8 @@
 class AdminModel {
-  final String name;
-  final String contact;
-  final String cabinet;
-  final String post;
+  final String? name;
+  final String? contact;
+  final String? cabinet;
+  final String? post;
 
   const AdminModel({
     this.name,

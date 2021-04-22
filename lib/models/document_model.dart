@@ -1,9 +1,9 @@
 // this model used in menu_ui
 
 class DocumentModel {
-  final String title;
-  final String subtitle;
-  final String url;
+  final String? title;
+  final String? subtitle;
+  final String? url;
 
   DocumentModel({this.title, this.subtitle, this.url});
 

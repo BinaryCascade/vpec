@@ -9,10 +9,10 @@ import '../widgets/loading_indicator.dart';
 class DocumentViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final DocumentModel doc = ModalRoute.of(context).settings.arguments;
+    final DocumentModel doc = ModalRoute.of(context)!.settings.arguments as DocumentModel;
     ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
     // we don't need weird nulls (can be null if user type url by himself)
-    if (doc == null) {
+    if (doc.url!.isEmpty || doc.url == null) {
       Navigator.popAndPushNamed(context, '/');
     }
 
@@ -45,12 +45,12 @@ class DocumentViewScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text(doc.title)),
+      appBar: AppBar(title: Text(doc.title!)),
       body: Center(
         child: ColorFiltered(
           colorFilter: darkModeFilter(),
           child: PDF(swipeHorizontal: true)
-              .fromUrl(doc.url, placeholder: (progress) => LoadingIndicator()),
+              .fromUrl(doc.url!, placeholder: (progress) => LoadingIndicator()),
         ),
       ),
     );

@@ -9,7 +9,7 @@ class HiveHelper {
     return settings.get(key);
   }
 
-  void saveValue({String key, dynamic value}) {
+  void saveValue({String? key, dynamic value}) {
     Box settings = Hive.box('settings');
     settings.put(key, value);
   }

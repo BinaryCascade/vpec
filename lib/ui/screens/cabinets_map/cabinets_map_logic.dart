@@ -58,19 +58,19 @@ class CabinetsMapLogic extends ChangeNotifier {
   }
 
   Future<void> listener(PhotoViewControllerValue value) async {
-    if (value.scale < 2.0) {
+    if (value.scale! < 2.0) {
       if (scaleFactor != 1) {
         setScale(1);
         updateImage();
       }
     }
-    if (value.scale > 2.0 && value.scale < 3.0) {
+    if (value.scale! > 2.0 && value.scale! < 3.0) {
       if (scaleFactor != 2) {
         setScale(2);
         updateImage();
       }
     }
-    if (value.scale > 3.0 && value.scale < 4.0) {
+    if (value.scale! > 3.0 && value.scale! < 4.0) {
       if (scaleFactor != 3) {
         setScale(3);
         updateImage();

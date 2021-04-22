@@ -17,7 +17,7 @@ class NewsScreen extends StatefulWidget {
 
 class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
   static const String FEED_URL = 'https://energocollege.ru/rss.xml';
-  RssFeed _feed;
+  RssFeed? _feed;
 
   void updateFeed(feed) {
     setState(() {
@@ -44,7 +44,7 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
     });
   }
 
-  Future<RssFeed> loadFeed() async {
+  Future<RssFeed?> loadFeed() async {
     try {
       final client = http.Client();
       final response = await client.get(Uri.parse(FEED_URL));
@@ -61,7 +61,7 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
   }
 
   bool isFeedEmpty() {
-    return _feed == null || _feed.items == null;
+    return _feed == null;
   }
 
   @override
@@ -77,15 +77,15 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
                   child: ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: _feed.items.length,
+                    itemCount: _feed!.items.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final item = _feed.items[index];
+                      final item = _feed!.items[index];
                       String imgUrl = '';
-                      if (item.description.contains('src=') &&
-                          item.description.contains('alt='))
-                        imgUrl = item.description.substring(
-                            item.description.indexOf("src=") + 5,
-                            item.description.indexOf('alt=') - 2);
+                      if (item.description!.contains('src=') &&
+                          item.description!.contains('alt='))
+                        imgUrl = item.description!.substring(
+                            item.description!.indexOf("src=") + 5,
+                            item.description!.indexOf('alt=') - 2);
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 2),
                         child: Card(
@@ -94,7 +94,7 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: InkWell(
-                            onTap: () => openFeed(item.link),
+                            onTap: () => openFeed(item.link!),
                             child: Column(
                               children: <Widget>[
                                 AnimatedSize(
@@ -130,7 +130,7 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
-                                        item.title,
+                                        item.title!,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline3,
@@ -143,7 +143,7 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
                                             Text(
                                               DateFormat('d MMMM yyyy, HH:mm')
                                                   .format(_parseRfc822DateTime(
-                                                      item.pubDate)),
+                                                      item.pubDate!)!),
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .subtitle1,
@@ -166,7 +166,7 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
 }
 
 // our rss feed use rfc822 date format, so we need parse this
-DateTime _parseRfc822DateTime(String dateString) {
+DateTime? _parseRfc822DateTime(String dateString) {
   const rfc822DatePattern = 'EEE, dd MMM yyyy HH:mm:ss Z';
 
   try {

@@ -10,7 +10,7 @@ class ThemeHelper {
   bool isDarkMode() {
     // get system theme
     var brightness =
-        schedule.SchedulerBinding.instance.window.platformBrightness;
+        schedule.SchedulerBinding.instance!.window.platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
     // get user-chosen theme
     Box settings = Hive.box('settings');
@@ -25,7 +25,7 @@ class ThemeHelper {
 
   /// [haveAppbar] = set to true if you use AppBar in page
   void colorStatusBar(
-      {@required BuildContext context, @required bool haveAppbar}) {
+      {required BuildContext context, required bool haveAppbar}) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
           statusBarColor: haveAppbar

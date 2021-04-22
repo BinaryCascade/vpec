@@ -5,10 +5,10 @@ import '../../../utils/icons.dart';
 import 'about_app_logic.dart';
 
 class AboutDeveloperCard extends StatelessWidget {
-  final String name, post, nickname, vkUrl, tgUrl;
+  final String? name, post, nickname, vkUrl, tgUrl;
 
   const AboutDeveloperCard(
-      {Key key, this.name, this.post, this.nickname, this.vkUrl, this.tgUrl})
+      {Key? key, this.name, this.post, this.nickname, this.vkUrl, this.tgUrl})
       : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class AboutDeveloperCard extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    nickname,
+                    nickname!,
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                   Spacer(),
@@ -42,7 +42,7 @@ class AboutDeveloperCard extends StatelessWidget {
                         size: 32,
                         color: Theme.of(context).accentColor,
                       ),
-                      onPressed: () => AboutAppLogic().openUrl(vkUrl),
+                      onPressed: () => AboutAppLogic().openUrl(vkUrl!),
                     ),
                   if (tgUrl != null)
                     IconButton(
@@ -52,7 +52,7 @@ class AboutDeveloperCard extends StatelessWidget {
                         size: 32,
                         color: Theme.of(context).accentColor,
                       ),
-                      onPressed: () => AboutAppLogic().openUrl(tgUrl),
+                      onPressed: () => AboutAppLogic().openUrl(tgUrl!),
                     ),
                 ],
               ),

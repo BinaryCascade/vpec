@@ -29,7 +29,7 @@ class TeacherScreen extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              children: snapshot.data.docs.map((document) {
+              children: snapshot.data!.docs.map((document) {
                 return TeacherCard(
                   teacher: TeacherModel.fromMap(document.data(), document.id),
                 );

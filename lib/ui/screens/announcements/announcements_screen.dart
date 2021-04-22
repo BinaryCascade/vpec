@@ -13,7 +13,7 @@ class AnnouncementsScreen extends StatefulWidget {
 class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
   @override
   Widget build(BuildContext context) {
-    bool isEmployee = SettingsLogic().getAccountEmail().isNotEmpty;
+    bool isEmployee = SettingsLogic().getAccountEmail()!.isNotEmpty;
 
     return DefaultTabController(
       length: isEmployee ? 2 : 1,

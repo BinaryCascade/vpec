@@ -1,13 +1,13 @@
 // this model used for AnnouncementsScreen
 
 class AnnouncementModel {
-  final String author;
-  final String content;
-  final String pubDate;
-  final String title;
-  final String docId;
-  final bool isPublic;
-  final String photoUrl;
+  final String? author;
+  final String? content;
+  final String? pubDate;
+  final String? title;
+  final String? docId;
+  final bool? isPublic;
+  final String? photoUrl;
 
   const AnnouncementModel({
     this.author,

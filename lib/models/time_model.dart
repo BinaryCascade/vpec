@@ -1,11 +1,11 @@
 // this model used in TimeTable
 
 class TimeModel {
-  final String startLesson;
-  final String endLesson;
-  final String pause;
-  final String name;
-  final bool isLast;
+  final String? startLesson;
+  final String? endLesson;
+  final String? pause;
+  final String? name;
+  final bool? isLast;
 
   const TimeModel({
     this.startLesson,

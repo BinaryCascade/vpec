@@ -19,7 +19,7 @@ class ViewDocuments extends StatelessWidget {
           return ListView(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            children: snapshot.data.docs.map((document) {
+            children: snapshot.data!.docs.map((document) {
               return DocumentCard(
                 document: DocumentModel.fromMap(document.data(), document.id),
               );

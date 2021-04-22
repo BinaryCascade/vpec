@@ -57,7 +57,7 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   physics: NeverScrollableScrollPhysics(),
-                  children: snapshot.data.docs.map((document) {
+                  children: snapshot.data!.docs.map((document) {
                     return TimeTableItem(
                       timeModel:
                           TimeModel.fromMap(document.data(), document.id),

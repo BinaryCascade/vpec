@@ -5,9 +5,9 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../models/admin_model.dart';
 
 class AdminCard extends StatelessWidget {
-  final AdminModel admin;
+  final AdminModel? admin;
 
-  const AdminCard({Key key, this.admin}) : super(key: key);
+  const AdminCard({Key? key, this.admin}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,14 @@ class AdminCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 5.0),
                 child: Text(
-                  admin.name,
+                  admin!.name!,
                   style: Theme.of(context).textTheme.headline4,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 2.0),
                 child: Text(
-                  admin.post,
+                  admin!.post!,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
               ),
@@ -42,7 +42,7 @@ class AdminCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: SelectableLinkify(
-                      text: admin.contact,
+                      text: admin!.contact!,
                       style: Theme.of(context).textTheme.subtitle1,
                       onOpen: (value) async {
                         if (await canLaunch(value.url)) {
@@ -51,9 +51,9 @@ class AdminCard extends StatelessWidget {
                       },
                     ),
                   ),
-                  if (admin.cabinet != '')
+                  if (admin!.cabinet != '')
                     Text(
-                      "Кабинет ${admin.cabinet}",
+                      "Кабинет ${admin!.cabinet}",
                       style: Theme.of(context).textTheme.subtitle1,
                     ),
                 ],

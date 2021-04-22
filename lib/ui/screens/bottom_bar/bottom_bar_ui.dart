@@ -6,8 +6,8 @@ import 'bottom_bar_logic.dart';
 
 class PageStorageUI extends StatelessWidget {
   const PageStorageUI({
-    Key key,
-    @required this.pages,
+    Key? key,
+    required this.pages,
   }) : super(key: key);
 
   final List<Widget> pages;
@@ -16,7 +16,7 @@ class PageStorageUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<BottomBarLogic>(
       builder: (context, storage, child) => PageStorage(
-        child: pages[storage.bottomBarIndex],
+        child: pages[storage.bottomBarIndex!],
         bucket: PageStorageBucket(),
       ),
     );
@@ -29,7 +29,7 @@ class BottomBarUI extends StatelessWidget {
     return Consumer<BottomBarLogic>(
       builder: (context, storage, child) => BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
-        currentIndex: storage.bottomBarIndex,
+        currentIndex: storage.bottomBarIndex!,
         onTap: (index) {
           storage.setIndex(index);
         },

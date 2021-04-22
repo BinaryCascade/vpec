@@ -10,14 +10,14 @@ import '../../../utils/rounded_modal_sheet.dart';
 
 /// ListView with data from Firestore
 class AnnouncementsList extends StatelessWidget {
-  final String collectionPath;
-  const AnnouncementsList({Key key, this.collectionPath}) : super(key: key);
+  final String? collectionPath;
+  const AnnouncementsList({Key? key, this.collectionPath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     ScrollController _semicircleController = ScrollController();
     Stream<QuerySnapshot> stream =
-        FirebaseFirestore.instance.collection(collectionPath).snapshots();
+        FirebaseFirestore.instance.collection(collectionPath!).snapshots();
 
     return Column(
       children: <Widget>[
@@ -44,7 +44,7 @@ class AnnouncementsList extends StatelessWidget {
                 backgroundColor: Theme.of(context).primaryColor,
                 child: ListView(
                   controller: _semicircleController,
-                  children: snapshot.data.docs
+                  children: snapshot.data!.docs
                       .map((document) {
                         return AnnouncementCard(
                             announcement: AnnouncementModel.fromMap(
@@ -65,10 +65,10 @@ class AnnouncementsList extends StatelessWidget {
 }
 
 class AnnouncementSendUI extends StatelessWidget {
-  final Function sendToAll, sendPrivate;
+  final Function? sendToAll, sendPrivate;
 
   const AnnouncementSendUI({
-    Key key,
+    Key? key,
     this.sendToAll,
     this.sendPrivate,
   }) : super(key: key);
@@ -87,7 +87,7 @@ class AnnouncementSendUI extends StatelessWidget {
               child: Text(
                 'Отмена',
                 style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1.color),
+                    color: Theme.of(context).textTheme.bodyText1!.color),
               ),
             ),
           ),
@@ -100,7 +100,7 @@ class AnnouncementSendUI extends StatelessWidget {
             child: Text(
               'Отправить всем',
               style:
-                  TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
+                  TextStyle(color: Theme.of(context).textTheme.bodyText1!.color),
             ),
           ),
         ),
@@ -112,7 +112,7 @@ class AnnouncementSendUI extends StatelessWidget {
             child: Text(
               'Отправить сотрудникам',
               style:
-                  TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
+                  TextStyle(color: Theme.of(context).textTheme.bodyText1!.color),
             ),
           ),
         )
@@ -123,11 +123,11 @@ class AnnouncementSendUI extends StatelessWidget {
 
 class NewAnnouncementUI extends StatelessWidget {
   const NewAnnouncementUI({
-    Key key,
-    @required this.titleController,
-    @required this.contentController,
-    @required this.isUserAddPhoto,
-    @required this.userPhotoUrl,
+    Key? key,
+    required this.titleController,
+    required this.contentController,
+    required this.isUserAddPhoto,
+    required this.userPhotoUrl,
     this.pickPhoto,
     this.confirmAnnouncementSend,
   }) : super(key: key);
@@ -136,7 +136,7 @@ class NewAnnouncementUI extends StatelessWidget {
   final TextEditingController contentController;
   final bool isUserAddPhoto;
   final String userPhotoUrl;
-  final Function pickPhoto, confirmAnnouncementSend;
+  final Function? pickPhoto, confirmAnnouncementSend;
 
   @override
   Widget build(BuildContext context) {
@@ -191,11 +191,11 @@ class NewAnnouncementUI extends StatelessWidget {
                 child: Text(
                   'Фото',
                   style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1.color),
+                      color: Theme.of(context).textTheme.bodyText1!.color),
                 ),
                 onPressed: () async {
                   if (!isUserAddPhoto) {
-                    await pickPhoto();
+                    await pickPhoto!();
                   } else {
                     roundedModalSheet(
                         context: context,
@@ -218,7 +218,7 @@ class NewAnnouncementUI extends StatelessWidget {
                                     style: TextStyle(
                                         color: Theme.of(context)
                                             .textTheme
-                                            .bodyText1
+                                            .bodyText1!
                                             .color),
                                   ),
                                 ),
@@ -236,7 +236,7 @@ class NewAnnouncementUI extends StatelessWidget {
                 child: Text(
                   'Отмена',
                   style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1.color),
+                      color: Theme.of(context).textTheme.bodyText1!.color),
                 ),
               ),
               OutlinedButton(
@@ -244,13 +244,13 @@ class NewAnnouncementUI extends StatelessWidget {
                 child: Text(
                   'Отправить',
                   style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1.color),
+                      color: Theme.of(context).textTheme.bodyText1!.color),
                 ),
                 onPressed: () {
                   if (isUserAddPhoto) {
                     if (userPhotoUrl.isNotEmpty) {
                       Navigator.pop(context);
-                      confirmAnnouncementSend();
+                      confirmAnnouncementSend!();
                     } else {
                       roundedModalSheet(
                           context: context,
@@ -273,7 +273,7 @@ class NewAnnouncementUI extends StatelessWidget {
                                       style: TextStyle(
                                           color: Theme.of(context)
                                               .textTheme
-                                              .bodyText1
+                                              .bodyText1!
                                               .color),
                                     ),
                                   ),
@@ -284,7 +284,7 @@ class NewAnnouncementUI extends StatelessWidget {
                     }
                   } else {
                     Navigator.pop(context);
-                    confirmAnnouncementSend();
+                    confirmAnnouncementSend!();
                   }
                 },
               ),
@@ -298,7 +298,7 @@ class NewAnnouncementUI extends StatelessWidget {
 
 class BottomTapBar extends StatelessWidget {
   const BottomTapBar({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

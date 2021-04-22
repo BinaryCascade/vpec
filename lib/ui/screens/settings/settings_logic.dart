@@ -19,7 +19,7 @@ class SettingsLogic {
   }
 
   // login to firebase account with email and password
-  void makeLogin(BuildContext context, {String email, password}) async {
+  void makeLogin(BuildContext context, {required String email, required password}) async {
     try {
       // trying to login
       await FirebaseAuth.instance.signOut();
@@ -53,23 +53,23 @@ class SettingsLogic {
     );
   }
 
-  String getAccountEmail() {
-    if (FirebaseAuth.instance.currentUser.email != null) {
-      return FirebaseAuth.instance.currentUser.email;
+  String? getAccountEmail() {
+    if (FirebaseAuth.instance.currentUser!.email != null) {
+      return FirebaseAuth.instance.currentUser!.email;
     } else {
       return '';
     }
   }
 
   Future<void> chooseTheme(
-      {BuildContext context, bool isAppThemeSetting}) async {
+      {required BuildContext context, required bool isAppThemeSetting}) async {
     String hiveKey = isAppThemeSetting ? 'theme' : 'pdfTheme';
 
     await roundedModalSheet(
       context: context,
       title: 'Выберите тему',
       child: Consumer<ThemeNotifier>(
-        builder: (BuildContext context, value, Widget child) {
+        builder: (BuildContext context, value, Widget? child) {
           return ThemeChooserUI(
             hiveKey: hiveKey,
             lightThemeSelected: () {

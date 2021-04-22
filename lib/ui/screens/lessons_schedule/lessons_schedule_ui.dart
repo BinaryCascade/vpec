@@ -9,7 +9,7 @@ import 'lessons_schedule_logic.dart';
 
 class LessonImage extends StatelessWidget {
   const LessonImage({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -78,7 +78,7 @@ class LessonImage extends StatelessWidget {
 
 class FabMenu extends StatelessWidget {
   const FabMenu({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

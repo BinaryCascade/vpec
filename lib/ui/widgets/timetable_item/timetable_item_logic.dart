@@ -14,8 +14,8 @@ class TimeTableItemLogic extends ChangeNotifier {
 
   String updateTimeItem(TimeModel model) {
     DateTime now = DateTime.now();
-    DateTime dateStartLesson = DateFormat('HH:mm').parse(model.startLesson);
-    DateTime dateEndLesson = DateFormat('HH:mm').parse(model.endLesson);
+    DateTime dateStartLesson = DateFormat('HH:mm').parse(model.startLesson!);
+    DateTime dateEndLesson = DateFormat('HH:mm').parse(model.endLesson!);
 
     Duration nowDuration =
         Duration(hours: now.hour, minutes: now.minute, seconds: now.second);

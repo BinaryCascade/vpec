@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// creating modal sheet with rounded corners
 Future<void> roundedModalSheet(
-    {@required BuildContext context, String title, Widget child}) async {
+    {required BuildContext context, String? title, Widget? child}) async {
   await showModalBottomSheet(
       backgroundColor: Theme.of(context).dialogBackgroundColor,
       context: context,
@@ -22,15 +22,15 @@ Future<void> roundedModalSheet(
                 bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
+              children: [
                 Padding(
                   padding: EdgeInsets.only(bottom: 8),
                   child: Text(
-                    title,
+                    title!,
                     style: Theme.of(context).textTheme.headline4,
                   ),
                 ),
-                child,
+                child!,
               ],
             ),
           ));

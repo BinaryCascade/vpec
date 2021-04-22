@@ -9,9 +9,9 @@ import 'package:share/share.dart';
 
 class LessonsScheduleLogic extends ChangeNotifier {
   final transformationController = TransformationController();
-  AnimationController animationController;
-  Animation<Matrix4> animation;
-  TapDownDetails doubleTapDetails;
+  late AnimationController animationController;
+  late Animation<Matrix4> animation;
+  late TapDownDetails doubleTapDetails;
 
   bool showForToday = true;
   String baseUrl = 'https://energocollege.ru/vec_assistant/'
@@ -47,7 +47,7 @@ class LessonsScheduleLogic extends ChangeNotifier {
     return formatter.format(parsed);
   }
 
-  String getUrl({bool forToday}) {
+  String getUrl({bool? forToday}) {
     // get next day to show lesson schedule
     DateTime date = DateTime.now();
     DateFormat formatter = DateFormat('d-M-yyyy');
@@ -74,7 +74,7 @@ class LessonsScheduleLogic extends ChangeNotifier {
         break;
     }
 
-    if (!forToday || isWeekend) {
+    if (!forToday! || isWeekend) {
       date = date.add(Duration(days: _plusDays));
       if (isWeekend) showForToday = false;
     }
@@ -98,7 +98,7 @@ class LessonsScheduleLogic extends ChangeNotifier {
   }
 
   Future<void> chooseDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2018, 8),

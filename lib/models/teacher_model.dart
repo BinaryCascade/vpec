@@ -1,10 +1,10 @@
 class TeacherModel {
-  final String familyName;
-  final String firstName;
-  final String secondaryName;
-  final String fullName;
-  final String cabinet;
-  final String lesson;
+  final String? familyName;
+  final String? firstName;
+  final String? secondaryName;
+  final String? fullName;
+  final String? cabinet;
+  final String? lesson;
 
   const TeacherModel({
     this.familyName,

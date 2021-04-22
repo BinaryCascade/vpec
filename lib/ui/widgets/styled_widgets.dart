@@ -9,14 +9,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 /// [defaultValue] - If key have no value, show this text
 class HivedListTile extends StatelessWidget {
   final String title, subtitleKey, defaultValue;
-  final GestureTapCallback onTap;
-  final Icon icon;
+  final GestureTapCallback? onTap;
+  final Icon? icon;
 
   const HivedListTile(
-      {Key key,
-      @required this.title,
-      @required this.subtitleKey,
-      @required this.defaultValue,
+      {Key? key,
+      required this.title,
+      required this.subtitleKey,
+      required this.defaultValue,
       this.onTap,
       this.icon})
       : super(key: key);
@@ -30,12 +30,12 @@ class HivedListTile extends StatelessWidget {
           height: double.infinity,
           child: icon),
       title: Text(
-        title ?? 'Не указано',
+        title,
         style: Theme.of(context).textTheme.headline3,
       ),
       subtitle: ValueListenableBuilder(
         valueListenable: Hive.box('settings').listenable(keys: [subtitleKey]),
-        builder: (context, box, child) {
+        builder: (context, dynamic box, child) {
           return Text(
             box.get(subtitleKey, defaultValue: defaultValue),
             style: Theme.of(context).textTheme.subtitle1,
@@ -49,12 +49,12 @@ class HivedListTile extends StatelessWidget {
 
 /// Just create normal ListTile with styled text
 class StyledListTile extends StatelessWidget {
-  final Widget trailing, icon;
-  final String title, subtitle;
-  final GestureTapCallback onTap;
+  final Widget? trailing, icon;
+  final String? title, subtitle;
+  final GestureTapCallback? onTap;
 
   const StyledListTile(
-      {Key key,
+      {Key? key,
       this.trailing,
       this.icon,
       this.title,
@@ -69,11 +69,11 @@ class StyledListTile extends StatelessWidget {
       leading:
           icon == null ? null : Container(height: double.infinity, child: icon),
       title: Text(
-        title,
+        title!,
         style: Theme.of(context).textTheme.headline3,
       ),
       subtitle: Text(
-        subtitle,
+        subtitle!,
         style: Theme.of(context).textTheme.subtitle1,
       ),
       onTap: onTap,

@@ -27,7 +27,7 @@ class VPECApp extends StatefulWidget {
 class _VPECAppState extends State<VPECApp> {
   @override
   void initState() {
-    final window = WidgetsBinding.instance.window;
+    final window = WidgetsBinding.instance!.window;
     window.onPlatformBrightnessChanged = () {
       // This callback gets invoked every time brightness changes
       setState(() {
