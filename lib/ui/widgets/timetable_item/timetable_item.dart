@@ -1,4 +1,4 @@
-import 'package:fdottedline/fdottedline.dart';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -39,12 +39,13 @@ class _TimeTableItemState extends State<TimeTableItem> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        FDottedLine(
-            height: 99,
-            strokeWidth: 3,
-            dottedLength: 3,
-            space: 0.0,
-            color: itemColor),
+        DottedLine(
+            direction: Axis.vertical,
+            lineLength: 100,
+            lineThickness: 3,
+            dashGapLength: 0,
+            dashRadius: 0.0,
+            dashColor: itemColor),
         Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Column(
@@ -87,13 +88,13 @@ class _TimeTableItemState extends State<TimeTableItem> {
 
     return Row(
       children: [
-        FDottedLine(
-          height: 55,
-          strokeWidth: 3,
-          dottedLength: 3,
-          space: 3.0,
-          color: itemColor,
-        ),
+        DottedLine(
+            direction: Axis.vertical,
+            lineLength: 52.5,
+            lineThickness: 3,
+            dashGapLength: 3,
+            dashRadius: 0.0,
+            dashGapColor: itemColor),
         Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Column(

@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dart_rss/dart_rss.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:webfeed/webfeed.dart';
 
 import '../widgets/loading_indicator.dart';
 
@@ -67,8 +67,8 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: isFeedEmpty()
-            ? LoadingIndicator()
+        body: isFeedEmpty() ?
+             LoadingIndicator()
             : SafeArea(
                 top: false,
                 child: SingleChildScrollView(
@@ -142,7 +142,8 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
                                             Spacer(),
                                             Text(
                                               DateFormat('d MMMM yyyy, HH:mm')
-                                                  .format(item.pubDate),
+                                                  .format(_parseRfc822DateTime(
+                                                      item.pubDate)),
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .subtitle1,
@@ -161,5 +162,20 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
                     },
                   ),
                 )));
+  }
+}
+
+// our rss feed use rfc822 date format, so we need parse this
+DateTime _parseRfc822DateTime(String dateString) {
+  const rfc822DatePattern = 'EEE, dd MMM yyyy HH:mm:ss Z';
+
+  try {
+    final num length = dateString.length.clamp(0, rfc822DatePattern.length);
+    final trimmedPattern = rfc822DatePattern.substring(0,
+        length as int);
+    final format = DateFormat(trimmedPattern, 'en_US');
+    return format.parse(dateString);
+  } on FormatException {
+    return null;
   }
 }
