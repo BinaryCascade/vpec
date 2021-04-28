@@ -40,21 +40,24 @@ class AnnouncementsList extends StatelessWidget {
                 );
               if (!snapshot.hasData) return LoadingIndicator();
 
-              return DraggableScrollbar.semicircle(
-                backgroundColor: Theme.of(context).primaryColor,
-                child: ListView(
+              return Align(
+                alignment: Alignment.topCenter,
+                child: DraggableScrollbar.semicircle(
+                  backgroundColor: Theme.of(context).primaryColor,
                   controller: _semicircleController,
-                  children: snapshot.data!.docs
-                      .map((document) {
-                        return AnnouncementCard(
-                            announcement: AnnouncementModel.fromMap(
-                                document.data(), document.id));
-                      })
-                      .toList()
-                      .reversed
-                      .toList(),
+                  child: ListView.builder(
+                    controller: _semicircleController,
+                    reverse: true,
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      return AnnouncementCard(
+                          announcement: AnnouncementModel.fromMap(
+                              snapshot.data!.docs[index].data(),
+                              snapshot.data!.docs[index].id));
+                    },
+                  ),
                 ),
-                controller: _semicircleController,
               );
             },
           ),
@@ -99,8 +102,8 @@ class AnnouncementSendUI extends StatelessWidget {
             onPressed: () => sendToAll,
             child: Text(
               'Отправить всем',
-              style:
-                  TextStyle(color: Theme.of(context).textTheme.bodyText1!.color),
+              style: TextStyle(
+                  color: Theme.of(context).textTheme.bodyText1!.color),
             ),
           ),
         ),
@@ -111,8 +114,8 @@ class AnnouncementSendUI extends StatelessWidget {
             onPressed: () => sendPrivate,
             child: Text(
               'Отправить сотрудникам',
-              style:
-                  TextStyle(color: Theme.of(context).textTheme.bodyText1!.color),
+              style: TextStyle(
+                  color: Theme.of(context).textTheme.bodyText1!.color),
             ),
           ),
         )
@@ -305,8 +308,7 @@ class BottomTapBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: kToolbarHeight,
-      color:
-      Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+      color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
       child: TabBar(
         indicator: UnderlineTabIndicator(
           borderSide: BorderSide(
@@ -316,9 +318,8 @@ class BottomTapBar extends StatelessWidget {
           insets: EdgeInsets.only(bottom: kToolbarHeight - 4),
         ),
         labelColor: Theme.of(context).accentColor,
-        unselectedLabelColor: Theme.of(context)
-            .bottomNavigationBarTheme
-            .unselectedItemColor,
+        unselectedLabelColor:
+            Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
         indicatorSize: TabBarIndicatorSize.label,
         indicatorColor: Theme.of(context).accentColor,
         tabs: [
@@ -363,4 +364,3 @@ class BottomTapBar extends StatelessWidget {
     );
   }
 }
-
