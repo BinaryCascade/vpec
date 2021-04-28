@@ -1,8 +1,6 @@
 # ВЭК
 Приложение для [Волгоградского энергетического колледжа](http://energocollege.ru/)
 
-Проект находится в стадии разработки
-
 ## Особенности
 * Быстрый и удобный доступ к всегда актуальному расписанию занятий и звонков
 * Светлая и тёмная тема
@@ -11,9 +9,8 @@
 * События колледжа
 
 ## Скачать
-* [С Github](https://github.com/Volgograd-Power-Engineering-College/vpec/releases/latest)
-* [TemApps Store](https://tem-apps.web.app/#/app/vec)
-* Google Play (в процессе)
+* [Google Play](https://play.google.com/store/apps/details?id=tem.apps.vpec)
+* [Github](https://github.com/Volgograd-Power-Engineering-College/vpec/releases/latest)
 
 ## Принять участие в разработке
 Присоединиться к бета-тестированию: [Telegram](https://t.me/Tembeon)
