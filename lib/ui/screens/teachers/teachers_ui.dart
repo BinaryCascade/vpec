@@ -93,15 +93,18 @@ class BuildTeachersList extends StatelessWidget {
           if (!snapshot.hasData) return LoadingIndicator();
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
-            child: ListView(
+            child: ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              children: snapshot.data!.docs.map((document) {
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
                 return TeacherCard(
-                  teacher: TeacherModel.fromMap(document.data(), document.id),
+                  teacher: TeacherModel.fromMap(
+                      snapshot.data!.docs[index].data(),
+                      snapshot.data!.docs[index].id),
                 );
-              }).toList(),
+              },
             ),
           );
         },
