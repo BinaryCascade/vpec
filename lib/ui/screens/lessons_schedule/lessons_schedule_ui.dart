@@ -83,39 +83,40 @@ class FabMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LessonsScheduleLogic>(
-      builder: (context, storage, child) => Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: <Widget>[
-          if (!kIsWeb)
-            FloatingActionButton(
-              mini: true,
-              child: Icon(Icons.share_outlined),
-              onPressed: () => storage.shareLessonImage(storage.imgUrl),
-            ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 4),
-            child: FloatingActionButton(
-              mini: true,
-              child: Icon(Icons.today_outlined),
-              onPressed: () => storage.chooseDate(context),
-            ),
-          ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: <Widget>[
+        if (!kIsWeb)
           FloatingActionButton(
-            child: Icon(
-                storage.showForToday
-                    ? Icons.arrow_forward_ios_rounded
-                    : Icons.arrow_back_ios_rounded,
-                size: 24),
-            onPressed: () {
-              // this FAB used for switch between schedule for today or tomorrow
-              storage.showForToday = !storage.showForToday;
-              storage.setImgUrl(storage.getUrl(forToday: storage.showForToday));
-            },
+            mini: true,
+            child: Icon(Icons.share_outlined),
+            onPressed: () =>
+                context.read<LessonsScheduleLogic>().shareLessonImage(),
           ),
-        ],
-      ),
+        Padding(
+          padding: EdgeInsets.only(bottom: 4),
+          child: FloatingActionButton(
+            mini: true,
+            child: Icon(Icons.today_outlined),
+            onPressed: () =>
+                context.read<LessonsScheduleLogic>().chooseDate(context),
+          ),
+        ),
+        FloatingActionButton(
+          child: Icon(
+              context.read<LessonsScheduleLogic>().showForToday
+                  ? Icons.arrow_forward_ios_rounded
+                  : Icons.arrow_back_ios_rounded,
+              size: 24),
+          onPressed: () {
+            // this FAB used for switch between schedule for today or tomorrow
+            context.read<LessonsScheduleLogic>().showForToday =
+                !context.read<LessonsScheduleLogic>().showForToday;
+            context.read<LessonsScheduleLogic>().updateImgUrl();
+          },
+        ),
+      ],
     );
   }
 }

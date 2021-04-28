@@ -35,8 +35,8 @@ class LessonsScheduleLogic extends ChangeNotifier {
     animationController.dispose();
   }
 
-  void setImgUrl(String url) {
-    imgUrl = url;
+  void updateImgUrl() {
+    imgUrl = getUrl(forToday: showForToday);
     notifyListeners();
   }
 
@@ -82,10 +82,10 @@ class LessonsScheduleLogic extends ChangeNotifier {
     return baseUrl + formatter.format(date) + endUrl;
   }
 
-  Future<void> shareLessonImage(String downloadUrl) async {
+  Future<void> shareLessonImage() async {
     // download image from given url
     HttpClientRequest request =
-        await HttpClient().getUrl(Uri.parse(downloadUrl));
+        await HttpClient().getUrl(Uri.parse(imgUrl));
     HttpClientResponse response = await request.close();
     Uint8List bytes = await consolidateHttpClientResponseBytes(response);
 
