@@ -21,24 +21,14 @@ ThemeData themeData() {
   const lowContrast = Colors.black38;
 
   return ThemeData(
-    pageTransitionsTheme: PageTransitionsTheme(
-        builders: {
-          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-        }
-    ),
+    pageTransitionsTheme: PageTransitionsTheme(builders: {
+      TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+    }),
     brightness: Brightness.light,
     textSelectionTheme: TextSelectionThemeData(
         selectionColor: accentColor.withOpacity(0.5),
         selectionHandleColor: accentColor),
-    inputDecorationTheme: InputDecorationTheme(
-        labelStyle: TextStyle(color: accentColor),
-        hoverColor: accentColor,
-        border: OutlineInputBorder(),
-        enabledBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: accentColor)),
-        focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: accentColor))),
     primaryColor: secondLevelColor,
     accentColor: accentColor,
     cardColor: firstLevelColor,
@@ -124,24 +114,14 @@ ThemeData darkThemeData() {
   const lowContrast = Color(0x61FFFFFF);
 
   return ThemeData.dark().copyWith(
-    pageTransitionsTheme: PageTransitionsTheme(
-        builders: {
-          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-        }
-    ),
+    pageTransitionsTheme: PageTransitionsTheme(builders: {
+      TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+    }),
     brightness: Brightness.dark,
     textSelectionTheme: TextSelectionThemeData(
         selectionColor: accentColor.withOpacity(0.5),
         selectionHandleColor: accentColor),
-    inputDecorationTheme: InputDecorationTheme(
-        labelStyle: TextStyle(color: accentColor),
-        hoverColor: accentColor,
-        border: OutlineInputBorder(),
-        enabledBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: accentColor)),
-        focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: accentColor))),
     primaryColor: secondLevelColor,
     accentColor: accentColor,
     cardColor: firstLevelColor,
