@@ -23,7 +23,7 @@ class AboutDeveloperCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            StyledListTile(title: name, subtitle: post),
+            StyledListTile(title: name!, subtitle: post!),
             Padding(
               padding:
               const EdgeInsets.only(bottom: 8.0, right: 8.0, left: 18.0),
