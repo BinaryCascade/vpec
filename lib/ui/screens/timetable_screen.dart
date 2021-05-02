@@ -53,16 +53,19 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) return LoadingIndicator();
-                return ListView(
+                return ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   physics: NeverScrollableScrollPhysics(),
-                  children: snapshot.data!.docs.map((document) {
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
                     return TimeTableItem(
-                      timeModel:
-                          TimeModel.fromMap(document.data(), document.id),
+                      timeModel: TimeModel.fromMap(
+                          snapshot.data!.docs[index].data(),
+                          snapshot.data!.docs[index].id),
+                      isLast: snapshot.data!.docs.length == index + 1,
                     );
-                  }).toList(),
+                  },
                 );
               },
             ),

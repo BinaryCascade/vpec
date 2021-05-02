@@ -6,9 +6,10 @@ import '../../../models/time_model.dart';
 import 'timetable_item_logic.dart';
 
 class TimeTableItem extends StatefulWidget {
-  final TimeModel? timeModel;
+  final TimeModel timeModel;
+  final bool isLast;
 
-  const TimeTableItem({Key? key, this.timeModel}) : super(key: key);
+  const TimeTableItem({Key? key, required this.timeModel, required this.isLast}) : super(key: key);
 
   @override
   _TimeTableItemState createState() => _TimeTableItemState();
@@ -31,7 +32,7 @@ class _TimeTableItemState extends State<TimeTableItem> {
   Widget buildLesson() {
     Color itemColor = context
             .read<TimeTableItemLogic>()
-            .updateTimeItem(widget.timeModel!)
+            .updateTimeItem(widget.timeModel)
             .isEmpty
         ? Theme.of(context).textTheme.subtitle1!.color!
         : Theme.of(context).textTheme.bodyText1!.color!;
@@ -52,13 +53,13 @@ class _TimeTableItemState extends State<TimeTableItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.timeModel!.startLesson! + '-' + widget.timeModel!.endLesson!,
+                widget.timeModel.startLesson! + '-' + widget.timeModel.endLesson!,
                 style: Theme.of(context)
                     .textTheme
                     .headline5!
                     .copyWith(color: itemColor),
               ),
-              Text(widget.timeModel!.name!,
+              Text(widget.timeModel.name!,
                   style: Theme.of(context)
                       .textTheme
                       .headline6!
@@ -66,7 +67,7 @@ class _TimeTableItemState extends State<TimeTableItem> {
               Text(
                   context
                       .watch<TimeTableItemLogic>()
-                      .updateTimeItem(widget.timeModel!),
+                      .updateTimeItem(widget.timeModel),
                   style: Theme.of(context)
                       .textTheme
                       .headline6!
@@ -81,7 +82,7 @@ class _TimeTableItemState extends State<TimeTableItem> {
   Widget buildBreak() {
     Color itemColor = context
             .read<TimeTableItemLogic>()
-            .updateTimeItem(widget.timeModel!)
+            .updateTimeItem(widget.timeModel)
             .isEmpty
         ? Theme.of(context).textTheme.subtitle1!.color!
         : Theme.of(context).textTheme.bodyText1!.color!;
@@ -101,9 +102,9 @@ class _TimeTableItemState extends State<TimeTableItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.timeModel!.isLast!
-                    ? ""
-                    : 'Перемена: ${widget.timeModel!.pause}',
+                widget.isLast
+                    ? ''
+                    : 'Перемена: ${widget.timeModel.pause}',
                 style: Theme.of(context)
                     .textTheme
                     .headline6!
