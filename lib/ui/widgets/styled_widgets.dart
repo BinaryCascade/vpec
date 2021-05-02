@@ -72,9 +72,12 @@ class StyledListTile extends StatelessWidget {
         title,
         style: Theme.of(context).textTheme.headline3,
       ),
-      subtitle: Text(
-        subtitle,
-        style: Theme.of(context).textTheme.subtitle1,
+      subtitle: Padding(
+        padding: const EdgeInsets.only(bottom: 8.0),
+        child: Text(
+          subtitle,
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
       ),
       onTap: onTap,
     );
