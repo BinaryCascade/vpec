@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/announcement_model.dart';
@@ -16,8 +15,10 @@ class AnnouncementsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScrollController _semicircleController = ScrollController();
-    Stream<QuerySnapshot> stream =
-        FirebaseFirestore.instance.collection(collectionPath!).snapshots();
+    Stream<QuerySnapshot> stream = FirebaseFirestore.instance
+        .collection(collectionPath!)
+        .orderBy('order', descending: true)
+        .snapshots();
 
     return Column(
       children: <Widget>[
@@ -42,12 +43,11 @@ class AnnouncementsList extends StatelessWidget {
 
               return Align(
                 alignment: Alignment.topCenter,
-                child: DraggableScrollbar.semicircle(
-                  backgroundColor: Theme.of(context).primaryColor,
+                child: Scrollbar(
+                  interactive: true,
                   controller: _semicircleController,
                   child: ListView.builder(
                     controller: _semicircleController,
-                    reverse: true,
                     shrinkWrap: true,
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {

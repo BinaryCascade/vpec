@@ -59,6 +59,7 @@ class AnnouncementsLogic {
             'pubDate': pubDate,
             'title': titleController.text,
             'photo': isUserAddPhoto ? userPhotoUrl : null,
+            'order': docID.toString(),
           })
           .then((value) => showSnackbar(context, text: 'Объявление отправлено'))
           .catchError((error) => showSnackbar(context, text: 'Ошибка: $error'));
