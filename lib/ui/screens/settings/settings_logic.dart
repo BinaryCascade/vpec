@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,10 +7,32 @@ import 'package:provider/provider.dart';
 
 import '../../../utils/hive_helper.dart';
 import '../../../utils/rounded_modal_sheet.dart';
+import '../../../utils/snackbars.dart';
 import '../../../utils/theme_helper.dart';
 import 'settings_ui.dart';
 
-class SettingsLogic {
+class SettingsLogic extends ChangeNotifier {
+  bool isLoggedIn = false;
+  bool isEditMode = HiveHelper().getValue('isEditMode') ?? false;
+  late StreamSubscription<User?> authListener;
+
+  void startListenAuth() {
+    authListener =
+        FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user?.email == null) {
+        isLoggedIn = false;
+        notifyListeners();
+      } else {
+        isLoggedIn = true;
+        notifyListeners();
+      }
+    });
+  }
+
+  Future<void> cancelListener() async {
+    await authListener.cancel();
+  }
+
   // show roundedModalSheet() for account login
   void accountLogin(BuildContext context) {
     roundedModalSheet(
@@ -19,25 +43,20 @@ class SettingsLogic {
   }
 
   // login to firebase account with email and password
-  void makeLogin(BuildContext context, {required String email, required password}) async {
+  void makeLogin(BuildContext context,
+      {required String email, required password}) async {
     try {
       // trying to login
       await FirebaseAuth.instance.signOut();
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        behavior: SnackBarBehavior.floating,
-        content: Text("Вход в аккаунт выполнен успешно"),
-      ));
+      showSnackbar(context, text: 'Вход в аккаунт выполнен успешно');
     } on FirebaseAuthException {
       // something went wrong, make anonymously login
       await FirebaseAuth.instance.signInAnonymously();
       Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        behavior: SnackBarBehavior.floating,
-        content: Text("Данные введены неверно"),
-      ));
+      showSnackbar(context, text: 'Данные введены неверно');
     }
   }
 
@@ -88,7 +107,8 @@ class SettingsLogic {
               Navigator.pop(context);
             },
             alwaysLightThemeDocumentChanged: (value) {
-              HiveHelper().saveValue(key: 'alwaysLightThemeDocument', value: value);
+              HiveHelper()
+                  .saveValue(key: 'alwaysLightThemeDocument', value: value);
             },
           );
         },
@@ -110,5 +130,11 @@ class SettingsLogic {
         context: context,
         title: 'Открывать при запуске',
         child: LaunchOnStartChooserUI());
+  }
+
+  void toggleEditMode() {
+    isEditMode = !isEditMode;
+    HiveHelper().saveValue(key: 'isEditMode', value: isEditMode);
+    notifyListeners();
   }
 }

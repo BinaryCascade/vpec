@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import '../../../ui/widgets/styled_widgets.dart';
 import '../../../utils/theme_helper.dart';
+import 'settings_logic.dart';
 import 'settings_ui.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -29,7 +31,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: AccountBlock()),
+              child: ChangeNotifierProvider(
+                  create: (_) => SettingsLogic(),
+                  builder: (context, child) => AccountBlock())),
           AppThemeListTile(),
           LaunchOnStartChooser(),
           // buildBackgroundTaskWidgets(context), // low-priority

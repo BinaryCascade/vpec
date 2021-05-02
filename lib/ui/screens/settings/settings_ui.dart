@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../ui/widgets/styled_widgets.dart';
 import '../../../utils/hive_helper.dart';
@@ -6,35 +7,77 @@ import '../../../utils/icons.dart';
 import 'settings_logic.dart';
 
 // Two ListTiles for account management
-class AccountBlock extends StatelessWidget {
+class AccountBlock extends StatefulWidget {
+  @override
+  _AccountBlockState createState() => _AccountBlockState();
+}
+
+class _AccountBlockState extends State<AccountBlock>
+    with TickerProviderStateMixin {
+  @override
+  void initState() {
+    context.read<SettingsLogic>().startListenAuth();
+    super.initState();
+  }
+
+  @override
+  void deactivate() {
+    context.read<SettingsLogic>().cancelListener();
+    super.deactivate();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        StyledListTile(
-          onTap: () => SettingsLogic().accountLogin(context),
-          icon: Icon(
-            Icons.account_circle_outlined,
-            color: Theme.of(context).accentColor,
-            size: 32,
+    return Consumer<SettingsLogic>(
+      builder: (BuildContext context, storage, Widget? child) {
+        return AnimatedSize(
+          vsync: this,
+          curve: Curves.fastOutSlowIn,
+          duration: Duration(milliseconds: 400),
+          child: Column(
+            children: [
+              StyledListTile(
+                  onTap: () => storage.accountLogin(context),
+                  icon: Icon(
+                    Icons.account_circle_outlined,
+                    color: Theme.of(context).accentColor,
+                    size: 32,
+                  ),
+                  title: 'Аккаунт сотрудника',
+                  subtitle: storage.isLoggedIn
+                      ? storage.getAccountEmail()!
+                      : 'Нажмите, чтобы войти в аккаунт'),
+              if (storage.isLoggedIn)
+                Column(
+                  children: [
+                    HivedListTile(
+                        onTap: () => storage.changeName(context),
+                        icon: Icon(
+                          Icons.edit_outlined,
+                          color: Theme.of(context).accentColor,
+                          size: 32.0,
+                        ),
+                        title: 'Имя для объявлений',
+                        subtitleKey: 'username',
+                        defaultValue: 'Текущее: нет (нажмите, чтобы изменить)'),
+                    StyledListTile(
+                      icon: Icon(
+                        Icons.tune_outlined,
+                        color: Theme.of(context).accentColor,
+                        size: 32.0,
+                      ),
+                      title: 'Режим редактирования',
+                      subtitle: storage.isEditMode
+                          ? 'Нажмите, чтобы выйти из режима редактирования'
+                          : 'Нажмите, чтобы войти в режим редактирования',
+                      onTap: () => storage.toggleEditMode(),
+                    ),
+                  ],
+                ),
+            ],
           ),
-          title: 'Аккаунт сотрудника',
-          subtitle: SettingsLogic().getAccountEmail()!.isEmpty
-              ? 'Нажмите, чтобы войти в аккаунт'
-              : SettingsLogic().getAccountEmail(),
-        ),
-        if (SettingsLogic().getAccountEmail()!.isNotEmpty)
-          HivedListTile(
-              onTap: () => SettingsLogic().changeName(context),
-              icon: Icon(
-                Icons.edit_outlined,
-                color: Theme.of(context).accentColor,
-                size: 32.0,
-              ),
-              title: 'Имя для объявлений',
-              subtitleKey: 'username',
-              defaultValue: 'Текущее: нет (нажмите, чтобы изменить)'),
-      ],
+        );
+      },
     );
   }
 }
@@ -368,8 +411,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
     return Column(
       children: [
         RadioListTile(
-            secondary:
-                Icon(VpecIconPack.news_outline, color: Theme.of(context).accentColor),
+            secondary: Icon(VpecIconPack.news_outline,
+                color: Theme.of(context).accentColor),
             title: Text(
               'События',
               style: Theme.of(context).textTheme.headline4,
