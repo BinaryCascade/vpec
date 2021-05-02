@@ -50,30 +50,30 @@ class HivedListTile extends StatelessWidget {
 /// Just create normal ListTile with styled text
 class StyledListTile extends StatelessWidget {
   final Widget? trailing, icon;
-  final String? title, subtitle;
+  final String title, subtitle;
   final GestureTapCallback? onTap;
 
   const StyledListTile(
       {Key? key,
       this.trailing,
       this.icon,
-      this.title,
-      this.subtitle,
+      required this.title,
+      required this.subtitle,
       this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      trailing: trailing == null ? null : trailing,
+      trailing: trailing,
       leading:
           icon == null ? null : Container(height: double.infinity, child: icon),
       title: Text(
-        title!,
+        title,
         style: Theme.of(context).textTheme.headline3,
       ),
       subtitle: Text(
-        subtitle!,
+        subtitle,
         style: Theme.of(context).textTheme.subtitle1,
       ),
       onTap: onTap,
