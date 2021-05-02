@@ -21,7 +21,10 @@ class SearchBar extends StatelessWidget {
         hintText:
             Provider.of<TeachersLogic>(context, listen: true).visibleTextMode,
         border: InputBorder.none,
-        hintStyle: Theme.of(context).textTheme.headline3,
+        hintStyle: Theme.of(context)
+            .textTheme
+            .headline3!
+            .copyWith(color: Theme.of(context).textTheme.subtitle1!.color),
       ),
       onChanged: (value) {
         Provider.of<TeachersLogic>(context, listen: false).search(value);
@@ -33,50 +36,68 @@ class SearchBar extends StatelessWidget {
 class BuildChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: Wrap(
-          direction: Axis.horizontal,
-          spacing: 4.0,
-          children: [
-            InputChip(
-              label: Text('Фамилия'),
-              selectedColor: Theme.of(context).accentColor,
-              onPressed: () =>
-                  Provider.of<TeachersLogic>(context, listen: false)
-                      .setMode(SearchMode.familyName),
-            ),
-            InputChip(
-              label: Text('Имя'),
-              selectedColor: Theme.of(context).accentColor,
-              onPressed: () =>
-                  Provider.of<TeachersLogic>(context, listen: false)
-                      .setMode(SearchMode.firstName),
-            ),
-            InputChip(
-              label: Text('Отчество'),
-              selectedColor: Theme.of(context).accentColor,
-              onPressed: () =>
-                  Provider.of<TeachersLogic>(context, listen: false)
-                      .setMode(SearchMode.secondaryName),
-            ),
-            InputChip(
-              label: Text('Предметы'),
-              selectedColor: Theme.of(context).accentColor,
-              onPressed: () =>
-                  Provider.of<TeachersLogic>(context, listen: false)
-                      .setMode(SearchMode.lesson),
-            ),
-            InputChip(
-              label: Text('Кабинеты'),
-              selectedColor: Theme.of(context).accentColor,
-              onPressed: () =>
-                  Provider.of<TeachersLogic>(context, listen: false)
-                      .setMode(SearchMode.cabinet),
-            ),
-          ],
+    return Container(
+      color: Theme.of(context).cardColor,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: Wrap(
+            direction: Axis.horizontal,
+            spacing: 4.0,
+            children: [
+              InputChip(
+                backgroundColor: Theme.of(context).primaryColor,
+                label: Text('Фамилия'),
+                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
+                selected: Provider.of<TeachersLogic>(context, listen: true)
+                        .currentMode == SearchMode.familyName,
+                onPressed: () =>
+                    Provider.of<TeachersLogic>(context, listen: false)
+                        .setMode(SearchMode.familyName),
+              ),
+              InputChip(
+                backgroundColor: Theme.of(context).primaryColor,
+                label: Text('Имя'),
+                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
+                selected: Provider.of<TeachersLogic>(context, listen: true)
+                        .currentMode == SearchMode.firstName,
+                onPressed: () =>
+                    Provider.of<TeachersLogic>(context, listen: false)
+                        .setMode(SearchMode.firstName),
+              ),
+              InputChip(
+                backgroundColor: Theme.of(context).primaryColor,
+                label: Text('Отчество'),
+                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
+                selected: Provider.of<TeachersLogic>(context, listen: true)
+                        .currentMode == SearchMode.secondaryName,
+                onPressed: () =>
+                    Provider.of<TeachersLogic>(context, listen: false)
+                        .setMode(SearchMode.secondaryName),
+              ),
+              InputChip(
+                backgroundColor: Theme.of(context).primaryColor,
+                label: Text('Предметы'),
+                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
+                selected: Provider.of<TeachersLogic>(context, listen: true)
+                        .currentMode == SearchMode.lesson,
+                onPressed: () =>
+                    Provider.of<TeachersLogic>(context, listen: false)
+                        .setMode(SearchMode.lesson),
+              ),
+              InputChip(
+                backgroundColor: Theme.of(context).primaryColor,
+                label: Text('Кабинеты'),
+                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
+                selected: Provider.of<TeachersLogic>(context, listen: true)
+                        .currentMode == SearchMode.cabinet,
+                onPressed: () =>
+                    Provider.of<TeachersLogic>(context, listen: false)
+                        .setMode(SearchMode.cabinet),
+              ),
+            ],
+          ),
         ),
       ),
     );
