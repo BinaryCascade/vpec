@@ -6,7 +6,7 @@ import '../announcements/announcements_screen.dart';
 import '../lessons_schedule/lessons_schedule_screen.dart';
 import '../menu/menu_screen.dart';
 import '../news_screen.dart';
-import '../timetable_screen.dart';
+import '../timetable/timetable_screen.dart';
 import 'bottom_bar_ui.dart';
 import '../lessons_schedule/lessons_schedule_logic.dart';
 

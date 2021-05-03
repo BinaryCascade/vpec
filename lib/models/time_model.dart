@@ -20,4 +20,14 @@ class TimeModel {
     endLesson: data['end'],
     pause: data['pause'],
   );
+
+  Map<String, dynamic> toMap(int docID) {
+    return {
+      'name': name,
+      'start': startLesson,
+      'end': endLesson,
+      'pause': pause,
+      'order': docID,
+    };
+  }
 }
