@@ -16,6 +16,11 @@ class SettingsLogic extends ChangeNotifier {
   bool isEditMode = HiveHelper().getValue('isEditMode') ?? false;
   late StreamSubscription<User?> authListener;
 
+  static bool get checkIsInEditMode {
+    return SettingsLogic().getAccountEmail()!.isNotEmpty &&
+        (HiveHelper().getValue('isEditMode') ?? false);
+  }
+
   void startListenAuth() {
     authListener =
         FirebaseAuth.instance.authStateChanges().listen((User? user) {
