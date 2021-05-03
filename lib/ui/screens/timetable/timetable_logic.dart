@@ -19,7 +19,24 @@ class TimeTableLogic {
     roundedModalSheet(
         context: context,
         title: 'Добавить расписание звонков',
-        child: Container());
+        child: AddTimeTableItemDialogUI());
+  }
+
+  bool validateToDate(String value) {
+    RegExp regex = RegExp(r'(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$');
+    if (regex.hasMatch(value)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void addNewTimeTableItem(TimeModel model) {
+    CollectionReference schedule =
+        FirebaseFirestore.instance.collection('time_schedule');
+
+    int docID = DateTime.now().millisecondsSinceEpoch;
+    schedule.doc(docID.toString()).set(model.toMap(docID));
   }
 
   void startRestoringTimeSchedule(bool isThirtyMinBreak) {
