@@ -54,6 +54,12 @@ class EditorModeButtons extends StatelessWidget {
       children: [
         FloatingActionButton(
             child: Icon(
+              Icons.delete_outlined,
+              size: 24.0,
+            ),
+            onPressed: () => TimeTableLogic().deleteAllDocs()),
+        FloatingActionButton(
+            child: Icon(
               Icons.refresh_outlined,
               size: 24.0,
             ),
@@ -94,12 +100,12 @@ class _ResetTimeTableDialogUIState extends State<ResetTimeTableDialogUI> {
                 OutlinedButton(
                     onPressed: () => context
                         .read<TimeTableLogic>()
-                        .startRestoringTimeSchedule(true),
+                        .restoreFiles(context, true),
                     child: Text('30 мин')),
                 OutlinedButton(
                     onPressed: () => context
                         .read<TimeTableLogic>()
-                        .startRestoringTimeSchedule(false),
+                        .restoreFiles(context, false),
                     child: Text('40 мин'))
               ]),
         ],
