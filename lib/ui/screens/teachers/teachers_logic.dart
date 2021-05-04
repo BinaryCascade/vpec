@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../../models/teacher_model.dart';
+import '../../../utils/rounded_modal_sheet.dart';
+import 'teachers_ui.dart';
+
 enum SearchMode { firstName, familyName, secondaryName, lesson, cabinet }
 
 extension StringExtension on String {
@@ -60,5 +64,22 @@ class TeachersLogic extends ChangeNotifier {
         documentField = 'cabinet';
         break;
     }
+  }
+}
+
+class TeachersLogicEditMode {
+  void openAddNewDialog(BuildContext context) {
+    roundedModalSheet(
+        context: context,
+        title: 'Добавить преподавателя',
+        child: AddNewTeacherDialogUI());
+  }
+
+  void addNewTeacher(TeacherModel model) {
+    CollectionReference schedule =
+        FirebaseFirestore.instance.collection('teacher_list');
+
+    int docID = DateTime.now().millisecondsSinceEpoch;
+    schedule.doc(docID.toString()).set(model.toMap(docID));
   }
 }

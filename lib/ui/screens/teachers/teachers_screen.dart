@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/theme_helper.dart';
+import '../settings/settings_logic.dart';
 import 'teachers_ui.dart';
 
 class TeacherScreen extends StatelessWidget {
@@ -24,6 +25,8 @@ class TeacherScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton:
+          SettingsLogic.checkIsInEditMode ? EditModeFAB() : null,
     );
   }
 }
