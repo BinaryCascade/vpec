@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+
 
 import '../../../models/time_model.dart';
 import '../../../ui/screens/timetable/timetable_logic.dart';
@@ -41,76 +43,97 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
           textInputAction: TextInputAction.next,
           style: Theme.of(context).textTheme.headline3,
           decoration: InputDecoration(
-              labelText: 'Название (1 пара)',
+              labelText: 'Название пары',
+              hintText: '1 пара',
               labelStyle: Theme.of(context).textTheme.headline3,
               border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+                  BorderSide(color: Theme.of(context).accentColor))),
         ),
-        TextFormField(
-          controller: startLesson,
-          textInputAction: TextInputAction.next,
-          style: Theme.of(context).textTheme.headline3,
-          onChanged: (value) {
-            setState(() {
-              if (TimeTableLogic().validateToDate(startLesson.text)) {
-                hasErrorsOnStart = false;
-              } else {
-                hasErrorsOnStart = true;
-              }
-            });
-          },
-          decoration: InputDecoration(
-              errorText: hasErrorsOnStart ? 'Неправильно введено время' : null,
-              labelStyle: Theme.of(context).textTheme.headline3,
-              labelText: 'Время начала пары (08:30)',
-              border: OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
-        ),
-        TextFormField(
-          controller: endLesson,
-          textInputAction: TextInputAction.next,
-          style: Theme.of(context).textTheme.headline3,
-          onChanged: (value) {
-            setState(() {
-              if (TimeTableLogic().validateToDate(endLesson.text)) {
-                hasErrorsOnEnd = false;
-              } else {
-                hasErrorsOnEnd = true;
-              }
-            });
-          },
-          decoration: InputDecoration(
-              errorText: hasErrorsOnEnd ? 'Неправильно введено время' : null,
-              labelStyle: Theme.of(context).textTheme.headline3,
-              labelText: 'Время конца пары (10:00)',
-              border: OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+        Row(
+          children: [
+            Flexible(
+              child: TextFormField(
+                controller: startLesson,
+                keyboardType: TextInputType.datetime,
+                textInputAction: TextInputAction.next,
+                style: Theme.of(context).textTheme.headline3,
+                inputFormatters: [
+                  MaskedInputFormatter('00:00')
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    if (TimeTableLogic().validateToDate(startLesson.text)) {
+                      hasErrorsOnStart = false;
+                    } else {
+                      hasErrorsOnStart = true;
+                    }
+                  });
+                },
+                decoration: InputDecoration(
+                    errorText: hasErrorsOnStart ? 'Неверный формат' : null,
+                    labelStyle: Theme.of(context).textTheme.headline3,
+                    labelText: 'Начало пары',
+                    hintText: '08:30',
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide:
+                        BorderSide(color: Theme.of(context).accentColor))),
+              ),
+            ),
+            Text(' – ', style: Theme.of(context).textTheme.headline3,),
+            Flexible(
+              child: TextFormField(
+                controller: endLesson,
+                keyboardType: TextInputType.datetime,
+                textInputAction: TextInputAction.next,
+                style: Theme.of(context).textTheme.headline3,
+                inputFormatters: [
+                  MaskedInputFormatter('00:00')
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    if (TimeTableLogic().validateToDate(endLesson.text)) {
+                      hasErrorsOnEnd = false;
+                    } else {
+                      hasErrorsOnEnd = true;
+                    }
+                  });
+                },
+                decoration: InputDecoration(
+                    errorText: hasErrorsOnEnd ? 'Неверный формат' : null,
+                    labelStyle: Theme.of(context).textTheme.headline3,
+                    labelText: 'Конец пары',
+                    hintText: '10:00',
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide:
+                        BorderSide(color: Theme.of(context).accentColor))),
+              ),
+            ),
+          ],
         ),
         TextFormField(
           controller: pause,
-          textInputAction: TextInputAction.next,
+          textInputAction: TextInputAction.done,
           style: Theme.of(context).textTheme.headline3,
           decoration: InputDecoration(
               labelStyle: Theme.of(context).textTheme.headline3,
-              labelText: 'Перемена после пары (10 минут)',
+              labelText: 'Перемена после пары',
+              hintText: '10 минут',
               border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+                  BorderSide(color: Theme.of(context).accentColor))),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 6),
