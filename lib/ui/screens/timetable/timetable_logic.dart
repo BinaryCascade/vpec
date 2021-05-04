@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vpec/ui/widgets/confirm_delete_dialog.dart';
 
 import '../../../models/time_model.dart';
 import '../../../utils/rounded_modal_sheet.dart';
@@ -133,8 +134,10 @@ class TimeTableLogic {
     roundedModalSheet(
         context: context,
         title: 'Подтвердите действие',
-        child: ConfirmDeleteDialogUI(
-          docID: model.id!,
+        child: DeleteDialogUI(
+          onDelete:() {
+            deleteDoc(model.id!);
+          },
         ));
   }
 
