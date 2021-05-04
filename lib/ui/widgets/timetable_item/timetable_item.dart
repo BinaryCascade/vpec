@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/time_model.dart';
+import '../../../ui/screens/settings/settings_logic.dart';
 import 'timetable_item_logic.dart';
 
 class TimeTableItem extends StatefulWidget {
   final TimeModel timeModel;
   final bool isLast;
 
-  const TimeTableItem({Key? key, required this.timeModel, required this.isLast}) : super(key: key);
+  const TimeTableItem({Key? key, required this.timeModel, required this.isLast})
+      : super(key: key);
 
   @override
   _TimeTableItemState createState() => _TimeTableItemState();
@@ -20,12 +22,20 @@ class _TimeTableItemState extends State<TimeTableItem> {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(left: 40.0),
-        child: Wrap(
-          direction: Axis.vertical,
-          children: [
-            buildLesson(),
-            buildBreak(),
-          ],
+        child: GestureDetector(
+          onDoubleTap: () {
+            if (SettingsLogic.checkIsInEditMode) {
+              TimeTableEditorMode().openTimeTableItemEdit(
+                  context: context, model: widget.timeModel);
+            }
+          },
+          child: Wrap(
+            direction: Axis.vertical,
+            children: [
+              buildLesson(),
+              buildBreak(),
+            ],
+          ),
         ));
   }
 
@@ -53,7 +63,9 @@ class _TimeTableItemState extends State<TimeTableItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.timeModel.startLesson! + '-' + widget.timeModel.endLesson!,
+                widget.timeModel.startLesson! +
+                    '-' +
+                    widget.timeModel.endLesson!,
                 style: Theme.of(context)
                     .textTheme
                     .headline5!
@@ -102,9 +114,7 @@ class _TimeTableItemState extends State<TimeTableItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.isLast
-                    ? ''
-                    : 'Перемена: ${widget.timeModel.pause}',
+                widget.isLast ? '' : 'Перемена: ${widget.timeModel.pause}',
                 style: Theme.of(context)
                     .textTheme
                     .headline6!

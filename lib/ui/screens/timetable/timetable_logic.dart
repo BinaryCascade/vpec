@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/models/time_model.dart';
-import 'package:vpec/utils/rounded_modal_sheet.dart';
 
+import '../../../models/time_model.dart';
+import '../../../utils/rounded_modal_sheet.dart';
 import 'timetable_ui.dart';
 
 class TimeTableLogic {
@@ -23,7 +23,7 @@ class TimeTableLogic {
   }
 
   bool validateToDate(String value) {
-    RegExp regex = RegExp(r'(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$');
+    RegExp regex = RegExp(r'^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$');
     if (regex.hasMatch(value)) {
       return true;
     } else {
@@ -114,5 +114,37 @@ class TimeTableLogic {
           pause: 'Проверьте правильность ввода',
         );
     }
+  }
+
+  void editTimeTableItem(String docID, TimeModel model) {
+    CollectionReference schedule =
+        FirebaseFirestore.instance.collection('time_schedule');
+    schedule
+        .doc(docID.toString())
+        .set(
+          model.toMap(int.parse(docID)),
+        )
+        .then((value) => print('Отредактировано'))
+        .catchError((error) => print('Ошибка редактирования: $error'));
+  }
+
+  void confirmDelete(BuildContext context, TimeModel model) {
+    Navigator.pop(context);
+    roundedModalSheet(
+        context: context,
+        title: 'Подтвердите действие',
+        child: ConfirmDeleteDialogUI(
+          docID: model.id!,
+        ));
+  }
+
+  void deleteDoc(String docID) {
+    CollectionReference schedule =
+        FirebaseFirestore.instance.collection('time_schedule');
+    schedule
+        .doc(docID.toString())
+        .delete()
+        .then((value) => print('Удалено'))
+        .catchError((error) => print('Ошибка удаления: $error'));
   }
 }

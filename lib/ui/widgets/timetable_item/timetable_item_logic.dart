@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../models/time_model.dart';
+import '../../../utils/rounded_modal_sheet.dart';
+import 'timetable_editormode_ui.dart';
 
 class TimeTableItemLogic extends ChangeNotifier {
   bool needPrintText = true;
@@ -77,5 +79,17 @@ class TimeTableItemLogic extends ChangeNotifier {
     updateTimer = Timer.periodic(Duration(seconds: 1), (timer) async {
       notifyListeners();
     });
+  }
+}
+
+class TimeTableEditorMode {
+  void openTimeTableItemEdit(
+      {required BuildContext context, required TimeModel model}) {
+    roundedModalSheet(
+        context: context,
+        title: 'Редактировать: ${model.name}',
+        child: EditTimeTableItemDialogUI(
+          model: model,
+        ));
   }
 }
