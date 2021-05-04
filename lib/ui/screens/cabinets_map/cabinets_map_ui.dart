@@ -8,9 +8,9 @@ import 'cabinets_map_logic.dart';
 
 class ImageMap extends StatelessWidget {
   final PhotoViewController? photoController;
-  final String? imageUrl;
+  final String imageUrl;
 
-  const ImageMap({Key? key, this.photoController, this.imageUrl})
+  const ImageMap({Key? key, this.photoController, required this.imageUrl})
       : super(key: key);
 
   @override
@@ -21,8 +21,8 @@ class ImageMap extends StatelessWidget {
         backgroundDecoration: BoxDecoration(color: Colors.transparent),
         controller: photoController,
         child: CachedNetworkImage(
-          imageUrl: imageUrl!,
-          placeholder: (_,__) => LoadingIndicator(),
+          imageUrl: imageUrl,
+          placeholder: (_, __) => LoadingIndicator(),
           errorWidget: (context, url, error) => Text(
             "Ошибка загрузки:\n$error",
             style: Theme.of(context).textTheme.bodyText1,
