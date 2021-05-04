@@ -46,6 +46,8 @@ class FloorChips extends StatelessWidget {
             children: [
               InputChip(
                 label: Text('1 этаж'),
+                selected: context.read<CabinetsMapLogic>().selectedFloor == 1,
+                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 onPressed: () {
                   context.read<CabinetsMapLogic>().setFloor(1);
                   context.read<CabinetsMapLogic>().updateImage();
@@ -53,6 +55,8 @@ class FloorChips extends StatelessWidget {
               ),
               InputChip(
                 label: Text('2 этаж'),
+                selected: context.read<CabinetsMapLogic>().selectedFloor == 2,
+                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 onPressed: () {
                   context.read<CabinetsMapLogic>().setFloor(2);
                   context.read<CabinetsMapLogic>().updateImage();
@@ -60,6 +64,8 @@ class FloorChips extends StatelessWidget {
               ),
               InputChip(
                 label: Text('3 этаж'),
+                selected: context.read<CabinetsMapLogic>().selectedFloor == 3,
+                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 onPressed: () {
                   context.read<CabinetsMapLogic>().setFloor(3);
                   context.read<CabinetsMapLogic>().updateImage();
@@ -67,6 +73,8 @@ class FloorChips extends StatelessWidget {
               ),
               InputChip(
                 label: Text('4 этаж'),
+                selected: context.read<CabinetsMapLogic>().selectedFloor == 4,
+                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 onPressed: () {
                   context.read<CabinetsMapLogic>().setFloor(4);
                   context.read<CabinetsMapLogic>().updateImage();
