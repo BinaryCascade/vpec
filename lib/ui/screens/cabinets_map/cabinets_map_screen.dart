@@ -19,9 +19,9 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
   }
 
   @override
-  void dispose() {
-    context.read<CabinetsMapLogic>().onDispose();
-    super.dispose();
+  void deactivate() {
+    context.read<CabinetsMapLogic>().cancel();
+    super.deactivate();
   }
 
   @override

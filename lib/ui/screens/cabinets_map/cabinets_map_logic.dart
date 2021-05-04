@@ -53,7 +53,7 @@ class CabinetsMapLogic extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onDispose() {
+  void cancel() {
     photoController.dispose();
   }
 

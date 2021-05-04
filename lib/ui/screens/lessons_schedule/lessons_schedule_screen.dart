@@ -23,9 +23,9 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen>
   }
 
   @override
-  void dispose() {
+  void deactivate() {
     context.read<LessonsScheduleLogic>().onDispose();
-    super.dispose();
+    super.deactivate();
   }
 
   @override
