@@ -14,7 +14,7 @@ extension StringExtension on String {
 }
 
 class TeachersLogic extends ChangeNotifier {
-  Stream<QuerySnapshot> stream =
+  Stream<QuerySnapshot<Map<String, dynamic>>> stream =
       FirebaseFirestore.instance.collection('teacher_list').snapshots();
   SearchMode currentMode = SearchMode.familyName;
   String visibleTextMode = 'Искать среди фамилий';

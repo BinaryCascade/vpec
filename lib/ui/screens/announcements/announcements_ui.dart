@@ -15,7 +15,7 @@ class AnnouncementsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScrollController _semicircleController = ScrollController();
-    Stream<QuerySnapshot> stream = FirebaseFirestore.instance
+    Stream<QuerySnapshot<Map<String, dynamic>>> stream = FirebaseFirestore.instance
         .collection(collectionPath!)
         .orderBy('order', descending: true)
         .snapshots();
@@ -23,10 +23,10 @@ class AnnouncementsList extends StatelessWidget {
     return Column(
       children: <Widget>[
         Expanded(
-          child: StreamBuilder(
+          child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
             stream: stream,
             builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
               if (snapshot.hasError)
                 return Center(
                   child: Padding(

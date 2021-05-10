@@ -113,9 +113,10 @@ class BuildTeachersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: StreamBuilder(
+      child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: Provider.of<TeachersLogic>(context, listen: true).stream,
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        builder: (BuildContext context,
+            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (!snapshot.hasData) return LoadingIndicator();
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),

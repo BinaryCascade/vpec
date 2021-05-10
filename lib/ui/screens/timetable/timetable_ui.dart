@@ -21,7 +21,7 @@ class TimeTableListView extends StatelessWidget {
           .collection('time_schedule')
           .orderBy('order', descending: false)
           .snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
         if (!snapshot.hasData) return LoadingIndicator();
         return ListView.builder(
           shrinkWrap: true,
