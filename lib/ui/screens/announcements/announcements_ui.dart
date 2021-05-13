@@ -9,14 +9,14 @@ import '../../../utils/rounded_modal_sheet.dart';
 
 /// ListView with data from Firestore
 class AnnouncementsList extends StatelessWidget {
-  final String? collectionPath;
-  const AnnouncementsList({Key? key, this.collectionPath}) : super(key: key);
+  final String collectionPath;
+  const AnnouncementsList({Key? key, required this.collectionPath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     ScrollController _semicircleController = ScrollController();
     Stream<QuerySnapshot<Map<String, dynamic>>> stream = FirebaseFirestore.instance
-        .collection(collectionPath!)
+        .collection(collectionPath)
         .orderBy('order', descending: true)
         .snapshots();
 
