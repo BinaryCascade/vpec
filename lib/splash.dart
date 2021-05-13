@@ -78,8 +78,8 @@ class _SplashScreenState extends State<SplashScreen> {
       ]);
     }
     // open bottom bar index by setting "launch on start"
-    if (HiveHelper().getValue('launchOnStart') != null) {
-      int? givenIndex = HiveHelper().getValue('launchOnStart');
+    if (HiveHelper.getValue('launchOnStart') != null) {
+      int? givenIndex = HiveHelper.getValue('launchOnStart');
       context.read<BottomBarLogic>().setIndex(givenIndex);
     }
   }

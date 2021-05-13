@@ -260,7 +260,7 @@ class EditNameUI extends StatelessWidget {
                     color: Theme.of(context).textTheme.bodyText1!.color),
               ),
               onPressed: () {
-                HiveHelper().saveValue(
+                HiveHelper.saveValue(
                     key: 'username', value: nameController.value.text);
                 Navigator.pop(context);
               },
@@ -298,15 +298,15 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
 
   @override
   void initState() {
-    if (HiveHelper().getValue(widget.hiveKey) == null) {
+    if (HiveHelper.getValue(widget.hiveKey) == null) {
       selectedItem = 2;
     } else {
       selectedItem =
-          HiveHelper().getValue(widget.hiveKey) == 'Светлая тема' ? 0 : 1;
+          HiveHelper.getValue(widget.hiveKey) == 'Светлая тема' ? 0 : 1;
     }
-    if (HiveHelper().getValue('alwaysLightThemeDocument') == null)
-      HiveHelper().saveValue(key: 'alwaysLightThemeDocument', value: false);
-    if (HiveHelper().getValue('alwaysLightThemeDocument'))
+    if (HiveHelper.getValue('alwaysLightThemeDocument') == null)
+      HiveHelper.saveValue(key: 'alwaysLightThemeDocument', value: false);
+    if (HiveHelper.getValue('alwaysLightThemeDocument'))
       documentLightThemeSwitchState = true;
     super.initState();
   }
@@ -400,8 +400,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
 
   @override
   void initState() {
-    if (HiveHelper().getValue('launchOnStart') != null) {
-      selectedItem = HiveHelper().getValue('launchOnStart');
+    if (HiveHelper.getValue('launchOnStart') != null) {
+      selectedItem = HiveHelper.getValue('launchOnStart');
     }
     super.initState();
   }
@@ -423,8 +423,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
               setState(() {
-                HiveHelper().saveValue(key: 'launchOnStart', value: value);
-                HiveHelper()
+                HiveHelper.saveValue(key: 'launchOnStart', value: value);
+                HiveHelper
                     .saveValue(key: 'launchOnStartString', value: 'События');
                 selectedItem = value;
               });
@@ -442,8 +442,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
               setState(() {
-                HiveHelper().saveValue(key: 'launchOnStart', value: value);
-                HiveHelper()
+                HiveHelper.saveValue(key: 'launchOnStart', value: value);
+                HiveHelper
                     .saveValue(key: 'launchOnStartString', value: 'Объявления');
                 selectedItem = value;
               });
@@ -461,8 +461,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
               setState(() {
-                HiveHelper().saveValue(key: 'launchOnStart', value: value);
-                HiveHelper()
+                HiveHelper.saveValue(key: 'launchOnStart', value: value);
+                HiveHelper
                     .saveValue(key: 'launchOnStartString', value: 'Звонки');
                 selectedItem = value;
               });
@@ -480,8 +480,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
               setState(() {
-                HiveHelper().saveValue(key: 'launchOnStart', value: value);
-                HiveHelper().saveValue(
+                HiveHelper.saveValue(key: 'launchOnStart', value: value);
+                HiveHelper.saveValue(
                     key: 'launchOnStartString', value: 'Расписание занятий');
                 selectedItem = value;
               });

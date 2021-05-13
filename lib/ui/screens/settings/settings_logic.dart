@@ -13,12 +13,12 @@ import 'settings_ui.dart';
 
 class SettingsLogic extends ChangeNotifier {
   bool isLoggedIn = false;
-  bool isEditMode = HiveHelper().getValue('isEditMode') ?? false;
+  bool isEditMode = HiveHelper.getValue('isEditMode') ?? false;
   late StreamSubscription<User?> authListener;
 
   static bool get checkIsInEditMode {
     return SettingsLogic().getAccountEmail()!.isNotEmpty &&
-        (HiveHelper().getValue('isEditMode') ?? false);
+        (HiveHelper.getValue('isEditMode') ?? false);
   }
 
   void startListenAuth() {
@@ -97,22 +97,22 @@ class SettingsLogic extends ChangeNotifier {
           return ThemeChooserUI(
             hiveKey: hiveKey,
             lightThemeSelected: () {
-              HiveHelper().saveValue(key: hiveKey, value: 'Светлая тема');
+              HiveHelper.saveValue(key: hiveKey, value: 'Светлая тема');
               if (isAppThemeSetting) value.changeTheme(ThemeMode.light);
               Navigator.pop(context);
             },
             darkThemeSelected: () {
-              HiveHelper().saveValue(key: hiveKey, value: 'Тёмная тема');
+              HiveHelper.saveValue(key: hiveKey, value: 'Тёмная тема');
               if (isAppThemeSetting) value.changeTheme(ThemeMode.dark);
               Navigator.pop(context);
             },
             defaultThemeSelected: () {
-              HiveHelper().removeValue(hiveKey);
+              HiveHelper.removeValue(hiveKey);
               if (isAppThemeSetting) value.changeTheme(ThemeMode.system);
               Navigator.pop(context);
             },
             alwaysLightThemeDocumentChanged: (value) {
-              HiveHelper()
+              HiveHelper
                   .saveValue(key: 'alwaysLightThemeDocument', value: value);
             },
           );
@@ -139,7 +139,7 @@ class SettingsLogic extends ChangeNotifier {
 
   void toggleEditMode() {
     isEditMode = !isEditMode;
-    HiveHelper().saveValue(key: 'isEditMode', value: isEditMode);
+    HiveHelper.saveValue(key: 'isEditMode', value: isEditMode);
     notifyListeners();
   }
 }

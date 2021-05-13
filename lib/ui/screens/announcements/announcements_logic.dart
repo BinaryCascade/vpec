@@ -53,7 +53,7 @@ class AnnouncementsLogic {
       users
           .doc(docID.toString())
           .set({
-            'author': HiveHelper().getValue('username'),
+            'author': HiveHelper.getValue('username'),
             'content': contentController.text,
             'isPublic': isForStudent,
             'pubDate': pubDate,

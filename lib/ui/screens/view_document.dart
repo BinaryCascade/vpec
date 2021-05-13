@@ -17,9 +17,9 @@ class DocumentViewScreen extends StatelessWidget {
     }
 
     ColorFilter darkModeFilter() {
-      if (HiveHelper().getValue('alwaysLightThemeDocument') == null)
-        HiveHelper().saveValue(key: 'alwaysLightThemeDocument', value: false);
-      if (HiveHelper().getValue('alwaysLightThemeDocument')) {
+      if (HiveHelper.getValue('alwaysLightThemeDocument') == null)
+        HiveHelper.saveValue(key: 'alwaysLightThemeDocument', value: false);
+      if (HiveHelper.getValue('alwaysLightThemeDocument')) {
         return ColorFilter.matrix([
           0.96078, 0, 0, 0, 0,
           0, 0.96078, 0, 0, 0,
