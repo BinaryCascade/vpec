@@ -15,7 +15,7 @@ Future<void> main() async {
   await Firebase.initializeApp().whenComplete(() => runApp(
       ChangeNotifierProvider<ThemeNotifier>(
           create: (_) => ThemeNotifier(
-              ThemeHelper().isDarkMode() ? ThemeMode.dark : ThemeMode.light),
+              ThemeHelper.isDarkMode() ? ThemeMode.dark : ThemeMode.light),
           child: VPECApp())));
 }
 
@@ -32,7 +32,7 @@ class _VPECAppState extends State<VPECApp> {
       // This callback gets invoked every time brightness changes
       setState(() {
         context.read<ThemeNotifier>().changeTheme(
-            ThemeHelper().isDarkMode() ? ThemeMode.dark : ThemeMode.light);
+            ThemeHelper.isDarkMode() ? ThemeMode.dark : ThemeMode.light);
       });
     };
     super.initState();

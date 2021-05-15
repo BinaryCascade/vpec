@@ -17,7 +17,7 @@ class AdminScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Администрация'),
         brightness:
-            ThemeHelper().isDarkMode() ? Brightness.dark : Brightness.light,
+            ThemeHelper.isDarkMode() ? Brightness.dark : Brightness.light,
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: stream,

@@ -123,10 +123,10 @@ class SettingsLogic extends ChangeNotifier {
       SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness:
-              ThemeHelper().isDarkMode() ? Brightness.light : Brightness.dark,
+              ThemeHelper.isDarkMode() ? Brightness.light : Brightness.dark,
           systemNavigationBarColor: Colors.transparent,
           systemNavigationBarIconBrightness:
-              ThemeHelper().isDarkMode() ? Brightness.light : Brightness.dark),
+              ThemeHelper.isDarkMode() ? Brightness.light : Brightness.dark),
     );
   }
 

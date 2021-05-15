@@ -12,7 +12,7 @@ class TeacherScreen extends StatelessWidget {
       appBar: AppBar(
         title: SearchBar(),
         brightness:
-            ThemeHelper().isDarkMode() ? Brightness.dark : Brightness.light,
+            ThemeHelper.isDarkMode() ? Brightness.dark : Brightness.light,
       ),
       body: GestureDetector(
         onTap: () {

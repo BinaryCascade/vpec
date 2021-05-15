@@ -27,7 +27,7 @@ class DocumentViewScreen extends StatelessWidget {
           0, 0, 0, 1, 0,
         ]);
       } else {
-        return ThemeHelper().isDarkMode()
+        return ThemeHelper.isDarkMode()
             ? ColorFilter.matrix([
                 //R G  B  A  Const
                 -0.87843, 0, 0, 0, 255,

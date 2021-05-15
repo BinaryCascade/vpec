@@ -7,7 +7,7 @@ import 'package:hive/hive.dart';
 
 class ThemeHelper {
   /// return true, if system or user-chosen theme is dark
-  bool isDarkMode() {
+  static bool isDarkMode() {
     // get system theme
     var brightness =
         schedule.SchedulerBinding.instance!.window.platformBrightness;

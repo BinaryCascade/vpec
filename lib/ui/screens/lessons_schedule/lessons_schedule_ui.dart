@@ -18,10 +18,13 @@ class LessonImage extends StatelessWidget {
       builder: (context, storage, child) => CachedNetworkImage(
         imageUrl: storage.imgUrl,
         errorWidget: (context, url, error) => Center(
-          child: Text(
-            'Расписание на\n${storage.parseDateFromUrl}\nне найдено',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline3,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 24.0),
+            child: Text(
+              'Расписание на\n${storage.parseDateFromUrl}\nне найдено',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline3,
+            ),
           ),
         ),
         placeholder: (context, url) => LoadingIndicator(),
@@ -33,7 +36,7 @@ class LessonImage extends StatelessWidget {
             maxScale: 10.0,
             transformationController: storage.transformationController,
             child: ColorFiltered(
-              colorFilter: ThemeHelper().isDarkMode()
+              colorFilter: ThemeHelper.isDarkMode()
                   ? ColorFilter.matrix([
                       //R G  B  A  Const
                       -0.87843, 0, 0, 0, 255,

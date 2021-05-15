@@ -39,7 +39,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen>
               totalSnow: 20,
               speed: 0.4,
               snowColor:
-                  ThemeHelper().isDarkMode() ? Colors.white : Color(0xFFD6D6D6),
+                  ThemeHelper.isDarkMode() ? Colors.white : Color(0xFFD6D6D6),
             ),
           LessonImage(),
         ],
