@@ -15,7 +15,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
 
     return Scaffold(
       appBar: AppBar(

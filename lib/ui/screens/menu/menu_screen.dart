@@ -27,7 +27,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   subtitle: 'Изменить имя, тему, стартовый экран',
                   onTap: () async {
                     await Navigator.pushNamed(context, '/settings');
-                    ThemeHelper()
+                    ThemeHelper
                         .colorStatusBar(context: context, haveAppbar: false);
                   }),
               // information block
@@ -40,7 +40,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   subtitle: 'В виде карты',
                   onTap: () async {
                     await Navigator.pushNamed(context, '/cabinets');
-                    ThemeHelper()
+                    ThemeHelper
                         .colorStatusBar(context: context, haveAppbar: false);
                   }),
               StyledListTile(
@@ -50,7 +50,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   subtitle: 'Их имена, кабинеты',
                   onTap: () async {
                     await Navigator.pushNamed(context, '/teacher');
-                    ThemeHelper()
+                    ThemeHelper
                         .colorStatusBar(context: context, haveAppbar: false);
                   }),
               StyledListTile(
@@ -60,7 +60,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   subtitle: 'Вопросы, проблемы и предложения',
                   onTap: () async {
                     await Navigator.pushNamed(context, '/administration');
-                    ThemeHelper()
+                    ThemeHelper
                         .colorStatusBar(context: context, haveAppbar: false);
                   }),
               FutureBuilder<bool>(
@@ -77,7 +77,7 @@ class _MenuScreenState extends State<MenuScreen> {
                           subtitle: 'Узнать свою предрасположенность',
                           onTap: () async {
                             await Navigator.pushNamed(context, '/job_quiz');
-                            ThemeHelper().colorStatusBar(
+                            ThemeHelper.colorStatusBar(
                                 context: context, haveAppbar: false);
                           });
                   }
@@ -96,7 +96,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                   onTap: () async {
                     await Navigator.pushNamed(context, '/documents');
-                    ThemeHelper()
+                    ThemeHelper
                         .colorStatusBar(context: context, haveAppbar: false);
                   }),
             ],

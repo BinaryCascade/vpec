@@ -10,7 +10,7 @@ class DocumentViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DocumentModel doc = ModalRoute.of(context)!.settings.arguments as DocumentModel;
-    ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
     // we don't need weird nulls (can be null if user type url by himself)
     if (doc.url!.isEmpty || doc.url == null) {
       Navigator.popAndPushNamed(context, '/');

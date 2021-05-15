@@ -24,7 +24,7 @@ class ThemeHelper {
   }
 
   /// [haveAppbar] = set to true if you use AppBar in page
-  void colorStatusBar(
+  static void colorStatusBar(
       {required BuildContext context, required bool haveAppbar}) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(

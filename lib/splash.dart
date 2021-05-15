@@ -25,14 +25,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _loadingSettings() {
-    ThemeHelper().colorStatusBar(context: context, haveAppbar: false);
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
   }
 
   Future<void> _initApp() async {
     //make all our date on russian
     await initializeDateFormatting('ru');
     Intl.defaultLocale = 'ru';
-
 
     // if app running on Android or iOS, make QuickActions
     if (defaultTargetPlatform == TargetPlatform.android ||

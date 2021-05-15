@@ -12,7 +12,7 @@ class AdminScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
     return Scaffold(
       appBar: AppBar(
         title: Text('Администрация'),
