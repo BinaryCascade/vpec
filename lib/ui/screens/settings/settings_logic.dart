@@ -16,6 +16,7 @@ enum UserMode {
   student,
   employee,
   teacher,
+  enrollee,
 }
 
 class SettingsLogic extends ChangeNotifier {
@@ -101,7 +102,11 @@ class SettingsLogic extends ChangeNotifier {
       case 'teacher@energocollege.ru':
         return UserMode.teacher;
       default:
-        return UserMode.student;
+        if (HiveHelper().getValue('isEnrollee') == true) {
+          return UserMode.enrollee;
+        } else {
+          return UserMode.student;
+        }
     }
   }
 
