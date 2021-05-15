@@ -45,26 +45,11 @@ class LessonImage extends StatelessWidget {
                       0, 0, 0, 1, 0,
                     ])
                   : ColorFilter.matrix([
-                      0.96078,
-                      0,
-                      0,
-                      0,
-                      0,
-                      0,
-                      0.96078,
-                      0,
-                      0,
-                      0,
-                      0,
-                      0,
-                      0.96078,
-                      0,
-                      0,
-                      0,
-                      0,
-                      0,
-                      1,
-                      0,
+                      //R G  B  A  Const
+                      0.96078, 0, 0, 0, 0,
+                      0, 0.96078, 0, 0, 0,
+                      0, 0, 0.96078, 0, 0,
+                      0, 0, 0, 1, 0,
                     ]),
               child: Center(
                 child: Image(
