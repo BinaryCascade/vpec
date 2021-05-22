@@ -20,14 +20,14 @@ dependencies:
   transparent_image: ^2.0.0 # for placeholders
   cached_network_image: ^3.0.0 # for display most images
   flutter_cache_manager: ^3.0.2 # for cached_network_image
-  xml: ^5.1.0 # for cached_network_image
+  xml: ^5.1.1 # for cached_network_image
   draggable_scrollbar: ^0.1.0 # for announcements scroll
   flutter_linkify: ^5.0.2 # text to links
-  firebase_core: ^1.1.1
-  firebase_auth: ^1.1.4
-  cloud_firestore: ^2.1.0
-  firebase_storage: ^8.0.6
-  firebase_analytics: ^8.0.4
+  firebase_core: ^1.2.0
+  firebase_auth: ^1.2.0
+  cloud_firestore: ^2.2.0
+  firebase_storage: ^8.1.0
+  firebase_analytics: ^8.1.0
   provider: ^5.0.0
   duration: ^3.0.6 # print duration for timetable
   dotted_line: ^3.0.0
@@ -39,7 +39,7 @@ dependencies:
   flutter_cached_pdfview: ^0.4.0-nullsafety # for document viewer
   photo_view: ^0.11.1 # for cabinets map
   file_picker: ^3.0.1 # for adding images to announcements
-  flutter_multi_formatter: ^2.0.3
+  flutter_multi_formatter: ^2.1.0
 
 flutter_native_splash:
   color: "#E8E8E8"
