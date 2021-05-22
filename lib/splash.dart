@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -26,18 +25,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _loadingSettings() {
-    ThemeHelper().colorStatusBar(context: context, haveAppbar: false);
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
   }
 
   Future<void> _initApp() async {
     //make all our date on russian
     await initializeDateFormatting('ru');
     Intl.defaultLocale = 'ru';
-
-    FirebaseAuth auth = FirebaseAuth.instance;
-    if (auth.currentUser == null) {
-      auth.signInAnonymously();
-    }
 
     // if app running on Android or iOS, make QuickActions
     if (defaultTargetPlatform == TargetPlatform.android ||

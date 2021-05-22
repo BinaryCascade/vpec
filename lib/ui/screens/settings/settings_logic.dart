@@ -11,6 +11,14 @@ import '../../../utils/snackbars.dart';
 import '../../../utils/theme_helper.dart';
 import 'settings_ui.dart';
 
+enum UserMode {
+  admin,
+  student,
+  employee,
+  teacher,
+  enrollee,
+}
+
 class SettingsLogic extends ChangeNotifier {
   bool isLoggedIn = false;
   bool isEditMode = HiveHelper.getValue('isEditMode') ?? false;
@@ -58,8 +66,6 @@ class SettingsLogic extends ChangeNotifier {
       Navigator.pop(context);
       showSnackbar(context, text: 'Вход в аккаунт выполнен успешно');
     } on FirebaseAuthException {
-      // something went wrong, make anonymously login
-      await FirebaseAuth.instance.signInAnonymously();
       Navigator.pop(context);
       showSnackbar(context, text: 'Данные введены неверно');
     }
@@ -82,6 +88,25 @@ class SettingsLogic extends ChangeNotifier {
       return FirebaseAuth.instance.currentUser!.email;
     } else {
       return '';
+    }
+  }
+
+  static UserMode getAccountMode() {
+    FirebaseAuth auth = FirebaseAuth.instance;
+
+    switch (auth.currentUser!.email) {
+      case 'admin@energocollege.ru':
+        return UserMode.admin;
+      case 'employee@energocollege.ru':
+        return UserMode.employee;
+      case 'teacher@energocollege.ru':
+        return UserMode.teacher;
+      default:
+        if (HiveHelper().getValue('isEnrollee') == true) {
+          return UserMode.enrollee;
+        } else {
+          return UserMode.student;
+        }
     }
   }
 
@@ -123,10 +148,10 @@ class SettingsLogic extends ChangeNotifier {
       SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness:
-              ThemeHelper().isDarkMode() ? Brightness.light : Brightness.dark,
+              ThemeHelper.isDarkMode() ? Brightness.light : Brightness.dark,
           systemNavigationBarColor: Colors.transparent,
           systemNavigationBarIconBrightness:
-              ThemeHelper().isDarkMode() ? Brightness.light : Brightness.dark),
+              ThemeHelper.isDarkMode() ? Brightness.light : Brightness.dark),
     );
   }
 

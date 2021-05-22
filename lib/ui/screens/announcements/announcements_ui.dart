@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:vpec/ui/screens/settings/settings_logic.dart';
 
 import '../../../models/announcement_model.dart';
 import '../../../ui/widgets/announcement_card.dart';
@@ -10,14 +11,16 @@ import '../../../utils/rounded_modal_sheet.dart';
 /// ListView with data from Firestore
 class AnnouncementsList extends StatelessWidget {
   final String collectionPath;
-  const AnnouncementsList({Key? key, required this.collectionPath}) : super(key: key);
+  const AnnouncementsList({Key? key, required this.collectionPath})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     ScrollController _semicircleController = ScrollController();
-    Stream<QuerySnapshot<Map<String, dynamic>>> stream = FirebaseFirestore.instance
+    Stream<QuerySnapshot<Map<String, dynamic>>> stream = FirebaseFirestore
+        .instance
         .collection(collectionPath)
-        .orderBy('order', descending: true)
+        .orderBy('id', descending: true)
         .snapshots();
 
     return Column(
@@ -25,8 +28,8 @@ class AnnouncementsList extends StatelessWidget {
         Expanded(
           child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
             stream: stream,
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+            builder: (BuildContext context,
+                AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
               if (snapshot.hasError)
                 return Center(
                   child: Padding(
@@ -299,11 +302,16 @@ class NewAnnouncementUI extends StatelessWidget {
   }
 }
 
-class BottomTapBar extends StatelessWidget {
+class BottomTapBar extends StatefulWidget {
   const BottomTapBar({
     Key? key,
   }) : super(key: key);
 
+  @override
+  _BottomTapBarState createState() => _BottomTapBarState();
+}
+
+class _BottomTapBarState extends State<BottomTapBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -337,28 +345,48 @@ class BottomTapBar extends StatelessWidget {
                     'Всем',
                     style: TextStyle(fontSize: 15),
                   ),
-                )
-              ],
-            ),
-          ),
-          Tab(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  VpecIconPack.account_cog_outline,
-                  size: 28,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    'Сотрудникам',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                )
               ],
             ),
           ),
+          if (SettingsLogic.getAccountMode() == UserMode.employee)
+            Tab(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    VpecIconPack.account_cog_outline,
+                    size: 28,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'Сотрудникам',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          if (SettingsLogic.getAccountMode() == UserMode.teacher)
+            Tab(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    VpecIconPack.account_cog_outline,
+                    size: 28,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'Преподавателям',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  )
+                ],
+              ),
+            ),
         ],
       ),
     );

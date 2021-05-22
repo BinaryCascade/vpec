@@ -37,7 +37,7 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
             totalSnow: 20,
             speed: 0.4,
             snowColor:
-                ThemeHelper().isDarkMode() ? Colors.white : Color(0xFFD6D6D6),
+                ThemeHelper.isDarkMode() ? Colors.white : Color(0xFFD6D6D6),
           ),
         Center(
           child: SingleChildScrollView(

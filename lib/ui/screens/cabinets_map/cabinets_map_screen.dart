@@ -26,7 +26,7 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
 
     return Scaffold(
       appBar: AppBar(

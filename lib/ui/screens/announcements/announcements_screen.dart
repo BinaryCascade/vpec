@@ -13,23 +13,30 @@ class AnnouncementsScreen extends StatefulWidget {
 class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
   @override
   Widget build(BuildContext context) {
-    bool isEmployee = SettingsLogic().getAccountEmail()!.isNotEmpty;
+    UserMode userMode = SettingsLogic.getAccountMode();
+    bool shouldShowMoreData =
+        userMode != UserMode.student || userMode != UserMode.enrollee;
 
     return DefaultTabController(
-      length: isEmployee ? 2 : 1,
+      length: shouldShowMoreData ? 2 : 1,
       child: Scaffold(
-        body: isEmployee
+        body: shouldShowMoreData
             ? TabBarView(
                 children: [
-                  AnnouncementsList(collectionPath: 'alerts'),
-                  AnnouncementsList(collectionPath: 'privateAlerts'),
+                  AnnouncementsList(collectionPath: 'announcements_all'),
+                  if (userMode == UserMode.admin ||
+                      userMode == UserMode.employee)
+                    AnnouncementsList(collectionPath: 'announcements_employee'),
+                  if (userMode == UserMode.teacher ||
+                      userMode == UserMode.admin)
+                    AnnouncementsList(collectionPath: 'announcements_teachers')
                 ],
               )
             : AnnouncementsList(collectionPath: 'alerts'),
-        floatingActionButton: isEmployee
+        floatingActionButton: shouldShowMoreData
             ? FloatingActionButton(
                 onPressed: () {
-                  if (HiveHelper.getValue('username') == null){
+                  if (HiveHelper().getValue('username') == null) {
                     SettingsLogic().changeName(context);
                   } else {
                     AnnouncementsLogic().createNewAnnouncement(context);
@@ -38,11 +45,8 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                 child: Icon(Icons.rate_review_outlined),
               )
             : null,
-        bottomNavigationBar: isEmployee
-            ? BottomTapBar()
-            : null,
+        bottomNavigationBar: shouldShowMoreData ? BottomTapBar() : null,
       ),
     );
   }
 }
-

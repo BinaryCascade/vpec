@@ -7,12 +7,12 @@ import 'teachers_ui.dart';
 class TeacherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
     return Scaffold(
       appBar: AppBar(
         title: SearchBar(),
         brightness:
-            ThemeHelper().isDarkMode() ? Brightness.dark : Brightness.light,
+            ThemeHelper.isDarkMode() ? Brightness.dark : Brightness.light,
       ),
       body: GestureDetector(
         onTap: () {

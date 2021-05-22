@@ -12,12 +12,12 @@ class AdminScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
     return Scaffold(
       appBar: AppBar(
         title: Text('Администрация'),
         brightness:
-            ThemeHelper().isDarkMode() ? Brightness.dark : Brightness.light,
+            ThemeHelper.isDarkMode() ? Brightness.dark : Brightness.light,
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: stream,
