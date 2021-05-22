@@ -102,7 +102,7 @@ class SettingsLogic extends ChangeNotifier {
       case 'teacher@energocollege.ru':
         return UserMode.teacher;
       default:
-        if (HiveHelper().getValue('isEnrollee') == true) {
+        if (HiveHelper.getValue('isEnrollee') == true) {
           return UserMode.enrollee;
         } else {
           return UserMode.student;
