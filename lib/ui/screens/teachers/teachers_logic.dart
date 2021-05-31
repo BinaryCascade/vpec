@@ -19,6 +19,12 @@ class TeachersLogic extends ChangeNotifier {
   SearchMode currentMode = SearchMode.familyName;
   String visibleTextMode = 'Искать среди фамилий';
   String documentField = 'familyName';
+  bool isSearchMode = false;
+
+  void toggleSearch() {
+    isSearchMode = !isSearchMode;
+    notifyListeners();
+  }
 
   void search(String searchText) {
     if (searchText.isNotEmpty) {

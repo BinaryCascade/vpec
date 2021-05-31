@@ -281,3 +281,21 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
     );
   }
 }
+
+class SearchButton extends StatefulWidget {
+  const SearchButton({Key? key}) : super(key: key);
+
+  @override
+  _SearchButtonState createState() => _SearchButtonState();
+}
+
+class _SearchButtonState extends State<SearchButton> {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        onPressed: () => context.read<TeachersLogic>().toggleSearch(),
+        icon: Icon(context.read<TeachersLogic>().isSearchMode
+            ? Icons.close_outlined
+            : Icons.search_outlined));
+  }
+}
