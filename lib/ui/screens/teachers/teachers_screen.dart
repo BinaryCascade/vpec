@@ -20,7 +20,15 @@ class _TeacherScreenState extends State<TeacherScreen>
       builder: (BuildContext context, value, Widget? child) {
         return Scaffold(
           appBar: AppBar(
-            title: value.isSearchMode ? SearchBar() : Text('Преподаватели'),
+            title: AnimatedSwitcher(
+                duration: Duration(milliseconds: 300),
+                child: value.isSearchMode
+                    ? SearchBar()
+                    : Row(
+                        children: [
+                          Text('Преподаватели'),
+                        ],
+                      )),
             actions: [SearchButton()],
             brightness:
                 ThemeHelper.isDarkMode() ? Brightness.dark : Brightness.light,
