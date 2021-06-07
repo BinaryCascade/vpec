@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 Future<void> roundedModalSheet(
     {required BuildContext context,
     required String title,
+    bool isDismissible = true,
+    bool enableDrag = true,
     required Widget child}) async {
   await showModalBottomSheet(
       backgroundColor: Theme.of(context).dialogBackgroundColor,
       context: context,
-      isDismissible: true,
+      isDismissible: isDismissible,
       isScrollControlled: true,
+      enableDrag: enableDrag,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10),
