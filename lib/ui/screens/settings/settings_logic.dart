@@ -83,6 +83,7 @@ class SettingsLogic extends ChangeNotifier {
     );
   }
 
+  @deprecated
   String? getAccountEmail() {
     if (FirebaseAuth.instance.currentUser!.email != null) {
       return FirebaseAuth.instance.currentUser!.email;
