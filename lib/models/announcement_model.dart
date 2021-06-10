@@ -1,32 +1,40 @@
 // this model used for AnnouncementsScreen
 
+import 'package:vpec/ui/screens/settings/settings_logic.dart';
+
 class AnnouncementModel {
-  final String? author;
-  final String? content;
-  final String? pubDate;
-  final String? title;
-  final String? docId;
-  final bool? isPublic;
+  final String author;
+  final String content;
+  final String pubDate;
+  final String title;
+  final String docId;
+  final UserMode userMode;
   final String? photoUrl;
 
   const AnnouncementModel({
-    this.author,
-    this.content,
-    this.pubDate,
-    this.title,
-    this.docId,
-    this.isPublic,
+    required this.author,
+    required this.content,
+    required this.pubDate,
+    required this.title,
+    required this.docId,
+    required this.userMode,
     this.photoUrl,
   });
 
   AnnouncementModel.fromMap(Map<String, dynamic> data, String id)
       : this(
-          pubDate: data['pubDate'],
+          pubDate: data['date'],
           author: data['author'],
-          content: data['content'],
-          title: data['title'],
-          isPublic: data['isPublic'],
-          photoUrl : data['photo'],
+          content: data['content_body'],
+          title: data['content_title'],
+          userMode: data['visibility'] == 'all'
+              ? UserMode.enrollee
+              : data['visibility'] == 'teachers'
+                  ? UserMode.teacher
+                  : data['visibility'] == 'employee'
+                      ? UserMode.employee
+                      : UserMode.enrollee,
+          photoUrl: data['photo'],
           docId: id,
         );
 }
