@@ -15,6 +15,7 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: true,
       textInputAction: TextInputAction.search,
       style: Theme.of(context).textTheme.headline3,
       decoration: InputDecoration(
