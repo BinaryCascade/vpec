@@ -43,9 +43,9 @@ class _AccountBlockState extends State<AccountBlock>
                     color: Theme.of(context).accentColor,
                     size: 32,
                   ),
-                  title: 'Аккаунт сотрудника',
+                  title: 'Аккаунт',
                   subtitle: storage.isLoggedIn
-                      ? storage.getAccountEmail()!
+                      ? SettingsLogic.getAccountModeText()
                       : 'Нажмите, чтобы войти в аккаунт'),
               if (storage.isLoggedIn)
                 Column(
