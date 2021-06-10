@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:vpec/ui/screens/settings/settings_logic.dart';
 
 import '../../models/announcement_model.dart';
 import '../../utils/rounded_modal_sheet.dart';
@@ -30,16 +31,15 @@ class AnnouncementCard extends StatelessWidget {
                 Container(
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                  child:
-                        CachedNetworkImage(imageUrl: announcement.photoUrl!),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: CachedNetworkImage(imageUrl: announcement.photoUrl!),
                 ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
                 child: ListTile(
                   title: Text(
-                    announcement.title!,
+                    announcement.title,
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   subtitle: Padding(
@@ -48,7 +48,7 @@ class AnnouncementCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         SelectableLinkify(
-                          text: announcement.content!,
+                          text: announcement.content,
                           style: Theme.of(context).textTheme.bodyText1,
                           options: LinkifyOptions(humanize: true),
                           onOpen: (link) async {
@@ -62,7 +62,7 @@ class AnnouncementCard extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(top: 6),
                           child: Text(
-                            announcement.author! + ' • ' + announcement.pubDate!,
+                            announcement.author + ' • ' + announcement.pubDate,
                             style: Theme.of(context).textTheme.subtitle1,
                           ),
                         ),
@@ -84,8 +84,8 @@ class AnnouncementCard extends StatelessWidget {
 
     if (FirebaseAuth.instance.currentUser!.email ==
         "employee@energocollege.ru") {
-      titleController.text = announcement.title!;
-      contentController.text = announcement.content!;
+      titleController.text = announcement.title;
+      contentController.text = announcement.content;
 
       roundedModalSheet(
         context: context,
@@ -173,10 +173,10 @@ class AnnouncementCard extends StatelessWidget {
     }
   }
 
-  void updateAnnouncement(BuildContext context, String? docId, String titleText,
+  void updateAnnouncement(BuildContext context, String docId, String titleText,
       String contentText) {
     CollectionReference alerts = FirebaseFirestore.instance
-        .collection(announcement.isPublic! ? 'alerts' : 'privateAlerts');
+        .collection(collectionPath());
     alerts
         .doc(docId)
         .update({'title': titleText, 'content': contentText})
@@ -231,7 +231,8 @@ class AnnouncementCard extends StatelessWidget {
                       child: Text(
                         'Удалить',
                         style: TextStyle(
-                            color: Theme.of(context).textTheme.bodyText1!.color),
+                            color:
+                                Theme.of(context).textTheme.bodyText1!.color),
                       ),
                     ),
                   ),
@@ -241,13 +242,26 @@ class AnnouncementCard extends StatelessWidget {
   }
 
   void deleteAnnouncement(BuildContext context) {
-    CollectionReference alerts = FirebaseFirestore.instance
-        .collection(announcement.isPublic! ? 'alerts' : 'privateAlerts');
+    CollectionReference alerts =
+        FirebaseFirestore.instance.collection(collectionPath());
     alerts
         .doc(announcement.docId)
         .delete()
         .then((value) => print("Announcement deleted"))
         .catchError((error) => print("Failed to delete Announcement: $error"));
     Navigator.pop(context);
+  }
+
+  String collectionPath() {
+    switch (announcement.userMode) {
+      case UserMode.employee:
+        return 'announcements_employee';
+      case UserMode.teacher:
+        return 'announcements_teachers';
+      case UserMode.enrollee:
+        return 'announcements_all';
+      default:
+        return 'announcements_all';
+    }
   }
 }

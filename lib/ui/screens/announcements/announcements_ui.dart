@@ -312,12 +312,21 @@ class BottomTapBar extends StatefulWidget {
 }
 
 class _BottomTapBarState extends State<BottomTapBar> {
+  bool needMakeScrollable() {
+    if (SettingsLogic.doAccountHaveAccess(UserMode.admin)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: kToolbarHeight,
       color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
       child: TabBar(
+        isScrollable: needMakeScrollable(),
         indicator: UnderlineTabIndicator(
           borderSide: BorderSide(
             color: Theme.of(context).accentColor,
@@ -349,7 +358,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
               ],
             ),
           ),
-          if (SettingsLogic.getAccountMode() == UserMode.employee)
+          if (SettingsLogic.doAccountHaveAccess(UserMode.employee))
             Tab(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -368,7 +377,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
                 ],
               ),
             ),
-          if (SettingsLogic.getAccountMode() == UserMode.teacher)
+          if (SettingsLogic.doAccountHaveAccess(UserMode.teacher))
             Tab(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

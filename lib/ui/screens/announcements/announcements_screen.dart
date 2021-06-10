@@ -11,29 +11,33 @@ class AnnouncementsScreen extends StatefulWidget {
 }
 
 class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
+  int tabLength() {
+    if (SettingsLogic.doAccountHaveAccess(UserMode.admin)) {
+      return 3;
+    } else {
+      if (SettingsLogic.isAccountModeLowLevel()) {
+        return 1;
+      } else {
+        return 2;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    UserMode userMode = SettingsLogic.getAccountMode();
-    bool shouldShowMoreData =
-        userMode != UserMode.student || userMode != UserMode.enrollee;
-
     return DefaultTabController(
-      length: shouldShowMoreData ? 2 : 1,
+      length: tabLength(),
       child: Scaffold(
-        body: shouldShowMoreData
-            ? TabBarView(
-                children: [
-                  AnnouncementsList(collectionPath: 'announcements_all'),
-                  if (userMode == UserMode.admin ||
-                      userMode == UserMode.employee)
-                    AnnouncementsList(collectionPath: 'announcements_employee'),
-                  if (userMode == UserMode.teacher ||
-                      userMode == UserMode.admin)
-                    AnnouncementsList(collectionPath: 'announcements_teachers')
-                ],
-              )
-            : AnnouncementsList(collectionPath: 'alerts'),
-        floatingActionButton: shouldShowMoreData
+        body: TabBarView(
+          children: [
+            AnnouncementsList(collectionPath: 'announcements_all'),
+            if (SettingsLogic.doAccountHaveAccess(UserMode.employee))
+              AnnouncementsList(collectionPath: 'announcements_employee'),
+            if (SettingsLogic.doAccountHaveAccess(UserMode.teacher))
+              AnnouncementsList(collectionPath: 'announcements_teachers')
+          ],
+        ),
+        floatingActionButton: SettingsLogic.doAccountHaveAccess(UserMode.admin)
             ? FloatingActionButton(
                 onPressed: () {
                   if (HiveHelper.getValue('username') == null) {
@@ -45,7 +49,9 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                 child: Icon(Icons.rate_review_outlined),
               )
             : null,
-        bottomNavigationBar: shouldShowMoreData ? BottomTapBar() : null,
+        bottomNavigationBar: SettingsLogic.isAccountModeLowLevel()
+            ? null
+            : BottomTapBar(),
       ),
     );
   }
