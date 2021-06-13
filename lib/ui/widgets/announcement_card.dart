@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -82,8 +81,7 @@ class AnnouncementCard extends StatelessWidget {
     TextEditingController titleController = TextEditingController();
     TextEditingController contentController = TextEditingController();
 
-    if (FirebaseAuth.instance.currentUser!.email ==
-        "employee@energocollege.ru") {
+    if (SettingsLogic.getAccountMode() == UserMode.admin) {
       titleController.text = announcement.title;
       contentController.text = announcement.content;
 
@@ -179,7 +177,7 @@ class AnnouncementCard extends StatelessWidget {
         .collection(collectionPath());
     alerts
         .doc(docId)
-        .update({'title': titleText, 'content': contentText})
+        .update({'content_title': titleText, 'content_body': contentText})
         .then((value) => print("Announcement Updated"))
         .catchError((error) => print("Failed to update announcement: $error"));
     Navigator.pop(context);

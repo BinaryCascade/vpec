@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:vpec/ui/screens/settings/settings_logic.dart';
 import 'package:vpec/utils/hive_helper.dart';
 
 import '../../../utils/rounded_modal_sheet.dart';
@@ -42,10 +43,23 @@ class AnnouncementsLogic {
       }
     }
 
+    String collectionPath(UserMode userMode) {
+      switch (userMode) {
+        case UserMode.employee:
+          return 'announcements_employee';
+        case UserMode.teacher:
+          return 'announcements_teachers';
+        case UserMode.enrollee:
+          return 'announcements_all';
+        default:
+          return 'announcements_all';
+      }
+    }
+
     void sendNewAlert(
-        {required BuildContext context, required bool isForStudent}) async {
-      CollectionReference users = FirebaseFirestore.instance
-          .collection(isForStudent ? 'alerts' : 'privateAlerts');
+        {required BuildContext context, required UserMode userMode}) async {
+      CollectionReference users =
+          FirebaseFirestore.instance.collection(collectionPath(userMode));
 
       DateFormat formatter = DateFormat('HH:mm, d MMM yyyy');
       String pubDate = formatter.format(DateTime.now());
@@ -54,12 +68,16 @@ class AnnouncementsLogic {
           .doc(docID.toString())
           .set({
             'author': HiveHelper.getValue('username'),
-            'content': contentController.text,
-            'isPublic': isForStudent,
-            'pubDate': pubDate,
-            'title': titleController.text,
+            'content_body': contentController.text,
+            'visibility': userMode == UserMode.employee
+                ? 'employee'
+                : userMode == UserMode.teacher
+                    ? 'teachers'
+                    : 'all',
+            'date': pubDate,
+            'content_title': titleController.text,
             'photo': isUserAddPhoto ? userPhotoUrl : null,
-            'order': docID.toString(),
+            'id': docID.toString(),
           })
           .then((value) => showSnackbar(context, text: 'Объявление отправлено'))
           .catchError((error) => showSnackbar(context, text: 'Ошибка: $error'));
@@ -92,7 +110,7 @@ class AnnouncementsLogic {
                 child: OutlinedButton(
                   style: Theme.of(context).outlinedButtonTheme.style,
                   onPressed: () =>
-                      sendNewAlert(context: context, isForStudent: true),
+                      sendNewAlert(context: context, userMode: UserMode.student),
                   child: Text(
                     'Отправить всем',
                     style: TextStyle(
@@ -105,14 +123,27 @@ class AnnouncementsLogic {
                 child: OutlinedButton(
                   style: Theme.of(context).outlinedButtonTheme.style,
                   onPressed: () =>
-                      sendNewAlert(context: context, isForStudent: false),
+                      sendNewAlert(context: context, userMode: UserMode.employee),
                   child: Text(
                     'Отправить сотрудникам',
                     style: TextStyle(
                         color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  style: Theme.of(context).outlinedButtonTheme.style,
+                  onPressed: () =>
+                      sendNewAlert(context: context, userMode: UserMode.teacher),
+                  child: Text(
+                    'Отправить преподавателям',
+                    style: TextStyle(
+                        color: Theme.of(context).textTheme.bodyText1!.color),
+                  ),
+                ),
+              ),
             ],
           ));
     }
