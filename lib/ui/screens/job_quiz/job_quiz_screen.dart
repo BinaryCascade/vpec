@@ -11,10 +11,6 @@ class JobQuizScreen extends StatefulWidget {
 }
 
 class _JobQuizScreenState extends State<JobQuizScreen> {
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

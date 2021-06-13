@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _initApp() async {
-    //make all our date on russian
+    //make all our date in russian
     await initializeDateFormatting('ru');
     Intl.defaultLocale = 'ru';
 
