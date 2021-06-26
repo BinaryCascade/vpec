@@ -51,12 +51,13 @@ class _TimeTableItemState extends State<TimeTableItem> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DottedLine(
-            direction: Axis.vertical,
-            lineLength: 100,
-            lineThickness: 3,
-            dashGapLength: 0,
-            dashRadius: 0.0,
-            dashColor: itemColor),
+          direction: Axis.vertical,
+          lineLength: 100,
+          lineThickness: 3,
+          dashGapLength: 0,
+          dashRadius: 0.0,
+          dashColor: itemColor,
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Column(
@@ -103,11 +104,11 @@ class _TimeTableItemState extends State<TimeTableItem> {
       children: [
         DottedLine(
             direction: Axis.vertical,
-            lineLength: 52.5,
+            lineLength: 52,
             lineThickness: 3,
-            dashGapLength: 3,
+            dashGapLength: 3.4,
             dashRadius: 0.0,
-            dashGapColor: itemColor),
+            dashColor: itemColor),
         Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Column(
