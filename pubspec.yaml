@@ -19,27 +19,27 @@ dependencies:
   url_launcher: ^6.0.2 # for launch any url
   transparent_image: ^2.0.0 # for placeholders
   cached_network_image: ^3.0.0 # for display most images
-  flutter_cache_manager: ^3.0.2 # for cached_network_image
-  xml: ^5.1.1 # for cached_network_image
+  flutter_cache_manager: ^3.1.2 # for cached_network_image
+  xml: ^5.1.2 # for cached_network_image
   draggable_scrollbar: ^0.1.0 # for announcements scroll
   flutter_linkify: ^5.0.2 # text to links
-  firebase_core: ^1.2.0
-  firebase_auth: ^1.2.0
-  cloud_firestore: ^2.2.0
-  firebase_storage: ^8.1.0
-  firebase_analytics: ^8.1.0
+  firebase_core: ^1.3.0
+  firebase_auth: ^1.4.1
+  cloud_firestore: ^2.2.2
+  firebase_storage: ^8.1.3
+  firebase_analytics: ^8.1.2
   provider: ^5.0.0
   duration: ^3.0.6 # print duration for timetable
   dotted_line: ^3.0.0
   hive: ^2.0.4 # db
-  hive_flutter: ^1.0.0
-  share: ^2.0.1 # share anything
-  path_provider: ^2.0.1 # work with storage paths
-  quick_actions: ^0.6.0+1 # shortcuts from launcher
+  hive_flutter: ^1.1.0
+  share: ^2.0.4 # share anything
+  path_provider: ^2.0.2 # work with storage paths
+  quick_actions: ^0.6.0+2 # shortcuts from launcher
   flutter_cached_pdfview: ^0.4.0-nullsafety # for document viewer
   photo_view: ^0.11.1 # for cabinets map
-  file_picker: ^3.0.1 # for adding images to announcements
-  flutter_multi_formatter: ^2.1.0
+  file_picker: ^3.0.3 # for adding images to announcements
+  flutter_multi_formatter: ^2.2.0
 
 flutter_native_splash:
   color: "#E8E8E8"
@@ -67,9 +67,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   hive_generator: ^1.1.0
-  build_runner: ^2.0.3
+  build_runner: ^2.0.5
   flutter_launcher_icons: ^0.9.0 # launcher icons
-  flutter_native_splash: ^1.1.7+1 # splash
+  flutter_native_splash: ^1.1.7+1 # splash [do not update until android-S release]
 
 # The following section is specific to Flutter.
 flutter:
