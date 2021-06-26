@@ -13,7 +13,7 @@ Future<void> roundedModalSheet(
       isDismissible: isDismissible,
       isScrollControlled: true,
       enableDrag: enableDrag,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10),
           topRight: Radius.circular(10),
@@ -30,7 +30,7 @@ Future<void> roundedModalSheet(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(bottom: 8),
+                  padding: const EdgeInsets.only(bottom: 8),
                   child: Center(
                     child: Text(
                       title,

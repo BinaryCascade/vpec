@@ -17,10 +17,11 @@ class DocumentViewScreen extends StatelessWidget {
     }
 
     ColorFilter darkModeFilter() {
-      if (HiveHelper.getValue('alwaysLightThemeDocument') == null)
+      if (HiveHelper.getValue('alwaysLightThemeDocument') == null) {
         HiveHelper.saveValue(key: 'alwaysLightThemeDocument', value: false);
+      }
       if (HiveHelper.getValue('alwaysLightThemeDocument')) {
-        return ColorFilter.matrix([
+        return const ColorFilter.matrix([
           0.96078, 0, 0, 0, 0,
           0, 0.96078, 0, 0, 0,
           0, 0, 0.96078, 0, 0,
@@ -28,14 +29,14 @@ class DocumentViewScreen extends StatelessWidget {
         ]);
       } else {
         return ThemeHelper.isDarkMode()
-            ? ColorFilter.matrix([
+            ? const ColorFilter.matrix([
                 //R G  B  A  Const
                 -0.87843, 0, 0, 0, 255,
                 0, -0.87843, 0, 0, 255,
                 0, 0, -0.87843, 0, 255,
                 0, 0, 0, 1, 0,
               ])
-            : ColorFilter.matrix([
+            : const ColorFilter.matrix([
                 0.96078, 0, 0, 0, 0,
                 0, 0.96078, 0, 0, 0,
                 0, 0, 0.96078, 0, 0,
@@ -49,7 +50,7 @@ class DocumentViewScreen extends StatelessWidget {
       body: Center(
         child: ColorFiltered(
           colorFilter: darkModeFilter(),
-          child: PDF(swipeHorizontal: true)
+          child: const PDF(swipeHorizontal: true)
               .fromUrl(doc.url!, placeholder: (progress) => LoadingIndicator()),
         ),
       ),

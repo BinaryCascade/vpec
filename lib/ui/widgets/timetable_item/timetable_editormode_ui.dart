@@ -46,7 +46,7 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
               labelText: 'Название пары',
               hintText: '1 пара',
               labelStyle: Theme.of(context).textTheme.headline3,
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
@@ -78,7 +78,7 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
                     labelStyle: Theme.of(context).textTheme.headline3,
                     labelText: 'Начало пары',
                     hintText: '08:30',
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Theme.of(context).accentColor)),
                     focusedBorder: OutlineInputBorder(
@@ -110,7 +110,7 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
                     labelStyle: Theme.of(context).textTheme.headline3,
                     labelText: 'Конец пары',
                     hintText: '10:00',
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Theme.of(context).accentColor)),
                     focusedBorder: OutlineInputBorder(
@@ -128,7 +128,7 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
               labelStyle: Theme.of(context).textTheme.headline3,
               labelText: 'Перемена после пары',
               hintText: '10 минут',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(

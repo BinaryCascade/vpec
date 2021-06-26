@@ -25,7 +25,7 @@ class LessonsScheduleLogic extends ChangeNotifier {
 
     animationController = AnimationController(
       vsync: tickerProvider,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
     )..addListener(() {
         transformationController.value = animation.value;
       });
@@ -105,8 +105,9 @@ class LessonsScheduleLogic extends ChangeNotifier {
       lastDate: DateTime.now().add(const Duration(days: 30)),
     );
 
-    if (picked != null)
+    if (picked != null) {
       dateFromUrl = '${picked.day}-${picked.month}-${picked.year}';
+    }
     imgUrl = baseUrl + dateFromUrl + endUrl;
     notifyListeners();
   }

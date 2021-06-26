@@ -30,7 +30,7 @@ class AnnouncementsList extends StatelessWidget {
             stream: stream,
             builder: (BuildContext context,
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-              if (snapshot.hasError)
+              if (snapshot.hasError) {
                 return Center(
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
@@ -42,6 +42,7 @@ class AnnouncementsList extends StatelessWidget {
                     ),
                   ),
                 );
+              }
               if (!snapshot.hasData) return LoadingIndicator();
 
               return Align(
@@ -84,7 +85,7 @@ class AnnouncementSendUI extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(top: 10),
           child: SizedBox(
             width: double.infinity,
             child: OutlinedButton(
@@ -149,7 +150,7 @@ class NewAnnouncementUI extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: TextFormField(
             controller: titleController,
             textInputAction: TextInputAction.next,
@@ -157,7 +158,7 @@ class NewAnnouncementUI extends StatelessWidget {
             decoration: InputDecoration(
                 labelText: 'Введите заголовок',
                 labelStyle: Theme.of(context).textTheme.headline3,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                     borderSide:
                         BorderSide(color: Theme.of(context).accentColor)),
@@ -167,7 +168,7 @@ class NewAnnouncementUI extends StatelessWidget {
           ),
         ),
         ConstrainedBox(
-          constraints: BoxConstraints(minHeight: 200, maxHeight: 200),
+          constraints: const BoxConstraints(minHeight: 200, maxHeight: 200),
           child: TextFormField(
             controller: contentController,
             keyboardType: TextInputType.multiline,
@@ -179,7 +180,7 @@ class NewAnnouncementUI extends StatelessWidget {
                 labelText: 'Введите сообщение',
                 alignLabelWithHint: true,
                 labelStyle: Theme.of(context).textTheme.headline3,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                     borderSide:
                         BorderSide(color: Theme.of(context).accentColor)),
@@ -235,7 +236,7 @@ class NewAnnouncementUI extends StatelessWidget {
                   }
                 },
               ),
-              Spacer(),
+              const Spacer(),
               TextButton(
                 style: Theme.of(context).textButtonTheme.style,
                 onPressed: () => Navigator.pop(context),
@@ -332,7 +333,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
             color: Theme.of(context).accentColor,
             width: 3.0,
           ),
-          insets: EdgeInsets.only(bottom: kToolbarHeight - 4),
+          insets: const EdgeInsets.only(bottom: kToolbarHeight - 4),
         ),
         labelColor: Theme.of(context).accentColor,
         unselectedLabelColor:
@@ -343,13 +344,13 @@ class _BottomTapBarState extends State<BottomTapBar> {
           Tab(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const <Widget>[
                 Icon(
                   Icons.group_outlined,
                   size: 30,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
+                  padding: EdgeInsets.only(left: 8.0),
                   child: Text(
                     'Всем',
                     style: TextStyle(fontSize: 15),
@@ -362,13 +363,13 @@ class _BottomTapBarState extends State<BottomTapBar> {
             Tab(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const <Widget>[
                   Icon(
                     VpecIconPack.account_cog_outline,
                     size: 28,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: EdgeInsets.only(left: 8.0),
                     child: Text(
                       'Сотрудникам',
                       style: TextStyle(fontSize: 15),
@@ -381,13 +382,13 @@ class _BottomTapBarState extends State<BottomTapBar> {
             Tab(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const <Widget>[
                   Icon(
                     VpecIconPack.account_cog_outline,
                     size: 28,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: EdgeInsets.only(left: 8.0),
                     child: Text(
                       'Преподавателям',
                       style: TextStyle(fontSize: 15),

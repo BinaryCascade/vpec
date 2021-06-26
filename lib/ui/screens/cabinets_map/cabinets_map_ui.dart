@@ -18,7 +18,7 @@ class ImageMap extends StatelessWidget {
     return Center(
       child: PhotoView.customChild(
         minScale: PhotoViewComputedScale.contained * 0.8,
-        backgroundDecoration: BoxDecoration(color: Colors.transparent),
+        backgroundDecoration: const BoxDecoration(color: Colors.transparent),
         controller: photoController,
         child: CachedNetworkImage(
           imageUrl: imageUrl,
@@ -45,7 +45,7 @@ class FloorChips extends StatelessWidget {
             spacing: 6.0,
             children: [
               InputChip(
-                label: Text('1 этаж'),
+                label: const Text('1 этаж'),
                 selected: context.read<CabinetsMapLogic>().selectedFloor == 1,
                 selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 onPressed: () {
@@ -54,7 +54,7 @@ class FloorChips extends StatelessWidget {
                 },
               ),
               InputChip(
-                label: Text('2 этаж'),
+                label: const Text('2 этаж'),
                 selected: context.read<CabinetsMapLogic>().selectedFloor == 2,
                 selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 onPressed: () {
@@ -63,7 +63,7 @@ class FloorChips extends StatelessWidget {
                 },
               ),
               InputChip(
-                label: Text('3 этаж'),
+                label: const Text('3 этаж'),
                 selected: context.read<CabinetsMapLogic>().selectedFloor == 3,
                 selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 onPressed: () {
@@ -72,7 +72,7 @@ class FloorChips extends StatelessWidget {
                 },
               ),
               InputChip(
-                label: Text('4 этаж'),
+                label: const Text('4 этаж'),
                 selected: context.read<CabinetsMapLogic>().selectedFloor == 4,
                 selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 onPressed: () {

@@ -26,7 +26,7 @@ class TimeTableListView extends StatelessWidget {
         return ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (context, index) {
             return TimeTableItem(
@@ -53,19 +53,19 @@ class EditorModeButtons extends StatelessWidget {
       direction: Axis.vertical,
       children: [
         FloatingActionButton(
-            child: Icon(
+            child: const Icon(
               Icons.delete_outlined,
               size: 24.0,
             ),
             onPressed: () => TimeTableLogic().deleteAllDocs()),
         FloatingActionButton(
-            child: Icon(
+            child: const Icon(
               Icons.refresh_outlined,
               size: 24.0,
             ),
             onPressed: () => TimeTableLogic().resetTimeTable(context)),
         FloatingActionButton(
-            child: Icon(
+            child: const Icon(
               Icons.add_outlined,
               size: 24.0,
             ),
@@ -101,12 +101,12 @@ class _ResetTimeTableDialogUIState extends State<ResetTimeTableDialogUI> {
                     onPressed: () => context
                         .read<TimeTableLogic>()
                         .restoreFiles(context, true),
-                    child: Text('30 мин')),
+                    child: const Text('30 мин')),
                 OutlinedButton(
                     onPressed: () => context
                         .read<TimeTableLogic>()
                         .restoreFiles(context, false),
-                    child: Text('40 мин'))
+                    child: const Text('40 мин'))
               ]),
         ],
       ),
@@ -141,7 +141,7 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
               labelText: 'Название пары',
               hintText: '1 пара',
               labelStyle: Theme.of(context).textTheme.headline3,
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
@@ -173,7 +173,7 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
                     labelStyle: Theme.of(context).textTheme.headline3,
                     labelText: 'Начало пары',
                     hintText: '08:30',
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Theme.of(context).accentColor)),
                     focusedBorder: OutlineInputBorder(
@@ -205,7 +205,7 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
                     labelStyle: Theme.of(context).textTheme.headline3,
                     labelText: 'Конец пары',
                     hintText: '10:00',
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Theme.of(context).accentColor)),
                     focusedBorder: OutlineInputBorder(
@@ -223,7 +223,7 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
               labelStyle: Theme.of(context).textTheme.headline3,
               labelText: 'Перемена после пары',
               hintText: '10 минут',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(

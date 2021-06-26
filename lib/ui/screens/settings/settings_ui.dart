@@ -31,9 +31,8 @@ class _AccountBlockState extends State<AccountBlock>
     return Consumer<SettingsLogic>(
       builder: (BuildContext context, storage, Widget? child) {
         return AnimatedSize(
-          vsync: this,
           curve: Curves.fastOutSlowIn,
-          duration: Duration(milliseconds: 400),
+          duration: const Duration(milliseconds: 400),
           child: Column(
             children: [
               StyledListTile(
@@ -133,17 +132,17 @@ class AccountLoginUI extends StatelessWidget {
             child: Column(
           children: [
             Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: TextFormField(
                   controller: emailController,
-                  autofillHints: [AutofillHints.username],
+                  autofillHints: const <String>[AutofillHints.username],
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
                   style: Theme.of(context).textTheme.headline3,
                   decoration: InputDecoration(
                       labelText: 'Введите email',
                       labelStyle: Theme.of(context).textTheme.headline3,
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(
                           borderSide:
                               BorderSide(color: Theme.of(context).accentColor)),
@@ -153,7 +152,7 @@ class AccountLoginUI extends StatelessWidget {
                 )),
             TextFormField(
               controller: passwordController,
-              autofillHints: [AutofillHints.password],
+              autofillHints: const <String>[AutofillHints.password],
               textInputAction: TextInputAction.done,
               obscureText: true,
               keyboardType: TextInputType.visiblePassword,
@@ -161,7 +160,7 @@ class AccountLoginUI extends StatelessWidget {
               decoration: InputDecoration(
                   labelText: 'Введите пароль',
                   labelStyle: Theme.of(context).textTheme.headline3,
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Theme.of(context).accentColor)),
@@ -224,7 +223,7 @@ class EditNameUI extends StatelessWidget {
     return Column(
       children: [
         Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 10),
             child: TextFormField(
               controller: nameController,
               textInputAction: TextInputAction.done,
@@ -233,7 +232,7 @@ class EditNameUI extends StatelessWidget {
               decoration: InputDecoration(
                   labelText: 'Введите имя',
                   labelStyle: Theme.of(context).textTheme.headline3,
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Theme.of(context).accentColor)),
@@ -304,10 +303,12 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
       selectedItem =
           HiveHelper.getValue(widget.hiveKey) == 'Светлая тема' ? 0 : 1;
     }
-    if (HiveHelper.getValue('alwaysLightThemeDocument') == null)
+    if (HiveHelper.getValue('alwaysLightThemeDocument') == null) {
       HiveHelper.saveValue(key: 'alwaysLightThemeDocument', value: false);
-    if (HiveHelper.getValue('alwaysLightThemeDocument'))
+    }
+    if (HiveHelper.getValue('alwaysLightThemeDocument')) {
       documentLightThemeSwitchState = true;
+    }
     super.initState();
   }
 
@@ -368,7 +369,7 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
                 selectedItem = value;
               });
             }),
-        Divider(),
+        const Divider(),
         SwitchListTile(
             value: documentLightThemeSwitchState,
             activeColor: Theme.of(context).accentColor,
@@ -384,7 +385,7 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
                 documentLightThemeSwitchState = value;
               });
             }),
-        SizedBox(height: 7),
+        const SizedBox(height: 7),
       ],
     );
   }

@@ -51,7 +51,7 @@ class SettingsLogic extends ChangeNotifier {
     roundedModalSheet(
       context: context,
       title: 'Войти в аккаунт',
-      child: AccountLoginUI(),
+      child: const AccountLoginUI(),
     );
   }
 
@@ -81,15 +81,6 @@ class SettingsLogic extends ChangeNotifier {
       context: context,
       child: EditNameUI(nameController: nameController),
     );
-  }
-
-  @deprecated
-  String? getAccountEmail() {
-    if (FirebaseAuth.instance.currentUser!.email != null) {
-      return FirebaseAuth.instance.currentUser!.email;
-    } else {
-      return '';
-    }
   }
 
   static UserMode getAccountMode() {

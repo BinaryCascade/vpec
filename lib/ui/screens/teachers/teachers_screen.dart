@@ -21,15 +21,15 @@ class _TeacherScreenState extends State<TeacherScreen>
         return Scaffold(
           appBar: AppBar(
             title: AnimatedSwitcher(
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 child: value.isSearchMode
-                    ? SearchBar()
+                    ? const SearchBar()
                     : Row(
-                        children: [
+                        children: const <Widget>[
                           Text('Преподаватели'),
                         ],
                       )),
-            actions: [SearchButton()],
+            actions: const <Widget>[SearchButton()],
             brightness:
                 ThemeHelper.isDarkMode() ? Brightness.dark : Brightness.light,
           ),
@@ -40,10 +40,9 @@ class _TeacherScreenState extends State<TeacherScreen>
             child: Column(
               children: [
                 AnimatedSize(
-                    vsync: this,
                     curve: Curves.fastOutSlowIn,
-                    duration: Duration(milliseconds: 400),
-                    reverseDuration: Duration(milliseconds: 400),
+                    duration: const Duration(milliseconds: 400),
+                    reverseDuration: const Duration(milliseconds: 400),
                     child: value.isSearchMode ? BuildChips() : Container()),
                 BuildTeachersList(),
               ],

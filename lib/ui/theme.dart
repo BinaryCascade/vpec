@@ -21,7 +21,7 @@ ThemeData themeData() {
   const lowContrast = Colors.black38;
 
   return ThemeData(
-    pageTransitionsTheme: PageTransitionsTheme(builders: {
+    pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
     }),
@@ -33,7 +33,7 @@ ThemeData themeData() {
     accentColor: accentColor,
     cardColor: firstLevelColor,
     splashColor: accentColor.withOpacity(0.2),
-    colorScheme: ColorScheme(
+    colorScheme: const ColorScheme(
         primary: accentColor,
         primaryVariant: accentColor,
         secondary: accentColor,
@@ -48,7 +48,7 @@ ThemeData themeData() {
         onError: Color(0xDEFFFFFF),
         brightness: Brightness.light),
     dialogBackgroundColor: firstLevelColor,
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
         subtitle1:
             TextStyle(fontSize: 15, color: mediumContrast, fontWeight: medium),
         bodyText1:
@@ -77,7 +77,7 @@ ThemeData themeData() {
             fontSize: 18,
             fontFamily: 'Montserrat',
             fontWeight: semiBold)),
-    iconTheme: IconThemeData().copyWith(
+    iconTheme: const IconThemeData().copyWith(
       size: 20.0,
     ),
     textButtonTheme: TextButtonThemeData(
@@ -86,16 +86,16 @@ ThemeData themeData() {
                 accentColor.withOpacity(0.20)))),
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-            side: BorderSide(
+            side: const BorderSide(
       width: 1,
       color: accentColor,
     ))),
     scaffoldBackgroundColor: backgroundColor,
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: secondLevelColor,
       foregroundColor: accentColor,
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: accentColor,
       unselectedItemColor: mediumContrast,
       backgroundColor: secondLevelColor,
@@ -114,7 +114,7 @@ ThemeData darkThemeData() {
   const lowContrast = Color(0x61FFFFFF);
 
   return ThemeData.dark().copyWith(
-    pageTransitionsTheme: PageTransitionsTheme(builders: {
+    pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
     }),
@@ -126,7 +126,7 @@ ThemeData darkThemeData() {
     accentColor: accentColor,
     cardColor: firstLevelColor,
     splashColor: accentColor.withOpacity(0.2),
-    colorScheme: ColorScheme(
+    colorScheme: const ColorScheme(
         primary: accentColor,
         primaryVariant: accentColor,
         secondary: accentColor,
@@ -141,7 +141,7 @@ ThemeData darkThemeData() {
         onError: highContrast,
         brightness: Brightness.dark),
     dialogBackgroundColor: firstLevelColor,
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
         subtitle1:
             TextStyle(fontSize: 15, color: mediumContrast, fontWeight: medium),
         bodyText1:
@@ -170,7 +170,7 @@ ThemeData darkThemeData() {
             fontSize: 18,
             fontFamily: 'Montserrat',
             fontWeight: semiBold)),
-    iconTheme: IconThemeData().copyWith(
+    iconTheme: const IconThemeData().copyWith(
       size: 20.0,
     ),
     textButtonTheme: TextButtonThemeData(
@@ -179,16 +179,16 @@ ThemeData darkThemeData() {
                 accentColor.withOpacity(0.20)))),
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-            side: BorderSide(
+            side: const BorderSide(
       width: 1,
       color: accentColor,
     ))),
     scaffoldBackgroundColor: backgroundColor,
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: secondLevelColor,
       foregroundColor: accentColor,
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: accentColor,
       unselectedItemColor: mediumContrast,
       backgroundColor: secondLevelColor,

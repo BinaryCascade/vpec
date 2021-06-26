@@ -33,36 +33,36 @@ class _AnswersBlockState extends State<AnswersBlock> {
             title: context.read<JobQuizStorage>().firstAnswer,
             value: 1,
             groupValue: context.read<JobQuizStorage>().selectedAnswer,
-            onChanged: (num) {
+            onChanged: (newValue) {
               setState(() {
-                context.read<JobQuizStorage>().setAnswer(num!);
+                context.read<JobQuizStorage>().setAnswer(newValue!);
               });
             }),
         AnswerListTile(
             title: context.read<JobQuizStorage>().secondAnswer,
             value: 2,
             groupValue: context.read<JobQuizStorage>().selectedAnswer,
-            onChanged: (num) {
+            onChanged: (newValue) {
               setState(() {
-                context.read<JobQuizStorage>().setAnswer(num!);
+                context.read<JobQuizStorage>().setAnswer(newValue!);
               });
             }),
         AnswerListTile(
             title: context.read<JobQuizStorage>().thirdAnswer,
             value: 3,
             groupValue: context.read<JobQuizStorage>().selectedAnswer,
-            onChanged: (num) {
+            onChanged: (newValue) {
               setState(() {
-                context.read<JobQuizStorage>().setAnswer(num!);
+                context.read<JobQuizStorage>().setAnswer(newValue!);
               });
             }),
         AnswerListTile(
             title: context.read<JobQuizStorage>().fourthAnswer,
             value: 4,
             groupValue: context.read<JobQuizStorage>().selectedAnswer,
-            onChanged: (num) {
+            onChanged: (newValue) {
               setState(() {
-                context.read<JobQuizStorage>().setAnswer(num!);
+                context.read<JobQuizStorage>().setAnswer(newValue!);
               });
             }),
       ],
@@ -78,11 +78,11 @@ class JobQuizFAB extends StatelessWidget {
     return needShowResult
         ? Container()
         : FloatingActionButton.extended(
-            label: Text('ВЫБРАТЬ'),
-            icon: Icon(Icons.check_outlined),
+            label: const Text('ВЫБРАТЬ'),
+            icon: const Icon(Icons.check_outlined),
             onPressed: () {
               if (context.read<JobQuizStorage>().selectedAnswer == 0) {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Выберите вариант ответа'),
                   behavior: SnackBarBehavior.floating,
                 ));

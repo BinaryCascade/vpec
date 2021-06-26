@@ -49,7 +49,7 @@ class BuildChips extends StatelessWidget {
             children: [
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
-                label: Text('Фамилия'),
+                label: const Text('Фамилия'),
                 selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
@@ -60,7 +60,7 @@ class BuildChips extends StatelessWidget {
               ),
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
-                label: Text('Имя'),
+                label: const Text('Имя'),
                 selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
@@ -71,7 +71,7 @@ class BuildChips extends StatelessWidget {
               ),
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
-                label: Text('Отчество'),
+                label: const Text('Отчество'),
                 selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
@@ -82,7 +82,7 @@ class BuildChips extends StatelessWidget {
               ),
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
-                label: Text('Предметы'),
+                label: const Text('Предметы'),
                 selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
@@ -93,7 +93,7 @@ class BuildChips extends StatelessWidget {
               ),
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
-                label: Text('Кабинеты'),
+                label: const Text('Кабинеты'),
                 selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
@@ -122,7 +122,7 @@ class BuildTeachersList extends StatelessWidget {
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
             child: ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemCount: snapshot.data!.docs.length,
@@ -145,7 +145,7 @@ class EditModeFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-        child: Icon(
+        child: const Icon(
           Icons.add_outlined,
           size: 24.0,
         ),
@@ -177,7 +177,7 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
           decoration: InputDecoration(
               labelStyle: Theme.of(context).textTheme.headline3,
               labelText: 'Фамилия',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
@@ -191,7 +191,7 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
           decoration: InputDecoration(
               labelStyle: Theme.of(context).textTheme.headline3,
               labelText: 'Имя',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
@@ -205,7 +205,7 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
           decoration: InputDecoration(
               labelStyle: Theme.of(context).textTheme.headline3,
               labelText: 'Отчество',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
@@ -219,7 +219,7 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
           decoration: InputDecoration(
               labelStyle: Theme.of(context).textTheme.headline3,
               labelText: 'Занятия',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
@@ -233,7 +233,7 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
           decoration: InputDecoration(
               labelStyle: Theme.of(context).textTheme.headline3,
               labelText: 'Кабинет',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
@@ -293,10 +293,14 @@ class SearchButton extends StatefulWidget {
 class _SearchButtonState extends State<SearchButton> {
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-        onPressed: () => context.read<TeachersLogic>().toggleSearch(),
-        icon: Icon(context.read<TeachersLogic>().isSearchMode
-            ? Icons.close_outlined
-            : Icons.search_outlined));
+    return Consumer<TeachersLogic>(
+      builder: (BuildContext context, value, Widget? child) {
+        return IconButton(
+            onPressed: () => value.toggleSearch(),
+            icon: Icon(value.isSearchMode
+                ? Icons.close_outlined
+                : Icons.search_outlined));
+      },
+    );
   }
 }

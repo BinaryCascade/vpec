@@ -17,7 +17,7 @@ class ViewDocuments extends StatelessWidget {
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (!snapshot.hasData) return LoadingIndicator();
           return ListView(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: snapshot.data!.docs.map((document) {
               return DocumentCard(

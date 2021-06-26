@@ -9,14 +9,14 @@ import 'package:url_launcher/url_launcher.dart';
 import '../widgets/loading_indicator.dart';
 
 class NewsScreen extends StatefulWidget {
-  NewsScreen() : super();
+  const NewsScreen() : super();
 
   @override
   _NewsScreenState createState() => _NewsScreenState();
 }
 
 class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
-  static const String FEED_URL = 'https://energocollege.ru/rss.xml';
+  static const String feedUrl = 'https://energocollege.ru/rss.xml';
   RssFeed? _feed;
 
   void updateFeed(feed) {
@@ -38,7 +38,7 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
   Future<void> load() async {
     loadFeed().then((result) {
       if (null == result || result.toString().isEmpty) {
-        return RssFeed();
+        return const RssFeed();
       }
       updateFeed(result);
     });
@@ -47,7 +47,7 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
   Future<RssFeed?> loadFeed() async {
     try {
       final client = http.Client();
-      final response = await client.get(Uri.parse(FEED_URL));
+      final response = await client.get(Uri.parse(feedUrl));
       return RssFeed.parse(response.body);
     } catch (e) {
       return null;
@@ -75,17 +75,18 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 6.5, vertical: 5.5),
                   child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: _feed!.items.length,
                     itemBuilder: (BuildContext context, int index) {
                       final item = _feed!.items[index];
                       String imgUrl = '';
                       if (item.description!.contains('src=') &&
-                          item.description!.contains('alt='))
+                          item.description!.contains('alt=')) {
                         imgUrl = item.description!.substring(
                             item.description!.indexOf("src=") + 5,
                             item.description!.indexOf('alt=') - 2);
+                      }
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 2),
                         child: Card(
@@ -98,12 +99,11 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
                             child: Column(
                               children: <Widget>[
                                 AnimatedSize(
-                                  vsync: this,
                                   curve: Curves.fastOutSlowIn,
-                                  duration: Duration(milliseconds: 400),
+                                  duration: const Duration(milliseconds: 400),
                                   child: Container(
                                     clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
                                     ),
@@ -111,7 +111,7 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
                                         imageUrl: imgUrl,
                                         fit: BoxFit.fill,
                                         placeholder: (context, url) =>
-                                            Container(
+                                            SizedBox(
                                                 height: 200,
                                                 width: MediaQuery.of(context)
                                                     .size
@@ -123,7 +123,7 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 13),
                                   child: Column(
                                     crossAxisAlignment:
@@ -136,10 +136,10 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
                                             .headline3,
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(top: 6),
+                                        padding: const EdgeInsets.only(top: 6),
                                         child: Row(
                                           children: <Widget>[
-                                            Spacer(),
+                                            const Spacer(),
                                             Text(
                                               DateFormat('d MMMM yyyy, HH:mm')
                                                   .format(_parseRfc822DateTime(

@@ -37,14 +37,14 @@ class LessonImage extends StatelessWidget {
             transformationController: storage.transformationController,
             child: ColorFiltered(
               colorFilter: ThemeHelper.isDarkMode()
-                  ? ColorFilter.matrix([
+                  ? const ColorFilter.matrix([
                       //R G  B  A  Const
                       -0.87843, 0, 0, 0, 255,
                       0, -0.87843, 0, 0, 255,
                       0, 0, -0.87843, 0, 255,
                       0, 0, 0, 1, 0,
                     ])
-                  : ColorFilter.matrix([
+                  : const ColorFilter.matrix([
                       //R G  B  A  Const
                       0.96078, 0, 0, 0, 0,
                       0, 0.96078, 0, 0, 0,
@@ -78,15 +78,15 @@ class FabMenu extends StatelessWidget {
         if (!kIsWeb)
           FloatingActionButton(
             mini: true,
-            child: Icon(Icons.share_outlined),
+            child: const Icon(Icons.share_outlined),
             onPressed: () =>
                 context.read<LessonsScheduleLogic>().shareLessonImage(),
           ),
         Padding(
-          padding: EdgeInsets.only(bottom: 4),
+          padding: const EdgeInsets.only(bottom: 4),
           child: FloatingActionButton(
             mini: true,
-            child: Icon(Icons.today_outlined),
+            child: const Icon(Icons.today_outlined),
             onPressed: () =>
                 context.read<LessonsScheduleLogic>().chooseDate(context),
           ),

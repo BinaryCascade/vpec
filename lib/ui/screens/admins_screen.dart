@@ -15,7 +15,7 @@ class AdminScreen extends StatelessWidget {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Администрация'),
+        title: const Text('Администрация'),
         brightness:
             ThemeHelper.isDarkMode() ? Brightness.dark : Brightness.light,
       ),
@@ -27,7 +27,7 @@ class AdminScreen extends StatelessWidget {
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
             child: ListView(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               children: snapshot.data!.docs.map((document) {

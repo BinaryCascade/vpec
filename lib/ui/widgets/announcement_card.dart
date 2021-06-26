@@ -11,12 +11,12 @@ import '../../utils/rounded_modal_sheet.dart';
 class AnnouncementCard extends StatelessWidget {
   final AnnouncementModel announcement;
 
-  AnnouncementCard({required this.announcement});
+  const AnnouncementCard({required this.announcement});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
+      padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
       child: Card(
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
@@ -29,27 +29,27 @@ class AnnouncementCard extends StatelessWidget {
               if (announcement.photoUrl != null)
                 Container(
                   clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                   child: CachedNetworkImage(imageUrl: announcement.photoUrl!),
                 ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: ListTile(
                   title: Text(
                     announcement.title,
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   subtitle: Padding(
-                    padding: EdgeInsets.only(top: 6),
+                    padding: const EdgeInsets.only(top: 6),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         SelectableLinkify(
                           text: announcement.content,
                           style: Theme.of(context).textTheme.bodyText1,
-                          options: LinkifyOptions(humanize: true),
+                          options: const LinkifyOptions(humanize: true),
                           onOpen: (link) async {
                             if (await canLaunch(link.url)) {
                               await launch(link.url);
@@ -59,7 +59,7 @@ class AnnouncementCard extends StatelessWidget {
                           },
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 6),
+                          padding: const EdgeInsets.only(top: 6),
                           child: Text(
                             announcement.author + ' • ' + announcement.pubDate,
                             style: Theme.of(context).textTheme.subtitle1,
@@ -91,7 +91,7 @@ class AnnouncementCard extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.symmetric(vertical: 10),
               child: TextFormField(
                 controller: titleController,
                 textInputAction: TextInputAction.next,
@@ -99,7 +99,7 @@ class AnnouncementCard extends StatelessWidget {
                 decoration: InputDecoration(
                     labelText: 'Введите заголовок',
                     labelStyle: Theme.of(context).textTheme.headline3,
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                         borderSide:
                             BorderSide(color: Theme.of(context).accentColor)),
@@ -109,7 +109,7 @@ class AnnouncementCard extends StatelessWidget {
               ),
             ),
             ConstrainedBox(
-              constraints: BoxConstraints(minHeight: 200, maxHeight: 200),
+              constraints: const BoxConstraints(minHeight: 200, maxHeight: 200),
               child: TextFormField(
                 controller: contentController,
                 keyboardType: TextInputType.multiline,
@@ -121,7 +121,7 @@ class AnnouncementCard extends StatelessWidget {
                     labelText: 'Введите сообщение',
                     alignLabelWithHint: true,
                     labelStyle: Theme.of(context).textTheme.headline3,
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                         borderSide:
                             BorderSide(color: Theme.of(context).accentColor)),
@@ -177,9 +177,7 @@ class AnnouncementCard extends StatelessWidget {
         .collection(collectionPath());
     alerts
         .doc(docId)
-        .update({'content_title': titleText, 'content_body': contentText})
-        .then((value) => print("Announcement Updated"))
-        .catchError((error) => print("Failed to update announcement: $error"));
+        .update({'content_title': titleText, 'content_body': contentText});
     Navigator.pop(context);
   }
 
@@ -188,7 +186,7 @@ class AnnouncementCard extends StatelessWidget {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
@@ -206,7 +204,7 @@ class AnnouncementCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 10),
                     child: SizedBox(
                       width: double.infinity,
                       child: OutlinedButton(
@@ -244,9 +242,7 @@ class AnnouncementCard extends StatelessWidget {
         FirebaseFirestore.instance.collection(collectionPath());
     alerts
         .doc(announcement.docId)
-        .delete()
-        .then((value) => print("Announcement deleted"))
-        .catchError((error) => print("Failed to delete Announcement: $error"));
+        .delete();
     Navigator.pop(context);
   }
 

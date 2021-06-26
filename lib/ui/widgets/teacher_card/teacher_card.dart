@@ -46,7 +46,7 @@ class TeacherCard extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     if (teacher.cabinet != '')
                       Text(
                         "Кабинет ${teacher.cabinet}",

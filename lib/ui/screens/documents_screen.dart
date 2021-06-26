@@ -9,7 +9,7 @@ class DocumentsScreen extends StatelessWidget {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Документы'),
+        title: const Text('Документы'),
       ),
       body: Column(
         children: [

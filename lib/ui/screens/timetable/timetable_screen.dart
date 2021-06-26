@@ -37,9 +37,9 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
             totalSnow: 20,
             speed: 0.4,
             snowColor:
-                ThemeHelper.isDarkMode() ? Colors.white : Color(0xFFD6D6D6),
+                ThemeHelper.isDarkMode() ? Colors.white : const Color(0xFFD6D6D6),
           ),
-        Center(
+        const Center(
           child: SingleChildScrollView(
             padding: EdgeInsets.only(top: 30),
             child: TimeTableListView(),
@@ -47,7 +47,7 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
         ),
       ]),
       floatingActionButton:
-          SettingsLogic.checkIsInEditMode ? EditorModeButtons() : null,
+          SettingsLogic.checkIsInEditMode ? const EditorModeButtons() : null,
     );
   }
 }

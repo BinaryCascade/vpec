@@ -41,7 +41,7 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
           decoration: InputDecoration(
               labelStyle: Theme.of(context).textTheme.headline3,
               labelText: 'Фамилия',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
@@ -55,7 +55,7 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
           decoration: InputDecoration(
               labelStyle: Theme.of(context).textTheme.headline3,
               labelText: 'Имя',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
@@ -69,7 +69,7 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
           decoration: InputDecoration(
               labelStyle: Theme.of(context).textTheme.headline3,
               labelText: 'Отчество',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
@@ -83,7 +83,7 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
           decoration: InputDecoration(
               labelStyle: Theme.of(context).textTheme.headline3,
               labelText: 'Занятия',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(
@@ -97,7 +97,7 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
           decoration: InputDecoration(
               labelStyle: Theme.of(context).textTheme.headline3,
               labelText: 'Кабинет',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).accentColor)),
               focusedBorder: OutlineInputBorder(

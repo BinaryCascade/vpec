@@ -21,9 +21,7 @@ class TeacherEditorModeLogic {
         .doc(model.id)
         .set(
           model.toMap(int.parse(model.id!)),
-        )
-        .then((value) => print('Отредактировано'))
-        .catchError((error) => print('Ошибка редактирования: $error'));
+        );
   }
 
   void showConfirmDeleteDialog(BuildContext context, String id) {

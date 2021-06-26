@@ -19,7 +19,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Настройки'),
+        title: const Text('Настройки'),
         brightness:
             ThemeHelper.isDarkMode() ? Brightness.dark : Brightness.light,
       ),
@@ -37,7 +37,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           AppThemeListTile(),
           LaunchOnStartChooser(),
           // buildBackgroundTaskWidgets(context), // low-priority
-          Divider(),
+          const Divider(),
           StyledListTile(
               icon: Icon(
                 Icons.info_outlined,

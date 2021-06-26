@@ -45,12 +45,13 @@ class JobQuizStorage extends ChangeNotifier {
     List duplicates = [];
     bool haveDuplicates = false;
 
-    list.forEach((element) {
-      if (duplicates.contains(element))
+    for (var element in list) {
+      if (duplicates.contains(element)) {
         haveDuplicates = true;
-      else
+      } else {
         duplicates.add(element);
-    });
+      }
+    }
     if (haveDuplicates) {
       return 'Похоже, Вы уникальный человек! У Вас есть предрасположенность к '
           'нескольким профессиям:\n'

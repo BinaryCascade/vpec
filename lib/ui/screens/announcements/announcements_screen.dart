@@ -30,11 +30,11 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
       child: Scaffold(
         body: TabBarView(
           children: [
-            AnnouncementsList(collectionPath: 'announcements_all'),
+            const AnnouncementsList(collectionPath: 'announcements_all'),
             if (SettingsLogic.doAccountHaveAccess(UserMode.employee))
-              AnnouncementsList(collectionPath: 'announcements_employee'),
+              const AnnouncementsList(collectionPath: 'announcements_employee'),
             if (SettingsLogic.doAccountHaveAccess(UserMode.teacher))
-              AnnouncementsList(collectionPath: 'announcements_teachers')
+              const AnnouncementsList(collectionPath: 'announcements_teachers')
           ],
         ),
         floatingActionButton: SettingsLogic.doAccountHaveAccess(UserMode.admin)
@@ -46,12 +46,12 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                     AnnouncementsLogic().createNewAnnouncement(context);
                   }
                 },
-                child: Icon(Icons.rate_review_outlined),
+                child: const Icon(Icons.rate_review_outlined),
               )
             : null,
         bottomNavigationBar: SettingsLogic.isAccountModeLowLevel()
             ? null
-            : BottomTapBar(),
+            : const BottomTapBar(),
       ),
     );
   }

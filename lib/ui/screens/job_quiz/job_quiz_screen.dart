@@ -20,7 +20,7 @@ class _JobQuizScreenState extends State<JobQuizScreen> {
       create: (_) => JobQuizStorage(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Проф. направленность'),
+          title: const Text('Проф. направленность'),
           brightness:
               ThemeHelper.isDarkMode() ? Brightness.dark : Brightness.light,
         ),

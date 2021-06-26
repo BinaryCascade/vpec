@@ -11,10 +11,11 @@ class SnowWidget extends StatefulWidget {
   final bool? isRunning;
   final Color? snowColor;
 
-  SnowWidget(
+  const SnowWidget(
       {Key? key, this.totalSnow, this.speed, this.isRunning, this.snowColor})
       : super(key: key);
 
+  @override
   _SnowWidgetState createState() => _SnowWidgetState();
 }
 

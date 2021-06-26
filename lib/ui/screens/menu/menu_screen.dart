@@ -31,7 +31,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         .colorStatusBar(context: context, haveAppbar: false);
                   }),
               // information block
-              Divider(),
+              const Divider(),
               // This fragment is done, but we have no maps in our server, that's why we comment this
               // StyledListTile(
               //     icon: Icon(Icons.layers_outlined,
@@ -69,7 +69,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                   if (snapshot.hasData) {
-                    if (snapshot.data)
+                    if (snapshot.data) {
                       return StyledListTile(
                           icon: Icon(Icons.rule_outlined,
                               color: Theme.of(context).accentColor, size: 32),
@@ -80,12 +80,13 @@ class _MenuScreenState extends State<MenuScreen> {
                             ThemeHelper.colorStatusBar(
                                 context: context, haveAppbar: false);
                           });
+                    }
                   }
                   return Container();
                 },
               ),
               // documents block
-              Divider(),
+              const Divider(),
               StyledListTile(
                   title: 'Документы',
                   subtitle: 'Список документов',

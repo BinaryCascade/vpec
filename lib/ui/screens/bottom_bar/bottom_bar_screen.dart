@@ -18,7 +18,7 @@ class BottomBarScreen extends StatefulWidget {
 class _BottomBarScreenState extends State<BottomBarScreen> {
   // List of screens for navigation
   final List<Widget> pages = [
-    NewsScreen(),
+    const NewsScreen(),
     AnnouncementsScreen(),
     ChangeNotifierProvider(
         create: (_) => TimeTableItemLogic(), child: TimeTableScreen()),

@@ -91,7 +91,7 @@ class AnnouncementsLogic {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 child: SizedBox(
                   width: double.infinity,
                   child: OutlinedButton(

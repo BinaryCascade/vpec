@@ -67,9 +67,7 @@ class TimeTableLogic {
                 getDefaultTimeSchedule(
                         isThirtyMinBreak: isThirtyMinBreak, numOfLesson: i)
                     .toMap(docID),
-              )
-              .then((value) => print('Добавлено - $i'))
-              .catchError((error) => print('$i - Ошибка: $error'));
+              );
         }
       } else {
         showSnackbar(context,
@@ -82,7 +80,7 @@ class TimeTableLogic {
       {required bool isThirtyMinBreak, required int numOfLesson}) {
     switch (numOfLesson) {
       case 1:
-        return TimeModel(
+        return const TimeModel(
           startLesson: '08:30',
           endLesson: '10:00',
           name: '1 пара',
@@ -117,7 +115,7 @@ class TimeTableLogic {
           pause: '0 минут',
         );
       default:
-        return TimeModel(
+        return const TimeModel(
           startLesson: '08:00',
           endLesson: '08:10',
           name: 'Указаны неправильные данные',
@@ -133,9 +131,7 @@ class TimeTableLogic {
         .doc(docID.toString())
         .set(
           model.toMap(int.parse(docID)),
-        )
-        .then((value) => print('Отредактировано'))
-        .catchError((error) => print('Ошибка редактирования: $error'));
+        );
   }
 
   void confirmDelete(BuildContext context, TimeModel model) {
@@ -155,8 +151,6 @@ class TimeTableLogic {
         FirebaseFirestore.instance.collection('time_schedule');
     schedule
         .doc(docID.toString())
-        .delete()
-        .then((value) => print('Удалено'))
-        .catchError((error) => print('Ошибка удаления: $error'));
+        .delete();
   }
 }

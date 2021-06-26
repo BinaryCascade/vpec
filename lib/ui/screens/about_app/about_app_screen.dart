@@ -9,26 +9,26 @@ class AboutAppScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('О приложении'),
+        title: const Text('О приложении'),
       ),
       body: SingleChildScrollView(
         child: Wrap(
           children: [
-            AboutDeveloperCard(
+            const AboutDeveloperCard(
               nickname: 'Tembeon',
               name: 'Рафиков Артур',
               post: 'Старший разработчик',
               vkUrl: 'https://vk.com/id504890843',
               tgUrl: 'https://t.me/tembeon',
             ),
-            AboutDeveloperCard(
+            const AboutDeveloperCard(
               nickname: 'Lazurit11',
               name: 'Гордеев Владислав',
               post: 'Младший разработчик, UI/UX дизайнер',
               vkUrl: 'https://vk.com/id187849966',
               tgUrl: 'https://t.me/lazurit11',
             ),
-            Divider(),
+            const Divider(),
             StyledListTile(
                 title: 'Исходный код приложения',
                 subtitle: 'Нажмите, чтобы открыть Github',

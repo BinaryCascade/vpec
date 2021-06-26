@@ -33,7 +33,7 @@ class AboutDeveloperCard extends StatelessWidget {
                     nickname!,
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   if (vkUrl != null)
                     IconButton(
                       tooltip: 'Открыть страницу в VK',

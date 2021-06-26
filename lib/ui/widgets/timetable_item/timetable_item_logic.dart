@@ -11,8 +11,8 @@ import 'timetable_editormode_ui.dart';
 
 class TimeTableItemLogic extends ChangeNotifier {
   bool needPrintText = true;
-  Timer updateTimer = Timer(Duration(seconds: 0), () {});
-  Duration smallestUntilStartDuration = Duration(days: 2);
+  Timer updateTimer = Timer(const Duration(seconds: 0), () {});
+  Duration smallestUntilStartDuration = const Duration(days: 2);
 
   String updateTimeItem(TimeModel model) {
     DateTime now = DateTime.now();
@@ -29,8 +29,8 @@ class TimeTableItemLogic extends ChangeNotifier {
     if (nowDuration >= startDuration && nowDuration < endDuration) {
       needPrintText = false;
 
-      if (endDuration - nowDuration <= Duration(seconds: 1)) {
-        smallestUntilStartDuration = Duration(days: 2);
+      if (endDuration - nowDuration <= const Duration(seconds: 1)) {
+        smallestUntilStartDuration = const Duration(days: 2);
         // updating with delay for user-invisible check
         updateAfterFewMoment();
       }
@@ -62,7 +62,7 @@ class TimeTableItemLogic extends ChangeNotifier {
   }
 
   Future<void> updateAfterFewMoment() async {
-    await Future.delayed(Duration(seconds: 1), () => needPrintText = true);
+    await Future.delayed(const Duration(seconds: 1), () => needPrintText = true);
   }
 
   void cancelTimer() {
@@ -71,12 +71,12 @@ class TimeTableItemLogic extends ChangeNotifier {
 
   String printUntilDuration(Duration duration) {
     return prettyDuration(Duration(minutes: duration.inMinutes + 1),
-        locale: RussianDurationLanguage());
+        locale: const RussianDurationLanguage());
   }
 
   void updateTime() {
     cancelTimer();
-    updateTimer = Timer.periodic(Duration(seconds: 1), (timer) async {
+    updateTimer = Timer.periodic(const Duration(seconds: 1), (timer) async {
       notifyListeners();
     });
   }

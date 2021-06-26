@@ -30,7 +30,7 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Карта кабинетов'),
+        title: const Text('Карта кабинетов'),
       ),
       body: Consumer<CabinetsMapLogic>(
         builder: (context, storage, child) {
