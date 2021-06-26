@@ -22,7 +22,7 @@ class ImageMap extends StatelessWidget {
         controller: photoController,
         child: CachedNetworkImage(
           imageUrl: imageUrl,
-          placeholder: (_, __) => LoadingIndicator(),
+          placeholder: (_, __) => const LoadingIndicator(),
           errorWidget: (context, url, error) => Text(
             "Ошибка загрузки:\n$error",
             style: Theme.of(context).textTheme.bodyText1,
@@ -34,6 +34,8 @@ class ImageMap extends StatelessWidget {
 }
 
 class FloorChips extends StatelessWidget {
+  const FloorChips({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

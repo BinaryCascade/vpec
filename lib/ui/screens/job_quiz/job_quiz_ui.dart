@@ -5,6 +5,8 @@ import 'package:share/share.dart';
 import 'job_quiz_logic.dart';
 
 class QuestionBlock extends StatelessWidget {
+  const QuestionBlock({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,6 +22,8 @@ class QuestionBlock extends StatelessWidget {
 
 
 class AnswersBlock extends StatefulWidget {
+  const AnswersBlock({Key? key}) : super(key: key);
+
   @override
   _AnswersBlockState createState() => _AnswersBlockState();
 }
@@ -72,6 +76,8 @@ class _AnswersBlockState extends State<AnswersBlock> {
 
 
 class JobQuizFAB extends StatelessWidget {
+  const JobQuizFAB({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final bool needShowResult = context.select((JobQuizStorage storage) => storage.showResults);
@@ -95,6 +101,8 @@ class JobQuizFAB extends StatelessWidget {
 }
 
 class JobQuizResults extends StatelessWidget {
+  const JobQuizResults({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(

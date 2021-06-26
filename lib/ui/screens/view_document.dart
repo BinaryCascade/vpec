@@ -7,6 +7,8 @@ import '../../utils/theme_helper.dart';
 import '../widgets/loading_indicator.dart';
 
 class DocumentViewScreen extends StatelessWidget {
+  const DocumentViewScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final DocumentModel doc = ModalRoute.of(context)!.settings.arguments as DocumentModel;
@@ -51,7 +53,7 @@ class DocumentViewScreen extends StatelessWidget {
         child: ColorFiltered(
           colorFilter: darkModeFilter(),
           child: const PDF(swipeHorizontal: true)
-              .fromUrl(doc.url!, placeholder: (progress) => LoadingIndicator()),
+              .fromUrl(doc.url!, placeholder: (progress) => const LoadingIndicator()),
         ),
       ),
     );

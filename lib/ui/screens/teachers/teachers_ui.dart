@@ -35,6 +35,8 @@ class SearchBar extends StatelessWidget {
 }
 
 class BuildChips extends StatelessWidget {
+  const BuildChips({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -111,6 +113,8 @@ class BuildChips extends StatelessWidget {
 }
 
 class BuildTeachersList extends StatelessWidget {
+  const BuildTeachersList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -118,7 +122,7 @@ class BuildTeachersList extends StatelessWidget {
         stream: Provider.of<TeachersLogic>(context, listen: true).stream,
         builder: (BuildContext context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-          if (!snapshot.hasData) return LoadingIndicator();
+          if (!snapshot.hasData) return const LoadingIndicator();
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
             child: ListView.builder(
@@ -142,6 +146,8 @@ class BuildTeachersList extends StatelessWidget {
 }
 
 class EditModeFAB extends StatelessWidget {
+  const EditModeFAB({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
@@ -154,6 +160,8 @@ class EditModeFAB extends StatelessWidget {
 }
 
 class AddNewTeacherDialogUI extends StatefulWidget {
+  const AddNewTeacherDialogUI({Key? key}) : super(key: key);
+
   @override
   _AddNewTeacherDialogUIState createState() => _AddNewTeacherDialogUIState();
 }

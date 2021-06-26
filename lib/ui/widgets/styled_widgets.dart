@@ -24,9 +24,9 @@ class HivedListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Container(
+      leading: SizedBox(
           //  cringe fix to center icon. If you want to use Center()
-          //  instead Container - you will get bamboozled
+          //  instead SizedBox - you will get bamboozled
           height: double.infinity,
           child: icon),
       title: Text(
@@ -67,7 +67,7 @@ class StyledListTile extends StatelessWidget {
     return ListTile(
       trailing: trailing,
       leading:
-          icon == null ? null : Container(height: double.infinity, child: icon),
+          icon == null ? null : SizedBox(height: double.infinity, child: icon),
       title: Text(
         title,
         style: Theme.of(context).textTheme.headline3,

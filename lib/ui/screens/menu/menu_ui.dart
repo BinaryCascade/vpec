@@ -6,6 +6,8 @@ import '../../../ui/widgets/document_card.dart';
 import '../../widgets/loading_indicator.dart';
 
 class ViewDocuments extends StatelessWidget {
+  const ViewDocuments({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Stream<QuerySnapshot<Map<String, dynamic>>> stream =
@@ -15,7 +17,7 @@ class ViewDocuments extends StatelessWidget {
         stream: stream,
         builder: (BuildContext context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-          if (!snapshot.hasData) return LoadingIndicator();
+          if (!snapshot.hasData) return const LoadingIndicator();
           return ListView(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,

@@ -11,6 +11,8 @@ import 'bottom_bar_ui.dart';
 import '../lessons_schedule/lessons_schedule_logic.dart';
 
 class BottomBarScreen extends StatefulWidget {
+  const BottomBarScreen({Key? key}) : super(key: key);
+
   @override
   _BottomBarScreenState createState() => _BottomBarScreenState();
 }
@@ -19,19 +21,19 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   // List of screens for navigation
   final List<Widget> pages = [
     const NewsScreen(),
-    AnnouncementsScreen(),
+    const AnnouncementsScreen(),
     ChangeNotifierProvider(
-        create: (_) => TimeTableItemLogic(), child: TimeTableScreen()),
+        create: (_) => TimeTableItemLogic(), child: const TimeTableScreen()),
     ChangeNotifierProvider(
-        create: (_) => LessonsScheduleLogic(), child: LessonsScheduleScreen()),
-    MenuScreen(),
+        create: (_) => LessonsScheduleLogic(), child: const LessonsScheduleScreen()),
+    const MenuScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageStorageUI(pages: pages),
-      bottomNavigationBar: BottomBarUI(),
+      bottomNavigationBar: const BottomBarUI(),
     );
   }
 }

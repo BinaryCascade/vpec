@@ -6,6 +6,8 @@ import '../../../utils/theme_helper.dart';
 import 'menu_logic.dart';
 
 class MenuScreen extends StatefulWidget {
+  const MenuScreen({Key? key}) : super(key: key);
+
   @override
   _MenuScreenState createState() => _MenuScreenState();
 }

@@ -7,6 +7,8 @@ import '../settings/settings_logic.dart';
 import 'teachers_ui.dart';
 
 class TeacherScreen extends StatefulWidget {
+  const TeacherScreen({Key? key}) : super(key: key);
+
   @override
   _TeacherScreenState createState() => _TeacherScreenState();
 }
@@ -43,13 +45,13 @@ class _TeacherScreenState extends State<TeacherScreen>
                     curve: Curves.fastOutSlowIn,
                     duration: const Duration(milliseconds: 400),
                     reverseDuration: const Duration(milliseconds: 400),
-                    child: value.isSearchMode ? BuildChips() : Container()),
-                BuildTeachersList(),
+                    child: value.isSearchMode ? const BuildChips() : Container()),
+                const BuildTeachersList(),
               ],
             ),
           ),
           floatingActionButton:
-              SettingsLogic.checkIsInEditMode ? EditModeFAB() : null,
+              SettingsLogic.checkIsInEditMode ? const EditModeFAB() : null,
         );
       },
     );

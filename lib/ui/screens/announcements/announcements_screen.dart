@@ -6,6 +6,8 @@ import 'announcements_logic.dart';
 import 'announcements_ui.dart';
 
 class AnnouncementsScreen extends StatefulWidget {
+  const AnnouncementsScreen({Key? key}) : super(key: key);
+
   @override
   _AnnouncementsScreenState createState() => _AnnouncementsScreenState();
 }

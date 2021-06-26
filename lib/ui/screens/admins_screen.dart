@@ -7,6 +7,8 @@ import '../../utils/theme_helper.dart';
 import '../widgets/loading_indicator.dart';
 
 class AdminScreen extends StatelessWidget {
+  AdminScreen({Key? key}) : super(key: key);
+
   final Stream<QuerySnapshot<Map<String, dynamic>>> stream =
       FirebaseFirestore.instance.collection('administration_list').snapshots();
 
@@ -23,7 +25,7 @@ class AdminScreen extends StatelessWidget {
         stream: stream,
         builder: (BuildContext context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-          if (!snapshot.hasData) return LoadingIndicator();
+          if (!snapshot.hasData) return const LoadingIndicator();
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
             child: ListView(

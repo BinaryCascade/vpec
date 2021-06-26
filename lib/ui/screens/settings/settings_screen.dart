@@ -8,6 +8,8 @@ import 'settings_logic.dart';
 import 'settings_ui.dart';
 
 class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
+
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -33,10 +35,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               child: ChangeNotifierProvider(
                   create: (_) => SettingsLogic(),
-                  builder: (context, child) => AccountBlock())),
-          AppThemeListTile(),
-          LaunchOnStartChooser(),
-          // buildBackgroundTaskWidgets(context), // low-priority
+                  builder: (context, child) => const AccountBlock())),
+          const AppThemeListTile(),
+          const LaunchOnStartChooser(),
           const Divider(),
           StyledListTile(
               icon: Icon(

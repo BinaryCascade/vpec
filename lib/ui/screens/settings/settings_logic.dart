@@ -216,7 +216,7 @@ class SettingsLogic extends ChangeNotifier {
     roundedModalSheet(
         context: context,
         title: 'Открывать при запуске',
-        child: LaunchOnStartChooserUI());
+        child: const LaunchOnStartChooserUI());
   }
 
   void toggleEditMode() {

@@ -9,7 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../widgets/loading_indicator.dart';
 
 class NewsScreen extends StatefulWidget {
-  const NewsScreen() : super();
+  const NewsScreen({Key? key}) : super(key: key);
 
   @override
   _NewsScreenState createState() => _NewsScreenState();
@@ -68,7 +68,7 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
         body: isFeedEmpty() ?
-             LoadingIndicator()
+             const LoadingIndicator()
             : SafeArea(
                 top: false,
                 child: SingleChildScrollView(

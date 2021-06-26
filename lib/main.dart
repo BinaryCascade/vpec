@@ -16,10 +16,12 @@ Future<void> main() async {
       ChangeNotifierProvider<ThemeNotifier>(
           create: (_) => ThemeNotifier(
               ThemeHelper.isDarkMode() ? ThemeMode.dark : ThemeMode.light),
-          child: VPECApp())));
+          child: const VPECApp())));
 }
 
 class VPECApp extends StatefulWidget {
+  const VPECApp({Key? key}) : super(key: key);
+
   @override
   _VPECAppState createState() => _VPECAppState();
 }

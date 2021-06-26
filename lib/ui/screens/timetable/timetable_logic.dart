@@ -14,14 +14,14 @@ class TimeTableLogic {
         context: context,
         title: 'Сбросить расписание звонков',
         child: Provider(
-            create: (_) => TimeTableLogic(), child: ResetTimeTableDialogUI()));
+            create: (_) => TimeTableLogic(), child: const ResetTimeTableDialogUI()));
   }
 
   void addTimeTable(BuildContext context) {
     roundedModalSheet(
         context: context,
         title: 'Добавить расписание звонков',
-        child: AddTimeTableItemDialogUI());
+        child: const AddTimeTableItemDialogUI());
   }
 
   bool validateToDate(String value) {

@@ -8,6 +8,8 @@ import 'settings_logic.dart';
 
 // Two ListTiles for account management
 class AccountBlock extends StatefulWidget {
+  const AccountBlock({Key? key}) : super(key: key);
+
   @override
   _AccountBlockState createState() => _AccountBlockState();
 }
@@ -82,6 +84,8 @@ class _AccountBlockState extends State<AccountBlock>
 }
 
 class AppThemeListTile extends StatelessWidget {
+  const AppThemeListTile({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return HivedListTile(
@@ -103,6 +107,8 @@ class AppThemeListTile extends StatelessWidget {
 }
 
 class LaunchOnStartChooser extends StatelessWidget {
+  const LaunchOnStartChooser({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return HivedListTile(
@@ -392,6 +398,8 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
 }
 
 class LaunchOnStartChooserUI extends StatefulWidget {
+  const LaunchOnStartChooserUI({Key? key}) : super(key: key);
+
   @override
   _LaunchOnStartChooserUIState createState() => _LaunchOnStartChooserUIState();
 }

@@ -7,6 +7,8 @@ import 'cabinets_map_logic.dart';
 import 'cabinets_map_ui.dart';
 
 class CabinetsMapScreen extends StatefulWidget {
+  const CabinetsMapScreen({Key? key}) : super(key: key);
+
   @override
   _CabinetsMapScreenState createState() => _CabinetsMapScreenState();
 }
@@ -35,16 +37,15 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
       body: Consumer<CabinetsMapLogic>(
         builder: (context, storage, child) {
           return storage.nowImageUrl.isEmpty
-              ? LoadingIndicator()
+              ? const LoadingIndicator()
               : Stack(
                   alignment: Alignment.topCenter,
                   children: [
                     ImageMap(
                       imageUrl: storage.nowImageUrl,
-                      photoController:
-                          context.read<CabinetsMapLogic>().photoController,
+                      photoController: storage.photoController,
                     ),
-                    FloorChips(),
+                    const FloorChips(),
                   ],
                 );
         },

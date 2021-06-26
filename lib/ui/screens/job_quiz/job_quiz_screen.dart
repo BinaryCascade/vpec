@@ -6,6 +6,8 @@ import 'job_quiz_logic.dart';
 import 'job_quiz_ui.dart';
 
 class JobQuizScreen extends StatefulWidget {
+  const JobQuizScreen({Key? key}) : super(key: key);
+
   @override
   _JobQuizScreenState createState() => _JobQuizScreenState();
 }
@@ -27,16 +29,16 @@ class _JobQuizScreenState extends State<JobQuizScreen> {
         body: Consumer<JobQuizStorage>(
           builder: (context, storage, child) {
             return storage.showResults
-                ? JobQuizResults()
+                ? const JobQuizResults()
                 : Column(
-                    children: [
+                    children: const <Widget>[
                       QuestionBlock(),
                       AnswersBlock(),
                     ],
                   );
           },
         ),
-        floatingActionButton: JobQuizFAB(),
+        floatingActionButton: const JobQuizFAB(),
       ),
     );
   }

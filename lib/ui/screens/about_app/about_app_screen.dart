@@ -5,6 +5,8 @@ import 'about_app_logic.dart';
 import 'about_app_ui.dart';
 
 class AboutAppScreen extends StatelessWidget {
+  const AboutAppScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

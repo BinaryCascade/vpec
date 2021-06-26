@@ -22,7 +22,7 @@ class TimeTableListView extends StatelessWidget {
           .orderBy('order', descending: false)
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-        if (!snapshot.hasData) return LoadingIndicator();
+        if (!snapshot.hasData) return const LoadingIndicator();
         return ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
@@ -76,6 +76,8 @@ class EditorModeButtons extends StatelessWidget {
 }
 
 class ResetTimeTableDialogUI extends StatefulWidget {
+  const ResetTimeTableDialogUI({Key? key}) : super(key: key);
+
   @override
   _ResetTimeTableDialogUIState createState() => _ResetTimeTableDialogUIState();
 }
@@ -115,6 +117,8 @@ class _ResetTimeTableDialogUIState extends State<ResetTimeTableDialogUI> {
 }
 
 class AddTimeTableItemDialogUI extends StatefulWidget {
+  const AddTimeTableItemDialogUI({Key? key}) : super(key: key);
+
   @override
   _AddTimeTableItemDialogUIState createState() =>
       _AddTimeTableItemDialogUIState();

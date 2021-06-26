@@ -10,8 +10,8 @@ import '../../utils/rounded_modal_sheet.dart';
 
 class AnnouncementCard extends StatelessWidget {
   final AnnouncementModel announcement;
-
-  const AnnouncementCard({required this.announcement});
+  const AnnouncementCard({Key? key, required this.announcement})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -173,8 +173,8 @@ class AnnouncementCard extends StatelessWidget {
 
   void updateAnnouncement(BuildContext context, String docId, String titleText,
       String contentText) {
-    CollectionReference alerts = FirebaseFirestore.instance
-        .collection(collectionPath());
+    CollectionReference alerts =
+        FirebaseFirestore.instance.collection(collectionPath());
     alerts
         .doc(docId)
         .update({'content_title': titleText, 'content_body': contentText});
@@ -240,9 +240,7 @@ class AnnouncementCard extends StatelessWidget {
   void deleteAnnouncement(BuildContext context) {
     CollectionReference alerts =
         FirebaseFirestore.instance.collection(collectionPath());
-    alerts
-        .doc(announcement.docId)
-        .delete();
+    alerts.doc(announcement.docId).delete();
     Navigator.pop(context);
   }
 

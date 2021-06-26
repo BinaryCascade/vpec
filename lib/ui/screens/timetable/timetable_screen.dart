@@ -9,6 +9,8 @@ import '../../widgets/timetable_item/timetable_item_logic.dart';
 import 'timetable_ui.dart';
 
 class TimeTableScreen extends StatefulWidget {
+  const TimeTableScreen({Key? key}) : super(key: key);
+
   @override
   _TimeTableScreenState createState() => _TimeTableScreenState();
 }

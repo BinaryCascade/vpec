@@ -19,17 +19,17 @@ class Routes {
   static final Map<String, WidgetBuilder> map = {
     '/': (context) => ChangeNotifierProvider(
         create: (_) => BottomBarLogic(),
-        child: SplashScreen(child: BottomBarScreen())),
-    '/home': (context) => BottomBarScreen(),
-    '/settings': (context) => SettingsScreen(),
-    '/view_document': (context) => DocumentViewScreen(),
+        child: const SplashScreen(child: BottomBarScreen())),
+    '/home': (context) => const BottomBarScreen(),
+    '/settings': (context) => const SettingsScreen(),
+    '/view_document': (context) => const DocumentViewScreen(),
     '/cabinets': (context) => ChangeNotifierProvider(
-        create: (_) => CabinetsMapLogic(), child: CabinetsMapScreen()),
+        create: (_) => CabinetsMapLogic(), child: const CabinetsMapScreen()),
     '/administration': (context) => AdminScreen(),
     '/teacher': (context) => ChangeNotifierProvider(
-        create: (_) => TeachersLogic(), child: TeacherScreen()),
-    '/about': (context) => AboutAppScreen(),
-    '/job_quiz': (context) => JobQuizScreen(),
-    '/documents': (context) => DocumentsScreen(),
+        create: (_) => TeachersLogic(), child: const TeacherScreen()),
+    '/about': (context) => const AboutAppScreen(),
+    '/job_quiz': (context) => const JobQuizScreen(),
+    '/documents': (context) => const DocumentsScreen(),
   };
 }

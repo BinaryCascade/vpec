@@ -10,6 +10,8 @@ import 'lessons_schedule_logic.dart';
 import 'lessons_schedule_ui.dart';
 
 class LessonsScheduleScreen extends StatefulWidget {
+  const LessonsScheduleScreen({Key? key}) : super(key: key);
+
   @override
   _LessonsScheduleScreenState createState() => _LessonsScheduleScreenState();
 }

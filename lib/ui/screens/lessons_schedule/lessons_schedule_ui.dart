@@ -27,7 +27,7 @@ class LessonImage extends StatelessWidget {
             ),
           ),
         ),
-        placeholder: (context, url) => LoadingIndicator(),
+        placeholder: (context, url) => const LoadingIndicator(),
         imageBuilder: (context, imageProvider) => GestureDetector(
           onDoubleTapDown: storage.handleDoubleTapDown,
           onDoubleTap: storage.handleDoubleTap,

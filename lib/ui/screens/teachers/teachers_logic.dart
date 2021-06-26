@@ -78,7 +78,7 @@ class TeachersLogicEditMode {
     roundedModalSheet(
         context: context,
         title: 'Добавить преподавателя',
-        child: AddNewTeacherDialogUI());
+        child: const AddNewTeacherDialogUI());
   }
 
   void addNewTeacher(TeacherModel model) {

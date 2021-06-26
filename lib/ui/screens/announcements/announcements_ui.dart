@@ -43,7 +43,7 @@ class AnnouncementsList extends StatelessWidget {
                   ),
                 );
               }
-              if (!snapshot.hasData) return LoadingIndicator();
+              if (!snapshot.hasData) return const LoadingIndicator();
 
               return Align(
                 alignment: Alignment.topCenter,

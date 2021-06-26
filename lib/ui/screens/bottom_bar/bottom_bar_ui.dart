@@ -24,6 +24,8 @@ class PageStorageUI extends StatelessWidget {
 }
 
 class BottomBarUI extends StatelessWidget {
+  const BottomBarUI({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Consumer<BottomBarLogic>(
