@@ -4,9 +4,10 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
-import 'package:vpec/ui/screens/login/login_screen.dart';
 
 import 'ui/screens/bottom_bar/bottom_bar_logic.dart';
+import 'ui/screens/login/login_screen.dart';
+import 'ui/screens/settings/settings_logic.dart';
 import 'utils/hive_helper.dart';
 import 'utils/theme_helper.dart';
 
@@ -14,12 +15,14 @@ class SplashScreen extends StatefulWidget {
   final Widget? child;
 
   const SplashScreen({Key? key, this.child}) : super(key: key);
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool userCompleteLoginPage = !(HiveHelper.getValue('isUserEntrant') == null);
+  bool userCompleteLoginPage = !(HiveHelper.getValue('isUserEntrant') == null ||
+      SettingsLogic.getAccountMode() == UserMode.entrant);
 
   @override
   void initState() {
