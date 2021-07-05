@@ -14,8 +14,7 @@ class AccountBlock extends StatefulWidget {
   _AccountBlockState createState() => _AccountBlockState();
 }
 
-class _AccountBlockState extends State<AccountBlock>
-    with TickerProviderStateMixin {
+class _AccountBlockState extends State<AccountBlock> {
   @override
   void initState() {
     context.read<SettingsLogic>().startListenAuth();
@@ -150,8 +149,8 @@ class AccountLoginUI extends StatelessWidget {
                       labelStyle: Theme.of(context).textTheme.headline3,
                       border: const OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Theme.of(context).colorScheme.secondary)),
+                          borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.secondary)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: Theme.of(context).colorScheme.secondary))),
@@ -168,11 +167,11 @@ class AccountLoginUI extends StatelessWidget {
                   labelStyle: Theme.of(context).textTheme.headline3,
                   border: const OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Theme.of(context).colorScheme.secondary)),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.secondary)),
                   focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Theme.of(context).colorScheme.secondary))),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.secondary))),
             ),
           ],
         )),
@@ -240,11 +239,11 @@ class EditNameUI extends StatelessWidget {
                   labelStyle: Theme.of(context).textTheme.headline3,
                   border: const OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Theme.of(context).colorScheme.secondary)),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.secondary)),
                   focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Theme.of(context).colorScheme.secondary))),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.secondary))),
             )),
         ButtonBar(
           children: <Widget>[
@@ -433,8 +432,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             onChanged: (dynamic value) {
               setState(() {
                 HiveHelper.saveValue(key: 'launchOnStart', value: value);
-                HiveHelper
-                    .saveValue(key: 'launchOnStartString', value: 'События');
+                HiveHelper.saveValue(
+                    key: 'launchOnStartString', value: 'События');
                 selectedItem = value;
               });
             }),
@@ -452,8 +451,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             onChanged: (dynamic value) {
               setState(() {
                 HiveHelper.saveValue(key: 'launchOnStart', value: value);
-                HiveHelper
-                    .saveValue(key: 'launchOnStartString', value: 'Объявления');
+                HiveHelper.saveValue(
+                    key: 'launchOnStartString', value: 'Объявления');
                 selectedItem = value;
               });
             }),
@@ -471,8 +470,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             onChanged: (dynamic value) {
               setState(() {
                 HiveHelper.saveValue(key: 'launchOnStart', value: value);
-                HiveHelper
-                    .saveValue(key: 'launchOnStartString', value: 'Звонки');
+                HiveHelper.saveValue(
+                    key: 'launchOnStartString', value: 'Звонки');
                 selectedItem = value;
               });
             }),

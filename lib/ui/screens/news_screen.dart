@@ -15,7 +15,7 @@ class NewsScreen extends StatefulWidget {
   _NewsScreenState createState() => _NewsScreenState();
 }
 
-class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
+class _NewsScreenState extends State<NewsScreen> {
   static const String feedUrl = 'https://energocollege.ru/rss.xml';
   RssFeed? _feed;
 
@@ -67,8 +67,8 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: isFeedEmpty() ?
-             const LoadingIndicator()
+        body: isFeedEmpty()
+            ? const LoadingIndicator()
             : SafeArea(
                 top: false,
                 child: SingleChildScrollView(
@@ -110,14 +110,13 @@ class _NewsScreenState extends State<NewsScreen> with TickerProviderStateMixin {
                                     child: CachedNetworkImage(
                                         imageUrl: imgUrl,
                                         fit: BoxFit.fill,
-                                        placeholder: (context, url) =>
-                                            SizedBox(
-                                                height: 200,
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                child: Image.memory(
-                                                    kTransparentImage)),
+                                        placeholder: (context, url) => SizedBox(
+                                            height: 200,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            child: Image.memory(
+                                                kTransparentImage)),
                                         errorWidget: (context, url, error) =>
                                             Container()),
                                   ),
@@ -171,8 +170,7 @@ DateTime? _parseRfc822DateTime(String dateString) {
 
   try {
     final num length = dateString.length.clamp(0, rfc822DatePattern.length);
-    final trimmedPattern = rfc822DatePattern.substring(0,
-        length as int);
+    final trimmedPattern = rfc822DatePattern.substring(0, length as int);
     final format = DateFormat(trimmedPattern, 'en_US');
     return format.parse(dateString);
   } on FormatException {
