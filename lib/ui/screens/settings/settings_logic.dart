@@ -47,8 +47,8 @@ class SettingsLogic extends ChangeNotifier {
   }
 
   // show roundedModalSheet() for account login
-  void accountLogin(BuildContext context) {
-    roundedModalSheet(
+  static Future<void> accountLogin(BuildContext context) async {
+    await roundedModalSheet(
       context: context,
       title: 'Войти в аккаунт',
       child: const AccountLoginUI(),
