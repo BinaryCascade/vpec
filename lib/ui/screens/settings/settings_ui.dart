@@ -38,7 +38,7 @@ class _AccountBlockState extends State<AccountBlock>
           child: Column(
             children: [
               StyledListTile(
-                  onTap: () => storage.accountLogin(context),
+                  onTap: () => SettingsLogic.accountLogin(context),
                   icon: Icon(
                     Icons.account_circle_outlined,
                     color: Theme.of(context).accentColor,
