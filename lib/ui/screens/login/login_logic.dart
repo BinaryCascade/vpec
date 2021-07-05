@@ -18,14 +18,14 @@ class LoginLogic extends ChangeNotifier {
       case UserMode.teacher:
         continueToApp(context);
         break;
-      case UserMode.enrollee:
-        // enrollee can't login to account
+      case UserMode.entrant:
+        // entrant can't login to account
         break;
     }
   }
 
   static void continueToApp(BuildContext context) {
     Navigator.popAndPushNamed(context, '/');
-    HiveHelper.saveValue(key: 'isUserEnrollee', value: false);
+    HiveHelper.saveValue(key: 'isUserEntrant', value: false);
   }
 }

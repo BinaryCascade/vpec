@@ -28,12 +28,12 @@ class AnnouncementModel {
           content: data['content_body'],
           title: data['content_title'],
           userMode: data['visibility'] == 'all'
-              ? UserMode.enrollee
+              ? UserMode.entrant
               : data['visibility'] == 'teachers'
                   ? UserMode.teacher
                   : data['visibility'] == 'employee'
                       ? UserMode.employee
-                      : UserMode.enrollee,
+                      : UserMode.entrant,
           photoUrl: data['photo'],
           docId: id,
         );

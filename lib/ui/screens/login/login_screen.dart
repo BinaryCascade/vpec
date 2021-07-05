@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
             ),
             StyledOutlinedButton(
               text: 'Я абитуриент',
-              onPressed: () => Navigator.popAndPushNamed(context, '/enrolle'),
+              onPressed: () => Navigator.popAndPushNamed(context, '/entrant'),
             )
           ],
         ),
