@@ -15,7 +15,7 @@ extension StringExtension on String {
 
 class TeachersLogic extends ChangeNotifier {
   Stream<QuerySnapshot<Map<String, dynamic>>> stream =
-      FirebaseFirestore.instance.collection('teacher_list').snapshots();
+      FirebaseFirestore.instance.collection('teacher_list').orderBy('familyName').snapshots();
   SearchMode currentMode = SearchMode.familyName;
   String visibleTextMode = 'Искать среди фамилий';
   String documentField = 'familyName';
@@ -35,8 +35,10 @@ class TeachersLogic extends ChangeNotifier {
           .where(documentField, isLessThan: searchKey + "\uf8ff")
           .snapshots();
     } else {
-      stream =
-          FirebaseFirestore.instance.collection('teacher_list').snapshots();
+      stream = FirebaseFirestore.instance
+          .collection('teacher_list')
+          .orderBy('familyName')
+          .snapshots();
     }
     notifyListeners();
   }
