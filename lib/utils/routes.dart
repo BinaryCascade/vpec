@@ -9,6 +9,7 @@ import '../ui/screens/bottom_bar/bottom_bar_screen.dart';
 import '../ui/screens/cabinets_map/cabinets_map_logic.dart';
 import '../ui/screens/cabinets_map/cabinets_map_screen.dart';
 import '../ui/screens/documents_screen.dart';
+import '../ui/screens/enrolle/enrolle_screen.dart';
 import '../ui/screens/job_quiz/job_quiz_screen.dart';
 import '../ui/screens/settings/settings_screen.dart';
 import '../ui/screens/teachers/teachers_logic.dart';
@@ -31,5 +32,6 @@ class Routes {
     '/about': (context) => const AboutAppScreen(),
     '/job_quiz': (context) => const JobQuizScreen(),
     '/documents': (context) => const DocumentsScreen(),
+    '/enrolle': (context) => const EnrolleScreen(),
   };
 }
