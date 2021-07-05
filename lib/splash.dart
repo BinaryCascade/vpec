@@ -21,7 +21,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool userCompleteLoginPage = !(HiveHelper.getValue('isUserEnrollee') == null);
+  bool userCompleteLoginPage = !(HiveHelper.getValue('isUserEntrant') == null);
 
   @override
   void initState() {

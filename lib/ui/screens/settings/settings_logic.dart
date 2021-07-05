@@ -16,7 +16,7 @@ enum UserMode {
   student, // can see only public announcements
   employee, // can see public and employee announcements
   teacher, // can see public and teachers announcements
-  enrollee, // can't see anything except info about college
+  entrant, // can't see anything except info about college
 }
 
 class SettingsLogic extends ChangeNotifier {
@@ -97,10 +97,10 @@ class SettingsLogic extends ChangeNotifier {
         case 'student@energocollege.ru':
           return UserMode.student;
         default:
-          return UserMode.enrollee;
+          return UserMode.entrant;
       }
     } else {
-      return UserMode.enrollee;
+      return UserMode.entrant;
     }
   }
 
@@ -114,7 +114,7 @@ class SettingsLogic extends ChangeNotifier {
         return 'Работник';
       case UserMode.teacher:
         return 'Преподаватель';
-      case UserMode.enrollee:
+      case UserMode.entrant:
         return 'Абитуриент';
     }
   }
@@ -124,16 +124,16 @@ class SettingsLogic extends ChangeNotifier {
       case UserMode.admin:
         return true; // admin have access to anything
       case UserMode.student:
-        if (requiredMode == UserMode.enrollee ||
+        if (requiredMode == UserMode.entrant ||
             requiredMode == UserMode.student) {
-          return true; // students can see stuffs for enrolle and students
+          return true; // students can see stuffs for entrant and students
         } else {
           return false;
         }
       case UserMode.employee:
         if (requiredMode == UserMode.employee ||
             requiredMode == UserMode.student ||
-            requiredMode == UserMode.enrollee) {
+            requiredMode == UserMode.entrant) {
           return true;
           // employee can see stuffs only for employee, not for teachers or admin
         } else {
@@ -142,16 +142,16 @@ class SettingsLogic extends ChangeNotifier {
       case UserMode.teacher:
         if (requiredMode == UserMode.teacher ||
             requiredMode == UserMode.student ||
-            requiredMode == UserMode.enrollee) {
+            requiredMode == UserMode.entrant) {
           return true;
           // teachers can see stuffs only for teachers, not for employee or admin
         } else {
           return false;
         }
-      case UserMode.enrollee:
-        if (requiredMode == UserMode.enrollee) {
+      case UserMode.entrant:
+        if (requiredMode == UserMode.entrant) {
           return true;
-          // well... enrolle can see something only for enrolle
+          // well... entrant can see something only for entrant
         } else {
           return false;
         }
@@ -160,7 +160,7 @@ class SettingsLogic extends ChangeNotifier {
 
   static bool isAccountModeLowLevel() {
     if (getAccountMode() == UserMode.student ||
-        getAccountMode() == UserMode.enrollee) {
+        getAccountMode() == UserMode.entrant) {
       return true;
     } else {
       return false;

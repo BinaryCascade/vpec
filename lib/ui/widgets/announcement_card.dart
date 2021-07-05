@@ -250,7 +250,7 @@ class AnnouncementCard extends StatelessWidget {
         return 'announcements_employee';
       case UserMode.teacher:
         return 'announcements_teachers';
-      case UserMode.enrollee:
+      case UserMode.entrant:
         return 'announcements_all';
       default:
         return 'announcements_all';
