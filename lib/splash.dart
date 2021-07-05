@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -6,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:vpec/ui/screens/login/login_screen.dart';
-import 'package:vpec/ui/screens/settings/settings_logic.dart';
 
 import 'ui/screens/bottom_bar/bottom_bar_logic.dart';
 import 'utils/hive_helper.dart';

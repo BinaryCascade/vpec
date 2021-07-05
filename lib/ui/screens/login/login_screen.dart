@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vpec/ui/screens/login/login_logic.dart';
-import 'package:vpec/ui/screens/settings/settings_logic.dart';
 import 'package:vpec/utils/buttons.dart';
 import 'package:vpec/utils/theme_helper.dart';
 
