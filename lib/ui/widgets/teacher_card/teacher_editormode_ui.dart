@@ -43,10 +43,10 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
               labelText: 'Фамилия',
               border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
         ),
         TextFormField(
           controller: firstName,
@@ -57,10 +57,10 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
               labelText: 'Имя',
               border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
         ),
         TextFormField(
           controller: secondaryName,
@@ -71,10 +71,10 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
               labelText: 'Отчество',
               border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
         ),
         TextFormField(
           controller: lessons,
@@ -85,10 +85,10 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
               labelText: 'Занятия',
               border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
         ),
         TextFormField(
           controller: cabinet,
@@ -99,10 +99,10 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
               labelText: 'Кабинет',
               border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 6),

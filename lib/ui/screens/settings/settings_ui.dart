@@ -41,7 +41,7 @@ class _AccountBlockState extends State<AccountBlock>
                   onTap: () => SettingsLogic.accountLogin(context),
                   icon: Icon(
                     Icons.account_circle_outlined,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     size: 32,
                   ),
                   title: 'Аккаунт',
@@ -55,7 +55,7 @@ class _AccountBlockState extends State<AccountBlock>
                         onTap: () => storage.changeName(context),
                         icon: Icon(
                           Icons.edit_outlined,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           size: 32.0,
                         ),
                         title: 'Имя для объявлений',
@@ -64,7 +64,7 @@ class _AccountBlockState extends State<AccountBlock>
                     StyledListTile(
                       icon: Icon(
                         Icons.tune_outlined,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         size: 32.0,
                       ),
                       title: 'Режим редактирования',
@@ -95,7 +95,7 @@ class AppThemeListTile extends StatelessWidget {
       icon: Icon(
         Icons.brightness_6_outlined,
         size: 32.0,
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
       ),
       onTap: () async {
         await SettingsLogic()
@@ -118,7 +118,7 @@ class LaunchOnStartChooser extends StatelessWidget {
         title: 'Открывать при запуске',
         icon: Icon(
           Icons.launch_outlined,
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           size: 32.0,
         ));
   }
@@ -151,10 +151,10 @@ class AccountLoginUI extends StatelessWidget {
                       border: const OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: Theme.of(context).accentColor)),
+                              BorderSide(color: Theme.of(context).colorScheme.secondary)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Theme.of(context).accentColor))),
+                              color: Theme.of(context).colorScheme.secondary))),
                 )),
             TextFormField(
               controller: passwordController,
@@ -169,10 +169,10 @@ class AccountLoginUI extends StatelessWidget {
                   border: const OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Theme.of(context).accentColor)),
+                          BorderSide(color: Theme.of(context).colorScheme.secondary)),
                   focusedBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Theme.of(context).accentColor))),
+                          BorderSide(color: Theme.of(context).colorScheme.secondary))),
             ),
           ],
         )),
@@ -241,10 +241,10 @@ class EditNameUI extends StatelessWidget {
                   border: const OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Theme.of(context).accentColor)),
+                          BorderSide(color: Theme.of(context).colorScheme.secondary)),
                   focusedBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Theme.of(context).accentColor))),
+                          BorderSide(color: Theme.of(context).colorScheme.secondary))),
             )),
         ButtonBar(
           children: <Widget>[
@@ -324,13 +324,13 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
       children: [
         RadioListTile(
             secondary: Icon(Icons.brightness_5_outlined,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
             title: Text(
               'Светлая тема',
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 0,
-            activeColor: Theme.of(context).accentColor,
+            activeColor: Theme.of(context).colorScheme.secondary,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
@@ -341,13 +341,13 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
             }),
         RadioListTile(
             secondary: Icon(Icons.brightness_2_outlined,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
             title: Text(
               'Тёмная тема',
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 1,
-            activeColor: Theme.of(context).accentColor,
+            activeColor: Theme.of(context).colorScheme.secondary,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
@@ -360,13 +360,13 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
             }),
         RadioListTile(
             secondary: Icon(Icons.phonelink_setup_outlined,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
             title: Text(
               'Системная тема',
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 2,
-            activeColor: Theme.of(context).accentColor,
+            activeColor: Theme.of(context).colorScheme.secondary,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
@@ -378,10 +378,10 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
         const Divider(),
         SwitchListTile(
             value: documentLightThemeSwitchState,
-            activeColor: Theme.of(context).accentColor,
+            activeColor: Theme.of(context).colorScheme.secondary,
             secondary: Icon(
               Icons.description_outlined,
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
             title: Text('Всегда светлая тема для документов',
                 style: Theme.of(context).textTheme.headline4),
@@ -421,13 +421,13 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
       children: [
         RadioListTile(
             secondary: Icon(VpecIconPack.news_outline,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
             title: Text(
               'События',
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 0,
-            activeColor: Theme.of(context).accentColor,
+            activeColor: Theme.of(context).colorScheme.secondary,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
@@ -440,13 +440,13 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             }),
         RadioListTile(
             secondary: Icon(Icons.notifications_outlined,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
             title: Text(
               'Объявления',
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 1,
-            activeColor: Theme.of(context).accentColor,
+            activeColor: Theme.of(context).colorScheme.secondary,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
@@ -459,13 +459,13 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             }),
         RadioListTile(
             secondary: Icon(Icons.access_time_outlined,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
             title: Text(
               'Звонки',
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 2,
-            activeColor: Theme.of(context).accentColor,
+            activeColor: Theme.of(context).colorScheme.secondary,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
@@ -478,13 +478,13 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             }),
         RadioListTile(
             secondary: Icon(Icons.dashboard_outlined,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
             title: Text(
               'Расписание занятий',
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 3,
-            activeColor: Theme.of(context).accentColor,
+            activeColor: Theme.of(context).colorScheme.secondary,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {

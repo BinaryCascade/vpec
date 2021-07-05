@@ -136,7 +136,7 @@ class JobQuizResults extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.share_outlined,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                       ))
                 ],
               ),
@@ -164,7 +164,7 @@ class AnswerListTile extends StatelessWidget {
           title!,
           style: Theme.of(context).textTheme.bodyText1,
         ),
-        activeColor: Theme.of(context).accentColor,
+        activeColor: Theme.of(context).colorScheme.secondary,
         controlAffinity: ListTileControlAffinity.trailing,
         value: value,
         groupValue: groupValue,

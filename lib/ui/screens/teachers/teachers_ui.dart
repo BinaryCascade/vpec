@@ -52,7 +52,7 @@ class BuildChips extends StatelessWidget {
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Фамилия'),
-                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
+                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
                     SearchMode.familyName,
@@ -63,7 +63,7 @@ class BuildChips extends StatelessWidget {
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Имя'),
-                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
+                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
                     SearchMode.firstName,
@@ -74,7 +74,7 @@ class BuildChips extends StatelessWidget {
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Отчество'),
-                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
+                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
                     SearchMode.secondaryName,
@@ -85,7 +85,7 @@ class BuildChips extends StatelessWidget {
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Предметы'),
-                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
+                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
                     SearchMode.lesson,
@@ -96,7 +96,7 @@ class BuildChips extends StatelessWidget {
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Кабинеты'),
-                selectedColor: Theme.of(context).accentColor.withOpacity(0.3),
+                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
                     SearchMode.cabinet,
@@ -187,10 +187,10 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
               labelText: 'Фамилия',
               border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
         ),
         TextFormField(
           controller: firstName,
@@ -201,10 +201,10 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
               labelText: 'Имя',
               border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
         ),
         TextFormField(
           controller: secondaryName,
@@ -215,10 +215,10 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
               labelText: 'Отчество',
               border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
         ),
         TextFormField(
           controller: lessons,
@@ -229,10 +229,10 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
               labelText: 'Занятия',
               border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
         ),
         TextFormField(
           controller: cabinet,
@@ -243,10 +243,10 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
               labelText: 'Кабинет',
               border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Theme.of(context).accentColor))),
+                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 6),

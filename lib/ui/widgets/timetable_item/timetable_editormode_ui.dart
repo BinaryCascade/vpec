@@ -48,10 +48,10 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
               labelStyle: Theme.of(context).textTheme.headline3,
               border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                  BorderSide(color: Theme.of(context).accentColor))),
+                  BorderSide(color: Theme.of(context).colorScheme.secondary))),
         ),
         Row(
           children: [
@@ -80,10 +80,10 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
                     hintText: '08:30',
                     border: const OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                        borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
                     focusedBorder: OutlineInputBorder(
                         borderSide:
-                        BorderSide(color: Theme.of(context).accentColor))),
+                        BorderSide(color: Theme.of(context).colorScheme.secondary))),
               ),
             ),
             Text(' – ', style: Theme.of(context).textTheme.headline3,),
@@ -112,10 +112,10 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
                     hintText: '10:00',
                     border: const OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                        borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
                     focusedBorder: OutlineInputBorder(
                         borderSide:
-                        BorderSide(color: Theme.of(context).accentColor))),
+                        BorderSide(color: Theme.of(context).colorScheme.secondary))),
               ),
             ),
           ],
@@ -130,10 +130,10 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
               hintText: '10 минут',
               border: const OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                  BorderSide(color: Theme.of(context).accentColor))),
+                  BorderSide(color: Theme.of(context).colorScheme.secondary))),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 6),

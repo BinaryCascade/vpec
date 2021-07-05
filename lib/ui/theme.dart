@@ -30,7 +30,6 @@ ThemeData themeData() {
         selectionColor: accentColor.withOpacity(0.5),
         selectionHandleColor: accentColor),
     primaryColor: secondLevelColor,
-    accentColor: accentColor,
     cardColor: firstLevelColor,
     splashColor: accentColor.withOpacity(0.2),
     colorScheme: const ColorScheme(
@@ -123,7 +122,6 @@ ThemeData darkThemeData() {
         selectionColor: accentColor.withOpacity(0.5),
         selectionHandleColor: accentColor),
     primaryColor: secondLevelColor,
-    accentColor: accentColor,
     cardColor: firstLevelColor,
     splashColor: accentColor.withOpacity(0.2),
     colorScheme: const ColorScheme(

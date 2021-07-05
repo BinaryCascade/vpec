@@ -161,10 +161,10 @@ class NewAnnouncementUI extends StatelessWidget {
                 border: const OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                     borderSide:
-                        BorderSide(color: Theme.of(context).accentColor)),
+                        BorderSide(color: Theme.of(context).colorScheme.secondary)),
                 focusedBorder: OutlineInputBorder(
                     borderSide:
-                        BorderSide(color: Theme.of(context).accentColor))),
+                        BorderSide(color: Theme.of(context).colorScheme.secondary))),
           ),
         ),
         ConstrainedBox(
@@ -183,10 +183,10 @@ class NewAnnouncementUI extends StatelessWidget {
                 border: const OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                     borderSide:
-                        BorderSide(color: Theme.of(context).accentColor)),
+                        BorderSide(color: Theme.of(context).colorScheme.secondary)),
                 focusedBorder: OutlineInputBorder(
                     borderSide:
-                        BorderSide(color: Theme.of(context).accentColor))),
+                        BorderSide(color: Theme.of(context).colorScheme.secondary))),
           ),
         ),
         Padding(
@@ -330,16 +330,16 @@ class _BottomTapBarState extends State<BottomTapBar> {
         isScrollable: needMakeScrollable(),
         indicator: UnderlineTabIndicator(
           borderSide: BorderSide(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             width: 3.0,
           ),
           insets: const EdgeInsets.only(bottom: kToolbarHeight - 4),
         ),
-        labelColor: Theme.of(context).accentColor,
+        labelColor: Theme.of(context).colorScheme.secondary,
         unselectedLabelColor:
             Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
         indicatorSize: TabBarIndicatorSize.label,
-        indicatorColor: Theme.of(context).accentColor,
+        indicatorColor: Theme.of(context).colorScheme.secondary,
         tabs: [
           Tab(
             child: Row(

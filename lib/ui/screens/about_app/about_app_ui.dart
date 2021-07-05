@@ -40,7 +40,7 @@ class AboutDeveloperCard extends StatelessWidget {
                       icon: Icon(
                         VpecIconPack.vk,
                         size: 32,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                       onPressed: () => AboutAppLogic().openUrl(vkUrl!),
                     ),
@@ -50,7 +50,7 @@ class AboutDeveloperCard extends StatelessWidget {
                       icon: Icon(
                         VpecIconPack.telegram,
                         size: 32,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                       onPressed: () => AboutAppLogic().openUrl(tgUrl!),
                     ),

@@ -24,7 +24,7 @@ class _MenuScreenState extends State<MenuScreen> {
               // settings block
               StyledListTile(
                   icon: Icon(Icons.settings_outlined,
-                      color: Theme.of(context).accentColor, size: 32),
+                      color: Theme.of(context).colorScheme.secondary, size: 32),
                   title: 'Настройки',
                   subtitle: 'Изменить имя, тему, стартовый экран',
                   onTap: () async {
@@ -37,7 +37,7 @@ class _MenuScreenState extends State<MenuScreen> {
               // This fragment is done, but we have no maps in our server, that's why we comment this
               // StyledListTile(
               //     icon: Icon(Icons.layers_outlined,
-              //         color: Theme.of(context).accentColor, size: 32),
+              //         color: Theme.of(context).colorScheme.secondary, size: 32),
               //     title: 'Список кабинетов',
               //     subtitle: 'В виде карты',
               //     onTap: () async {
@@ -47,7 +47,7 @@ class _MenuScreenState extends State<MenuScreen> {
               //     }),
               StyledListTile(
                   icon: Icon(Icons.group_outlined,
-                      color: Theme.of(context).accentColor, size: 32),
+                      color: Theme.of(context).colorScheme.secondary, size: 32),
                   title: 'Список преподавателей',
                   subtitle: 'Их имена, кабинеты',
                   onTap: () async {
@@ -57,7 +57,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   }),
               StyledListTile(
                   icon: Icon(VpecIconPack.account_cog_outline,
-                      color: Theme.of(context).accentColor, size: 32),
+                      color: Theme.of(context).colorScheme.secondary, size: 32),
                   title: 'Администрация колледжа',
                   subtitle: 'Вопросы, проблемы и предложения',
                   onTap: () async {
@@ -74,7 +74,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     if (snapshot.data) {
                       return StyledListTile(
                           icon: Icon(Icons.rule_outlined,
-                              color: Theme.of(context).accentColor, size: 32),
+                              color: Theme.of(context).colorScheme.secondary, size: 32),
                           title: 'Моя профессиональная направленность',
                           subtitle: 'Узнать свою предрасположенность',
                           onTap: () async {
@@ -95,7 +95,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   icon: Icon(
                     Icons.description_outlined,
                     size: 32,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                   onTap: () async {
                     await Navigator.pushNamed(context, '/documents');

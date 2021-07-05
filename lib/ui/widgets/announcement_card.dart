@@ -102,10 +102,10 @@ class AnnouncementCard extends StatelessWidget {
                     border: const OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Theme.of(context).accentColor)),
+                            BorderSide(color: Theme.of(context).colorScheme.secondary)),
                     focusedBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Theme.of(context).accentColor))),
+                            BorderSide(color: Theme.of(context).colorScheme.secondary))),
               ),
             ),
             ConstrainedBox(
@@ -124,10 +124,10 @@ class AnnouncementCard extends StatelessWidget {
                     border: const OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Theme.of(context).accentColor)),
+                            BorderSide(color: Theme.of(context).colorScheme.secondary)),
                     focusedBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Theme.of(context).accentColor))),
+                            BorderSide(color: Theme.of(context).colorScheme.secondary))),
               ),
             ),
             ButtonBar(
