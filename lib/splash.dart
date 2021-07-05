@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -20,7 +21,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool userCompleteLoginPage = !(HiveHelper.getValue('isUserEnrolle') == null);
+  bool userCompleteLoginPage = !(HiveHelper.getValue('isUserEnrollee') == null);
 
   @override
   void initState() {
