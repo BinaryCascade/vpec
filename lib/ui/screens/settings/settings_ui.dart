@@ -48,7 +48,7 @@ class _AccountBlockState extends State<AccountBlock>
                   subtitle: storage.isLoggedIn
                       ? SettingsLogic.getAccountModeText()
                       : 'Нажмите, чтобы войти в аккаунт'),
-              if (storage.isLoggedIn)
+              if (SettingsLogic.getAccountMode() == UserMode.admin)
                 Column(
                   children: [
                     HivedListTile(
