@@ -181,17 +181,14 @@ class SettingsLogic extends ChangeNotifier {
             lightThemeSelected: () {
               HiveHelper.saveValue(key: hiveKey, value: 'Светлая тема');
               if (isAppThemeSetting) value.changeTheme(ThemeMode.light);
-              Navigator.pop(context);
             },
             darkThemeSelected: () {
               HiveHelper.saveValue(key: hiveKey, value: 'Тёмная тема');
               if (isAppThemeSetting) value.changeTheme(ThemeMode.dark);
-              Navigator.pop(context);
             },
             defaultThemeSelected: () {
               HiveHelper.removeValue(hiveKey);
               if (isAppThemeSetting) value.changeTheme(ThemeMode.system);
-              Navigator.pop(context);
             },
             alwaysLightThemeDocumentChanged: (value) {
               HiveHelper.saveValue(
