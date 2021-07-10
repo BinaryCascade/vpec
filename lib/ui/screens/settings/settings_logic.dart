@@ -64,10 +64,10 @@ class SettingsLogic extends ChangeNotifier {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       Navigator.pop(context);
-      showSnackbar(context, text: 'Вход в аккаунт выполнен успешно');
+      showSnackBar(context, text: 'Вход в аккаунт выполнен успешно');
     } on FirebaseAuthException {
       Navigator.pop(context);
-      showSnackbar(context, text: 'Данные введены неверно');
+      showSnackBar(context, text: 'Данные введены неверно');
     }
   }
 

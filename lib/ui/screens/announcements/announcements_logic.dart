@@ -79,8 +79,8 @@ class AnnouncementsLogic {
             'photo': isUserAddPhoto ? userPhotoUrl : null,
             'id': docID.toString(),
           })
-          .then((value) => showSnackbar(context, text: 'Объявление отправлено'))
-          .catchError((error) => showSnackbar(context, text: 'Ошибка: $error'));
+          .then((value) => showSnackBar(context, text: 'Объявление отправлено'))
+          .catchError((error) => showSnackBar(context, text: 'Ошибка: $error'));
       Navigator.pop(context);
     }
 

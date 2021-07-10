@@ -70,7 +70,7 @@ class TimeTableLogic {
               );
         }
       } else {
-        showSnackbar(context,
+        showSnackBar(context,
             text: 'Чтобы восстановить расписание, сперва удалите все записи');
       }
     });
