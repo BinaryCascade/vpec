@@ -28,4 +28,21 @@ class LoginLogic extends ChangeNotifier {
     Navigator.popAndPushNamed(context, '/');
     HiveHelper.saveValue(key: 'isUserEntrant', value: false);
   }
+
+  static void showAccountHelperDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: const Text('Данные для входа в аккаунт предоставляются в '
+                'колледже.'),
+            actions: [
+              TextButton(
+                child: const Text('Закрыть'),
+                onPressed: () => Navigator.pop(context),
+              )
+            ],
+          );
+        });
+  }
 }
