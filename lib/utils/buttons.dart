@@ -23,10 +23,7 @@ class StyledOutlinedButton extends StatelessWidget {
       height: height,
       child: OutlinedButton(
         onPressed: onPressed,
-        child: child ?? Text(
-          text ?? '',
-          style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color),
-        ),
+        child: child ?? Text(text ?? ''),
       ),
     );
   }
