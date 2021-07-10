@@ -92,7 +92,7 @@ class _NewsScreenState extends State<NewsScreen> {
                         child: Card(
                           clipBehavior: Clip.antiAlias,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(20),
                           ),
                           child: InkWell(
                             onTap: () => openFeed(item.link!),
@@ -105,7 +105,7 @@ class _NewsScreenState extends State<NewsScreen> {
                                     clipBehavior: Clip.antiAlias,
                                     decoration: const BoxDecoration(
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(10)),
+                                          BorderRadius.all(Radius.circular(20)),
                                     ),
                                     child: CachedNetworkImage(
                                         imageUrl: imgUrl,

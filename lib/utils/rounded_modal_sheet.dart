@@ -15,8 +15,8 @@ Future<void> roundedModalSheet(
       enableDrag: enableDrag,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
         ),
       ),
       builder: (context) => Container(

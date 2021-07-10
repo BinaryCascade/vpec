@@ -20,7 +20,7 @@ class AnnouncementCard extends StatelessWidget {
       child: Card(
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
         ),
         child: GestureDetector(
           onDoubleTap: () => editAnnouncement(context),
@@ -30,7 +30,7 @@ class AnnouncementCard extends StatelessWidget {
                 Container(
                   clipBehavior: Clip.antiAlias,
                   decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   child: CachedNetworkImage(imageUrl: announcement.photoUrl!),
                 ),
@@ -154,8 +154,8 @@ class AnnouncementCard extends StatelessWidget {
         isScrollControlled: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
         ),
         builder: (context) => Container(

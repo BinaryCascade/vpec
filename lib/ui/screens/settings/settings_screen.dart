@@ -31,7 +31,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Card(
               clipBehavior: Clip.antiAlias,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(20),
               ),
               child: ChangeNotifierProvider(
                   create: (_) => SettingsLogic(),
