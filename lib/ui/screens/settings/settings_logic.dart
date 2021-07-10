@@ -73,7 +73,7 @@ class SettingsLogic extends ChangeNotifier {
 
   // show roundedModalSheet() for editing user's name
   // (name used for announcements post)
-  void changeName(BuildContext context) {
+  static void changeName(BuildContext context) {
     TextEditingController nameController = TextEditingController();
 
     roundedModalSheet(

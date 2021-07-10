@@ -43,7 +43,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
             ? FloatingActionButton(
                 onPressed: () {
                   if (HiveHelper.getValue('username') == null) {
-                    SettingsLogic().changeName(context);
+                    SettingsLogic.changeName(context);
                   } else {
                     AnnouncementsLogic().createNewAnnouncement(context);
                   }

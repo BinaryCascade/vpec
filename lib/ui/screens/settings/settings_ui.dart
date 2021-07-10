@@ -51,7 +51,7 @@ class _AccountBlockState extends State<AccountBlock> {
                 Column(
                   children: [
                     HivedListTile(
-                        onTap: () => storage.changeName(context),
+                        onTap: () => SettingsLogic.changeName(context),
                         icon: Icon(
                           Icons.edit_outlined,
                           color: Theme.of(context).colorScheme.secondary,
