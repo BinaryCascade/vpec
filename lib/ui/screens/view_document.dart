@@ -11,7 +11,8 @@ class DocumentViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DocumentModel doc = ModalRoute.of(context)!.settings.arguments as DocumentModel;
+    final DocumentModel doc =
+        ModalRoute.of(context)!.settings.arguments as DocumentModel;
     ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
     // we don't need weird nulls (can be null if user type url by himself)
     if (doc.url!.isEmpty || doc.url == null) {
@@ -24,6 +25,7 @@ class DocumentViewScreen extends StatelessWidget {
       }
       if (HiveHelper.getValue('alwaysLightThemeDocument')) {
         return const ColorFilter.matrix([
+          //R G  B  A  Const
           0.96078, 0, 0, 0, 0,
           0, 0.96078, 0, 0, 0,
           0, 0, 0.96078, 0, 0,
@@ -39,6 +41,7 @@ class DocumentViewScreen extends StatelessWidget {
                 0, 0, 0, 1, 0,
               ])
             : const ColorFilter.matrix([
+                //R G  B  A  Const
                 0.96078, 0, 0, 0, 0,
                 0, 0.96078, 0, 0, 0,
                 0, 0, 0.96078, 0, 0,
@@ -52,8 +55,8 @@ class DocumentViewScreen extends StatelessWidget {
       body: Center(
         child: ColorFiltered(
           colorFilter: darkModeFilter(),
-          child: const PDF(swipeHorizontal: true)
-              .fromUrl(doc.url!, placeholder: (progress) => const LoadingIndicator()),
+          child: const PDF(swipeHorizontal: true).fromUrl(doc.url!,
+              placeholder: (progress) => const LoadingIndicator()),
         ),
       ),
     );
