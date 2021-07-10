@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 class StyledOutlinedButton extends StatelessWidget {
   const StyledOutlinedButton(
       {Key? key,
-      required this.text,
+      this.text,
       this.onPressed,
       this.width = double.infinity,
-      this.height = 42.0})
+      this.height = 42.0,
+      this.child})
       : super(key: key);
 
-  final String text;
+  final Widget? child;
+  final String? text;
   final void Function()? onPressed;
   final double width;
   final double height;
@@ -21,7 +23,10 @@ class StyledOutlinedButton extends StatelessWidget {
       height: height,
       child: OutlinedButton(
         onPressed: onPressed,
-        child: Text(text),
+        child: child ?? Text(
+          text ?? '',
+          style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color),
+        ),
       ),
     );
   }
