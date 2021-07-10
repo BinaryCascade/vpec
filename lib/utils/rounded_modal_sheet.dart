@@ -8,7 +8,6 @@ Future<void> roundedModalSheet(
     bool enableDrag = true,
     required Widget child}) async {
   await showModalBottomSheet(
-      backgroundColor: Theme.of(context).dialogBackgroundColor,
       context: context,
       isDismissible: isDismissible,
       isScrollControlled: true,
