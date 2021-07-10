@@ -24,6 +24,9 @@ class HivedListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
       leading: SizedBox(
           //  cringe fix to center icon. If you want to use Center()
           //  instead SizedBox - you will get bamboozled
@@ -35,7 +38,7 @@ class HivedListTile extends StatelessWidget {
       ),
       subtitle: ValueListenableBuilder(
         valueListenable: Hive.box('settings').listenable(keys: [subtitleKey]),
-        builder: (context, dynamic box, child) {
+        builder: (context, Box box, child) {
           return Text(
             box.get(subtitleKey, defaultValue: defaultValue),
             style: Theme.of(context).textTheme.subtitle1,
@@ -65,6 +68,9 @@ class StyledListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
       trailing: trailing,
       leading:
           icon == null ? null : SizedBox(height: double.infinity, child: icon),
