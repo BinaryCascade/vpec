@@ -81,15 +81,15 @@ ThemeData themeData() {
     ),
     textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          textStyle:
+      textStyle:
           const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
-          shape: const StadiumBorder(),
-          primary: accentColor,
-        )),
+      shape: const StadiumBorder(),
+      primary: accentColor,
+    )),
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
             textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+                const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
             shape: const StadiumBorder(),
             side: const BorderSide(
               width: 1.5,
@@ -97,12 +97,12 @@ ThemeData themeData() {
             ))),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          textStyle:
+      textStyle:
           const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
-          shape: const StadiumBorder(),
-          primary: accentColor,
-          onPrimary: backgroundColor,
-        )),
+      shape: const StadiumBorder(),
+      primary: accentColor,
+      onPrimary: backgroundColor,
+    )),
     inputDecorationTheme: const InputDecorationTheme(
       alignLabelWithHint: true,
       errorStyle: TextStyle(
@@ -141,6 +141,8 @@ ThemeData themeData() {
       unselectedItemColor: mediumContrast,
       backgroundColor: secondLevelColor,
     ),
+    bottomSheetTheme:
+        const BottomSheetThemeData(backgroundColor: firstLevelColor),
   );
 }
 
@@ -215,15 +217,15 @@ ThemeData darkThemeData() {
     ),
     textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          textStyle:
+      textStyle:
           const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
-          shape: const StadiumBorder(),
-          primary: accentColor,
-        )),
+      shape: const StadiumBorder(),
+      primary: accentColor,
+    )),
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
             textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+                const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
             shape: const StadiumBorder(),
             side: const BorderSide(
               width: 1.5,
@@ -231,12 +233,12 @@ ThemeData darkThemeData() {
             ))),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          textStyle:
+      textStyle:
           const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
-          shape: const StadiumBorder(),
-          primary: accentColor,
-          onPrimary: backgroundColor,
-        )),
+      shape: const StadiumBorder(),
+      primary: accentColor,
+      onPrimary: backgroundColor,
+    )),
     inputDecorationTheme: const InputDecorationTheme(
       alignLabelWithHint: true,
       errorStyle: TextStyle(
@@ -275,5 +277,7 @@ ThemeData darkThemeData() {
       unselectedItemColor: mediumContrast,
       backgroundColor: secondLevelColor,
     ),
+    bottomSheetTheme:
+        const BottomSheetThemeData(backgroundColor: firstLevelColor),
   );
 }
