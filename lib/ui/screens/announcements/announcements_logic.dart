@@ -90,60 +90,38 @@ class AnnouncementsLogic {
           title: 'Кому отправить?',
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton(
-                    style: Theme.of(context).outlinedButtonTheme.style,
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(
-                      'Отмена',
-                      style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1!.color),
-                    ),
-                  ),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Отмена'),
                 ),
               ),
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
-                  style: Theme.of(context).outlinedButtonTheme.style,
-                  onPressed: () =>
-                      sendNewAlert(context: context, userMode: UserMode.student),
-                  child: Text(
-                    'Отправить всем',
-                    style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1!.color),
-                  ),
+                  onPressed: () => sendNewAlert(
+                      context: context, userMode: UserMode.student),
+                  child: const Text('Отправить всем'),
                 ),
               ),
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
-                  style: Theme.of(context).outlinedButtonTheme.style,
-                  onPressed: () =>
-                      sendNewAlert(context: context, userMode: UserMode.employee),
-                  child: Text(
-                    'Отправить сотрудникам',
-                    style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1!.color),
-                  ),
+                  onPressed: () => sendNewAlert(
+                      context: context, userMode: UserMode.employee),
+                  child: const Text('Отправить сотрудникам'),
                 ),
               ),
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
-                  style: Theme.of(context).outlinedButtonTheme.style,
-                  onPressed: () =>
-                      sendNewAlert(context: context, userMode: UserMode.teacher),
-                  child: Text(
-                    'Отправить преподавателям',
-                    style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1!.color),
-                  ),
+                  onPressed: () => sendNewAlert(
+                      context: context, userMode: UserMode.teacher),
+                  child: const Text('Отправить преподавателям'),
                 ),
               ),
+              const SizedBox(height: 10)
             ],
           ));
     }

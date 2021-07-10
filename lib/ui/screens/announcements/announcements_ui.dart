@@ -150,21 +150,12 @@ class NewAnnouncementUI extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.only(bottom: 10),
           child: TextFormField(
             controller: titleController,
             textInputAction: TextInputAction.next,
-            style: Theme.of(context).textTheme.headline3,
-            decoration: InputDecoration(
-                labelText: 'Введите заголовок',
-                labelStyle: Theme.of(context).textTheme.headline3,
-                border: const OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Theme.of(context).colorScheme.secondary)),
-                focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Theme.of(context).colorScheme.secondary))),
+            style: Theme.of(context).textTheme.headline4,
+            decoration: const InputDecoration(labelText: 'Введите заголовок'),
           ),
         ),
         ConstrainedBox(
@@ -175,128 +166,95 @@ class NewAnnouncementUI extends StatelessWidget {
             maxLines: null,
             minLines: 10,
             textAlign: TextAlign.start,
-            style: Theme.of(context).textTheme.headline3,
-            decoration: InputDecoration(
-                labelText: 'Введите сообщение',
-                alignLabelWithHint: true,
-                labelStyle: Theme.of(context).textTheme.headline3,
-                border: const OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Theme.of(context).colorScheme.secondary)),
-                focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Theme.of(context).colorScheme.secondary))),
+            style: Theme.of(context).textTheme.bodyText1,
+            decoration: const InputDecoration(labelText: 'Введите сообщение'),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: Row(
-            children: [
-              TextButton(
-                style: Theme.of(context).textButtonTheme.style,
-                child: Text(
-                  'Фото',
-                  style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1!.color),
-                ),
-                onPressed: () async {
-                  if (!isUserAddPhoto) {
-                    await pickPhoto!();
-                  } else {
-                    roundedModalSheet(
-                        context: context,
-                        title: 'Ошибка',
-                        child: Column(
-                          children: [
-                            Text(
-                              'Фото уже добавлено',
-                              style: Theme.of(context).textTheme.bodyText1,
-                            ),
-                            ButtonBar(
-                              children: [
-                                OutlinedButton(
-                                  style: Theme.of(context)
-                                      .outlinedButtonTheme
-                                      .style,
-                                  onPressed: () => Navigator.pop(context),
-                                  child: Text(
-                                    'Закрыть',
-                                    style: TextStyle(
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1!
-                                            .color),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ));
-                  }
-                },
-              ),
-              const Spacer(),
-              TextButton(
-                style: Theme.of(context).textButtonTheme.style,
-                onPressed: () => Navigator.pop(context),
-                child: Text(
-                  'Отмена',
-                  style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1!.color),
-                ),
-              ),
-              OutlinedButton(
-                style: Theme.of(context).outlinedButtonTheme.style,
-                child: Text(
-                  'Отправить',
-                  style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1!.color),
-                ),
-                onPressed: () {
-                  if (isUserAddPhoto) {
-                    if (userPhotoUrl.isNotEmpty) {
-                      Navigator.pop(context);
-                      confirmAnnouncementSend!();
+        Row(
+          children: [
+            ButtonBar(
+              children: [
+                OutlinedButton(
+                  child: const Text('Фото'),
+                  onPressed: () async {
+                    if (!isUserAddPhoto) {
+                      await pickPhoto!();
                     } else {
                       roundedModalSheet(
                           context: context,
-                          title: 'Внимание',
+                          title: 'Ошибка',
                           child: Column(
                             children: [
-                              Text(
-                                'Фото ещё загружается',
-                                style: Theme.of(context).textTheme.bodyText1,
-                              ),
+                              const Text('Фото уже добавлено'),
                               ButtonBar(
                                 children: [
                                   OutlinedButton(
-                                    style: Theme.of(context)
-                                        .outlinedButtonTheme
-                                        .style,
                                     onPressed: () => Navigator.pop(context),
-                                    child: Text(
-                                      'Закрыть',
-                                      style: TextStyle(
-                                          color: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1!
-                                              .color),
-                                    ),
+                                    child: const Text('Закрыть'),
                                   ),
                                 ],
                               ),
                             ],
                           ));
                     }
-                  } else {
-                    Navigator.pop(context);
-                    confirmAnnouncementSend!();
-                  }
-                },
-              ),
-            ],
-          ),
+                  },
+                ),
+              ],
+            ),
+            const Spacer(),
+            ButtonBar(
+              children: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Отмена'),
+                ),
+                ElevatedButton(
+                  child: const Text('Отправить'),
+                  onPressed: () {
+                    if (isUserAddPhoto) {
+                      if (userPhotoUrl.isNotEmpty) {
+                        Navigator.pop(context);
+                        confirmAnnouncementSend!();
+                      } else {
+                        roundedModalSheet(
+                            context: context,
+                            title: 'Внимание',
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Фото ещё загружается',
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
+                                ButtonBar(
+                                  children: [
+                                    OutlinedButton(
+                                      style: Theme.of(context)
+                                          .outlinedButtonTheme
+                                          .style,
+                                      onPressed: () => Navigator.pop(context),
+                                      child: Text(
+                                        'Закрыть',
+                                        style: TextStyle(
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .color),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ));
+                      }
+                    } else {
+                      Navigator.pop(context);
+                      confirmAnnouncementSend!();
+                    }
+                  },
+                ),
+              ],
+            )
+          ],
         ),
       ],
     );

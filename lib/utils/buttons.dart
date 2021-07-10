@@ -20,12 +20,8 @@ class StyledOutlinedButton extends StatelessWidget {
       width: width,
       height: height,
       child: OutlinedButton(
-        style: Theme.of(context).outlinedButtonTheme.style,
         onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color),
-        ),
+        child: Text(text),
       ),
     );
   }

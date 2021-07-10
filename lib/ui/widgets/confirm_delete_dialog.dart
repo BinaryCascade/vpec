@@ -9,33 +9,23 @@ class DeleteDialogUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+         SizedBox(
+          width: double.infinity,
+          child: OutlinedButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Отмена'),
+          ),
+        ),
         Padding(
-          padding: const EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(bottom: 10),
           child: SizedBox(
             width: double.infinity,
             child: OutlinedButton(
-              style: Theme.of(context).outlinedButtonTheme.style,
-              onPressed: () => Navigator.pop(context),
-              child: Text(
-                'Отмена',
-                style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1!.color),
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: OutlinedButton(
-            style: Theme.of(context).outlinedButtonTheme.style,
-            onPressed: () {
-              Navigator.pop(context);
-              onDelete();
-            },
-            child: Text(
-              'Удалить',
-              style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1!.color),
+              onPressed: () {
+                Navigator.pop(context);
+                onDelete();
+              },
+              child: const Text('Удалить'),
             ),
           ),
         ),

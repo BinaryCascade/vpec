@@ -91,72 +91,38 @@ class AnnouncementCard extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.only(bottom: 10),
               child: TextFormField(
-                controller: titleController,
-                textInputAction: TextInputAction.next,
-                style: Theme.of(context).textTheme.headline3,
-                decoration: InputDecoration(
-                    labelText: 'Введите заголовок',
-                    labelStyle: Theme.of(context).textTheme.headline3,
-                    border: const OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Theme.of(context).colorScheme.secondary)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Theme.of(context).colorScheme.secondary))),
-              ),
+                  controller: titleController,
+                  textInputAction: TextInputAction.next,
+                  style: Theme.of(context).textTheme.headline4,
+                  decoration:
+                      const InputDecoration(labelText: 'Введите заголовок')),
             ),
             ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 200, maxHeight: 200),
               child: TextFormField(
-                controller: contentController,
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                minLines: 10,
-                textAlign: TextAlign.start,
-                style: Theme.of(context).textTheme.headline3,
-                decoration: InputDecoration(
-                    labelText: 'Введите сообщение',
-                    alignLabelWithHint: true,
-                    labelStyle: Theme.of(context).textTheme.headline3,
-                    border: const OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Theme.of(context).colorScheme.secondary)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Theme.of(context).colorScheme.secondary))),
-              ),
+                  controller: contentController,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  minLines: 10,
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.bodyText1,
+                  decoration:
+                      const InputDecoration(labelText: 'Введите сообщение')),
             ),
             ButtonBar(
               children: <Widget>[
                 TextButton(
-                  style: Theme.of(context).textButtonTheme.style,
                   onPressed: () => confirmDelete(context),
-                  child: Text(
-                    'Удалить',
-                    style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1!.color),
-                  ),
+                  child: const Text('Удалить'),
                 ),
                 TextButton(
-                  style: Theme.of(context).textButtonTheme.style,
                   onPressed: () => Navigator.pop(context),
-                  child: Text(
-                    'Отмена',
-                    style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1!.color),
-                  ),
+                  child: const Text('Отмена'),
                 ),
-                OutlinedButton(
-                  style: Theme.of(context).outlinedButtonTheme.style,
-                  child: Text(
-                    'Отредактировать',
-                    style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1!.color),
-                  ),
+                ElevatedButton(
+                  child: const Text('Отредактировать'),
                   onPressed: () => updateAnnouncement(
                       context,
                       announcement.docId,
@@ -195,7 +161,7 @@ class AnnouncementCard extends StatelessWidget {
         builder: (context) => Container(
               padding: MediaQuery.of(context).viewInsets,
               margin: const EdgeInsets.only(
-                  top: 10, left: 15, right: 15, bottom: 20),
+                  top: 10, left: 15, right: 15, bottom: 10),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -204,32 +170,20 @@ class AnnouncementCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 5),
                     child: SizedBox(
                       width: double.infinity,
                       child: OutlinedButton(
-                        style: Theme.of(context).outlinedButtonTheme.style,
                         onPressed: () => Navigator.pop(context),
-                        child: Text(
-                          'Отмена',
-                          style: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.bodyText1!.color),
-                        ),
+                        child: const Text('Отмена'),
                       ),
                     ),
                   ),
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                      style: Theme.of(context).outlinedButtonTheme.style,
                       onPressed: () => deleteAnnouncement(context),
-                      child: Text(
-                        'Удалить',
-                        style: TextStyle(
-                            color:
-                                Theme.of(context).textTheme.bodyText1!.color),
-                      ),
+                      child: const Text('Удалить'),
                     ),
                   ),
                 ],

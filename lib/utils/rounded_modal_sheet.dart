@@ -30,7 +30,7 @@ Future<void> roundedModalSheet(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
+                  padding: const EdgeInsets.only(bottom: 15),
                   child: Center(
                     child: Text(
                       title,

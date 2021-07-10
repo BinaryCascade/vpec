@@ -137,23 +137,14 @@ class AccountLoginUI extends StatelessWidget {
             child: Column(
           children: [
             Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.only(bottom: 10.0),
                 child: TextFormField(
                   controller: emailController,
                   autofillHints: const <String>[AutofillHints.username],
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
                   style: Theme.of(context).textTheme.headline3,
-                  decoration: InputDecoration(
-                      labelText: 'Введите email',
-                      labelStyle: Theme.of(context).textTheme.headline3,
-                      border: const OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Theme.of(context).colorScheme.secondary)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Theme.of(context).colorScheme.secondary))),
+                  decoration: const InputDecoration(labelText: 'Введите email'),
                 )),
             TextFormField(
               controller: passwordController,
@@ -162,53 +153,25 @@ class AccountLoginUI extends StatelessWidget {
               obscureText: true,
               keyboardType: TextInputType.visiblePassword,
               style: Theme.of(context).textTheme.headline3,
-              decoration: InputDecoration(
-                  labelText: 'Введите пароль',
-                  labelStyle: Theme.of(context).textTheme.headline3,
-                  border: const OutlineInputBorder(),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).colorScheme.secondary)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).colorScheme.secondary))),
+              decoration: const InputDecoration(labelText: 'Введите пароль'),
             ),
           ],
         )),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6),
-          child: ButtonBar(
-            buttonPadding: EdgeInsets.zero,
-            children: [
-              Wrap(
-                spacing: 12,
-                children: [
-                  TextButton(
-                    style: Theme.of(context).textButtonTheme.style,
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(
-                      'Отмена',
-                      style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1!.color),
-                    ),
-                  ),
-                  OutlinedButton(
-                    style: Theme.of(context).outlinedButtonTheme.style,
-                    child: Text(
-                      'Войти',
-                      style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1!.color),
-                    ),
-                    onPressed: () {
-                      SettingsLogic().makeLogin(context,
-                          email: emailController.text,
-                          password: passwordController.text);
-                    },
-                  )
-                ],
-              ),
-            ],
-          ),
+        ButtonBar(
+          children: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Отмена'),
+            ),
+            ElevatedButton(
+              child: const Text('Войти'),
+              onPressed: () {
+                SettingsLogic().makeLogin(context,
+                    email: emailController.text,
+                    password: passwordController.text);
+              },
+            ),
+          ],
         ),
       ],
     );
@@ -227,42 +190,21 @@ class EditNameUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: TextFormField(
-              controller: nameController,
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.text,
-              style: Theme.of(context).textTheme.headline3,
-              decoration: InputDecoration(
-                  labelText: 'Введите имя',
-                  labelStyle: Theme.of(context).textTheme.headline3,
-                  border: const OutlineInputBorder(),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).colorScheme.secondary)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).colorScheme.secondary))),
-            )),
+        TextFormField(
+          controller: nameController,
+          textInputAction: TextInputAction.done,
+          keyboardType: TextInputType.text,
+          style: Theme.of(context).textTheme.headline3,
+          decoration: const InputDecoration(labelText: 'Введите имя'),
+        ),
         ButtonBar(
           children: <Widget>[
             TextButton(
-              style: Theme.of(context).textButtonTheme.style,
               onPressed: () => Navigator.pop(context),
-              child: Text(
-                'Отмена',
-                style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1!.color),
-              ),
+              child: const Text('Отмена'),
             ),
-            OutlinedButton(
-              style: Theme.of(context).outlinedButtonTheme.style,
-              child: Text(
-                'Сохранить',
-                style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1!.color),
-              ),
+            ElevatedButton(
+              child: const Text('Сохранить'),
               onPressed: () {
                 HiveHelper.saveValue(
                     key: 'username', value: nameController.value.text);

@@ -22,6 +22,9 @@ class SearchBar extends StatelessWidget {
         hintText:
             Provider.of<TeachersLogic>(context, listen: true).visibleTextMode,
         border: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        contentPadding: EdgeInsets.zero,
         hintStyle: Theme.of(context)
             .textTheme
             .headline3!
@@ -52,7 +55,8 @@ class BuildChips extends StatelessWidget {
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Фамилия'),
-                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+                selectedColor:
+                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
                     SearchMode.familyName,
@@ -63,7 +67,8 @@ class BuildChips extends StatelessWidget {
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Имя'),
-                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+                selectedColor:
+                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
                     SearchMode.firstName,
@@ -74,7 +79,8 @@ class BuildChips extends StatelessWidget {
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Отчество'),
-                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+                selectedColor:
+                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
                     SearchMode.secondaryName,
@@ -85,7 +91,8 @@ class BuildChips extends StatelessWidget {
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Предметы'),
-                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+                selectedColor:
+                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
                     SearchMode.lesson,
@@ -96,7 +103,8 @@ class BuildChips extends StatelessWidget {
               InputChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Кабинеты'),
-                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+                selectedColor:
+                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 selected: Provider.of<TeachersLogic>(context, listen: true)
                         .currentMode ==
                     SearchMode.cabinet,
@@ -175,116 +183,69 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      runSpacing: 8.0,
+    return Column(
       children: [
-        TextFormField(
-          controller: familyName,
-          textInputAction: TextInputAction.next,
-          style: Theme.of(context).textTheme.headline3,
-          decoration: InputDecoration(
-              labelStyle: Theme.of(context).textTheme.headline3,
-              labelText: 'Фамилия',
-              border: const OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: TextFormField(
+            controller: familyName,
+            textInputAction: TextInputAction.next,
+            style: Theme.of(context).textTheme.headline3,
+            decoration: const InputDecoration(labelText: 'Фамилия'),
+          ),
         ),
-        TextFormField(
-          controller: firstName,
-          textInputAction: TextInputAction.next,
-          style: Theme.of(context).textTheme.headline3,
-          decoration: InputDecoration(
-              labelStyle: Theme.of(context).textTheme.headline3,
-              labelText: 'Имя',
-              border: const OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: TextFormField(
+            controller: firstName,
+            textInputAction: TextInputAction.next,
+            style: Theme.of(context).textTheme.headline3,
+            decoration: const InputDecoration(labelText: 'Имя'),
+          ),
         ),
-        TextFormField(
-          controller: secondaryName,
-          textInputAction: TextInputAction.next,
-          style: Theme.of(context).textTheme.headline3,
-          decoration: InputDecoration(
-              labelStyle: Theme.of(context).textTheme.headline3,
-              labelText: 'Отчество',
-              border: const OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: TextFormField(
+            controller: secondaryName,
+            textInputAction: TextInputAction.next,
+            style: Theme.of(context).textTheme.headline3,
+            decoration: const InputDecoration(labelText: 'Отчество'),
+          ),
         ),
-        TextFormField(
-          controller: lessons,
-          textInputAction: TextInputAction.next,
-          style: Theme.of(context).textTheme.headline3,
-          decoration: InputDecoration(
-              labelStyle: Theme.of(context).textTheme.headline3,
-              labelText: 'Занятия',
-              border: const OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: TextFormField(
+            controller: lessons,
+            textInputAction: TextInputAction.next,
+            style: Theme.of(context).textTheme.headline3,
+            decoration: const InputDecoration(labelText: 'Занятия'),
+          ),
         ),
         TextFormField(
           controller: cabinet,
           textInputAction: TextInputAction.next,
           style: Theme.of(context).textTheme.headline3,
-          decoration: InputDecoration(
-              labelStyle: Theme.of(context).textTheme.headline3,
-              labelText: 'Кабинет',
-              border: const OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
+          decoration: const InputDecoration(labelText: 'Кабинет'),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6),
-          child: ButtonBar(
-            buttonPadding: EdgeInsets.zero,
-            children: [
-              Wrap(
-                spacing: 12,
-                children: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(
-                      'Отмена',
-                      style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1!.color),
-                    ),
-                  ),
-                  OutlinedButton(
-                      onPressed: () {
-                        TeachersLogicEditMode().addNewTeacher(TeacherModel(
-                          firstName: firstName.text,
-                          familyName: familyName.text,
-                          secondaryName: secondaryName.text,
-                          cabinet: cabinet.text,
-                          lesson: lessons.text,
-                        ));
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'Добавить',
-                        style: TextStyle(
-                            color:
-                                Theme.of(context).textTheme.bodyText1!.color),
-                      ))
-                ],
-              ),
-            ],
-          ),
+        ButtonBar(
+          children: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Отмена'),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  TeachersLogicEditMode().addNewTeacher(TeacherModel(
+                    firstName: firstName.text,
+                    familyName: familyName.text,
+                    secondaryName: secondaryName.text,
+                    cabinet: cabinet.text,
+                    lesson: lessons.text,
+                  ));
+                  Navigator.pop(context);
+                },
+                child: const Text('Добавить')),
+          ],
         )
       ],
     );

@@ -21,7 +21,8 @@ class TimeTableListView extends StatelessWidget {
           .collection('time_schedule')
           .orderBy('order', descending: false)
           .snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+      builder: (BuildContext context,
+          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
         if (!snapshot.hasData) return const LoadingIndicator();
         return ListView.builder(
           shrinkWrap: true,
@@ -86,7 +87,7 @@ class _ResetTimeTableDialogUIState extends State<ResetTimeTableDialogUI> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 24.0),
+      padding: const EdgeInsets.only(bottom: 20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -134,23 +135,17 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      runSpacing: 8.0,
+    return Column(
       children: [
-        TextFormField(
-          controller: name,
-          textInputAction: TextInputAction.next,
-          style: Theme.of(context).textTheme.headline3,
-          decoration: InputDecoration(
-              labelText: 'Название пары',
-              hintText: '1 пара',
-              labelStyle: Theme.of(context).textTheme.headline3,
-              border: const OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: TextFormField(
+            controller: name,
+            textInputAction: TextInputAction.next,
+            style: Theme.of(context).textTheme.headline3,
+            decoration: const InputDecoration(
+                labelText: 'Название пары', hintText: '1 пара'),
+          ),
         ),
         Row(
           children: [
@@ -160,9 +155,7 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
                 keyboardType: TextInputType.datetime,
                 textInputAction: TextInputAction.next,
                 style: Theme.of(context).textTheme.headline3,
-                inputFormatters: [
-                  MaskedInputFormatter('00:00')
-                ],
+                inputFormatters: [MaskedInputFormatter('00:00')],
                 onChanged: (value) {
                   setState(() {
                     if (TimeTableLogic().validateToDate(startLesson.text)) {
@@ -174,27 +167,21 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
                 },
                 decoration: InputDecoration(
                     errorText: hasErrorsOnStart ? 'Неверный формат' : null,
-                    labelStyle: Theme.of(context).textTheme.headline3,
                     labelText: 'Начало пары',
-                    hintText: '08:30',
-                    border: const OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Theme.of(context).colorScheme.secondary))),
+                    hintText: '08:30'),
               ),
             ),
-            Text(' – ', style: Theme.of(context).textTheme.headline3,),
+            Text(
+              ' – ',
+              style: Theme.of(context).textTheme.headline3,
+            ),
             Flexible(
               child: TextFormField(
                 controller: endLesson,
                 keyboardType: TextInputType.datetime,
                 textInputAction: TextInputAction.next,
                 style: Theme.of(context).textTheme.headline3,
-                inputFormatters: [
-                  MaskedInputFormatter('00:00')
-                ],
+                inputFormatters: [MaskedInputFormatter('00:00')],
                 onChanged: (value) {
                   setState(() {
                     if (TimeTableLogic().validateToDate(endLesson.text)) {
@@ -206,75 +193,44 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
                 },
                 decoration: InputDecoration(
                     errorText: hasErrorsOnEnd ? 'Неверный формат' : null,
-                    labelStyle: Theme.of(context).textTheme.headline3,
                     labelText: 'Конец пары',
-                    hintText: '10:00',
-                    border: const OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Theme.of(context).colorScheme.secondary))),
+                    hintText: '10:00'),
               ),
             ),
           ],
         ),
-        TextFormField(
-          controller: pause,
-          textInputAction: TextInputAction.done,
-          style: Theme.of(context).textTheme.headline3,
-          decoration: InputDecoration(
-              labelStyle: Theme.of(context).textTheme.headline3,
-              labelText: 'Перемена после пары',
-              hintText: '10 минут',
-              border: const OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Theme.of(context).colorScheme.secondary))),
-        ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6),
-          child: ButtonBar(
-            buttonPadding: EdgeInsets.zero,
-            children: [
-              Wrap(
-                spacing: 12,
-                children: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(
-                      'Отмена',
-                      style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1!.color),
-                    ),
-                  ),
-                  OutlinedButton(
-                      onPressed: () {
-                        if (!hasErrorsOnEnd &&
-                            !hasErrorsOnStart &&
-                            startLesson.text.isNotEmpty &&
-                            endLesson.text.isNotEmpty) {
-                          TimeTableLogic().addNewTimeTableItem(TimeModel(
-                            name: name.text,
-                            startLesson: startLesson.text,
-                            endLesson: endLesson.text,
-                            pause: pause.text,
-                          ));
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: Text(
-                        'Добавить',
-                        style: TextStyle(
-                            color:
-                                Theme.of(context).textTheme.bodyText1!.color),
-                      ))
-                ],
-              ),
-            ],
+          padding: const EdgeInsets.only(top: 10),
+          child: TextFormField(
+            controller: pause,
+            textInputAction: TextInputAction.done,
+            style: Theme.of(context).textTheme.headline3,
+            decoration: const InputDecoration(labelText: 'Перемена после пары'),
           ),
+        ),
+        ButtonBar(
+          children: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Отмена'),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  if (!hasErrorsOnEnd &&
+                      !hasErrorsOnStart &&
+                      startLesson.text.isNotEmpty &&
+                      endLesson.text.isNotEmpty) {
+                    TimeTableLogic().addNewTimeTableItem(TimeModel(
+                      name: name.text,
+                      startLesson: startLesson.text,
+                      endLesson: endLesson.text,
+                      pause: pause.text,
+                    ));
+                    Navigator.pop(context);
+                  }
+                },
+                child: const Text('Добавить')),
+          ],
         )
       ],
     );
