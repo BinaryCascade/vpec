@@ -39,9 +39,9 @@ ThemeData themeData() {
         secondaryVariant: accentColor,
         surface: secondLevelColor,
         background: accentColor,
-        error: Colors.redAccent,
+        error: Colors.red,
         onPrimary: Color(0xDEFFFFFF),
-        onSecondary: highContrast,
+        onSecondary: backgroundColor,
         onSurface: highContrast,
         onBackground: highContrast,
         onError: Color(0xDEFFFFFF),
@@ -80,15 +80,57 @@ ThemeData themeData() {
       size: 20.0,
     ),
     textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-            overlayColor: MaterialStateProperty.all<Color>(
-                accentColor.withOpacity(0.20)))),
+        style: TextButton.styleFrom(
+          textStyle:
+          const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+          shape: const StadiumBorder(),
+          primary: accentColor,
+        )),
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
+            textStyle:
+            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+            shape: const StadiumBorder(),
             side: const BorderSide(
-      width: 1,
-      color: accentColor,
-    ))),
+              width: 1.5,
+              color: accentColor,
+            ))),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          textStyle:
+          const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+          shape: const StadiumBorder(),
+          primary: accentColor,
+          onPrimary: backgroundColor,
+        )),
+    inputDecorationTheme: const InputDecorationTheme(
+      alignLabelWithHint: true,
+      errorStyle: TextStyle(
+          color: Colors.red,
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold),
+      labelStyle: TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold),
+      hintStyle: TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold),
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red, width: 1),
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red, width: 1.5),
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: accentColor, width: 1),
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: accentColor, width: 1.5),
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+    ),
     scaffoldBackgroundColor: backgroundColor,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: secondLevelColor,
@@ -133,7 +175,7 @@ ThemeData darkThemeData() {
         background: backgroundColor,
         error: Colors.redAccent,
         onPrimary: highContrast,
-        onSecondary: highContrast,
+        onSecondary: backgroundColor,
         onSurface: highContrast,
         onBackground: highContrast,
         onError: highContrast,
@@ -172,15 +214,57 @@ ThemeData darkThemeData() {
       size: 20.0,
     ),
     textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-            overlayColor: MaterialStateProperty.all<Color>(
-                accentColor.withOpacity(0.20)))),
+        style: TextButton.styleFrom(
+          textStyle:
+          const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+          shape: const StadiumBorder(),
+          primary: accentColor,
+        )),
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
+            textStyle:
+            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+            shape: const StadiumBorder(),
             side: const BorderSide(
-      width: 1,
-      color: accentColor,
-    ))),
+              width: 1.5,
+              color: accentColor,
+            ))),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          textStyle:
+          const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+          shape: const StadiumBorder(),
+          primary: accentColor,
+          onPrimary: backgroundColor,
+        )),
+    inputDecorationTheme: const InputDecorationTheme(
+      alignLabelWithHint: true,
+      errorStyle: TextStyle(
+          color: Colors.redAccent,
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold),
+      labelStyle: TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold),
+      hintStyle: TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold),
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.redAccent, width: 1),
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.redAccent, width: 1.5),
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: accentColor, width: 1),
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: accentColor, width: 1.5),
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+    ),
     scaffoldBackgroundColor: backgroundColor,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: secondLevelColor,
