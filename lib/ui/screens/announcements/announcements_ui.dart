@@ -71,63 +71,6 @@ class AnnouncementsList extends StatelessWidget {
   }
 }
 
-class AnnouncementSendUI extends StatelessWidget {
-  final Function? sendToAll, sendPrivate;
-
-  const AnnouncementSendUI({
-    Key? key,
-    this.sendToAll,
-    this.sendPrivate,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: SizedBox(
-            width: double.infinity,
-            child: OutlinedButton(
-              style: Theme.of(context).outlinedButtonTheme.style,
-              onPressed: () => Navigator.pop(context),
-              child: Text(
-                'Отмена',
-                style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1!.color),
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: OutlinedButton(
-            style: Theme.of(context).outlinedButtonTheme.style,
-            onPressed: () => sendToAll,
-            child: Text(
-              'Отправить всем',
-              style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1!.color),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: OutlinedButton(
-            style: Theme.of(context).outlinedButtonTheme.style,
-            onPressed: () => sendPrivate,
-            child: Text(
-              'Отправить сотрудникам',
-              style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1!.color),
-            ),
-          ),
-        )
-      ],
-    );
-  }
-}
-
 class NewAnnouncementUI extends StatelessWidget {
   const NewAnnouncementUI({
     Key? key,
