@@ -14,7 +14,7 @@ import '../ui/screens/job_quiz/job_quiz_screen.dart';
 import '../ui/screens/settings/settings_screen.dart';
 import '../ui/screens/teachers/teachers_logic.dart';
 import '../ui/screens/teachers/teachers_screen.dart';
-import '../ui/screens/view_document.dart';
+import '../ui/screens/view_document/view_document.dart';
 
 class Routes {
   static final Map<String, WidgetBuilder> map = {
