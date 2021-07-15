@@ -79,7 +79,7 @@ class AnnouncementCard extends StatelessWidget {
       titleController.text = announcement.title;
       contentController.text = announcement.content;
 
-      roundedModalSheet(
+      showRoundedModalSheet(
         context: context,
         title: 'Редактировать объявление',
         child: Column(

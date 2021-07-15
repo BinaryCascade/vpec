@@ -8,7 +8,7 @@ import 'teacher_editormode_ui.dart';
 
 class TeacherEditorModeLogic {
   void showEditDialog(BuildContext context, TeacherModel model) {
-    roundedModalSheet(
+    showRoundedModalSheet(
         context: context,
         title: 'Редактировать преподавателя',
         child: EditTeacherDialogUI(model: model));
@@ -26,7 +26,7 @@ class TeacherEditorModeLogic {
 
   void showConfirmDeleteDialog(BuildContext context, String id) {
     Navigator.pop(context);
-    roundedModalSheet(
+    showRoundedModalSheet(
         context: context,
         title: 'Подтвердите действие',
         child: DeleteDialogUI(onDelete: () => confirmDelete(id)));

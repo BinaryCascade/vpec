@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// Open in browser given [url]
 Future<void> openUrl(String url) async {
   if (await canLaunch(url)) {
     await launch(url);
@@ -15,6 +16,9 @@ Future<void> openUrl(String url) async {
   }
 }
 
+/// Share any file from given [url].
+///
+/// If [url] is null, then nothing will do
 Future<void> shareFile(String? url) async {
   if (url != null) {
     // download file from given url
@@ -36,13 +40,18 @@ Future<void> shareFile(String? url) async {
   }
 }
 
-/// creating modal sheet with rounded corners
-Future<void> roundedModalSheet(
+/// Show modal sheet with rounded corners.
+///
+/// Use [child] with [title] if you want use styled layout.
+///
+/// Or use [customLayout] if you need something other.
+Future<void> showRoundedModalSheet(
     {required BuildContext context,
-    required String title,
+    String? title,
     bool isDismissible = true,
     bool enableDrag = true,
-    required Widget child}) async {
+    Widget? child,
+    Widget? customLayout}) async {
   await showModalBottomSheet(
       context: context,
       isDismissible: isDismissible,
@@ -54,7 +63,7 @@ Future<void> roundedModalSheet(
           topRight: Radius.circular(20),
         ),
       ),
-      builder: (context) => Container(
+      builder: (context) => customLayout ?? Container(
             margin: EdgeInsets.only(
                 top: 15,
                 left: 15,
@@ -67,13 +76,13 @@ Future<void> roundedModalSheet(
                 Padding(
                   padding: const EdgeInsets.only(bottom: 15),
                   child: Center(
-                    child: Text(
+                    child: title != null ? Text(
                       title,
                       style: Theme.of(context).textTheme.headline4,
-                    ),
+                    ) : ErrorWidget('You need implement [title] if you want use styled layout, or [customLayout] if you need your own layout'),
                   ),
                 ),
-                child,
+                child ?? ErrorWidget('You need implement [child] if you want use styled layout, or [customLayout] if you need your own layout'),
               ],
             ),
           ));

@@ -48,7 +48,7 @@ class SettingsLogic extends ChangeNotifier {
 
   // show roundedModalSheet() for account login
   static Future<void> accountLogin(BuildContext context) async {
-    await roundedModalSheet(
+    await showRoundedModalSheet(
       context: context,
       title: 'Войти в аккаунт',
       child: const AccountLoginUI(),
@@ -76,7 +76,7 @@ class SettingsLogic extends ChangeNotifier {
   static void changeName(BuildContext context) {
     TextEditingController nameController = TextEditingController();
 
-    roundedModalSheet(
+    showRoundedModalSheet(
       title: 'Изменить имя',
       context: context,
       child: EditNameUI(nameController: nameController),
@@ -171,7 +171,7 @@ class SettingsLogic extends ChangeNotifier {
       {required BuildContext context, required bool isAppThemeSetting}) async {
     String hiveKey = isAppThemeSetting ? 'theme' : 'pdfTheme';
 
-    await roundedModalSheet(
+    await showRoundedModalSheet(
       context: context,
       title: 'Выберите тему',
       child: Consumer<ThemeNotifier>(
@@ -210,7 +210,7 @@ class SettingsLogic extends ChangeNotifier {
   }
 
   void chooseLaunchOnStart(BuildContext context) {
-    roundedModalSheet(
+    showRoundedModalSheet(
         context: context,
         title: 'Открывать при запуске',
         child: const LaunchOnStartChooserUI());

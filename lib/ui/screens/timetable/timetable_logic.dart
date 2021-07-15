@@ -10,7 +10,7 @@ import 'timetable_ui.dart';
 
 class TimeTableLogic {
   void resetTimeTable(BuildContext context) {
-    roundedModalSheet(
+    showRoundedModalSheet(
         context: context,
         title: 'Сбросить расписание звонков',
         child: Provider(
@@ -18,7 +18,7 @@ class TimeTableLogic {
   }
 
   void addTimeTable(BuildContext context) {
-    roundedModalSheet(
+    showRoundedModalSheet(
         context: context,
         title: 'Добавить расписание звонков',
         child: const AddTimeTableItemDialogUI());
@@ -136,7 +136,7 @@ class TimeTableLogic {
 
   void confirmDelete(BuildContext context, TimeModel model) {
     Navigator.pop(context);
-    roundedModalSheet(
+    showRoundedModalSheet(
         context: context,
         title: 'Подтвердите действие',
         child: DeleteDialogUI(

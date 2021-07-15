@@ -85,7 +85,7 @@ class TimeTableItemLogic extends ChangeNotifier {
 class TimeTableEditorMode {
   void openTimeTableItemEdit(
       {required BuildContext context, required TimeModel model}) {
-    roundedModalSheet(
+    showRoundedModalSheet(
         context: context,
         title: 'Редактировать: ${model.name}',
         child: EditTimeTableItemDialogUI(

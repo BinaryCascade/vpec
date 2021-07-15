@@ -123,7 +123,7 @@ class NewAnnouncementUI extends StatelessWidget {
                     if (!isUserAddPhoto) {
                       await pickPhoto!();
                     } else {
-                      roundedModalSheet(
+                      showRoundedModalSheet(
                           context: context,
                           title: 'Ошибка',
                           child: Column(
@@ -159,7 +159,7 @@ class NewAnnouncementUI extends StatelessWidget {
                         Navigator.pop(context);
                         confirmAnnouncementSend!();
                       } else {
-                        roundedModalSheet(
+                        showRoundedModalSheet(
                             context: context,
                             title: 'Внимание',
                             child: Column(

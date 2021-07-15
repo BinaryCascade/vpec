@@ -85,7 +85,7 @@ class AnnouncementsLogic {
     }
 
     void confirmAnnouncementSend() {
-      roundedModalSheet(
+      showRoundedModalSheet(
           context: context,
           title: 'Кому отправить?',
           child: Column(
@@ -126,7 +126,7 @@ class AnnouncementsLogic {
           ));
     }
 
-    roundedModalSheet(
+    showRoundedModalSheet(
       context: context,
       title: 'Новое объявление',
       child: NewAnnouncementUI(

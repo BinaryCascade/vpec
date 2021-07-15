@@ -25,7 +25,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     ChangeNotifierProvider(
         create: (_) => TimeTableItemLogic(), child: const TimeTableScreen()),
     ChangeNotifierProvider(
-        create: (_) => LessonsScheduleLogic(), child: const LessonsScheduleScreen()),
+        create: (_) => LessonsScheduleLogic(),
+        child: const LessonsScheduleScreen()),
     const MenuScreen(),
   ];
 
