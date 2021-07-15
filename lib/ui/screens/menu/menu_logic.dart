@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 
 class MenuLogic {
-  Future<bool> get isOpenDoorsDay async {
+  static Future<bool> get isOpenDoorsDay async {
     DocumentSnapshot cabMap = await FirebaseFirestore.instance
         .collection('misc_settings')
         .doc('open_doors')

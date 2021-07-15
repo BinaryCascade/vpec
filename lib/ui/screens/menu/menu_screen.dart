@@ -66,7 +66,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         .colorStatusBar(context: context, haveAppbar: false);
                   }),
               FutureBuilder<bool>(
-                future: MenuLogic().isOpenDoorsDay,
+                future: MenuLogic.isOpenDoorsDay,
                 initialData: false,
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
