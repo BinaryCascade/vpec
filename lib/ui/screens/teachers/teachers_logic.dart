@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/teacher_model.dart';
-import '../../../utils/rounded_modal_sheet.dart';
+import '../../../utils/utils.dart';
 import 'teachers_ui.dart';
 
 enum SearchMode { firstName, familyName, secondaryName, lesson, cabinet }

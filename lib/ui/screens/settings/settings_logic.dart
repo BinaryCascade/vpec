@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/hive_helper.dart';
-import '../../../utils/rounded_modal_sheet.dart';
+import '../../../utils/utils.dart';
 import '../../../utils/snackbars.dart';
 import '../../../utils/theme_helper.dart';
 import 'settings_ui.dart';

@@ -6,7 +6,7 @@ import '../../../models/announcement_model.dart';
 import '../../../ui/widgets/announcement_card.dart';
 import '../../../ui/widgets/loading_indicator.dart';
 import '../../../utils/icons.dart';
-import '../../../utils/rounded_modal_sheet.dart';
+import '../../../utils/utils.dart';
 
 /// ListView with data from Firestore
 class AnnouncementsList extends StatelessWidget {

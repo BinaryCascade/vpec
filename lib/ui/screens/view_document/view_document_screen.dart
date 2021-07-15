@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/document_model.dart';
-import '../../../utils/share_file.dart';
+import '../../../utils/utils.dart';
 import '../../../utils/theme_helper.dart';
 import 'view_document_ui.dart';
 

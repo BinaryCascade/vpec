@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:url_launcher/url_launcher.dart';
 
+import '../../../utils/utils.dart';
 import '../widgets/loading_indicator.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -23,16 +23,6 @@ class _NewsScreenState extends State<NewsScreen> {
     setState(() {
       _feed = feed;
     });
-  }
-
-  Future<void> openFeed(String url) async {
-    if (await canLaunch((url))) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: false,
-      );
-    }
   }
 
   Future<void> load() async {
@@ -95,7 +85,7 @@ class _NewsScreenState extends State<NewsScreen> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: InkWell(
-                            onTap: () => openFeed(item.link!),
+                            onTap: () => openUrl(item.link!),
                             child: Column(
                               children: <Widget>[
                                 AnimatedSize(

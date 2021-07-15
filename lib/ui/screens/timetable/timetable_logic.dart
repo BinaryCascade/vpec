@@ -5,7 +5,7 @@ import 'package:vpec/ui/widgets/confirm_delete_dialog.dart';
 import 'package:vpec/utils/snackbars.dart';
 
 import '../../../models/time_model.dart';
-import '../../../utils/rounded_modal_sheet.dart';
+import '../../../utils/utils.dart';
 import 'timetable_ui.dart';
 
 class TimeTableLogic {

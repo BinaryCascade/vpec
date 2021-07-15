@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../models/teacher_model.dart';
 import '../../../ui/widgets/confirm_delete_dialog.dart';
-import '../../../utils/rounded_modal_sheet.dart';
+import '../../../utils/utils.dart';
 import 'teacher_editormode_ui.dart';
 
 class TeacherEditorModeLogic {

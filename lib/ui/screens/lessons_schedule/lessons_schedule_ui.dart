@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/utils/share_file.dart';
+import 'package:vpec/utils/utils.dart';
 
 import '../../../ui/widgets/loading_indicator.dart';
 import '../../../utils/theme_helper.dart';

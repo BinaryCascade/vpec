@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../ui/widgets/styled_widgets.dart';
 import '../../../utils/icons.dart';
-import 'about_app_logic.dart';
+import '../../../utils/utils.dart';
 
 class AboutDeveloperCard extends StatelessWidget {
   final String? name, post, nickname, vkUrl, tgUrl;
@@ -26,7 +26,7 @@ class AboutDeveloperCard extends StatelessWidget {
             StyledListTile(title: name!, subtitle: post!),
             Padding(
               padding:
-              const EdgeInsets.only(bottom: 8.0, right: 8.0, left: 18.0),
+                  const EdgeInsets.only(bottom: 8.0, right: 8.0, left: 18.0),
               child: Row(
                 children: [
                   Text(
@@ -42,7 +42,7 @@ class AboutDeveloperCard extends StatelessWidget {
                         size: 32,
                         color: Theme.of(context).colorScheme.secondary,
                       ),
-                      onPressed: () => AboutAppLogic().openUrl(vkUrl!),
+                      onPressed: () => openUrl(vkUrl!),
                     ),
                   if (tgUrl != null)
                     IconButton(
@@ -52,7 +52,7 @@ class AboutDeveloperCard extends StatelessWidget {
                         size: 32,
                         color: Theme.of(context).colorScheme.secondary,
                       ),
-                      onPressed: () => AboutAppLogic().openUrl(tgUrl!),
+                      onPressed: () => openUrl(tgUrl!),
                     ),
                 ],
               ),

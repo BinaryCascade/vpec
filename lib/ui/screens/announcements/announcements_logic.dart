@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:vpec/ui/screens/settings/settings_logic.dart';
 import 'package:vpec/utils/hive_helper.dart';
 
-import '../../../utils/rounded_modal_sheet.dart';
+import '../../../utils/utils.dart';
 import '../../../utils/snackbars.dart';
 import 'announcements_ui.dart';
 

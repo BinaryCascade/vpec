@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/utils.dart';
 import '../../widgets/styled_widgets.dart';
-import 'about_app_logic.dart';
 import 'about_app_ui.dart';
 
 class AboutAppScreen extends StatelessWidget {
@@ -34,7 +34,7 @@ class AboutAppScreen extends StatelessWidget {
             StyledListTile(
                 title: 'Исходный код приложения',
                 subtitle: 'Нажмите, чтобы открыть Github',
-                onTap: () => AboutAppLogic().openUrl('https://github.com/'
+                onTap: () => openUrl('https://github.com/'
                     'Volgograd-Power-Engineering-College/vpec')),
             StyledListTile(
                 title: 'Лицензии библиотек',

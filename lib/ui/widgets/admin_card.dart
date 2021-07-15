@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../models/admin_model.dart';
+import '../../utils/utils.dart';
 
 class AdminCard extends StatelessWidget {
   final AdminModel? admin;
@@ -44,11 +44,7 @@ class AdminCard extends StatelessWidget {
                     child: SelectableLinkify(
                       text: admin!.contact!,
                       style: Theme.of(context).textTheme.subtitle1,
-                      onOpen: (value) async {
-                        if (await canLaunch(value.url)) {
-                          await launch(value.url);
-                        }
-                      },
+                      onOpen: (value) => openUrl(value.url),
                     ),
                   ),
                   if (admin!.cabinet != '')

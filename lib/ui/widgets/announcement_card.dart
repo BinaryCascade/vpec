@@ -2,14 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:vpec/ui/screens/settings/settings_logic.dart';
 
 import '../../models/announcement_model.dart';
-import '../../utils/rounded_modal_sheet.dart';
+import '../../ui/screens/settings/settings_logic.dart';
+import '../../utils/utils.dart';
 
 class AnnouncementCard extends StatelessWidget {
   final AnnouncementModel announcement;
+
   const AnnouncementCard({Key? key, required this.announcement})
       : super(key: key);
 
@@ -50,13 +50,7 @@ class AnnouncementCard extends StatelessWidget {
                           text: announcement.content,
                           style: Theme.of(context).textTheme.bodyText1,
                           options: const LinkifyOptions(humanize: true),
-                          onOpen: (link) async {
-                            if (await canLaunch(link.url)) {
-                              await launch(link.url);
-                            } else {
-                              throw ('Could not launch ${link.url}');
-                            }
-                          },
+                          onOpen: (link) => openUrl(link.url),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 6),
