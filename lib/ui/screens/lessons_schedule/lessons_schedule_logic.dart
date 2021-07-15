@@ -1,11 +1,6 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:share/share.dart';
 
 class LessonsScheduleLogic extends ChangeNotifier {
   final transformationController = TransformationController();
@@ -80,21 +75,6 @@ class LessonsScheduleLogic extends ChangeNotifier {
     }
     dateFromUrl = formatter.format(date);
     return baseUrl + formatter.format(date) + endUrl;
-  }
-
-  Future<void> shareLessonImage() async {
-    // download image from given url
-    HttpClientRequest request =
-        await HttpClient().getUrl(Uri.parse(imgUrl));
-    HttpClientResponse response = await request.close();
-    Uint8List bytes = await consolidateHttpClientResponseBytes(response);
-
-    // get temp directory, write and share image file
-    final Directory tempDir = await getTemporaryDirectory();
-    final File file = await File('${tempDir.path}/share.jpg').create();
-    await file.writeAsBytes(bytes);
-
-    Share.shareFiles([file.path]);
   }
 
   Future<void> chooseDate(BuildContext context) async {

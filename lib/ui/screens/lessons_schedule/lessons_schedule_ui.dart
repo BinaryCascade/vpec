@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vpec/utils/share_file.dart';
 
 import '../../../ui/widgets/loading_indicator.dart';
 import '../../../utils/theme_helper.dart';
@@ -80,7 +81,7 @@ class FabMenu extends StatelessWidget {
             mini: true,
             child: const Icon(Icons.share_outlined),
             onPressed: () =>
-                context.read<LessonsScheduleLogic>().shareLessonImage(),
+                shareFile(context.read<LessonsScheduleLogic>().imgUrl),
           ),
         Padding(
           padding: const EdgeInsets.only(bottom: 4),
