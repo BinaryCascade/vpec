@@ -69,9 +69,9 @@ class _MenuScreenState extends State<MenuScreen> {
                 future: MenuLogic.isOpenDoorsDay,
                 initialData: false,
                 builder:
-                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                    (BuildContext context, AsyncSnapshot<bool> snapshot) {
                   if (snapshot.hasData) {
-                    if (snapshot.data) {
+                    if (snapshot.data!) {
                       return StyledListTile(
                           icon: Icon(Icons.rule_outlined,
                               color: Theme.of(context).colorScheme.secondary, size: 32),

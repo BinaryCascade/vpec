@@ -10,9 +10,9 @@ class DocumentViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late DocumentModel doc;
+    late DocumentModel document;
     if (ModalRoute.of(context)!.settings.arguments is DocumentModel) {
-      doc = ModalRoute.of(context)!.settings.arguments as DocumentModel;
+      document = ModalRoute.of(context)!.settings.arguments as DocumentModel;
     } else {
       Navigator.popAndPushNamed(context, '/');
     }
@@ -20,16 +20,16 @@ class DocumentViewScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(doc.title),
+        title: Text(document.title),
         actions: [
-          if (doc.type == 'pdf')
+          if (document.type == 'pdf')
             IconButton(
                 tooltip: 'Поделиться',
-                onPressed: () => shareFile(doc.url),
+                onPressed: () => shareFile(document.url),
                 icon: const Icon(Icons.share_outlined)),
         ],
       ),
-      body: DocumentViewer(url: doc.url, isPDF: doc.type == 'pdf'),
+      body: DocumentViewer(document: document),
     );
   }
 }
