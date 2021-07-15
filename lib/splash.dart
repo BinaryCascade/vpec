@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
       // if app running on Android or iOS, make QuickActions
       if (defaultTargetPlatform == TargetPlatform.android ||
           defaultTargetPlatform == TargetPlatform.iOS) {
-        final QuickActions quickActions = QuickActions();
+        const QuickActions quickActions = QuickActions();
         quickActions.initialize((shortcutType) {
           switch (shortcutType) {
             case 'action_news':
@@ -84,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen> {
         context.read<BottomBarLogic>().setIndex(givenIndex);
       }
     } else {
-      final QuickActions quickActions = QuickActions();
+      const QuickActions quickActions = QuickActions();
       quickActions.clearShortcutItems();
     }
   }
