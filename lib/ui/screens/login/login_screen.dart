@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vpec/ui/screens/login/login_logic.dart';
-import 'package:vpec/utils/buttons.dart';
 import 'package:vpec/utils/theme_helper.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -31,13 +30,22 @@ class LoginScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.subtitle1!,
                 textAlign: TextAlign.end,
               ),
-              StyledOutlinedButton(
-                text: 'Войти в аккаунт',
-                onPressed: () async => await LoginLogic.openLogin(context),
+              SizedBox(
+                height: 42.0,
+                width: double.infinity,
+                child: OutlinedButton(
+                  child: const Text('Войти в аккаунт'),
+                  onPressed: () async => await LoginLogic.openLogin(context),
+                ),
               ),
-              StyledOutlinedButton(
-                text: 'Я абитуриент',
-                onPressed: () => Navigator.popAndPushNamed(context, '/entrant'),
+              SizedBox(
+                height: 42.0,
+                width: double.infinity,
+                child: OutlinedButton(
+                  child: const Text('Я абитуриент'),
+                  onPressed: () =>
+                      Navigator.popAndPushNamed(context, '/entrant'),
+                ),
               ),
               GestureDetector(
                 onTap: () => LoginLogic.showAccountHelperDialog(context),
