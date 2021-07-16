@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart' as schedule;
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 
@@ -9,8 +9,7 @@ class ThemeHelper {
   /// return true, if system or user-chosen theme is dark
   static bool isDarkMode() {
     // get system theme
-    var brightness =
-        schedule.SchedulerBinding.instance!.window.platformBrightness;
+    var brightness = SchedulerBinding.instance!.window.platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
     // get user-chosen theme
     Box settings = Hive.box('settings');
@@ -23,7 +22,9 @@ class ThemeHelper {
     return isDarkMode;
   }
 
-  /// [haveAppbar] = set to true if you use AppBar in page
+  /// Color StatusBar and NavigationBar to theme colors
+  ///
+  /// Set [haveAppbar] to true if you use AppBar in page
   static void colorStatusBar(
       {required BuildContext context, required bool haveAppbar}) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -42,6 +43,7 @@ class ThemeHelper {
   }
 }
 
+/// This class store current [ThemeMode]
 class ThemeNotifier with ChangeNotifier {
   ThemeMode themeMode;
 

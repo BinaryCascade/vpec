@@ -12,7 +12,7 @@ import 'utils/theme_helper.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveHelper().initHive();
-  await Firebase.initializeApp().whenComplete(() => runApp(
+  Firebase.initializeApp().whenComplete(() => runApp(
       ChangeNotifierProvider<ThemeNotifier>(
           create: (_) => ThemeNotifier(
               ThemeHelper.isDarkMode() ? ThemeMode.dark : ThemeMode.light),

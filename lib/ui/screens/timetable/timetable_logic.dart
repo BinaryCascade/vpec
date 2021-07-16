@@ -9,22 +9,23 @@ import '../../../utils/utils.dart';
 import 'timetable_ui.dart';
 
 class TimeTableLogic {
-  void resetTimeTable(BuildContext context) {
+  static void resetTimeTable(BuildContext context) {
     showRoundedModalSheet(
         context: context,
         title: 'Сбросить расписание звонков',
         child: Provider(
-            create: (_) => TimeTableLogic(), child: const ResetTimeTableDialogUI()));
+            create: (_) => TimeTableLogic(),
+            child: const ResetTimeTableDialogUI()));
   }
 
-  void addTimeTable(BuildContext context) {
+  static void addTimeTable(BuildContext context) {
     showRoundedModalSheet(
         context: context,
         title: 'Добавить расписание звонков',
         child: const AddTimeTableItemDialogUI());
   }
 
-  bool validateToDate(String value) {
+  static bool validateToDate(String value) {
     RegExp regex = RegExp(r'^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$');
     if (regex.hasMatch(value)) {
       return true;
@@ -41,7 +42,7 @@ class TimeTableLogic {
     schedule.doc(docID.toString()).set(model.toMap(docID));
   }
 
-  Future<void> deleteAllDocs() async {
+  static Future<void> deleteAllDocs() async {
     CollectionReference schedule =
         FirebaseFirestore.instance.collection('time_schedule');
     // delete all docs in time_schedule
@@ -50,6 +51,13 @@ class TimeTableLogic {
         doc.reference.delete();
       }
     });
+  }
+
+  static void showDeleteAllDocsDialog(BuildContext context) {
+    showRoundedModalSheet(
+        context: context,
+        title: 'Подтвердите действие',
+        child: const ConfirmDeleteAllDocsDialogUI());
   }
 
   void restoreFiles(BuildContext context, bool isThirtyMinBreak) {
@@ -61,9 +69,7 @@ class TimeTableLogic {
       if (value.docs.isEmpty) {
         for (int i = 1; i < 6; i++) {
           int docID = DateTime.now().millisecondsSinceEpoch;
-          schedule
-              .doc(docID.toString())
-              .set(
+          schedule.doc(docID.toString()).set(
                 getDefaultTimeSchedule(
                         isThirtyMinBreak: isThirtyMinBreak, numOfLesson: i)
                     .toMap(docID),
@@ -127,9 +133,7 @@ class TimeTableLogic {
   void editTimeTableItem(String docID, TimeModel model) {
     CollectionReference schedule =
         FirebaseFirestore.instance.collection('time_schedule');
-    schedule
-        .doc(docID.toString())
-        .set(
+    schedule.doc(docID.toString()).set(
           model.toMap(int.parse(docID)),
         );
   }
@@ -149,8 +153,6 @@ class TimeTableLogic {
   void deleteDoc(String docID) {
     CollectionReference schedule =
         FirebaseFirestore.instance.collection('time_schedule');
-    schedule
-        .doc(docID.toString())
-        .delete();
+    schedule.doc(docID.toString()).delete();
   }
 }

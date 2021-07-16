@@ -58,19 +58,19 @@ class EditorModeButtons extends StatelessWidget {
               Icons.delete_outlined,
               size: 24.0,
             ),
-            onPressed: () => TimeTableLogic().deleteAllDocs()),
+            onPressed: () => TimeTableLogic.showDeleteAllDocsDialog(context)),
         FloatingActionButton(
             child: const Icon(
               Icons.refresh_outlined,
               size: 24.0,
             ),
-            onPressed: () => TimeTableLogic().resetTimeTable(context)),
+            onPressed: () => TimeTableLogic.resetTimeTable(context)),
         FloatingActionButton(
             child: const Icon(
               Icons.add_outlined,
               size: 24.0,
             ),
-            onPressed: () => TimeTableLogic().addTimeTable(context)),
+            onPressed: () => TimeTableLogic.addTimeTable(context)),
       ],
     );
   }
@@ -158,7 +158,7 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
                 inputFormatters: [MaskedInputFormatter('00:00')],
                 onChanged: (value) {
                   setState(() {
-                    if (TimeTableLogic().validateToDate(startLesson.text)) {
+                    if (TimeTableLogic.validateToDate(startLesson.text)) {
                       hasErrorsOnStart = false;
                     } else {
                       hasErrorsOnStart = true;
@@ -184,7 +184,7 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
                 inputFormatters: [MaskedInputFormatter('00:00')],
                 onChanged: (value) {
                   setState(() {
-                    if (TimeTableLogic().validateToDate(endLesson.text)) {
+                    if (TimeTableLogic.validateToDate(endLesson.text)) {
                       hasErrorsOnEnd = false;
                     } else {
                       hasErrorsOnEnd = true;
@@ -232,6 +232,35 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
                 child: const Text('Добавить')),
           ],
         )
+      ],
+    );
+  }
+}
+
+class ConfirmDeleteAllDocsDialogUI extends StatelessWidget {
+  const ConfirmDeleteAllDocsDialogUI({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Text('Данное действие удалит все записи'),
+        ButtonBar(
+          alignment: MainAxisAlignment.center,
+          children: [
+            OutlinedButton(
+              child: const Text('Отмена'),
+              onPressed: () => Navigator.pop(context),
+            ),
+            OutlinedButton(
+              child: const Text('Удалить'),
+              onPressed: () async {
+                await TimeTableLogic.deleteAllDocs();
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ],
     );
   }

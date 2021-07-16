@@ -57,7 +57,7 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
                 inputFormatters: [MaskedInputFormatter('00:00')],
                 onChanged: (value) {
                   setState(() {
-                    if (TimeTableLogic().validateToDate(startLesson.text)) {
+                    if (TimeTableLogic.validateToDate(startLesson.text)) {
                       hasErrorsOnStart = false;
                     } else {
                       hasErrorsOnStart = true;
@@ -83,7 +83,7 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
                 inputFormatters: [MaskedInputFormatter('00:00')],
                 onChanged: (value) {
                   setState(() {
-                    if (TimeTableLogic().validateToDate(endLesson.text)) {
+                    if (TimeTableLogic.validateToDate(endLesson.text)) {
                       hasErrorsOnEnd = false;
                     } else {
                       hasErrorsOnEnd = true;
