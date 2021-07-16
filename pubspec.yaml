@@ -5,7 +5,7 @@ description: Мобильное приложение для Волгоградс
 # pub.dev using `pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.1.1+5
+version: 1.1.2+6
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -40,6 +40,8 @@ dependencies:
   photo_view: ^0.11.1 # for cabinets map
   file_picker: ^3.0.3 # for adding images to announcements
   flutter_multi_formatter: ^2.3.1
+  fluro: ^2.0.3
+  url_strategy: ^0.2.0
   flutter_markdown: ^0.6.2
 
 flutter_native_splash:
