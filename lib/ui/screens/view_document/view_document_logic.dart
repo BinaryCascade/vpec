@@ -1,3 +1,6 @@
+import 'package:http/http.dart' as http;
+import 'dart:convert' show utf8;
+
 import 'package:flutter/material.dart';
 
 import '../../../utils/hive_helper.dart';
@@ -33,5 +36,11 @@ class ViewDocumentLogic {
               0, 0, 0, 1, 0,
             ]);
     }
+  }
+
+  static Future<String> getMDText(String url) async {
+    String text = await http.read(Uri.parse(url));
+
+    return utf8.decode(text.codeUnits);
   }
 }

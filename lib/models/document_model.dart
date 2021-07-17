@@ -3,15 +3,13 @@
 class DocumentModel {
   final String title;
   final String subtitle;
-  final String? url; // can be null if doc type is MD
-  final String? data; // can be null if doc type if PDF
+  final String url;
   final String type;
 
   DocumentModel(
       {required this.title,
       required this.subtitle,
-      this.url,
-      this.data,
+      required this.url,
       required this.type});
 
   DocumentModel.fromMap(Map<String, dynamic> data, String id)
@@ -19,7 +17,6 @@ class DocumentModel {
           title: data['title'],
           subtitle: data['subtitle'],
           url: data['url'],
-          data: data['data'],
           type: data['type'],
         );
 }
