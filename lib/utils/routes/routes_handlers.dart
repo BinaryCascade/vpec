@@ -2,9 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/ui/screens/settings/settings_logic.dart';
-import 'package:vpec/utils/hive_helper.dart';
-import 'package:vpec/utils/routes/routes.dart';
 
 import '../../splash.dart';
 import '../../ui/screens/about_app/about_app_screen.dart';
@@ -16,10 +13,13 @@ import '../../ui/screens/cabinets_map/cabinets_map_screen.dart';
 import '../../ui/screens/documents_screen.dart';
 import '../../ui/screens/entrant/entrant_screen.dart';
 import '../../ui/screens/job_quiz/job_quiz_screen.dart';
+import '../../ui/screens/settings/settings_logic.dart';
 import '../../ui/screens/settings/settings_screen.dart';
 import '../../ui/screens/teachers/teachers_logic.dart';
 import '../../ui/screens/teachers/teachers_screen.dart';
 import '../../ui/screens/view_document/view_document_screen.dart';
+import '../hive_helper.dart';
+import 'routes.dart';
 
 Handler homeScreenHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
@@ -81,9 +81,12 @@ Handler loginByURLHandler = Handler(
   String? password = params['password']!.first;
 
   makeLogin(email, password).then((value) {
-    HiveHelper.saveValue(key: 'isUserEntrant', value: 'false');
     if (SettingsLogic.getAccountMode() != UserMode.entrant) {
-      Navigator.pushNamedAndRemoveUntil(context!, FluroRoutes.homeScreen, (route) => false);
+      HiveHelper.saveValue(key: 'isUserEntrant', value: 'false');
+      Navigator.pushNamedAndRemoveUntil(
+          context!, FluroRoutes.homeScreen, (route) => false);
+    } else {
+      HiveHelper.removeValue('isUserEntrant');
     }
   });
 });
