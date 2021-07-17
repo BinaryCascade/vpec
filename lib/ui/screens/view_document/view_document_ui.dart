@@ -13,7 +13,13 @@ class DocumentViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return document.type == 'pdf' ? buildPDFViewer() : buildMDViewer(context);
+    String docType = ViewDocumentLogic.getFileExtension(document.url);
+
+    return docType == 'pdf'
+        ? buildPDFViewer()
+        : docType == 'md'
+            ? buildMDViewer(context)
+            : buildError();
   }
 
   Widget buildPDFViewer() {
@@ -23,6 +29,12 @@ class DocumentViewer extends StatelessWidget {
         child: const PDF(swipeHorizontal: true).fromUrl(document.url,
             placeholder: (progress) => const LoadingIndicator()),
       ),
+    );
+  }
+
+  Widget buildError() {
+    return Center(
+      child: Text('Неподдерживаемый тип файла\n${document.url}'),
     );
   }
 

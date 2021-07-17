@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vpec/ui/screens/view_document/view_document_logic.dart';
 
 import '../../../models/document_model.dart';
 import '../../../utils/utils.dart';
@@ -22,7 +23,7 @@ class DocumentViewScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(document.title),
         actions: [
-          if (document.type == 'pdf')
+          if (ViewDocumentLogic.getFileExtension(document.url) == 'pdf')
             IconButton(
                 tooltip: 'Поделиться',
                 onPressed: () => shareFile(document.url),

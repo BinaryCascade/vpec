@@ -43,4 +43,8 @@ class ViewDocumentLogic {
 
     return utf8.decode(text.codeUnits);
   }
+
+  static String getFileExtension(String path) {
+    return path.split('/').last.split('.').last.split('?').first;
+  }
 }
