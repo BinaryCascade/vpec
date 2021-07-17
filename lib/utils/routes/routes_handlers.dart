@@ -84,7 +84,7 @@ Handler loginByURLHandler = Handler(
     if (SettingsLogic.getAccountMode() != UserMode.entrant) {
       HiveHelper.saveValue(key: 'isUserEntrant', value: 'false');
       Navigator.pushNamedAndRemoveUntil(
-          context!, FluroRoutes.homeScreen, (route) => false);
+          context!, Routes.homeScreen, (route) => false);
     } else {
       HiveHelper.removeValue('isUserEntrant');
     }

@@ -8,7 +8,6 @@ import 'package:url_strategy/url_strategy.dart';
 
 import 'ui/theme.dart';
 import 'utils/hive_helper.dart';
-import 'utils/routes.dart';
 import 'utils/routes/routes.dart';
 import 'utils/theme_helper.dart';
 
@@ -35,8 +34,8 @@ class _VPECAppState extends State<VPECApp> {
 
   @override
   void initState() {
-    FluroRoutes.defineRoutes(router);
-    FluroRoutes.router = router;
+    Routes.defineRoutes(router);
+    Routes.router = router;
 
     final window = WidgetsBinding.instance!.window;
     window.onPlatformBrightnessChanged = () {
@@ -56,8 +55,7 @@ class _VPECAppState extends State<VPECApp> {
       darkTheme: darkThemeData(),
       themeMode: context.watch<ThemeNotifier>().themeMode,
       initialRoute: '/',
-      // routes: Routes.map,
-      onGenerateRoute: FluroRoutes.router.generator,
+      onGenerateRoute: Routes.router.generator,
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
       ],

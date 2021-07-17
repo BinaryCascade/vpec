@@ -2,7 +2,7 @@ import 'package:fluro/fluro.dart';
 
 import 'routes_handlers.dart';
 
-class FluroRoutes {
+class Routes {
   static late FluroRouter router;
 
   static String homeScreen = '/';
