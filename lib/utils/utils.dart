@@ -45,14 +45,14 @@ Future<void> shareFile(String? url) async {
 /// Use [child] with [title] if you want use styled layout.
 ///
 /// Or use [customLayout] if you need something other.
-Future<void> showRoundedModalSheet(
+Future<T?> showRoundedModalSheet<T>(
     {required BuildContext context,
     String? title,
     bool isDismissible = true,
     bool enableDrag = true,
     Widget? child,
     Widget? customLayout}) async {
-  await showModalBottomSheet(
+  return showModalBottomSheet<T>(
       context: context,
       isDismissible: isDismissible,
       isScrollControlled: true,
