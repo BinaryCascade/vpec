@@ -55,6 +55,7 @@ flutter_native_splash:
   android_gravity: center
   ios_content_mode: center
   web_image_mode: center
+  android12: true
 
 flutter_icons:
   image_path: "assets/launcher/ic_launcher_android.png"
@@ -72,7 +73,7 @@ dev_dependencies:
   hive_generator: ^1.1.0
   build_runner: ^2.0.6
   flutter_launcher_icons: ^0.9.1 # launcher icons
-  flutter_native_splash: ^1.1.7+1 # splash [do not update until android-S release]
+  flutter_native_splash: ^1.2.0 # splash
   flutter_lints: ^1.0.4
 
 # The following section is specific to Flutter.
