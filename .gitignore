@@ -44,5 +44,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-/.gradle/checksums/checksums.lock
-/.gradle/6.7/fileHashes/fileHashes.lock
+
+# User settings
+/.gradle/*
+local.properties
+/android/settings_aar.gradle
+/android/key.properties
+/android/local.properties
