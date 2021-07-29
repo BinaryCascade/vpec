@@ -38,11 +38,11 @@ dependencies:
   quick_actions: ^0.6.0+3 # shortcuts from launcher
   flutter_cached_pdfview: ^0.4.0-nullsafety # for document viewer
   photo_view: ^0.12.0 # for cabinets map
-  file_picker: ^3.0.3 # for adding images to announcements
+  file_picker: ^3.0.4 # for adding images to announcements
   flutter_multi_formatter: ^2.3.2
   fluro: ^2.0.3
   url_strategy: ^0.2.0
-  flutter_markdown: ^0.6.2
+  flutter_markdown: ^0.6.3
 
 flutter_native_splash:
   color: "#E8E8E8"
