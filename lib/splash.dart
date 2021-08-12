@@ -12,9 +12,9 @@ import 'utils/hive_helper.dart';
 import 'utils/theme_helper.dart';
 
 class SplashScreen extends StatefulWidget {
-  final Widget? child;
+  final Widget child;
 
-  const SplashScreen({Key? key, this.child}) : super(key: key);
+  const SplashScreen({Key? key, required this.child}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -81,7 +81,7 @@ class _SplashScreenState extends State<SplashScreen> {
       // open bottom bar index by setting "launch on start"
       if (HiveHelper.getValue('launchOnStart') != null) {
         int? givenIndex = HiveHelper.getValue('launchOnStart');
-        context.read<BottomBarLogic>().setIndex(givenIndex);
+        context.read<BottomBarLogic>().setIndex(givenIndex!);
       }
     } else {
       const QuickActions quickActions = QuickActions();
@@ -92,6 +92,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     _loadingSettings();
-    return userCompleteLoginPage ? widget.child! : const LoginScreen();
+    return userCompleteLoginPage ? widget.child : const LoginScreen();
   }
 }
