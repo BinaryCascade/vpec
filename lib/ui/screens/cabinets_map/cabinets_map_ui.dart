@@ -16,16 +16,26 @@ class ImageMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: PhotoView.customChild(
-        minScale: PhotoViewComputedScale.contained * 0.8,
-        backgroundDecoration: const BoxDecoration(color: Colors.transparent),
-        controller: photoController,
-        child: CachedNetworkImage(
-          imageUrl: imageUrl,
-          placeholder: (_, __) => const LoadingIndicator(),
-          errorWidget: (context, url, error) => Text(
-            "Ошибка загрузки:\n$error",
-            style: Theme.of(context).textTheme.bodyText1,
+      child: SizedBox(
+        width: double.infinity,
+        child: ClipRect(
+          clipBehavior: Clip.antiAlias,
+          child: PhotoView.customChild(
+            minScale: PhotoViewComputedScale.contained * 0.8,
+            backgroundDecoration:
+                const BoxDecoration(color: Colors.transparent),
+            controller: photoController,
+            child: CachedNetworkImage(
+              fadeInDuration: const Duration(seconds: 0),
+              fadeOutDuration: const Duration(seconds: 0),
+              imageUrl: imageUrl,
+              useOldImageOnUrlChange: true,
+              placeholder: (_, __) => const LoadingIndicator(),
+              errorWidget: (context, url, error) => Text(
+                "Ошибка загрузки:\n$error",
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+            ),
           ),
         ),
       ),
@@ -49,7 +59,8 @@ class FloorChips extends StatelessWidget {
               InputChip(
                 label: const Text('1 этаж'),
                 selected: context.read<CabinetsMapLogic>().selectedFloor == 1,
-                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+                selectedColor:
+                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 onPressed: () {
                   context.read<CabinetsMapLogic>().setFloor(1);
                   context.read<CabinetsMapLogic>().updateImage();
@@ -58,7 +69,8 @@ class FloorChips extends StatelessWidget {
               InputChip(
                 label: const Text('2 этаж'),
                 selected: context.read<CabinetsMapLogic>().selectedFloor == 2,
-                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+                selectedColor:
+                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 onPressed: () {
                   context.read<CabinetsMapLogic>().setFloor(2);
                   context.read<CabinetsMapLogic>().updateImage();
@@ -67,7 +79,8 @@ class FloorChips extends StatelessWidget {
               InputChip(
                 label: const Text('3 этаж'),
                 selected: context.read<CabinetsMapLogic>().selectedFloor == 3,
-                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+                selectedColor:
+                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 onPressed: () {
                   context.read<CabinetsMapLogic>().setFloor(3);
                   context.read<CabinetsMapLogic>().updateImage();
@@ -76,7 +89,8 @@ class FloorChips extends StatelessWidget {
               InputChip(
                 label: const Text('4 этаж'),
                 selected: context.read<CabinetsMapLogic>().selectedFloor == 4,
-                selectedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+                selectedColor:
+                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 onPressed: () {
                   context.read<CabinetsMapLogic>().setFloor(4);
                   context.read<CabinetsMapLogic>().updateImage();
