@@ -17,12 +17,12 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<CabinetsMapLogic>().init();
+    context.read<CabinetsMapLogic>().initializeMap();
   }
 
   @override
   void deactivate() {
-    context.read<CabinetsMapLogic>().cancel();
+    context.read<CabinetsMapLogic>().disposeController();
     super.deactivate();
   }
 

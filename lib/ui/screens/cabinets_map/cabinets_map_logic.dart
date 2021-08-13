@@ -32,9 +32,6 @@ class CabinetsMapLogic extends ChangeNotifier {
       case 2:
         fieldName = 'secondScale';
         break;
-      case 3:
-        fieldName = 'thirdScale';
-        break;
       default:
         fieldName = 'firstScale';
         break;
@@ -47,32 +44,26 @@ class CabinetsMapLogic extends ChangeNotifier {
     return cabMap[fieldName].toString();
   }
 
-  Future<void> init() async {
-    photoController = photoController..outputStateStream.listen(listener);
+  Future<void> initializeMap() async {
+    photoController = photoController..outputStateStream.listen(scaleListener);
     nowImageUrl = await CabinetsMapLogic().getScaledImage();
     notifyListeners();
   }
 
-  void cancel() {
+  void disposeController() {
     photoController.dispose();
   }
 
-  Future<void> listener(PhotoViewControllerValue value) async {
+  void scaleListener(PhotoViewControllerValue value) {
     if (value.scale! < 2.0) {
       if (scaleFactor != 1) {
         setScale(1);
         updateImage();
       }
     }
-    if (value.scale! > 2.0 && value.scale! < 3.0) {
+    if (value.scale! > 2.0) {
       if (scaleFactor != 2) {
         setScale(2);
-        updateImage();
-      }
-    }
-    if (value.scale! > 3.0 && value.scale! < 4.0) {
-      if (scaleFactor != 3) {
-        setScale(3);
         updateImage();
       }
     }
