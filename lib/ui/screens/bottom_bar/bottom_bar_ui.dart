@@ -16,7 +16,7 @@ class PageStorageUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<BottomBarLogic>(
       builder: (context, storage, child) => PageStorage(
-        child: pages[storage.bottomBarIndex!],
+        child: pages[storage.bottomBarIndex],
         bucket: PageStorageBucket(),
       ),
     );
@@ -31,7 +31,7 @@ class BottomBarUI extends StatelessWidget {
     return Consumer<BottomBarLogic>(
       builder: (context, storage, child) => BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
-        currentIndex: storage.bottomBarIndex!,
+        currentIndex: storage.bottomBarIndex,
         onTap: (index) {
           storage.setIndex(index);
         },
