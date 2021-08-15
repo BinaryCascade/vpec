@@ -37,7 +37,7 @@ class LessonImage extends StatelessWidget {
             maxScale: 10.0,
             transformationController: storage.transformationController,
             child: ColorFiltered(
-              colorFilter: ThemeHelper.isDarkMode()
+              colorFilter: ThemeHelper.isDarkMode
                   ? const ColorFilter.matrix([
                       //R G  B  A  Const
                       -0.87843, 0, 0, 0, 255,

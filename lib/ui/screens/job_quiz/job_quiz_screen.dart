@@ -24,7 +24,7 @@ class _JobQuizScreenState extends State<JobQuizScreen> {
         appBar: AppBar(
           title: const Text('Проф. направленность'),
           brightness:
-              ThemeHelper.isDarkMode() ? Brightness.dark : Brightness.light,
+              ThemeHelper.isDarkMode ? Brightness.dark : Brightness.light,
         ),
         body: Consumer<JobQuizStorage>(
           builder: (context, storage, child) {

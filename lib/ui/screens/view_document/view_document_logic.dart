@@ -1,7 +1,7 @@
-import 'package:http/http.dart' as http;
 import 'dart:convert' show utf8;
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../utils/hive_helper.dart';
 import '../../../utils/theme_helper.dart';
@@ -20,7 +20,7 @@ class ViewDocumentLogic {
         0, 0, 0, 1, 0,
       ]);
     } else {
-      return ThemeHelper.isDarkMode()
+      return ThemeHelper.isDarkMode
           ? const ColorFilter.matrix([
               //R G  B  A  Const
               -0.87843, 0, 0, 0, 255,

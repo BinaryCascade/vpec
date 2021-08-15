@@ -7,7 +7,7 @@ import 'package:hive/hive.dart';
 
 class ThemeHelper {
   /// return true, if system or user-chosen theme is dark
-  static bool isDarkMode() {
+  static bool get isDarkMode {
     // get system theme
     var brightness = SchedulerBinding.instance!.window.platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
@@ -33,12 +33,12 @@ class ThemeHelper {
               ? Colors.transparent
               : Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
           statusBarIconBrightness:
-              isDarkMode() ? Brightness.light : Brightness.dark,
+              isDarkMode ? Brightness.light : Brightness.dark,
           systemNavigationBarColor: haveAppbar
               ? Theme.of(context).scaffoldBackgroundColor
               : Theme.of(context).bottomNavigationBarTheme.backgroundColor,
           systemNavigationBarIconBrightness:
-              isDarkMode() ? Brightness.light : Brightness.dark),
+              isDarkMode ? Brightness.light : Brightness.dark),
     );
   }
 }
