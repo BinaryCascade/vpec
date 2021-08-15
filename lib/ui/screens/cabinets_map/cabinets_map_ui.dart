@@ -1,50 +1,51 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:photo_view/photo_view.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utils/interactive_widget.dart';
 import '../../widgets/loading_indicator.dart';
 import 'cabinets_map_logic.dart';
 
-class ImageMap extends StatelessWidget {
-  final PhotoViewController? photoController;
-  final String imageUrl;
-
-  const ImageMap({Key? key, this.photoController, required this.imageUrl})
-      : super(key: key);
+@immutable
+class CabinetsMap extends StatelessWidget {
+  const CabinetsMap({
+    Key? key,
+    required this.onScaleUpdated,
+  }) : super(key: key);
+  final Function(double) onScaleUpdated;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: double.infinity,
-        child: ClipRect(
-          clipBehavior: Clip.antiAlias,
-          child: PhotoView.customChild(
-            minScale: PhotoViewComputedScale.contained * 0.8,
-            backgroundDecoration:
-                const BoxDecoration(color: Colors.transparent),
-            controller: photoController,
-            child: CachedNetworkImage(
-              fadeInDuration: const Duration(seconds: 0),
-              fadeOutDuration: const Duration(seconds: 0),
-              imageUrl: imageUrl,
-              useOldImageOnUrlChange: true,
-              placeholder: (_, __) => const LoadingIndicator(),
-              errorWidget: (context, url, error) => Text(
-                "Ошибка загрузки:\n$error",
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-            ),
-          ),
+    return InteractiveWidget(
+      child: CachedNetworkImage(
+        imageUrl: context.watch<CabinetsMapLogic>().nowImageUrl,
+        useOldImageOnUrlChange: true,
+        // disable animations between old and new image
+        fadeInDuration: const Duration(seconds: 0),
+        fadeOutDuration: const Duration(seconds: 0),
+        progressIndicatorBuilder: (context, _, __) {
+          return const LoadingIndicator();
+        },
+        errorWidget: (context, url, error) => Text(
+          "Ошибка загрузки:\n$error",
+          style: Theme.of(context).textTheme.bodyText1,
         ),
+        imageBuilder: (context, image) {
+          return Image(
+            image: image,
+          );
+        },
       ),
+      onInteractionUpdate: (scale) => onScaleUpdated(scale),
     );
   }
 }
 
+@immutable
 class FloorChips extends StatelessWidget {
-  const FloorChips({Key? key}) : super(key: key);
+  // if make FloorChips const, then change animations won't work
+  // ignore: prefer_const_constructors_in_immutables
+  FloorChips({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:photo_view/photo_view.dart';
+
 
 class CabinetsMapLogic extends ChangeNotifier {
   int selectedFloor = 1;
   int scaleFactor = 1;
   String nowImageUrl = '';
-  var photoController = PhotoViewController();
 
   void setFloor(int newFloor) {
     selectedFloor = newFloor;
@@ -45,23 +44,18 @@ class CabinetsMapLogic extends ChangeNotifier {
   }
 
   Future<void> initializeMap() async {
-    photoController = photoController..outputStateStream.listen(scaleListener);
     nowImageUrl = await CabinetsMapLogic().getScaledImage();
     notifyListeners();
   }
 
-  void disposeController() {
-    photoController.dispose();
-  }
-
-  void scaleListener(PhotoViewControllerValue value) {
-    if (value.scale! < 2.0) {
+  void scaleListener(double scale) {
+    if (scale < 2.0) {
       if (scaleFactor != 1) {
         setScale(1);
         updateImage();
       }
     }
-    if (value.scale! > 2.0) {
+    if (scale > 2.0) {
       if (scaleFactor != 2) {
         setScale(2);
         updateImage();
