@@ -18,6 +18,7 @@ class _MenuScreenState extends State<MenuScreen> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: const EdgeInsets.all(10),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

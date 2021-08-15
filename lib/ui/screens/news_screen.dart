@@ -63,7 +63,7 @@ class _NewsScreenState extends State<NewsScreen> {
                 top: false,
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 6.5, vertical: 5.5),
+                      horizontal: 10, vertical: 5),
                   child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -78,7 +78,7 @@ class _NewsScreenState extends State<NewsScreen> {
                             item.description!.indexOf('alt=') - 2);
                       }
                       return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 2),
+                        padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Card(
                           clipBehavior: Clip.antiAlias,
                           shape: RoundedRectangleBorder(

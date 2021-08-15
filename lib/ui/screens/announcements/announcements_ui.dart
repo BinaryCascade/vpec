@@ -50,16 +50,19 @@ class AnnouncementsList extends StatelessWidget {
                 child: Scrollbar(
                   interactive: true,
                   controller: _semicircleController,
-                  child: ListView.builder(
-                    controller: _semicircleController,
-                    shrinkWrap: true,
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (context, index) {
-                      return AnnouncementCard(
-                          announcement: AnnouncementModel.fromMap(
-                              snapshot.data!.docs[index].data(),
-                              snapshot.data!.docs[index].id));
-                    },
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: ListView.builder(
+                      controller: _semicircleController,
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        return AnnouncementCard(
+                            announcement: AnnouncementModel.fromMap(
+                                snapshot.data!.docs[index].data(),
+                                snapshot.data!.docs[index].id));
+                      },
+                    ),
                   ),
                 ),
               );

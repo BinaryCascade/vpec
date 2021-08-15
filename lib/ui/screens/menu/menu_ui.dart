@@ -18,14 +18,17 @@ class ViewDocuments extends StatelessWidget {
         builder: (BuildContext context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (!snapshot.hasData) return const LoadingIndicator();
-          return ListView(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            children: snapshot.data!.docs.map((document) {
-              return DocumentCard(
-                document: DocumentModel.fromMap(document.data(), document.id),
-              );
-            }).toList(),
+          return Padding(
+            padding: const EdgeInsets.all(10),
+            child: ListView(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              children: snapshot.data!.docs.map((document) {
+                return DocumentCard(
+                  document: DocumentModel.fromMap(document.data(), document.id),
+                );
+              }).toList(),
+            ),
           );
         },
       ),

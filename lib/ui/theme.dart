@@ -21,6 +21,7 @@ ThemeData themeData() {
   const lowContrast = Colors.black38;
 
   return ThemeData(
+    cardTheme: const CardTheme(margin: EdgeInsets.zero),
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
@@ -40,11 +41,11 @@ ThemeData themeData() {
         surface: secondLevelColor,
         background: accentColor,
         error: Colors.red,
-        onPrimary: Color(0xDEFFFFFF),
+        onPrimary: backgroundColor,
         onSecondary: backgroundColor,
         onSurface: highContrast,
         onBackground: highContrast,
-        onError: Color(0xDEFFFFFF),
+        onError: backgroundColor,
         brightness: Brightness.light),
     dialogBackgroundColor: firstLevelColor,
     textTheme: const TextTheme(
@@ -106,15 +107,9 @@ ThemeData themeData() {
     inputDecorationTheme: const InputDecorationTheme(
       alignLabelWithHint: true,
       errorStyle: TextStyle(
-          color: Colors.red,
-          fontFamily: 'Montserrat',
-          fontWeight: semiBold),
-      labelStyle: TextStyle(
-          fontFamily: 'Montserrat',
-          fontWeight: semiBold),
-      hintStyle: TextStyle(
-          fontFamily: 'Montserrat',
-          fontWeight: semiBold),
+          color: Colors.red, fontFamily: 'Montserrat', fontWeight: semiBold),
+      labelStyle: TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+      hintStyle: TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
       contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -157,6 +152,7 @@ ThemeData darkThemeData() {
   const lowContrast = Color(0x61FFFFFF);
 
   return ThemeData.dark().copyWith(
+    cardTheme: const CardTheme(margin: EdgeInsets.zero),
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
@@ -176,11 +172,11 @@ ThemeData darkThemeData() {
         surface: secondLevelColor,
         background: backgroundColor,
         error: Colors.redAccent,
-        onPrimary: highContrast,
+        onPrimary: backgroundColor,
         onSecondary: backgroundColor,
         onSurface: highContrast,
         onBackground: highContrast,
-        onError: highContrast,
+        onError: backgroundColor,
         brightness: Brightness.dark),
     dialogBackgroundColor: firstLevelColor,
     textTheme: const TextTheme(
@@ -245,12 +241,8 @@ ThemeData darkThemeData() {
           color: Colors.redAccent,
           fontFamily: 'Montserrat',
           fontWeight: semiBold),
-      labelStyle: TextStyle(
-          fontFamily: 'Montserrat',
-          fontWeight: semiBold),
-      hintStyle: TextStyle(
-          fontFamily: 'Montserrat',
-          fontWeight: semiBold),
+      labelStyle: TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+      hintStyle: TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
       contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20))),

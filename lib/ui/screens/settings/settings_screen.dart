@@ -26,7 +26,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ThemeHelper.isDarkMode ? Brightness.dark : Brightness.light,
       ),
       body: ListView(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(10),
         children: [
           Card(
               clipBehavior: Clip.antiAlias,
