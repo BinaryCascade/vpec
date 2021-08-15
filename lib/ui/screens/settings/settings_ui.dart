@@ -264,8 +264,12 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
     return Column(
       children: [
         RadioListTile(
-            secondary: Icon(Icons.brightness_5_outlined,
-                color: Theme.of(context).colorScheme.secondary),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(Icons.brightness_5_outlined,
+                  color: Theme.of(context).colorScheme.secondary),
+            ),
             title: Text(
               'Светлая тема',
               style: Theme.of(context).textTheme.headline4,
@@ -281,8 +285,12 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
               });
             }),
         RadioListTile(
-            secondary: Icon(Icons.brightness_2_outlined,
-                color: Theme.of(context).colorScheme.secondary),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(Icons.brightness_2_outlined,
+                  color: Theme.of(context).colorScheme.secondary),
+            ),
             title: Text(
               'Тёмная тема',
               style: Theme.of(context).textTheme.headline4,
@@ -300,8 +308,12 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
               });
             }),
         RadioListTile(
-            secondary: Icon(Icons.phonelink_setup_outlined,
-                color: Theme.of(context).colorScheme.secondary),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(Icons.phonelink_setup_outlined,
+                  color: Theme.of(context).colorScheme.secondary),
+            ),
             title: Text(
               'Системная тема',
               style: Theme.of(context).textTheme.headline4,
@@ -318,11 +330,15 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
             }),
         const Divider(),
         SwitchListTile(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             value: documentLightThemeSwitchState,
             activeColor: Theme.of(context).colorScheme.secondary,
-            secondary: Icon(
-              Icons.description_outlined,
-              color: Theme.of(context).colorScheme.secondary,
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(
+                Icons.description_outlined,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
             ),
             title: Text('Всегда светлая тема для документов',
                 style: Theme.of(context).textTheme.headline4),
@@ -361,8 +377,12 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
     return Column(
       children: [
         RadioListTile(
-            secondary: Icon(VpecIconPack.news_outline,
-                color: Theme.of(context).colorScheme.secondary),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(VpecIconPack.news_outline,
+                  color: Theme.of(context).colorScheme.secondary),
+            ),
             title: Text(
               'События',
               style: Theme.of(context).textTheme.headline4,
@@ -380,8 +400,12 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               });
             }),
         RadioListTile(
-            secondary: Icon(Icons.notifications_outlined,
-                color: Theme.of(context).colorScheme.secondary),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(Icons.notifications_outlined,
+                  color: Theme.of(context).colorScheme.secondary),
+            ),
             title: Text(
               'Объявления',
               style: Theme.of(context).textTheme.headline4,
@@ -399,8 +423,12 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               });
             }),
         RadioListTile(
-            secondary: Icon(Icons.access_time_outlined,
-                color: Theme.of(context).colorScheme.secondary),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(Icons.access_time_outlined,
+                  color: Theme.of(context).colorScheme.secondary),
+            ),
             title: Text(
               'Звонки',
               style: Theme.of(context).textTheme.headline4,
@@ -418,8 +446,12 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               });
             }),
         RadioListTile(
-            secondary: Icon(Icons.dashboard_outlined,
-                color: Theme.of(context).colorScheme.secondary),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(Icons.dashboard_outlined,
+                  color: Theme.of(context).colorScheme.secondary),
+            ),
             title: Text(
               'Расписание занятий',
               style: Theme.of(context).textTheme.headline4,
