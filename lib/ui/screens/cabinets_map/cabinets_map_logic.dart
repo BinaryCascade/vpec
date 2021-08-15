@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:vpec/utils/theme_helper.dart';
 
 
 class CabinetsMapLogic extends ChangeNotifier {
@@ -36,9 +37,17 @@ class CabinetsMapLogic extends ChangeNotifier {
         break;
     }
 
+    late String collectionPath;
+    if (ThemeHelper.isDarkMode) {
+      collectionPath = 'cabinets_map_dark';
+    } else {
+      collectionPath = 'cabinets_map_light';
+    }
+
+
     DocumentSnapshot cabMap = await FirebaseFirestore.instance
-        .collection('cabinets_map')
-        .doc('map_$selectedFloor')
+        .collection(collectionPath)
+        .doc('map_0$selectedFloor')
         .get();
     return cabMap[fieldName].toString();
   }
