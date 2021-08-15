@@ -42,7 +42,7 @@ class LessonsScheduleLogic extends ChangeNotifier {
     return formatter.format(parsed);
   }
 
-  String getUrl({bool? forToday}) {
+  String getUrl({required bool forToday}) {
     // get next day to show lesson schedule
     DateTime date = DateTime.now();
     DateFormat formatter = DateFormat('d-M-yyyy');
@@ -69,7 +69,7 @@ class LessonsScheduleLogic extends ChangeNotifier {
         break;
     }
 
-    if (!forToday! || isWeekend) {
+    if (!forToday || isWeekend) {
       date = date.add(Duration(days: _plusDays));
       if (isWeekend) showForToday = false;
     }
