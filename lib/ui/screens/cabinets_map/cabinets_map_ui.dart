@@ -57,42 +57,74 @@ class FloorChips extends StatelessWidget {
             direction: Axis.horizontal,
             spacing: 6.0,
             children: [
-              InputChip(
+              ChoiceChip(
+                backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('1 этаж'),
-                selected: context.read<CabinetsMapLogic>().selectedFloor == 1,
+                selected: context.watch<CabinetsMapLogic>().selectedFloor == 1,
+                labelStyle: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    color: context.watch<CabinetsMapLogic>().selectedFloor == 1
+                        ? Theme.of(context).colorScheme.onSecondary
+                        : Theme.of(context).colorScheme.onBackground),
                 selectedColor:
-                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
-                onPressed: () {
+                    Theme.of(context).colorScheme.secondary,
+                onSelected: (_) {
                   context.read<CabinetsMapLogic>().setFloor(1);
                   context.read<CabinetsMapLogic>().updateImage();
                 },
               ),
-              InputChip(
+              ChoiceChip(
+                backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('2 этаж'),
-                selected: context.read<CabinetsMapLogic>().selectedFloor == 2,
+                selected: context.watch<CabinetsMapLogic>().selectedFloor == 2,
+                labelStyle: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    color: context.watch<CabinetsMapLogic>().selectedFloor == 2
+                        ? Theme.of(context).colorScheme.onSecondary
+                        : Theme.of(context).colorScheme.onBackground),
                 selectedColor:
-                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
-                onPressed: () {
+                    Theme.of(context).colorScheme.secondary,
+                onSelected: (_) {
                   context.read<CabinetsMapLogic>().setFloor(2);
                   context.read<CabinetsMapLogic>().updateImage();
                 },
               ),
-              InputChip(
+              ChoiceChip(
+                backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('3 этаж'),
-                selected: context.read<CabinetsMapLogic>().selectedFloor == 3,
+                selected: context.watch<CabinetsMapLogic>().selectedFloor == 3,
+                labelStyle: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    color: context.watch<CabinetsMapLogic>().selectedFloor == 3
+                        ? Theme.of(context).colorScheme.onSecondary
+                        : Theme.of(context).colorScheme.onBackground),
                 selectedColor:
-                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
-                onPressed: () {
+                    Theme.of(context).colorScheme.secondary,
+                onSelected: (_) {
                   context.read<CabinetsMapLogic>().setFloor(3);
                   context.read<CabinetsMapLogic>().updateImage();
                 },
               ),
-              InputChip(
+              ChoiceChip(
+                backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('4 этаж'),
-                selected: context.read<CabinetsMapLogic>().selectedFloor == 4,
+                selected: context.watch<CabinetsMapLogic>().selectedFloor == 4,
+                labelStyle: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    color: context.watch<CabinetsMapLogic>().selectedFloor == 4
+                        ? Theme.of(context).colorScheme.onSecondary
+                        : Theme.of(context).colorScheme.onBackground),
                 selectedColor:
-                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
-                onPressed: () {
+                    Theme.of(context).colorScheme.secondary,
+                onSelected: (_) {
                   context.read<CabinetsMapLogic>().setFloor(4);
                   context.read<CabinetsMapLogic>().updateImage();
                 },

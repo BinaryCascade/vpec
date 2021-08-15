@@ -52,63 +52,93 @@ class BuildChips extends StatelessWidget {
             direction: Axis.horizontal,
             spacing: 4.0,
             children: [
-              InputChip(
+              ChoiceChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Фамилия'),
-                selectedColor:
-                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
-                selected: Provider.of<TeachersLogic>(context, listen: true)
-                        .currentMode ==
+                labelStyle: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    color: context.watch<TeachersLogic>().currentMode ==
+                            SearchMode.familyName
+                        ? Theme.of(context).colorScheme.onSecondary
+                        : Theme.of(context).colorScheme.onBackground),
+                selectedColor: Theme.of(context).colorScheme.secondary,
+                selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.familyName,
-                onPressed: () =>
+                onSelected: (_) =>
                     Provider.of<TeachersLogic>(context, listen: false)
                         .setMode(SearchMode.familyName),
               ),
-              InputChip(
+              ChoiceChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Имя'),
-                selectedColor:
-                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
-                selected: Provider.of<TeachersLogic>(context, listen: true)
-                        .currentMode ==
+                labelStyle: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    color: context.watch<TeachersLogic>().currentMode ==
+                            SearchMode.firstName
+                        ? Theme.of(context).colorScheme.onSecondary
+                        : Theme.of(context).colorScheme.onBackground),
+                selectedColor: Theme.of(context).colorScheme.secondary,
+                selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.firstName,
-                onPressed: () =>
+                onSelected: (_) =>
                     Provider.of<TeachersLogic>(context, listen: false)
                         .setMode(SearchMode.firstName),
               ),
-              InputChip(
+              ChoiceChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Отчество'),
-                selectedColor:
-                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
-                selected: Provider.of<TeachersLogic>(context, listen: true)
-                        .currentMode ==
+                labelStyle: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    color: context.watch<TeachersLogic>().currentMode ==
+                            SearchMode.secondaryName
+                        ? Theme.of(context).colorScheme.onSecondary
+                        : Theme.of(context).colorScheme.onBackground),
+                selectedColor: Theme.of(context).colorScheme.secondary,
+                selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.secondaryName,
-                onPressed: () =>
+                onSelected: (_) =>
                     Provider.of<TeachersLogic>(context, listen: false)
                         .setMode(SearchMode.secondaryName),
               ),
-              InputChip(
+              ChoiceChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Предметы'),
-                selectedColor:
-                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
-                selected: Provider.of<TeachersLogic>(context, listen: true)
-                        .currentMode ==
+                labelStyle: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    color: context.watch<TeachersLogic>().currentMode ==
+                            SearchMode.lesson
+                        ? Theme.of(context).colorScheme.onSecondary
+                        : Theme.of(context).colorScheme.onBackground),
+                selectedColor: Theme.of(context).colorScheme.secondary,
+                selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.lesson,
-                onPressed: () =>
+                onSelected: (_) =>
                     Provider.of<TeachersLogic>(context, listen: false)
                         .setMode(SearchMode.lesson),
               ),
-              InputChip(
+              ChoiceChip(
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Кабинеты'),
-                selectedColor:
-                    Theme.of(context).colorScheme.secondary.withOpacity(0.3),
-                selected: Provider.of<TeachersLogic>(context, listen: true)
-                        .currentMode ==
+                labelStyle: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    color: context.watch<TeachersLogic>().currentMode ==
+                            SearchMode.cabinet
+                        ? Theme.of(context).colorScheme.onSecondary
+                        : Theme.of(context).colorScheme.onBackground),
+                selectedColor: Theme.of(context).colorScheme.secondary,
+                selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.cabinet,
-                onPressed: () =>
+                onSelected: (_) =>
                     Provider.of<TeachersLogic>(context, listen: false)
                         .setMode(SearchMode.cabinet),
               ),
