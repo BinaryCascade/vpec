@@ -53,6 +53,7 @@ class AnnouncementsList extends StatelessWidget {
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
                       controller: _semicircleController,
                       shrinkWrap: true,
                       itemCount: snapshot.data!.docs.length,
