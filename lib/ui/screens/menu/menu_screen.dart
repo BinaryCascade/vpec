@@ -28,11 +28,11 @@ class _MenuScreenState extends State<MenuScreen> {
                   icon: Icon(Icons.settings_outlined,
                       color: Theme.of(context).colorScheme.secondary, size: 32),
                   title: 'Настройки',
-                  subtitle: 'Изменить имя, тему, стартовый экран',
+                  subtitle: 'Выбрать тему и стартовый экран',
                   onTap: () async {
                     await Navigator.pushNamed(context, '/settings');
-                    ThemeHelper
-                        .colorStatusBar(context: context, haveAppbar: false);
+                    ThemeHelper.colorStatusBar(
+                        context: context, haveAppbar: false);
                   }),
               // information block
               const Divider(),
@@ -40,8 +40,8 @@ class _MenuScreenState extends State<MenuScreen> {
               // StyledListTile(
               //     icon: Icon(Icons.layers_outlined,
               //         color: Theme.of(context).colorScheme.secondary, size: 32),
-              //     title: 'Список кабинетов',
-              //     subtitle: 'В виде карты',
+              //     title: 'Карта колледжа',
+              //     subtitle: 'Не знаете, где столовая?',
               //     onTap: () async {
               //       await Navigator.pushNamed(context, '/cabinets');
               //       ThemeHelper
@@ -51,32 +51,32 @@ class _MenuScreenState extends State<MenuScreen> {
                   icon: Icon(Icons.group_outlined,
                       color: Theme.of(context).colorScheme.secondary, size: 32),
                   title: 'Список преподавателей',
-                  subtitle: 'Их имена, кабинеты',
+                  subtitle: 'Их дисциплины, кабинеты',
                   onTap: () async {
                     await Navigator.pushNamed(context, '/teacher');
-                    ThemeHelper
-                        .colorStatusBar(context: context, haveAppbar: false);
+                    ThemeHelper.colorStatusBar(
+                        context: context, haveAppbar: false);
                   }),
               StyledListTile(
                   icon: Icon(VpecIconPack.account_cog_outline,
                       color: Theme.of(context).colorScheme.secondary, size: 32),
                   title: 'Администрация колледжа',
-                  subtitle: 'Вопросы, проблемы и предложения',
+                  subtitle: 'Обращайтесь по вопросам и предложениям',
                   onTap: () async {
                     await Navigator.pushNamed(context, '/administration');
-                    ThemeHelper
-                        .colorStatusBar(context: context, haveAppbar: false);
+                    ThemeHelper.colorStatusBar(
+                        context: context, haveAppbar: false);
                   }),
               FutureBuilder<bool>(
                 future: MenuLogic.isOpenDoorsDay,
                 initialData: false,
-                builder:
-                    (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.data!) {
                       return StyledListTile(
                           icon: Icon(Icons.rule_outlined,
-                              color: Theme.of(context).colorScheme.secondary, size: 32),
+                              color: Theme.of(context).colorScheme.secondary,
+                              size: 32),
                           title: 'Моя профессиональная направленность',
                           subtitle: 'Узнать свою предрасположенность',
                           onTap: () async {
@@ -101,8 +101,8 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                   onTap: () async {
                     await Navigator.pushNamed(context, '/documents');
-                    ThemeHelper
-                        .colorStatusBar(context: context, haveAppbar: false);
+                    ThemeHelper.colorStatusBar(
+                        context: context, haveAppbar: false);
                   }),
             ],
           ),
