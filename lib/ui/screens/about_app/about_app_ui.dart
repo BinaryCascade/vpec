@@ -14,7 +14,7 @@ class AboutDeveloperCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: Card(
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(

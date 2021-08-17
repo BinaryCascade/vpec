@@ -14,6 +14,7 @@ class AboutAppScreen extends StatelessWidget {
         title: const Text('О приложении'),
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Wrap(
           children: [
             const AboutDeveloperCard(
@@ -33,7 +34,7 @@ class AboutAppScreen extends StatelessWidget {
             const Divider(),
             StyledListTile(
                 title: 'Исходный код приложения',
-                subtitle: 'Нажмите, чтобы открыть Github',
+                subtitle: 'Нажмите, чтобы открыть GitHub',
                 onTap: () => openUrl('https://github.com/'
                     'Volgograd-Power-Engineering-College/vpec')),
             StyledListTile(
