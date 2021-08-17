@@ -17,8 +17,9 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        top: false,
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(10),
+          padding: MediaQuery.of(context).padding.add(const EdgeInsets.all(10)),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
