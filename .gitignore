@@ -51,3 +51,4 @@ local.properties
 /android/settings_aar.gradle
 /android/key.properties
 /android/local.properties
+/pubspec.lock
