@@ -23,20 +23,10 @@ class HivedListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      leading: SizedBox(
-          //  cringe fix to center icon. If you want to use Center()
-          //  instead SizedBox - you will get bamboozled
-          height: double.infinity,
-          child: icon),
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.headline3,
-      ),
-      subtitle: ValueListenableBuilder(
+    return StyledListTile(
+      icon: icon,
+      title: title,
+      subtitleWidget: ValueListenableBuilder(
         valueListenable: Hive.box('settings').listenable(keys: [subtitleKey]),
         builder: (context, Box box, child) {
           return Text(
@@ -52,22 +42,26 @@ class HivedListTile extends StatelessWidget {
 
 /// Just create normal ListTile with styled text
 class StyledListTile extends StatelessWidget {
-  final Widget? trailing, icon;
-  final String title, subtitle;
+  final Widget? trailing, icon, subtitleWidget;
+  final String? title, subtitle;
   final GestureTapCallback? onTap;
 
   const StyledListTile(
       {Key? key,
       this.trailing,
       this.icon,
-      required this.title,
-      required this.subtitle,
-      this.onTap})
+      this.title,
+      this.subtitle,
+      this.onTap,
+      this.subtitleWidget})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      horizontalTitleGap: 8,
+      dense: true,
+      contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
@@ -75,16 +69,14 @@ class StyledListTile extends StatelessWidget {
       leading:
           icon == null ? null : SizedBox(height: double.infinity, child: icon),
       title: Text(
-        title,
+        title ?? '',
         style: Theme.of(context).textTheme.headline3,
       ),
-      subtitle: Padding(
-        padding: const EdgeInsets.only(bottom: 8.0),
-        child: Text(
-          subtitle,
-          style: Theme.of(context).textTheme.subtitle1,
-        ),
-      ),
+      subtitle: subtitleWidget ??
+          Text(
+            subtitle ?? '',
+            style: Theme.of(context).textTheme.subtitle1,
+          ),
       onTap: onTap,
     );
   }
