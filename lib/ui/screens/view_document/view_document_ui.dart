@@ -25,7 +25,7 @@ class DocumentViewer extends StatelessWidget {
   Widget buildPDFViewer() {
     return Center(
       child: ColorFiltered(
-        colorFilter: ViewDocumentLogic.documentColorFilter(),
+        colorFilter: ViewDocumentLogic.documentColorFilter,
         child: const PDF(swipeHorizontal: true).fromUrl(document.url,
             placeholder: (progress) => const LoadingIndicator()),
       ),

@@ -7,7 +7,7 @@ import '../../../utils/hive_helper.dart';
 import '../../../utils/theme_helper.dart';
 
 class ViewDocumentLogic {
-  static ColorFilter documentColorFilter() {
+  static ColorFilter get documentColorFilter {
     if (HiveHelper.getValue('alwaysLightThemeDocument') == null) {
       HiveHelper.saveValue(key: 'alwaysLightThemeDocument', value: false);
     }
