@@ -15,7 +15,7 @@ class CabinetsMapLogic extends ChangeNotifier {
     showSnackBar(
       context,
       text: 'Загрузка...',
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 1500),
     );
   }
 
@@ -67,27 +67,17 @@ class CabinetsMapLogic extends ChangeNotifier {
     notifyListeners();
   }
 
-  void scaleListener(BuildContext context, double scale) {
+  void scaleListener(double scale) {
     if (scale < 2.0) {
       if (scaleFactor != 1) {
         setScale(1);
         updateImage();
-        showSnackBar(
-          context,
-          text: 'Загрузка...',
-          duration: const Duration(seconds: 1),
-        );
       }
     }
     if (scale > 2.0) {
       if (scaleFactor != 2) {
         setScale(2);
         updateImage();
-        showSnackBar(
-          context,
-          text: 'Загрузка...',
-          duration: const Duration(seconds: 1),
-        );
       }
     }
   }

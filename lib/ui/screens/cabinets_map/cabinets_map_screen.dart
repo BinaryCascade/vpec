@@ -38,7 +38,7 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
                   children: [
                     CabinetsMap(
                       onScaleUpdated: (scale) =>
-                          storage.scaleListener(context, scale),
+                          storage.scaleListener(scale),
                     ),
                     FloorChips(),
                   ],
