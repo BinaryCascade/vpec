@@ -38,7 +38,12 @@ class DocumentViewer extends StatelessWidget {
 
   Widget buildError() {
     return Center(
-      child: Text('Неподдерживаемый тип файла\n${document.url}'),
+      child: Text(
+        'Неподдерживаемый тип файла: ' +
+        ViewDocumentLogic.getFileExtension(document.url) +
+        '\nИсходная ссылка:\n${document.url}',
+        textAlign: TextAlign.center,
+      ),
     );
   }
 
