@@ -7,6 +7,7 @@ import '../../../ui/widgets/loading_indicator.dart';
 import '../../../utils/utils.dart';
 import 'view_document_logic.dart';
 
+@immutable
 class DocumentViewer extends StatelessWidget {
   const DocumentViewer({Key? key, required this.document}) : super(key: key);
   final DocumentModel document;
