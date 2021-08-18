@@ -60,7 +60,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   icon: Icon(VpecIconPack.account_cog_outline,
                       color: Theme.of(context).colorScheme.secondary, size: 32),
                   title: 'Администрация колледжа',
-                  subtitle: 'Обращайтесь по вопросам и предложениям',
+                  subtitle: 'По вопросам и предложениям',
                   onTap: () async {
                     await Navigator.pushNamed(context, '/administration');
                     ThemeHelper.colorStatusBar(
