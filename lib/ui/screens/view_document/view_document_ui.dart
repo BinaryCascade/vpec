@@ -16,11 +16,14 @@ class DocumentViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     String docType = ViewDocumentLogic.getFileExtension(document.url);
 
-    return docType == 'pdf'
-        ? buildPDFViewer()
-        : docType == 'md'
-            ? buildMDViewer(context)
-            : buildError();
+    switch (docType) {
+      case 'pdf':
+        return buildPDFViewer();
+      case 'md':
+        return buildMDViewer(context);
+      default:
+        return buildError();
+    }
   }
 
   Widget buildPDFViewer() {
