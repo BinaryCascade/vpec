@@ -68,12 +68,9 @@ class FloorChips extends StatelessWidget {
                     color: context.watch<CabinetsMapLogic>().selectedFloor == 1
                         ? Theme.of(context).colorScheme.onSecondary
                         : Theme.of(context).colorScheme.onBackground),
-                selectedColor:
-                    Theme.of(context).colorScheme.secondary,
-                onSelected: (_) {
-                  context.read<CabinetsMapLogic>().setFloor(1);
-                  context.read<CabinetsMapLogic>().updateImage();
-                },
+                selectedColor: Theme.of(context).colorScheme.secondary,
+                onSelected: (_) =>
+                    context.read<CabinetsMapLogic>().setNewFloor(context, 1),
               ),
               ChoiceChip(
                 backgroundColor: Theme.of(context).primaryColor,
@@ -86,12 +83,9 @@ class FloorChips extends StatelessWidget {
                     color: context.watch<CabinetsMapLogic>().selectedFloor == 2
                         ? Theme.of(context).colorScheme.onSecondary
                         : Theme.of(context).colorScheme.onBackground),
-                selectedColor:
-                    Theme.of(context).colorScheme.secondary,
-                onSelected: (_) {
-                  context.read<CabinetsMapLogic>().setFloor(2);
-                  context.read<CabinetsMapLogic>().updateImage();
-                },
+                selectedColor: Theme.of(context).colorScheme.secondary,
+                onSelected: (_) =>
+                    context.read<CabinetsMapLogic>().setNewFloor(context, 2),
               ),
               ChoiceChip(
                 backgroundColor: Theme.of(context).primaryColor,
@@ -104,12 +98,9 @@ class FloorChips extends StatelessWidget {
                     color: context.watch<CabinetsMapLogic>().selectedFloor == 3
                         ? Theme.of(context).colorScheme.onSecondary
                         : Theme.of(context).colorScheme.onBackground),
-                selectedColor:
-                    Theme.of(context).colorScheme.secondary,
-                onSelected: (_) {
-                  context.read<CabinetsMapLogic>().setFloor(3);
-                  context.read<CabinetsMapLogic>().updateImage();
-                },
+                selectedColor: Theme.of(context).colorScheme.secondary,
+                onSelected: (_) =>
+                    context.read<CabinetsMapLogic>().setNewFloor(context, 3),
               ),
               ChoiceChip(
                 backgroundColor: Theme.of(context).primaryColor,
@@ -122,12 +113,9 @@ class FloorChips extends StatelessWidget {
                     color: context.watch<CabinetsMapLogic>().selectedFloor == 4
                         ? Theme.of(context).colorScheme.onSecondary
                         : Theme.of(context).colorScheme.onBackground),
-                selectedColor:
-                    Theme.of(context).colorScheme.secondary,
-                onSelected: (_) {
-                  context.read<CabinetsMapLogic>().setFloor(4);
-                  context.read<CabinetsMapLogic>().updateImage();
-                },
+                selectedColor: Theme.of(context).colorScheme.secondary,
+                onSelected: (_) =>
+                    context.read<CabinetsMapLogic>().setNewFloor(context, 4),
               ),
             ],
           ),

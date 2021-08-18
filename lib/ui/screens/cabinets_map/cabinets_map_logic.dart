@@ -1,14 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/utils/theme_helper.dart';
 
+import '../../../utils/snackbars.dart';
+import '../../../utils/theme_helper.dart';
 
 class CabinetsMapLogic extends ChangeNotifier {
   int selectedFloor = 1;
   int scaleFactor = 1;
   String nowImageUrl = '';
 
-  void setFloor(int newFloor) {
+  void setNewFloor(BuildContext context, int newFloor) {
+    _setFloor(newFloor);
+    updateImage();
+    showSnackBar(
+      context,
+      text: 'Загрузка...',
+      duration: const Duration(seconds: 1),
+    );
+  }
+
+  void _setFloor(int newFloor) {
     selectedFloor = newFloor;
     notifyListeners();
   }
@@ -44,7 +55,6 @@ class CabinetsMapLogic extends ChangeNotifier {
       collectionPath = 'cabinets_map_light';
     }
 
-
     DocumentSnapshot cabMap = await FirebaseFirestore.instance
         .collection(collectionPath)
         .doc('map_0$selectedFloor')
@@ -57,17 +67,27 @@ class CabinetsMapLogic extends ChangeNotifier {
     notifyListeners();
   }
 
-  void scaleListener(double scale) {
+  void scaleListener(BuildContext context, double scale) {
     if (scale < 2.0) {
       if (scaleFactor != 1) {
         setScale(1);
         updateImage();
+        showSnackBar(
+          context,
+          text: 'Загрузка...',
+          duration: const Duration(seconds: 1),
+        );
       }
     }
     if (scale > 2.0) {
       if (scaleFactor != 2) {
         setScale(2);
         updateImage();
+        showSnackBar(
+          context,
+          text: 'Загрузка...',
+          duration: const Duration(seconds: 1),
+        );
       }
     }
   }

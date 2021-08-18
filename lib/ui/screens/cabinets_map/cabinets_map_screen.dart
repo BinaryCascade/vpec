@@ -37,7 +37,8 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
                   alignment: Alignment.topCenter,
                   children: [
                     CabinetsMap(
-                      onScaleUpdated: (scale) => storage.scaleListener(scale),
+                      onScaleUpdated: (scale) =>
+                          storage.scaleListener(context, scale),
                     ),
                     FloorChips(),
                   ],
