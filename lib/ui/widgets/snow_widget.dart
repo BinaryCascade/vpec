@@ -32,11 +32,10 @@ class _SnowWidgetState extends State<SnowWidget>
   @override
   void initState() {
     super.initState();
-
     init();
   }
 
-  init() {
+  void init() {
     _rnd = Random();
     if (controller == null) {
       controller = AnimationController(
@@ -65,7 +64,7 @@ class _SnowWidgetState extends State<SnowWidget>
     super.dispose();
   }
 
-  _createSnow() {
+  void _createSnow() {
     _snows = [];
     for (var i = 0; i < widget.totalSnow!; i++) {
       _snows!.add(Snow(
@@ -76,7 +75,7 @@ class _SnowWidgetState extends State<SnowWidget>
     }
   }
 
-  update() {
+  void update() {
     angle += 0.01;
     if (_snows == null || widget.totalSnow != _snows!.length) {
       _createSnow();
@@ -86,7 +85,8 @@ class _SnowWidgetState extends State<SnowWidget>
       //We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
       //Every particle has its own density which can be used to make the downward movement different for each flake
       //Lets make it more random by adding in the radius
-      snow.y = snow.y! + (cos(angle + snow.d!) + 1 + snow.r! / 2) * widget.speed!;
+      snow.y =
+          snow.y! + (cos(angle + snow.d!) + 1 + snow.r! / 2) * widget.speed!;
       snow.x = snow.x! + sin(angle) * 2 * widget.speed!;
       if (snow.x! > W + 5 || snow.x! < -5 || snow.y! > H) {
         if (i % 3 > 0) {
