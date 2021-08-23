@@ -9,7 +9,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 /// [defaultValue] - If key have no value, show this text
 class HivedListTile extends StatelessWidget {
   final String title, subtitleKey, defaultValue;
-  final GestureTapCallback? onTap;
+  final void Function()? onTap;
   final Icon? icon;
 
   const HivedListTile(
@@ -44,7 +44,7 @@ class HivedListTile extends StatelessWidget {
 class StyledListTile extends StatelessWidget {
   final Widget? trailing, icon, subtitleWidget;
   final String? title, subtitle;
-  final GestureTapCallback? onTap;
+  final void Function()? onTap;
 
   const StyledListTile(
       {Key? key,
