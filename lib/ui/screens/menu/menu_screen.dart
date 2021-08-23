@@ -85,7 +85,7 @@ class _MenuScreenState extends State<MenuScreen> {
                           });
                     }
                   }
-                  return Container();
+                  return const SizedBox.shrink();
                 },
               ),
               // documents block
