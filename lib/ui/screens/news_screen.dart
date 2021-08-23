@@ -50,14 +50,14 @@ class _NewsScreenState extends State<NewsScreen> {
     load();
   }
 
-  bool isFeedEmpty() {
+  bool get isFeedEmpty {
     return _feed == null;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: isFeedEmpty()
+        body: isFeedEmpty
             ? const LoadingIndicator()
             : SafeArea(
                 top: false,
