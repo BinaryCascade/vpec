@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 
+import '/utils/utils.dart';
 import '../../../models/document_model.dart';
 import '../../../ui/widgets/loading_indicator.dart';
 import '../../../utils/utils.dart';
@@ -38,11 +39,12 @@ class DocumentViewer extends StatelessWidget {
 
   Widget buildError() {
     return Center(
-      child: Text(
-        'Неподдерживаемый тип файла: ' +
-        ViewDocumentLogic.getFileExtension(document.url) +
-        '\nИсходная ссылка:\n${document.url}',
+      child: SelectableLinkify(
+        text: 'Неподдерживаемый тип файла: ' +
+            ViewDocumentLogic.getFileExtension(document.url) +
+            '\nИсходная ссылка:\n${document.url}',
         textAlign: TextAlign.center,
+        onOpen: (link) => openUrl(link.url),
       ),
     );
   }
