@@ -4,8 +4,8 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 
 import '/utils/utils.dart';
 import '../../../models/document_model.dart';
-import '../../../ui/widgets/loading_indicator.dart';
-import '../../../utils/utils.dart';
+import '../../widgets/loading_indicator.dart';
+import '../../widgets/markdown_widget.dart';
 import 'view_document_logic.dart';
 
 @immutable
@@ -56,53 +56,7 @@ class DocumentViewer extends StatelessWidget {
         initialData: null,
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
           if (!snapshot.hasData) return const LoadingIndicator();
-
-          return Markdown(
-            selectable: true,
-            data: snapshot.data!,
-            onTapLink: (text, href, title) {
-              if (href != null) {
-                openUrl(href);
-              }
-            },
-            styleSheet: MarkdownStyleSheet(
-              h1: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontSize: 48,
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: -0.5),
-              h2: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontSize: 38,
-                  fontWeight: FontWeight.w400),
-              h3: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontFamily: 'Montserrat',
-                  fontSize: 32,
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: 0.25),
-              h4: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontSize: 28,
-                  fontWeight: FontWeight.w500),
-              h5: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 0.15),
-              h6: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 0.2),
-              p: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontFamily: 'Roboto',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: 0.5),
-            ),
-          );
+          return MarkdownWidget(data: snapshot.data!);
         },
       ),
     );
