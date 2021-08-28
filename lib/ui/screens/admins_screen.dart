@@ -17,10 +17,7 @@ class AdminScreen extends StatelessWidget {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Администрация'),
-        brightness:
-            ThemeHelper.isDarkMode ? Brightness.dark : Brightness.light,
-      ),
+        title: const Text('Администрация')),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: stream,
         builder: (BuildContext context,

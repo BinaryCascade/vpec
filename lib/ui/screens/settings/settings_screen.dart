@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../../ui/widgets/styled_widgets.dart';
@@ -21,10 +20,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Настройки'),
-        brightness:
-            ThemeHelper.isDarkMode ? Brightness.dark : Brightness.light,
-      ),
+        title: const Text('Настройки')),
       body: ListView(
         padding: const EdgeInsets.all(10),
         children: [

@@ -32,8 +32,6 @@ class _TeacherScreenState extends State<TeacherScreen>
                         ],
                       )),
             actions: const <Widget>[SearchButton()],
-            brightness:
-                ThemeHelper.isDarkMode ? Brightness.dark : Brightness.light,
           ),
           body: GestureDetector(
             onTap: () {

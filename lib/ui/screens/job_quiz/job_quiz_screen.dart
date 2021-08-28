@@ -13,7 +13,6 @@ class JobQuizScreen extends StatefulWidget {
 }
 
 class _JobQuizScreenState extends State<JobQuizScreen> {
-
   @override
   Widget build(BuildContext context) {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
@@ -21,11 +20,7 @@ class _JobQuizScreenState extends State<JobQuizScreen> {
     return ChangeNotifierProvider(
       create: (_) => JobQuizStorage(),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Проф. направленность'),
-          brightness:
-              ThemeHelper.isDarkMode ? Brightness.dark : Brightness.light,
-        ),
+        appBar: AppBar(title: const Text('Проф. направленность')),
         body: Consumer<JobQuizStorage>(
           builder: (context, storage, child) {
             return storage.showResults
