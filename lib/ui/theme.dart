@@ -21,6 +21,10 @@ ThemeData themeData() {
   const lowContrast = Colors.black38;
 
   return ThemeData(
+    appBarTheme: const AppBarTheme(
+      backgroundColor: secondLevelColor,
+      foregroundColor: highContrast,
+    ),
     cardTheme: const CardTheme(margin: EdgeInsets.zero),
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
@@ -152,6 +156,10 @@ ThemeData darkThemeData() {
   const lowContrast = Color(0x61FFFFFF);
 
   return ThemeData.dark().copyWith(
+    appBarTheme: const AppBarTheme(
+      backgroundColor: secondLevelColor,
+      foregroundColor: highContrast,
+    ),
     cardTheme: const CardTheme(margin: EdgeInsets.zero),
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
