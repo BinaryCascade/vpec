@@ -11,8 +11,10 @@
 ///      fonts:
 ///       - asset: fonts/VpecIconPack.ttf
 ///
-/// 
 ///
+///
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/widgets.dart';
 
 class VpecIconPack {
@@ -21,7 +23,8 @@ class VpecIconPack {
   static const _kFontFam = 'VpecIconPack';
   static const String? _kFontPkg = null;
 
-  static const IconData account_cog_outline = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData account_cog_outline =
+      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData battery_saver_line = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData telegram = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData vk = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
