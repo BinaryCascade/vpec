@@ -16,6 +16,7 @@ class CabinetsMapLogic extends ChangeNotifier {
       context,
       text: 'Загрузка...',
       duration: const Duration(milliseconds: 1500),
+      behavior: SnackBarBehavior.fixed,
     );
   }
 
