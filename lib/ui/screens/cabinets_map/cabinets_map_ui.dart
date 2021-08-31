@@ -70,7 +70,7 @@ class FloorChips extends StatelessWidget {
                         : Theme.of(context).colorScheme.onBackground),
                 selectedColor: Theme.of(context).colorScheme.secondary,
                 onSelected: (_) =>
-                    context.read<CabinetsMapLogic>().setNewFloor(context, 1),
+                    context.read<CabinetsMapLogic>().setNewFloor(1),
               ),
               ChoiceChip(
                 backgroundColor: Theme.of(context).primaryColor,
@@ -85,7 +85,7 @@ class FloorChips extends StatelessWidget {
                         : Theme.of(context).colorScheme.onBackground),
                 selectedColor: Theme.of(context).colorScheme.secondary,
                 onSelected: (_) =>
-                    context.read<CabinetsMapLogic>().setNewFloor(context, 2),
+                    context.read<CabinetsMapLogic>().setNewFloor(2),
               ),
               ChoiceChip(
                 backgroundColor: Theme.of(context).primaryColor,
@@ -100,7 +100,7 @@ class FloorChips extends StatelessWidget {
                         : Theme.of(context).colorScheme.onBackground),
                 selectedColor: Theme.of(context).colorScheme.secondary,
                 onSelected: (_) =>
-                    context.read<CabinetsMapLogic>().setNewFloor(context, 3),
+                    context.read<CabinetsMapLogic>().setNewFloor(3),
               ),
               ChoiceChip(
                 backgroundColor: Theme.of(context).primaryColor,
@@ -115,7 +115,7 @@ class FloorChips extends StatelessWidget {
                         : Theme.of(context).colorScheme.onBackground),
                 selectedColor: Theme.of(context).colorScheme.secondary,
                 onSelected: (_) =>
-                    context.read<CabinetsMapLogic>().setNewFloor(context, 4),
+                    context.read<CabinetsMapLogic>().setNewFloor(4),
               ),
             ],
           ),

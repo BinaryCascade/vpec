@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utils/snackbars.dart';
 import '../../../utils/theme_helper.dart';
 
 class CabinetsMapLogic extends ChangeNotifier {
@@ -9,15 +8,10 @@ class CabinetsMapLogic extends ChangeNotifier {
   int scaleFactor = 1;
   String nowImageUrl = '';
 
-  void setNewFloor(BuildContext context, int newFloor) {
+  void setNewFloor( int newFloor) {
     _setFloor(newFloor);
     updateImage();
-    showSnackBar(
-      context,
-      text: 'Загрузка...',
-      duration: const Duration(milliseconds: 1500),
-      behavior: SnackBarBehavior.fixed,
-    );
+
   }
 
   void _setFloor(int newFloor) {
