@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vpec/ui/screens/debug/debug_screen.dart';
 
 import '../../../ui/widgets/styled_widgets.dart';
 import '../../../utils/hive_helper.dart';
 import '../../../utils/icons.dart';
 import 'settings_logic.dart';
 
-// Two ListTiles for account management
 class AccountBlock extends StatefulWidget {
   const AccountBlock({Key? key}) : super(key: key);
 
@@ -71,6 +71,21 @@ class _AccountBlockState extends State<AccountBlock> {
                           ? 'Нажмите, чтобы выйти из режима редактирования'
                           : 'Нажмите, чтобы войти в режим редактирования',
                       onTap: () => storage.toggleEditMode(),
+                    ),
+                    StyledListTile(
+                      icon: Icon(
+                        Icons.construction_outlined,
+                        color: Theme.of(context).colorScheme.secondary,
+                        size: 32.0,
+                      ),
+                      title: 'Экран тестирования',
+                      subtitle: 'Для дебага функций',
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const DebugScreen(),
+                          )),
                     ),
                   ],
                 ),
@@ -264,7 +279,8 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
     return Column(
       children: [
         RadioListTile(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             secondary: Center(
               widthFactor: 1,
               child: Icon(Icons.brightness_5_outlined,
@@ -285,7 +301,8 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
               });
             }),
         RadioListTile(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             secondary: Center(
               widthFactor: 1,
               child: Icon(Icons.brightness_2_outlined,
@@ -308,7 +325,8 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
               });
             }),
         RadioListTile(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             secondary: Center(
               widthFactor: 1,
               child: Icon(Icons.phonelink_setup_outlined,
@@ -330,7 +348,8 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
             }),
         const Divider(),
         SwitchListTile(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             value: documentLightThemeSwitchState,
             activeColor: Theme.of(context).colorScheme.secondary,
             secondary: Center(
@@ -377,7 +396,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
     return Column(
       children: [
         RadioListTile(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             secondary: Center(
               widthFactor: 1,
               child: Icon(VpecIconPack.news_outline,
@@ -400,7 +420,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               });
             }),
         RadioListTile(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             secondary: Center(
               widthFactor: 1,
               child: Icon(Icons.notifications_outlined,
@@ -423,7 +444,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               });
             }),
         RadioListTile(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             secondary: Center(
               widthFactor: 1,
               child: Icon(Icons.access_time_outlined,
@@ -446,7 +468,8 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               });
             }),
         RadioListTile(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             secondary: Center(
               widthFactor: 1,
               child: Icon(Icons.dashboard_outlined,
