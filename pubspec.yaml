@@ -33,7 +33,7 @@ dependencies:
   dotted_line: ^3.0.0
   hive: ^2.0.4 # db
   hive_flutter: ^1.1.0
-  share: ^2.0.4 # share anything
+  share_plus: ^2.1.4 # share anything
   path_provider: ^2.0.2 # work with storage paths
   quick_actions: ^0.6.0+6 # shortcuts from launcher
   flutter_cached_pdfview: ^0.4.0-nullsafety # for document viewer
