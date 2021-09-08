@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:vpec/ui/screens/settings/settings_logic.dart';
 import 'package:vpec/utils/hive_helper.dart';
@@ -46,5 +47,14 @@ class LoginLogic extends ChangeNotifier {
             ],
           );
         });
+  }
+
+  /// Return URL for document, which need to display for entrant
+  static Future<String> getEntrantUrl() async {
+    DocumentSnapshot enrant = await FirebaseFirestore.instance
+        .collection('entrant')
+        .doc('main')
+        .get();
+    return enrant['url'];
   }
 }
