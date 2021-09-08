@@ -162,7 +162,7 @@ class BuildTeachersList extends StatelessWidget {
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (!snapshot.hasData) return const LoadingIndicator();
           return SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
