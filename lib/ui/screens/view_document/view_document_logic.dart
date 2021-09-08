@@ -45,6 +45,17 @@ class ViewDocumentLogic {
   }
 
   static String getFileExtension(String path) {
-    return path.split('/').last.split('.').last.split('?').first;
+    return path.split('/').last.split('.').last.split('?').first.toLowerCase();
+  }
+
+  static bool isThisURLSupports(String url) {
+    switch (getFileExtension(url)) {
+      case 'pdf':
+        return true;
+      case 'md':
+        return true;
+      default:
+        return false;
+    }
   }
 }
