@@ -11,7 +11,6 @@ import '../../ui/screens/bottom_bar/bottom_bar_screen.dart';
 import '../../ui/screens/cabinets_map/cabinets_map_logic.dart';
 import '../../ui/screens/cabinets_map/cabinets_map_screen.dart';
 import '../../ui/screens/documents/documents_screen.dart';
-import '../../ui/screens/entrant/entrant_screen.dart';
 import '../../ui/screens/job_quiz/job_quiz_screen.dart';
 import '../../ui/screens/settings/settings_logic.dart';
 import '../../ui/screens/settings/settings_screen.dart';
@@ -70,10 +69,6 @@ Handler documentsScreenHandler = Handler(
   return const DocumentsScreen();
 });
 
-Handler entrantScreenHandler = Handler(
-    handlerFunc: (BuildContext? context, Map<String, List<String>> parameters) {
-  return const EntrantScreen();
-});
 
 Handler loginByURLHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {

@@ -14,7 +14,6 @@ class Routes {
   static String aboutAppScreen = '/about';
   static String jobQuizScreen = '/job_quiz';
   static String documentsScreen = '/documents';
-  static String entrantScreen = '/entrant';
   static String loginByURLScreen = '/loginByURL/:login/:password';
 
   static void defineRoutes(FluroRouter router) {
@@ -46,9 +45,6 @@ class Routes {
         transitionType: TransitionType.cupertino);
     router.define(documentsScreen,
         handler: documentsScreenHandler,
-        transitionType: TransitionType.cupertino);
-    router.define(entrantScreen,
-        handler: entrantScreenHandler,
         transitionType: TransitionType.cupertino);
     router.define(loginByURLScreen,
         handler: loginByURLHandler, transitionType: TransitionType.cupertino);
