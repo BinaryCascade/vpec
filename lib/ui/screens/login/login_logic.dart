@@ -30,12 +30,14 @@ class LoginLogic extends ChangeNotifier {
   }
 
   static void showAccountHelperDialog(BuildContext context) {
+    String dialogText = 'Данные для входа предоставляются в колледже. '
+        'Для быстрого входа в аккаунт можно просканировать QR код с плаката';
+
     showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            content: const Text('Данные для входа в аккаунт предоставляются в '
-                'колледже.'),
+            content: Text(dialogText),
             actions: [
               TextButton(
                 child: const Text('Закрыть'),
