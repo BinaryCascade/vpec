@@ -8,8 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:vpec/ui/screens/settings/settings_logic.dart';
 import 'package:vpec/utils/hive_helper.dart';
 
-import '../../../utils/utils.dart';
 import '../../../utils/snackbars.dart';
+import '../../../utils/utils.dart';
 import 'announcements_ui.dart';
 
 class AnnouncementsLogic {
@@ -28,7 +28,7 @@ class AnnouncementsLogic {
       );
 
       if (result != null) {
-        File file = File(result.files.single.path!);
+        File file = File(result.files.single.path);
         isUserAddPhoto = true;
         try {
           var result = await FirebaseStorage.instance
