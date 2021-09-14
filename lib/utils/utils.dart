@@ -63,7 +63,9 @@ Future<T?> showRoundedModalSheet<T>(
           topRight: Radius.circular(20),
         ),
       ),
-      builder: (context) => customLayout ?? Container(
+      builder: (context) =>
+          customLayout ??
+          Container(
             margin: EdgeInsets.only(
                 top: 15,
                 left: 15,
@@ -76,13 +78,20 @@ Future<T?> showRoundedModalSheet<T>(
                 Padding(
                   padding: const EdgeInsets.only(bottom: 15),
                   child: Center(
-                    child: title != null ? Text(
-                      title,
-                      style: Theme.of(context).textTheme.headline4,
-                    ) : ErrorWidget('You need implement [title] if you want use styled layout, or [customLayout] if you need your own layout'),
+                    child: title != null
+                        ? Text(
+                            title,
+                            style: Theme.of(context).textTheme.headline4,
+                          )
+                        : ErrorWidget('You need implement [title] if you want '
+                            'use styled layout, or [customLayout] if you need'
+                            ' your own layout'),
                   ),
                 ),
-                child ?? ErrorWidget('You need implement [child] if you want use styled layout, or [customLayout] if you need your own layout'),
+                child ??
+                    ErrorWidget('You need implement [child] if you want '
+                        'use styled layout, or [customLayout] if you need your '
+                        'own layout'),
               ],
             ),
           ));
