@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vpec/ui/screens/debug/debug_screen.dart';
@@ -82,7 +83,7 @@ class _AccountBlockState extends State<AccountBlock> {
                       subtitle: 'Для дебага функций',
                       onTap: () => Navigator.push(
                           context,
-                          MaterialPageRoute(
+                          CupertinoPageRoute(
                             builder: (BuildContext context) =>
                                 const DebugScreen(),
                           )),
