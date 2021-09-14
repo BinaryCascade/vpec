@@ -1,14 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/ui/widgets/confirm_delete_dialog.dart';
-import 'package:vpec/utils/snackbars.dart';
 
 import '../../../models/time_model.dart';
+import '../../../utils/hive_helper.dart';
+import '../../../utils/snackbars.dart';
 import '../../../utils/utils.dart';
+import '../../widgets/confirm_delete_dialog.dart';
 import 'timetable_ui.dart';
 
 class TimeTableLogic {
+  String collectionPath = HiveHelper.getValue('timetable_path');
+
   static void resetTimeTable(BuildContext context) {
     showRoundedModalSheet(
         context: context,
@@ -36,19 +39,19 @@ class TimeTableLogic {
 
   void addNewTimeTableItem(TimeModel model) {
     CollectionReference schedule =
-        FirebaseFirestore.instance.collection('time_schedule');
+        FirebaseFirestore.instance.collection(collectionPath);
 
     int docID = DateTime.now().millisecondsSinceEpoch;
     schedule.doc(docID.toString()).set(model.toMap(docID));
   }
 
-  static Future<void> deleteAllDocs() async {
+  Future<void> deleteAllDocs() async {
     CollectionReference schedule =
-        FirebaseFirestore.instance.collection('time_schedule');
+        FirebaseFirestore.instance.collection(collectionPath);
     // delete all docs in time_schedule
-    schedule.get().then((value) {
+    schedule.get().then((value) async {
       for (DocumentSnapshot doc in value.docs) {
-        doc.reference.delete();
+        await doc.reference.delete();
       }
     });
   }
@@ -62,14 +65,14 @@ class TimeTableLogic {
 
   void restoreFiles(BuildContext context, bool isThirtyMinBreak) {
     CollectionReference schedule =
-        FirebaseFirestore.instance.collection('time_schedule');
+        FirebaseFirestore.instance.collection(collectionPath);
     Navigator.pop(context);
     // add default time schedule
-    schedule.get().then((value) {
+    schedule.get().then((value) async {
       if (value.docs.isEmpty) {
         for (int i = 1; i < 6; i++) {
           int docID = DateTime.now().millisecondsSinceEpoch;
-          schedule.doc(docID.toString()).set(
+          await schedule.doc(docID.toString()).set(
                 getDefaultTimeSchedule(
                         isThirtyMinBreak: isThirtyMinBreak, numOfLesson: i)
                     .toMap(docID),
@@ -132,7 +135,7 @@ class TimeTableLogic {
 
   void editTimeTableItem(String docID, TimeModel model) {
     CollectionReference schedule =
-        FirebaseFirestore.instance.collection('time_schedule');
+        FirebaseFirestore.instance.collection(collectionPath);
     schedule.doc(docID.toString()).set(
           model.toMap(int.parse(docID)),
         );
@@ -152,7 +155,7 @@ class TimeTableLogic {
 
   void deleteDoc(String docID) {
     CollectionReference schedule =
-        FirebaseFirestore.instance.collection('time_schedule');
+        FirebaseFirestore.instance.collection(collectionPath);
     schedule.doc(docID.toString()).delete();
   }
 }

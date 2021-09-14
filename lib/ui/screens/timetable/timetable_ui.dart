@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:provider/provider.dart';
 
 import '../../../models/time_model.dart';
 import '../../../ui/widgets/loading_indicator.dart';
@@ -12,13 +12,16 @@ import 'timetable_logic.dart';
 class TimeTableListView extends StatelessWidget {
   const TimeTableListView({
     Key? key,
+    required this.collectionPath,
   }) : super(key: key);
+
+  final String collectionPath;
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: FirebaseFirestore.instance
-          .collection('time_schedule')
+          .collection(collectionPath)
           .orderBy('order', descending: false)
           .snapshots(),
       builder: (BuildContext context,
@@ -255,7 +258,7 @@ class ConfirmDeleteAllDocsDialogUI extends StatelessWidget {
             OutlinedButton(
               child: const Text('Удалить'),
               onPressed: () async {
-                await TimeTableLogic.deleteAllDocs();
+                await TimeTableLogic().deleteAllDocs();
                 Navigator.pop(context);
               },
             ),

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../widgets/timetable_item/timetable_item_logic.dart';
 import '../announcements/announcements_screen.dart';
 import '../lessons_schedule/lessons_schedule_logic.dart';
 import '../lessons_schedule/lessons_schedule_screen.dart';
 import '../menu/menu_screen.dart';
 import '../news/news_screen.dart';
-import '../timetable/timetable_screen.dart';
+import '../timetable_tabs/timetable_tabs_screen.dart';
 import 'bottom_bar_ui.dart';
 
 class BottomBarScreen extends StatefulWidget {
@@ -22,8 +21,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   final List<Widget> pages = [
     const NewsScreenProvider(),
     const AnnouncementsScreen(),
-    ChangeNotifierProvider(
-        create: (_) => TimeTableItemLogic(), child: const TimeTableScreen()),
+    const TimeTableTabs(),
     ChangeNotifierProvider(
         create: (_) => LessonsScheduleLogic(),
         child: const LessonsScheduleScreen()),
