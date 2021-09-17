@@ -28,7 +28,7 @@ class AnnouncementsLogic {
       );
 
       if (result != null) {
-        File file = File(result.files.single.path);
+        File file = File(result.files.single.path!);
         isUserAddPhoto = true;
         try {
           var result = await FirebaseStorage.instance
