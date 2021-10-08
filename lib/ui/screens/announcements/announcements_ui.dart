@@ -11,6 +11,7 @@ import '../../../utils/utils.dart';
 /// ListView with data from Firestore
 class AnnouncementsList extends StatelessWidget {
   final String collectionPath;
+
   const AnnouncementsList({Key? key, required this.collectionPath})
       : super(key: key);
 
@@ -229,81 +230,72 @@ class _BottomTapBarState extends State<BottomTapBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: kToolbarHeight,
-      color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-      child: TabBar(
-        isScrollable: needMakeScrollable(),
-        indicator: UnderlineTabIndicator(
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.secondary,
-            width: 3.0,
-          ),
-          insets: const EdgeInsets.only(bottom: kToolbarHeight - 4),
+    return Material(
+      elevation: 8.0,
+      child: Container(
+        color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+        child: TabBar(
+          padding: EdgeInsets.symmetric(horizontal: needMakeScrollable() ? 24 : 0),
+          isScrollable: needMakeScrollable(),
+          tabs: [
+            Tab(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Icon(
+                    Icons.group_outlined,
+                    size: 24,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'Всем',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (SettingsLogic.doAccountHaveAccess(UserMode.employee))
+              Tab(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const <Widget>[
+                    Icon(
+                      VpecIconPack.account_cog_outline,
+                      size: 24,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        'Сотрудникам',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            if (SettingsLogic.doAccountHaveAccess(UserMode.teacher))
+              Tab(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const <Widget>[
+                    Icon(
+                      Icons.school_outlined,
+                      size: 24,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        'Преподавателям',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+          ],
         ),
-        labelColor: Theme.of(context).colorScheme.secondary,
-        unselectedLabelColor:
-            Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
-        indicatorSize: TabBarIndicatorSize.label,
-        indicatorColor: Theme.of(context).colorScheme.secondary,
-        tabs: [
-          Tab(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
-                Icon(
-                  Icons.group_outlined,
-                  size: 30,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    'Всем',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          if (SettingsLogic.doAccountHaveAccess(UserMode.employee))
-            Tab(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Icon(
-                    VpecIconPack.account_cog_outline,
-                    size: 28,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      'Сотрудникам',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          if (SettingsLogic.doAccountHaveAccess(UserMode.teacher))
-            Tab(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Icon(
-                    VpecIconPack.account_cog_outline,
-                    size: 28,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      'Преподавателям',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  )
-                ],
-              ),
-            ),
-        ],
       ),
     );
   }

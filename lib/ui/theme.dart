@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vpec/utils/md2_tab_indicator.dart';
 
 const FontWeight thin = FontWeight.w100;
 const FontWeight extraLight = FontWeight.w200;
@@ -21,6 +22,12 @@ ThemeData themeData() {
   const lowContrast = Colors.black38;
 
   return ThemeData(
+    tabBarTheme: const TabBarTheme(
+      labelColor: accentColor,
+      unselectedLabelColor: mediumContrast,
+      indicator: MD2TabIndicator(accentColor),
+      indicatorSize: TabBarIndicatorSize.label,
+    ),
     appBarTheme: const AppBarTheme(
       backgroundColor: secondLevelColor,
       foregroundColor: highContrast,
@@ -156,6 +163,12 @@ ThemeData darkThemeData() {
   const lowContrast = Color(0x61FFFFFF);
 
   return ThemeData.dark().copyWith(
+    tabBarTheme: const TabBarTheme(
+        labelColor: accentColor,
+        unselectedLabelColor: mediumContrast,
+        indicator: MD2TabIndicator(accentColor),
+        indicatorSize: TabBarIndicatorSize.label,
+    ),
     appBarTheme: const AppBarTheme(
       backgroundColor: secondLevelColor,
       foregroundColor: highContrast,
