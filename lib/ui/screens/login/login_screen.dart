@@ -9,51 +9,63 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
 
-    return Scaffold(
-      body: SafeArea(
-        minimum: const EdgeInsets.all(12.0),
-        child: Center(
-          child: Wrap(
-            runSpacing: 8,
-            alignment: WrapAlignment.center,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: <Widget>[
-              Text(
-                'Добро пожаловать',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline5!
-                    .copyWith(fontSize: 24.0),
-              ),
-              Text(
+    List<Widget> _children = [
+      Expanded(
+        child: Image(
+          width: 0.75 * MediaQuery.of(context).size.shortestSide,
+          height: 0.75 * MediaQuery.of(context).size.shortestSide,
+          image: AssetImage(ThemeHelper.isDarkMode
+              ? 'assets/splash/dark.png'
+              : 'assets/splash/light.png'),
+        ),
+      ),
+      const SizedBox(width: 20, height: 20),
+      Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Добро пожаловать',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5!
+                  .copyWith(fontSize: 24.0),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: Text(
                 'Чтобы продолжить, войдите в аккаунт',
                 style: Theme.of(context).textTheme.subtitle1!,
                 textAlign: TextAlign.end,
               ),
-              SizedBox(
-                height: 42.0,
-                width: double.infinity,
-                child: OutlinedButton(
-                  child: const Text('Войти в аккаунт'),
-                  onPressed: () async => await LoginLogic.openLogin(context),
+            ),
+            Wrap(
+              alignment: WrapAlignment.end,
+              runSpacing: 10,
+              children: [
+                SizedBox(
+                  height: 42.0,
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    child: const Text('Войти в аккаунт'),
+                    onPressed: () async => await LoginLogic.openLogin(context),
+                  ),
                 ),
-              ),
-              /// Entrant mode is not fully complete
-              // SizedBox(
-              //   height: 42.0,
-              //   width: double.infinity,
-              //   child: OutlinedButton(
-              //     child: const Text('Я абитуриент'),
-              //     onPressed: () =>
-              //         Navigator.popAndPushNamed(context, '/entrant'),
-              //   ),
-              // ),
-              GestureDetector(
-                onTap: () => LoginLogic.showAccountHelperDialog(context),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    width: double.infinity,
+
+                /// Entrant mode is not fully complete
+                // SizedBox(
+                //   height: 42.0,
+                //   width: double.infinity,
+                //   child: OutlinedButton(
+                //     child: const Text('Я абитуриент'),
+                //     onPressed: () =>
+                //         Navigator.popAndPushNamed(context, '/entrant'),
+                //   ),
+                // ),
+                GestureDetector(
+                  onTap: () => LoginLogic.showAccountHelperDialog(context),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'Где найти данные?',
                       style: Theme.of(context).textTheme.subtitle1!,
@@ -61,11 +73,19 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
         ),
       ),
+    ];
+
+    return Scaffold(
+      body: SafeArea(
+          minimum: const EdgeInsets.all(12.0),
+          child: MediaQuery.of(context).size.aspectRatio > 1
+              ? Row(children: _children)
+              : Column(children: _children)),
     );
   }
 }
