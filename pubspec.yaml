@@ -35,16 +35,16 @@ dependencies:
   dotted_line: ^3.0.1
   hive: ^2.0.4 # db
   hive_flutter: ^1.1.0
-  share_plus: ^3.0.2 # share anything
+  share_plus: ^3.0.4 # share anything
   path_provider: ^2.0.5 # work with storage paths
   quick_actions: ^0.6.0+7 # shortcuts from launcher
-  flutter_cached_pdfview: ^0.4.0-nullsafety # for document viewer
-  swipe_image_gallery: ^0.0.4
-  file_picker: ^4.1.3 # for adding images to announcements
+  flutter_cached_pdfview: ^0.4.0-nullsafety # <-- uses a deprecated version of the Android embedding, need to replace
+  file_picker: ^4.1.4 # for adding images to announcements
   flutter_multi_formatter: ^2.4.1
   fluro: ^2.0.3
   url_strategy: ^0.2.0
   flutter_markdown: ^0.6.7
+
 
 flutter_native_splash:
   color: "#E8E8E8"
