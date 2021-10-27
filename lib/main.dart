@@ -1,3 +1,4 @@
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'package:vpec/utils/utils.dart';
 
 import 'ui/theme.dart';
 import 'utils/hive_helper.dart';
@@ -15,6 +17,7 @@ import 'utils/theme_helper.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy(); // remove # from url path
+  await useHttpOverrides();
   await HiveHelper().initHive();
   Firebase.initializeApp().whenComplete(() => runApp(
       ChangeNotifierProvider<ThemeNotifier>(

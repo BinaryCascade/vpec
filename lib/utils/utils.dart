@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:device_info/device_info.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -95,4 +96,28 @@ Future<T?> showRoundedModalSheet<T>(
               ],
             ),
           ));
+}
+
+class LowAndroidHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
+/// On Android 7.0 and lower bug:
+///
+/// `CERTIFICATE_VERIFY_FAILED: certificate has expired`
+///
+/// This method fix it.
+Future<void> useHttpOverrides() async {
+  if (Platform.isAndroid) {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    if (androidInfo.version.sdkInt <= 24) {
+      HttpOverrides.global = LowAndroidHttpOverrides();
+    }
+  }
 }

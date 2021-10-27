@@ -44,7 +44,8 @@ dependencies:
   fluro: ^2.0.3
   url_strategy: ^0.2.0
   flutter_markdown: ^0.6.7
-
+  device_info: ^2.0.2
+  syncfusion_flutter_pdfviewer: ^19.3.45-beta # possible replace for pdf_view
 
 flutter_native_splash:
   color: "#E8E8E8"
