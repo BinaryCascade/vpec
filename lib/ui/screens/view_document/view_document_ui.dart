@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '/utils/utils.dart';
 import '../../../models/document_model.dart';
@@ -19,20 +20,31 @@ class DocumentViewer extends StatelessWidget {
 
     switch (docType) {
       case 'pdf':
-        return buildPDFViewer();
+        return buildLegacyPDFViewer();
       case 'md':
-        return buildMDViewer(context);
+        return buildMDViewer();
       default:
         return buildError();
     }
   }
 
-  Widget buildPDFViewer() {
+  Widget buildLegacyPDFViewer() {
     return Center(
       child: ColorFiltered(
         colorFilter: ViewDocumentLogic.documentColorFilter,
         child: const PDF(swipeHorizontal: true).fromUrl(document.url,
             placeholder: (progress) => const LoadingIndicator()),
+      ),
+    );
+  }
+
+  Widget buildPDFViewer() {
+    return ColorFiltered(
+      colorFilter: ViewDocumentLogic.documentColorFilter,
+      child: SfPdfViewer.network(
+        document.url,
+        enableTextSelection: false,
+        interactionMode: PdfInteractionMode.pan,
       ),
     );
   }
@@ -49,7 +61,7 @@ class DocumentViewer extends StatelessWidget {
     );
   }
 
-  Widget buildMDViewer(BuildContext context) {
+  Widget buildMDViewer() {
     return Center(
       child: FutureBuilder<String>(
         future: ViewDocumentLogic.getMDText(document.url),
