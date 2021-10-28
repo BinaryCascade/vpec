@@ -35,7 +35,7 @@ class MarkdownWidget extends StatelessWidget {
       onTapLink: onTapLink ??
           (text, href, title) {
             if (href != null) {
-              if (ViewDocumentLogic.isThisURLSupports(href)) {
+              if (ViewDocumentLogic.isThisURLSupported(href)) {
                 Navigator.pushNamed(context, '/view_document',
                     arguments: DocumentModel(
                       title: text,

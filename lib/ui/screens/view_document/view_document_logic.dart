@@ -47,7 +47,7 @@ class ViewDocumentLogic {
     return path.split('/').last.split('.').last.split('?').first.toLowerCase();
   }
 
-  static bool isThisURLSupports(String url) {
+  static bool isThisURLSupported(String url) {
     List<String> supportedExtensions = ['pdf', 'md'];
     return supportedExtensions.contains(getFileExtension(url));
   }
