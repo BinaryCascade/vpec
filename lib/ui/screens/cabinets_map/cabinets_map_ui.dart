@@ -36,7 +36,7 @@ class CabinetsMap extends StatelessWidget {
           );
         },
       ),
-      onInteractionUpdate: (scale) => onScaleUpdated(scale),
+      onInteractionUpdate: onScaleUpdated,
     );
   }
 }
