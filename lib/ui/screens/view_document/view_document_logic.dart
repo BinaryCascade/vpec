@@ -40,7 +40,6 @@ class ViewDocumentLogic {
 
   static Future<String> getMDText(String url) async {
     String text = await http.read(Uri.parse(url));
-
     return utf8.decode(text.codeUnits);
   }
 
@@ -49,13 +48,7 @@ class ViewDocumentLogic {
   }
 
   static bool isThisURLSupports(String url) {
-    switch (getFileExtension(url)) {
-      case 'pdf':
-        return true;
-      case 'md':
-        return true;
-      default:
-        return false;
-    }
+    List<String> supportedExtensions = ['pdf', 'md'];
+    return supportedExtensions.contains(getFileExtension(url));
   }
 }
