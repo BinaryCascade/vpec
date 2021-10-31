@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../utils/theme_helper.dart';
+import '/utils/theme_helper.dart';
 import 'job_quiz_logic.dart';
 import 'job_quiz_ui.dart';
 

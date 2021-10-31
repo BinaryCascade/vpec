@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vpec/screens/settings/settings_logic.dart';
 
-import '../../../utils/hive_helper.dart';
+import '/screens/settings/settings_logic.dart';
+import '/utils/hive_helper.dart';
 import 'announcements_logic.dart';
 import 'announcements_ui.dart';
 
@@ -51,9 +51,8 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                 child: const Icon(Icons.rate_review_outlined),
               )
             : null,
-        bottomNavigationBar: SettingsLogic.isAccountModeLowLevel()
-            ? null
-            : const BottomTapBar(),
+        bottomNavigationBar:
+            SettingsLogic.isAccountModeLowLevel() ? null : const BottomTapBar(),
       ),
     );
   }

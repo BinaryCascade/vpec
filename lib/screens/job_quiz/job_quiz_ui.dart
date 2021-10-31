@@ -20,7 +20,6 @@ class QuestionBlock extends StatelessWidget {
   }
 }
 
-
 class AnswersBlock extends StatefulWidget {
   const AnswersBlock({Key? key}) : super(key: key);
 
@@ -74,13 +73,13 @@ class _AnswersBlockState extends State<AnswersBlock> {
   }
 }
 
-
 class JobQuizFAB extends StatelessWidget {
   const JobQuizFAB({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final bool needShowResult = context.select((JobQuizStorage storage) => storage.showResults);
+    final bool needShowResult =
+        context.select((JobQuizStorage storage) => storage.showResults);
     return needShowResult
         ? Container()
         : FloatingActionButton.extended(
@@ -154,7 +153,11 @@ class AnswerListTile extends StatelessWidget {
   final void Function(int?)? onChanged;
 
   const AnswerListTile(
-      {Key? key, this.title, this.value, this.groupValue, required this.onChanged})
+      {Key? key,
+      this.title,
+      this.value,
+      this.groupValue,
+      required this.onChanged})
       : super(key: key);
 
   @override

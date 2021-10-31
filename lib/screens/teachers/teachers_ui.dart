@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/ui/widgets/teacher_card/teacher_card.dart';
 
-import '../../../models/teacher_model.dart';
-import '../../../ui/widgets/loading_indicator.dart';
+import '/models/teacher_model.dart';
+import '/ui/widgets/loading_indicator.dart';
+import '/ui/widgets/teacher_card/teacher_card.dart';
 import 'teachers_logic.dart';
 
 class SearchBar extends StatelessWidget {

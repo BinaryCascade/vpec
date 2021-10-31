@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/ui/widgets/snow_widget.dart';
 
-import '../../../utils/holiday_helper.dart';
-import '../../../utils/theme_helper.dart';
+import '/ui/widgets/snow_widget.dart';
+import '/utils/holiday_helper.dart';
+import '/utils/theme_helper.dart';
 import 'lessons_schedule_logic.dart';
 import 'lessons_schedule_ui.dart';
 
@@ -38,8 +38,9 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen>
               isRunning: true,
               totalSnow: 20,
               speed: 0.4,
-              snowColor:
-                  ThemeHelper.isDarkMode ? Colors.white : const Color(0xFFD6D6D6),
+              snowColor: ThemeHelper.isDarkMode
+                  ? Colors.white
+                  : const Color(0xFFD6D6D6),
             ),
           const LessonImage(),
         ],

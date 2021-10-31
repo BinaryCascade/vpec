@@ -3,8 +3,8 @@ import 'dart:convert' show utf8;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../utils/hive_helper.dart';
-import '../../../utils/theme_helper.dart';
+import '/utils/hive_helper.dart';
+import '/utils/theme_helper.dart';
 
 class ViewDocumentLogic {
   static ColorFilter get documentColorFilter {

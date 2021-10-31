@@ -1,9 +1,9 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/screens/settings/settings_logic.dart';
 
-import '../../../models/time_model.dart';
+import '/models/time_model.dart';
+import '/screens/settings/settings_logic.dart';
 import 'timetable_item_logic.dart';
 
 class TimeTableItem extends StatefulWidget {

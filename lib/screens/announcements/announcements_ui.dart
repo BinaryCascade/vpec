@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/screens/settings/settings_logic.dart';
 
+import '/screens/settings/settings_logic.dart';
 import '../../../models/announcement_model.dart';
 import '../../../ui/widgets/announcement_card.dart';
 import '../../../ui/widgets/loading_indicator.dart';
@@ -235,7 +235,8 @@ class _BottomTapBarState extends State<BottomTapBar> {
       child: Container(
         color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         child: TabBar(
-          padding: EdgeInsets.symmetric(horizontal: needMakeScrollable() ? 24 : 0),
+          padding:
+              EdgeInsets.symmetric(horizontal: needMakeScrollable() ? 24 : 0),
           isScrollable: needMakeScrollable(),
           tabs: [
             Tab(

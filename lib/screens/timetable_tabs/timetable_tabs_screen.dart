@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/ui/widgets/timetable_item/timetable_item_logic.dart';
 
-import '../../../utils/hive_helper.dart';
-import '../timetable/timetable_screen.dart';
+import '/screens/timetable/timetable_screen.dart';
+import '/ui/widgets/timetable_item/timetable_item_logic.dart';
+import '/utils/hive_helper.dart';
 import 'timetable_tabs_ui.dart';
 
 class TimeTableTabs extends StatelessWidget {

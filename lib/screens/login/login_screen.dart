@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vpec/utils/theme_helper.dart';
 
+import '/utils/theme_helper.dart';
 import 'login_logic.dart';
 
 class LoginScreen extends StatelessWidget {

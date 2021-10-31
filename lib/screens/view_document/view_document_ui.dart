@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:vpec/ui/widgets/loading_indicator.dart';
-import 'package:vpec/ui/widgets/markdown_widget.dart';
 
+import '/ui/widgets/loading_indicator.dart';
+import '/ui/widgets/markdown_widget.dart';
 import '/utils/utils.dart';
 import '../../../models/document_model.dart';
 import 'view_document_logic.dart';

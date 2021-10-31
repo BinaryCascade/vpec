@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:vpec/screens/view_document/view_document_logic.dart';
 
 import '/models/document_model.dart';
+import '/screens/view_document/view_document_logic.dart';
 import '/utils/utils.dart';
 
 /// Create markdown with branded colors and text style

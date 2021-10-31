@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../ui/widgets/styled_widgets.dart';
-import '../../../utils/icons.dart';
-import '../../../utils/theme_helper.dart';
+import '/ui/widgets/styled_widgets.dart';
+import '/utils/icons.dart';
+import '/utils/theme_helper.dart';
 import 'menu_logic.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -43,8 +43,8 @@ class _MenuScreenState extends State<MenuScreen> {
                   subtitle: 'Не знаете, где столовая?',
                   onTap: () async {
                     await Navigator.pushNamed(context, '/cabinets');
-                    ThemeHelper
-                        .colorStatusBar(context: context, haveAppbar: false);
+                    ThemeHelper.colorStatusBar(
+                        context: context, haveAppbar: false);
                   }),
               StyledListTile(
                   icon: Icon(Icons.group_outlined,

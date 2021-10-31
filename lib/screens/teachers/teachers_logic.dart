@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/teacher_model.dart';
-import '../../../utils/utils.dart';
+import '/models/teacher_model.dart';
+import '/utils/utils.dart';
 import 'teachers_ui.dart';
 
 enum SearchMode { firstName, familyName, secondaryName, lesson, cabinet }
@@ -14,8 +14,11 @@ extension StringExtension on String {
 }
 
 class TeachersLogic extends ChangeNotifier {
-  Stream<QuerySnapshot<Map<String, dynamic>>> stream =
-      FirebaseFirestore.instance.collection('teacher_list').orderBy('familyName').snapshots();
+  Stream<QuerySnapshot<Map<String, dynamic>>> stream = FirebaseFirestore
+      .instance
+      .collection('teacher_list')
+      .orderBy('familyName')
+      .snapshots();
   SearchMode currentMode = SearchMode.familyName;
   String visibleTextMode = 'Искать среди фамилий';
   String documentField = 'familyName';

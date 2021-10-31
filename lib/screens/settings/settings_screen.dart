@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../ui/widgets/styled_widgets.dart';
-import '../../../utils/theme_helper.dart';
+import '/ui/widgets/styled_widgets.dart';
+import '/utils/theme_helper.dart';
 import 'settings_logic.dart';
 import 'settings_ui.dart';
 
@@ -19,8 +19,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Настройки')),
+      appBar: AppBar(title: const Text('Настройки')),
       body: ListView(
         padding: const EdgeInsets.all(10),
         children: [

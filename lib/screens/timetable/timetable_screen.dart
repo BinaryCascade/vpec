@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/screens/settings/settings_logic.dart';
-import 'package:vpec/ui/widgets/snow_widget.dart';
-import 'package:vpec/ui/widgets/timetable_item/timetable_item_logic.dart';
-import 'package:vpec/utils/hive_helper.dart';
 
-import '../../../utils/holiday_helper.dart';
-import '../../../utils/theme_helper.dart';
+import '/screens/settings/settings_logic.dart';
+import '/ui/widgets/snow_widget.dart';
+import '/ui/widgets/timetable_item/timetable_item_logic.dart';
+import '/utils/hive_helper.dart';
+import '/utils/holiday_helper.dart';
+import '/utils/theme_helper.dart';
 import 'timetable_ui.dart';
 
 class TimeTableScreen extends StatefulWidget {
@@ -21,7 +21,6 @@ class TimeTableScreen extends StatefulWidget {
 }
 
 class _TimeTableScreenState extends State<TimeTableScreen> {
-
   @override
   void initState() {
     context.read<TimeTableItemLogic>().cancelTimer();
@@ -51,7 +50,9 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
         Center(
           child: SingleChildScrollView(
             padding: const EdgeInsets.only(top: 30),
-            child: TimeTableListView(collectionPath: widget.collectionPath,),
+            child: TimeTableListView(
+              collectionPath: widget.collectionPath,
+            ),
           ),
         ),
       ]),

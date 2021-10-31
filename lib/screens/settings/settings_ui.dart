@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/screens/debug/debug_screen.dart';
 
-import '../../../ui/widgets/styled_widgets.dart';
-import '../../../utils/hive_helper.dart';
-import '../../../utils/icons.dart';
+import '/screens/debug/debug_screen.dart';
+import '/ui/widgets/styled_widgets.dart';
+import '/utils/hive_helper.dart';
+import '/utils/icons.dart';
 import 'settings_logic.dart';
 
 class AccountBlock extends StatefulWidget {

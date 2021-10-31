@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/ui/widgets/confirm_delete_dialog.dart';
 
-import '../../../models/time_model.dart';
-import '../../../utils/hive_helper.dart';
-import '../../../utils/snackbars.dart';
-import '../../../utils/utils.dart';
+import '/models/time_model.dart';
+import '/ui/widgets/confirm_delete_dialog.dart';
+import '/utils/hive_helper.dart';
+import '/utils/snackbars.dart';
+import '/utils/utils.dart';
 import 'timetable_ui.dart';
 
 class TimeTableLogic {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:vpec/models/document_model.dart';
-import 'package:vpec/screens/login/login_logic.dart';
-import 'package:vpec/screens/login/login_screen.dart';
+
+import '/models/document_model.dart';
+import '/screens/login/login_logic.dart';
+import '/screens/login/login_screen.dart';
 
 class DebugScreen extends StatelessWidget {
   const DebugScreen({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/ui/widgets/loading_indicator.dart';
 
+import '/ui/widgets/loading_indicator.dart';
 import 'news_logic.dart';
 import 'news_ui.dart';
 

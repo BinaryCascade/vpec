@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../../../utils/hive_helper.dart';
-import '../../../utils/snackbars.dart';
-import '../../../utils/theme_helper.dart';
-import '../../../utils/utils.dart';
+import '/utils/hive_helper.dart';
+import '/utils/snackbars.dart';
+import '/utils/theme_helper.dart';
+import '/utils/utils.dart';
 import 'settings_ui.dart';
 
 enum UserMode {

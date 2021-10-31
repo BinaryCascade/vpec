@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/screens/teachers/teachers_logic.dart';
 
-import '../../../utils/theme_helper.dart';
-import '../settings/settings_logic.dart';
+import '/screens/settings/settings_logic.dart';
+import '/screens/teachers/teachers_logic.dart';
+import '/utils/theme_helper.dart';
 import 'teachers_ui.dart';
 
 class TeacherScreen extends StatefulWidget {
@@ -43,7 +43,8 @@ class _TeacherScreenState extends State<TeacherScreen>
                     curve: Curves.fastOutSlowIn,
                     duration: const Duration(milliseconds: 400),
                     reverseDuration: const Duration(milliseconds: 400),
-                    child: value.isSearchMode ? const BuildChips() : Container()),
+                    child:
+                        value.isSearchMode ? const BuildChips() : Container()),
                 const BuildTeachersList(),
               ],
             ),

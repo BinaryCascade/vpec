@@ -5,8 +5,8 @@ import 'package:duration/locale.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../models/time_model.dart';
-import '../../../utils/utils.dart';
+import '/models/time_model.dart';
+import '/utils/utils.dart';
 import 'timetable_editormode_ui.dart';
 
 class TimeTableItemLogic extends ChangeNotifier {

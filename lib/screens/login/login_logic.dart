@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vpec/screens/settings/settings_logic.dart';
-import 'package:vpec/utils/hive_helper.dart';
+
+import '/screens/settings/settings_logic.dart';
+import '/utils/hive_helper.dart';
 
 class LoginLogic extends ChangeNotifier {
   static Future<void> openLogin(BuildContext context) async {

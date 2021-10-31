@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/teacher_model.dart';
+import '/models/teacher_model.dart';
 import 'teacher_editormode_logic.dart';
 
 class EditTeacherDialogUI extends StatefulWidget {

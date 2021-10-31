@@ -1,7 +1,8 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:vpec/utils/md2_tab_indicator.dart';
+
+import '/utils/md2_tab_indicator.dart';
 
 const FontWeight thin = FontWeight.w100;
 const FontWeight extraLight = FontWeight.w200;

@@ -8,10 +8,9 @@ class CabinetsMapLogic extends ChangeNotifier {
   int scaleFactor = 1;
   String nowImageUrl = '';
 
-  void setNewFloor( int newFloor) {
+  void setNewFloor(int newFloor) {
     _setFloor(newFloor);
     updateImage();
-
   }
 
   void _setFloor(int newFloor) {

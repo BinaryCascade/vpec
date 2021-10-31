@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpec/ui/widgets/loading_indicator.dart';
 
+import '/ui/widgets/loading_indicator.dart';
 import '../../../utils/theme_helper.dart';
 import 'cabinets_map_logic.dart';
 import 'cabinets_map_ui.dart';
@@ -37,8 +37,7 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
                   alignment: Alignment.topCenter,
                   children: [
                     CabinetsMap(
-                      onScaleUpdated: (scale) =>
-                          storage.scaleListener(scale),
+                      onScaleUpdated: (scale) => storage.scaleListener(scale),
                     ),
                     FloorChips(),
                   ],

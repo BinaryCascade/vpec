@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/theme_helper.dart';
+import '/utils/theme_helper.dart';
 import 'documents_ui.dart';
 
 class DocumentsScreen extends StatelessWidget {

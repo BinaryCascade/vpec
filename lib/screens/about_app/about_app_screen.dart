@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vpec/ui/widgets/styled_widgets.dart';
 
+import '/ui/widgets/styled_widgets.dart';
 import '../../../utils/utils.dart';
 import 'about_app_ui.dart';
 

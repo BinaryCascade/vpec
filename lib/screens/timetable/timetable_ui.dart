@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/time_model.dart';
-import '../../../ui/widgets/loading_indicator.dart';
-import '../../../ui/widgets/timetable_item/timetable_item.dart';
+import '/models/time_model.dart';
+import '/ui/widgets/loading_indicator.dart';
+import '/ui/widgets/timetable_item/timetable_item.dart';
 import 'timetable_logic.dart';
 
 class TimeTableListView extends StatelessWidget {
