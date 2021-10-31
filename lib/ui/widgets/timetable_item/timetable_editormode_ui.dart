@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:vpec/screens/timetable/timetable_logic.dart';
 
 import '../../../models/time_model.dart';
-import '../../../ui/screens/timetable/timetable_logic.dart';
 
 class EditTimeTableItemDialogUI extends StatefulWidget {
   final TimeModel model;

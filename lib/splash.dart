@@ -5,9 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 
-import 'ui/screens/bottom_bar/bottom_bar_logic.dart';
-import 'ui/screens/login/login_screen.dart';
-import 'ui/screens/settings/settings_logic.dart';
+import 'screens/bottom_bar/bottom_bar_logic.dart';
+import 'screens/login/login_screen.dart';
+import 'screens/settings/settings_logic.dart';
 import 'utils/hive_helper.dart';
 import 'utils/theme_helper.dart';
 
