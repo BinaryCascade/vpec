@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/ui/widgets/loading_indicator.dart';
-import '../../../utils/theme_helper.dart';
+import '/utils/theme_helper.dart';
+import '/widgets/loading_indicator.dart';
 import 'cabinets_map_logic.dart';
 import 'cabinets_map_ui.dart';
 

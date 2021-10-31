@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '/models/teacher_model.dart';
-import '/ui/widgets/confirm_delete_dialog.dart';
 import '/utils/utils.dart';
+import '/widgets/confirm_delete_dialog.dart';
 import 'teacher_editormode_ui.dart';
 
 class TeacherEditorModeLogic {

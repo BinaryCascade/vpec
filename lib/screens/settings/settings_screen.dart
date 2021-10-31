@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/ui/widgets/styled_widgets.dart';
 import '/utils/theme_helper.dart';
+import '/widgets/styled_widgets.dart';
 import 'settings_logic.dart';
 import 'settings_ui.dart';
 

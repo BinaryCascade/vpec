@@ -8,8 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:vpec/screens/settings/settings_logic.dart';
 import 'package:vpec/utils/hive_helper.dart';
 
-import '../../../utils/snackbars.dart';
-import '../../../utils/utils.dart';
+import '/utils/snackbars.dart';
+import '/utils/utils.dart';
 import 'announcements_ui.dart';
 
 class AnnouncementsLogic {

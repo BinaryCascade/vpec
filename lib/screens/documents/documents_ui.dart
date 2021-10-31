@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '/ui/widgets/document_card.dart';
-import '/ui/widgets/loading_indicator.dart';
-import '../../../models/document_model.dart';
+import '/models/document_model.dart';
+import '/widgets/document_card.dart';
+import '/widgets/loading_indicator.dart';
 
 class DocumentsList extends StatelessWidget {
   const DocumentsList({Key? key}) : super(key: key);

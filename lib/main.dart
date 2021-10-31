@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:vpec/utils/utils.dart';
 
-import 'ui/theme.dart';
+import 'theme.dart';
 import 'utils/hive_helper.dart';
 import 'utils/routes/routes.dart';
 import 'utils/theme_helper.dart';

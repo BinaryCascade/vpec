@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '/models/admin_model.dart';
-import '/ui/widgets/admin_card.dart';
-import '/ui/widgets/loading_indicator.dart';
 import '/utils/theme_helper.dart';
+import '/widgets/admin_card.dart';
+import '/widgets/loading_indicator.dart';
 
 class AdminScreen extends StatelessWidget {
   AdminScreen({Key? key}) : super(key: key);

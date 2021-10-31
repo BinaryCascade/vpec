@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utils/theme_helper.dart';
+import '/utils/theme_helper.dart';
 
 class CabinetsMapLogic extends ChangeNotifier {
   int selectedFloor = 1;

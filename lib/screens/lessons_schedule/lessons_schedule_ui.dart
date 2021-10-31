@@ -3,9 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '/utils/theme_helper.dart';
 import '/utils/utils.dart';
-import '../../../ui/widgets/loading_indicator.dart';
-import '../../../utils/theme_helper.dart';
+import '/widgets/loading_indicator.dart';
 import 'lessons_schedule_logic.dart';
 
 class LessonImage extends StatelessWidget {

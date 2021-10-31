@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/screens/settings/settings_logic.dart';
-import '/ui/widgets/snow_widget.dart';
-import '/ui/widgets/timetable_item/timetable_item_logic.dart';
 import '/utils/hive_helper.dart';
 import '/utils/holiday_helper.dart';
 import '/utils/theme_helper.dart';
+import '/widgets/snow_widget.dart';
+import '/widgets/timetable_item/timetable_item_logic.dart';
 import 'timetable_ui.dart';
 
 class TimeTableScreen extends StatefulWidget {

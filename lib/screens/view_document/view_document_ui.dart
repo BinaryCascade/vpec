@@ -3,10 +3,10 @@ import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-import '/ui/widgets/loading_indicator.dart';
-import '/ui/widgets/markdown_widget.dart';
+import '/models/document_model.dart';
 import '/utils/utils.dart';
-import '../../../models/document_model.dart';
+import '/widgets/loading_indicator.dart';
+import '/widgets/markdown_widget.dart';
 import 'view_document_logic.dart';
 
 @immutable

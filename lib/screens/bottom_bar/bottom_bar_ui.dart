@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../utils/icons.dart';
+import '/utils/icons.dart';
 import 'bottom_bar_logic.dart';
 
 class PageStorageUI extends StatelessWidget {

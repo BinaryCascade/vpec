@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../ui/widgets/styled_widgets.dart';
-import '../../../utils/icons.dart';
-import '../../../utils/utils.dart';
+import '/utils/icons.dart';
+import '/utils/utils.dart';
+import '/widgets/styled_widgets.dart';
 
 class AboutDeveloperCard extends StatelessWidget {
   final String? name, post, nickname, vkUrl, tgUrl;

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/screens/debug/debug_screen.dart';
-import '/ui/widgets/styled_widgets.dart';
 import '/utils/hive_helper.dart';
 import '/utils/icons.dart';
+import '/widgets/styled_widgets.dart';
 import 'settings_logic.dart';
 
 class AccountBlock extends StatefulWidget {

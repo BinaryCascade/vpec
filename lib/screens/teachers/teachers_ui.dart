@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/models/teacher_model.dart';
-import '/ui/widgets/loading_indicator.dart';
-import '/ui/widgets/teacher_card/teacher_card.dart';
+import '/widgets/loading_indicator.dart';
+import '/widgets/teacher_card/teacher_card.dart';
 import 'teachers_logic.dart';
 
 class SearchBar extends StatelessWidget {

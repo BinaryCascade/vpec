@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '/models/announcement_model.dart';
 import '/screens/settings/settings_logic.dart';
-import '../../../models/announcement_model.dart';
-import '../../../ui/widgets/announcement_card.dart';
-import '../../../ui/widgets/loading_indicator.dart';
-import '../../../utils/icons.dart';
-import '../../../utils/utils.dart';
+import '/utils/icons.dart';
+import '/utils/utils.dart';
+import '/widgets/announcement_card.dart';
+import '/widgets/loading_indicator.dart';
 
 /// ListView with data from Firestore
 class AnnouncementsList extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/ui/widgets/snow_widget.dart';
 import '/utils/holiday_helper.dart';
 import '/utils/theme_helper.dart';
+import '/widgets/snow_widget.dart';
 import 'lessons_schedule_logic.dart';
 import 'lessons_schedule_ui.dart';
 

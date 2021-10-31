@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '/models/teacher_model.dart';
 import '/screens/settings/settings_logic.dart';
-import '/ui/widgets/teacher_card/teacher_editormode_logic.dart';
+import '/widgets/teacher_card/teacher_editormode_logic.dart';
 
 class TeacherCard extends StatelessWidget {
   final TeacherModel teacher;

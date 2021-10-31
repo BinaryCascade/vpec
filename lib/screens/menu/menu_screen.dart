@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '/ui/widgets/styled_widgets.dart';
 import '/utils/icons.dart';
 import '/utils/theme_helper.dart';
+import '/widgets/styled_widgets.dart';
 import 'menu_logic.dart';
 
 class MenuScreen extends StatefulWidget {
