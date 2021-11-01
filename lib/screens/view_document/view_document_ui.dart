@@ -1,7 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:uc_pdfview/uc_pdfview.dart';
 
 import '/models/document_model.dart';
 import '/utils/utils.dart';
@@ -20,7 +21,7 @@ class DocumentViewer extends StatelessWidget {
 
     switch (docType) {
       case 'pdf':
-        return buildLegacyPDFViewer();
+        return buildPDFViewer();
       case 'md':
         return buildMDViewer();
       default:
@@ -28,36 +29,20 @@ class DocumentViewer extends StatelessWidget {
     }
   }
 
-  Widget buildLegacyPDFViewer() {
-    return Center(
-      child: ColorFiltered(
-        colorFilter: ViewDocumentLogic.documentColorFilter,
-        child: const PDF(swipeHorizontal: true).fromUrl(document.url,
-            placeholder: (progress) => const LoadingIndicator()),
-      ),
-    );
-  }
-
   Widget buildPDFViewer() {
-    return ColorFiltered(
-      colorFilter: ViewDocumentLogic.documentColorFilter,
-      child: SfPdfViewer.network(
-        document.url,
-        enableTextSelection: false,
-        interactionMode: PdfInteractionMode.pan,
-      ),
-    );
-  }
-
-  Widget buildError() {
     return Center(
-      child: SelectableLinkify(
-        text: 'Неподдерживаемый тип файла: ' +
-            ViewDocumentLogic.getFileExtension(document.url) +
-            '\nИсходная ссылка:\n${document.url}',
-        textAlign: TextAlign.center,
-        onOpen: (link) => openUrl(link.url),
-      ),
+      child: FutureBuilder<Uint8List>(
+          initialData: null,
+          future: ViewDocumentLogic.getPDFData(document.url),
+          builder: (context, pdfData) {
+            if (!pdfData.hasData) return const LoadingIndicator();
+            return ColorFiltered(
+              colorFilter: ViewDocumentLogic.documentColorFilter,
+              child: UCPDFView(
+                pdfData: pdfData.data,
+              ),
+            );
+          }),
     );
   }
 
@@ -70,6 +55,18 @@ class DocumentViewer extends StatelessWidget {
           if (!snapshot.hasData) return const LoadingIndicator();
           return MarkdownWidget(data: snapshot.data!);
         },
+      ),
+    );
+  }
+
+  Widget buildError() {
+    return Center(
+      child: SelectableLinkify(
+        text: 'Неподдерживаемый тип файла: ' +
+            ViewDocumentLogic.getFileExtension(document.url) +
+            '\nИсходная ссылка:\n${document.url}',
+        textAlign: TextAlign.center,
+        onOpen: (link) => openUrl(link.url),
       ),
     );
   }

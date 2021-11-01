@@ -1,4 +1,5 @@
 import 'dart:convert' show utf8;
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -8,33 +9,27 @@ import '/utils/theme_helper.dart';
 
 class ViewDocumentLogic {
   static ColorFilter get documentColorFilter {
-    if (HiveHelper.getValue('alwaysLightThemeDocument') == null) {
-      HiveHelper.saveValue(key: 'alwaysLightThemeDocument', value: false);
-    }
-    if (HiveHelper.getValue('alwaysLightThemeDocument')) {
-      return const ColorFilter.matrix([
-        //R G  B  A  Const
-        0.96078, 0, 0, 0, 0,
-        0, 0.96078, 0, 0, 0,
-        0, 0, 0.96078, 0, 0,
-        0, 0, 0, 1, 0,
-      ]);
+    const ColorFilter lightThemeFilter = ColorFilter.matrix([
+      //R G  B  A  Const
+      0.96078, 0, 0, 0, 0,
+      0, 0.96078, 0, 0, 0,
+      0, 0, 0.96078, 0, 0,
+      0, 0, 0, 1, 0,
+    ]);
+
+    const ColorFilter darkThemeFilter = ColorFilter.matrix([
+      //R G  B  A  Const
+      -0.87843, 0, 0, 0, 255,
+      0, -0.87843, 0, 0, 255,
+      0, 0, -0.87843, 0, 255,
+      0, 0, 0, 1, 0,
+    ]);
+
+    if (HiveHelper.getValue('alwaysLightThemeDocument') ??
+        !ThemeHelper.isDarkMode) {
+      return lightThemeFilter;
     } else {
-      return ThemeHelper.isDarkMode
-          ? const ColorFilter.matrix([
-              //R G  B  A  Const
-              -0.87843, 0, 0, 0, 255,
-              0, -0.87843, 0, 0, 255,
-              0, 0, -0.87843, 0, 255,
-              0, 0, 0, 1, 0,
-            ])
-          : const ColorFilter.matrix([
-              //R G  B  A  Const
-              0.96078, 0, 0, 0, 0,
-              0, 0.96078, 0, 0, 0,
-              0, 0, 0.96078, 0, 0,
-              0, 0, 0, 1, 0,
-            ]);
+      return darkThemeFilter;
     }
   }
 
@@ -50,5 +45,9 @@ class ViewDocumentLogic {
   static bool isThisURLSupported(String url) {
     List<String> supportedExtensions = ['pdf', 'md'];
     return supportedExtensions.contains(getFileExtension(url));
+  }
+
+  static Future<Uint8List> getPDFData(String url) async {
+    return await http.readBytes(Uri.parse(url));
   }
 }

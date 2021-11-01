@@ -38,14 +38,14 @@ dependencies:
   share_plus: ^3.0.4 # share anything
   path_provider: ^2.0.5 # work with storage paths
   quick_actions: ^0.6.0+7 # shortcuts from launcher
-  flutter_cached_pdfview: ^0.4.0-nullsafety # <-- uses a deprecated version of the Android embedding, need to replace
   file_picker: ^4.1.4 # for adding images to announcements
   flutter_multi_formatter: ^2.4.1
   fluro: ^2.0.3
   url_strategy: ^0.2.0
   flutter_markdown: ^0.6.7
   device_info: ^2.0.2
-  syncfusion_flutter_pdfviewer: ^19.3.45-beta # possible replace for pdf_view
+  breakpoint: ^1.2.0
+  uc_pdfview: ^0.0.3
 
 flutter_native_splash:
   color: "#E8E8E8"
