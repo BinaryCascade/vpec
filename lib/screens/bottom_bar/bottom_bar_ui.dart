@@ -2,15 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/utils/icons.dart';
+import '../announcements/announcements_screen.dart';
+import '../lessons_schedule/lessons_schedule_logic.dart';
+import '../lessons_schedule/lessons_schedule_screen.dart';
+import '../menu/menu_screen.dart';
+import '../news/news_screen.dart';
+import '../timetable_tabs/timetable_tabs_screen.dart';
 import 'bottom_bar_logic.dart';
 
 class PageStorageUI extends StatelessWidget {
   const PageStorageUI({
     Key? key,
-    required this.pages,
   }) : super(key: key);
 
-  final List<Widget> pages;
+  // List of screens for navigation
+  static List<Widget> pages = [
+    const NewsScreenProvider(),
+    const AnnouncementsScreen(),
+    const TimeTableTabs(),
+    ChangeNotifierProvider(
+        create: (_) => LessonsScheduleLogic(),
+        child: const LessonsScheduleScreen()),
+    const MenuScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +81,57 @@ class BottomBarUI extends StatelessWidget {
             activeIcon: const Icon(Icons.menu),
             label: 'Меню',
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class BuildTabletUI extends StatelessWidget {
+  const BuildTabletUI({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<BottomBarLogic>(
+      child: const Expanded(
+        child: PageStorageUI(),
+      ),
+      builder: (context, storage, child) => Row(
+        children: [
+          NavigationRail(
+            groupAlignment: -0.9,
+            selectedIndex: storage.bottomBarIndex,
+            labelType: NavigationRailLabelType.none,
+            onDestinationSelected: (value) => storage.setIndex(value),
+            destinations: const [
+              NavigationRailDestination(
+                icon: Icon(VpecIconPack.news_outline),
+                selectedIcon: Icon(VpecIconPack.news),
+                label: Text('События'),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.notifications_outlined),
+                selectedIcon: Icon(Icons.notifications),
+                label: Text('Объявления'),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.schedule_outlined),
+                selectedIcon: Icon(Icons.watch_later),
+                label: Text('Звонки'),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.dashboard_outlined),
+                selectedIcon: Icon(Icons.dashboard),
+                label: Text('Расписание'),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.menu_outlined),
+                selectedIcon: Icon(Icons.menu),
+                label: Text('Меню'),
+              ),
+            ],
+          ),
+          child!,
         ],
       ),
     );
