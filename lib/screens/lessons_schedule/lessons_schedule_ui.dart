@@ -3,40 +3,34 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '/utils/interactive_widget.dart';
 import '/utils/theme_helper.dart';
 import '/utils/utils.dart';
 import '/widgets/loading_indicator.dart';
 import 'lessons_schedule_logic.dart';
 
-class LessonImage extends StatelessWidget {
-  const LessonImage({
-    Key? key,
-  }) : super(key: key);
+class LessonsScheduleViewer extends StatelessWidget {
+  const LessonsScheduleViewer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Consumer<LessonsScheduleLogic>(
-      builder: (context, storage, child) => CachedNetworkImage(
-        imageUrl: storage.imgUrl,
-        errorWidget: (context, url, error) => Center(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 24.0),
-            child: Text(
-              'Расписание на\n${storage.parseDateFromUrl}\nне найдено',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline3,
+      builder: (context, storage, child) => InteractiveWidget(
+        child: CachedNetworkImage(
+          imageUrl: storage.imgUrl,
+          placeholder: (context, url) => const LoadingIndicator(),
+          errorWidget: (context, url, error) => Center(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 24.0),
+              child: Text(
+                'Расписание на\n${storage.parseDateFromUrl}\nне найдено',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headline3,
+              ),
             ),
           ),
-        ),
-        placeholder: (context, url) => const LoadingIndicator(),
-        imageBuilder: (context, imageProvider) => GestureDetector(
-          onDoubleTapDown: storage.handleDoubleTapDown,
-          onDoubleTap: storage.handleDoubleTap,
-          child: InteractiveViewer(
-            minScale: 1.0,
-            maxScale: 10.0,
-            transformationController: storage.transformationController,
-            child: ColorFiltered(
+          imageBuilder: (context, imageProvider) {
+            return ColorFiltered(
               colorFilter: ThemeHelper.isDarkMode
                   ? const ColorFilter.matrix([
                       //R G  B  A  Const
@@ -57,8 +51,8 @@ class LessonImage extends StatelessWidget {
                   image: imageProvider,
                 ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );

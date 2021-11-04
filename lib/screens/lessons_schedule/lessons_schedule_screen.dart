@@ -42,7 +42,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen>
                   ? Colors.white
                   : const Color(0xFFD6D6D6),
             ),
-          const LessonImage(),
+          const LessonsScheduleViewer(),
         ],
       ),
       floatingActionButton: const FabMenu(),
