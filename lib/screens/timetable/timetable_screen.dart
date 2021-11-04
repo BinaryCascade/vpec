@@ -39,7 +39,7 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
-        if (HolidayHelper().isNewYear)
+        if (HolidayHelper.isNewYear)
           SnowWidget(
             isRunning: true,
             totalSnow: 20,

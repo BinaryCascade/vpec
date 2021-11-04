@@ -33,7 +33,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen>
     return Scaffold(
       body: Stack(
         children: [
-          if (HolidayHelper().isNewYear)
+          if (HolidayHelper.isNewYear)
             SnowWidget(
               isRunning: true,
               totalSnow: 20,
