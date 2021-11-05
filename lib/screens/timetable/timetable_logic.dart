@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 
 import '/models/time_model.dart';
 import '/utils/hive_helper.dart';
-import '/utils/snackbars.dart';
 import '/utils/utils.dart';
 import '/widgets/confirm_delete_dialog.dart';
+import '../../widgets/snackbars.dart';
 import 'timetable_ui.dart';
 
 class TimeTableLogic {

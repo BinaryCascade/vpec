@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '/utils/md2_tab_indicator.dart';
+import 'widgets/md2_tab_indicator.dart';
 
 const FontWeight thin = FontWeight.w100;
 const FontWeight extraLight = FontWeight.w200;

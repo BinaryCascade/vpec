@@ -3,10 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/utils/interactive_widget.dart';
 import '/utils/theme_helper.dart';
 import '/utils/utils.dart';
 import '/widgets/loading_indicator.dart';
+import '../../widgets/interactive_widget.dart';
 import 'lessons_schedule_logic.dart';
 
 class LessonsScheduleViewer extends StatelessWidget {

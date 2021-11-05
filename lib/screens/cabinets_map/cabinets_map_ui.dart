@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/utils/interactive_widget.dart';
 import '/widgets/loading_indicator.dart';
+import '../../widgets/interactive_widget.dart';
 import 'cabinets_map_logic.dart';
 
 @immutable
