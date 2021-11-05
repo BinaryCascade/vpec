@@ -20,15 +20,15 @@ dependencies:
   http: ^0.13.4 # for load data from web
   url_launcher: ^6.0.2 # for launch any url
   transparent_image: ^2.0.0 # for placeholders
-  cached_network_image: ^3.1.0 # for display most images
-  flutter_cache_manager: ^3.1.2 # for cached_network_image
+  cached_network_image: ^3.1.0+1 # for display most images
+  flutter_cache_manager: ^3.1.3 # for cached_network_image
   xml: ^5.3.1 # for cached_network_image
   draggable_scrollbar: ^0.1.0 # for announcements scroll
   flutter_linkify: ^5.0.2 # text to links
-  firebase_core: ^1.8.0
-  firebase_auth: ^3.1.4
-  cloud_firestore: ^2.5.4
-  firebase_storage: ^10.0.6
+  firebase_core: ^1.9.0
+  firebase_auth: ^3.1.5
+  cloud_firestore: ^3.0.0
+  firebase_storage: ^10.0.7
   firebase_analytics: ^8.3.4
   provider: ^6.0.1
   duration: ^3.0.7 # print duration for timetable
@@ -43,7 +43,7 @@ dependencies:
   fluro: ^2.0.3
   url_strategy: ^0.2.0
   flutter_markdown: ^0.6.8
-  device_info: ^2.0.2
+  device_info: ^2.0.3
   breakpoint: ^1.2.0
   uc_pdfview: ^0.0.3
 
