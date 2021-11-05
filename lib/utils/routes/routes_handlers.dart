@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/screens/about_app/about_app_screen.dart';
-import '/screens/admins_screen.dart';
 import '/screens/bottom_bar/bottom_bar_logic.dart';
 import '/screens/bottom_bar/bottom_bar_screen.dart';
 import '/screens/cabinets_map/cabinets_map_logic.dart';
@@ -17,6 +16,7 @@ import '/screens/teachers/teachers_logic.dart';
 import '/screens/teachers/teachers_screen.dart';
 import '/screens/view_document/view_document_screen.dart';
 import '/splash.dart';
+import '../../screens/admins/admins_screen.dart';
 import '../hive_helper.dart';
 import 'routes.dart';
 

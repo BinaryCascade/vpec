@@ -7,7 +7,7 @@ import '../lessons_schedule/lessons_schedule_logic.dart';
 import '../lessons_schedule/lessons_schedule_screen.dart';
 import '../menu/menu_screen.dart';
 import '../news/news_screen.dart';
-import '../timetable_tabs/timetable_tabs_screen.dart';
+import '../timetable/timetable_tabs/timetable_tabs_screen.dart';
 import 'bottom_bar_logic.dart';
 
 class PageStorageUI extends StatelessWidget {

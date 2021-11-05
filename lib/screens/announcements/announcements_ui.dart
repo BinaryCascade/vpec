@@ -5,8 +5,8 @@ import '/models/announcement_model.dart';
 import '/screens/settings/settings_logic.dart';
 import '/utils/icons.dart';
 import '/utils/utils.dart';
-import '/widgets/announcement_card.dart';
 import '/widgets/loading_indicator.dart';
+import 'announcement_card.dart';
 
 /// ListView with data from Firestore
 class AnnouncementsList extends StatelessWidget {

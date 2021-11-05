@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '/models/admin_model.dart';
 import '/utils/theme_helper.dart';
-import '/widgets/admin_card.dart';
 import '/widgets/loading_indicator.dart';
+import 'admins_ui.dart';
 
 class AdminScreen extends StatelessWidget {
   AdminScreen({Key? key}) : super(key: key);

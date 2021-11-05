@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '/models/time_model.dart';
 import '/widgets/loading_indicator.dart';
-import '/widgets/timetable_item/timetable_item.dart';
+import 'timetable_item/timetable_item.dart';
 import 'timetable_logic.dart';
 
 class TimeTableListView extends StatelessWidget {
