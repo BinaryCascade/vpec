@@ -7,14 +7,14 @@ import '/widgets/confirm_delete_dialog.dart';
 import 'teacher_editormode_ui.dart';
 
 class TeacherEditorModeLogic {
-  void showEditDialog(BuildContext context, TeacherModel model) {
+  static void showEditDialog(BuildContext context, TeacherModel model) {
     showRoundedModalSheet(
         context: context,
         title: 'Редактировать преподавателя',
         child: EditTeacherDialogUI(model: model));
   }
 
-  void editTeacher(TeacherModel model) {
+  static void editTeacher(TeacherModel model) {
     CollectionReference teachers =
         FirebaseFirestore.instance.collection('teacher_list');
     teachers
@@ -24,7 +24,7 @@ class TeacherEditorModeLogic {
         );
   }
 
-  void showConfirmDeleteDialog(BuildContext context, String id) {
+  static void showConfirmDeleteDialog(BuildContext context, String id) {
     Navigator.pop(context);
     showRoundedModalSheet(
         context: context,
@@ -32,7 +32,7 @@ class TeacherEditorModeLogic {
         child: DeleteDialogUI(onDelete: () => confirmDelete(id)));
   }
 
-  void confirmDelete(String id) {
+  static void confirmDelete(String id) {
     CollectionReference teachers =
         FirebaseFirestore.instance.collection('teacher_list');
     teachers.doc(id).delete();

@@ -5,11 +5,17 @@ import '/utils/utils.dart';
 import '/widgets/styled_widgets.dart';
 
 class AboutDeveloperCard extends StatelessWidget {
-  final String? name, post, nickname, vkUrl, tgUrl;
+  final String name, post, nickname;
+  final String? vkUrl, tgUrl;
 
-  const AboutDeveloperCard(
-      {Key? key, this.name, this.post, this.nickname, this.vkUrl, this.tgUrl})
-      : super(key: key);
+  const AboutDeveloperCard({
+    Key? key,
+    required this.name,
+    required this.post,
+    required this.nickname,
+    this.vkUrl,
+    this.tgUrl,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +29,14 @@ class AboutDeveloperCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            StyledListTile(title: name!, subtitle: post!),
+            StyledListTile(title: name, subtitle: post),
             Padding(
               padding:
                   const EdgeInsets.only(bottom: 8.0, right: 8.0, left: 18.0),
               child: Row(
                 children: [
                   Text(
-                    nickname!,
+                    nickname,
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                   const Spacer(),

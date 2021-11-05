@@ -78,7 +78,7 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
         ButtonBar(
           children: [
             TextButton(
-              onPressed: () => TeacherEditorModeLogic()
+              onPressed: () => TeacherEditorModeLogic
                   .showConfirmDeleteDialog(context, widget.model.id!),
               child: const Text('Удалить'),
             ),
@@ -88,7 +88,7 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  TeacherEditorModeLogic().editTeacher(TeacherModel(
+                  TeacherEditorModeLogic.editTeacher(TeacherModel(
                     firstName: firstName.text,
                     familyName: familyName.text,
                     secondaryName: secondaryName.text,

@@ -16,7 +16,7 @@ class TeacherCard extends StatelessWidget {
       child: GestureDetector(
         onDoubleTap: () {
           if (SettingsLogic.checkIsInEditMode) {
-            TeacherEditorModeLogic().showEditDialog(context, teacher);
+            TeacherEditorModeLogic.showEditDialog(context, teacher);
           }
         },
         child: Card(

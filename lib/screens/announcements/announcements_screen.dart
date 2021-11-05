@@ -13,7 +13,7 @@ class AnnouncementsScreen extends StatefulWidget {
 }
 
 class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
-  int tabLength() {
+  int get tabLength {
     if (SettingsLogic.doAccountHaveAccess(UserMode.admin)) {
       return 3;
     } else {
@@ -28,7 +28,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: tabLength(),
+      length: tabLength,
       child: Scaffold(
         body: TabBarView(
           children: [
