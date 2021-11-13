@@ -52,10 +52,10 @@ class LoginLogic extends ChangeNotifier {
 
   /// Return URL for document, which need to display for entrant
   static Future<String> getEntrantUrl() async {
-    DocumentSnapshot enrant = await FirebaseFirestore.instance
+    DocumentSnapshot entrant = await FirebaseFirestore.instance
         .collection('entrant')
         .doc('main')
         .get();
-    return enrant['url'];
+    return entrant['url'];
   }
 }
