@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 
 import '/models/announcement_model.dart';
+import '/models/document_model.dart';
 import '/screens/settings/settings_logic.dart';
+import '/screens/view_document/view_document_logic.dart';
 import '/utils/utils.dart';
 
 class AnnouncementCard extends StatelessWidget {
@@ -50,7 +52,19 @@ class AnnouncementCard extends StatelessWidget {
                           text: announcement.content,
                           style: Theme.of(context).textTheme.bodyText1,
                           options: const LinkifyOptions(humanize: true),
-                          onOpen: (link) => openUrl(link.url),
+                          onOpen: (link) {
+                            if (ViewDocumentLogic.isThisURLSupported(
+                                link.url)) {
+                              Navigator.pushNamed(context, '/view_document',
+                                  arguments: DocumentModel(
+                                    title: link.text,
+                                    subtitle: '',
+                                    url: link.url,
+                                  ));
+                            } else {
+                              openUrl(link.url);
+                            }
+                          },
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 6),
