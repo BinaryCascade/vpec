@@ -10,6 +10,6 @@ void showSnackBar(
     backgroundColor: Theme.of(context).colorScheme.surface,
     behavior: behavior,
     duration: duration,
-    content: Text(text, style: Theme.of(context).textTheme.bodyText1),
+    content: Text(text, style: Theme.of(context).textTheme.subtitle2),
   ));
 }
