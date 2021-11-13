@@ -19,16 +19,22 @@ class DocumentViewScreen extends StatelessWidget {
       Navigator.popAndPushNamed(context, '/');
     }
     ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+    bool isFilePDF = ViewDocumentLogic.getFileExtension(document.url) == 'pdf';
 
     return Scaffold(
       appBar: AppBar(
         title: Text(document.title),
         actions: [
-          if (ViewDocumentLogic.getFileExtension(document.url) == 'pdf')
+          if (isFilePDF)
             IconButton(
                 tooltip: 'Поделиться',
                 onPressed: () => shareFile(document.url),
                 icon: const Icon(Icons.share_outlined)),
+          if (isFilePDF)
+            IconButton(
+                tooltip: 'Открыть в другом приложении',
+                onPressed: () => openUrl(document.url),
+                icon: const Icon(Icons.open_in_new_outlined))
         ],
       ),
       body: DocumentViewer(document: document),
