@@ -35,8 +35,7 @@ class AboutAppScreen extends StatelessWidget {
             StyledListTile(
                 title: 'Исходный код приложения',
                 subtitle: 'Нажмите, чтобы открыть GitHub',
-                onTap: () => openUrl('https://github.com/'
-                    'Volgograd-Power-Engineering-College/vpec')),
+                onTap: () => openUrl('https://github.com/ShyroTeam/vpec')),
             StyledListTile(
                 title: 'Лицензии библиотек',
                 subtitle: 'Нажмите, чтобы открыть список лицензий',
