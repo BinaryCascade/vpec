@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vpec/utils/routes/routes.dart';
 
 import '/models/document_model.dart';
 import '/screens/login/login_logic.dart';
@@ -34,13 +35,29 @@ class DebugScreen extends StatelessWidget {
               child: OutlinedButton(
                 onPressed: () async {
                   String docURL = await LoginLogic.getEntrantUrl();
-                  Navigator.pushNamed(context, '/view_document',
-                      arguments: DocumentModel(
-                          title: 'Для абитуриента', subtitle: '', url: docURL));
+                  Navigator.pushNamed(
+                    context,
+                    '/view_document',
+                    arguments: DocumentModel(
+                      title: 'Для абитуриента',
+                      subtitle: '',
+                      url: docURL,
+                    ),
+                  );
                 },
                 child: const Text('EntrantScreen'),
               ),
-            )
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () async => Navigator.pushNamed(
+                  context,
+                  Routes.jobQuizScreen,
+                ),
+                child: const Text('JobQuiz'),
+              ),
+            ),
           ],
         ),
       ),

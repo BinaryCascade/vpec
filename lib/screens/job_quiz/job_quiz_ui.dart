@@ -5,14 +5,18 @@ import 'package:share_plus/share_plus.dart';
 import 'job_quiz_logic.dart';
 
 class QuestionBlock extends StatelessWidget {
-  const QuestionBlock({Key? key}) : super(key: key);
+  const QuestionBlock({
+    Key? key,
+    required this.text,
+  }) : super(key: key);
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(13.0),
       child: Text(
-        context.read<JobQuizStorage>().questionText,
+        text,
         style: Theme.of(context).textTheme.headline4,
         textAlign: TextAlign.center,
       ),
@@ -21,7 +25,15 @@ class QuestionBlock extends StatelessWidget {
 }
 
 class AnswersBlock extends StatefulWidget {
-  const AnswersBlock({Key? key}) : super(key: key);
+  const AnswersBlock({
+    Key? key,
+    required this.firstAnswer,
+    required this.secondAnswer,
+    required this.thirdAnswer,
+    required this.fourthAnswer,
+  }) : super(key: key);
+
+  final String firstAnswer, secondAnswer, thirdAnswer, fourthAnswer;
 
   @override
   _AnswersBlockState createState() => _AnswersBlockState();
@@ -33,7 +45,7 @@ class _AnswersBlockState extends State<AnswersBlock> {
     return Column(
       children: [
         AnswerListTile(
-            title: context.read<JobQuizStorage>().firstAnswer,
+            title: widget.firstAnswer,
             value: 1,
             groupValue: context.read<JobQuizStorage>().selectedAnswer,
             onChanged: (newValue) {
@@ -42,7 +54,7 @@ class _AnswersBlockState extends State<AnswersBlock> {
               });
             }),
         AnswerListTile(
-            title: context.read<JobQuizStorage>().secondAnswer,
+            title: widget.secondAnswer,
             value: 2,
             groupValue: context.read<JobQuizStorage>().selectedAnswer,
             onChanged: (newValue) {
@@ -51,7 +63,7 @@ class _AnswersBlockState extends State<AnswersBlock> {
               });
             }),
         AnswerListTile(
-            title: context.read<JobQuizStorage>().thirdAnswer,
+            title: widget.thirdAnswer,
             value: 3,
             groupValue: context.read<JobQuizStorage>().selectedAnswer,
             onChanged: (newValue) {
@@ -60,7 +72,7 @@ class _AnswersBlockState extends State<AnswersBlock> {
               });
             }),
         AnswerListTile(
-            title: context.read<JobQuizStorage>().fourthAnswer,
+            title: widget.fourthAnswer,
             value: 4,
             groupValue: context.read<JobQuizStorage>().selectedAnswer,
             onChanged: (newValue) {

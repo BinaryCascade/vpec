@@ -26,9 +26,14 @@ class _JobQuizScreenState extends State<JobQuizScreen> {
             return storage.showResults
                 ? const JobQuizResults()
                 : Column(
-                    children: const <Widget>[
-                      QuestionBlock(),
-                      AnswersBlock(),
+                    children: <Widget>[
+                      QuestionBlock(text: storage.questionText),
+                      AnswersBlock(
+                        firstAnswer: storage.firstAnswer,
+                        secondAnswer: storage.secondAnswer,
+                        thirdAnswer: storage.thirdAnswer,
+                        fourthAnswer: storage.fourthAnswer,
+                      ),
                     ],
                   );
           },
