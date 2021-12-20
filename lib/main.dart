@@ -1,16 +1,15 @@
-
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
-import 'package:vpec/utils/utils.dart';
 
+import '/utils/utils.dart';
 import 'theme.dart';
 import 'utils/hive_helper.dart';
+import 'utils/notifications/firebase_messaging.dart';
+import 'utils/notifications/local_notifications.dart';
 import 'utils/routes/routes.dart';
 import 'utils/theme_helper.dart';
 
@@ -19,11 +18,15 @@ Future<void> main() async {
   setPathUrlStrategy(); // remove # from url path
   await useHttpOverrides();
   await HiveHelper().initHive();
-  Firebase.initializeApp().whenComplete(() => runApp(
-      ChangeNotifierProvider<ThemeNotifier>(
-          create: (_) => ThemeNotifier(
-              ThemeHelper.isDarkMode ? ThemeMode.dark : ThemeMode.light),
-          child: const VPECApp())));
+  await Firebase.initializeApp();
+  await LocalNotifications.initializeNotifications();
+  AppFirebaseMessaging.startListening();
+
+  runApp(ChangeNotifierProvider(
+      create: (_) => ThemeNotifier(
+            ThemeHelper.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          ),
+      child: const VPECApp()));
 }
 
 class VPECApp extends StatefulWidget {
@@ -69,9 +72,6 @@ class _VPECAppState extends State<VPECApp> {
       themeMode: context.watch<ThemeNotifier>().themeMode,
       initialRoute: '/',
       onGenerateRoute: Routes.router.generator,
-      navigatorObservers: [
-        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
-      ],
     );
   }
 }

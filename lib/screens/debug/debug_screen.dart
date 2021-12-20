@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:vpec/utils/notifications/firebase_messaging.dart';
 import 'package:vpec/utils/routes/routes.dart';
+import 'package:vpec/widgets/loading_indicator.dart';
 
 import '/models/document_model.dart';
 import '/screens/login/login_logic.dart';
@@ -15,9 +18,29 @@ class DebugScreen extends StatelessWidget {
         title: const Text('Экран тестирования'),
       ),
       body: SafeArea(
+        minimum: const EdgeInsets.all(12.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            FutureBuilder<String>(
+              future: AppFirebaseMessaging.getToken(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) return const LoadingIndicator();
+                return Column(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton(
+                        onPressed: () => Clipboard.setData(
+                            ClipboardData(text: snapshot.data!)),
+                        child: const Text('Copy FCM token'),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+            const Divider(),
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
