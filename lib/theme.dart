@@ -91,8 +91,8 @@ ThemeData themeData() {
             fontSize: 18,
             fontFamily: 'Montserrat',
             fontWeight: semiBold)),
-    iconTheme: const IconThemeData().copyWith(
-      size: 20.0,
+    iconTheme: const IconThemeData(
+      size: 24.0,
     ),
     textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
@@ -232,8 +232,8 @@ ThemeData darkThemeData() {
             fontSize: 18,
             fontFamily: 'Montserrat',
             fontWeight: semiBold)),
-    iconTheme: const IconThemeData().copyWith(
-      size: 20.0,
+    iconTheme: const IconThemeData(
+      size: 24.0,
     ),
     textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(

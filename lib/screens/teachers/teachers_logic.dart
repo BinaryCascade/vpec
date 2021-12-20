@@ -5,7 +5,13 @@ import '/models/teacher_model.dart';
 import '/utils/utils.dart';
 import 'teachers_ui.dart';
 
-enum SearchMode { firstName, familyName, secondaryName, lesson, cabinet }
+enum SearchMode {
+  firstName,
+  familyName,
+  secondaryName,
+  lesson,
+  cabinet,
+}
 
 extension StringExtension on String {
   String capitalize() {

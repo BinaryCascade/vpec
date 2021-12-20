@@ -37,8 +37,8 @@ class SearchBar extends StatelessWidget {
   }
 }
 
-class BuildChips extends StatelessWidget {
-  const BuildChips({Key? key}) : super(key: key);
+class FilterChips extends StatelessWidget {
+  const FilterChips({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

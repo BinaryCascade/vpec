@@ -34,17 +34,16 @@ class _TeacherScreenState extends State<TeacherScreen>
             actions: const <Widget>[SearchButton()],
           ),
           body: GestureDetector(
-            onTap: () {
-              FocusScope.of(context).unfocus();
-            },
+            onTap: () => FocusScope.of(context).unfocus(),
             child: Column(
               children: [
                 AnimatedSize(
                     curve: Curves.fastOutSlowIn,
                     duration: const Duration(milliseconds: 400),
                     reverseDuration: const Duration(milliseconds: 400),
-                    child:
-                        value.isSearchMode ? const BuildChips() : Container()),
+                    child: value.isSearchMode
+                        ? const FilterChips()
+                        : const SizedBox(width: double.infinity,)),
                 const BuildTeachersList(),
               ],
             ),
