@@ -31,6 +31,7 @@ dependencies:
   firebase_storage: ^10.2.4
   firebase_analytics: ^9.0.4
   firebase_messaging: ^11.2.4
+  flutter_local_notifications: ^9.1.5
   provider: ^6.0.1
   duration: ^3.0.8 # print duration for timetable
   dotted_line: ^3.1.0
