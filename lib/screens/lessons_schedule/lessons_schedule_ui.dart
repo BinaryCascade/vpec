@@ -15,22 +15,22 @@ class LessonsScheduleViewer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<LessonsScheduleLogic>(
-      builder: (context, storage, child) => InteractiveWidget(
-        child: CachedNetworkImage(
-          imageUrl: storage.imgUrl,
-          placeholder: (context, url) => const LoadingIndicator(),
-          errorWidget: (context, url, error) => Center(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 24.0),
-              child: Text(
-                'Расписание на\n${storage.parseDateFromUrl}\nне найдено',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline3,
-              ),
+      builder: (context, storage, child) => CachedNetworkImage(
+        imageUrl: storage.imgUrl,
+        placeholder: (context, url) => const LoadingIndicator(),
+        errorWidget: (context, url, error) => Center(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 24.0),
+            child: Text(
+              'Расписание на\n${storage.parseDateFromUrl}\nне найдено',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline3,
             ),
           ),
-          imageBuilder: (context, imageProvider) {
-            return ColorFiltered(
+        ),
+        imageBuilder: (context, imageProvider) {
+          return InteractiveWidget(
+            child: ColorFiltered(
               colorFilter: ThemeHelper.isDarkMode
                   ? const ColorFilter.matrix([
                       //R G  B  A  Const
@@ -51,9 +51,9 @@ class LessonsScheduleViewer extends StatelessWidget {
                   image: imageProvider,
                 ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -93,10 +93,10 @@ class FabMenu extends StatelessWidget {
                   : Icons.arrow_back_ios_rounded,
               size: 24),
           onPressed: () {
+            LessonsScheduleLogic logic = context.read<LessonsScheduleLogic>();
             // this FAB used for switch between schedule for today or tomorrow
-            context.read<LessonsScheduleLogic>().showForToday =
-                !context.read<LessonsScheduleLogic>().showForToday;
-            context.read<LessonsScheduleLogic>().updateImgUrl();
+            logic.showForToday = !logic.showForToday;
+            logic.updateImgUrl();
           },
         ),
       ],
