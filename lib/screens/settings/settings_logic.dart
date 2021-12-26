@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '../../utils/routes/routes.dart';
 import '/utils/hive_helper.dart';
 import '/utils/theme_helper.dart';
 import '/utils/utils.dart';
@@ -48,11 +49,19 @@ class SettingsLogic extends ChangeNotifier {
 
   // show roundedModalSheet() for account login
   static Future<void> accountLogin(BuildContext context) async {
-    await showRoundedModalSheet(
-      context: context,
-      title: 'Войти в аккаунт',
-      child: const AccountLoginUI(),
-    );
+    if (getAccountMode() != UserMode.entrant) {
+      showRoundedModalSheet(
+        context: context,
+        title: 'Выйти из аккаунта?',
+        child: const AccountLogoutUI(),
+      );
+    } else {
+      await showRoundedModalSheet(
+        context: context,
+        title: 'Войти в аккаунт',
+        child: const AccountLoginUI(),
+      );
+    }
   }
 
   // login to firebase account with email and password
@@ -60,13 +69,22 @@ class SettingsLogic extends ChangeNotifier {
       {required String email, required password}) async {
     try {
       // trying to login
-      await FirebaseAuth.instance.signOut();
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       Navigator.pop(context);
     } on FirebaseAuthException {
       Navigator.pop(context);
       showSnackBar(context, text: 'Данные введены неверно');
+    }
+  }
+
+  static Future<void> accountLogout(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Navigator.pushNamedAndRemoveUntil(
+          context, Routes.homeScreen, (route) => false);
+    } catch (e) {
+      showSnackBar(context, text: 'Ошибка выхода из аккаунта');
     }
   }
 

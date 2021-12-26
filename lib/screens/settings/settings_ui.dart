@@ -194,6 +194,31 @@ class AccountLoginUI extends StatelessWidget {
   }
 }
 
+class AccountLogoutUI extends StatelessWidget {
+  const AccountLogoutUI({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ButtonBar(
+          alignment: MainAxisAlignment.center,
+          children: [
+            OutlinedButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Отмена'),
+            ),
+            OutlinedButton(
+              child: const Text('Выйти'),
+              onPressed: () => SettingsLogic.accountLogout(context),
+            ),
+          ],
+        )
+      ],
+    );
+  }
+}
+
 class EditNameUI extends StatelessWidget {
   const EditNameUI({
     Key? key,
