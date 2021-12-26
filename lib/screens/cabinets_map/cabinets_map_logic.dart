@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 import '/utils/theme_helper.dart';
 
@@ -56,8 +57,14 @@ class CabinetsMapLogic extends ChangeNotifier {
     return cabMap[fieldName].toString();
   }
 
-  Future<void> initializeMap() async {
+  Future<void> initializeMap(BuildContext context) async {
     nowImageUrl = await CabinetsMapLogic().getScaledImage();
+    ThemeNotifier themeNotifier = context.read<ThemeNotifier>();
+    themeNotifier.addListener(() async {
+      await updateImage();
+      notifyListeners();
+    });
+
     notifyListeners();
   }
 

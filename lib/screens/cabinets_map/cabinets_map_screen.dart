@@ -18,7 +18,7 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<CabinetsMapLogic>().initializeMap();
+    context.read<CabinetsMapLogic>().initializeMap(context);
   }
 
   @override
