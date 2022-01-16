@@ -30,10 +30,6 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
   }
 
-  void _loadingSettings() {
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
-  }
-
   Future<void> _initApp() async {
     //make all our date in russian
     await initializeDateFormatting('ru');
@@ -91,7 +87,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _loadingSettings();
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
     return userCompleteLoginPage ? widget.child : const LoginScreen();
   }
 }
