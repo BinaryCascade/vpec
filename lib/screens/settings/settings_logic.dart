@@ -5,13 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../../utils/routes/routes.dart';
 import '/utils/hive_helper.dart';
 import '/utils/theme_helper.dart';
 import '/utils/utils.dart';
+import '../../utils/routes/routes.dart';
 import '../../widgets/snackbars.dart';
 import 'settings_ui.dart';
 
+@Deprecated("""
+[UserMode] is being deprecated in favor 
+of [UserLevel]
+""")
 enum UserMode {
   admin, // have access to view all announcements and edit mode
   student, // can see only public announcements
@@ -21,15 +25,33 @@ enum UserMode {
 }
 
 class SettingsLogic extends ChangeNotifier {
+  @Deprecated("""
+[SettingsLogic.isLoggedIn] is being deprecated in favor 
+of [FirebaseAppAuth.isLoggedIn]
+""")
   bool isLoggedIn = false;
+
+  @Deprecated("""
+[SettingsLogic.checkIsInEditMode] and [SettingsLogic.isEditMode] is being deprecated in favor 
+of [AccountEditorMode.isEditModeActive]
+""")
   bool isEditMode = HiveHelper.getValue('isEditMode') ?? false;
+
   late StreamSubscription<User?> authListener;
 
+  @Deprecated("""
+[SettingsLogic.checkIsInEditMode] and [SettingsLogic.isEditMode] is being deprecated in favor 
+of [AccountEditorMode.isEditModeActive]
+""")
   static bool get checkIsInEditMode {
     return SettingsLogic.getAccountMode() == UserMode.admin &&
         (HiveHelper.getValue('isEditMode') ?? false);
   }
 
+  @Deprecated("""
+[SettingsLogic.startListenAuth()] is being deprecated in favor 
+of [FirebaseAppAuth.startListening()]
+""")
   void startListenAuth() {
     authListener =
         FirebaseAuth.instance.authStateChanges().listen((User? user) {
@@ -43,6 +65,10 @@ class SettingsLogic extends ChangeNotifier {
     });
   }
 
+  @Deprecated("""
+[SettingsLogic.startListenAuth()] is being deprecated in favor 
+of [FirebaseAppAuth.cancelListening()]
+""")
   Future<void> cancelListener() async {
     await authListener.cancel();
   }
@@ -100,6 +126,10 @@ class SettingsLogic extends ChangeNotifier {
     );
   }
 
+  @Deprecated("""
+[SettingsLogic.getAccountMode()] is being deprecated in favor 
+of [AccountDetails.getAccountLevel()]
+""")
   static UserMode getAccountMode() {
     FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -136,6 +166,10 @@ class SettingsLogic extends ChangeNotifier {
     }
   }
 
+  @Deprecated("""
+[SettingsLogic.doAccountHaveAccess(UserMode)] is being deprecated in favor 
+of [AccountDetails.hasAccessToLevel(UserLevel)]
+""")
   static bool doAccountHaveAccess(UserMode requiredMode) {
     switch (getAccountMode()) {
       case UserMode.admin:
@@ -175,6 +209,10 @@ class SettingsLogic extends ChangeNotifier {
     }
   }
 
+  @Deprecated("""
+[SettingsLogic.isAccountModeLowLevel()] is being deprecated in favor 
+of [AccountDetails.isAccountLowLevel]
+""")
   static bool isAccountModeLowLevel() {
     if (getAccountMode() == UserMode.student ||
         getAccountMode() == UserMode.entrant) {
