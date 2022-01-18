@@ -14,7 +14,7 @@ import 'settings_ui.dart';
 
 @Deprecated("""
 [UserMode] is being deprecated in favor 
-of [UserLevel]
+of [AccessLevel]
 """)
 enum UserMode {
   admin, // have access to view all announcements and edit mode
@@ -168,7 +168,7 @@ of [AccountDetails.getAccountLevel()]
 
   @Deprecated("""
 [SettingsLogic.doAccountHaveAccess(UserMode)] is being deprecated in favor 
-of [AccountDetails.hasAccessToLevel(UserLevel)]
+of [AccountDetails.hasAccessToLevel(AccessLevel)]
 """)
   static bool doAccountHaveAccess(UserMode requiredMode) {
     switch (getAccountMode()) {

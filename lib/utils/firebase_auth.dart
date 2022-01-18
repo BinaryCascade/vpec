@@ -3,120 +3,143 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../models/account_info.dart';
 import 'hive_helper.dart';
 
-enum UserLevel {
-  admin, // have access to view all announcements and edit mode
-  student, // can see only public announcements
-  employee, // can see public and employee announcements
-  teacher, // can see public and teachers announcements
-  entrant, // can't see anything except info about college
+/// Types of access level.
+enum AccessLevel {
+  /// Have access to view all announcements and edit mode.
+  admin,
+
+  /// can see only public announcements
+  student,
+
+  /// can see public and employee announcements
+  employee,
+
+  /// can see public and teachers announcements
+  teacher,
+
+  /// can't see anything except info about college
+  entrant,
 }
 
-class UserInfo {
-  bool isLoggedIn;
-  String? email;
-  String? uid;
-  String? name;
-  UserLevel? level;
-  bool? isLowLevel;
-  bool isEditMode;
-
-  UserInfo({
-    required this.isLoggedIn,
-    this.email,
-    this.uid,
-    this.name,
-    this.level,
-    this.isLowLevel,
-    required this.isEditMode,
-  });
-}
-
+/// This class contains all information about account in [accountInfo].
+/// [accountInfo] will be updated only after [startListening] function
+/// was called. If listening no more needed, call [cancelListener].
+///
+/// Should be used with ChangeNotifierProvider.
 class FirebaseAppAuth extends ChangeNotifier {
-  bool isLoggedIn = false;
+  AccountInfo accountInfo = const AccountInfo(isLoggedIn: false);
   late StreamSubscription<User?> authListener;
 
+  /// Start listening for user auth state changes.
+  /// Call [cancelListener] to stop it.
   void startListening() {
     authListener =
         FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user?.email == null) {
-        isLoggedIn = false;
+        // user sign-out
+        accountInfo = accountInfo.copyWith(isLoggedIn: false);
         notifyListeners();
       } else {
-        isLoggedIn = true;
+        // user sign-in
+        accountInfo = accountInfo.copyWith(
+          isLoggedIn: true,
+          email: user!.email,
+          uid: user.uid,
+          name: HiveHelper.getValue('username'),
+          level: AccountDetails.getAccountLevel(),
+          isLowLevel: AccountDetails.isAccountLowLevelAccess,
+        );
         notifyListeners();
       }
     });
   }
 
+  /// Cancel listening for user auth state changes.
   Future<void> cancelListener() async {
     await authListener.cancel();
   }
 }
 
+/// This class used for storing and changing admin editor mode in-app.
+/// Use [isInEditorMode] to get current status of editor mode.
+///
+/// Should be used with ChangeNotifierProvider.
 class AccountEditorMode extends ChangeNotifier {
-  bool isEditModeActive = HiveHelper.getValue('isEditMode') ?? false;
+  bool _isEditorModeActive = HiveHelper.getValue('isEditMode') ?? false;
 
-  void toggleEditMode() {
-    isEditModeActive = !isEditModeActive;
-    HiveHelper.saveValue(key: 'isEditMode', value: isEditModeActive);
+  bool get isInEditorMode =>
+      AccountDetails.getAccountLevel() == AccessLevel.admin &&
+      _isEditorModeActive;
+
+  /// Call this to on or off admin editor mode
+  void toggleEditorMode() {
+    _isEditorModeActive = !_isEditorModeActive;
+    HiveHelper.saveValue(key: 'isEditMode', value: _isEditorModeActive);
+    notifyListeners();
   }
 }
 
+/// This class contains a functions for getting user's app-specific data
 class AccountDetails {
-  static UserLevel getAccountLevel() {
+  /// Call to get [AccessLevel] of current user.
+  /// If user didn't sign-in, returns [AccessLevel.entrant]
+  static AccessLevel getAccountLevel() {
     FirebaseAuth auth = FirebaseAuth.instance;
 
     if (auth.currentUser != null) {
       switch (auth.currentUser!.email) {
         case 'admin@energocollege.ru':
-          return UserLevel.admin;
+          return AccessLevel.admin;
         case 'employee@energocollege.ru':
-          return UserLevel.employee;
+          return AccessLevel.employee;
         case 'teacher@energocollege.ru':
-          return UserLevel.teacher;
+          return AccessLevel.teacher;
         case 'student@energocollege.ru':
-          return UserLevel.student;
+          return AccessLevel.student;
         default:
           throw 'Email of this account is not supported:\n${auth.currentUser!.email}';
       }
     } else {
-      return UserLevel.entrant;
+      return AccessLevel.entrant;
     }
   }
 
-  static bool hasAccessToLevel(UserLevel requiredLevel) {
+  /// Call this function to find out
+  /// if the user has access to the required [AccessLevel].
+  static bool hasAccessToLevel(AccessLevel requiredLevel) {
     switch (getAccountLevel()) {
-      case UserLevel.admin:
+      case AccessLevel.admin:
         return true; // admin have access to anything
-      case UserLevel.student:
-        if (requiredLevel == UserLevel.entrant ||
-            requiredLevel == UserLevel.student) {
+      case AccessLevel.student:
+        if (requiredLevel == AccessLevel.entrant ||
+            requiredLevel == AccessLevel.student) {
           return true; // students can see stuffs for entrant and students
         } else {
           return false;
         }
-      case UserLevel.employee:
-        if (requiredLevel == UserLevel.employee ||
-            requiredLevel == UserLevel.student ||
-            requiredLevel == UserLevel.entrant) {
+      case AccessLevel.employee:
+        if (requiredLevel == AccessLevel.employee ||
+            requiredLevel == AccessLevel.student ||
+            requiredLevel == AccessLevel.entrant) {
           return true;
           // employee can see stuffs only for employee, not for teachers or admin
         } else {
           return false;
         }
-      case UserLevel.teacher:
-        if (requiredLevel == UserLevel.teacher ||
-            requiredLevel == UserLevel.student ||
-            requiredLevel == UserLevel.entrant) {
+      case AccessLevel.teacher:
+        if (requiredLevel == AccessLevel.teacher ||
+            requiredLevel == AccessLevel.student ||
+            requiredLevel == AccessLevel.entrant) {
           return true;
           // teachers can see stuffs only for teachers, not for employee or admin
         } else {
           return false;
         }
-      case UserLevel.entrant:
-        if (requiredLevel == UserLevel.entrant) {
+      case AccessLevel.entrant:
+        if (requiredLevel == AccessLevel.entrant) {
           return true;
           // well... entrant can see something only for entrant
         } else {
@@ -125,8 +148,10 @@ class AccountDetails {
     }
   }
 
-  static bool get isAccountLowLevel => getAccountLevel() == UserLevel.student ||
-          getAccountLevel() == UserLevel.entrant
-      ? true
-      : false;
+  /// Low level access account is account for students or entrant
+  static bool get isAccountLowLevelAccess =>
+      getAccountLevel() == AccessLevel.student ||
+              getAccountLevel() == AccessLevel.entrant
+          ? true
+          : false;
 }
