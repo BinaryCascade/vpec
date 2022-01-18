@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:vpec/utils/notifications/firebase_messaging.dart';
-import 'package:vpec/utils/routes/routes.dart';
-import 'package:vpec/widgets/loading_indicator.dart';
 
 import '/models/document_model.dart';
 import '/screens/login/login_logic.dart';
 import '/screens/login/login_screen.dart';
+import '../../utils/notifications/firebase_messaging.dart';
+import '../../utils/routes/routes.dart';
+import '../../widgets/loading_indicator.dart';
 
 class DebugScreen extends StatelessWidget {
   const DebugScreen({Key? key}) : super(key: key);

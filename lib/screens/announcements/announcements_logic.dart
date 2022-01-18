@@ -5,11 +5,11 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:vpec/screens/settings/settings_logic.dart';
-import 'package:vpec/utils/hive_helper.dart';
 
 import '/utils/utils.dart';
+import '../../utils/hive_helper.dart';
 import '../../widgets/snackbars.dart';
+import '../settings/settings_logic.dart';
 import 'announcements_ui.dart';
 
 class AnnouncementsLogic {

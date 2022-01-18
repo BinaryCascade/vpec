@@ -1,6 +1,6 @@
 // this model used for AnnouncementsScreen
 
-import 'package:vpec/screens/settings/settings_logic.dart';
+import '../screens/settings/settings_logic.dart';
 
 class AnnouncementModel {
   final String author;
