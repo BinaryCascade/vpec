@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/screens/settings/settings_logic.dart';
 import '/screens/teachers/teachers_logic.dart';
 import '/utils/theme_helper.dart';
+import '../../utils/firebase_auth.dart';
 import 'teachers_ui.dart';
 
 class TeacherScreen extends StatefulWidget {
@@ -43,13 +43,16 @@ class _TeacherScreenState extends State<TeacherScreen>
                     reverseDuration: const Duration(milliseconds: 400),
                     child: value.isSearchMode
                         ? const FilterChips()
-                        : const SizedBox(width: double.infinity,)),
+                        : const SizedBox(
+                            width: double.infinity,
+                          )),
                 const BuildTeachersList(),
               ],
             ),
           ),
-          floatingActionButton:
-              SettingsLogic.checkIsInEditMode ? const EditModeFAB() : null,
+          floatingActionButton: AccountEditorMode().isEditorModeActive
+              ? const EditModeFAB()
+              : null,
         );
       },
     );

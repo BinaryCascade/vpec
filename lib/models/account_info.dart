@@ -11,7 +11,7 @@ class AccountInfo with _$AccountInfo {
     String? email,
     String? uid,
     String? name,
-    AccessLevel? level,
+    required AccessLevel level,
     bool? isLowLevel,
   }) = _AccountInfo;
 }

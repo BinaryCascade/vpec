@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/screens/settings/settings_logic.dart';
 import '/utils/hive_helper.dart';
 import '/utils/holiday_helper.dart';
 import '/utils/theme_helper.dart';
 import '/widgets/snow_widget.dart';
+import '../../utils/firebase_auth.dart';
 import 'timetable_item/timetable_item_logic.dart';
 import 'timetable_ui.dart';
 
@@ -56,8 +56,9 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
           ),
         ),
       ]),
-      floatingActionButton:
-          SettingsLogic.checkIsInEditMode ? const EditorModeButtons() : null,
+      floatingActionButton: AccountEditorMode().isEditorModeActive
+          ? const EditorModeButtons()
+          : null,
     );
   }
 }

@@ -10,14 +10,13 @@ import '/screens/cabinets_map/cabinets_map_logic.dart';
 import '/screens/cabinets_map/cabinets_map_screen.dart';
 import '/screens/documents/documents_screen.dart';
 import '/screens/job_quiz/job_quiz_screen.dart';
-import '/screens/settings/settings_logic.dart';
 import '/screens/settings/settings_screen.dart';
 import '/screens/teachers/teachers_logic.dart';
 import '/screens/teachers/teachers_screen.dart';
 import '/screens/view_document/view_document_screen.dart';
 import '/splash.dart';
 import '../../screens/admins/admins_screen.dart';
-import '../hive_helper.dart';
+import '../firebase_auth.dart';
 import 'routes.dart';
 
 Handler homeScreenHandler = Handler(
@@ -69,19 +68,26 @@ Handler documentsScreenHandler = Handler(
   return const DocumentsScreen();
 });
 
-
 Handler loginByURLHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
   String? email = params['login']!.first;
   String? password = params['password']!.first;
+  FirebaseAppAuth appAuth =
+      Provider.of<FirebaseAppAuth>(context!, listen: false);
 
-  makeLogin(email, password).then((value) {
-    if (SettingsLogic.getAccountMode() != UserMode.entrant) {
-      HiveHelper.saveValue(key: 'isUserEntrant', value: 'false');
+  makeLogin(email, password).then((_) {
+    if (appAuth.accountInfo.isLoggedIn) {
       Navigator.pushNamedAndRemoveUntil(
-          context!, Routes.homeScreen, (route) => false);
+        context,
+        Routes.homeScreen,
+        (route) => false,
+      );
     } else {
-      HiveHelper.removeValue('isUserEntrant');
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        Routes.homeScreen,
+        (route) => false,
+      );
     }
   });
 });

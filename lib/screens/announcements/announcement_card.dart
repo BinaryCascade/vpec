@@ -2,10 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:provider/provider.dart';
 
+import '../../utils/firebase_auth.dart';
 import '/models/announcement_model.dart';
 import '/models/document_model.dart';
-import '/screens/settings/settings_logic.dart';
 import '/screens/view_document/view_document_logic.dart';
 import '/utils/utils.dart';
 
@@ -89,7 +90,7 @@ class AnnouncementCard extends StatelessWidget {
     TextEditingController titleController = TextEditingController();
     TextEditingController contentController = TextEditingController();
 
-    if (SettingsLogic.getAccountMode() == UserMode.admin) {
+    if (context.read<FirebaseAppAuth>().accountInfo.level == AccessLevel.admin) {
       titleController.text = announcement.title;
       contentController.text = announcement.content;
 
@@ -207,12 +208,12 @@ class AnnouncementCard extends StatelessWidget {
   }
 
   String collectionPath() {
-    switch (announcement.userMode) {
-      case UserMode.employee:
+    switch (announcement.accessLevel) {
+      case AccessLevel.employee:
         return 'announcements_employee';
-      case UserMode.teacher:
+      case AccessLevel.teacher:
         return 'announcements_teachers';
-      case UserMode.entrant:
+      case AccessLevel.entrant:
         return 'announcements_all';
       default:
         return 'announcements_all';

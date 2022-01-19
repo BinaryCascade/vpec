@@ -7,7 +7,7 @@ import 'package:quick_actions/quick_actions.dart';
 
 import 'screens/bottom_bar/bottom_bar_logic.dart';
 import 'screens/login/login_screen.dart';
-import 'screens/settings/settings_logic.dart';
+import 'utils/firebase_auth.dart';
 import 'utils/hive_helper.dart';
 import 'utils/theme_helper.dart';
 
@@ -21,11 +21,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool userCompleteLoginPage = !(HiveHelper.getValue('isUserEntrant') == null ||
-      SettingsLogic.getAccountMode() == UserMode.entrant);
+  late FirebaseAppAuth appAuth;
 
   @override
   void initState() {
+    appAuth = Provider.of<FirebaseAppAuth>(context, listen: false);
     _initApp();
     super.initState();
   }
@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await initializeDateFormatting('ru');
     Intl.defaultLocale = 'ru';
 
-    if (userCompleteLoginPage) {
+    if (appAuth.accountInfo.isLoggedIn) {
       // if app running on Android or iOS, make QuickActions
       if (defaultTargetPlatform == TargetPlatform.android ||
           defaultTargetPlatform == TargetPlatform.iOS) {
@@ -88,6 +88,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
-    return userCompleteLoginPage ? widget.child : const LoginScreen();
+    return appAuth.accountInfo.isLoggedIn ? widget.child : const LoginScreen(); // TODO: improve checking when open app
   }
 }

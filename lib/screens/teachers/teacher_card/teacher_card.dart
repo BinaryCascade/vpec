@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '/models/teacher_model.dart';
-import '/screens/settings/settings_logic.dart';
+import '../../../utils/firebase_auth.dart';
 import 'teacher_editormode_logic.dart';
 
 class TeacherCard extends StatelessWidget {
@@ -15,7 +15,7 @@ class TeacherCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: GestureDetector(
         onDoubleTap: () {
-          if (SettingsLogic.checkIsInEditMode) {
+          if (AccountEditorMode().isEditorModeActive) {
             TeacherEditorModeLogic.showEditDialog(context, teacher);
           }
         },

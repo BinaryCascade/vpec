@@ -7,6 +7,7 @@ import 'package:url_strategy/url_strategy.dart';
 
 import '/utils/utils.dart';
 import 'theme.dart';
+import 'utils/firebase_auth.dart';
 import 'utils/hive_helper.dart';
 import 'utils/notifications/firebase_messaging.dart';
 import 'utils/notifications/local_notifications.dart';
@@ -22,11 +23,17 @@ Future<void> main() async {
   await LocalNotifications.initializeNotifications();
   AppFirebaseMessaging.startListening();
 
-  runApp(ChangeNotifierProvider(
-      create: (_) => ThemeNotifier(
-            ThemeHelper.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-          ),
-      child: const VPECApp()));
+  runApp(MultiProvider(
+    child: const VPECApp(),
+    providers: [
+      ChangeNotifierProvider(create: (_) => FirebaseAppAuth()),
+      ChangeNotifierProvider(
+        create: (_) => ThemeNotifier(
+          ThemeHelper.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+        ),
+      ),
+    ],
+  ));
 }
 
 class VPECApp extends StatefulWidget {
@@ -43,6 +50,8 @@ class _VPECAppState extends State<VPECApp> {
   void initState() {
     Routes.defineRoutes(router);
     Routes.router = router;
+
+    Provider.of<FirebaseAppAuth>(context, listen: false).startListening();
 
     final window = WidgetsBinding.instance!.window;
     window.onPlatformBrightnessChanged = () {

@@ -1,6 +1,6 @@
 // this model used for AnnouncementsScreen
 
-import '../screens/settings/settings_logic.dart';
+import '../utils/firebase_auth.dart';
 
 class AnnouncementModel {
   final String author;
@@ -8,7 +8,7 @@ class AnnouncementModel {
   final String pubDate;
   final String title;
   final String docId;
-  final UserMode userMode;
+  final AccessLevel accessLevel;
   final String? photoUrl;
 
   const AnnouncementModel({
@@ -17,7 +17,7 @@ class AnnouncementModel {
     required this.pubDate,
     required this.title,
     required this.docId,
-    required this.userMode,
+    required this.accessLevel,
     this.photoUrl,
   });
 
@@ -27,13 +27,13 @@ class AnnouncementModel {
           author: data['author'],
           content: data['content_body'],
           title: data['content_title'],
-          userMode: data['visibility'] == 'all'
-              ? UserMode.entrant
+          accessLevel: data['visibility'] == 'all'
+              ? AccessLevel.entrant
               : data['visibility'] == 'teachers'
-                  ? UserMode.teacher
+                  ? AccessLevel.teacher
                   : data['visibility'] == 'employee'
-                      ? UserMode.employee
-                      : UserMode.entrant,
+                      ? AccessLevel.employee
+                      : AccessLevel.entrant,
           photoUrl: data['photo'],
           docId: id,
         );
