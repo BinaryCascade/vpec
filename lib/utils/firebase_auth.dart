@@ -30,8 +30,8 @@ enum AccessLevel {
 ///
 /// Should be used with ChangeNotifierProvider.
 class FirebaseAppAuth extends ChangeNotifier {
-  AccountInfo accountInfo = const AccountInfo(
-    isLoggedIn: false,
+  AccountInfo accountInfo = AccountInfo(
+    isLoggedIn: HiveHelper.getValue('isLoggedIn') ?? false,
     level: AccessLevel.entrant,
   );
   late StreamSubscription<User?> authListener;
@@ -47,6 +47,8 @@ class FirebaseAppAuth extends ChangeNotifier {
           isLoggedIn: false,
           level: AccessLevel.entrant,
         );
+
+        HiveHelper.removeValue('isLoggedIn');
         notifyListeners();
       } else {
         // user sign-in
@@ -58,6 +60,8 @@ class FirebaseAppAuth extends ChangeNotifier {
           level: AccountDetails.getAccountLevel(),
           isLowLevel: AccountDetails.isAccountLowLevelAccess,
         );
+
+        HiveHelper.saveValue(key: 'isLoggedIn', value: true);
         notifyListeners();
       }
     });

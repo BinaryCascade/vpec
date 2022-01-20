@@ -88,6 +88,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
-    return appAuth.accountInfo.isLoggedIn ? widget.child : const LoginScreen(); // TODO: improve checking when open app
+    return appAuth.accountInfo.isLoggedIn ? widget.child : const LoginScreen();
   }
 }
