@@ -18,7 +18,7 @@ class SettingsLogic extends ChangeNotifier {
   static Future<void> accountLogin(BuildContext context) async {
     if (context.read<FirebaseAppAuth>().accountInfo.level !=
         AccessLevel.entrant) {
-      showRoundedModalSheet(
+      await showRoundedModalSheet(
         context: context,
         title: 'Выйти из аккаунта?',
         child: const AccountLogoutUI(),
