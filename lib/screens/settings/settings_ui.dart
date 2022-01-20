@@ -57,10 +57,12 @@ class _AccountBlockState extends State<AccountBlock> {
                         size: 32.0,
                       ),
                       title: 'Режим редактирования',
-                      subtitle: AccountEditorMode().isEditorModeActive //TODO: Make this listenable
-                          ? 'Нажмите, чтобы выйти из режима редактирования'
-                          : 'Нажмите, чтобы войти в режим редактирования',
-                      onTap: () => AccountEditorMode().toggleEditorMode(),
+                      subtitle:
+                          context.watch<AccountEditorMode>().isEditorModeActive
+                              ? 'Нажмите, чтобы выйти из режима редактирования'
+                              : 'Нажмите, чтобы войти в режим редактирования',
+                      onTap: () =>
+                          context.read<AccountEditorMode>().toggleEditorMode(),
                     ),
                     StyledListTile(
                       icon: Icon(

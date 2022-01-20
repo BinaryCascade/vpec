@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '/utils/theme_helper.dart';
 import '/widgets/styled_widgets.dart';
+import '../../utils/firebase_auth.dart';
 import 'settings_logic.dart';
 import 'settings_ui.dart';
 
@@ -28,9 +29,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: ChangeNotifierProvider(
-                  create: (_) => SettingsLogic(),
-                  builder: (context, child) => const AccountBlock())),
+              child: MultiProvider(providers: [
+                ChangeNotifierProvider(create: (_) => AccountEditorMode()),
+                ChangeNotifierProvider(create: (_) => SettingsLogic()),
+              ], builder: (context, child) => const AccountBlock())),
           const AppThemeListTile(),
           const LaunchOnStartChooser(),
           const Divider(),
