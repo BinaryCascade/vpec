@@ -90,6 +90,8 @@ Handler loginByURLHandler = Handler(
       );
     }
   });
+
+  return null;
 });
 
 Future<void> makeLogin(String? email, String? password) async {
