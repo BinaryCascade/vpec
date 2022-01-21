@@ -6,10 +6,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../utils/firebase_auth.dart';
 import '/utils/utils.dart';
 import '../../utils/hive_helper.dart';
 import '../../widgets/snackbars.dart';
-import '../settings/settings_logic.dart';
 import 'announcements_ui.dart';
 
 class AnnouncementsLogic {
@@ -43,13 +43,13 @@ class AnnouncementsLogic {
       }
     }
 
-    String collectionPath(UserMode userMode) {
-      switch (userMode) {
-        case UserMode.employee:
+    String collectionPath(AccessLevel accessLevel) {
+      switch (accessLevel) {
+        case AccessLevel.employee:
           return 'announcements_employee';
-        case UserMode.teacher:
+        case AccessLevel.teacher:
           return 'announcements_teachers';
-        case UserMode.entrant:
+        case AccessLevel.entrant:
           return 'announcements_all';
         default:
           return 'announcements_all';
@@ -57,9 +57,9 @@ class AnnouncementsLogic {
     }
 
     void sendNewAlert(
-        {required BuildContext context, required UserMode userMode}) async {
+        {required BuildContext context, required AccessLevel accessLevel}) async {
       CollectionReference users =
-          FirebaseFirestore.instance.collection(collectionPath(userMode));
+          FirebaseFirestore.instance.collection(collectionPath(accessLevel));
 
       DateFormat formatter = DateFormat('HH:mm, d MMM yyyy');
       String pubDate = formatter.format(DateTime.now());
@@ -69,9 +69,9 @@ class AnnouncementsLogic {
           .set({
             'author': HiveHelper.getValue('username'),
             'content_body': contentController.text,
-            'visibility': userMode == UserMode.employee
+            'visibility': accessLevel == AccessLevel.employee
                 ? 'employee'
-                : userMode == UserMode.teacher
+                : accessLevel == AccessLevel.teacher
                     ? 'teachers'
                     : 'all',
             'date': pubDate,
@@ -101,7 +101,7 @@ class AnnouncementsLogic {
                 width: double.infinity,
                 child: OutlinedButton(
                   onPressed: () => sendNewAlert(
-                      context: context, userMode: UserMode.student),
+                      context: context, accessLevel: AccessLevel.student),
                   child: const Text('Отправить всем'),
                 ),
               ),
@@ -109,7 +109,7 @@ class AnnouncementsLogic {
                 width: double.infinity,
                 child: OutlinedButton(
                   onPressed: () => sendNewAlert(
-                      context: context, userMode: UserMode.employee),
+                      context: context, accessLevel: AccessLevel.employee),
                   child: const Text('Отправить сотрудникам'),
                 ),
               ),
@@ -117,7 +117,7 @@ class AnnouncementsLogic {
                 width: double.infinity,
                 child: OutlinedButton(
                   onPressed: () => sendNewAlert(
-                      context: context, userMode: UserMode.teacher),
+                      context: context, accessLevel: AccessLevel.teacher),
                   child: const Text('Отправить преподавателям'),
                 ),
               ),

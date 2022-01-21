@@ -23,7 +23,7 @@ class _$AccountInfoTearOff {
       String? email,
       String? uid,
       String? name,
-      AccessLevel? level,
+      required AccessLevel level,
       bool? isLowLevel}) {
     return _AccountInfo(
       isLoggedIn: isLoggedIn,
@@ -45,7 +45,7 @@ mixin _$AccountInfo {
   String? get email => throw _privateConstructorUsedError;
   String? get uid => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  AccessLevel? get level => throw _privateConstructorUsedError;
+  AccessLevel get level => throw _privateConstructorUsedError;
   bool? get isLowLevel => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -63,7 +63,7 @@ abstract class $AccountInfoCopyWith<$Res> {
       String? email,
       String? uid,
       String? name,
-      AccessLevel? level,
+      AccessLevel level,
       bool? isLowLevel});
 }
 
@@ -104,7 +104,7 @@ class _$AccountInfoCopyWithImpl<$Res> implements $AccountInfoCopyWith<$Res> {
       level: level == freezed
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as AccessLevel?,
+              as AccessLevel,
       isLowLevel: isLowLevel == freezed
           ? _value.isLowLevel
           : isLowLevel // ignore: cast_nullable_to_non_nullable
@@ -125,7 +125,7 @@ abstract class _$AccountInfoCopyWith<$Res>
       String? email,
       String? uid,
       String? name,
-      AccessLevel? level,
+      AccessLevel level,
       bool? isLowLevel});
 }
 
@@ -168,7 +168,7 @@ class __$AccountInfoCopyWithImpl<$Res> extends _$AccountInfoCopyWithImpl<$Res>
       level: level == freezed
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as AccessLevel?,
+              as AccessLevel,
       isLowLevel: isLowLevel == freezed
           ? _value.isLowLevel
           : isLowLevel // ignore: cast_nullable_to_non_nullable
@@ -185,7 +185,7 @@ class _$_AccountInfo implements _AccountInfo {
       this.email,
       this.uid,
       this.name,
-      this.level,
+      required this.level,
       this.isLowLevel});
 
   @override
@@ -197,7 +197,7 @@ class _$_AccountInfo implements _AccountInfo {
   @override
   final String? name;
   @override
-  final AccessLevel? level;
+  final AccessLevel level;
   @override
   final bool? isLowLevel;
 
@@ -243,7 +243,7 @@ abstract class _AccountInfo implements AccountInfo {
       String? email,
       String? uid,
       String? name,
-      AccessLevel? level,
+      required AccessLevel level,
       bool? isLowLevel}) = _$_AccountInfo;
 
   @override
@@ -255,7 +255,7 @@ abstract class _AccountInfo implements AccountInfo {
   @override
   String? get name;
   @override
-  AccessLevel? get level;
+  AccessLevel get level;
   @override
   bool? get isLowLevel;
   @override

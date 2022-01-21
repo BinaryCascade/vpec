@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../utils/firebase_auth.dart';
 import '/screens/debug/debug_screen.dart';
 import '/utils/hive_helper.dart';
 import '/utils/icons.dart';
@@ -17,20 +18,8 @@ class AccountBlock extends StatefulWidget {
 
 class _AccountBlockState extends State<AccountBlock> {
   @override
-  void initState() {
-    context.read<SettingsLogic>().startListenAuth();
-    super.initState();
-  }
-
-  @override
-  void deactivate() {
-    context.read<SettingsLogic>().cancelListener();
-    super.deactivate();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Consumer<SettingsLogic>(
+    return Consumer<FirebaseAppAuth>(
       builder: (BuildContext context, storage, Widget? child) {
         return AnimatedSize(
           curve: Curves.fastOutSlowIn,
@@ -45,10 +34,10 @@ class _AccountBlockState extends State<AccountBlock> {
                     size: 32,
                   ),
                   title: 'Аккаунт',
-                  subtitle: storage.isLoggedIn
-                      ? SettingsLogic.getAccountModeText()
+                  subtitle: storage.accountInfo.isLoggedIn
+                      ? SettingsLogic.getAccountModeText(context)
                       : 'Нажмите, чтобы войти в аккаунт'),
-              if (SettingsLogic.getAccountMode() == UserMode.admin)
+              if (storage.accountInfo.level == AccessLevel.admin)
                 Column(
                   children: [
                     HivedListTile(
@@ -68,10 +57,12 @@ class _AccountBlockState extends State<AccountBlock> {
                         size: 32.0,
                       ),
                       title: 'Режим редактирования',
-                      subtitle: storage.isEditMode
-                          ? 'Нажмите, чтобы выйти из режима редактирования'
-                          : 'Нажмите, чтобы войти в режим редактирования',
-                      onTap: () => storage.toggleEditMode(),
+                      subtitle:
+                          context.watch<AccountEditorMode>().isEditorModeActive
+                              ? 'Нажмите, чтобы выйти из режима редактирования'
+                              : 'Нажмите, чтобы войти в режим редактирования',
+                      onTap: () =>
+                          context.read<AccountEditorMode>().toggleEditorMode(),
                     ),
                     StyledListTile(
                       icon: Icon(

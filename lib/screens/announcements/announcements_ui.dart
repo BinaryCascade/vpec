@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/firebase_auth.dart';
 import '/models/announcement_model.dart';
-import '/screens/settings/settings_logic.dart';
 import '/utils/icons.dart';
 import '/utils/utils.dart';
 import '/widgets/loading_indicator.dart';
@@ -220,7 +220,7 @@ class BottomTapBar extends StatefulWidget {
 
 class _BottomTapBarState extends State<BottomTapBar> {
   bool needMakeScrollable() {
-    if (SettingsLogic.doAccountHaveAccess(UserMode.admin)) {
+    if (AccountDetails.hasAccessToLevel(AccessLevel.admin)) {
       return true;
     } else {
       return false;
@@ -256,7 +256,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
                 ],
               ),
             ),
-            if (SettingsLogic.doAccountHaveAccess(UserMode.employee))
+            if (AccountDetails.hasAccessToLevel(AccessLevel.employee))
               Tab(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -275,7 +275,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
                   ],
                 ),
               ),
-            if (SettingsLogic.doAccountHaveAccess(UserMode.teacher))
+            if (AccountDetails.hasAccessToLevel(AccessLevel.teacher))
               Tab(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

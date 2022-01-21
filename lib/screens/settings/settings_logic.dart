@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '../../utils/firebase_auth.dart';
 import '/utils/hive_helper.dart';
 import '/utils/theme_helper.dart';
 import '/utils/utils.dart';
@@ -12,71 +13,12 @@ import '../../utils/routes/routes.dart';
 import '../../widgets/snackbars.dart';
 import 'settings_ui.dart';
 
-@Deprecated("""
-[UserMode] is being deprecated in favor 
-of [AccessLevel]
-""")
-enum UserMode {
-  admin, // have access to view all announcements and edit mode
-  student, // can see only public announcements
-  employee, // can see public and employee announcements
-  teacher, // can see public and teachers announcements
-  entrant, // can't see anything except info about college
-}
-
 class SettingsLogic extends ChangeNotifier {
-  @Deprecated("""
-[SettingsLogic.isLoggedIn] is being deprecated in favor 
-of [FirebaseAppAuth.isLoggedIn]
-""")
-  bool isLoggedIn = false;
-
-  @Deprecated("""
-[SettingsLogic.checkIsInEditMode] and [SettingsLogic.isEditMode] is being deprecated in favor 
-of [AccountEditorMode.isEditModeActive]
-""")
-  bool isEditMode = HiveHelper.getValue('isEditMode') ?? false;
-
-  late StreamSubscription<User?> authListener;
-
-  @Deprecated("""
-[SettingsLogic.checkIsInEditMode] and [SettingsLogic.isEditMode] is being deprecated in favor 
-of [AccountEditorMode.isEditModeActive]
-""")
-  static bool get checkIsInEditMode {
-    return SettingsLogic.getAccountMode() == UserMode.admin &&
-        (HiveHelper.getValue('isEditMode') ?? false);
-  }
-
-  @Deprecated("""
-[SettingsLogic.startListenAuth()] is being deprecated in favor 
-of [FirebaseAppAuth.startListening()]
-""")
-  void startListenAuth() {
-    authListener =
-        FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user?.email == null) {
-        isLoggedIn = false;
-        notifyListeners();
-      } else {
-        isLoggedIn = true;
-        notifyListeners();
-      }
-    });
-  }
-
-  @Deprecated("""
-[SettingsLogic.startListenAuth()] is being deprecated in favor 
-of [FirebaseAppAuth.cancelListening()]
-""")
-  Future<void> cancelListener() async {
-    await authListener.cancel();
-  }
-
   // show roundedModalSheet() for account login
   static Future<void> accountLogin(BuildContext context) async {
-    if (getAccountMode() != UserMode.entrant) {
-      showRoundedModalSheet(
+    if (context.read<FirebaseAppAuth>().accountInfo.level !=
+        AccessLevel.entrant) {
+      await showRoundedModalSheet(
         context: context,
         title: 'Выйти из аккаунта?',
         child: const AccountLogoutUI(),
@@ -126,99 +68,20 @@ of [FirebaseAppAuth.cancelListening()]
     );
   }
 
-  @Deprecated("""
-[SettingsLogic.getAccountMode()] is being deprecated in favor 
-of [AccountDetails.getAccountLevel()]
-""")
-  static UserMode getAccountMode() {
-    FirebaseAuth auth = FirebaseAuth.instance;
-
-    if (auth.currentUser != null) {
-      switch (auth.currentUser!.email) {
-        case 'admin@energocollege.ru':
-          return UserMode.admin;
-        case 'employee@energocollege.ru':
-          return UserMode.employee;
-        case 'teacher@energocollege.ru':
-          return UserMode.teacher;
-        case 'student@energocollege.ru':
-          return UserMode.student;
-        default:
-          return UserMode.entrant;
-      }
-    } else {
-      return UserMode.entrant;
-    }
-  }
-
-  static String getAccountModeText() {
-    switch (getAccountMode()) {
-      case UserMode.admin:
+  static String getAccountModeText(BuildContext context) {
+    switch (context.read<FirebaseAppAuth>().accountInfo.level) {
+      case AccessLevel.admin:
         return 'Администратор';
-      case UserMode.student:
+      case AccessLevel.student:
         return 'Студент';
-      case UserMode.employee:
+      case AccessLevel.employee:
         return 'Работник';
-      case UserMode.teacher:
+      case AccessLevel.teacher:
         return 'Преподаватель';
-      case UserMode.entrant:
+      case AccessLevel.entrant:
         return 'Абитуриент';
-    }
-  }
-
-  @Deprecated("""
-[SettingsLogic.doAccountHaveAccess(UserMode)] is being deprecated in favor 
-of [AccountDetails.hasAccessToLevel(AccessLevel)]
-""")
-  static bool doAccountHaveAccess(UserMode requiredMode) {
-    switch (getAccountMode()) {
-      case UserMode.admin:
-        return true; // admin have access to anything
-      case UserMode.student:
-        if (requiredMode == UserMode.entrant ||
-            requiredMode == UserMode.student) {
-          return true; // students can see stuffs for entrant and students
-        } else {
-          return false;
-        }
-      case UserMode.employee:
-        if (requiredMode == UserMode.employee ||
-            requiredMode == UserMode.student ||
-            requiredMode == UserMode.entrant) {
-          return true;
-          // employee can see stuffs only for employee, not for teachers or admin
-        } else {
-          return false;
-        }
-      case UserMode.teacher:
-        if (requiredMode == UserMode.teacher ||
-            requiredMode == UserMode.student ||
-            requiredMode == UserMode.entrant) {
-          return true;
-          // teachers can see stuffs only for teachers, not for employee or admin
-        } else {
-          return false;
-        }
-      case UserMode.entrant:
-        if (requiredMode == UserMode.entrant) {
-          return true;
-          // well... entrant can see something only for entrant
-        } else {
-          return false;
-        }
-    }
-  }
-
-  @Deprecated("""
-[SettingsLogic.isAccountModeLowLevel()] is being deprecated in favor 
-of [AccountDetails.isAccountLowLevel]
-""")
-  static bool isAccountModeLowLevel() {
-    if (getAccountMode() == UserMode.student ||
-        getAccountMode() == UserMode.entrant) {
-      return true;
-    } else {
-      return false;
+      default:
+        return 'Неизвестно';
     }
   }
 
@@ -269,11 +132,5 @@ of [AccountDetails.isAccountLowLevel]
         context: context,
         title: 'Открывать при запуске',
         child: const LaunchOnStartChooserUI());
-  }
-
-  void toggleEditMode() {
-    isEditMode = !isEditMode;
-    HiveHelper.saveValue(key: 'isEditMode', value: isEditMode);
-    notifyListeners();
   }
 }

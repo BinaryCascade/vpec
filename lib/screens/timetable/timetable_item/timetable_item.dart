@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/models/time_model.dart';
-import '/screens/settings/settings_logic.dart';
+import '../../../utils/firebase_auth.dart';
 import 'timetable_item_logic.dart';
 
 class TimeTableItem extends StatefulWidget {
@@ -24,7 +24,7 @@ class _TimeTableItemState extends State<TimeTableItem> {
         padding: const EdgeInsets.only(left: 40.0),
         child: GestureDetector(
           onDoubleTap: () {
-            if (SettingsLogic.checkIsInEditMode) {
+            if (AccountEditorMode().isEditorModeActive) {
               TimeTableEditorMode().openTimeTableItemEdit(
                   context: context, model: widget.timeModel);
             }

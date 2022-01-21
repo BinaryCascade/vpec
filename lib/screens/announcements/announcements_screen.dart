@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/firebase_auth.dart';
 import '/screens/settings/settings_logic.dart';
 import '/utils/hive_helper.dart';
 import 'announcements_logic.dart';
@@ -14,10 +15,10 @@ class AnnouncementsScreen extends StatefulWidget {
 
 class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
   int get tabLength {
-    if (SettingsLogic.doAccountHaveAccess(UserMode.admin)) {
+    if (AccountDetails.hasAccessToLevel(AccessLevel.admin)) {
       return 3;
     } else {
-      if (SettingsLogic.isAccountModeLowLevel()) {
+      if (AccountDetails.isAccountLowLevelAccess) {
         return 1;
       } else {
         return 2;
@@ -33,13 +34,13 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
         body: TabBarView(
           children: [
             const AnnouncementsList(collectionPath: 'announcements_all'),
-            if (SettingsLogic.doAccountHaveAccess(UserMode.employee))
+            if (AccountDetails.hasAccessToLevel(AccessLevel.employee))
               const AnnouncementsList(collectionPath: 'announcements_employee'),
-            if (SettingsLogic.doAccountHaveAccess(UserMode.teacher))
+            if (AccountDetails.hasAccessToLevel(AccessLevel.teacher))
               const AnnouncementsList(collectionPath: 'announcements_teachers')
           ],
         ),
-        floatingActionButton: SettingsLogic.doAccountHaveAccess(UserMode.admin)
+        floatingActionButton: AccountDetails.hasAccessToLevel(AccessLevel.admin)
             ? FloatingActionButton(
                 onPressed: () {
                   if (HiveHelper.getValue('username') == null) {
@@ -52,7 +53,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
               )
             : null,
         bottomNavigationBar:
-            SettingsLogic.isAccountModeLowLevel() ? null : const BottomTapBar(),
+            AccountDetails.isAccountLowLevelAccess ? null : const BottomTapBar(),
       ),
     );
   }

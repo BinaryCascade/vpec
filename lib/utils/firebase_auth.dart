@@ -30,7 +30,10 @@ enum AccessLevel {
 ///
 /// Should be used with ChangeNotifierProvider.
 class FirebaseAppAuth extends ChangeNotifier {
-  AccountInfo accountInfo = const AccountInfo(isLoggedIn: false);
+  AccountInfo accountInfo = AccountInfo(
+    isLoggedIn: HiveHelper.getValue('isLoggedIn') ?? false,
+    level: AccessLevel.entrant,
+  );
   late StreamSubscription<User?> authListener;
 
   /// Start listening for user auth state changes.
@@ -40,7 +43,12 @@ class FirebaseAppAuth extends ChangeNotifier {
         FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user?.email == null) {
         // user sign-out
-        accountInfo = accountInfo.copyWith(isLoggedIn: false);
+        accountInfo = accountInfo.copyWith(
+          isLoggedIn: false,
+          level: AccessLevel.entrant,
+        );
+
+        HiveHelper.removeValue('isLoggedIn');
         notifyListeners();
       } else {
         // user sign-in
@@ -52,6 +60,8 @@ class FirebaseAppAuth extends ChangeNotifier {
           level: AccountDetails.getAccountLevel(),
           isLowLevel: AccountDetails.isAccountLowLevelAccess,
         );
+
+        HiveHelper.saveValue(key: 'isLoggedIn', value: true);
         notifyListeners();
       }
     });
@@ -68,16 +78,16 @@ class FirebaseAppAuth extends ChangeNotifier {
 ///
 /// Should be used with ChangeNotifierProvider.
 class AccountEditorMode extends ChangeNotifier {
-  bool _isEditorModeActive = HiveHelper.getValue('isEditMode') ?? false;
+  bool isEditorModeActive = HiveHelper.getValue('isEditMode') ?? false;
 
   bool get isInEditorMode =>
       AccountDetails.getAccountLevel() == AccessLevel.admin &&
-      _isEditorModeActive;
+      isEditorModeActive;
 
   /// Call this to on or off admin editor mode
   void toggleEditorMode() {
-    _isEditorModeActive = !_isEditorModeActive;
-    HiveHelper.saveValue(key: 'isEditMode', value: _isEditorModeActive);
+    isEditorModeActive = !isEditorModeActive;
+    HiveHelper.saveValue(key: 'isEditMode', value: isEditorModeActive);
     notifyListeners();
   }
 }
