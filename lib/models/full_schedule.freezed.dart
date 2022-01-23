@@ -23,13 +23,17 @@ class _$FullScheduleTearOff {
       required String groups,
       required Map<String, dynamic> schedule,
       required Map<String, dynamic> timetable,
-      required Map<String, dynamic> groupDefinition}) {
+      required Map<String, dynamic> shortLessonNames,
+      required Map<String, dynamic> fullLessonNames,
+      required Map<String, dynamic> teachers}) {
     return _FullSchedule(
       jsonData: jsonData,
       groups: groups,
       schedule: schedule,
       timetable: timetable,
-      groupDefinition: groupDefinition,
+      shortLessonNames: shortLessonNames,
+      fullLessonNames: fullLessonNames,
+      teachers: teachers,
     );
   }
 }
@@ -43,8 +47,11 @@ mixin _$FullSchedule {
   String get groups => throw _privateConstructorUsedError;
   Map<String, dynamic> get schedule => throw _privateConstructorUsedError;
   Map<String, dynamic> get timetable => throw _privateConstructorUsedError;
-  Map<String, dynamic> get groupDefinition =>
+  Map<String, dynamic> get shortLessonNames =>
       throw _privateConstructorUsedError;
+  Map<String, dynamic> get fullLessonNames =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FullScheduleCopyWith<FullSchedule> get copyWith =>
@@ -61,7 +68,9 @@ abstract class $FullScheduleCopyWith<$Res> {
       String groups,
       Map<String, dynamic> schedule,
       Map<String, dynamic> timetable,
-      Map<String, dynamic> groupDefinition});
+      Map<String, dynamic> shortLessonNames,
+      Map<String, dynamic> fullLessonNames,
+      Map<String, dynamic> teachers});
 }
 
 /// @nodoc
@@ -78,7 +87,9 @@ class _$FullScheduleCopyWithImpl<$Res> implements $FullScheduleCopyWith<$Res> {
     Object? groups = freezed,
     Object? schedule = freezed,
     Object? timetable = freezed,
-    Object? groupDefinition = freezed,
+    Object? shortLessonNames = freezed,
+    Object? fullLessonNames = freezed,
+    Object? teachers = freezed,
   }) {
     return _then(_value.copyWith(
       jsonData: jsonData == freezed
@@ -97,9 +108,17 @@ class _$FullScheduleCopyWithImpl<$Res> implements $FullScheduleCopyWith<$Res> {
           ? _value.timetable
           : timetable // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      groupDefinition: groupDefinition == freezed
-          ? _value.groupDefinition
-          : groupDefinition // ignore: cast_nullable_to_non_nullable
+      shortLessonNames: shortLessonNames == freezed
+          ? _value.shortLessonNames
+          : shortLessonNames // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      fullLessonNames: fullLessonNames == freezed
+          ? _value.fullLessonNames
+          : fullLessonNames // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      teachers: teachers == freezed
+          ? _value.teachers
+          : teachers // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
     ));
   }
@@ -117,7 +136,9 @@ abstract class _$FullScheduleCopyWith<$Res>
       String groups,
       Map<String, dynamic> schedule,
       Map<String, dynamic> timetable,
-      Map<String, dynamic> groupDefinition});
+      Map<String, dynamic> shortLessonNames,
+      Map<String, dynamic> fullLessonNames,
+      Map<String, dynamic> teachers});
 }
 
 /// @nodoc
@@ -136,7 +157,9 @@ class __$FullScheduleCopyWithImpl<$Res> extends _$FullScheduleCopyWithImpl<$Res>
     Object? groups = freezed,
     Object? schedule = freezed,
     Object? timetable = freezed,
-    Object? groupDefinition = freezed,
+    Object? shortLessonNames = freezed,
+    Object? fullLessonNames = freezed,
+    Object? teachers = freezed,
   }) {
     return _then(_FullSchedule(
       jsonData: jsonData == freezed
@@ -155,9 +178,17 @@ class __$FullScheduleCopyWithImpl<$Res> extends _$FullScheduleCopyWithImpl<$Res>
           ? _value.timetable
           : timetable // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      groupDefinition: groupDefinition == freezed
-          ? _value.groupDefinition
-          : groupDefinition // ignore: cast_nullable_to_non_nullable
+      shortLessonNames: shortLessonNames == freezed
+          ? _value.shortLessonNames
+          : shortLessonNames // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      fullLessonNames: fullLessonNames == freezed
+          ? _value.fullLessonNames
+          : fullLessonNames // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      teachers: teachers == freezed
+          ? _value.teachers
+          : teachers // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
     ));
   }
@@ -171,7 +202,9 @@ class _$_FullSchedule implements _FullSchedule {
       required this.groups,
       required this.schedule,
       required this.timetable,
-      required this.groupDefinition});
+      required this.shortLessonNames,
+      required this.fullLessonNames,
+      required this.teachers});
 
   @override
   final String jsonData;
@@ -182,11 +215,15 @@ class _$_FullSchedule implements _FullSchedule {
   @override
   final Map<String, dynamic> timetable;
   @override
-  final Map<String, dynamic> groupDefinition;
+  final Map<String, dynamic> shortLessonNames;
+  @override
+  final Map<String, dynamic> fullLessonNames;
+  @override
+  final Map<String, dynamic> teachers;
 
   @override
   String toString() {
-    return 'FullSchedule(jsonData: $jsonData, groups: $groups, schedule: $schedule, timetable: $timetable, groupDefinition: $groupDefinition)';
+    return 'FullSchedule(jsonData: $jsonData, groups: $groups, schedule: $schedule, timetable: $timetable, shortLessonNames: $shortLessonNames, fullLessonNames: $fullLessonNames, teachers: $teachers)';
   }
 
   @override
@@ -199,7 +236,10 @@ class _$_FullSchedule implements _FullSchedule {
             const DeepCollectionEquality().equals(other.schedule, schedule) &&
             const DeepCollectionEquality().equals(other.timetable, timetable) &&
             const DeepCollectionEquality()
-                .equals(other.groupDefinition, groupDefinition));
+                .equals(other.shortLessonNames, shortLessonNames) &&
+            const DeepCollectionEquality()
+                .equals(other.fullLessonNames, fullLessonNames) &&
+            const DeepCollectionEquality().equals(other.teachers, teachers));
   }
 
   @override
@@ -209,7 +249,9 @@ class _$_FullSchedule implements _FullSchedule {
       const DeepCollectionEquality().hash(groups),
       const DeepCollectionEquality().hash(schedule),
       const DeepCollectionEquality().hash(timetable),
-      const DeepCollectionEquality().hash(groupDefinition));
+      const DeepCollectionEquality().hash(shortLessonNames),
+      const DeepCollectionEquality().hash(fullLessonNames),
+      const DeepCollectionEquality().hash(teachers));
 
   @JsonKey(ignore: true)
   @override
@@ -223,7 +265,9 @@ abstract class _FullSchedule implements FullSchedule {
       required String groups,
       required Map<String, dynamic> schedule,
       required Map<String, dynamic> timetable,
-      required Map<String, dynamic> groupDefinition}) = _$_FullSchedule;
+      required Map<String, dynamic> shortLessonNames,
+      required Map<String, dynamic> fullLessonNames,
+      required Map<String, dynamic> teachers}) = _$_FullSchedule;
 
   @override
   String get jsonData;
@@ -234,7 +278,11 @@ abstract class _FullSchedule implements FullSchedule {
   @override
   Map<String, dynamic> get timetable;
   @override
-  Map<String, dynamic> get groupDefinition;
+  Map<String, dynamic> get shortLessonNames;
+  @override
+  Map<String, dynamic> get fullLessonNames;
+  @override
+  Map<String, dynamic> get teachers;
   @override
   @JsonKey(ignore: true)
   _$FullScheduleCopyWith<_FullSchedule> get copyWith =>

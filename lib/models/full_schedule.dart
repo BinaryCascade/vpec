@@ -9,6 +9,8 @@ class FullSchedule with _$FullSchedule {
     required String groups,
     required Map<String, dynamic> schedule,
     required Map<String, dynamic> timetable,
-    required Map<String, dynamic> groupDefinition,
+    required Map<String, dynamic> shortLessonNames,
+    required Map<String, dynamic> fullLessonNames,
+    required Map<String, dynamic> teachers,
   }) = _FullSchedule;
 }
