@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../schedule/schedule_screen.dart';
 import '/models/document_model.dart';
 import '/screens/login/login_logic.dart';
 import '/screens/login/login_screen.dart';
@@ -51,6 +52,18 @@ class DebugScreen extends StatelessWidget {
                   ),
                 ),
                 child: const Text('LoginScreen'),
+              ),
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const ScheduleScreen(),
+                  ),
+                ),
+                child: const Text('ScheduleScreen'),
               ),
             ),
             SizedBox(
