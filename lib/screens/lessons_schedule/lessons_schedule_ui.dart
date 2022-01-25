@@ -72,6 +72,7 @@ class FabMenu extends StatelessWidget {
       children: <Widget>[
         if (!kIsWeb)
           FloatingActionButton(
+            heroTag: null,
             mini: true,
             child: const Icon(Icons.share_outlined),
             onPressed: () =>
@@ -80,6 +81,7 @@ class FabMenu extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 4),
           child: FloatingActionButton(
+            heroTag: null,
             mini: true,
             child: const Icon(Icons.today_outlined),
             onPressed: () =>
@@ -87,6 +89,7 @@ class FabMenu extends StatelessWidget {
           ),
         ),
         FloatingActionButton(
+          heroTag: null,
           child: Icon(
               context.watch<LessonsScheduleLogic>().showForToday
                   ? Icons.arrow_forward_ios_rounded

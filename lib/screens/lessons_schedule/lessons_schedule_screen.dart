@@ -7,6 +7,18 @@ import '/widgets/snow_widget.dart';
 import 'lessons_schedule_logic.dart';
 import 'lessons_schedule_ui.dart';
 
+class FullLessonsScheduleScreen extends StatelessWidget {
+  const FullLessonsScheduleScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => LessonsScheduleLogic(),
+      builder: (_, __) => const LessonsScheduleScreen(),
+    );
+  }
+}
+
 class LessonsScheduleScreen extends StatefulWidget {
   const LessonsScheduleScreen({Key? key}) : super(key: key);
 
