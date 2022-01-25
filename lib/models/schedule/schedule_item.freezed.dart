@@ -23,13 +23,19 @@ class _$ScheduleItemModelTearOff {
       required String lessonBeginning,
       required String lessonEnding,
       required String lessonName,
-      required String pauseAfterLesson}) {
+      required String pauseAfterLesson,
+      required Map<String, dynamic> teachers,
+      required Map<String, dynamic> lessonsShortNames,
+      required Map<String, dynamic> lessonsFullNames}) {
     return _ScheduleItemModel(
       lessonNumber: lessonNumber,
       lessonBeginning: lessonBeginning,
       lessonEnding: lessonEnding,
       lessonName: lessonName,
       pauseAfterLesson: pauseAfterLesson,
+      teachers: teachers,
+      lessonsShortNames: lessonsShortNames,
+      lessonsFullNames: lessonsFullNames,
     );
   }
 }
@@ -44,6 +50,11 @@ mixin _$ScheduleItemModel {
   String get lessonEnding => throw _privateConstructorUsedError;
   String get lessonName => throw _privateConstructorUsedError;
   String get pauseAfterLesson => throw _privateConstructorUsedError;
+  Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
+  Map<String, dynamic> get lessonsShortNames =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> get lessonsFullNames =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ScheduleItemModelCopyWith<ScheduleItemModel> get copyWith =>
@@ -60,7 +71,10 @@ abstract class $ScheduleItemModelCopyWith<$Res> {
       String lessonBeginning,
       String lessonEnding,
       String lessonName,
-      String pauseAfterLesson});
+      String pauseAfterLesson,
+      Map<String, dynamic> teachers,
+      Map<String, dynamic> lessonsShortNames,
+      Map<String, dynamic> lessonsFullNames});
 }
 
 /// @nodoc
@@ -79,6 +93,9 @@ class _$ScheduleItemModelCopyWithImpl<$Res>
     Object? lessonEnding = freezed,
     Object? lessonName = freezed,
     Object? pauseAfterLesson = freezed,
+    Object? teachers = freezed,
+    Object? lessonsShortNames = freezed,
+    Object? lessonsFullNames = freezed,
   }) {
     return _then(_value.copyWith(
       lessonNumber: lessonNumber == freezed
@@ -101,6 +118,18 @@ class _$ScheduleItemModelCopyWithImpl<$Res>
           ? _value.pauseAfterLesson
           : pauseAfterLesson // ignore: cast_nullable_to_non_nullable
               as String,
+      teachers: teachers == freezed
+          ? _value.teachers
+          : teachers // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      lessonsShortNames: lessonsShortNames == freezed
+          ? _value.lessonsShortNames
+          : lessonsShortNames // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      lessonsFullNames: lessonsFullNames == freezed
+          ? _value.lessonsFullNames
+          : lessonsFullNames // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ));
   }
 }
@@ -117,7 +146,10 @@ abstract class _$ScheduleItemModelCopyWith<$Res>
       String lessonBeginning,
       String lessonEnding,
       String lessonName,
-      String pauseAfterLesson});
+      String pauseAfterLesson,
+      Map<String, dynamic> teachers,
+      Map<String, dynamic> lessonsShortNames,
+      Map<String, dynamic> lessonsFullNames});
 }
 
 /// @nodoc
@@ -138,6 +170,9 @@ class __$ScheduleItemModelCopyWithImpl<$Res>
     Object? lessonEnding = freezed,
     Object? lessonName = freezed,
     Object? pauseAfterLesson = freezed,
+    Object? teachers = freezed,
+    Object? lessonsShortNames = freezed,
+    Object? lessonsFullNames = freezed,
   }) {
     return _then(_ScheduleItemModel(
       lessonNumber: lessonNumber == freezed
@@ -160,6 +195,18 @@ class __$ScheduleItemModelCopyWithImpl<$Res>
           ? _value.pauseAfterLesson
           : pauseAfterLesson // ignore: cast_nullable_to_non_nullable
               as String,
+      teachers: teachers == freezed
+          ? _value.teachers
+          : teachers // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      lessonsShortNames: lessonsShortNames == freezed
+          ? _value.lessonsShortNames
+          : lessonsShortNames // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      lessonsFullNames: lessonsFullNames == freezed
+          ? _value.lessonsFullNames
+          : lessonsFullNames // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ));
   }
 }
@@ -172,7 +219,10 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
       required this.lessonBeginning,
       required this.lessonEnding,
       required this.lessonName,
-      required this.pauseAfterLesson});
+      required this.pauseAfterLesson,
+      required this.teachers,
+      required this.lessonsShortNames,
+      required this.lessonsFullNames});
 
   @override
   final int lessonNumber;
@@ -184,10 +234,16 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
   final String lessonName;
   @override
   final String pauseAfterLesson;
+  @override
+  final Map<String, dynamic> teachers;
+  @override
+  final Map<String, dynamic> lessonsShortNames;
+  @override
+  final Map<String, dynamic> lessonsFullNames;
 
   @override
   String toString() {
-    return 'ScheduleItemModel(lessonNumber: $lessonNumber, lessonBeginning: $lessonBeginning, lessonEnding: $lessonEnding, lessonName: $lessonName, pauseAfterLesson: $pauseAfterLesson)';
+    return 'ScheduleItemModel(lessonNumber: $lessonNumber, lessonBeginning: $lessonBeginning, lessonEnding: $lessonEnding, lessonName: $lessonName, pauseAfterLesson: $pauseAfterLesson, teachers: $teachers, lessonsShortNames: $lessonsShortNames, lessonsFullNames: $lessonsFullNames)';
   }
 
   @override
@@ -204,7 +260,12 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
             const DeepCollectionEquality()
                 .equals(other.lessonName, lessonName) &&
             const DeepCollectionEquality()
-                .equals(other.pauseAfterLesson, pauseAfterLesson));
+                .equals(other.pauseAfterLesson, pauseAfterLesson) &&
+            const DeepCollectionEquality().equals(other.teachers, teachers) &&
+            const DeepCollectionEquality()
+                .equals(other.lessonsShortNames, lessonsShortNames) &&
+            const DeepCollectionEquality()
+                .equals(other.lessonsFullNames, lessonsFullNames));
   }
 
   @override
@@ -214,7 +275,10 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
       const DeepCollectionEquality().hash(lessonBeginning),
       const DeepCollectionEquality().hash(lessonEnding),
       const DeepCollectionEquality().hash(lessonName),
-      const DeepCollectionEquality().hash(pauseAfterLesson));
+      const DeepCollectionEquality().hash(pauseAfterLesson),
+      const DeepCollectionEquality().hash(teachers),
+      const DeepCollectionEquality().hash(lessonsShortNames),
+      const DeepCollectionEquality().hash(lessonsFullNames));
 
   @JsonKey(ignore: true)
   @override
@@ -228,7 +292,10 @@ abstract class _ScheduleItemModel implements ScheduleItemModel {
       required String lessonBeginning,
       required String lessonEnding,
       required String lessonName,
-      required String pauseAfterLesson}) = _$_ScheduleItemModel;
+      required String pauseAfterLesson,
+      required Map<String, dynamic> teachers,
+      required Map<String, dynamic> lessonsShortNames,
+      required Map<String, dynamic> lessonsFullNames}) = _$_ScheduleItemModel;
 
   @override
   int get lessonNumber;
@@ -240,6 +307,12 @@ abstract class _ScheduleItemModel implements ScheduleItemModel {
   String get lessonName;
   @override
   String get pauseAfterLesson;
+  @override
+  Map<String, dynamic> get teachers;
+  @override
+  Map<String, dynamic> get lessonsShortNames;
+  @override
+  Map<String, dynamic> get lessonsFullNames;
   @override
   @JsonKey(ignore: true)
   _$ScheduleItemModelCopyWith<_ScheduleItemModel> get copyWith =>
