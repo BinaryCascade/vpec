@@ -2,44 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:r_dotted_line_border/r_dotted_line_border.dart';
 
+import '../../models/full_schedule.dart';
 import '../../models/schedule/schedule_item.dart';
+import '../../utils/routes/routes.dart';
 import 'schedule_logic.dart';
-
-class SchedulePanel extends StatefulWidget {
-  const SchedulePanel({Key? key}) : super(key: key);
-
-  @override
-  State<SchedulePanel> createState() => _SchedulePanelState();
-}
-
-class _SchedulePanelState extends State<SchedulePanel> {
-  @override
-  void initState() {
-    context.read<ScheduleLogicTest>().getData();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    ScheduleLogicTest logic = context.read<ScheduleLogicTest>();
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: List<ScheduleItem>.generate(logic.timetable.length, (index) {
-        String lessonNum = index.toString();
-        return ScheduleItem(
-          model: ScheduleItemModel(
-            lessonNumber: index,
-            lessonBeginning: logic.timetable[lessonNum].split('-').first,
-            lessonEnding: logic.timetable[lessonNum].split('-').last,
-            lessonName: logic.schedule[lessonNum],
-            pauseAfterLesson: '10',
-          ),
-        );
-      }),
-    );
-  }
-}
 
 class ScheduleItem extends StatelessWidget {
   const ScheduleItem({Key? key, required this.model}) : super(key: key);
@@ -73,7 +39,7 @@ class ScheduleItem extends StatelessWidget {
                 ),
               ),
               Text(
-                '${model.lessonNumber} пара - ${model.lessonName}',
+                '${model.lessonNumber} пара ${model.lessonName}',
                 style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.w600,
@@ -83,7 +49,7 @@ class ScheduleItem extends StatelessWidget {
               ),
               const SizedBox(height: 6),
               const Text(
-                'До конца: вечность',
+                'До конца: ',
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.w600,
@@ -106,7 +72,7 @@ class ScheduleItem extends StatelessWidget {
             ),
           ),
           child: Text(
-            'Перемена: ${model.pauseAfterLesson}',
+            model.pauseAfterLesson,
             style: const TextStyle(
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.w600,
@@ -116,6 +82,56 @@ class ScheduleItem extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class SchedulePanel extends StatelessWidget {
+  const SchedulePanel({
+    Key? key,
+    required this.fullSchedule,
+  }) : super(key: key);
+  final FullSchedule fullSchedule;
+
+  @override
+  Widget build(BuildContext context) {
+    List<ScheduleItem> schedulePanel =
+        List<ScheduleItem>.generate(fullSchedule.timetable.length, (index) {
+      String lessonNum = index.toString();
+      String lessonEnding = fullSchedule.timetable[lessonNum].split('-').last;
+      String nextLessonBeginning() {
+        String? time = fullSchedule.timetable[(index + 1).toString()];
+        if (time == null) return lessonEnding;
+
+        return time.split('-').first;
+      }
+
+      String lessonName() {
+        String name = fullSchedule.schedule[lessonNum];
+
+        if (name == '0') name = '';
+        if (name.isNotEmpty) name = '- $name';
+        return name;
+      }
+
+      return ScheduleItem(
+        model: ScheduleItemModel(
+          lessonNumber: index,
+          teachers: fullSchedule.teachers,
+          lessonsFullNames: fullSchedule.fullLessonNames,
+          lessonsShortNames: fullSchedule.shortLessonNames,
+          lessonBeginning: fullSchedule.timetable[lessonNum].split('-').first,
+          lessonEnding: fullSchedule.timetable[lessonNum].split('-').last,
+          lessonName: lessonName(),
+          pauseAfterLesson: ScheduleTime.calculatePauseAfterLesson(
+              lessonEnding, nextLessonBeginning()),
+        ),
+      );
+    });
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: schedulePanel,
     );
   }
 }
@@ -141,16 +157,19 @@ class FABPanel extends StatelessWidget {
           tooltip: 'Полное расписание',
           child: const Icon(Icons.fullscreen_outlined),
           heroTag: null,
-          onPressed: () {},
+          onPressed: () =>
+              Navigator.pushNamed(context, Routes.fullScheduleScreen),
         ),
         const SizedBox(
           height: 8,
         ),
         FloatingActionButton(
           tooltip: 'Расписание на завтра/сегодня',
-          child: const Icon(Icons.arrow_forward_ios_outlined),
+          child: Icon(context.watch<ScheduleLogic>().showingForToday
+              ? Icons.arrow_forward_ios_outlined
+              : Icons.arrow_back_ios_outlined),
           heroTag: null,
-          onPressed: () {},
+          onPressed: () => context.read<ScheduleLogic>().toggleLesson(),
         ),
       ],
     );
