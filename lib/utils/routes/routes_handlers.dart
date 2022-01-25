@@ -16,6 +16,7 @@ import '/screens/teachers/teachers_screen.dart';
 import '/screens/view_document/view_document_screen.dart';
 import '/splash.dart';
 import '../../screens/admins/admins_screen.dart';
+import '../../screens/lessons_schedule/lessons_schedule_screen.dart';
 import '../firebase_auth.dart';
 import 'routes.dart';
 
@@ -101,3 +102,8 @@ Future<void> makeLogin(String? email, String? password) async {
         .signInWithEmailAndPassword(email: email, password: password);
   }
 }
+
+Handler fullScheduleScreenHandler = Handler(
+  handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
+      const FullLessonsScheduleScreen(),
+);
