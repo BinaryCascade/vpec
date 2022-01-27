@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/full_schedule.dart';
-import '../../models/schedule/schedule_item.dart';
 import 'schedule_logic.dart';
 import 'schedule_ui.dart';
 
@@ -29,7 +27,14 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
   @override
   void initState() {
     context.read<ScheduleLogic>().showLessons();
+    context.read<ScheduleLogic>().startTimetableUpdating();
     super.initState();
+  }
+
+  @override
+  void deactivate() {
+    context.read<ScheduleLogic>().cancelTimetableUpdating();
+    super.deactivate();
   }
 
   @override
@@ -38,9 +43,10 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
       builder: (context, logic, child) {
         return Scaffold(
           body: SafeArea(
+            top: false,
             child: ListView(
               padding: const EdgeInsets.only(
-                top: 40,
+                top: 60,
                 bottom: 40,
                 left: 40,
                 right: 20,
@@ -77,9 +83,7 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                               Theme.of(context).scaffoldBackgroundColor,
                         ),
                       )
-                    : SchedulePanel(
-                        fullSchedule:
-                            context.read<ScheduleLogic>().fullSchedule!),
+                    : SchedulePanel(fullSchedule: logic.fullSchedule!),
               ],
             ),
           ),

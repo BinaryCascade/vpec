@@ -19,7 +19,7 @@ class _$FullScheduleTearOff {
   const _$FullScheduleTearOff();
 
   _FullSchedule call(
-      {required String jsonData,
+      {List<String?> timers = const [],
       required String groups,
       required Map<String, dynamic> schedule,
       required Map<String, dynamic> timetable,
@@ -27,7 +27,7 @@ class _$FullScheduleTearOff {
       required Map<String, dynamic> fullLessonNames,
       required Map<String, dynamic> teachers}) {
     return _FullSchedule(
-      jsonData: jsonData,
+      timers: timers,
       groups: groups,
       schedule: schedule,
       timetable: timetable,
@@ -43,7 +43,7 @@ const $FullSchedule = _$FullScheduleTearOff();
 
 /// @nodoc
 mixin _$FullSchedule {
-  String get jsonData => throw _privateConstructorUsedError;
+  List<String?> get timers => throw _privateConstructorUsedError;
   String get groups => throw _privateConstructorUsedError;
   Map<String, dynamic> get schedule => throw _privateConstructorUsedError;
   Map<String, dynamic> get timetable => throw _privateConstructorUsedError;
@@ -64,7 +64,7 @@ abstract class $FullScheduleCopyWith<$Res> {
           FullSchedule value, $Res Function(FullSchedule) then) =
       _$FullScheduleCopyWithImpl<$Res>;
   $Res call(
-      {String jsonData,
+      {List<String?> timers,
       String groups,
       Map<String, dynamic> schedule,
       Map<String, dynamic> timetable,
@@ -83,7 +83,7 @@ class _$FullScheduleCopyWithImpl<$Res> implements $FullScheduleCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? jsonData = freezed,
+    Object? timers = freezed,
     Object? groups = freezed,
     Object? schedule = freezed,
     Object? timetable = freezed,
@@ -92,10 +92,10 @@ class _$FullScheduleCopyWithImpl<$Res> implements $FullScheduleCopyWith<$Res> {
     Object? teachers = freezed,
   }) {
     return _then(_value.copyWith(
-      jsonData: jsonData == freezed
-          ? _value.jsonData
-          : jsonData // ignore: cast_nullable_to_non_nullable
-              as String,
+      timers: timers == freezed
+          ? _value.timers
+          : timers // ignore: cast_nullable_to_non_nullable
+              as List<String?>,
       groups: groups == freezed
           ? _value.groups
           : groups // ignore: cast_nullable_to_non_nullable
@@ -132,7 +132,7 @@ abstract class _$FullScheduleCopyWith<$Res>
       __$FullScheduleCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String jsonData,
+      {List<String?> timers,
       String groups,
       Map<String, dynamic> schedule,
       Map<String, dynamic> timetable,
@@ -153,7 +153,7 @@ class __$FullScheduleCopyWithImpl<$Res> extends _$FullScheduleCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? jsonData = freezed,
+    Object? timers = freezed,
     Object? groups = freezed,
     Object? schedule = freezed,
     Object? timetable = freezed,
@@ -162,10 +162,10 @@ class __$FullScheduleCopyWithImpl<$Res> extends _$FullScheduleCopyWithImpl<$Res>
     Object? teachers = freezed,
   }) {
     return _then(_FullSchedule(
-      jsonData: jsonData == freezed
-          ? _value.jsonData
-          : jsonData // ignore: cast_nullable_to_non_nullable
-              as String,
+      timers: timers == freezed
+          ? _value.timers
+          : timers // ignore: cast_nullable_to_non_nullable
+              as List<String?>,
       groups: groups == freezed
           ? _value.groups
           : groups // ignore: cast_nullable_to_non_nullable
@@ -198,7 +198,7 @@ class __$FullScheduleCopyWithImpl<$Res> extends _$FullScheduleCopyWithImpl<$Res>
 
 class _$_FullSchedule implements _FullSchedule {
   const _$_FullSchedule(
-      {required this.jsonData,
+      {this.timers = const [],
       required this.groups,
       required this.schedule,
       required this.timetable,
@@ -206,8 +206,9 @@ class _$_FullSchedule implements _FullSchedule {
       required this.fullLessonNames,
       required this.teachers});
 
+  @JsonKey()
   @override
-  final String jsonData;
+  final List<String?> timers;
   @override
   final String groups;
   @override
@@ -223,7 +224,7 @@ class _$_FullSchedule implements _FullSchedule {
 
   @override
   String toString() {
-    return 'FullSchedule(jsonData: $jsonData, groups: $groups, schedule: $schedule, timetable: $timetable, shortLessonNames: $shortLessonNames, fullLessonNames: $fullLessonNames, teachers: $teachers)';
+    return 'FullSchedule(timers: $timers, groups: $groups, schedule: $schedule, timetable: $timetable, shortLessonNames: $shortLessonNames, fullLessonNames: $fullLessonNames, teachers: $teachers)';
   }
 
   @override
@@ -231,7 +232,7 @@ class _$_FullSchedule implements _FullSchedule {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _FullSchedule &&
-            const DeepCollectionEquality().equals(other.jsonData, jsonData) &&
+            const DeepCollectionEquality().equals(other.timers, timers) &&
             const DeepCollectionEquality().equals(other.groups, groups) &&
             const DeepCollectionEquality().equals(other.schedule, schedule) &&
             const DeepCollectionEquality().equals(other.timetable, timetable) &&
@@ -245,7 +246,7 @@ class _$_FullSchedule implements _FullSchedule {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(jsonData),
+      const DeepCollectionEquality().hash(timers),
       const DeepCollectionEquality().hash(groups),
       const DeepCollectionEquality().hash(schedule),
       const DeepCollectionEquality().hash(timetable),
@@ -261,7 +262,7 @@ class _$_FullSchedule implements _FullSchedule {
 
 abstract class _FullSchedule implements FullSchedule {
   const factory _FullSchedule(
-      {required String jsonData,
+      {List<String?> timers,
       required String groups,
       required Map<String, dynamic> schedule,
       required Map<String, dynamic> timetable,
@@ -270,7 +271,7 @@ abstract class _FullSchedule implements FullSchedule {
       required Map<String, dynamic> teachers}) = _$_FullSchedule;
 
   @override
-  String get jsonData;
+  List<String?> get timers;
   @override
   String get groups;
   @override

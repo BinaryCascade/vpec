@@ -24,6 +24,7 @@ class _$ScheduleItemModelTearOff {
       required String lessonEnding,
       required String lessonName,
       required String pauseAfterLesson,
+      String? timer,
       required Map<String, dynamic> teachers,
       required Map<String, dynamic> lessonsShortNames,
       required Map<String, dynamic> lessonsFullNames}) {
@@ -33,6 +34,7 @@ class _$ScheduleItemModelTearOff {
       lessonEnding: lessonEnding,
       lessonName: lessonName,
       pauseAfterLesson: pauseAfterLesson,
+      timer: timer,
       teachers: teachers,
       lessonsShortNames: lessonsShortNames,
       lessonsFullNames: lessonsFullNames,
@@ -50,6 +52,7 @@ mixin _$ScheduleItemModel {
   String get lessonEnding => throw _privateConstructorUsedError;
   String get lessonName => throw _privateConstructorUsedError;
   String get pauseAfterLesson => throw _privateConstructorUsedError;
+  String? get timer => throw _privateConstructorUsedError;
   Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
   Map<String, dynamic> get lessonsShortNames =>
       throw _privateConstructorUsedError;
@@ -72,6 +75,7 @@ abstract class $ScheduleItemModelCopyWith<$Res> {
       String lessonEnding,
       String lessonName,
       String pauseAfterLesson,
+      String? timer,
       Map<String, dynamic> teachers,
       Map<String, dynamic> lessonsShortNames,
       Map<String, dynamic> lessonsFullNames});
@@ -93,6 +97,7 @@ class _$ScheduleItemModelCopyWithImpl<$Res>
     Object? lessonEnding = freezed,
     Object? lessonName = freezed,
     Object? pauseAfterLesson = freezed,
+    Object? timer = freezed,
     Object? teachers = freezed,
     Object? lessonsShortNames = freezed,
     Object? lessonsFullNames = freezed,
@@ -118,6 +123,10 @@ class _$ScheduleItemModelCopyWithImpl<$Res>
           ? _value.pauseAfterLesson
           : pauseAfterLesson // ignore: cast_nullable_to_non_nullable
               as String,
+      timer: timer == freezed
+          ? _value.timer
+          : timer // ignore: cast_nullable_to_non_nullable
+              as String?,
       teachers: teachers == freezed
           ? _value.teachers
           : teachers // ignore: cast_nullable_to_non_nullable
@@ -147,6 +156,7 @@ abstract class _$ScheduleItemModelCopyWith<$Res>
       String lessonEnding,
       String lessonName,
       String pauseAfterLesson,
+      String? timer,
       Map<String, dynamic> teachers,
       Map<String, dynamic> lessonsShortNames,
       Map<String, dynamic> lessonsFullNames});
@@ -170,6 +180,7 @@ class __$ScheduleItemModelCopyWithImpl<$Res>
     Object? lessonEnding = freezed,
     Object? lessonName = freezed,
     Object? pauseAfterLesson = freezed,
+    Object? timer = freezed,
     Object? teachers = freezed,
     Object? lessonsShortNames = freezed,
     Object? lessonsFullNames = freezed,
@@ -195,6 +206,10 @@ class __$ScheduleItemModelCopyWithImpl<$Res>
           ? _value.pauseAfterLesson
           : pauseAfterLesson // ignore: cast_nullable_to_non_nullable
               as String,
+      timer: timer == freezed
+          ? _value.timer
+          : timer // ignore: cast_nullable_to_non_nullable
+              as String?,
       teachers: teachers == freezed
           ? _value.teachers
           : teachers // ignore: cast_nullable_to_non_nullable
@@ -220,6 +235,7 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
       required this.lessonEnding,
       required this.lessonName,
       required this.pauseAfterLesson,
+      this.timer,
       required this.teachers,
       required this.lessonsShortNames,
       required this.lessonsFullNames});
@@ -235,6 +251,8 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
   @override
   final String pauseAfterLesson;
   @override
+  final String? timer;
+  @override
   final Map<String, dynamic> teachers;
   @override
   final Map<String, dynamic> lessonsShortNames;
@@ -243,7 +261,7 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
 
   @override
   String toString() {
-    return 'ScheduleItemModel(lessonNumber: $lessonNumber, lessonBeginning: $lessonBeginning, lessonEnding: $lessonEnding, lessonName: $lessonName, pauseAfterLesson: $pauseAfterLesson, teachers: $teachers, lessonsShortNames: $lessonsShortNames, lessonsFullNames: $lessonsFullNames)';
+    return 'ScheduleItemModel(lessonNumber: $lessonNumber, lessonBeginning: $lessonBeginning, lessonEnding: $lessonEnding, lessonName: $lessonName, pauseAfterLesson: $pauseAfterLesson, timer: $timer, teachers: $teachers, lessonsShortNames: $lessonsShortNames, lessonsFullNames: $lessonsFullNames)';
   }
 
   @override
@@ -261,6 +279,7 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
                 .equals(other.lessonName, lessonName) &&
             const DeepCollectionEquality()
                 .equals(other.pauseAfterLesson, pauseAfterLesson) &&
+            const DeepCollectionEquality().equals(other.timer, timer) &&
             const DeepCollectionEquality().equals(other.teachers, teachers) &&
             const DeepCollectionEquality()
                 .equals(other.lessonsShortNames, lessonsShortNames) &&
@@ -276,6 +295,7 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
       const DeepCollectionEquality().hash(lessonEnding),
       const DeepCollectionEquality().hash(lessonName),
       const DeepCollectionEquality().hash(pauseAfterLesson),
+      const DeepCollectionEquality().hash(timer),
       const DeepCollectionEquality().hash(teachers),
       const DeepCollectionEquality().hash(lessonsShortNames),
       const DeepCollectionEquality().hash(lessonsFullNames));
@@ -293,6 +313,7 @@ abstract class _ScheduleItemModel implements ScheduleItemModel {
       required String lessonEnding,
       required String lessonName,
       required String pauseAfterLesson,
+      String? timer,
       required Map<String, dynamic> teachers,
       required Map<String, dynamic> lessonsShortNames,
       required Map<String, dynamic> lessonsFullNames}) = _$_ScheduleItemModel;
@@ -307,6 +328,8 @@ abstract class _ScheduleItemModel implements ScheduleItemModel {
   String get lessonName;
   @override
   String get pauseAfterLesson;
+  @override
+  String? get timer;
   @override
   Map<String, dynamic> get teachers;
   @override

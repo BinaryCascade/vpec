@@ -1,8 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:duration/duration.dart';
 import 'package:duration/locale.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -17,6 +17,11 @@ class ScheduleLogic extends ChangeNotifier {
   FullSchedule? fullSchedule;
   bool showingForToday = true;
   String showingData = DateFormat('dd-MM-yyyy').format(DateTime.now());
+  int activeLessonIndex = 0;
+  bool needPrintTimer = true;
+  bool? hasError;
+  Timer? _timer;
+  Duration _smallestUntilStartDuration = const Duration(days: 2);
 
   // String _makeUrl(String date) => 'https://energocollege.ru/vec_assistant/'
   //     '%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5/'
@@ -74,7 +79,7 @@ class ScheduleLogic extends ChangeNotifier {
     showingData = formatter.format(date);
 
     await _getActualData(_makeUrl(showingData));
-    return true;
+    return fullSchedule != null;
   }
 
   Future<void> chooseData(BuildContext context) async {
@@ -93,29 +98,32 @@ class ScheduleLogic extends ChangeNotifier {
   }
 
   Future<void> _getActualData(String url) async {
-    if (kDebugMode) print('called: _getActualData($url)');
+    fullSchedule = null;
 
-    //TODO: add data caching
-    String utf8data =
-        await http.read(Uri.parse(url)).timeout(const Duration(seconds: 70));
-    if (kDebugMode) print('reading success');
+    http.Response response =
+        await http.get(Uri.parse(url)).timeout(const Duration(seconds: 70));
 
-    // String utf8data = utf8.decode(rawData.codeUnits);
+    if (response.statusCode == 200) {
+      hasError = false;
 
-    if (kDebugMode) print('trying to update');
+      //TODO: add data caching
+      String utf8data = response.body;
 
-    // TODO: throw error if [chosenGroup] is null or try to ask chose group
-    String group = await HiveHelper.getValue('chosenGroup') ?? '09.02.01-1-18';
-    fullSchedule = FullSchedule(
-      timetable: _getTimetable(utf8data, group),
-      schedule: _getSchedule(utf8data, group),
-      shortLessonNames: _getGroupDefinition(utf8data, group + '_short'),
-      fullLessonNames: _getGroupDefinition(utf8data, group + '_full'),
-      teachers: _getGroupDefinition(utf8data, group + '_teacher'),
-      groups: group,
-      jsonData: utf8data,
-    );
-    if (kDebugMode) print('updated');
+      // TODO: throw error if [chosenGroup] is null or try to ask chose group
+      String group =
+          await HiveHelper.getValue('chosenGroup') ?? '09.02.01-1-18';
+      fullSchedule = FullSchedule(
+        timetable: _getTimetable(utf8data, group),
+        schedule: _getSchedule(utf8data, group),
+        shortLessonNames: _getGroupDefinition(utf8data, group + '_short'),
+        fullLessonNames: _getGroupDefinition(utf8data, group + '_full'),
+        teachers: _getGroupDefinition(utf8data, group + '_teacher'),
+        groups: group,
+      );
+      getTime();
+    } else {
+      hasError = true;
+    }
 
     notifyListeners();
   }
@@ -131,6 +139,88 @@ class ScheduleLogic extends ChangeNotifier {
   Map<String, dynamic> _getGroupDefinition(String data, String group) {
     return GroupDefinition.fromJson(json.decode(data))
         .groupDefinitionMap[group];
+  }
+
+  void setActiveLesson(int index) {
+    activeLessonIndex = index;
+    notifyListeners();
+  }
+
+  void getTime() {
+    if (fullSchedule != null) {
+      DateTime now = DateTime.now();
+
+      List<String?> timers = fullSchedule!.timers;
+      List<String?> newTimers = [];
+      newTimers.addAll(timers);
+
+      fullSchedule!.timetable.forEach((key, value) {
+        String _beginning = value.split('-').first;
+        String _ending = value.split('-').last;
+
+        DateTime lessonBeginning = DateFormat('HH:mm').parse(_beginning);
+        DateTime lessonEnding = DateFormat('HH:mm').parse(_ending);
+
+        Duration nowDuration =
+            Duration(hours: now.hour, minutes: now.minute, seconds: now.second);
+        Duration startDuration = Duration(
+            hours: lessonBeginning.hour, minutes: lessonBeginning.minute);
+        Duration endDuration =
+            Duration(hours: lessonEnding.hour, minutes: lessonEnding.minute);
+
+        if (nowDuration >= startDuration && nowDuration < endDuration) {
+          needPrintTimer = false;
+          setActiveLesson(int.parse(key));
+
+          newTimers.insert(
+            int.parse(key),
+            'До конца: ' + _getTime(endDuration - nowDuration),
+          );
+
+          fullSchedule = fullSchedule!.copyWith(
+            timers: newTimers,
+          );
+
+          if (endDuration - nowDuration <= const Duration(seconds: 1)) {
+            _smallestUntilStartDuration = const Duration(days: 2);
+            needPrintTimer = true;
+          }
+        } else {
+          if (nowDuration < startDuration &&
+              needPrintTimer &&
+              startDuration - nowDuration <= _smallestUntilStartDuration) {
+            _smallestUntilStartDuration = startDuration - nowDuration;
+            newTimers.insert(
+              int.parse(key),
+              'До начала: ' + _getTime(startDuration - nowDuration),
+            );
+
+            fullSchedule = fullSchedule!.copyWith(
+              timers: newTimers,
+            );
+          } else {
+            newTimers.insert(int.parse(key), '');
+          }
+        }
+      });
+      notifyListeners();
+    }
+  }
+
+  String _getTime(Duration duration) {
+    return prettyDuration(Duration(minutes: duration.inMinutes + 1),
+        locale: const RussianDurationLanguage());
+  }
+
+  void startTimetableUpdating() {
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) => getTime(),
+    );
+  }
+
+  void cancelTimetableUpdating() {
+    if (_timer != null) _timer!.cancel();
   }
 }
 
@@ -153,8 +243,8 @@ class ScheduleTime extends ChangeNotifier {
 
   static String replaceLessonName(
       {required String shortLessonName,
-        required Map<String, dynamic> lessonShortNames,
-        required Map<String, dynamic> lessonFullNames}) {
+      required Map<String, dynamic> lessonShortNames,
+      required Map<String, dynamic> lessonFullNames}) {
     if (lessonFullNames.containsValue(shortLessonName)) {
       return lessonFullNames[shortLessonName.indexOf(shortLessonName)];
     } else {

@@ -48,9 +48,9 @@ class ScheduleItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 6),
-              const Text(
-                'До конца: ',
-                style: TextStyle(
+              Text(
+                model.timer ?? '',
+                style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.w600,
                   fontSize: 18.0,
@@ -113,9 +113,9 @@ class SchedulePanel extends StatelessWidget {
         if (name.isNotEmpty) name = '- $name';
         return name;
       }
-
       return ScheduleItem(
         model: ScheduleItemModel(
+          timer: fullSchedule.timers[index],
           lessonNumber: index,
           teachers: fullSchedule.teachers,
           lessonsFullNames: fullSchedule.fullLessonNames,

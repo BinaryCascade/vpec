@@ -5,7 +5,7 @@ part 'full_schedule.freezed.dart';
 @freezed
 class FullSchedule with _$FullSchedule {
   const factory FullSchedule({
-    required String jsonData,
+    @Default([]) List<String?> timers,
     required String groups,
     required Map<String, dynamic> schedule,
     required Map<String, dynamic> timetable,
@@ -13,4 +13,5 @@ class FullSchedule with _$FullSchedule {
     required Map<String, dynamic> fullLessonNames,
     required Map<String, dynamic> teachers,
   }) = _FullSchedule;
+
 }

@@ -10,9 +10,9 @@ class ScheduleItemModel with _$ScheduleItemModel {
     required String lessonEnding,
     required String lessonName,
     required String pauseAfterLesson,
+    String? timer,
     required Map<String, dynamic> teachers,
     required Map<String, dynamic> lessonsShortNames,
     required Map<String, dynamic> lessonsFullNames,
-
   }) = _ScheduleItemModel;
 }
