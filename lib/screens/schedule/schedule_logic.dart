@@ -14,44 +14,64 @@ import '../../models/schedule/timetable.dart';
 import '../../utils/hive_helper.dart';
 
 class ScheduleLogic extends ChangeNotifier {
+  /// Contains all the information about the schedule
+  /// (timetable, schedule, shortLessonNames, fullLessonNames, teachers)
   FullSchedule? fullSchedule;
+
+  /// Indicates whether schedule is being shown for today or not
   bool showingForToday = true;
+
+  /// String of the format "dd-MM-yyyy", which shows the currently selected date
   String showingData = DateFormat('dd-MM-yyyy').format(DateTime.now());
+
+  /// Indicates active lesson
   int activeLessonIndex = 0;
-  bool needPrintTimer = true;
+
+  /// Indicates whether an error occurred during data processing or not
   bool? hasError;
+
+  /// Used for automatically update timetable
+  ///
+  /// call [startTimersUpdating] to start updating.
   Timer? _timer;
+
+  /// Used for time counting
+  bool _needPrintTimer = true;
   Duration _smallestUntilStartDuration = const Duration(days: 2);
 
   // String _makeUrl(String date) => 'https://energocollege.ru/vec_assistant/'
   //     '%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5/'
   //     '$date.json';
 
+  /// Convert [showingData] to human readability text at russian, e.g
+  ///
+  /// 27 января 2021
   String get printCurrentDate {
     DateTime parsed = DateFormat('d-M-yyyy', 'ru').parse(showingData);
     DateFormat formatter = DateFormat('d MMMM yyyy');
-
     return formatter.format(parsed);
   }
 
+  /// Accepts date and converts to schedule URL
   String _makeUrl(String date) =>
       'https://raw.githubusercontent.com/ShyroTeam/vpec/'
       'new_schedule_system/assets/'
       '$date.json';
 
-  Future<void> toggleLesson() async {
+  /// Switch schedule display to today or tomorrow
+  Future<void> toggleShowingLesson() async {
     showingForToday = !showingForToday;
     notifyListeners();
-    await showLessons();
+    await loadSchedule();
   }
 
-  Future<bool> showLessons() async {
-    // get next day to show lesson schedule
+  /// Gets required date and parses schedule
+  ///
+  /// Returns [true] if parse was successful
+  Future<bool> loadSchedule() async {
     DateTime date = DateTime.now();
     DateFormat formatter = DateFormat('dd-MM-yyyy');
 
-    // if we need to show lessons for tomorrow, then we plus days from now
-    // _isWeekend used for auto showing schedule for next day from screen start
     int _plusDays = 0;
     int _today = date.weekday;
     bool _isWeekend = false;
@@ -82,6 +102,8 @@ class ScheduleLogic extends ChangeNotifier {
     return fullSchedule != null;
   }
 
+  /// Show DatePicker dialog for schedule, if user pick one of the days,
+  /// then load picked schedule
   Future<void> chooseData(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -97,16 +119,18 @@ class ScheduleLogic extends ChangeNotifier {
     }
   }
 
+  /// Parse full schedule from given [url]
   Future<void> _getActualData(String url) async {
+    // clear old data
     fullSchedule = null;
 
+    //TODO: add data caching
     http.Response response =
         await http.get(Uri.parse(url)).timeout(const Duration(seconds: 70));
 
     if (response.statusCode == 200) {
       hasError = false;
 
-      //TODO: add data caching
       String utf8data = response.body;
 
       // TODO: throw error if [chosenGroup] is null or try to ask chose group
@@ -120,7 +144,9 @@ class ScheduleLogic extends ChangeNotifier {
         teachers: _getGroupDefinition(utf8data, group + '_teacher'),
         groups: group,
       );
-      getTime();
+
+      // get timers for this schedule
+      getTimers();
     } else {
       hasError = true;
     }
@@ -128,39 +154,51 @@ class ScheduleLogic extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Parse [Timetable] from [data] for this [group]
   Map<String, dynamic> _getTimetable(String data, String group) {
     return Timetable.fromJson(json.decode(data)).timetableMap[group];
   }
 
+  /// Parse [Schedule] from [data] for this [group]
   Map<String, dynamic> _getSchedule(String data, String group) {
     return Schedule.fromJson(json.decode(data)).scheduleMap[group];
   }
 
+  /// Parse [GroupDefinition] from [data] for this [group]
   Map<String, dynamic> _getGroupDefinition(String data, String group) {
     return GroupDefinition.fromJson(json.decode(data))
         .groupDefinitionMap[group];
   }
 
+  /// Sets new active lesson with given [index].
   void setActiveLesson(int index) {
     activeLessonIndex = index;
     notifyListeners();
   }
 
-  void getTime() {
+  /// Gets or updates timers for actual [fullSchedule]
+  ///
+  /// Timer - is a string format 'До конца: 28 минут'
+  void getTimers() {
     if (fullSchedule != null) {
       DateTime now = DateTime.now();
 
-      List<String?> timers = fullSchedule!.timers;
-      List<String?> newTimers = [];
+      List<String?> timers = fullSchedule!.timers; // immutable list
+      List<String?> newTimers = []; // mutable list
       newTimers.addAll(timers);
 
       fullSchedule!.timetable.forEach((key, value) {
+        // parse time for current lesson
+
+        // raw time in string
         String _beginning = value.split('-').first;
         String _ending = value.split('-').last;
 
+        // String time converted to DateTime
         DateTime lessonBeginning = DateFormat('HH:mm').parse(_beginning);
         DateTime lessonEnding = DateFormat('HH:mm').parse(_ending);
 
+        // DateTime time converted to Duration
         Duration nowDuration =
             Duration(hours: now.hour, minutes: now.minute, seconds: now.second);
         Duration startDuration = Duration(
@@ -169,7 +207,7 @@ class ScheduleLogic extends ChangeNotifier {
             Duration(hours: lessonEnding.hour, minutes: lessonEnding.minute);
 
         if (nowDuration >= startDuration && nowDuration < endDuration) {
-          needPrintTimer = false;
+          _needPrintTimer = false;
           setActiveLesson(int.parse(key));
 
           newTimers.insert(
@@ -183,11 +221,11 @@ class ScheduleLogic extends ChangeNotifier {
 
           if (endDuration - nowDuration <= const Duration(seconds: 1)) {
             _smallestUntilStartDuration = const Duration(days: 2);
-            needPrintTimer = true;
+            _needPrintTimer = true;
           }
         } else {
           if (nowDuration < startDuration &&
-              needPrintTimer &&
+              _needPrintTimer &&
               startDuration - nowDuration <= _smallestUntilStartDuration) {
             _smallestUntilStartDuration = startDuration - nowDuration;
             newTimers.insert(
@@ -207,24 +245,36 @@ class ScheduleLogic extends ChangeNotifier {
     }
   }
 
+  /// Convert [duration] to human readability text at russian, e.g
+  ///
+  /// 34 минуты
   String _getTime(Duration duration) {
     return prettyDuration(Duration(minutes: duration.inMinutes + 1),
         locale: const RussianDurationLanguage());
   }
 
-  void startTimetableUpdating() {
+  /// Start automatically updating timers for actual timetable
+  void startTimersUpdating() {
     _timer = Timer.periodic(
       const Duration(seconds: 1),
-      (timer) => getTime(),
+      (timer) => getTimers(),
     );
   }
 
-  void cancelTimetableUpdating() {
+  /// Stop automatically updating timers for actual timetable
+  void cancelTimersUpdating() {
     if (_timer != null) _timer!.cancel();
   }
 }
 
-class ScheduleTime extends ChangeNotifier {
+class ScheduleTime {
+  /// Calculates a pause based on two parameters:
+  ///
+  /// [lessonEnding] - end time of current lesson
+  ///
+  /// [nextLessonBeginning] - beginning time of next lesson
+  ///
+  /// **All strings must be 'HH:mm' format**
   static String calculatePauseAfterLesson(
     String lessonEnding,
     String nextLessonBeginning,
@@ -241,6 +291,7 @@ class ScheduleTime extends ChangeNotifier {
     return pause;
   }
 
+  //TODO: make this
   static String replaceLessonName(
       {required String shortLessonName,
       required Map<String, dynamic> lessonShortNames,

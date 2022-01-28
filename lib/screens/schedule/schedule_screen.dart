@@ -26,14 +26,14 @@ class ScheduleScreenUI extends StatefulWidget {
 class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
   @override
   void initState() {
-    context.read<ScheduleLogic>().showLessons();
-    context.read<ScheduleLogic>().startTimetableUpdating();
+    context.read<ScheduleLogic>().loadSchedule();
+    context.read<ScheduleLogic>().startTimersUpdating();
     super.initState();
   }
 
   @override
   void deactivate() {
-    context.read<ScheduleLogic>().cancelTimetableUpdating();
+    context.read<ScheduleLogic>().cancelTimersUpdating();
     super.deactivate();
   }
 

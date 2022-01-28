@@ -169,7 +169,7 @@ class FABPanel extends StatelessWidget {
               ? Icons.arrow_forward_ios_outlined
               : Icons.arrow_back_ios_outlined),
           heroTag: null,
-          onPressed: () => context.read<ScheduleLogic>().toggleLesson(),
+          onPressed: () => context.read<ScheduleLogic>().toggleShowingLesson(),
         ),
       ],
     );
