@@ -1,23 +1,34 @@
 # ВЭК
-Приложение для [Волгоградского энергетического колледжа](http://energocollege.ru/)
+Приложение для студентов и сотрудников [Волгоградского энергетического колледжа](https://energocollege.ru/).
 
 ## Особенности
 * Быстрый и удобный доступ к всегда актуальному расписанию занятий и звонков
-* Светлая и тёмная тема
+* Формирование личного расписания студента и преподавателей
 * Различная полезная информация (список преподавателей, карта кабинетов и прочее)
 * Объявления от администрации колледжа
+* Светлая и тёмная тема
 * События колледжа
 
 ## Скачать
 * [Google Play](https://play.google.com/store/apps/details?id=tem.apps.vpec)
-* [Github](https://github.com/Volgograd-Power-Engineering-College/vpec/releases/latest)
 
 ## Принять участие в разработке
-Присоединиться к бета-тестированию: [Telegram](https://t.me/Tembeon)
 
-Отслеживать статус разработки на доске [Trello](https://trello.com/b/z3Ch4Qha/vec-android)
+### Как пользователь:
+* Присоединиться к бета-тестированию через [Telegram](https://t.me/Tembeon) или на странице 
+[Google Play](https://play.google.com/store/apps/details?id=tem.apps.vpec).
+* Предложить новую функцию, или сообщить об ошибке можно [здесь](https://github.com/ShyroTeam/vpec/issues/new/choose).
 
-**Используется Flutter с ветки Beta**
+### Как разработчик:
+Принять участие в разработке можно, открыв свой Pull request с описанием, что данный PR приносит в проект.
+Мы будем рады любому Вашему вкладу, будь это Feature pull request, или Code improve.
+
+**Обратите внимание, что в проекте используется Flutter beta.**
+
+## Дизайн приложения
+Дизайн приложения подготовлен [@Lazurit11](https://github.com/lazurit11).
+
+Просмотреть макеты можно [здесь](https://www.figma.com/file/KrxdlfVlI88BKw8JRtZvf8/VPEC-UI?node-id=666%3A362).
 
 ## License
     Copyright 2021 ShyroTeam
