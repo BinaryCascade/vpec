@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:55220801987:android:d801cbdebb27bc9b0aed76",
+        "mobilesdk_app_id": "1:55220801987:android:2532b01553ccf0dd0aed76",
         "android_client_info": {
-          "package_name": "tem.apps.vec_schedule"
+          "package_name": "tem.apps.vpec"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "55220801987-87t0httq9i07ssrv8ct1dpjph9o2unuf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tem.apps.vpec",
+            "certificate_hash": "3043f4d51d8cc42a6d0ac5f5e0e32b9c96713361"
+          }
+        },
         {
           "client_id": "55220801987-n1i7fgqu9iht5rm09rvshv3bre6ovcrv.apps.googleusercontent.com",
           "client_type": 3
@@ -37,9 +45,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:55220801987:android:2532b01553ccf0dd0aed76",
+        "mobilesdk_app_id": "1:55220801987:android:c91f0371082bf32c0aed76",
         "android_client_info": {
-          "package_name": "tem.apps.vpec"
+          "package_name": "tem.apps.vpec.debug"
         }
       },
       "oauth_client": [
