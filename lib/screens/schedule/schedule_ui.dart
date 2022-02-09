@@ -108,14 +108,16 @@ class SchedulePanel extends StatelessWidget {
 
       String lessonName() {
         String name = fullSchedule.schedule[lessonNum];
-
         if (name == '0') name = '';
         if (name.isNotEmpty) name = '- $name';
         return name;
       }
+
+      bool shouldGiveTimers = fullSchedule.timers.isNotEmpty;
+
       return ScheduleItem(
         model: ScheduleItemModel(
-          timer: fullSchedule.timers[index],
+          timer: shouldGiveTimers ? fullSchedule.timers[index] : null,
           lessonNumber: index,
           teachers: fullSchedule.teachers,
           lessonsFullNames: fullSchedule.fullLessonNames,
