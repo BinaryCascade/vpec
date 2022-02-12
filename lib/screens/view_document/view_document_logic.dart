@@ -29,7 +29,7 @@ class ViewDocumentLogic {
         !ThemeHelper.isDarkMode) {
       return lightThemeFilter;
     } else {
-      return darkThemeFilter;
+      return ThemeHelper.isDarkMode ? darkThemeFilter : lightThemeFilter;
     }
   }
 
