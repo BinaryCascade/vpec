@@ -83,6 +83,7 @@ Future<T?> showRoundedModalSheet<T>(
                         ? Text(
                             title,
                             style: Theme.of(context).textTheme.headline4,
+                            textAlign: TextAlign.center,
                           )
                         : ErrorWidget('You need implement [title] if you want '
                             'use styled layout, or [customLayout] if you need'

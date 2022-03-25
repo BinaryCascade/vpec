@@ -7,7 +7,7 @@ class ThemeHelper {
   /// return true, if system or user-chosen theme is dark
   static bool get isDarkMode {
     // get system theme
-    var brightness = SchedulerBinding.instance!.window.platformBrightness;
+    var brightness = SchedulerBinding.instance.window.platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
     // get user-chosen theme
     Box settings = Hive.box('settings');

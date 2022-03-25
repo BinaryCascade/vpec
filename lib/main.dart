@@ -53,7 +53,7 @@ class _VPECAppState extends State<VPECApp> {
 
     Provider.of<FirebaseAppAuth>(context, listen: false).startListening();
 
-    final window = WidgetsBinding.instance!.window;
+    final window = WidgetsBinding.instance.window;
     window.onPlatformBrightnessChanged = () {
       // This callback gets invoked every time brightness changes
       setState(() {
