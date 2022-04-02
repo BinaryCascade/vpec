@@ -1,10 +1,13 @@
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:r_dotted_line_border/r_dotted_line_border.dart';
 
 import '../../models/full_schedule.dart';
 import '../../models/schedule/schedule_item.dart';
+import '../../utils/hive_helper.dart';
 import '../../utils/routes/routes.dart';
+import 'schedule_item_logic.dart';
 import 'schedule_logic.dart';
 
 class ScheduleItem extends StatelessWidget {
@@ -13,75 +16,116 @@ class ScheduleItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.only(left: 10.0, top: 9.0, bottom: 15.0),
-          decoration: BoxDecoration(
-            border: Border(
-              left: BorderSide(
-                color: Theme.of(context).colorScheme.onBackground,
-                width: 3,
-              ),
-            ),
+    return Consumer<ScheduleItemLogic>(
+      builder: (context, logic, _) {
+        return GestureDetector(
+          onTap: () => logic.toggleWidget(
+            context,
+            names: model.teachers[model.lessonName],
+            lessonName: model.lessonName,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '${model.lessonBeginning} - ${model.lessonEnding}',
-                style: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 36.0,
-                  letterSpacing: 0.15,
+              Container(
+                padding:
+                    const EdgeInsets.only(left: 10.0, top: 9.0, bottom: 15.0),
+                decoration: BoxDecoration(
+                  border: Border(
+                    left: BorderSide(
+                      color: Theme.of(context).colorScheme.onBackground,
+                      width: 3,
+                    ),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${model.lessonBeginning} - ${model.lessonEnding}',
+                      style: const TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 36.0,
+                        letterSpacing: 0.15,
+                      ),
+                    ),
+                    Text(
+                      '${model.lessonNumber} пара ${model.lessonName}',
+                      style: const TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18.0,
+                        letterSpacing: 0.15,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      model.timer ?? '',
+                      style: const TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18.0,
+                        letterSpacing: 0.15,
+                      ),
+                    ),
+                    AdditionalInfo(
+                      open: logic.open,
+                      info: logic.infoWidget,
+                    )
+                  ],
                 ),
               ),
-              Text(
-                '${model.lessonNumber} пара ${model.lessonName}',
-                style: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18.0,
-                  letterSpacing: 0.15,
+              Container(
+                padding: const EdgeInsets.only(left: 10, top: 9.5, bottom: 9),
+                decoration: BoxDecoration(
+                  border: RDottedLineBorder(
+                    // Меняй этой значение, чтобы дэши попали в расстояние нормально
+                    dottedLength: 3.5,
+                    dottedSpace: 3,
+                    left: BorderSide(
+                        width: 3,
+                        color: Theme.of(context).colorScheme.onBackground),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                model.timer ?? '',
-                style: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18.0,
-                  letterSpacing: 0.15,
+                child: Text(
+                  model.pauseAfterLesson,
+                  style: const TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18.0,
+                    letterSpacing: 0.15,
+                  ),
                 ),
               ),
             ],
           ),
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 10, top: 9.5, bottom: 9),
-          decoration: BoxDecoration(
-            border: RDottedLineBorder(
-              // Меняй этой значение, чтобы дэши попали в расстояние нормально
-              dottedLength: 3.5,
-              dottedSpace: 3,
-              left: BorderSide(
-                  width: 3, color: Theme.of(context).colorScheme.onBackground),
-            ),
-          ),
-          child: Text(
-            model.pauseAfterLesson,
-            style: const TextStyle(
-              fontFamily: 'Montserrat',
-              fontWeight: FontWeight.w600,
-              fontSize: 18.0,
-              letterSpacing: 0.15,
-            ),
-          ),
-        ),
-      ],
+        );
+      },
+    );
+  }
+}
+
+class AdditionalInfo extends StatefulWidget {
+  const AdditionalInfo({
+    Key? key,
+    required this.open,
+    required this.info,
+  }) : super(key: key);
+  final bool open;
+  final Widget info;
+
+  @override
+  State<AdditionalInfo> createState() => _AdditionalInfoState();
+}
+
+class _AdditionalInfoState extends State<AdditionalInfo> {
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSize(
+      curve: Curves.ease,
+      duration: const Duration(milliseconds: 250),
+      child: widget.info,
     );
   }
 }
@@ -95,8 +139,8 @@ class SchedulePanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<ScheduleItem> schedulePanel =
-        List<ScheduleItem>.generate(fullSchedule.timetable.length, (index) {
+    List<Widget> schedulePanel =
+        List<Widget>.generate(fullSchedule.timetable.length, (index) {
       String lessonNum = index.toString();
       String lessonEnding = fullSchedule.timetable[lessonNum].split('-').last;
       String nextLessonBeginning() {
@@ -115,18 +159,21 @@ class SchedulePanel extends StatelessWidget {
 
       bool shouldGiveTimers = fullSchedule.timers.isNotEmpty;
 
-      return ScheduleItem(
-        model: ScheduleItemModel(
-          timer: shouldGiveTimers ? fullSchedule.timers[index] : null,
-          lessonNumber: index,
-          teachers: fullSchedule.teachers,
-          lessonsFullNames: fullSchedule.fullLessonNames,
-          lessonsShortNames: fullSchedule.shortLessonNames,
-          lessonBeginning: fullSchedule.timetable[lessonNum].split('-').first,
-          lessonEnding: fullSchedule.timetable[lessonNum].split('-').last,
-          lessonName: lessonName(),
-          pauseAfterLesson: ScheduleTime.calculatePauseAfterLesson(
-              lessonEnding, nextLessonBeginning()),
+      return ChangeNotifierProvider<ScheduleItemLogic>(
+        create: (_) => ScheduleItemLogic(),
+        child: ScheduleItem(
+          model: ScheduleItemModel(
+            timer: shouldGiveTimers ? fullSchedule.timers[index] : null,
+            lessonNumber: index,
+            teachers: fullSchedule.teachers,
+            lessonsFullNames: fullSchedule.fullLessonNames,
+            lessonsShortNames: fullSchedule.shortLessonNames,
+            lessonBeginning: fullSchedule.timetable[lessonNum].split('-').first,
+            lessonEnding: fullSchedule.timetable[lessonNum].split('-').last,
+            lessonName: lessonName(),
+            pauseAfterLesson: ScheduleTime.calculatePauseAfterLesson(
+                lessonEnding, nextLessonBeginning()),
+          ),
         ),
       );
     });
@@ -137,13 +184,6 @@ class SchedulePanel extends StatelessWidget {
     );
   }
 }
-
-// DottedDecoration(
-// strokeWidth: 3,
-// linePosition: LinePosition.left,
-// dash: const [3, 3],
-// color: Colors.white,
-// )
 
 class FABPanel extends StatelessWidget {
   const FABPanel({Key? key}) : super(key: key);
@@ -174,6 +214,65 @@ class FABPanel extends StatelessWidget {
           onPressed: () => context.read<ScheduleLogic>().toggleShowingLesson(),
         ),
       ],
+    );
+  }
+}
+
+class AdditionalInfoPanelWidget extends StatelessWidget {
+  const AdditionalInfoPanelWidget({
+    Key? key,
+    required this.names,
+    required this.notes,
+    required this.lessonName,
+  }) : super(key: key);
+  final String names;
+  final String notes;
+  final String lessonName;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 0.0),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.people_outline,
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  names,
+                  style: Theme.of(context).textTheme.bodyText1,
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 160,
+            child: TextField(
+              controller: TextEditingController(text: notes),
+              decoration: const InputDecoration(
+                labelText: 'Заметки',
+              ),
+              maxLines: 6,
+              style: Theme.of(context).textTheme.bodyText1,
+              onChanged: (text) {
+                HiveHelper.saveValue(key: 'note_$lessonName', value: text);
+              },
+            ),
+          ),
+          Text(
+            'Хранится только на данном устройстве',
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+        ],
+      ),
     );
   }
 }

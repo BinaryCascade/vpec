@@ -39,7 +39,7 @@ dependencies:
   r_dotted_line_border: ^0.1.1
   hive: ^2.0.5 # db
   hive_flutter: ^1.1.0
-  share_plus: ^3.0.4 # share anything
+  share_plus: ^4.0.3 # share anything
   path_provider: ^2.0.8 # work with storage paths
   quick_actions: ^0.6.0+9 # shortcuts from launcher
   file_picker: ^4.3.2 # for adding images to announcements
@@ -52,6 +52,7 @@ dependencies:
   uc_pdfview: ^0.0.3
   freezed_annotation: ^1.1.0
   json_annotation: ^4.4.0
+  expandable: ^5.0.1
 
 flutter_native_splash:
   color: "#E8E8E8"

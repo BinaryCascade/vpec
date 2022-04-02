@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:duration/duration.dart';
 import 'package:duration/locale.dart';
@@ -56,7 +57,8 @@ class ScheduleLogic extends ChangeNotifier {
   String _makeUrl(String date) =>
       'https://raw.githubusercontent.com/ShyroTeam/vpec/'
       'new_schedule_system/assets/'
-      '$date.json';
+      '25-01-2022.json';
+      // '$date.json';
 
   /// Switch schedule display to today or tomorrow
   Future<void> toggleShowingLesson() async {

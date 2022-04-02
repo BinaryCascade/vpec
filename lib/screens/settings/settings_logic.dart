@@ -44,6 +44,10 @@ class SettingsLogic extends ChangeNotifier {
       Navigator.pop(context);
       showSnackBar(context, text: 'Данные введены неверно');
     }
+    catch (e) {
+      Navigator.pop(context);
+      showSnackBar(context, text: e.toString());
+    }
   }
 
   static Future<void> accountLogout(BuildContext context) async {
