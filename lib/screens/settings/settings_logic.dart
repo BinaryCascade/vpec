@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../../utils/firebase_auth.dart';
 import '/utils/hive_helper.dart';
 import '/utils/theme_helper.dart';
 import '/utils/utils.dart';
+import '../../utils/firebase_auth.dart';
 import '../../utils/routes/routes.dart';
 import '../../widgets/snackbars.dart';
 import 'settings_ui.dart';
@@ -43,8 +43,7 @@ class SettingsLogic extends ChangeNotifier {
     } on FirebaseAuthException {
       Navigator.pop(context);
       showSnackBar(context, text: 'Данные введены неверно');
-    }
-    catch (e) {
+    } catch (e) {
       Navigator.pop(context);
       showSnackBar(context, text: e.toString());
     }
@@ -137,4 +136,6 @@ class SettingsLogic extends ChangeNotifier {
         title: 'Открывать при запуске',
         child: const LaunchOnStartChooserUI());
   }
+
+  static void chooseGroups(BuildContext context) {}
 }

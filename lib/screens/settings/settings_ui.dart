@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../utils/firebase_auth.dart';
 import '/screens/debug/debug_screen.dart';
 import '/utils/hive_helper.dart';
 import '/utils/icons.dart';
 import '/widgets/styled_widgets.dart';
+import '../../utils/firebase_auth.dart';
 import 'settings_logic.dart';
 
 class AccountBlock extends StatefulWidget {
@@ -20,7 +20,7 @@ class _AccountBlockState extends State<AccountBlock> {
   @override
   Widget build(BuildContext context) {
     return Consumer<FirebaseAppAuth>(
-      builder: (BuildContext context, storage, Widget? child) {
+      builder: (BuildContext context, auth, Widget? child) {
         return AnimatedSize(
           curve: Curves.fastOutSlowIn,
           duration: const Duration(milliseconds: 400),
@@ -34,10 +34,20 @@ class _AccountBlockState extends State<AccountBlock> {
                     size: 32,
                   ),
                   title: 'Аккаунт',
-                  subtitle: storage.accountInfo.isLoggedIn
+                  subtitle: auth.accountInfo.isLoggedIn
                       ? SettingsLogic.getAccountModeText(context)
                       : 'Нажмите, чтобы войти в аккаунт'),
-              if (storage.accountInfo.level == AccessLevel.admin)
+              StyledListTile(
+                icon: Icon(
+                  Icons.subject_outlined,
+                  color: Theme.of(context).colorScheme.secondary,
+                  size: 32,
+                ),
+                title: 'Выбрать группу',
+                subtitle: 'Для показа расписания',
+                onTap: () => SettingsLogic.chooseGroups(context),
+              ),
+              if (auth.accountInfo.level == AccessLevel.admin)
                 Column(
                   children: [
                     HivedListTile(
@@ -271,7 +281,7 @@ class ThemeChooserUI extends StatefulWidget {
 }
 
 class _ThemeChooserUIState extends State<ThemeChooserUI> {
-  int? selectedItem = 0;
+  int selectedItem = 0;
   bool documentLightThemeSwitchState = false;
 
   @override
@@ -398,7 +408,7 @@ class LaunchOnStartChooserUI extends StatefulWidget {
 }
 
 class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
-  int? selectedItem = 0;
+  int selectedItem = 0;
 
   @override
   void initState() {
@@ -508,6 +518,125 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
                 selectedItem = value;
               });
             }),
+      ],
+    );
+  }
+}
+
+class ChooseGroupsUI extends StatelessWidget {
+  const ChooseGroupsUI({
+    Key? key,
+    required this.groups,
+    required this.courses,
+    required this.numOfGroup,
+  }) : super(key: key);
+
+  final List<String> groups;
+  final List<String> courses;
+  final List<String> numOfGroup;
+
+  @override
+  Widget build(BuildContext context) {
+    String pickedGroup = groups.first;
+    String pickedCourse = courses.first;
+    String pickedNumOfGroup = numOfGroup.first;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        DropdownButtonFormField<String>(
+          value: pickedGroup,
+          isExpanded: true,
+          isDense: false,
+          items: groups
+              .map<DropdownMenuItem<String>>(
+                (group) => DropdownMenuItem<String>(
+                  value: group,
+                  child: Text(group),
+                ),
+              )
+              .toList(),
+          onChanged: (value) {},
+          style: Theme.of(context).textTheme.headline3,
+          decoration: const InputDecoration(labelText: 'Специальность'),
+          menuMaxHeight: 400,
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          children: [
+            SizedBox(
+              width: 170,
+              child: DropdownButtonFormField<String>(
+                value: pickedCourse,
+                items: courses
+                    .map<DropdownMenuItem<String>>(
+                      (course) => DropdownMenuItem<String>(
+                        value: course,
+                        child: Text(course),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {},
+                style: Theme.of(context).textTheme.headline3,
+                decoration: const InputDecoration(labelText: 'Курс'),
+                menuMaxHeight: 400,
+              ),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: 170,
+              child: DropdownButtonFormField<String>(
+                value: pickedNumOfGroup,
+                items: numOfGroup
+                    .map<DropdownMenuItem<String>>(
+                      (groupNum) => DropdownMenuItem<String>(
+                        value: groupNum,
+                        child: Text(groupNum),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {},
+                style: Theme.of(context).textTheme.headline3,
+                decoration: const InputDecoration(labelText: 'Группа'),
+                menuMaxHeight: 400,
+              ),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 15.0),
+          child: Text(
+            'Будет выбрана группа: no',
+            style: Theme.of(context).textTheme.headline3,
+          ),
+        ),
+        SizedBox(
+          width: double.infinity,
+          child: OutlinedButton(
+            onPressed: () {},
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(Icons.add_outlined),
+                Text('Добавить'),
+              ],
+            ),
+          ),
+        ),
+        ButtonBar(
+          children: [
+            TextButton(
+              onPressed: () {},
+              child: const Text('Закрыть'),
+            ),
+            OutlinedButton(
+              onPressed: () {},
+              child: const Text('Продолжить'),
+            )
+          ],
+        ),
       ],
     );
   }
