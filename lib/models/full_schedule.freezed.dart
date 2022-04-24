@@ -12,34 +12,7 @@ part of 'full_schedule.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$FullScheduleTearOff {
-  const _$FullScheduleTearOff();
-
-  _FullSchedule call(
-      {List<String?> timers = const [],
-      required String groups,
-      required Map<String, dynamic> schedule,
-      required Map<String, dynamic> timetable,
-      required Map<String, dynamic> shortLessonNames,
-      required Map<String, dynamic> fullLessonNames,
-      required Map<String, dynamic> teachers}) {
-    return _FullSchedule(
-      timers: timers,
-      groups: groups,
-      schedule: schedule,
-      timetable: timetable,
-      shortLessonNames: shortLessonNames,
-      fullLessonNames: fullLessonNames,
-      teachers: teachers,
-    );
-  }
-}
-
-/// @nodoc
-const $FullSchedule = _$FullScheduleTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$FullSchedule {
@@ -198,29 +171,64 @@ class __$FullScheduleCopyWithImpl<$Res> extends _$FullScheduleCopyWithImpl<$Res>
 
 class _$_FullSchedule implements _FullSchedule {
   const _$_FullSchedule(
-      {this.timers = const [],
+      {final List<String?> timers = const [],
       required this.groups,
-      required this.schedule,
-      required this.timetable,
-      required this.shortLessonNames,
-      required this.fullLessonNames,
-      required this.teachers});
+      required final Map<String, dynamic> schedule,
+      required final Map<String, dynamic> timetable,
+      required final Map<String, dynamic> shortLessonNames,
+      required final Map<String, dynamic> fullLessonNames,
+      required final Map<String, dynamic> teachers})
+      : _timers = timers,
+        _schedule = schedule,
+        _timetable = timetable,
+        _shortLessonNames = shortLessonNames,
+        _fullLessonNames = fullLessonNames,
+        _teachers = teachers;
 
-  @JsonKey()
+  final List<String?> _timers;
   @override
-  final List<String?> timers;
+  @JsonKey()
+  List<String?> get timers {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_timers);
+  }
+
   @override
   final String groups;
+  final Map<String, dynamic> _schedule;
   @override
-  final Map<String, dynamic> schedule;
+  Map<String, dynamic> get schedule {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_schedule);
+  }
+
+  final Map<String, dynamic> _timetable;
   @override
-  final Map<String, dynamic> timetable;
+  Map<String, dynamic> get timetable {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_timetable);
+  }
+
+  final Map<String, dynamic> _shortLessonNames;
   @override
-  final Map<String, dynamic> shortLessonNames;
+  Map<String, dynamic> get shortLessonNames {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_shortLessonNames);
+  }
+
+  final Map<String, dynamic> _fullLessonNames;
   @override
-  final Map<String, dynamic> fullLessonNames;
+  Map<String, dynamic> get fullLessonNames {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_fullLessonNames);
+  }
+
+  final Map<String, dynamic> _teachers;
   @override
-  final Map<String, dynamic> teachers;
+  Map<String, dynamic> get teachers {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_teachers);
+  }
 
   @override
   String toString() {
@@ -262,28 +270,30 @@ class _$_FullSchedule implements _FullSchedule {
 
 abstract class _FullSchedule implements FullSchedule {
   const factory _FullSchedule(
-      {List<String?> timers,
-      required String groups,
-      required Map<String, dynamic> schedule,
-      required Map<String, dynamic> timetable,
-      required Map<String, dynamic> shortLessonNames,
-      required Map<String, dynamic> fullLessonNames,
-      required Map<String, dynamic> teachers}) = _$_FullSchedule;
+      {final List<String?> timers,
+      required final String groups,
+      required final Map<String, dynamic> schedule,
+      required final Map<String, dynamic> timetable,
+      required final Map<String, dynamic> shortLessonNames,
+      required final Map<String, dynamic> fullLessonNames,
+      required final Map<String, dynamic> teachers}) = _$_FullSchedule;
 
   @override
-  List<String?> get timers;
+  List<String?> get timers => throw _privateConstructorUsedError;
   @override
-  String get groups;
+  String get groups => throw _privateConstructorUsedError;
   @override
-  Map<String, dynamic> get schedule;
+  Map<String, dynamic> get schedule => throw _privateConstructorUsedError;
   @override
-  Map<String, dynamic> get timetable;
+  Map<String, dynamic> get timetable => throw _privateConstructorUsedError;
   @override
-  Map<String, dynamic> get shortLessonNames;
+  Map<String, dynamic> get shortLessonNames =>
+      throw _privateConstructorUsedError;
   @override
-  Map<String, dynamic> get fullLessonNames;
+  Map<String, dynamic> get fullLessonNames =>
+      throw _privateConstructorUsedError;
   @override
-  Map<String, dynamic> get teachers;
+  Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$FullScheduleCopyWith<_FullSchedule> get copyWith =>

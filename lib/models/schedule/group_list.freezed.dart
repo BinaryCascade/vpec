@@ -12,31 +12,11 @@ part of 'group_list.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 GroupList _$GroupListFromJson(Map<String, dynamic> json) {
   return _GroupList.fromJson(json);
 }
-
-/// @nodoc
-class _$GroupListTearOff {
-  const _$GroupListTearOff();
-
-  _GroupList call(
-      {@JsonKey(name: 'groupList', required: true, disallowNullValue: true)
-          required List<String> groupList}) {
-    return _GroupList(
-      groupList: groupList,
-    );
-  }
-
-  GroupList fromJson(Map<String, Object?> json) {
-    return GroupList.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $GroupList = _$GroupListTearOff();
 
 /// @nodoc
 mixin _$GroupList {
@@ -117,14 +97,20 @@ class __$GroupListCopyWithImpl<$Res> extends _$GroupListCopyWithImpl<$Res>
 class _$_GroupList implements _GroupList {
   const _$_GroupList(
       {@JsonKey(name: 'groupList', required: true, disallowNullValue: true)
-          required this.groupList});
+          required final List<String> groupList})
+      : _groupList = groupList;
 
   factory _$_GroupList.fromJson(Map<String, dynamic> json) =>
       _$$_GroupListFromJson(json);
 
+  @JsonKey(name: 'groupList', required: true, disallowNullValue: true)
+  final List<String> _groupList;
   @override
   @JsonKey(name: 'groupList', required: true, disallowNullValue: true)
-  final List<String> groupList;
+  List<String> get groupList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_groupList);
+  }
 
   @override
   String toString() {
@@ -139,6 +125,7 @@ class _$_GroupList implements _GroupList {
             const DeepCollectionEquality().equals(other.groupList, groupList));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(groupList));
@@ -157,14 +144,14 @@ class _$_GroupList implements _GroupList {
 abstract class _GroupList implements GroupList {
   const factory _GroupList(
       {@JsonKey(name: 'groupList', required: true, disallowNullValue: true)
-          required List<String> groupList}) = _$_GroupList;
+          required final List<String> groupList}) = _$_GroupList;
 
   factory _GroupList.fromJson(Map<String, dynamic> json) =
       _$_GroupList.fromJson;
 
   @override
   @JsonKey(name: 'groupList', required: true, disallowNullValue: true)
-  List<String> get groupList;
+  List<String> get groupList => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GroupListCopyWith<_GroupList> get copyWith =>

@@ -12,31 +12,11 @@ part of 'schedule.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Schedule _$ScheduleFromJson(Map<String, dynamic> json) {
   return _Schedule.fromJson(json);
 }
-
-/// @nodoc
-class _$ScheduleTearOff {
-  const _$ScheduleTearOff();
-
-  _Schedule call(
-      {@JsonKey(name: 'schedule', required: true, disallowNullValue: true)
-          required Map<String, dynamic> scheduleMap}) {
-    return _Schedule(
-      scheduleMap: scheduleMap,
-    );
-  }
-
-  Schedule fromJson(Map<String, Object?> json) {
-    return Schedule.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Schedule = _$ScheduleTearOff();
 
 /// @nodoc
 mixin _$Schedule {
@@ -116,14 +96,20 @@ class __$ScheduleCopyWithImpl<$Res> extends _$ScheduleCopyWithImpl<$Res>
 class _$_Schedule implements _Schedule {
   const _$_Schedule(
       {@JsonKey(name: 'schedule', required: true, disallowNullValue: true)
-          required this.scheduleMap});
+          required final Map<String, dynamic> scheduleMap})
+      : _scheduleMap = scheduleMap;
 
   factory _$_Schedule.fromJson(Map<String, dynamic> json) =>
       _$$_ScheduleFromJson(json);
 
+  @JsonKey(name: 'schedule', required: true, disallowNullValue: true)
+  final Map<String, dynamic> _scheduleMap;
   @override
   @JsonKey(name: 'schedule', required: true, disallowNullValue: true)
-  final Map<String, dynamic> scheduleMap;
+  Map<String, dynamic> get scheduleMap {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_scheduleMap);
+  }
 
   @override
   String toString() {
@@ -139,6 +125,7 @@ class _$_Schedule implements _Schedule {
                 .equals(other.scheduleMap, scheduleMap));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(scheduleMap));
@@ -157,13 +144,13 @@ class _$_Schedule implements _Schedule {
 abstract class _Schedule implements Schedule {
   const factory _Schedule(
       {@JsonKey(name: 'schedule', required: true, disallowNullValue: true)
-          required Map<String, dynamic> scheduleMap}) = _$_Schedule;
+          required final Map<String, dynamic> scheduleMap}) = _$_Schedule;
 
   factory _Schedule.fromJson(Map<String, dynamic> json) = _$_Schedule.fromJson;
 
   @override
   @JsonKey(name: 'schedule', required: true, disallowNullValue: true)
-  Map<String, dynamic> get scheduleMap;
+  Map<String, dynamic> get scheduleMap => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ScheduleCopyWith<_Schedule> get copyWith =>

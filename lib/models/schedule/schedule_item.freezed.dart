@@ -12,38 +12,7 @@ part of 'schedule_item.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ScheduleItemModelTearOff {
-  const _$ScheduleItemModelTearOff();
-
-  _ScheduleItemModel call(
-      {required int lessonNumber,
-      required String lessonBeginning,
-      required String lessonEnding,
-      required String lessonName,
-      required String pauseAfterLesson,
-      String? timer,
-      required Map<String, dynamic> teachers,
-      required Map<String, dynamic> lessonsShortNames,
-      required Map<String, dynamic> lessonsFullNames}) {
-    return _ScheduleItemModel(
-      lessonNumber: lessonNumber,
-      lessonBeginning: lessonBeginning,
-      lessonEnding: lessonEnding,
-      lessonName: lessonName,
-      pauseAfterLesson: pauseAfterLesson,
-      timer: timer,
-      teachers: teachers,
-      lessonsShortNames: lessonsShortNames,
-      lessonsFullNames: lessonsFullNames,
-    );
-  }
-}
-
-/// @nodoc
-const $ScheduleItemModel = _$ScheduleItemModelTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ScheduleItemModel {
@@ -236,9 +205,12 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
       required this.lessonName,
       required this.pauseAfterLesson,
       this.timer,
-      required this.teachers,
-      required this.lessonsShortNames,
-      required this.lessonsFullNames});
+      required final Map<String, dynamic> teachers,
+      required final Map<String, dynamic> lessonsShortNames,
+      required final Map<String, dynamic> lessonsFullNames})
+      : _teachers = teachers,
+        _lessonsShortNames = lessonsShortNames,
+        _lessonsFullNames = lessonsFullNames;
 
   @override
   final int lessonNumber;
@@ -252,12 +224,26 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
   final String pauseAfterLesson;
   @override
   final String? timer;
+  final Map<String, dynamic> _teachers;
   @override
-  final Map<String, dynamic> teachers;
+  Map<String, dynamic> get teachers {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_teachers);
+  }
+
+  final Map<String, dynamic> _lessonsShortNames;
   @override
-  final Map<String, dynamic> lessonsShortNames;
+  Map<String, dynamic> get lessonsShortNames {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_lessonsShortNames);
+  }
+
+  final Map<String, dynamic> _lessonsFullNames;
   @override
-  final Map<String, dynamic> lessonsFullNames;
+  Map<String, dynamic> get lessonsFullNames {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_lessonsFullNames);
+  }
 
   @override
   String toString() {
@@ -308,34 +294,37 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
 
 abstract class _ScheduleItemModel implements ScheduleItemModel {
   const factory _ScheduleItemModel(
-      {required int lessonNumber,
-      required String lessonBeginning,
-      required String lessonEnding,
-      required String lessonName,
-      required String pauseAfterLesson,
-      String? timer,
-      required Map<String, dynamic> teachers,
-      required Map<String, dynamic> lessonsShortNames,
-      required Map<String, dynamic> lessonsFullNames}) = _$_ScheduleItemModel;
+          {required final int lessonNumber,
+          required final String lessonBeginning,
+          required final String lessonEnding,
+          required final String lessonName,
+          required final String pauseAfterLesson,
+          final String? timer,
+          required final Map<String, dynamic> teachers,
+          required final Map<String, dynamic> lessonsShortNames,
+          required final Map<String, dynamic> lessonsFullNames}) =
+      _$_ScheduleItemModel;
 
   @override
-  int get lessonNumber;
+  int get lessonNumber => throw _privateConstructorUsedError;
   @override
-  String get lessonBeginning;
+  String get lessonBeginning => throw _privateConstructorUsedError;
   @override
-  String get lessonEnding;
+  String get lessonEnding => throw _privateConstructorUsedError;
   @override
-  String get lessonName;
+  String get lessonName => throw _privateConstructorUsedError;
   @override
-  String get pauseAfterLesson;
+  String get pauseAfterLesson => throw _privateConstructorUsedError;
   @override
-  String? get timer;
+  String? get timer => throw _privateConstructorUsedError;
   @override
-  Map<String, dynamic> get teachers;
+  Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
   @override
-  Map<String, dynamic> get lessonsShortNames;
+  Map<String, dynamic> get lessonsShortNames =>
+      throw _privateConstructorUsedError;
   @override
-  Map<String, dynamic> get lessonsFullNames;
+  Map<String, dynamic> get lessonsFullNames =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ScheduleItemModelCopyWith<_ScheduleItemModel> get copyWith =>

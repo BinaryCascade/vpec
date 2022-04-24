@@ -12,31 +12,11 @@ part of 'group_definition.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 GroupDefinition _$GroupDefinitionFromJson(Map<String, dynamic> json) {
   return _GroupDefinition.fromJson(json);
 }
-
-/// @nodoc
-class _$GroupDefinitionTearOff {
-  const _$GroupDefinitionTearOff();
-
-  _GroupDefinition call(
-      {@JsonKey(name: 'definition', required: true, disallowNullValue: true)
-          required Map<String, dynamic> groupDefinitionMap}) {
-    return _GroupDefinition(
-      groupDefinitionMap: groupDefinitionMap,
-    );
-  }
-
-  GroupDefinition fromJson(Map<String, Object?> json) {
-    return GroupDefinition.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $GroupDefinition = _$GroupDefinitionTearOff();
 
 /// @nodoc
 mixin _$GroupDefinition {
@@ -123,14 +103,20 @@ class __$GroupDefinitionCopyWithImpl<$Res>
 class _$_GroupDefinition implements _GroupDefinition {
   const _$_GroupDefinition(
       {@JsonKey(name: 'definition', required: true, disallowNullValue: true)
-          required this.groupDefinitionMap});
+          required final Map<String, dynamic> groupDefinitionMap})
+      : _groupDefinitionMap = groupDefinitionMap;
 
   factory _$_GroupDefinition.fromJson(Map<String, dynamic> json) =>
       _$$_GroupDefinitionFromJson(json);
 
+  @JsonKey(name: 'definition', required: true, disallowNullValue: true)
+  final Map<String, dynamic> _groupDefinitionMap;
   @override
   @JsonKey(name: 'definition', required: true, disallowNullValue: true)
-  final Map<String, dynamic> groupDefinitionMap;
+  Map<String, dynamic> get groupDefinitionMap {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_groupDefinitionMap);
+  }
 
   @override
   String toString() {
@@ -146,6 +132,7 @@ class _$_GroupDefinition implements _GroupDefinition {
                 .equals(other.groupDefinitionMap, groupDefinitionMap));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(groupDefinitionMap));
@@ -164,7 +151,7 @@ class _$_GroupDefinition implements _GroupDefinition {
 abstract class _GroupDefinition implements GroupDefinition {
   const factory _GroupDefinition(
           {@JsonKey(name: 'definition', required: true, disallowNullValue: true)
-              required Map<String, dynamic> groupDefinitionMap}) =
+              required final Map<String, dynamic> groupDefinitionMap}) =
       _$_GroupDefinition;
 
   factory _GroupDefinition.fromJson(Map<String, dynamic> json) =
@@ -172,7 +159,8 @@ abstract class _GroupDefinition implements GroupDefinition {
 
   @override
   @JsonKey(name: 'definition', required: true, disallowNullValue: true)
-  Map<String, dynamic> get groupDefinitionMap;
+  Map<String, dynamic> get groupDefinitionMap =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GroupDefinitionCopyWith<_GroupDefinition> get copyWith =>

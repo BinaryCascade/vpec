@@ -12,31 +12,11 @@ part of 'timetable.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Timetable _$TimetableFromJson(Map<String, dynamic> json) {
   return _Timetable.fromJson(json);
 }
-
-/// @nodoc
-class _$TimetableTearOff {
-  const _$TimetableTearOff();
-
-  _Timetable call(
-      {@JsonKey(name: 'timetable', required: true, disallowNullValue: true)
-          required Map<String, dynamic> timetableMap}) {
-    return _Timetable(
-      timetableMap: timetableMap,
-    );
-  }
-
-  Timetable fromJson(Map<String, Object?> json) {
-    return Timetable.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Timetable = _$TimetableTearOff();
 
 /// @nodoc
 mixin _$Timetable {
@@ -117,14 +97,20 @@ class __$TimetableCopyWithImpl<$Res> extends _$TimetableCopyWithImpl<$Res>
 class _$_Timetable implements _Timetable {
   const _$_Timetable(
       {@JsonKey(name: 'timetable', required: true, disallowNullValue: true)
-          required this.timetableMap});
+          required final Map<String, dynamic> timetableMap})
+      : _timetableMap = timetableMap;
 
   factory _$_Timetable.fromJson(Map<String, dynamic> json) =>
       _$$_TimetableFromJson(json);
 
+  @JsonKey(name: 'timetable', required: true, disallowNullValue: true)
+  final Map<String, dynamic> _timetableMap;
   @override
   @JsonKey(name: 'timetable', required: true, disallowNullValue: true)
-  final Map<String, dynamic> timetableMap;
+  Map<String, dynamic> get timetableMap {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_timetableMap);
+  }
 
   @override
   String toString() {
@@ -140,6 +126,7 @@ class _$_Timetable implements _Timetable {
                 .equals(other.timetableMap, timetableMap));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(timetableMap));
@@ -158,14 +145,14 @@ class _$_Timetable implements _Timetable {
 abstract class _Timetable implements Timetable {
   const factory _Timetable(
       {@JsonKey(name: 'timetable', required: true, disallowNullValue: true)
-          required Map<String, dynamic> timetableMap}) = _$_Timetable;
+          required final Map<String, dynamic> timetableMap}) = _$_Timetable;
 
   factory _Timetable.fromJson(Map<String, dynamic> json) =
       _$_Timetable.fromJson;
 
   @override
   @JsonKey(name: 'timetable', required: true, disallowNullValue: true)
-  Map<String, dynamic> get timetableMap;
+  Map<String, dynamic> get timetableMap => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TimetableCopyWith<_Timetable> get copyWith =>

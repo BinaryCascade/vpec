@@ -12,32 +12,7 @@ part of 'account_info.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AccountInfoTearOff {
-  const _$AccountInfoTearOff();
-
-  _AccountInfo call(
-      {required bool isLoggedIn,
-      String? email,
-      String? uid,
-      String? name,
-      required AccessLevel level,
-      bool? isLowLevel}) {
-    return _AccountInfo(
-      isLoggedIn: isLoggedIn,
-      email: email,
-      uid: uid,
-      name: name,
-      level: level,
-      isLowLevel: isLowLevel,
-    );
-  }
-}
-
-/// @nodoc
-const $AccountInfo = _$AccountInfoTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AccountInfo {
@@ -239,25 +214,25 @@ class _$_AccountInfo implements _AccountInfo {
 
 abstract class _AccountInfo implements AccountInfo {
   const factory _AccountInfo(
-      {required bool isLoggedIn,
-      String? email,
-      String? uid,
-      String? name,
-      required AccessLevel level,
-      bool? isLowLevel}) = _$_AccountInfo;
+      {required final bool isLoggedIn,
+      final String? email,
+      final String? uid,
+      final String? name,
+      required final AccessLevel level,
+      final bool? isLowLevel}) = _$_AccountInfo;
 
   @override
-  bool get isLoggedIn;
+  bool get isLoggedIn => throw _privateConstructorUsedError;
   @override
-  String? get email;
+  String? get email => throw _privateConstructorUsedError;
   @override
-  String? get uid;
+  String? get uid => throw _privateConstructorUsedError;
   @override
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  AccessLevel get level;
+  AccessLevel get level => throw _privateConstructorUsedError;
   @override
-  bool? get isLowLevel;
+  bool? get isLowLevel => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AccountInfoCopyWith<_AccountInfo> get copyWith =>
