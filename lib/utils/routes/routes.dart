@@ -49,6 +49,8 @@ class Routes {
         transitionType: TransitionType.cupertino);
     router.define(loginByURLScreen,
         handler: loginByURLHandler, transitionType: TransitionType.cupertino);
-    router.define(fullScheduleScreen, handler: fullScheduleScreenHandler,);
+    router.define(fullScheduleScreen,
+        handler: fullScheduleScreenHandler,
+        transitionType: TransitionType.cupertino);
   }
 }
