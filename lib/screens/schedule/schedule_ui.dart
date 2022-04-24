@@ -1,4 +1,3 @@
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:r_dotted_line_border/r_dotted_line_border.dart';
@@ -13,6 +12,12 @@ import 'schedule_logic.dart';
 class ScheduleItem extends StatelessWidget {
   const ScheduleItem({Key? key, required this.model}) : super(key: key);
   final ScheduleItemModel model;
+
+  Color getItemColor(BuildContext context) {
+    return model.timer == null || model.timer!.isEmpty
+        ? Theme.of(context).colorScheme.onBackground.withOpacity(0.6)
+        : Theme.of(context).colorScheme.onBackground;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +38,7 @@ class ScheduleItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     left: BorderSide(
-                      color: Theme.of(context).colorScheme.onBackground,
+                      color: getItemColor(context),
                       width: 3,
                     ),
                   ),
@@ -43,7 +48,8 @@ class ScheduleItem extends StatelessWidget {
                   children: [
                     Text(
                       '${model.lessonBeginning} - ${model.lessonEnding}',
-                      style: const TextStyle(
+                      style: TextStyle(
+                        color: getItemColor(context),
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w600,
                         fontSize: 36.0,
@@ -52,7 +58,8 @@ class ScheduleItem extends StatelessWidget {
                     ),
                     Text(
                       '${model.lessonNumber} пара ${model.lessonName}',
-                      style: const TextStyle(
+                      style: TextStyle(
+                        color: getItemColor(context),
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w600,
                         fontSize: 18.0,
@@ -62,7 +69,8 @@ class ScheduleItem extends StatelessWidget {
                     const SizedBox(height: 6),
                     Text(
                       model.timer ?? '',
-                      style: const TextStyle(
+                      style: TextStyle(
+                        color: getItemColor(context),
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w600,
                         fontSize: 18.0,
@@ -85,12 +93,13 @@ class ScheduleItem extends StatelessWidget {
                     dottedSpace: 3,
                     left: BorderSide(
                         width: 3,
-                        color: Theme.of(context).colorScheme.onBackground),
+                        color: getItemColor(context)),
                   ),
                 ),
                 child: Text(
                   model.pauseAfterLesson,
-                  style: const TextStyle(
+                  style: TextStyle(
+                    color: getItemColor(context),
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w600,
                     fontSize: 18.0,
