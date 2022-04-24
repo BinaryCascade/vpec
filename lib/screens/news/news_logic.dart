@@ -23,6 +23,7 @@ class NewsLogic extends ChangeNotifier {
           .get(Uri.parse(feedUrl))
           .timeout(const Duration(seconds: 70));
       updateFeed(RssFeed.parse(response.body));
+
       return RssFeed.parse(response.body);
     } catch (e) {
       return null;
@@ -37,6 +38,7 @@ class NewsLogic extends ChangeNotifier {
       final num length = dateString.length.clamp(0, rfc822DatePattern.length);
       final trimmedPattern = rfc822DatePattern.substring(0, length as int);
       final format = DateFormat(trimmedPattern, 'en_US');
+
       return format.parse(dateString);
     } on FormatException {
       return null;

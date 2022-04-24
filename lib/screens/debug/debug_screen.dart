@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../schedule/schedule_screen.dart';
 import '/models/document_model.dart';
 import '/screens/login/login_logic.dart';
 import '/screens/login/login_screen.dart';
 import '../../utils/notifications/firebase_messaging.dart';
 import '../../utils/routes/routes.dart';
 import '../../widgets/loading_indicator.dart';
+import '../schedule/schedule_screen.dart';
 
 class DebugScreen extends StatelessWidget {
   const DebugScreen({Key? key}) : super(key: key);
@@ -27,13 +27,15 @@ class DebugScreen extends StatelessWidget {
               future: AppFirebaseMessaging.getToken(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) return const LoadingIndicator();
+
                 return Column(
                   children: [
                     SizedBox(
                       width: double.infinity,
                       child: OutlinedButton(
                         onPressed: () => Clipboard.setData(
-                            ClipboardData(text: snapshot.data!)),
+                          ClipboardData(text: snapshot.data!),
+                        ),
                         child: const Text('Copy FCM token'),
                       ),
                     ),

@@ -13,5 +13,4 @@ class FullSchedule with _$FullSchedule {
     required Map<String, dynamic> fullLessonNames,
     required Map<String, dynamic> teachers,
   }) = _FullSchedule;
-
 }

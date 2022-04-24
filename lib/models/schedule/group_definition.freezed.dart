@@ -25,6 +25,7 @@ mixin _$GroupDefinition {
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $GroupDefinitionCopyWith<GroupDefinition> get copyWith =>
       throw _privateConstructorUsedError;
@@ -35,6 +36,7 @@ abstract class $GroupDefinitionCopyWith<$Res> {
   factory $GroupDefinitionCopyWith(
           GroupDefinition value, $Res Function(GroupDefinition) then) =
       _$GroupDefinitionCopyWithImpl<$Res>;
+
   $Res call(
       {@JsonKey(name: 'definition', required: true, disallowNullValue: true)
           Map<String, dynamic> groupDefinitionMap});
@@ -46,6 +48,7 @@ class _$GroupDefinitionCopyWithImpl<$Res>
   _$GroupDefinitionCopyWithImpl(this._value, this._then);
 
   final GroupDefinition _value;
+
   // ignore: unused_field
   final $Res Function(GroupDefinition) _then;
 
@@ -68,6 +71,7 @@ abstract class _$GroupDefinitionCopyWith<$Res>
   factory _$GroupDefinitionCopyWith(
           _GroupDefinition value, $Res Function(_GroupDefinition) then) =
       __$GroupDefinitionCopyWithImpl<$Res>;
+
   @override
   $Res call(
       {@JsonKey(name: 'definition', required: true, disallowNullValue: true)
@@ -111,6 +115,7 @@ class _$_GroupDefinition implements _GroupDefinition {
 
   @JsonKey(name: 'definition', required: true, disallowNullValue: true)
   final Map<String, dynamic> _groupDefinitionMap;
+
   @override
   @JsonKey(name: 'definition', required: true, disallowNullValue: true)
   Map<String, dynamic> get groupDefinitionMap {
@@ -161,6 +166,7 @@ abstract class _GroupDefinition implements GroupDefinition {
   @JsonKey(name: 'definition', required: true, disallowNullValue: true)
   Map<String, dynamic> get groupDefinitionMap =>
       throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
   _$GroupDefinitionCopyWith<_GroupDefinition> get copyWith =>

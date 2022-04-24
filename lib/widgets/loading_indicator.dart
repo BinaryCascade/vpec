@@ -20,6 +20,7 @@ class LoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (delayedAppears) return appearsIndicator;
+
     return usualIndicator;
   }
 
@@ -35,6 +36,7 @@ class LoadingIndicator extends StatelessWidget {
       future: awaitMoment(),
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         if (snapshot.data!) return usualIndicator;
+
         return const SizedBox();
       },
     );
@@ -42,6 +44,7 @@ class LoadingIndicator extends StatelessWidget {
 
   Future<bool> awaitMoment() async {
     await Future.delayed(appearsDuration);
+
     return true;
   }
 }

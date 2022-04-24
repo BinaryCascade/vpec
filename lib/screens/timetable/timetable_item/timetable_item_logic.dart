@@ -40,6 +40,7 @@ class TimeTableItemLogic extends ChangeNotifier {
       if (nowDuration < startDuration && needPrintText) {
         if (startDuration - nowDuration <= smallestUntilStartDuration) {
           smallestUntilStartDuration = startDuration - nowDuration;
+
           return 'До начала: ' +
               printUntilDuration(startDuration - nowDuration);
         }
@@ -62,7 +63,10 @@ class TimeTableItemLogic extends ChangeNotifier {
   }
 
   Future<void> updateAfterFewMoment() async {
-    await Future.delayed(const Duration(seconds: 1), () => needPrintText = true);
+    await Future.delayed(
+      const Duration(seconds: 1),
+      () => needPrintText = true,
+    );
   }
 
   void cancelTimer() {
@@ -70,8 +74,10 @@ class TimeTableItemLogic extends ChangeNotifier {
   }
 
   String printUntilDuration(Duration duration) {
-    return prettyDuration(Duration(minutes: duration.inMinutes + 1),
-        locale: const RussianDurationLanguage());
+    return prettyDuration(
+      Duration(minutes: duration.inMinutes + 1),
+      locale: const RussianDurationLanguage(),
+    );
   }
 
   void updateTime() {
@@ -83,13 +89,16 @@ class TimeTableItemLogic extends ChangeNotifier {
 }
 
 class TimeTableEditorMode {
-  void openTimeTableItemEdit(
-      {required BuildContext context, required TimeModel model}) {
+  void openTimeTableItemEdit({
+    required BuildContext context,
+    required TimeModel model,
+  }) {
     showRoundedModalSheet(
-        context: context,
-        title: 'Редактировать: ${model.name}',
-        child: EditTimeTableItemDialogUI(
-          model: model,
-        ));
+      context: context,
+      title: 'Редактировать: ${model.name}',
+      child: EditTimeTableItemDialogUI(
+        model: model,
+      ),
+    );
   }
 }

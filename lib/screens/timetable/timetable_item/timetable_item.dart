@@ -21,23 +21,29 @@ class _TimeTableItemState extends State<TimeTableItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(left: 40.0),
-        child: GestureDetector(
-          onDoubleTap: () {
-            if (AccountEditorMode().isEditorModeActive) {
-              TimeTableEditorMode().openTimeTableItemEdit(
-                  context: context, model: widget.timeModel);
-            }
-          },
-          child: Wrap(
-            direction: Axis.vertical,
-            children: [
-              buildLesson(),
-              buildBreak(),
-            ],
-          ),
-        ));
+      padding: const EdgeInsets.only(left: 40.0),
+      child: GestureDetector(
+        onDoubleTap: () {
+          if (AccountEditorMode().isEditorModeActive) {
+            TimeTableEditorMode().openTimeTableItemEdit(
+              context: context,
+              model: widget.timeModel,
+            );
+          }
+        },
+        child: Wrap(
+          direction: Axis.vertical,
+          children: [
+            buildLesson(),
+            buildBreak(),
+          ],
+        ),
+      ),
+    );
   }
+
+  // Ignoring cuz whole screen is deprecated and will be replaced
+  // with ScheduleScreen
 
   Widget buildLesson() {
     Color itemColor = context
@@ -72,19 +78,22 @@ class _TimeTableItemState extends State<TimeTableItem> {
                     .headline5!
                     .copyWith(color: itemColor),
               ),
-              Text(widget.timeModel.name!,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline6!
-                      .copyWith(color: itemColor)),
               Text(
-                  context
-                      .watch<TimeTableItemLogic>()
-                      .updateTimeItem(widget.timeModel),
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline6!
-                      .copyWith(color: itemColor)),
+                widget.timeModel.name!,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(color: itemColor),
+              ),
+              Text(
+                context
+                    .watch<TimeTableItemLogic>()
+                    .updateTimeItem(widget.timeModel),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(color: itemColor),
+              ),
             ],
           ),
         ),
@@ -103,12 +112,13 @@ class _TimeTableItemState extends State<TimeTableItem> {
     return Row(
       children: [
         DottedLine(
-            direction: Axis.vertical,
-            lineLength: 52,
-            lineThickness: 3,
-            dashGapLength: 3.4,
-            dashRadius: 0.0,
-            dashColor: itemColor),
+          direction: Axis.vertical,
+          lineLength: 52,
+          lineThickness: 3,
+          dashGapLength: 3.4,
+          dashRadius: 0.0,
+          dashColor: itemColor,
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Column(

@@ -17,14 +17,22 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ScheduleItemModel {
   int get lessonNumber => throw _privateConstructorUsedError;
+
   String get lessonBeginning => throw _privateConstructorUsedError;
+
   String get lessonEnding => throw _privateConstructorUsedError;
+
   String get lessonName => throw _privateConstructorUsedError;
+
   String get pauseAfterLesson => throw _privateConstructorUsedError;
+
   String? get timer => throw _privateConstructorUsedError;
+
   Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
+
   Map<String, dynamic> get lessonsShortNames =>
       throw _privateConstructorUsedError;
+
   Map<String, dynamic> get lessonsFullNames =>
       throw _privateConstructorUsedError;
 
@@ -38,6 +46,7 @@ abstract class $ScheduleItemModelCopyWith<$Res> {
   factory $ScheduleItemModelCopyWith(
           ScheduleItemModel value, $Res Function(ScheduleItemModel) then) =
       _$ScheduleItemModelCopyWithImpl<$Res>;
+
   $Res call(
       {int lessonNumber,
       String lessonBeginning,
@@ -56,6 +65,7 @@ class _$ScheduleItemModelCopyWithImpl<$Res>
   _$ScheduleItemModelCopyWithImpl(this._value, this._then);
 
   final ScheduleItemModel _value;
+
   // ignore: unused_field
   final $Res Function(ScheduleItemModel) _then;
 
@@ -118,6 +128,7 @@ abstract class _$ScheduleItemModelCopyWith<$Res>
   factory _$ScheduleItemModelCopyWith(
           _ScheduleItemModel value, $Res Function(_ScheduleItemModel) then) =
       __$ScheduleItemModelCopyWithImpl<$Res>;
+
   @override
   $Res call(
       {int lessonNumber,
@@ -225,6 +236,7 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
   @override
   final String? timer;
   final Map<String, dynamic> _teachers;
+
   @override
   Map<String, dynamic> get teachers {
     // ignore: implicit_dynamic_type
@@ -232,6 +244,7 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
   }
 
   final Map<String, dynamic> _lessonsShortNames;
+
   @override
   Map<String, dynamic> get lessonsShortNames {
     // ignore: implicit_dynamic_type
@@ -239,6 +252,7 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
   }
 
   final Map<String, dynamic> _lessonsFullNames;
+
   @override
   Map<String, dynamic> get lessonsFullNames {
     // ignore: implicit_dynamic_type
@@ -307,24 +321,33 @@ abstract class _ScheduleItemModel implements ScheduleItemModel {
 
   @override
   int get lessonNumber => throw _privateConstructorUsedError;
+
   @override
   String get lessonBeginning => throw _privateConstructorUsedError;
+
   @override
   String get lessonEnding => throw _privateConstructorUsedError;
+
   @override
   String get lessonName => throw _privateConstructorUsedError;
+
   @override
   String get pauseAfterLesson => throw _privateConstructorUsedError;
+
   @override
   String? get timer => throw _privateConstructorUsedError;
+
   @override
   Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
+
   @override
   Map<String, dynamic> get lessonsShortNames =>
       throw _privateConstructorUsedError;
+
   @override
   Map<String, dynamic> get lessonsFullNames =>
       throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
   _$ScheduleItemModelCopyWith<_ScheduleItemModel> get copyWith =>

@@ -14,16 +14,12 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   @override
   Widget build(BuildContext context) {
     return BreakpointBuilder(builder: (context, breakpoint) {
-      if (breakpoint.window < WindowSize.small) {
-        // mobile view
-        return const Scaffold(
-          body: PageStorageUI(),
-          bottomNavigationBar: BottomBarUI(),
-        );
-      } else {
-        // tablet view
-        return const Scaffold(body: BuildTabletUI());
-      }
+      return breakpoint.window < WindowSize.small
+          ? const Scaffold(
+              body: PageStorageUI(),
+              bottomNavigationBar: BottomBarUI(),
+            )
+          : const Scaffold(body: BuildTabletUI());
     });
   }
 }

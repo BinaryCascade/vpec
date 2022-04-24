@@ -58,7 +58,8 @@ class _VPECAppState extends State<VPECApp> {
       // This callback gets invoked every time brightness changes
       setState(() {
         context.read<ThemeNotifier>().changeTheme(
-            ThemeHelper.isDarkMode ? ThemeMode.dark : ThemeMode.light);
+              ThemeHelper.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+            );
       });
     };
     super.initState();

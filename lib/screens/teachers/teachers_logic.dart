@@ -87,9 +87,10 @@ class TeachersLogic extends ChangeNotifier {
 class TeachersLogicEditMode {
   void openAddNewDialog(BuildContext context) {
     showRoundedModalSheet(
-        context: context,
-        title: 'Добавить преподавателя',
-        child: const AddNewTeacherDialogUI());
+      context: context,
+      title: 'Добавить преподавателя',
+      child: const AddNewTeacherDialogUI(),
+    );
   }
 
   void addNewTeacher(TeacherModel model) {

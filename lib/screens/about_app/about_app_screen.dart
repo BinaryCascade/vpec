@@ -33,17 +33,20 @@ class AboutAppScreen extends StatelessWidget {
             ),
             const Divider(),
             StyledListTile(
-                title: 'Исходный код приложения',
-                subtitle: 'Нажмите, чтобы открыть GitHub',
-                onTap: () => openUrl('https://github.com/ShyroTeam/vpec')),
+              title: 'Исходный код приложения',
+              subtitle: 'Нажмите, чтобы открыть GitHub',
+              onTap: () => openUrl('https://github.com/ShyroTeam/vpec'),
+            ),
             StyledListTile(
-                title: 'Лицензии библиотек',
-                subtitle: 'Нажмите, чтобы открыть список лицензий',
-                onTap: () => showLicensePage(
-                    context: context,
-                    applicationName: 'ВЭК',
-                    applicationLegalese: 'Создано для студентов и работников '
-                        'Волгоградского энергетического колледжа')),
+              title: 'Лицензии библиотек',
+              subtitle: 'Нажмите, чтобы открыть список лицензий',
+              onTap: () => showLicensePage(
+                context: context,
+                applicationName: 'ВЭК',
+                applicationLegalese: 'Создано для студентов и работников '
+                    'Волгоградского энергетического колледжа',
+              ),
+            ),
           ],
         ),
       ),

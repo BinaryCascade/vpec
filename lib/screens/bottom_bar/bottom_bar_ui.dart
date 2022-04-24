@@ -21,8 +21,9 @@ class PageStorageUI extends StatelessWidget {
     const AnnouncementsScreen(),
     const TimeTableTabs(),
     ChangeNotifierProvider(
-        create: (_) => LessonsScheduleLogic(),
-        child: const LessonsScheduleScreen()),
+      create: (_) => LessonsScheduleLogic(),
+      child: const LessonsScheduleScreen(),
+    ),
     const MenuScreen(),
   ];
 
@@ -51,29 +52,33 @@ class BottomBarUI extends StatelessWidget {
         },
         items: [
           BottomNavigationBarItem(
-              backgroundColor:
-                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-              icon: const Icon(VpecIconPack.news_outline),
-              activeIcon: const Icon(VpecIconPack.news),
-              label: 'События'),
+            backgroundColor:
+                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+            icon: const Icon(VpecIconPack.news_outline),
+            activeIcon: const Icon(VpecIconPack.news),
+            label: 'События',
+          ),
           BottomNavigationBarItem(
-              backgroundColor:
-                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-              icon: const Icon(Icons.notifications_outlined),
-              activeIcon: const Icon(Icons.notifications),
-              label: 'Объявления'),
+            backgroundColor:
+                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+            icon: const Icon(Icons.notifications_outlined),
+            activeIcon: const Icon(Icons.notifications),
+            label: 'Объявления',
+          ),
           BottomNavigationBarItem(
-              backgroundColor:
-                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-              icon: const Icon(Icons.schedule_outlined),
-              activeIcon: const Icon(Icons.watch_later),
-              label: 'Звонки'),
+            backgroundColor:
+                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+            icon: const Icon(Icons.schedule_outlined),
+            activeIcon: const Icon(Icons.watch_later),
+            label: 'Звонки',
+          ),
           BottomNavigationBarItem(
-              backgroundColor:
-                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-              icon: const Icon(Icons.dashboard_outlined),
-              activeIcon: const Icon(Icons.dashboard),
-              label: 'Расписание'),
+            backgroundColor:
+                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+            icon: const Icon(Icons.dashboard_outlined),
+            activeIcon: const Icon(Icons.dashboard),
+            label: 'Расписание',
+          ),
           BottomNavigationBarItem(
             backgroundColor:
                 Theme.of(context).bottomNavigationBarTheme.backgroundColor,

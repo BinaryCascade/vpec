@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/firebase_auth.dart';
 import '/screens/settings/settings_logic.dart';
 import '/utils/hive_helper.dart';
+import '../../utils/firebase_auth.dart';
 import 'announcements_logic.dart';
 import 'announcements_ui.dart';
 
@@ -15,15 +15,11 @@ class AnnouncementsScreen extends StatefulWidget {
 
 class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
   int get tabLength {
-    if (AccountDetails.hasAccessToLevel(AccessLevel.admin)) {
-      return 3;
-    } else {
-      if (AccountDetails.isAccountLowLevelAccess) {
-        return 1;
-      } else {
-        return 2;
-      }
-    }
+    return AccountDetails.hasAccessToLevel(AccessLevel.admin)
+        ? 3
+        : AccountDetails.isAccountLowLevelAccess
+            ? 1
+            : 2;
   }
 
   @override
@@ -37,7 +33,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
             if (AccountDetails.hasAccessToLevel(AccessLevel.employee))
               const AnnouncementsList(collectionPath: 'announcements_employee'),
             if (AccountDetails.hasAccessToLevel(AccessLevel.teacher))
-              const AnnouncementsList(collectionPath: 'announcements_teachers')
+              const AnnouncementsList(collectionPath: 'announcements_teachers'),
           ],
         ),
         floatingActionButton: AccountDetails.hasAccessToLevel(AccessLevel.admin)
@@ -52,8 +48,9 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                 child: const Icon(Icons.rate_review_outlined),
               )
             : null,
-        bottomNavigationBar:
-            AccountDetails.isAccountLowLevelAccess ? null : const BottomTapBar(),
+        bottomNavigationBar: AccountDetails.isAccountLowLevelAccess
+            ? null
+            : const BottomTapBar(),
       ),
     );
   }

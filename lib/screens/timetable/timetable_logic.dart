@@ -14,27 +14,27 @@ class TimeTableLogic {
 
   static void resetTimeTable(BuildContext context) {
     showRoundedModalSheet(
-        context: context,
-        title: 'Сбросить расписание звонков',
-        child: Provider(
-            create: (_) => TimeTableLogic(),
-            child: const ResetTimeTableDialogUI()));
+      context: context,
+      title: 'Сбросить расписание звонков',
+      child: Provider(
+        create: (_) => TimeTableLogic(),
+        child: const ResetTimeTableDialogUI(),
+      ),
+    );
   }
 
   static void addTimeTable(BuildContext context) {
     showRoundedModalSheet(
-        context: context,
-        title: 'Добавить расписание звонков',
-        child: const AddTimeTableItemDialogUI());
+      context: context,
+      title: 'Добавить расписание звонков',
+      child: const AddTimeTableItemDialogUI(),
+    );
   }
 
   static bool validateToDate(String value) {
     RegExp regex = RegExp(r'^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$');
-    if (regex.hasMatch(value)) {
-      return true;
-    } else {
-      return false;
-    }
+
+    return regex.hasMatch(value);
   }
 
   void addNewTimeTableItem(TimeModel model) {
@@ -58,9 +58,10 @@ class TimeTableLogic {
 
   static void showDeleteAllDocsDialog(BuildContext context) {
     showRoundedModalSheet(
-        context: context,
-        title: 'Подтвердите действие',
-        child: const ConfirmDeleteAllDocsDialogUI());
+      context: context,
+      title: 'Подтвердите действие',
+      child: const ConfirmDeleteAllDocsDialogUI(),
+    );
   }
 
   void restoreFiles(BuildContext context, bool isThirtyMinBreak) {
@@ -74,19 +75,24 @@ class TimeTableLogic {
           int docID = DateTime.now().millisecondsSinceEpoch;
           await schedule.doc(docID.toString()).set(
                 getDefaultTimeSchedule(
-                        isThirtyMinBreak: isThirtyMinBreak, numOfLesson: i)
-                    .toMap(docID),
+                  isThirtyMinBreak: isThirtyMinBreak,
+                  numOfLesson: i,
+                ).toMap(docID),
               );
         }
       } else {
-        showSnackBar(context,
-            text: 'Чтобы восстановить расписание, сперва удалите все записи');
+        showSnackBar(
+          context,
+          text: 'Чтобы восстановить расписание, сперва удалите все записи',
+        );
       }
     });
   }
 
-  TimeModel getDefaultTimeSchedule(
-      {required bool isThirtyMinBreak, required int numOfLesson}) {
+  TimeModel getDefaultTimeSchedule({
+    required bool isThirtyMinBreak,
+    required int numOfLesson,
+  }) {
     switch (numOfLesson) {
       case 1:
         return const TimeModel(
@@ -144,13 +150,14 @@ class TimeTableLogic {
   void confirmDelete(BuildContext context, TimeModel model) {
     Navigator.pop(context);
     showRoundedModalSheet(
-        context: context,
-        title: 'Подтвердите действие',
-        child: DeleteDialogUI(
-          onDelete: () {
-            deleteDoc(model.id!);
-          },
-        ));
+      context: context,
+      title: 'Подтвердите действие',
+      child: DeleteDialogUI(
+        onDelete: () {
+          deleteDoc(model.id!);
+        },
+      ),
+    );
   }
 
   void deleteDoc(String docID) {

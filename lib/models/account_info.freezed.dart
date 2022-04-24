@@ -17,10 +17,15 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AccountInfo {
   bool get isLoggedIn => throw _privateConstructorUsedError;
+
   String? get email => throw _privateConstructorUsedError;
+
   String? get uid => throw _privateConstructorUsedError;
+
   String? get name => throw _privateConstructorUsedError;
+
   AccessLevel get level => throw _privateConstructorUsedError;
+
   bool? get isLowLevel => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -33,6 +38,7 @@ abstract class $AccountInfoCopyWith<$Res> {
   factory $AccountInfoCopyWith(
           AccountInfo value, $Res Function(AccountInfo) then) =
       _$AccountInfoCopyWithImpl<$Res>;
+
   $Res call(
       {bool isLoggedIn,
       String? email,
@@ -47,6 +53,7 @@ class _$AccountInfoCopyWithImpl<$Res> implements $AccountInfoCopyWith<$Res> {
   _$AccountInfoCopyWithImpl(this._value, this._then);
 
   final AccountInfo _value;
+
   // ignore: unused_field
   final $Res Function(AccountInfo) _then;
 
@@ -94,6 +101,7 @@ abstract class _$AccountInfoCopyWith<$Res>
   factory _$AccountInfoCopyWith(
           _AccountInfo value, $Res Function(_AccountInfo) then) =
       __$AccountInfoCopyWithImpl<$Res>;
+
   @override
   $Res call(
       {bool isLoggedIn,
@@ -223,16 +231,22 @@ abstract class _AccountInfo implements AccountInfo {
 
   @override
   bool get isLoggedIn => throw _privateConstructorUsedError;
+
   @override
   String? get email => throw _privateConstructorUsedError;
+
   @override
   String? get uid => throw _privateConstructorUsedError;
+
   @override
   String? get name => throw _privateConstructorUsedError;
+
   @override
   AccessLevel get level => throw _privateConstructorUsedError;
+
   @override
   bool? get isLowLevel => throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
   _$AccountInfoCopyWith<_AccountInfo> get copyWith =>

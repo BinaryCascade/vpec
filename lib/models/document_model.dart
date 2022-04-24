@@ -5,10 +5,11 @@ class DocumentModel {
   final String subtitle;
   final String url;
 
-  DocumentModel(
-      {required this.title,
-      required this.subtitle,
-      required this.url});
+  DocumentModel({
+    required this.title,
+    required this.subtitle,
+    required this.url,
+  });
 
   DocumentModel.fromMap(Map<String, dynamic> data, String id)
       : this(

@@ -12,11 +12,15 @@ class DocumentsList extends StatelessWidget {
   Widget build(BuildContext context) {
     Stream<QuerySnapshot<Map<String, dynamic>>> stream =
         FirebaseFirestore.instance.collection('documents').snapshots();
+
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
       stream: stream,
-      builder: (BuildContext context,
-          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+      builder: (
+        BuildContext context,
+        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
+      ) {
         if (!snapshot.hasData) return const LoadingIndicator();
+
         return ListView(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
@@ -35,12 +39,17 @@ class DocumentCard extends StatelessWidget {
   final DocumentModel document;
 
   const DocumentCard({Key? key, required this.document}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return StyledListTile(
-        title: document.title,
-        subtitle: document.subtitle,
-        onTap: () => Navigator.pushNamed(context, '/view_document',
-            arguments: document));
+      title: document.title,
+      subtitle: document.subtitle,
+      onTap: () => Navigator.pushNamed(
+        context,
+        '/view_document',
+        arguments: document,
+      ),
+    );
   }
 }

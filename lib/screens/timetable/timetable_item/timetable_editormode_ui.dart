@@ -43,7 +43,9 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
             textInputAction: TextInputAction.next,
             style: Theme.of(context).textTheme.headline3,
             decoration: const InputDecoration(
-                labelText: 'Название пары', hintText: '1 пара'),
+              labelText: 'Название пары',
+              hintText: '1 пара',
+            ),
           ),
         ),
         Row(
@@ -57,17 +59,15 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
                 inputFormatters: [MaskedInputFormatter('00:00')],
                 onChanged: (value) {
                   setState(() {
-                    if (TimeTableLogic.validateToDate(startLesson.text)) {
-                      hasErrorsOnStart = false;
-                    } else {
-                      hasErrorsOnStart = true;
-                    }
+                    hasErrorsOnStart =
+                        !TimeTableLogic.validateToDate(startLesson.text);
                   });
                 },
                 decoration: InputDecoration(
-                    errorText: hasErrorsOnStart ? 'Неверный формат' : null,
-                    labelText: 'Начало пары',
-                    hintText: '08:30'),
+                  errorText: hasErrorsOnStart ? 'Неверный формат' : null,
+                  labelText: 'Начало пары',
+                  hintText: '08:30',
+                ),
               ),
             ),
             Text(
@@ -83,17 +83,15 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
                 inputFormatters: [MaskedInputFormatter('00:00')],
                 onChanged: (value) {
                   setState(() {
-                    if (TimeTableLogic.validateToDate(endLesson.text)) {
-                      hasErrorsOnEnd = false;
-                    } else {
-                      hasErrorsOnEnd = true;
-                    }
+                    hasErrorsOnEnd =
+                        !TimeTableLogic.validateToDate(endLesson.text);
                   });
                 },
                 decoration: InputDecoration(
-                    errorText: hasErrorsOnEnd ? 'Неверный формат' : null,
-                    labelText: 'Конец пары',
-                    hintText: '10:00'),
+                  errorText: hasErrorsOnEnd ? 'Неверный формат' : null,
+                  labelText: 'Конец пары',
+                  hintText: '10:00',
+                ),
               ),
             ),
           ],
@@ -105,7 +103,9 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
             textInputAction: TextInputAction.done,
             style: Theme.of(context).textTheme.headline3,
             decoration: const InputDecoration(
-                labelText: 'Перемена после пары', hintText: '10 минут'),
+              labelText: 'Перемена после пары',
+              hintText: '10 минут',
+            ),
           ),
         ),
         ButtonBar(
@@ -123,27 +123,29 @@ class _EditTimeTableItemDialogUIState extends State<EditTimeTableItemDialogUI> {
                   child: const Text('Отмена'),
                 ),
                 ElevatedButton(
-                    onPressed: () {
-                      if (!hasErrorsOnEnd &&
-                          !hasErrorsOnStart &&
-                          startLesson.text.isNotEmpty &&
-                          endLesson.text.isNotEmpty) {
-                        TimeTableLogic().editTimeTableItem(
-                            widget.model.id!,
-                            TimeModel(
-                              name: name.text,
-                              startLesson: startLesson.text,
-                              endLesson: endLesson.text,
-                              pause: pause.text,
-                            ));
-                        Navigator.pop(context);
-                      }
-                    },
-                    child: const Text('Редактировать'))
+                  onPressed: () {
+                    if (!hasErrorsOnEnd &&
+                        !hasErrorsOnStart &&
+                        startLesson.text.isNotEmpty &&
+                        endLesson.text.isNotEmpty) {
+                      TimeTableLogic().editTimeTableItem(
+                        widget.model.id!,
+                        TimeModel(
+                          name: name.text,
+                          startLesson: startLesson.text,
+                          endLesson: endLesson.text,
+                          pause: pause.text,
+                        ),
+                      );
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: const Text('Редактировать'),
+                ),
               ],
             ),
           ],
-        )
+        ),
       ],
     );
   }

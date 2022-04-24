@@ -1,11 +1,8 @@
 class HolidayHelper {
   static bool get isNewYear {
     var date = DateTime.now();
-    if (date.month == 1 || date.month == 12) {
-      return true;
-    } else {
-      return false;
-    }
+
+    return date.month == 1 || date.month == 12;
   }
-  // add more holidays if need...
+// add more holidays if need...
 }

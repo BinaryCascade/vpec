@@ -25,26 +25,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
         padding: const EdgeInsets.all(10),
         children: [
           Card(
-              clipBehavior: Clip.antiAlias,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: MultiProvider(providers: [
+            clipBehavior: Clip.antiAlias,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: MultiProvider(
+              providers: [
                 ChangeNotifierProvider(create: (_) => AccountEditorMode()),
                 ChangeNotifierProvider(create: (_) => SettingsLogic()),
-              ], builder: (context, child) => const AccountBlock())),
+              ],
+              builder: (context, child) => const AccountBlock(),
+            ),
+          ),
           const AppThemeListTile(),
           const LaunchOnStartChooser(),
           const Divider(),
           StyledListTile(
-              icon: Icon(
-                Icons.info_outlined,
-                size: 32,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-              title: 'О приложении',
-              subtitle: 'Просмотреть техническую информацию',
-              onTap: () => Navigator.pushNamed(context, '/about')),
+            icon: Icon(
+              Icons.info_outlined,
+              size: 32,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+            title: 'О приложении',
+            subtitle: 'Просмотреть техническую информацию',
+            onTap: () => Navigator.pushNamed(context, '/about'),
+          ),
         ],
       ),
     );

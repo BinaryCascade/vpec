@@ -47,57 +47,61 @@ Future<void> shareFile(String? url) async {
 /// Use [child] with [title] if you want use styled layout.
 ///
 /// Or use [customLayout] if you need something other.
-Future<T?> showRoundedModalSheet<T>(
-    {required BuildContext context,
-    String? title,
-    bool isDismissible = true,
-    bool enableDrag = true,
-    Widget? child,
-    Widget? customLayout}) async {
+//ignore: long-parameter-list
+Future<T?> showRoundedModalSheet<T>({
+  required BuildContext context,
+  String? title,
+  bool isDismissible = true,
+  bool enableDrag = true,
+  Widget? child,
+  Widget? customLayout,
+}) async {
   return showModalBottomSheet<T>(
-      context: context,
-      isDismissible: isDismissible,
-      isScrollControlled: true,
-      enableDrag: enableDrag,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
+    context: context,
+    isDismissible: isDismissible,
+    isScrollControlled: true,
+    enableDrag: enableDrag,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
       ),
-      builder: (context) =>
-          customLayout ??
-          Container(
-            margin: EdgeInsets.only(
-                top: 15,
-                left: 15,
-                right: 15,
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: Center(
-                    child: title != null
-                        ? Text(
-                            title,
-                            style: Theme.of(context).textTheme.headline4,
-                            textAlign: TextAlign.center,
-                          )
-                        : ErrorWidget('You need implement [title] if you want '
-                            'use styled layout, or [customLayout] if you need'
-                            ' your own layout'),
-                  ),
+    ),
+    builder: (context) =>
+        customLayout ??
+        Container(
+          margin: EdgeInsets.only(
+            top: 15,
+            left: 15,
+            right: 15,
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: Center(
+                  child: title != null
+                      ? Text(
+                          title,
+                          style: Theme.of(context).textTheme.headline4,
+                          textAlign: TextAlign.center,
+                        )
+                      : ErrorWidget('You need implement [title] if you want '
+                          'use styled layout, or [customLayout] if you need'
+                          ' your own layout'),
                 ),
-                child ??
-                    ErrorWidget('You need implement [child] if you want '
-                        'use styled layout, or [customLayout] if you need your '
-                        'own layout'),
-              ],
-            ),
-          ));
+              ),
+              child ??
+                  ErrorWidget('You need implement [child] if you want '
+                      'use styled layout, or [customLayout] if you need your '
+                      'own layout'),
+            ],
+          ),
+        ),
+  );
 }
 
 class LowAndroidHttpOverrides extends HttpOverrides {

@@ -59,19 +59,25 @@ class _SplashScreenState extends State<SplashScreen> {
 
         quickActions.setShortcutItems(<ShortcutItem>[
           const ShortcutItem(
-              type: 'action_news', localizedTitle: 'События', icon: 'ic_news'),
+            type: 'action_news',
+            localizedTitle: 'События',
+            icon: 'ic_news',
+          ),
           const ShortcutItem(
-              type: 'action_alerts',
-              localizedTitle: 'Объявления',
-              icon: 'ic_alerts'),
+            type: 'action_alerts',
+            localizedTitle: 'Объявления',
+            icon: 'ic_alerts',
+          ),
           const ShortcutItem(
-              type: 'action_timetable',
-              localizedTitle: 'Звонки',
-              icon: 'ic_timetable'),
+            type: 'action_timetable',
+            localizedTitle: 'Звонки',
+            icon: 'ic_timetable',
+          ),
           const ShortcutItem(
-              type: 'action_schedule',
-              localizedTitle: 'Расписание',
-              icon: 'ic_schedule')
+            type: 'action_schedule',
+            localizedTitle: 'Расписание',
+            icon: 'ic_schedule',
+          ),
         ]);
       }
       // open bottom bar index by setting "launch on start"
@@ -88,6 +94,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
+
     return appAuth.accountInfo.isLoggedIn ? widget.child : const LoginScreen();
   }
 }

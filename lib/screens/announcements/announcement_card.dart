@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:provider/provider.dart';
 
-import '../../utils/firebase_auth.dart';
 import '/models/announcement_model.dart';
 import '/models/document_model.dart';
 import '/screens/view_document/view_document_logic.dart';
 import '/utils/utils.dart';
+import '../../utils/firebase_auth.dart';
 
 class AnnouncementCard extends StatelessWidget {
   final AnnouncementModel announcement;
@@ -55,13 +55,17 @@ class AnnouncementCard extends StatelessWidget {
                           options: const LinkifyOptions(humanize: true),
                           onOpen: (link) {
                             if (ViewDocumentLogic.isThisURLSupported(
-                                link.url)) {
-                              Navigator.pushNamed(context, '/view_document',
-                                  arguments: DocumentModel(
-                                    title: link.text,
-                                    subtitle: '',
-                                    url: link.url,
-                                  ));
+                              link.url,
+                            )) {
+                              Navigator.pushNamed(
+                                context,
+                                '/view_document',
+                                arguments: DocumentModel(
+                                  title: link.text,
+                                  subtitle: '',
+                                  url: link.url,
+                                ),
+                              );
                             } else {
                               openUrl(link.url);
                             }
@@ -90,7 +94,8 @@ class AnnouncementCard extends StatelessWidget {
     TextEditingController titleController = TextEditingController();
     TextEditingController contentController = TextEditingController();
 
-    if (context.read<FirebaseAppAuth>().accountInfo.level == AccessLevel.admin) {
+    if (context.read<FirebaseAppAuth>().accountInfo.level ==
+        AccessLevel.admin) {
       titleController.text = announcement.title;
       contentController.text = announcement.content;
 
@@ -102,23 +107,25 @@ class AnnouncementCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: TextFormField(
-                  controller: titleController,
-                  textInputAction: TextInputAction.next,
-                  style: Theme.of(context).textTheme.headline4,
-                  decoration:
-                      const InputDecoration(labelText: 'Введите заголовок')),
+                controller: titleController,
+                textInputAction: TextInputAction.next,
+                style: Theme.of(context).textTheme.headline4,
+                decoration:
+                    const InputDecoration(labelText: 'Введите заголовок'),
+              ),
             ),
             ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 200, maxHeight: 200),
               child: TextFormField(
-                  controller: contentController,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  minLines: 10,
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.bodyText1,
-                  decoration:
-                      const InputDecoration(labelText: 'Введите сообщение')),
+                controller: contentController,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                minLines: 10,
+                textAlign: TextAlign.start,
+                style: Theme.of(context).textTheme.bodyText1,
+                decoration:
+                    const InputDecoration(labelText: 'Введите сообщение'),
+              ),
             ),
             ButtonBar(
               children: <Widget>[
@@ -133,10 +140,11 @@ class AnnouncementCard extends StatelessWidget {
                 ElevatedButton(
                   child: const Text('Отредактировать'),
                   onPressed: () => updateAnnouncement(
-                      context,
-                      announcement.docId,
-                      titleController.text,
-                      contentController.text),
+                    context,
+                    announcement.docId,
+                    titleController.text,
+                    contentController.text,
+                  ),
                 ),
               ],
             ),
@@ -146,8 +154,12 @@ class AnnouncementCard extends StatelessWidget {
     }
   }
 
-  void updateAnnouncement(BuildContext context, String docId, String titleText,
-      String contentText) {
+  void updateAnnouncement(
+    BuildContext context,
+    String docId,
+    String titleText,
+    String contentText,
+  ) {
     CollectionReference alerts =
         FirebaseFirestore.instance.collection(collectionPath());
     alerts
@@ -159,45 +171,50 @@ class AnnouncementCard extends StatelessWidget {
   void confirmDelete(BuildContext context) {
     Navigator.pop(context);
     showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
         ),
-        builder: (context) => Container(
-              padding: MediaQuery.of(context).viewInsets,
-              margin: const EdgeInsets.only(
-                  top: 10, left: 15, right: 15, bottom: 10),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(
-                    'Удалить объявление?',
-                    style: Theme.of(context).textTheme.headline4,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 5),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: OutlinedButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text('Отмена'),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton(
-                      onPressed: () => deleteAnnouncement(context),
-                      child: const Text('Удалить'),
-                    ),
-                  ),
-                ],
+      ),
+      builder: (context) => Container(
+        padding: MediaQuery.of(context).viewInsets,
+        margin: const EdgeInsets.only(
+          top: 10,
+          left: 15,
+          right: 15,
+          bottom: 10,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              'Удалить объявление?',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Отмена'),
+                ),
               ),
-            ));
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () => deleteAnnouncement(context),
+                child: const Text('Удалить'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   void deleteAnnouncement(BuildContext context) {

@@ -17,13 +17,19 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$FullSchedule {
   List<String?> get timers => throw _privateConstructorUsedError;
+
   String get groups => throw _privateConstructorUsedError;
+
   Map<String, dynamic> get schedule => throw _privateConstructorUsedError;
+
   Map<String, dynamic> get timetable => throw _privateConstructorUsedError;
+
   Map<String, dynamic> get shortLessonNames =>
       throw _privateConstructorUsedError;
+
   Map<String, dynamic> get fullLessonNames =>
       throw _privateConstructorUsedError;
+
   Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,6 +42,7 @@ abstract class $FullScheduleCopyWith<$Res> {
   factory $FullScheduleCopyWith(
           FullSchedule value, $Res Function(FullSchedule) then) =
       _$FullScheduleCopyWithImpl<$Res>;
+
   $Res call(
       {List<String?> timers,
       String groups,
@@ -51,6 +58,7 @@ class _$FullScheduleCopyWithImpl<$Res> implements $FullScheduleCopyWith<$Res> {
   _$FullScheduleCopyWithImpl(this._value, this._then);
 
   final FullSchedule _value;
+
   // ignore: unused_field
   final $Res Function(FullSchedule) _then;
 
@@ -103,6 +111,7 @@ abstract class _$FullScheduleCopyWith<$Res>
   factory _$FullScheduleCopyWith(
           _FullSchedule value, $Res Function(_FullSchedule) then) =
       __$FullScheduleCopyWithImpl<$Res>;
+
   @override
   $Res call(
       {List<String?> timers,
@@ -186,6 +195,7 @@ class _$_FullSchedule implements _FullSchedule {
         _teachers = teachers;
 
   final List<String?> _timers;
+
   @override
   @JsonKey()
   List<String?> get timers {
@@ -196,6 +206,7 @@ class _$_FullSchedule implements _FullSchedule {
   @override
   final String groups;
   final Map<String, dynamic> _schedule;
+
   @override
   Map<String, dynamic> get schedule {
     // ignore: implicit_dynamic_type
@@ -203,6 +214,7 @@ class _$_FullSchedule implements _FullSchedule {
   }
 
   final Map<String, dynamic> _timetable;
+
   @override
   Map<String, dynamic> get timetable {
     // ignore: implicit_dynamic_type
@@ -210,6 +222,7 @@ class _$_FullSchedule implements _FullSchedule {
   }
 
   final Map<String, dynamic> _shortLessonNames;
+
   @override
   Map<String, dynamic> get shortLessonNames {
     // ignore: implicit_dynamic_type
@@ -217,6 +230,7 @@ class _$_FullSchedule implements _FullSchedule {
   }
 
   final Map<String, dynamic> _fullLessonNames;
+
   @override
   Map<String, dynamic> get fullLessonNames {
     // ignore: implicit_dynamic_type
@@ -224,6 +238,7 @@ class _$_FullSchedule implements _FullSchedule {
   }
 
   final Map<String, dynamic> _teachers;
+
   @override
   Map<String, dynamic> get teachers {
     // ignore: implicit_dynamic_type
@@ -280,20 +295,27 @@ abstract class _FullSchedule implements FullSchedule {
 
   @override
   List<String?> get timers => throw _privateConstructorUsedError;
+
   @override
   String get groups => throw _privateConstructorUsedError;
+
   @override
   Map<String, dynamic> get schedule => throw _privateConstructorUsedError;
+
   @override
   Map<String, dynamic> get timetable => throw _privateConstructorUsedError;
+
   @override
   Map<String, dynamic> get shortLessonNames =>
       throw _privateConstructorUsedError;
+
   @override
   Map<String, dynamic> get fullLessonNames =>
       throw _privateConstructorUsedError;
+
   @override
   Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
   _$FullScheduleCopyWith<_FullSchedule> get copyWith =>

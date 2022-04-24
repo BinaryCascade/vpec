@@ -94,13 +94,25 @@ class _InteractiveWidgetState extends State<InteractiveWidget>
 
       final zoomedMatrix = Matrix4(
         // a0 a1 a2 a3
-        scaleMultiplier, 0.0, 0.0, 0,
+        scaleMultiplier,
+        0.0,
+        0.0,
+        0,
         // a0 a1 a2 a3
-        0.0, scaleMultiplier, 0.0, 0,
+        0.0,
+        scaleMultiplier,
+        0.0,
+        0,
         // a0 a1 a2 a3
-        0.0, 0.0, 1.0, 0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
         // a0 a1 a2 a3
-        x, y, 0.0, 1.0,
+        x,
+        y,
+        0.0,
+        1.0,
       );
 
       animateZoom(
@@ -111,7 +123,7 @@ class _InteractiveWidgetState extends State<InteractiveWidget>
   }
 
   /// Required for `onDoubleTapDown` to work
-  void onDoubleTap() {}
+  void onDoubleTap() {} //ignore: no-empty-block
 
   @override
   Widget build(BuildContext context) {

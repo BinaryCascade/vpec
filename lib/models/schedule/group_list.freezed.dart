@@ -24,6 +24,7 @@ mixin _$GroupList {
   List<String> get groupList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $GroupListCopyWith<GroupList> get copyWith =>
       throw _privateConstructorUsedError;
@@ -33,6 +34,7 @@ mixin _$GroupList {
 abstract class $GroupListCopyWith<$Res> {
   factory $GroupListCopyWith(GroupList value, $Res Function(GroupList) then) =
       _$GroupListCopyWithImpl<$Res>;
+
   $Res call(
       {@JsonKey(name: 'groupList', required: true, disallowNullValue: true)
           List<String> groupList});
@@ -43,6 +45,7 @@ class _$GroupListCopyWithImpl<$Res> implements $GroupListCopyWith<$Res> {
   _$GroupListCopyWithImpl(this._value, this._then);
 
   final GroupList _value;
+
   // ignore: unused_field
   final $Res Function(GroupList) _then;
 
@@ -64,6 +67,7 @@ abstract class _$GroupListCopyWith<$Res> implements $GroupListCopyWith<$Res> {
   factory _$GroupListCopyWith(
           _GroupList value, $Res Function(_GroupList) then) =
       __$GroupListCopyWithImpl<$Res>;
+
   @override
   $Res call(
       {@JsonKey(name: 'groupList', required: true, disallowNullValue: true)
@@ -105,6 +109,7 @@ class _$_GroupList implements _GroupList {
 
   @JsonKey(name: 'groupList', required: true, disallowNullValue: true)
   final List<String> _groupList;
+
   @override
   @JsonKey(name: 'groupList', required: true, disallowNullValue: true)
   List<String> get groupList {
@@ -152,6 +157,7 @@ abstract class _GroupList implements GroupList {
   @override
   @JsonKey(name: 'groupList', required: true, disallowNullValue: true)
   List<String> get groupList => throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
   _$GroupListCopyWith<_GroupList> get copyWith =>

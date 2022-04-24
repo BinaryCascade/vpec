@@ -49,6 +49,7 @@ class ScheduleLogic extends ChangeNotifier {
   String get printCurrentDate {
     DateTime parsed = DateFormat('d-M-yyyy', 'ru').parse(showingData);
     DateFormat formatter = DateFormat('d MMMM yyyy');
+
     return formatter.format(parsed);
   }
 
@@ -57,7 +58,8 @@ class ScheduleLogic extends ChangeNotifier {
       'https://raw.githubusercontent.com/ShyroTeam/vpec/'
       'new_schedule_system/assets/'
       '25-01-2022.json';
-      // '$date.json';
+
+  // '$date.json';
 
   /// Switch schedule display to today or tomorrow
   Future<void> toggleShowingLesson() async {
@@ -100,6 +102,7 @@ class ScheduleLogic extends ChangeNotifier {
     showingData = formatter.format(date);
 
     await _getActualData(_makeUrl(showingData));
+
     return fullSchedule != null;
   }
 
@@ -180,6 +183,7 @@ class ScheduleLogic extends ChangeNotifier {
   /// Gets or updates timers for actual [fullSchedule]
   ///
   /// Timer - is a string format 'До конца: 28 минут'
+
   void getTimers() {
     if (fullSchedule != null) {
       DateTime now = DateTime.now();
@@ -203,7 +207,9 @@ class ScheduleLogic extends ChangeNotifier {
         Duration nowDuration =
             Duration(hours: now.hour, minutes: now.minute, seconds: now.second);
         Duration startDuration = Duration(
-            hours: lessonBeginning.hour, minutes: lessonBeginning.minute);
+          hours: lessonBeginning.hour,
+          minutes: lessonBeginning.minute,
+        );
         Duration endDuration =
             Duration(hours: lessonEnding.hour, minutes: lessonEnding.minute);
 
@@ -250,8 +256,10 @@ class ScheduleLogic extends ChangeNotifier {
   ///
   /// 34 минуты
   String _getTime(Duration duration) {
-    return prettyDuration(Duration(minutes: duration.inMinutes + 1),
-        locale: const RussianDurationLanguage());
+    return prettyDuration(
+      Duration(minutes: duration.inMinutes + 1),
+      locale: const RussianDurationLanguage(),
+    );
   }
 
   /// Start automatically updating timers for actual timetable
@@ -285,22 +293,23 @@ class ScheduleTime {
         DateFormat('HH:mm').parse(nextLessonBeginning);
 
     String pause = prettyDuration(
-        dateNextLessonBeginning.difference(dateLessonEnding),
-        locale: DurationLocale.fromLanguageCode('ru')!);
+      dateNextLessonBeginning.difference(dateLessonEnding),
+      locale: DurationLocale.fromLanguageCode('ru')!,
+    );
     pause = pause.replaceAll('0 секунд', '');
     if (pause.isNotEmpty) pause = 'Перемена: $pause';
+
     return pause;
   }
 
   //TODO: make this
-  static String replaceLessonName(
-      {required String shortLessonName,
-      required Map<String, dynamic> lessonShortNames,
-      required Map<String, dynamic> lessonFullNames}) {
-    if (lessonFullNames.containsValue(shortLessonName)) {
-      return lessonFullNames[shortLessonName.indexOf(shortLessonName)];
-    } else {
-      return shortLessonName;
-    }
+  static String replaceLessonName({
+    required String shortLessonName,
+    required Map<String, dynamic> lessonShortNames,
+    required Map<String, dynamic> lessonFullNames,
+  }) {
+    return lessonFullNames.containsValue(shortLessonName)
+        ? lessonFullNames[shortLessonName.indexOf(shortLessonName)]
+        : shortLessonName;
   }
 }

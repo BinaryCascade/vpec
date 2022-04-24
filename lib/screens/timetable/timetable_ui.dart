@@ -23,9 +23,12 @@ class TimeTableListView extends StatelessWidget {
           .collection(collectionPath)
           .orderBy('order', descending: false)
           .snapshots(),
-      builder: (BuildContext context,
-          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+      builder: (
+        BuildContext context,
+        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
+      ) {
         if (!snapshot.hasData) return const LoadingIndicator();
+
         return ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
@@ -33,8 +36,10 @@ class TimeTableListView extends StatelessWidget {
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (context, index) {
             return TimeTableItem(
-              timeModel: TimeModel.fromMap(snapshot.data!.docs[index].data(),
-                  snapshot.data!.docs[index].id),
+              timeModel: TimeModel.fromMap(
+                snapshot.data!.docs[index].data(),
+                snapshot.data!.docs[index].id,
+              ),
               isLast: snapshot.data!.docs.length == index + 1,
             );
           },
@@ -56,23 +61,26 @@ class EditorModeButtons extends StatelessWidget {
       direction: Axis.vertical,
       children: [
         FloatingActionButton(
-            child: const Icon(
-              Icons.delete_outlined,
-              size: 24.0,
-            ),
-            onPressed: () => TimeTableLogic.showDeleteAllDocsDialog(context)),
+          child: const Icon(
+            Icons.delete_outlined,
+            size: 24.0,
+          ),
+          onPressed: () => TimeTableLogic.showDeleteAllDocsDialog(context),
+        ),
         FloatingActionButton(
-            child: const Icon(
-              Icons.refresh_outlined,
-              size: 24.0,
-            ),
-            onPressed: () => TimeTableLogic.resetTimeTable(context)),
+          child: const Icon(
+            Icons.refresh_outlined,
+            size: 24.0,
+          ),
+          onPressed: () => TimeTableLogic.resetTimeTable(context),
+        ),
         FloatingActionButton(
-            child: const Icon(
-              Icons.add_outlined,
-              size: 24.0,
-            ),
-            onPressed: () => TimeTableLogic.addTimeTable(context)),
+          child: const Icon(
+            Icons.add_outlined,
+            size: 24.0,
+          ),
+          onPressed: () => TimeTableLogic.addTimeTable(context),
+        ),
       ],
     );
   }
@@ -94,25 +102,26 @@ class _ResetTimeTableDialogUIState extends State<ResetTimeTableDialogUI> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Wrap(
-              spacing: 8.0,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              direction: Axis.horizontal,
-              children: [
-                Text(
-                  'Большая перемена:',
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-                OutlinedButton(
-                    onPressed: () => context
-                        .read<TimeTableLogic>()
-                        .restoreFiles(context, true),
-                    child: const Text('30 мин')),
-                OutlinedButton(
-                    onPressed: () => context
-                        .read<TimeTableLogic>()
-                        .restoreFiles(context, false),
-                    child: const Text('40 мин'))
-              ]),
+            spacing: 8.0,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            direction: Axis.horizontal,
+            children: [
+              Text(
+                'Большая перемена:',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              OutlinedButton(
+                onPressed: () =>
+                    context.read<TimeTableLogic>().restoreFiles(context, true),
+                child: const Text('30 мин'),
+              ),
+              OutlinedButton(
+                onPressed: () =>
+                    context.read<TimeTableLogic>().restoreFiles(context, false),
+                child: const Text('40 мин'),
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -146,7 +155,9 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
             textInputAction: TextInputAction.next,
             style: Theme.of(context).textTheme.headline3,
             decoration: const InputDecoration(
-                labelText: 'Название пары', hintText: '1 пара'),
+              labelText: 'Название пары',
+              hintText: '1 пара',
+            ),
           ),
         ),
         Row(
@@ -160,17 +171,15 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
                 inputFormatters: [MaskedInputFormatter('00:00')],
                 onChanged: (value) {
                   setState(() {
-                    if (TimeTableLogic.validateToDate(startLesson.text)) {
-                      hasErrorsOnStart = false;
-                    } else {
-                      hasErrorsOnStart = true;
-                    }
+                    hasErrorsOnStart =
+                        !TimeTableLogic.validateToDate(startLesson.text);
                   });
                 },
                 decoration: InputDecoration(
-                    errorText: hasErrorsOnStart ? 'Неверный формат' : null,
-                    labelText: 'Начало пары',
-                    hintText: '08:30'),
+                  errorText: hasErrorsOnStart ? 'Неверный формат' : null,
+                  labelText: 'Начало пары',
+                  hintText: '08:30',
+                ),
               ),
             ),
             Text(
@@ -186,17 +195,15 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
                 inputFormatters: [MaskedInputFormatter('00:00')],
                 onChanged: (value) {
                   setState(() {
-                    if (TimeTableLogic.validateToDate(endLesson.text)) {
-                      hasErrorsOnEnd = false;
-                    } else {
-                      hasErrorsOnEnd = true;
-                    }
+                    hasErrorsOnEnd =
+                        !TimeTableLogic.validateToDate(endLesson.text);
                   });
                 },
                 decoration: InputDecoration(
-                    errorText: hasErrorsOnEnd ? 'Неверный формат' : null,
-                    labelText: 'Конец пары',
-                    hintText: '10:00'),
+                  errorText: hasErrorsOnEnd ? 'Неверный формат' : null,
+                  labelText: 'Конец пары',
+                  hintText: '10:00',
+                ),
               ),
             ),
           ],
@@ -217,23 +224,24 @@ class _AddTimeTableItemDialogUIState extends State<AddTimeTableItemDialogUI> {
               child: const Text('Отмена'),
             ),
             ElevatedButton(
-                onPressed: () {
-                  if (!hasErrorsOnEnd &&
-                      !hasErrorsOnStart &&
-                      startLesson.text.isNotEmpty &&
-                      endLesson.text.isNotEmpty) {
-                    TimeTableLogic().addNewTimeTableItem(TimeModel(
-                      name: name.text,
-                      startLesson: startLesson.text,
-                      endLesson: endLesson.text,
-                      pause: pause.text,
-                    ));
-                    Navigator.pop(context);
-                  }
-                },
-                child: const Text('Добавить')),
+              onPressed: () {
+                if (!hasErrorsOnEnd &&
+                    !hasErrorsOnStart &&
+                    startLesson.text.isNotEmpty &&
+                    endLesson.text.isNotEmpty) {
+                  TimeTableLogic().addNewTimeTableItem(TimeModel(
+                    name: name.text,
+                    startLesson: startLesson.text,
+                    endLesson: endLesson.text,
+                    pause: pause.text,
+                  ));
+                  Navigator.pop(context);
+                }
+              },
+              child: const Text('Добавить'),
+            ),
           ],
-        )
+        ),
       ],
     );
   }

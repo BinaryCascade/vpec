@@ -52,17 +52,16 @@ class JobQuizStorage extends ChangeNotifier {
         duplicates.add(element);
       }
     }
-    if (haveDuplicates) {
-      return 'Похоже, Вы уникальный человек! У Вас есть предрасположенность к '
-          'нескольким профессиям:\n'
-          'Компьютерные специальности: $greenCards\n'
-          'Электрические специальности: $blueCards\n'
-          'Гостиничное дело: $yellowCards\n'
-          'Бух. учёт: $purpleCards';
-    } else {
-      return 'Непредвиденная ошибка в обработке данных ответов\n'
-          '$greenCards, $blueCards, $yellowCards, $purpleCards';
-    }
+
+    return haveDuplicates
+        ? 'Похоже, Вы уникальный человек! У Вас есть предрасположенность к '
+            'нескольким профессиям:\n'
+            'Компьютерные специальности: $greenCards\n'
+            'Электрические специальности: $blueCards\n'
+            'Гостиничное дело: $yellowCards\n'
+            'Бух. учёт: $purpleCards'
+        : 'Непредвиденная ошибка в обработке данных ответов\n'
+            '$greenCards, $blueCards, $yellowCards, $purpleCards';
   }
 
   String get firstAnswer {

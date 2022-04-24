@@ -24,6 +24,7 @@ mixin _$Timetable {
   Map<String, dynamic> get timetableMap => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $TimetableCopyWith<Timetable> get copyWith =>
       throw _privateConstructorUsedError;
@@ -33,6 +34,7 @@ mixin _$Timetable {
 abstract class $TimetableCopyWith<$Res> {
   factory $TimetableCopyWith(Timetable value, $Res Function(Timetable) then) =
       _$TimetableCopyWithImpl<$Res>;
+
   $Res call(
       {@JsonKey(name: 'timetable', required: true, disallowNullValue: true)
           Map<String, dynamic> timetableMap});
@@ -43,6 +45,7 @@ class _$TimetableCopyWithImpl<$Res> implements $TimetableCopyWith<$Res> {
   _$TimetableCopyWithImpl(this._value, this._then);
 
   final Timetable _value;
+
   // ignore: unused_field
   final $Res Function(Timetable) _then;
 
@@ -64,6 +67,7 @@ abstract class _$TimetableCopyWith<$Res> implements $TimetableCopyWith<$Res> {
   factory _$TimetableCopyWith(
           _Timetable value, $Res Function(_Timetable) then) =
       __$TimetableCopyWithImpl<$Res>;
+
   @override
   $Res call(
       {@JsonKey(name: 'timetable', required: true, disallowNullValue: true)
@@ -105,6 +109,7 @@ class _$_Timetable implements _Timetable {
 
   @JsonKey(name: 'timetable', required: true, disallowNullValue: true)
   final Map<String, dynamic> _timetableMap;
+
   @override
   @JsonKey(name: 'timetable', required: true, disallowNullValue: true)
   Map<String, dynamic> get timetableMap {
@@ -153,6 +158,7 @@ abstract class _Timetable implements Timetable {
   @override
   @JsonKey(name: 'timetable', required: true, disallowNullValue: true)
   Map<String, dynamic> get timetableMap => throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
   _$TimetableCopyWith<_Timetable> get copyWith =>

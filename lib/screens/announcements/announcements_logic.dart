@@ -6,8 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../utils/firebase_auth.dart';
 import '/utils/utils.dart';
+import '../../utils/firebase_auth.dart';
 import '../../utils/hive_helper.dart';
 import '../../widgets/snackbars.dart';
 import 'announcements_ui.dart';
@@ -56,8 +56,10 @@ class AnnouncementsLogic {
       }
     }
 
-    void sendNewAlert(
-        {required BuildContext context, required AccessLevel accessLevel}) async {
+    void sendNewAlert({
+      required BuildContext context,
+      required AccessLevel accessLevel,
+    }) async {
       CollectionReference users =
           FirebaseFirestore.instance.collection(collectionPath(accessLevel));
 
@@ -86,44 +88,51 @@ class AnnouncementsLogic {
 
     void confirmAnnouncementSend() {
       showRoundedModalSheet(
-          context: context,
-          title: 'Кому отправить?',
-          child: Column(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Отмена'),
-                ),
+        context: context,
+        title: 'Кому отправить?',
+        child: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Отмена'),
               ),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () => sendNewAlert(
-                      context: context, accessLevel: AccessLevel.student),
-                  child: const Text('Отправить всем'),
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () => sendNewAlert(
+                  context: context,
+                  accessLevel: AccessLevel.student,
                 ),
+                child: const Text('Отправить всем'),
               ),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () => sendNewAlert(
-                      context: context, accessLevel: AccessLevel.employee),
-                  child: const Text('Отправить сотрудникам'),
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () => sendNewAlert(
+                  context: context,
+                  accessLevel: AccessLevel.employee,
                 ),
+                child: const Text('Отправить сотрудникам'),
               ),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () => sendNewAlert(
-                      context: context, accessLevel: AccessLevel.teacher),
-                  child: const Text('Отправить преподавателям'),
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () => sendNewAlert(
+                  context: context,
+                  accessLevel: AccessLevel.teacher,
                 ),
+                child: const Text('Отправить преподавателям'),
               ),
-              const SizedBox(height: 10)
-            ],
-          ));
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
+      );
     }
 
     showRoundedModalSheet(

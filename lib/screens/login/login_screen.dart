@@ -83,10 +83,11 @@ class LoginScreen extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-          minimum: const EdgeInsets.all(12.0),
-          child: MediaQuery.of(context).size.aspectRatio > 1
-              ? Row(children: _children)
-              : Column(children: _children)),
+        minimum: const EdgeInsets.all(12.0),
+        child: MediaQuery.of(context).size.aspectRatio > 1
+            ? Row(children: _children)
+            : Column(children: _children),
+      ),
     );
   }
 }

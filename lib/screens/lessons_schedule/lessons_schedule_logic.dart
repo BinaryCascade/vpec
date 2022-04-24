@@ -73,6 +73,7 @@ class LessonsScheduleLogic extends ChangeNotifier {
       if (isWeekend) showForToday = false;
     }
     dateFromUrl = formatter.format(date);
+
     return baseUrl + formatter.format(date) + endUrl;
   }
 
@@ -97,14 +98,10 @@ class LessonsScheduleLogic extends ChangeNotifier {
   }
 
   void handleDoubleTap() {
-    Matrix4 _endMatrix;
+    Matrix4 _endMatrix = Matrix4.identity();
     Offset position = doubleTapDetails.localPosition;
 
     if (transformationController.value != Matrix4.identity()) {
-      // zoom out
-      _endMatrix = Matrix4.identity();
-    } else {
-      // zoom in
       _endMatrix = Matrix4.identity()
         ..translate(-position.dx * 2, -position.dy * 2)
         ..scale(3.5);

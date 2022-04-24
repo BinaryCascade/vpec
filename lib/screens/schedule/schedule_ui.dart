@@ -80,7 +80,7 @@ class ScheduleItem extends StatelessWidget {
                     AdditionalInfo(
                       open: logic.open,
                       info: logic.infoWidget,
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -91,9 +91,7 @@ class ScheduleItem extends StatelessWidget {
                     // Меняй этой значение, чтобы дэши попали в расстояние нормально
                     dottedLength: 3.5,
                     dottedSpace: 3,
-                    left: BorderSide(
-                        width: 3,
-                        color: getItemColor(context)),
+                    left: BorderSide(width: 3, color: getItemColor(context)),
                   ),
                 ),
                 child: Text(
@@ -163,6 +161,7 @@ class SchedulePanel extends StatelessWidget {
         String name = fullSchedule.schedule[lessonNum];
         if (name == '0') name = '';
         if (name.isNotEmpty) name = '- $name';
+
         return name;
       }
 
@@ -181,7 +180,9 @@ class SchedulePanel extends StatelessWidget {
             lessonEnding: fullSchedule.timetable[lessonNum].split('-').last,
             lessonName: lessonName(),
             pauseAfterLesson: ScheduleTime.calculatePauseAfterLesson(
-                lessonEnding, nextLessonBeginning()),
+              lessonEnding,
+              nextLessonBeginning(),
+            ),
           ),
         ),
       );
@@ -258,7 +259,7 @@ class AdditionalInfoPanelWidget extends StatelessWidget {
                 Text(
                   names,
                   style: Theme.of(context).textTheme.bodyText1,
-                )
+                ),
               ],
             ),
           ),

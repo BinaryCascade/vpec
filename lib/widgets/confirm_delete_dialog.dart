@@ -9,7 +9,7 @@ class DeleteDialogUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         SizedBox(
+        SizedBox(
           width: double.infinity,
           child: OutlinedButton(
             onPressed: () => Navigator.pop(context),

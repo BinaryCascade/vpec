@@ -27,16 +27,17 @@ class _AccountBlockState extends State<AccountBlock> {
           child: Column(
             children: [
               StyledListTile(
-                  onTap: () => SettingsLogic.accountLogin(context),
-                  icon: Icon(
-                    Icons.account_circle_outlined,
-                    color: Theme.of(context).colorScheme.secondary,
-                    size: 32,
-                  ),
-                  title: 'Аккаунт',
-                  subtitle: auth.accountInfo.isLoggedIn
-                      ? SettingsLogic.getAccountModeText(context)
-                      : 'Нажмите, чтобы войти в аккаунт'),
+                onTap: () => SettingsLogic.accountLogin(context),
+                icon: Icon(
+                  Icons.account_circle_outlined,
+                  color: Theme.of(context).colorScheme.secondary,
+                  size: 32,
+                ),
+                title: 'Аккаунт',
+                subtitle: auth.accountInfo.isLoggedIn
+                    ? SettingsLogic.getAccountModeText(context)
+                    : 'Нажмите, чтобы войти в аккаунт',
+              ),
               StyledListTile(
                 icon: Icon(
                   Icons.subject_outlined,
@@ -51,15 +52,16 @@ class _AccountBlockState extends State<AccountBlock> {
                 Column(
                   children: [
                     HivedListTile(
-                        onTap: () => SettingsLogic.changeName(context),
-                        icon: Icon(
-                          Icons.edit_outlined,
-                          color: Theme.of(context).colorScheme.secondary,
-                          size: 32.0,
-                        ),
-                        title: 'Имя для объявлений',
-                        subtitleKey: 'username',
-                        defaultValue: 'Текущее: нет (нажмите, чтобы изменить)'),
+                      onTap: () => SettingsLogic.changeName(context),
+                      icon: Icon(
+                        Icons.edit_outlined,
+                        color: Theme.of(context).colorScheme.secondary,
+                        size: 32.0,
+                      ),
+                      title: 'Имя для объявлений',
+                      subtitleKey: 'username',
+                      defaultValue: 'Текущее: нет (нажмите, чтобы изменить)',
+                    ),
                     StyledListTile(
                       icon: Icon(
                         Icons.tune_outlined,
@@ -83,11 +85,12 @@ class _AccountBlockState extends State<AccountBlock> {
                       title: 'Экран тестирования',
                       subtitle: 'Для дебага функций',
                       onTap: () => Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (BuildContext context) =>
-                                const DebugScreen(),
-                          )),
+                        context,
+                        CupertinoPageRoute(
+                          builder: (BuildContext context) =>
+                              const DebugScreen(),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -128,15 +131,16 @@ class LaunchOnStartChooser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HivedListTile(
-        onTap: () => SettingsLogic().chooseLaunchOnStart(context),
-        subtitleKey: 'launchOnStartString',
-        defaultValue: 'События',
-        title: 'Открывать при запуске',
-        icon: Icon(
-          Icons.launch_outlined,
-          color: Theme.of(context).colorScheme.secondary,
-          size: 32.0,
-        ));
+      onTap: () => SettingsLogic().chooseLaunchOnStart(context),
+      subtitleKey: 'launchOnStartString',
+      defaultValue: 'События',
+      title: 'Открывать при запуске',
+      icon: Icon(
+        Icons.launch_outlined,
+        color: Theme.of(context).colorScheme.secondary,
+        size: 32.0,
+      ),
+    );
   }
 }
 
@@ -151,9 +155,9 @@ class AccountLoginUI extends StatelessWidget {
     return Column(
       children: [
         AutofillGroup(
-            child: Column(
-          children: [
-            Padding(
+          child: Column(
+            children: [
+              Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: TextFormField(
                   controller: emailController,
@@ -162,18 +166,20 @@ class AccountLoginUI extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   style: Theme.of(context).textTheme.headline3,
                   decoration: const InputDecoration(labelText: 'Введите email'),
-                )),
-            TextFormField(
-              controller: passwordController,
-              autofillHints: const <String>[AutofillHints.password],
-              textInputAction: TextInputAction.done,
-              obscureText: true,
-              keyboardType: TextInputType.visiblePassword,
-              style: Theme.of(context).textTheme.headline3,
-              decoration: const InputDecoration(labelText: 'Введите пароль'),
-            ),
-          ],
-        )),
+                ),
+              ),
+              TextFormField(
+                controller: passwordController,
+                autofillHints: const <String>[AutofillHints.password],
+                textInputAction: TextInputAction.done,
+                obscureText: true,
+                keyboardType: TextInputType.visiblePassword,
+                style: Theme.of(context).textTheme.headline3,
+                decoration: const InputDecoration(labelText: 'Введите пароль'),
+              ),
+            ],
+          ),
+        ),
         ButtonBar(
           children: [
             TextButton(
@@ -183,9 +189,11 @@ class AccountLoginUI extends StatelessWidget {
             ElevatedButton(
               child: const Text('Войти'),
               onPressed: () {
-                SettingsLogic().makeLogin(context,
-                    email: emailController.text,
-                    password: passwordController.text);
+                SettingsLogic().makeLogin(
+                  context,
+                  email: emailController.text,
+                  password: passwordController.text,
+                );
               },
             ),
           ],
@@ -214,7 +222,7 @@ class AccountLogoutUI extends StatelessWidget {
               onPressed: () => SettingsLogic.accountLogout(context),
             ),
           ],
-        )
+        ),
       ],
     );
   }
@@ -249,7 +257,9 @@ class EditNameUI extends StatelessWidget {
               child: const Text('Сохранить'),
               onPressed: () {
                 HiveHelper.saveValue(
-                    key: 'username', value: nameController.value.text);
+                  key: 'username',
+                  value: nameController.value.text,
+                );
                 Navigator.pop(context);
               },
             ),
@@ -267,14 +277,14 @@ class ThemeChooserUI extends StatefulWidget {
   final String hiveKey;
   final void Function(bool) alwaysLightThemeDocumentChanged;
 
-  const ThemeChooserUI(
-      {Key? key,
-      required this.lightThemeSelected,
-      required this.darkThemeSelected,
-      required this.defaultThemeSelected,
-      required this.hiveKey,
-      required this.alwaysLightThemeDocumentChanged})
-      : super(key: key);
+  const ThemeChooserUI({
+    Key? key,
+    required this.lightThemeSelected,
+    required this.darkThemeSelected,
+    required this.defaultThemeSelected,
+    required this.hiveKey,
+    required this.alwaysLightThemeDocumentChanged,
+  }) : super(key: key);
 
   @override
   _ThemeChooserUIState createState() => _ThemeChooserUIState();
@@ -286,12 +296,11 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
 
   @override
   void initState() {
-    if (HiveHelper.getValue(widget.hiveKey) == null) {
-      selectedItem = 2;
-    } else {
-      selectedItem =
-          HiveHelper.getValue(widget.hiveKey) == 'Светлая тема' ? 0 : 1;
-    }
+    selectedItem = HiveHelper.getValue(widget.hiveKey) == null
+        ? 2
+        : HiveHelper.getValue(widget.hiveKey) == 'Светлая тема'
+            ? 0
+            : 1;
     if (HiveHelper.getValue('alwaysLightThemeDocument') == null) {
       HiveHelper.saveValue(key: 'alwaysLightThemeDocument', value: false);
     }
@@ -306,94 +315,106 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
     return Column(
       children: [
         RadioListTile(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            secondary: Center(
-              widthFactor: 1,
-              child: Icon(Icons.brightness_5_outlined,
-                  color: Theme.of(context).colorScheme.secondary),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          secondary: Center(
+            widthFactor: 1,
+            child: Icon(
+              Icons.brightness_5_outlined,
+              color: Theme.of(context).colorScheme.secondary,
             ),
-            title: Text(
-              'Светлая тема',
-              style: Theme.of(context).textTheme.headline4,
+          ),
+          title: Text(
+            'Светлая тема',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          value: 0,
+          activeColor: Theme.of(context).colorScheme.secondary,
+          groupValue: selectedItem,
+          controlAffinity: ListTileControlAffinity.trailing,
+          onChanged: (dynamic value) {
+            widget.lightThemeSelected();
+            setState(() {
+              selectedItem = value;
+            });
+          },
+        ),
+        RadioListTile(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          secondary: Center(
+            widthFactor: 1,
+            child: Icon(
+              Icons.brightness_2_outlined,
+              color: Theme.of(context).colorScheme.secondary,
             ),
-            value: 0,
-            activeColor: Theme.of(context).colorScheme.secondary,
-            groupValue: selectedItem,
-            controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (dynamic value) {
-              widget.lightThemeSelected();
+          ),
+          title: Text(
+            'Тёмная тема',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          value: 1,
+          activeColor: Theme.of(context).colorScheme.secondary,
+          groupValue: selectedItem,
+          controlAffinity: ListTileControlAffinity.trailing,
+          onChanged: (dynamic value) {
+            setState(() {
+              widget.darkThemeSelected();
               setState(() {
                 selectedItem = value;
               });
-            }),
+            });
+          },
+        ),
         RadioListTile(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            secondary: Center(
-              widthFactor: 1,
-              child: Icon(Icons.brightness_2_outlined,
-                  color: Theme.of(context).colorScheme.secondary),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          secondary: Center(
+            widthFactor: 1,
+            child: Icon(
+              Icons.phonelink_setup_outlined,
+              color: Theme.of(context).colorScheme.secondary,
             ),
-            title: Text(
-              'Тёмная тема',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            value: 1,
-            activeColor: Theme.of(context).colorScheme.secondary,
-            groupValue: selectedItem,
-            controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (dynamic value) {
-              setState(() {
-                widget.darkThemeSelected();
-                setState(() {
-                  selectedItem = value;
-                });
-              });
-            }),
-        RadioListTile(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            secondary: Center(
-              widthFactor: 1,
-              child: Icon(Icons.phonelink_setup_outlined,
-                  color: Theme.of(context).colorScheme.secondary),
-            ),
-            title: Text(
-              'Системная тема',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            value: 2,
-            activeColor: Theme.of(context).colorScheme.secondary,
-            groupValue: selectedItem,
-            controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (dynamic value) {
-              widget.defaultThemeSelected();
-              setState(() {
-                selectedItem = value;
-              });
-            }),
+          ),
+          title: Text(
+            'Системная тема',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          value: 2,
+          activeColor: Theme.of(context).colorScheme.secondary,
+          groupValue: selectedItem,
+          controlAffinity: ListTileControlAffinity.trailing,
+          onChanged: (dynamic value) {
+            widget.defaultThemeSelected();
+            setState(() {
+              selectedItem = value;
+            });
+          },
+        ),
         const Divider(),
         SwitchListTile(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            value: documentLightThemeSwitchState,
-            activeColor: Theme.of(context).colorScheme.secondary,
-            secondary: Center(
-              widthFactor: 1,
-              child: Icon(
-                Icons.description_outlined,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          value: documentLightThemeSwitchState,
+          activeColor: Theme.of(context).colorScheme.secondary,
+          secondary: Center(
+            widthFactor: 1,
+            child: Icon(
+              Icons.description_outlined,
+              color: Theme.of(context).colorScheme.secondary,
             ),
-            title: Text('Всегда светлая тема для документов',
-                style: Theme.of(context).textTheme.headline4),
-            onChanged: (value) {
-              widget.alwaysLightThemeDocumentChanged(value);
-              setState(() {
-                documentLightThemeSwitchState = value;
-              });
-            }),
+          ),
+          title: Text(
+            'Всегда светлая тема для документов',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          onChanged: (value) {
+            widget.alwaysLightThemeDocumentChanged(value);
+            setState(() {
+              documentLightThemeSwitchState = value;
+            });
+          },
+        ),
         const SizedBox(height: 7),
       ],
     );
@@ -423,101 +444,121 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
     return Column(
       children: [
         RadioListTile(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            secondary: Center(
-              widthFactor: 1,
-              child: Icon(VpecIconPack.news_outline,
-                  color: Theme.of(context).colorScheme.secondary),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          secondary: Center(
+            widthFactor: 1,
+            child: Icon(
+              VpecIconPack.news_outline,
+              color: Theme.of(context).colorScheme.secondary,
             ),
-            title: Text(
-              'События',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            value: 0,
-            activeColor: Theme.of(context).colorScheme.secondary,
-            groupValue: selectedItem,
-            controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (dynamic value) {
-              setState(() {
-                HiveHelper.saveValue(key: 'launchOnStart', value: value);
-                HiveHelper.saveValue(
-                    key: 'launchOnStartString', value: 'События');
-                selectedItem = value;
-              });
-            }),
+          ),
+          title: Text(
+            'События',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          value: 0,
+          activeColor: Theme.of(context).colorScheme.secondary,
+          groupValue: selectedItem,
+          controlAffinity: ListTileControlAffinity.trailing,
+          onChanged: (dynamic value) {
+            setState(() {
+              HiveHelper.saveValue(key: 'launchOnStart', value: value);
+              HiveHelper.saveValue(
+                key: 'launchOnStartString',
+                value: 'События',
+              );
+              selectedItem = value;
+            });
+          },
+        ),
         RadioListTile(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            secondary: Center(
-              widthFactor: 1,
-              child: Icon(Icons.notifications_outlined,
-                  color: Theme.of(context).colorScheme.secondary),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          secondary: Center(
+            widthFactor: 1,
+            child: Icon(
+              Icons.notifications_outlined,
+              color: Theme.of(context).colorScheme.secondary,
             ),
-            title: Text(
-              'Объявления',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            value: 1,
-            activeColor: Theme.of(context).colorScheme.secondary,
-            groupValue: selectedItem,
-            controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (dynamic value) {
-              setState(() {
-                HiveHelper.saveValue(key: 'launchOnStart', value: value);
-                HiveHelper.saveValue(
-                    key: 'launchOnStartString', value: 'Объявления');
-                selectedItem = value;
-              });
-            }),
+          ),
+          title: Text(
+            'Объявления',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          value: 1,
+          activeColor: Theme.of(context).colorScheme.secondary,
+          groupValue: selectedItem,
+          controlAffinity: ListTileControlAffinity.trailing,
+          onChanged: (dynamic value) {
+            setState(() {
+              HiveHelper.saveValue(key: 'launchOnStart', value: value);
+              HiveHelper.saveValue(
+                key: 'launchOnStartString',
+                value: 'Объявления',
+              );
+              selectedItem = value;
+            });
+          },
+        ),
         RadioListTile(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            secondary: Center(
-              widthFactor: 1,
-              child: Icon(Icons.access_time_outlined,
-                  color: Theme.of(context).colorScheme.secondary),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          secondary: Center(
+            widthFactor: 1,
+            child: Icon(
+              Icons.access_time_outlined,
+              color: Theme.of(context).colorScheme.secondary,
             ),
-            title: Text(
-              'Звонки',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            value: 2,
-            activeColor: Theme.of(context).colorScheme.secondary,
-            groupValue: selectedItem,
-            controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (dynamic value) {
-              setState(() {
-                HiveHelper.saveValue(key: 'launchOnStart', value: value);
-                HiveHelper.saveValue(
-                    key: 'launchOnStartString', value: 'Звонки');
-                selectedItem = value;
-              });
-            }),
+          ),
+          title: Text(
+            'Звонки',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          value: 2,
+          activeColor: Theme.of(context).colorScheme.secondary,
+          groupValue: selectedItem,
+          controlAffinity: ListTileControlAffinity.trailing,
+          onChanged: (dynamic value) {
+            setState(() {
+              HiveHelper.saveValue(key: 'launchOnStart', value: value);
+              HiveHelper.saveValue(
+                key: 'launchOnStartString',
+                value: 'Звонки',
+              );
+              selectedItem = value;
+            });
+          },
+        ),
         RadioListTile(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            secondary: Center(
-              widthFactor: 1,
-              child: Icon(Icons.dashboard_outlined,
-                  color: Theme.of(context).colorScheme.secondary),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          secondary: Center(
+            widthFactor: 1,
+            child: Icon(
+              Icons.dashboard_outlined,
+              color: Theme.of(context).colorScheme.secondary,
             ),
-            title: Text(
-              'Расписание занятий',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            value: 3,
-            activeColor: Theme.of(context).colorScheme.secondary,
-            groupValue: selectedItem,
-            controlAffinity: ListTileControlAffinity.trailing,
-            onChanged: (dynamic value) {
-              setState(() {
-                HiveHelper.saveValue(key: 'launchOnStart', value: value);
-                HiveHelper.saveValue(
-                    key: 'launchOnStartString', value: 'Расписание занятий');
-                selectedItem = value;
-              });
-            }),
+          ),
+          title: Text(
+            'Расписание занятий',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          value: 3,
+          activeColor: Theme.of(context).colorScheme.secondary,
+          groupValue: selectedItem,
+          controlAffinity: ListTileControlAffinity.trailing,
+          onChanged: (dynamic value) {
+            setState(() {
+              HiveHelper.saveValue(key: 'launchOnStart', value: value);
+              HiveHelper.saveValue(
+                key: 'launchOnStartString',
+                value: 'Расписание занятий',
+              );
+              selectedItem = value;
+            });
+          },
+        ),
       ],
     );
   }
@@ -634,7 +675,7 @@ class ChooseGroupsUI extends StatelessWidget {
             OutlinedButton(
               onPressed: () {},
               child: const Text('Продолжить'),
-            )
+            ),
           ],
         ),
       ],

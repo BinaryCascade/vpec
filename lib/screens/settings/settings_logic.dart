@@ -33,8 +33,11 @@ class SettingsLogic extends ChangeNotifier {
   }
 
   // login to firebase account with email and password
-  void makeLogin(BuildContext context,
-      {required String email, required password}) async {
+  void makeLogin(
+    BuildContext context, {
+    required String email,
+    required password,
+  }) async {
     try {
       // trying to login
       await FirebaseAuth.instance
@@ -53,7 +56,10 @@ class SettingsLogic extends ChangeNotifier {
     try {
       await FirebaseAuth.instance.signOut();
       Navigator.pushNamedAndRemoveUntil(
-          context, Routes.homeScreen, (route) => false);
+        context,
+        Routes.homeScreen,
+        (route) => false,
+      );
     } catch (e) {
       showSnackBar(context, text: 'Ошибка выхода из аккаунта');
     }
@@ -88,8 +94,10 @@ class SettingsLogic extends ChangeNotifier {
     }
   }
 
-  Future<void> chooseTheme(
-      {required BuildContext context, required bool isAppThemeSetting}) async {
+  Future<void> chooseTheme({
+    required BuildContext context,
+    required bool isAppThemeSetting,
+  }) async {
     String hiveKey = isAppThemeSetting ? 'theme' : 'pdfTheme';
 
     await showRoundedModalSheet(
@@ -113,7 +121,9 @@ class SettingsLogic extends ChangeNotifier {
             },
             alwaysLightThemeDocumentChanged: (value) {
               HiveHelper.saveValue(
-                  key: 'alwaysLightThemeDocument', value: value);
+                key: 'alwaysLightThemeDocument',
+                value: value,
+              );
             },
           );
         },
@@ -121,20 +131,22 @@ class SettingsLogic extends ChangeNotifier {
     );
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness:
-              ThemeHelper.isDarkMode ? Brightness.light : Brightness.dark,
-          systemNavigationBarColor: Colors.transparent,
-          systemNavigationBarIconBrightness:
-              ThemeHelper.isDarkMode ? Brightness.light : Brightness.dark),
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness:
+            ThemeHelper.isDarkMode ? Brightness.light : Brightness.dark,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness:
+            ThemeHelper.isDarkMode ? Brightness.light : Brightness.dark,
+      ),
     );
   }
 
   void chooseLaunchOnStart(BuildContext context) {
     showRoundedModalSheet(
-        context: context,
-        title: 'Открывать при запуске',
-        child: const LaunchOnStartChooserUI());
+      context: context,
+      title: 'Открывать при запуске',
+      child: const LaunchOnStartChooserUI(),
+    );
   }
 
   static void chooseGroups(BuildContext context) {}

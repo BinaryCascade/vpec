@@ -15,17 +15,13 @@ class ScheduleItemLogic extends ChangeNotifier {
     required String? lessonName,
   }) {
     open = !open;
-    if (open) {
-      infoWidget = AdditionalInfoPanelWidget(
-        names: names ?? 'Нет данных о преподавателе',
-        notes: HiveHelper.getValue('note_$lessonName') ?? '',
-        lessonName: lessonName ?? 'nothing',
-      );
-    } else {
-      infoWidget = const SizedBox(
-        width: double.infinity,
-      );
-    }
+    infoWidget = open
+        ? AdditionalInfoPanelWidget(
+            names: names ?? 'Нет данных о преподавателе',
+            notes: HiveHelper.getValue('note_$lessonName') ?? '',
+            lessonName: lessonName ?? 'nothing',
+          )
+        : const SizedBox(width: double.infinity);
 
     notifyListeners();
   }

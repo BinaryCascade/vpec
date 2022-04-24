@@ -9,17 +9,16 @@ import 'teacher_editormode_ui.dart';
 class TeacherEditorModeLogic {
   static void showEditDialog(BuildContext context, TeacherModel model) {
     showRoundedModalSheet(
-        context: context,
-        title: 'Редактировать преподавателя',
-        child: EditTeacherDialogUI(model: model));
+      context: context,
+      title: 'Редактировать преподавателя',
+      child: EditTeacherDialogUI(model: model),
+    );
   }
 
   static void editTeacher(TeacherModel model) {
     CollectionReference teachers =
         FirebaseFirestore.instance.collection('teacher_list');
-    teachers
-        .doc(model.id)
-        .set(
+    teachers.doc(model.id).set(
           model.toMap(int.parse(model.id!)),
         );
   }
@@ -27,9 +26,10 @@ class TeacherEditorModeLogic {
   static void showConfirmDeleteDialog(BuildContext context, String id) {
     Navigator.pop(context);
     showRoundedModalSheet(
-        context: context,
-        title: 'Подтвердите действие',
-        child: DeleteDialogUI(onDelete: () => confirmDelete(id)));
+      context: context,
+      title: 'Подтвердите действие',
+      child: DeleteDialogUI(onDelete: () => confirmDelete(id)),
+    );
   }
 
   static void confirmDelete(String id) {

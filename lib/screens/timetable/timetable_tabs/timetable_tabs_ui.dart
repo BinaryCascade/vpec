@@ -36,7 +36,7 @@ class TimeTableTabsUI extends StatelessWidget {
                       '3-4 курс',
                       style: TextStyle(fontSize: 15),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

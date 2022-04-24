@@ -3,7 +3,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'timetable.freezed.dart';
-
 part 'timetable.g.dart';
 
 @freezed

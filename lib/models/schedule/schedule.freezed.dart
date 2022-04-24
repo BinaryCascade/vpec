@@ -24,6 +24,7 @@ mixin _$Schedule {
   Map<String, dynamic> get scheduleMap => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $ScheduleCopyWith<Schedule> get copyWith =>
       throw _privateConstructorUsedError;
@@ -33,6 +34,7 @@ mixin _$Schedule {
 abstract class $ScheduleCopyWith<$Res> {
   factory $ScheduleCopyWith(Schedule value, $Res Function(Schedule) then) =
       _$ScheduleCopyWithImpl<$Res>;
+
   $Res call(
       {@JsonKey(name: 'schedule', required: true, disallowNullValue: true)
           Map<String, dynamic> scheduleMap});
@@ -43,6 +45,7 @@ class _$ScheduleCopyWithImpl<$Res> implements $ScheduleCopyWith<$Res> {
   _$ScheduleCopyWithImpl(this._value, this._then);
 
   final Schedule _value;
+
   // ignore: unused_field
   final $Res Function(Schedule) _then;
 
@@ -63,6 +66,7 @@ class _$ScheduleCopyWithImpl<$Res> implements $ScheduleCopyWith<$Res> {
 abstract class _$ScheduleCopyWith<$Res> implements $ScheduleCopyWith<$Res> {
   factory _$ScheduleCopyWith(_Schedule value, $Res Function(_Schedule) then) =
       __$ScheduleCopyWithImpl<$Res>;
+
   @override
   $Res call(
       {@JsonKey(name: 'schedule', required: true, disallowNullValue: true)
@@ -104,6 +108,7 @@ class _$_Schedule implements _Schedule {
 
   @JsonKey(name: 'schedule', required: true, disallowNullValue: true)
   final Map<String, dynamic> _scheduleMap;
+
   @override
   @JsonKey(name: 'schedule', required: true, disallowNullValue: true)
   Map<String, dynamic> get scheduleMap {
@@ -151,6 +156,7 @@ abstract class _Schedule implements Schedule {
   @override
   @JsonKey(name: 'schedule', required: true, disallowNullValue: true)
   Map<String, dynamic> get scheduleMap => throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
   _$ScheduleCopyWith<_Schedule> get copyWith =>

@@ -91,10 +91,11 @@ class FabMenu extends StatelessWidget {
         FloatingActionButton(
           heroTag: null,
           child: Icon(
-              context.watch<LessonsScheduleLogic>().showForToday
-                  ? Icons.arrow_forward_ios_rounded
-                  : Icons.arrow_back_ios_rounded,
-              size: 24),
+            context.watch<LessonsScheduleLogic>().showForToday
+                ? Icons.arrow_forward_ios_rounded
+                : Icons.arrow_back_ios_rounded,
+            size: 24,
+          ),
           onPressed: () {
             LessonsScheduleLogic logic = context.read<LessonsScheduleLogic>();
             // this FAB used for switch between schedule for today or tomorrow

@@ -25,5 +25,4 @@ dart_code_metrics:
     - prefer-conditional-expressions
     - no-equal-then-else
   anti-patterns:
-    - long-method
     - long-parameter-list
