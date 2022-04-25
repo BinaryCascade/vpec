@@ -46,7 +46,7 @@ class _AccountBlockState extends State<AccountBlock> {
                 ),
                 title: 'Выбрать группу',
                 subtitle: 'Для показа расписания',
-                onTap: () => SettingsLogic.chooseGroups(context),
+                onTap: () => SettingsLogic.chooseGroup(context),
               ),
               if (auth.accountInfo.level == AccessLevel.admin)
                 Column(
@@ -564,121 +564,125 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
   }
 }
 
-class ChooseGroupsUI extends StatelessWidget {
-  const ChooseGroupsUI({
-    Key? key,
-    required this.groups,
-    required this.courses,
-    required this.numOfGroup,
-  }) : super(key: key);
-
-  final List<String> groups;
-  final List<String> courses;
-  final List<String> numOfGroup;
+class ChooseGroupUI extends StatelessWidget {
+  const ChooseGroupUI({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String pickedGroup = groups.first;
-    String pickedCourse = courses.first;
-    String pickedNumOfGroup = numOfGroup.first;
+    return Consumer<GroupsData>(builder: (context, logic, _) {
+      logic.updateFormedGroup();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        DropdownButtonFormField<String>(
-          value: pickedGroup,
-          isExpanded: true,
-          isDense: false,
-          items: groups
-              .map<DropdownMenuItem<String>>(
-                (group) => DropdownMenuItem<String>(
-                  value: group,
-                  child: Text(group),
-                ),
-              )
-              .toList(),
-          onChanged: (value) {},
-          style: Theme.of(context).textTheme.headline3,
-          decoration: const InputDecoration(labelText: 'Специальность'),
-          menuMaxHeight: 400,
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Row(
-          children: [
-            SizedBox(
-              width: 170,
-              child: DropdownButtonFormField<String>(
-                value: pickedCourse,
-                items: courses
-                    .map<DropdownMenuItem<String>>(
-                      (course) => DropdownMenuItem<String>(
-                        value: course,
-                        child: Text(course),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (value) {},
-                style: Theme.of(context).textTheme.headline3,
-                decoration: const InputDecoration(labelText: 'Курс'),
-                menuMaxHeight: 400,
-              ),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          DropdownButtonFormField<String>(
+            borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+            value: GroupsData.getGroupsNames.first,
+            isExpanded: true,
+            isDense: false,
+            items: GroupsData.getGroupsNames
+                .map<DropdownMenuItem<String>>(
+                  (group) => DropdownMenuItem<String>(
+                    value: group,
+                    child: Text(group),
+                  ),
+                )
+                .toList(),
+            onChanged: (value) => logic.onValueChanged(
+              value,
+              type: ChangedType.groupName,
             ),
-            const Spacer(),
-            SizedBox(
-              width: 170,
-              child: DropdownButtonFormField<String>(
-                value: pickedNumOfGroup,
-                items: numOfGroup
-                    .map<DropdownMenuItem<String>>(
-                      (groupNum) => DropdownMenuItem<String>(
-                        value: groupNum,
-                        child: Text(groupNum),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (value) {},
-                style: Theme.of(context).textTheme.headline3,
-                decoration: const InputDecoration(labelText: 'Группа'),
-                menuMaxHeight: 400,
-              ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 15.0),
-          child: Text(
-            'Будет выбрана группа: no',
             style: Theme.of(context).textTheme.headline3,
+            decoration: const InputDecoration(labelText: 'Специальность'),
+            menuMaxHeight: 400,
           ),
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: OutlinedButton(
-            onPressed: () {},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(Icons.add_outlined),
-                Text('Добавить'),
-              ],
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: 170,
+                child: DropdownButtonFormField<String>(
+                  value: GroupsData.getCoursesNumbers.first,
+                  items: GroupsData.getCoursesNumbers
+                      .map<DropdownMenuItem<String>>(
+                        (course) => DropdownMenuItem<String>(
+                          value: course,
+                          child: Text(course),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) => logic.onValueChanged(
+                    value,
+                    type: ChangedType.groupCourse,
+                  ),
+                  style: Theme.of(context).textTheme.headline3,
+                  decoration: const InputDecoration(labelText: 'Курс'),
+                  menuMaxHeight: 400,
+                ),
+              ),
+              const Spacer(),
+              SizedBox(
+                width: 170,
+                child: DropdownButtonFormField<String>(
+                  value: GroupsData.getGroupNumbers.first,
+                  items: GroupsData.getGroupNumbers
+                      .map<DropdownMenuItem<String>>(
+                        (groupNum) => DropdownMenuItem<String>(
+                          value: groupNum,
+                          child: Text(groupNum),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) => logic.onValueChanged(
+                    value,
+                    type: ChangedType.groupNumber,
+                  ),
+                  style: Theme.of(context).textTheme.headline3,
+                  decoration: const InputDecoration(labelText: 'Группа'),
+                  menuMaxHeight: 400,
+                ),
+              ),
+            ],
+          ),
+          SwitchListTile(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            activeColor: Theme.of(context).colorScheme.secondary,
+            value: logic.isAccelerated,
+            title: Text(
+              'Ускроенная форма обучения',
+              style: Theme.of(context).textTheme.headline3,
+            ),
+            onChanged: (value) => logic.onValueChanged(
+              value,
+              type: ChangedType.accelerated,
             ),
           ),
-        ),
-        ButtonBar(
-          children: [
-            TextButton(
-              onPressed: () {},
-              child: const Text('Закрыть'),
-            ),
-            OutlinedButton(
-              onPressed: () {},
-              child: const Text('Продолжить'),
-            ),
-          ],
-        ),
-      ],
-    );
+          Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Builder(builder: (context) {
+              return Text(
+                'Будет выбрана группа: ${logic.formedGroup}',
+                style: Theme.of(context).textTheme.headline3,
+              );
+            }),
+          ),
+          ButtonBar(
+            children: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Закрыть'),
+              ),
+              ElevatedButton(
+                onPressed: () => logic.saveFormedGroup(),
+                child: const Text('Сохранить'),
+              ),
+            ],
+          ),
+        ],
+      );
+    });
   }
 }

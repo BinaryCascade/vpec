@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '../schedule/schedule_screen.dart';
 import '/utils/hive_helper.dart';
 import '/utils/theme_helper.dart';
 import '/utils/utils.dart';
@@ -149,5 +150,158 @@ class SettingsLogic extends ChangeNotifier {
     );
   }
 
-  static void chooseGroups(BuildContext context) {}
+  static void chooseGroup(BuildContext context) {
+    showRoundedModalSheet(
+      context: context,
+      title: 'Выберите группу',
+      child: ChangeNotifierProvider<GroupsData>(
+        create: (_) => GroupsData(),
+        child: const ChooseGroupUI(),
+      ),
+    );
+  }
+}
+
+class GroupsData extends ChangeNotifier {
+  /// Stores the formed group of [selectedGroup], [selectedCourse]
+  /// and [selectedGroupNumber]
+  String formedGroup = '';
+
+  /// Stores user picked group in [ChooseGroupUI]
+  /// In the final case, it is converted to the group identification
+  ///
+  /// e.x: **09.02.01**-1-18
+  String selectedGroup = getGroupsNames.first;
+
+  /// Stores user picked course (1-4) in [ChooseGroupUI].
+  /// In the final case, it is converted to the year of admission to study
+  ///
+  /// e.x: 09.02.01-1-**18**
+  String selectedCourse = getCoursesNumbers.first;
+
+  /// Stores user picked group number (1-2) in [ChooseGroupUI]
+  ///
+  /// e.x: 09.02.01-**1**-18
+  String selectedGroupNumber = getGroupNumbers.first;
+
+  /// Determines whether the form of study is accelerated or not.
+  ///
+  /// e.x: 13.02.09-1-21**у**
+  bool isAccelerated = false;
+
+  /// Stores groups names and their number identification in key-value type.
+  ///
+  /// Key is a group name
+  ///
+  /// Value is a group number identification
+  static final Map<String, String> _groups = {
+    'Компьютерные системы и комплексы': '09.02.01',
+    'Электрические станции, сети и системы': '13.02.03',
+    'Релейная защита и автоматизация электроэнергетических систем': '13.02.06',
+    'Электроснабжение (по отраслям)': '13.02.07',
+    'Монтаж и эксплуатация линий электропередачи': '13.02.09',
+    'Экономика и бухгалтерский учет (по отраслям)': '38.02.01',
+    'Гостиничное дело': '43.02.14',
+    'Банковское дело': '38.02.07',
+    'Коммерция (по отраслям)': '38.02.04',
+  };
+
+  /// Returns a list of group names in [_groups] collection
+  ///
+  /// See more info: [selectedGroup]
+  static List<String> get getGroupsNames {
+    return _groups.keys.toList();
+  }
+
+  /// Returns a generated list of courses (1-4)
+  ///
+  /// See more info: [selectedCourse]
+  static List<String> get getCoursesNumbers {
+    return List.generate(4, (index) => (index + 1).toString());
+  }
+
+  /// Returns a generated list of group numbers (1-4)
+  ///
+  /// See more info: [selectedGroupNumber]
+  static List<String> get getGroupNumbers {
+    return List.generate(4, (index) => (index + 1).toString());
+  }
+
+  /// Returns a number identification of given group name, if
+  /// group not found, then returns search error
+  static String findGroupIdentification(String group) {
+    return _groups[group] ?? 'Группа не найдена';
+  }
+
+  /// Updates data for forming a group, used in [ChooseGroupUI].
+  ///
+  /// [value] can be [String] and [bool] depends on [ChangedType].
+  void onValueChanged(
+    dynamic value, {
+    required ChangedType type,
+  }) {
+    switch (type) {
+      case ChangedType.groupName:
+        selectedGroup = value; // value is a String
+        break;
+      case ChangedType.groupCourse:
+        selectedCourse = value; // value is a String
+        break;
+      case ChangedType.groupNumber:
+        selectedGroupNumber = value; // value is a String
+        break;
+      case ChangedType.accelerated:
+        isAccelerated = value; // value is a bool
+        break;
+    }
+    updateFormedGroup();
+  }
+
+  /// Returns the last two digits of the year of admission of this course
+  String calculateYear(String inputCourse) {
+    DateTime now = DateTime.now();
+    // if month any until September, then year of admission
+    // first course is prev, else this
+    int year = now.year < 9 ? now.year - 1 : now.year;
+    // calculate year of admission of given course [inputCourse]
+    year -= int.parse(inputCourse);
+
+    return year.toString().substring(2);
+  }
+
+  /// Updates the formed group based on [selectedGroup],
+  /// [selectedGroupNumber] and [selectedCourse]
+  void updateFormedGroup() {
+    String groupID = findGroupIdentification(selectedGroup);
+    String groupYear = calculateYear(selectedCourse);
+    String appendix = isAccelerated ? 'у' : '';
+
+    formedGroup = '$groupID-'
+        '$selectedGroupNumber-'
+        '$groupYear'
+        '$appendix';
+
+    notifyListeners();
+  }
+
+  /// Saves formed group to Hive to future using in [ScheduleScreen]
+  void saveFormedGroup() {
+    HiveHelper.saveValue(
+      key: 'chosenGroup',
+      value: formedGroup,
+    );
+  }
+}
+
+/// Used in [GroupsData.onValueChanged] method
+///
+/// [groupName] - the data in the name of the group has changed,
+/// [groupCourse] - the data in the course of the group has changed,
+/// [groupNumber] - the data in the number of the group has changed,
+/// [accelerated] - the data in the accelerated type of the group has changed,
+enum ChangedType {
+  groupName,
+  groupCourse,
+  groupNumber,
+  accelerated,
 }
