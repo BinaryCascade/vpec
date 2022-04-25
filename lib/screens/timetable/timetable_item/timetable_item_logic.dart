@@ -11,7 +11,7 @@ import 'timetable_editormode_ui.dart';
 
 class TimeTableItemLogic extends ChangeNotifier {
   bool needPrintText = true;
-  Timer updateTimer = Timer(const Duration(seconds: 0), () {});
+  Timer updateTimer = Timer(const Duration(seconds: 0), () {}); //ignore: no-empty-block
   Duration smallestUntilStartDuration = const Duration(days: 2);
 
   String updateTimeItem(TimeModel model) {
