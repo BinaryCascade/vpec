@@ -570,8 +570,6 @@ class ChooseGroupUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<GroupsData>(builder: (context, logic, _) {
-      logic.updateFormedGroup();
-
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -676,7 +674,9 @@ class ChooseGroupUI extends StatelessWidget {
                 child: const Text('Закрыть'),
               ),
               ElevatedButton(
-                onPressed: () => logic.saveFormedGroup(),
+                onPressed: logic.isSaveButtonEnabled
+                    ? () => logic.saveFormedGroup(context)
+                    : null,
                 child: const Text('Сохранить'),
               ),
             ],

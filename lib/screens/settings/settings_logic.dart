@@ -165,7 +165,7 @@ class SettingsLogic extends ChangeNotifier {
 class GroupsData extends ChangeNotifier {
   /// Stores the formed group of [selectedGroup], [selectedCourse]
   /// and [selectedGroupNumber]
-  String formedGroup = '';
+  String formedGroup = '00.00.00.00';
 
   /// Stores user picked group in [ChooseGroupUI]
   /// In the final case, it is converted to the group identification
@@ -189,12 +189,17 @@ class GroupsData extends ChangeNotifier {
   /// e.x: 13.02.09-1-21**у**
   bool isAccelerated = false;
 
+  /// controls whether the save button is enabled or not.
+  /// Updated by the [checkSaveButtonAvailable] method
+  bool isSaveButtonEnabled = false;
+
   /// Stores groups names and their number identification in key-value type.
   ///
   /// Key is a group name
   ///
   /// Value is a group number identification
   static final Map<String, String> _groups = {
+    'Выберите группу': '00.00.00.00',
     'Компьютерные системы и комплексы': '09.02.01',
     'Электрические станции, сети и системы': '13.02.03',
     'Релейная защита и автоматизация электроэнергетических систем': '13.02.06',
@@ -281,23 +286,35 @@ class GroupsData extends ChangeNotifier {
         '$groupYear'
         '$appendix';
 
+    checkSaveButtonAvailable();
+  }
+
+  /// Checks whether the "save" button is available for use.
+  /// If the group is not selected, then it does not work
+  void checkSaveButtonAvailable() {
+    isSaveButtonEnabled = selectedGroup != getGroupsNames.first;
     notifyListeners();
   }
 
   /// Saves formed group to Hive to future using in [ScheduleScreen]
-  void saveFormedGroup() {
+  void saveFormedGroup(BuildContext context) {
     HiveHelper.saveValue(
       key: 'chosenGroup',
       value: formedGroup,
     );
+    // close modal dialog
+    Navigator.pop(context);
   }
 }
 
-/// Used in [GroupsData.onValueChanged] method
+/// Used in [GroupsData.onValueChanged] method.
 ///
 /// [groupName] - the data in the name of the group has changed,
+///
 /// [groupCourse] - the data in the course of the group has changed,
+///
 /// [groupNumber] - the data in the number of the group has changed,
+///
 /// [accelerated] - the data in the accelerated type of the group has changed,
 enum ChangedType {
   groupName,
