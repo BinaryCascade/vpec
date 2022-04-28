@@ -73,7 +73,7 @@ class BottomBarUI extends StatelessWidget {
                 Theme.of(context).bottomNavigationBarTheme.backgroundColor,
             icon: const Icon(Icons.layers_outlined),
             activeIcon: const Icon(Icons.layers),
-            label: 'Расписание',
+            label: 'Карта',
           ),
           BottomNavigationBarItem(
             backgroundColor:
