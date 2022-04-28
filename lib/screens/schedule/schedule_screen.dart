@@ -76,13 +76,15 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                 ),
                 const SizedBox(height: 15),
                 logic.fullSchedule == null
-                    ? Center(
-                        child: LinearProgressIndicator(
-                          color: Theme.of(context).colorScheme.onBackground,
-                          backgroundColor:
-                              Theme.of(context).scaffoldBackgroundColor,
-                        ),
-                      )
+                    ? logic.hasError
+                        ? ScheduleErrorLoadingUI(errorText: logic.errorText)
+                        : Center(
+                            child: LinearProgressIndicator(
+                              color: Theme.of(context).colorScheme.onBackground,
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                            ),
+                          )
                     : SchedulePanel(fullSchedule: logic.fullSchedule!),
               ],
             ),

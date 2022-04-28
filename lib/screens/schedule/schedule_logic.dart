@@ -12,6 +12,7 @@ import '../../models/schedule/group_definition.dart';
 import '../../models/schedule/schedule.dart';
 import '../../models/schedule/timetable.dart';
 import '../../utils/hive_helper.dart';
+import 'schedule_screen.dart';
 
 class ScheduleLogic extends ChangeNotifier {
   /// Contains all the information about the schedule
@@ -28,7 +29,10 @@ class ScheduleLogic extends ChangeNotifier {
   int activeLessonIndex = 0;
 
   /// Indicates whether an error occurred during data processing or not
-  bool? hasError;
+  bool hasError = false;
+
+  /// Used for textual notification of errors to the user in [ScheduleScreen]
+  String? errorText;
 
   /// Used for automatically update timetable
   ///
@@ -57,7 +61,7 @@ class ScheduleLogic extends ChangeNotifier {
   String _makeUrl(String date) =>
       'https://raw.githubusercontent.com/ShyroTeam/vpec/'
       'new_schedule_system/assets/'
-      '25-01-2022.json';
+      '26-01-2022.json';
 
   // '$date.json';
 
@@ -130,16 +134,20 @@ class ScheduleLogic extends ChangeNotifier {
 
     //TODO: add data caching
     http.Response response =
-        await http.get(Uri.parse(url)).timeout(const Duration(seconds: 70));
+        await http.get(Uri.parse(url)).timeout(const Duration(seconds: 90));
 
     if (response.statusCode == 200) {
       hasError = false;
 
       String utf8data = response.body;
 
-      // TODO: throw error if [chosenGroup] is null or try to ask chose group
-      String group =
-          await HiveHelper.getValue('chosenGroup') ?? '09.02.01-1-18';
+      String group = await HiveHelper.getValue('chosenGroup') ?? '';
+
+      if (group.isEmpty) {
+        hasError = true;
+        errorText = 'Не выбрана группа для показа расписания';
+      }
+
       fullSchedule = FullSchedule(
         timetable: _getTimetable(utf8data, group),
         schedule: _getSchedule(utf8data, group),
@@ -153,6 +161,7 @@ class ScheduleLogic extends ChangeNotifier {
       getTimers();
     } else {
       hasError = true;
+      errorText = getErrorTextByStatusCode(response.statusCode);
     }
 
     notifyListeners();
@@ -178,6 +187,22 @@ class ScheduleLogic extends ChangeNotifier {
   void setActiveLesson(int index) {
     activeLessonIndex = index;
     notifyListeners();
+  }
+
+  /// Converts basic status codes into text errors that are
+  /// understandable to the user
+  String? getErrorTextByStatusCode(int statusCode) {
+    switch (statusCode) {
+      case 404: // Not found
+        return 'Расписание занятий на данный день не найдено.\n\n'
+            'Если уверены, что расписание занятий доступно, '
+            'попробуйте открыть полное расписание';
+      case 408: // Request Timeout
+        return 'Похоже, что нет ответа от сервера\n\n'
+            'Проверьте подключение к сети';
+      default: // Any other code
+        return null;
+    }
   }
 
   /// Gets or updates timers for actual [fullSchedule]

@@ -286,3 +286,28 @@ class AdditionalInfoPanelWidget extends StatelessWidget {
     );
   }
 }
+
+class ScheduleErrorLoadingUI extends StatelessWidget {
+  const ScheduleErrorLoadingUI({
+    Key? key,
+    required this.errorText,
+  }) : super(key: key);
+  final String? errorText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 4),
+      child: Text(
+        errorText ?? 'Произошла ошибка при загрузке расписания',
+        style: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w400,
+          fontSize: 18.0,
+          letterSpacing: 0.15,
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+}
