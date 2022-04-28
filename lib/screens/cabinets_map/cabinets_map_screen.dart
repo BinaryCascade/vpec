@@ -44,7 +44,8 @@ class _CabinetsMapScreenUIState extends State<CabinetsMapScreenUI> {
               ? const LoadingIndicator()
               : Padding(
                   padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).padding.top * 1.5),
+                    top: MediaQuery.of(context).padding.top * 1.5,
+                  ),
                   child: Stack(
                     alignment: Alignment.topCenter,
                     children: [
