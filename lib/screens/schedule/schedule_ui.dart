@@ -6,6 +6,7 @@ import '../../models/full_schedule.dart';
 import '../../models/schedule/schedule_item.dart';
 import '../../utils/hive_helper.dart';
 import '../../utils/routes/routes.dart';
+import '../settings/settings_logic.dart';
 import 'schedule_item_logic.dart';
 import 'schedule_logic.dart';
 
@@ -298,15 +299,27 @@ class ScheduleErrorLoadingUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 4),
-      child: Text(
-        errorText ?? 'Произошла ошибка при загрузке расписания',
-        style: const TextStyle(
-          fontFamily: 'Montserrat',
-          fontWeight: FontWeight.w400,
-          fontSize: 18.0,
-          letterSpacing: 0.15,
-        ),
-        textAlign: TextAlign.center,
+      child: Column(
+        children: [
+          Text(
+            errorText ?? 'Произошла ошибка при загрузке расписания',
+            style: const TextStyle(
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.w400,
+              fontSize: 18.0,
+              letterSpacing: 0.15,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          if (errorText == 'Не выбрана группа для показа расписания')
+            OutlinedButton(
+              onPressed: () async {
+                await SettingsLogic.chooseGroup(context);
+                context.read<ScheduleLogic>().loadSchedule();
+              },
+              child: const Text('Выбрать группу'),
+            ),
+        ],
       ),
     );
   }

@@ -150,10 +150,11 @@ class SettingsLogic extends ChangeNotifier {
     );
   }
 
-  static void chooseGroup(BuildContext context) {
-    showRoundedModalSheet(
+  static Future<void> chooseGroup(BuildContext context) async {
+    await showRoundedModalSheet(
       context: context,
       title: 'Выберите группу',
+      isDismissible: false,
       child: ChangeNotifierProvider<GroupsData>(
         create: (_) => GroupsData(),
         child: const ChooseGroupUI(),

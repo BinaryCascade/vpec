@@ -143,22 +143,22 @@ class ScheduleLogic extends ChangeNotifier {
 
       String group = await HiveHelper.getValue('chosenGroup') ?? '';
 
-      if (group.isEmpty) {
+      if (group.isNotEmpty) {
+        fullSchedule = FullSchedule(
+          timetable: _getTimetable(utf8data, group),
+          schedule: _getSchedule(utf8data, group),
+          shortLessonNames: _getGroupDefinition(utf8data, group + '_short'),
+          fullLessonNames: _getGroupDefinition(utf8data, group + '_full'),
+          teachers: _getGroupDefinition(utf8data, group + '_teacher'),
+          groups: group,
+        );
+
+        // get timers for this schedule
+        getTimers();
+      } else {
         hasError = true;
         errorText = 'Не выбрана группа для показа расписания';
       }
-
-      fullSchedule = FullSchedule(
-        timetable: _getTimetable(utf8data, group),
-        schedule: _getSchedule(utf8data, group),
-        shortLessonNames: _getGroupDefinition(utf8data, group + '_short'),
-        fullLessonNames: _getGroupDefinition(utf8data, group + '_full'),
-        teachers: _getGroupDefinition(utf8data, group + '_teacher'),
-        groups: group,
-      );
-
-      // get timers for this schedule
-      getTimers();
     } else {
       hasError = true;
       errorText = getErrorTextByStatusCode(response.statusCode);
