@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '/screens/about_app/about_app_screen.dart';
 import '/screens/bottom_bar/bottom_bar_logic.dart';
 import '/screens/bottom_bar/bottom_bar_screen.dart';
-import '/screens/cabinets_map/cabinets_map_logic.dart';
 import '/screens/cabinets_map/cabinets_map_screen.dart';
 import '/screens/documents/documents_screen.dart';
 import '/screens/job_quiz/job_quiz_screen.dart';
@@ -41,10 +40,7 @@ Handler viewDocumentScreenHandler = Handler(
 
 Handler cabinetsScreenHandler = Handler(
   handlerFunc: (BuildContext? context, Map<String, List<String>> parameters) {
-    return ChangeNotifierProvider(
-      create: (_) => CabinetsMapLogic(),
-      child: const CabinetsMapScreen(),
-    );
+    return const CabinetsMapScreen();
   },
 );
 

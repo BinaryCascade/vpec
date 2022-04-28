@@ -3,11 +3,10 @@ import 'package:provider/provider.dart';
 
 import '/utils/icons.dart';
 import '../announcements/announcements_screen.dart';
-import '../lessons_schedule/lessons_schedule_logic.dart';
-import '../lessons_schedule/lessons_schedule_screen.dart';
+import '../cabinets_map/cabinets_map_screen.dart';
 import '../menu/menu_screen.dart';
 import '../news/news_screen.dart';
-import '../timetable/timetable_tabs/timetable_tabs_screen.dart';
+import '../schedule/schedule_screen.dart';
 import 'bottom_bar_logic.dart';
 
 class PageStorageUI extends StatelessWidget {
@@ -16,15 +15,12 @@ class PageStorageUI extends StatelessWidget {
   }) : super(key: key);
 
   // List of screens for navigation
-  static List<Widget> pages = [
-    const NewsScreenProvider(),
-    const AnnouncementsScreen(),
-    const TimeTableTabs(),
-    ChangeNotifierProvider(
-      create: (_) => LessonsScheduleLogic(),
-      child: const LessonsScheduleScreen(),
-    ),
-    const MenuScreen(),
+  static List<Widget> pages = const [
+    NewsScreenProvider(),
+    AnnouncementsScreen(),
+    ScheduleScreen(),
+    CabinetsMapScreen(),
+    MenuScreen(),
   ];
 
   @override
@@ -70,13 +66,13 @@ class BottomBarUI extends StatelessWidget {
                 Theme.of(context).bottomNavigationBarTheme.backgroundColor,
             icon: const Icon(Icons.schedule_outlined),
             activeIcon: const Icon(Icons.watch_later),
-            label: 'Звонки',
+            label: 'Расписание',
           ),
           BottomNavigationBarItem(
             backgroundColor:
                 Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-            icon: const Icon(Icons.dashboard_outlined),
-            activeIcon: const Icon(Icons.dashboard),
+            icon: const Icon(Icons.layers_outlined),
+            activeIcon: const Icon(Icons.layers),
             label: 'Расписание',
           ),
           BottomNavigationBarItem(
