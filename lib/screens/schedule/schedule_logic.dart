@@ -61,7 +61,7 @@ class ScheduleLogic extends ChangeNotifier {
   String _makeUrl(String date) =>
       'https://raw.githubusercontent.com/ShyroTeam/vpec/'
       'new_schedule_system/assets/'
-      '26-01-2022.json';
+      '25-01-2022.json';
 
   // '$date.json';
 
