@@ -35,7 +35,7 @@ class _CabinetsMapScreenUIState extends State<CabinetsMapScreenUI> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
 
     return Scaffold(
       body: Consumer<CabinetsMapLogic>(
