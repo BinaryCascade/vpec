@@ -327,14 +327,26 @@ class ScheduleTime {
     return pause;
   }
 
-  //TODO: make this
+  /// Replaces the short name of the lesson with the full name of the lesson.
+  ///
+  /// Short names should be provided in [lessonShortNames].
+  ///
+  /// Full names should be provided in [lessonFullNames].
+  ///
+  /// [shortLessonName] is a name of the lesson to replace.
+  ///
+  ///
+  ///
+  /// The order of the names in [lessonShortNames] and [lessonFullNames]
+  /// should be the same.
   static String replaceLessonName({
     required String shortLessonName,
     required Map<String, dynamic> lessonShortNames,
     required Map<String, dynamic> lessonFullNames,
   }) {
-    return lessonFullNames.containsValue(shortLessonName)
-        ? lessonFullNames[shortLessonName.indexOf(shortLessonName)]
+    return lessonShortNames.containsValue(shortLessonName)
+        ? lessonFullNames[lessonShortNames.keys
+            .firstWhere((k) => lessonShortNames[k] == shortLessonName)]
         : shortLessonName;
   }
 }
