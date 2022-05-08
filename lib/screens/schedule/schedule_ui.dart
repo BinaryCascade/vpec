@@ -15,6 +15,8 @@ class ScheduleItem extends StatelessWidget {
   final ScheduleItemModel model;
 
   Color getItemColor(BuildContext context) {
+    if (model.lessonName.isEmpty) return Theme.of(context).disabledColor;
+
     return model.timer == null || model.timer!.isEmpty
         ? Theme.of(context).colorScheme.onBackground.withOpacity(0.6)
         : Theme.of(context).colorScheme.onBackground;
