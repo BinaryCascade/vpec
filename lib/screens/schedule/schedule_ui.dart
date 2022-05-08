@@ -27,11 +27,13 @@ class ScheduleItem extends StatelessWidget {
     return Consumer<ScheduleItemLogic>(
       builder: (context, logic, _) {
         return GestureDetector(
-          onTap: () => logic.toggleWidget(
-            context,
-            names: model.teachers[model.lessonName],
-            lessonName: model.lessonName,
-          ),
+          onTap: model.lessonName.isEmpty
+              ? null
+              : () => logic.toggleWidget(
+                    context,
+                    names: model.teachers[model.lessonName],
+                    lessonName: model.lessonName,
+                  ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
