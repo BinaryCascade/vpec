@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:duration/duration.dart';
 import 'package:duration/locale.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
@@ -63,8 +64,6 @@ class ScheduleLogic extends ChangeNotifier {
       'https://raw.githubusercontent.com/ShyroTeam/vpec/'
       'new_schedule_system/assets/'
       '25-01-2022.json';
-
-  // '$date.json';
 
   /// Switch schedule display to today or tomorrow
   Future<void> toggleShowingLesson() async {
@@ -133,24 +132,35 @@ class ScheduleLogic extends ChangeNotifier {
     // clear old data
     fullSchedule = null;
 
-    //TODO: add data caching
-    http.Response response =
-        await http.get(Uri.parse(url)).timeout(const Duration(seconds: 90));
+    late String scheduleData;
 
-    if (response.statusCode == 200) {
+    try {
+      var _file = await DefaultCacheManager().getSingleFile(url);
+      scheduleData = utf8.decode(await _file.readAsBytes());
       hasError = false;
+    } catch (e) {
+      http.Response response =
+          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 90));
 
-      String utf8data = response.body;
+      if (response.statusCode == 200) {
+        hasError = false;
+        scheduleData = response.body;
+      } else {
+        hasError = true;
+        errorText = getErrorTextByStatusCode(response.statusCode);
+      }
+    }
 
+    if (!hasError) {
       String group = await HiveHelper.getValue('chosenGroup') ?? '';
 
       if (group.isNotEmpty) {
         fullSchedule = FullSchedule(
-          timetable: _getTimetable(utf8data, group),
-          schedule: _getSchedule(utf8data, group),
-          shortLessonNames: _getGroupDefinition(utf8data, group + '_short'),
-          fullLessonNames: _getGroupDefinition(utf8data, group + '_full'),
-          teachers: _getGroupDefinition(utf8data, group + '_teacher'),
+          timetable: _getTimetable(scheduleData, group),
+          schedule: _getSchedule(scheduleData, group),
+          shortLessonNames: _getGroupDefinition(scheduleData, group + '_short'),
+          fullLessonNames: _getGroupDefinition(scheduleData, group + '_full'),
+          teachers: _getGroupDefinition(scheduleData, group + '_teacher'),
           groups: group,
         );
 
@@ -160,9 +170,6 @@ class ScheduleLogic extends ChangeNotifier {
         hasError = true;
         errorText = 'Не выбрана группа для показа расписания';
       }
-    } else {
-      hasError = true;
-      errorText = getErrorTextByStatusCode(response.statusCode);
     }
 
     notifyListeners();
