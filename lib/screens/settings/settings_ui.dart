@@ -429,15 +429,7 @@ class LaunchOnStartChooserUI extends StatefulWidget {
 }
 
 class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
-  int selectedItem = 0;
-
-  @override
-  void initState() {
-    if (HiveHelper.getValue('launchOnStart') != null) {
-      selectedItem = HiveHelper.getValue('launchOnStart');
-    }
-    super.initState();
-  }
+  int selectedItem = HiveHelper.getValue('launchOnStart') ?? 0;
 
   @override
   Widget build(BuildContext context) {
@@ -461,14 +453,14 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
           activeColor: Theme.of(context).colorScheme.secondary,
           groupValue: selectedItem,
           controlAffinity: ListTileControlAffinity.trailing,
-          onChanged: (dynamic value) {
+          onChanged: (int? value) {
             setState(() {
               HiveHelper.saveValue(key: 'launchOnStart', value: value);
               HiveHelper.saveValue(
                 key: 'launchOnStartString',
                 value: 'События',
               );
-              selectedItem = value;
+              selectedItem = value!;
             });
           },
         ),
@@ -490,14 +482,14 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
           activeColor: Theme.of(context).colorScheme.secondary,
           groupValue: selectedItem,
           controlAffinity: ListTileControlAffinity.trailing,
-          onChanged: (dynamic value) {
+          onChanged: (int? value) {
             setState(() {
               HiveHelper.saveValue(key: 'launchOnStart', value: value);
               HiveHelper.saveValue(
                 key: 'launchOnStartString',
                 value: 'Объявления',
               );
-              selectedItem = value;
+              selectedItem = value!;
             });
           },
         ),
@@ -512,21 +504,21 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
             ),
           ),
           title: Text(
-            'Звонки',
+            'Расписание занятий',
             style: Theme.of(context).textTheme.headline4,
           ),
           value: 2,
           activeColor: Theme.of(context).colorScheme.secondary,
           groupValue: selectedItem,
           controlAffinity: ListTileControlAffinity.trailing,
-          onChanged: (dynamic value) {
+          onChanged: (int? value) {
             setState(() {
               HiveHelper.saveValue(key: 'launchOnStart', value: value);
               HiveHelper.saveValue(
                 key: 'launchOnStartString',
-                value: 'Звонки',
+                value: 'Расписание занятий',
               );
-              selectedItem = value;
+              selectedItem = value!;
             });
           },
         ),
@@ -536,26 +528,26 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
           secondary: Center(
             widthFactor: 1,
             child: Icon(
-              Icons.dashboard_outlined,
+              Icons.layers_outlined,
               color: Theme.of(context).colorScheme.secondary,
             ),
           ),
           title: Text(
-            'Расписание занятий',
+            'Карта кабинетов',
             style: Theme.of(context).textTheme.headline4,
           ),
           value: 3,
           activeColor: Theme.of(context).colorScheme.secondary,
           groupValue: selectedItem,
           controlAffinity: ListTileControlAffinity.trailing,
-          onChanged: (dynamic value) {
+          onChanged: (int? value) {
             setState(() {
               HiveHelper.saveValue(key: 'launchOnStart', value: value);
               HiveHelper.saveValue(
                 key: 'launchOnStartString',
-                value: 'Расписание занятий',
+                value: 'Карта кабинетов',
               );
-              selectedItem = value;
+              selectedItem = value!;
             });
           },
         ),
