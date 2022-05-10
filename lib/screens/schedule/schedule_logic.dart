@@ -43,10 +43,6 @@ class ScheduleLogic extends ChangeNotifier {
   bool _needPrintTimer = true;
   Duration _smallestUntilStartDuration = const Duration(days: 2);
 
-  // String _makeUrl(String date) => 'https://energocollege.ru/vec_assistant/'
-  //     '%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5/'
-  //     '$date.json';
-
   /// Convert [showingData] to human readability text at russian, e.g
   ///
   /// 27 января 2021
@@ -58,6 +54,11 @@ class ScheduleLogic extends ChangeNotifier {
   }
 
   /// Accepts date and converts to schedule URL
+  // String _makeUrl(String date) => 'https://energocollege.ru/vec_assistant/'
+  //     '%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5/'
+  //     '$date.json';
+
+  /// Accepts date and converts to schedule URL in **debug** mode
   String _makeUrl(String date) =>
       'https://raw.githubusercontent.com/ShyroTeam/vpec/'
       'new_schedule_system/assets/'
