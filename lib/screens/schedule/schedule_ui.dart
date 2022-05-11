@@ -245,7 +245,7 @@ class AdditionalInfoPanelWidget extends StatelessWidget {
     required this.lessonName,
   }) : super(key: key);
   final String names;
-  final String notes;
+  final String? notes;
   final String lessonName;
 
   @override
