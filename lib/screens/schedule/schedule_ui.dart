@@ -29,8 +29,7 @@ class ScheduleItem extends StatelessWidget {
         return GestureDetector(
           onTap: model.lessonName.isEmpty
               ? null
-              : () => logic.toggleWidget(
-                    context,
+              : () => logic.toggleAdditionalInfo(
                     names: model.teachers[model.lessonName],
                     lessonName: model.lessonName,
                   ),

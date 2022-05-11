@@ -4,13 +4,16 @@ import '../../utils/hive_helper.dart';
 import 'schedule_ui.dart';
 
 class ScheduleItemLogic extends ChangeNotifier {
+  /// Indicates whether widget is opened or closed
   bool open = false;
+
+  /// The widget, used in [AdditionalInfo] as child for AnimatedSize
   Widget infoWidget = const SizedBox(
     width: double.infinity,
   );
 
-  void toggleWidget(
-    BuildContext context, {
+  /// Used for open or close additional info for item in [SchedulePanel]
+  void toggleAdditionalInfo({
     required String? names,
     required String? lessonName,
   }) {
