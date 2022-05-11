@@ -43,6 +43,7 @@ class ScheduleItemLogic extends ChangeNotifier {
         if (name.contains(element)) return element;
       }
     }
+
     return name;
   }
 }
