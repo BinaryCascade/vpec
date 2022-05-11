@@ -56,8 +56,8 @@ class CabinetsMapLogic extends ChangeNotifier {
   }
 
   Future<void> initializeMap(BuildContext context) async {
-    nowImageUrl = await CabinetsMapLogic().getScaledImage();
     ThemeNotifier themeNotifier = context.read<ThemeNotifier>();
+    nowImageUrl = await getScaledImage();
     themeNotifier.addListener(() async {
       await updateImage();
       notifyListeners();
