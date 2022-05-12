@@ -65,9 +65,8 @@ class DocumentViewer extends StatelessWidget {
   Widget buildError() {
     return Center(
       child: SelectableLinkify(
-        text: 'Неподдерживаемый тип файла: ' +
-            ViewDocumentLogic.getFileExtension(document.url) +
-            '\nИсходная ссылка:\n${document.url}',
+        text:
+            'Неподдерживаемый тип файла: ${ViewDocumentLogic.getFileExtension(document.url)}\nИсходная ссылка:\n${document.url}',
         textAlign: TextAlign.center,
         onOpen: (link) => openUrl(link.url),
       ),

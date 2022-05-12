@@ -18,12 +18,11 @@ class CabinetsMapScreen extends StatelessWidget {
   }
 }
 
-@immutable
 class CabinetsMapScreenUI extends StatefulWidget {
   const CabinetsMapScreenUI({Key? key}) : super(key: key);
 
   @override
-  _CabinetsMapScreenUIState createState() => _CabinetsMapScreenUIState();
+  State<CabinetsMapScreenUI> createState() => _CabinetsMapScreenUIState();
 }
 
 class _CabinetsMapScreenUIState extends State<CabinetsMapScreenUI> {

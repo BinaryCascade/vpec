@@ -74,7 +74,7 @@ class AnnouncementCard extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 6),
                           child: Text(
-                            announcement.author + ' • ' + announcement.pubDate,
+                            '${announcement.author} • ${announcement.pubDate}',
                             style: Theme.of(context).textTheme.subtitle1,
                           ),
                         ),

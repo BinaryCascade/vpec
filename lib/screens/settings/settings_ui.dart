@@ -13,7 +13,7 @@ class AccountBlock extends StatefulWidget {
   const AccountBlock({Key? key}) : super(key: key);
 
   @override
-  _AccountBlockState createState() => _AccountBlockState();
+  State<AccountBlock> createState() => _AccountBlockState();
 }
 
 class _AccountBlockState extends State<AccountBlock> {
@@ -287,7 +287,7 @@ class ThemeChooserUI extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ThemeChooserUIState createState() => _ThemeChooserUIState();
+  State<ThemeChooserUI> createState() => _ThemeChooserUIState();
 }
 
 class _ThemeChooserUIState extends State<ThemeChooserUI> {
@@ -425,7 +425,7 @@ class LaunchOnStartChooserUI extends StatefulWidget {
   const LaunchOnStartChooserUI({Key? key}) : super(key: key);
 
   @override
-  _LaunchOnStartChooserUIState createState() => _LaunchOnStartChooserUIState();
+  State<LaunchOnStartChooserUI> createState() => _LaunchOnStartChooserUIState();
 }
 
 class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {

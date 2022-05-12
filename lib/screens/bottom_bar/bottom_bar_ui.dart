@@ -27,8 +27,8 @@ class PageStorageUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<BottomBarLogic>(
       builder: (context, storage, child) => PageStorage(
-        child: pages[storage.bottomBarIndex],
         bucket: PageStorageBucket(),
+        child: pages[storage.bottomBarIndex],
       ),
     );
   }

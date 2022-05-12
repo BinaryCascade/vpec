@@ -79,29 +79,29 @@ class ScheduleLogic extends ChangeNotifier {
     DateTime date = DateTime.now();
     DateFormat formatter = DateFormat('dd-MM-yyyy');
 
-    int _plusDays = 0;
-    int _today = date.weekday;
-    bool _isWeekend = false;
-    switch (_today) {
+    int plusDays = 0;
+    int today = date.weekday;
+    bool isWeekend = false;
+    switch (today) {
       case DateTime.friday:
-        _plusDays = 3;
+        plusDays = 3;
         break;
       case DateTime.saturday:
-        _plusDays = 2;
-        _isWeekend = true;
+        plusDays = 2;
+        isWeekend = true;
         break;
       case DateTime.sunday:
-        _plusDays = 1;
-        _isWeekend = true;
+        plusDays = 1;
+        isWeekend = true;
         break;
       default:
-        _plusDays = 1;
+        plusDays = 1;
         break;
     }
 
-    if (!showingForToday || _isWeekend) {
-      date = date.add(Duration(days: _plusDays));
-      if (_isWeekend) showingForToday = false;
+    if (!showingForToday || isWeekend) {
+      date = date.add(Duration(days: plusDays));
+      if (isWeekend) showingForToday = false;
     }
     showingData = formatter.format(date);
 
@@ -135,8 +135,8 @@ class ScheduleLogic extends ChangeNotifier {
     late String scheduleData;
 
     try {
-      var _file = await DefaultCacheManager().getSingleFile(url);
-      scheduleData = utf8.decode(await _file.readAsBytes());
+      var file = await DefaultCacheManager().getSingleFile(url);
+      scheduleData = utf8.decode(await file.readAsBytes());
       hasError = false;
     } catch (e) {
       http.Response response =
@@ -158,9 +158,9 @@ class ScheduleLogic extends ChangeNotifier {
         fullSchedule = FullSchedule(
           timetable: _getTimetable(scheduleData, group),
           schedule: _getSchedule(scheduleData, group),
-          shortLessonNames: _getGroupDefinition(scheduleData, group + '_short'),
-          fullLessonNames: _getGroupDefinition(scheduleData, group + '_full'),
-          teachers: _getGroupDefinition(scheduleData, group + '_teacher'),
+          shortLessonNames: _getGroupDefinition(scheduleData, '${group}_short'),
+          fullLessonNames: _getGroupDefinition(scheduleData, '${group}_full'),
+          teachers: _getGroupDefinition(scheduleData, '${group}_teacher'),
           groups: group,
         );
 
@@ -229,12 +229,12 @@ class ScheduleLogic extends ChangeNotifier {
         // parse time for current lesson
 
         // raw time in string
-        String _beginning = value.split('-').first;
-        String _ending = value.split('-').last;
+        String beginning = value.split('-').first;
+        String ending = value.split('-').last;
 
         // String time converted to DateTime
-        DateTime lessonBeginning = DateFormat('HH:mm').parse(_beginning);
-        DateTime lessonEnding = DateFormat('HH:mm').parse(_ending);
+        DateTime lessonBeginning = DateFormat('HH:mm').parse(beginning);
+        DateTime lessonEnding = DateFormat('HH:mm').parse(ending);
 
         // DateTime time converted to Duration
         Duration nowDuration =
@@ -252,7 +252,7 @@ class ScheduleLogic extends ChangeNotifier {
 
           newTimers.insert(
             int.parse(key),
-            'До конца: ' + _getTime(endDuration - nowDuration),
+            'До конца: ${_getTime(endDuration - nowDuration)}',
           );
 
           fullSchedule = fullSchedule!.copyWith(
@@ -270,7 +270,7 @@ class ScheduleLogic extends ChangeNotifier {
             _smallestUntilStartDuration = startDuration - nowDuration;
             newTimers.insert(
               int.parse(key),
-              'До начала: ' + _getTime(startDuration - nowDuration),
+              'До начала: ${_getTime(startDuration - nowDuration)}',
             );
 
             fullSchedule = fullSchedule!.copyWith(

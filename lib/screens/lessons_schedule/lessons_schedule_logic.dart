@@ -48,28 +48,28 @@ class LessonsScheduleLogic extends ChangeNotifier {
 
     // if we need to show lessons for tomorrow, then we plus days from now
     // isWeekend used for auto showing schedule for next day from screen start
-    int _plusDays = 0;
+    int plusDays = 0;
     int today = date.weekday;
     bool isWeekend = false;
     switch (today) {
       case DateTime.friday:
-        _plusDays = 3;
+        plusDays = 3;
         break;
       case DateTime.saturday:
-        _plusDays = 2;
+        plusDays = 2;
         isWeekend = true;
         break;
       case DateTime.sunday:
-        _plusDays = 1;
+        plusDays = 1;
         isWeekend = true;
         break;
       default:
-        _plusDays = 1;
+        plusDays = 1;
         break;
     }
 
     if (!forToday || isWeekend) {
-      date = date.add(Duration(days: _plusDays));
+      date = date.add(Duration(days: plusDays));
       if (isWeekend) showForToday = false;
     }
     dateFromUrl = formatter.format(date);
@@ -98,11 +98,11 @@ class LessonsScheduleLogic extends ChangeNotifier {
   }
 
   void handleDoubleTap() {
-    Matrix4 _endMatrix = Matrix4.identity();
+    Matrix4 endMatrix = Matrix4.identity();
     Offset position = doubleTapDetails.localPosition;
 
     if (transformationController.value != Matrix4.identity()) {
-      _endMatrix = Matrix4.identity()
+      endMatrix = Matrix4.identity()
         ..translate(-position.dx * 2, -position.dy * 2)
         ..scale(3.5);
     }
@@ -110,7 +110,7 @@ class LessonsScheduleLogic extends ChangeNotifier {
     // animate zooming
     animation = Matrix4Tween(
       begin: transformationController.value,
-      end: _endMatrix,
+      end: endMatrix,
     ).animate(
       CurveTween(curve: Curves.easeOut).animate(animationController),
     );

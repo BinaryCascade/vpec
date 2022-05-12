@@ -11,7 +11,7 @@ class InteractiveWidget extends StatefulWidget {
   final Function(double)? onInteractionUpdate;
 
   @override
-  _InteractiveWidgetState createState() => _InteractiveWidgetState();
+  State<InteractiveWidget> createState() => _InteractiveWidgetState();
 }
 
 class _InteractiveWidgetState extends State<InteractiveWidget>
@@ -61,20 +61,20 @@ class _InteractiveWidgetState extends State<InteractiveWidget>
     required Matrix4 end,
     required AnimationController animationController,
   }) {
-    final _mapAnimation = Matrix4Tween(
+    final mapAnimation = Matrix4Tween(
       begin: transformationController.value,
       end: end,
     ).animate(animationController);
 
     void animationListener() {
-      transformationController.value = _mapAnimation.value;
+      transformationController.value = mapAnimation.value;
 
       if (transformationController.value == end) {
-        _mapAnimation.removeListener(animationListener);
+        mapAnimation.removeListener(animationListener);
       }
     }
 
-    _mapAnimation.addListener(animationListener);
+    mapAnimation.addListener(animationListener);
 
     animationController.forward();
   }

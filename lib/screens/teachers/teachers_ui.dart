@@ -212,7 +212,7 @@ class AddNewTeacherDialogUI extends StatefulWidget {
   const AddNewTeacherDialogUI({Key? key}) : super(key: key);
 
   @override
-  _AddNewTeacherDialogUIState createState() => _AddNewTeacherDialogUIState();
+  State<AddNewTeacherDialogUI> createState() => _AddNewTeacherDialogUIState();
 }
 
 class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
@@ -298,7 +298,7 @@ class SearchButton extends StatefulWidget {
   const SearchButton({Key? key}) : super(key: key);
 
   @override
-  _SearchButtonState createState() => _SearchButtonState();
+  State<SearchButton> createState() => _SearchButtonState();
 }
 
 class _SearchButtonState extends State<SearchButton> {

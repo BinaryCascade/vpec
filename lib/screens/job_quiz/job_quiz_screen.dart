@@ -9,7 +9,7 @@ class JobQuizScreen extends StatefulWidget {
   const JobQuizScreen({Key? key}) : super(key: key);
 
   @override
-  _JobQuizScreenState createState() => _JobQuizScreenState();
+  State<JobQuizScreen> createState() => _JobQuizScreenState();
 }
 
 class _JobQuizScreenState extends State<JobQuizScreen> {

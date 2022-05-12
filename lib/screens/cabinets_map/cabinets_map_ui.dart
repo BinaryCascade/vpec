@@ -17,6 +17,7 @@ class CabinetsMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InteractiveWidget(
+      onInteractionUpdate: onScaleUpdated,
       child: CachedNetworkImage(
         imageUrl: context.watch<CabinetsMapLogic>().nowImageUrl,
         useOldImageOnUrlChange: true,
@@ -36,7 +37,6 @@ class CabinetsMap extends StatelessWidget {
           );
         },
       ),
-      onInteractionUpdate: onScaleUpdated,
     );
   }
 }

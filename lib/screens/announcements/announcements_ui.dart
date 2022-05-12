@@ -17,7 +17,7 @@ class AnnouncementsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScrollController _semicircleController = ScrollController();
+    ScrollController semicircleController = ScrollController();
     Stream<QuerySnapshot<Map<String, dynamic>>> stream = FirebaseFirestore
         .instance
         .collection(collectionPath)
@@ -51,13 +51,13 @@ class AnnouncementsList extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 child: Scrollbar(
                   interactive: true,
-                  controller: _semicircleController,
+                  controller: semicircleController,
                   child: SingleChildScrollView(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
-                      controller: _semicircleController,
+                      controller: semicircleController,
                       shrinkWrap: true,
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
@@ -222,7 +222,7 @@ class BottomTapBar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _BottomTapBarState createState() => _BottomTapBarState();
+  State<BottomTapBar> createState() => _BottomTapBarState();
 }
 
 class _BottomTapBarState extends State<BottomTapBar> {

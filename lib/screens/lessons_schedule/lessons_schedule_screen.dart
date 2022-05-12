@@ -23,7 +23,7 @@ class LessonsScheduleScreen extends StatefulWidget {
   const LessonsScheduleScreen({Key? key}) : super(key: key);
 
   @override
-  _LessonsScheduleScreenState createState() => _LessonsScheduleScreenState();
+  State<LessonsScheduleScreen> createState() => _LessonsScheduleScreenState();
 }
 
 class _LessonsScheduleScreenState extends State<LessonsScheduleScreen>

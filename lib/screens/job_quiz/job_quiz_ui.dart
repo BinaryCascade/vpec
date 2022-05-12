@@ -36,7 +36,7 @@ class AnswersBlock extends StatefulWidget {
   final String firstAnswer, secondAnswer, thirdAnswer, fourthAnswer;
 
   @override
-  _AnswersBlockState createState() => _AnswersBlockState();
+  State<AnswersBlock> createState() => _AnswersBlockState();
 }
 
 class _AnswersBlockState extends State<AnswersBlock> {

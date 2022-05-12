@@ -41,7 +41,7 @@ class TeachersLogic extends ChangeNotifier {
       stream = FirebaseFirestore.instance
           .collection('teacher_list')
           .where(documentField, isGreaterThanOrEqualTo: searchKey)
-          .where(documentField, isLessThan: searchKey + "\uf8ff")
+          .where(documentField, isLessThan: "$searchKey\uf8ff")
           .snapshots();
     } else {
       stream = FirebaseFirestore.instance

@@ -10,7 +10,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
 
-    List<Widget> _children = [
+    List<Widget> children = [
       Expanded(
         child: Image(
           width: 0.75 * MediaQuery.of(context).size.shortestSide,
@@ -85,8 +85,8 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         minimum: const EdgeInsets.all(12.0),
         child: MediaQuery.of(context).size.aspectRatio > 1
-            ? Row(children: _children)
-            : Column(children: _children),
+            ? Row(children: children)
+            : Column(children: children),
       ),
     );
   }

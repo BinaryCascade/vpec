@@ -26,7 +26,6 @@ Future<void> main() async {
   AppFirebaseMessaging.startListening();
 
   runApp(MultiProvider(
-    child: const VPECApp(),
     providers: [
       ChangeNotifierProvider(create: (_) => FirebaseAppAuth()),
       ChangeNotifierProvider(
@@ -35,6 +34,7 @@ Future<void> main() async {
         ),
       ),
     ],
+    child: const VPECApp(),
   ));
 }
 
@@ -42,7 +42,7 @@ class VPECApp extends StatefulWidget {
   const VPECApp({Key? key}) : super(key: key);
 
   @override
-  _VPECAppState createState() => _VPECAppState();
+  State<VPECApp> createState() => _VPECAppState();
 }
 
 class _VPECAppState extends State<VPECApp> {

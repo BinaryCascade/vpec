@@ -1,5 +1,6 @@
 // Snow by https://github.com/windwp/
 // Repo: https://github.com/windwp/flutter-snow-effect
+// Modified by ShyroTeam
 
 import 'dart:math';
 
@@ -20,7 +21,7 @@ class SnowWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SnowWidgetState createState() => _SnowWidgetState();
+  State<SnowWidget> createState() => _SnowWidgetState();
 }
 
 class _SnowWidgetState extends State<SnowWidget>

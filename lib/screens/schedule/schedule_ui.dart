@@ -216,21 +216,21 @@ class FABPanel extends StatelessWidget {
         FloatingActionButton(
           mini: true,
           tooltip: 'Полное расписание',
-          child: const Icon(Icons.fullscreen_outlined),
           heroTag: null,
           onPressed: () =>
               Navigator.pushNamed(context, Routes.fullScheduleScreen),
+          child: const Icon(Icons.fullscreen_outlined),
         ),
         const SizedBox(
           height: 8,
         ),
         FloatingActionButton(
           tooltip: 'Расписание на завтра/сегодня',
+          heroTag: null,
+          onPressed: () => context.read<ScheduleLogic>().toggleShowingLesson(),
           child: Icon(context.watch<ScheduleLogic>().showingForToday
               ? Icons.arrow_forward_ios_outlined
               : Icons.arrow_back_ios_outlined),
-          heroTag: null,
-          onPressed: () => context.read<ScheduleLogic>().toggleShowingLesson(),
         ),
       ],
     );

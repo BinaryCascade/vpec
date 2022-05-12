@@ -9,7 +9,7 @@ class EditTeacherDialogUI extends StatefulWidget {
   const EditTeacherDialogUI({Key? key, required this.model}) : super(key: key);
 
   @override
-  _EditTeacherDialogUIState createState() => _EditTeacherDialogUIState();
+  State<EditTeacherDialogUI> createState() => _EditTeacherDialogUIState();
 }
 
 class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {

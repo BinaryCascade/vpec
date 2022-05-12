@@ -7,7 +7,7 @@ class BottomBarScreen extends StatefulWidget {
   const BottomBarScreen({Key? key}) : super(key: key);
 
   @override
-  _BottomBarScreenState createState() => _BottomBarScreenState();
+  State<BottomBarScreen> createState() => _BottomBarScreenState();
 }
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
