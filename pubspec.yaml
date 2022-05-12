@@ -40,8 +40,8 @@ dependencies:
   hive: ^2.1.0 # db
   hive_flutter: ^1.1.0
   share_plus: ^4.0.4 # share anything
-  path_provider: ^2.0.9 # work with storage paths
-  quick_actions: ^0.6.0+10 # shortcuts from launcher
+  path_provider: ^2.0.10 # work with storage paths
+  quick_actions: ^0.6.0+11 # shortcuts from launcher
   file_picker: ^4.5.1 # for adding images to announcements
   flutter_multi_formatter: ^2.5.1
   fluro: ^2.0.3
@@ -84,8 +84,8 @@ dev_dependencies:
   build_runner: ^2.1.10
   flutter_launcher_icons: ^0.9.2 # launcher icons
   flutter_native_splash: ^2.1.6 # splash
-  flutter_lints: ^1.0.4
-  freezed: ^2.0.3
+  flutter_lints: ^2.0.1
+  freezed: ^2.0.3+1
   json_serializable: ^6.2.0
   dart_code_metrics: ^4.15.0
 
