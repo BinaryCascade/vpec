@@ -30,8 +30,9 @@ class ScheduleItem extends StatelessWidget {
           onTap: model.lessonName.isEmpty
               ? null
               : () => logic.toggleAdditionalInfo(
-                    names: model.teachers[model.lessonName],
+                    names: model.teachers,
                     lessonName: model.lessonName,
+                    lessonFullNames: model.lessonsFullNames,
                   ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,7 +62,7 @@ class ScheduleItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${model.lessonNumber} пара ${model.lessonName}',
+                      '${model.lessonNumber} пара - ${model.lessonName}',
                       style: TextStyle(
                         color: getItemColor(context),
                         fontFamily: 'Montserrat',
@@ -169,7 +170,7 @@ class SchedulePanel extends StatelessWidget {
         );
 
         if (name == '0') name = '';
-        if (name.isNotEmpty) name = '- $name';
+        // if (name.isNotEmpty) name = '- $name';
 
         return name;
       }

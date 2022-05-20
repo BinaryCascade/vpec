@@ -14,17 +14,24 @@ class ScheduleItemLogic extends ChangeNotifier {
 
   /// Used for open or close additional info for item in [SchedulePanel]
   void toggleAdditionalInfo({
-    required String? names,
+    required Map<String, dynamic> names,
+    required Map<String, dynamic> lessonFullNames,
     required String? lessonName,
   }) {
     open = !open;
     infoWidget = open
         ? AdditionalInfoPanelWidget(
-            names: names ?? 'Нет данных о преподавателе',
+            key: const ValueKey('additional_info'),
+            names: findTeacher(
+                  teachers: names,
+                  fullLessonName: lessonName ?? '',
+                  lessonFullNames: lessonFullNames,
+                ) ??
+                'Нет данных о преподавателе',
             notes: HiveHelper.getValue('note_${unifyKeyMatching(lessonName)}'),
             lessonName: unifyKeyMatching(lessonName) ?? 'nothing',
           )
-        : const SizedBox(width: double.infinity);
+        : const SizedBox(key: ValueKey('empty_space'), width: double.infinity);
 
     notifyListeners();
   }
@@ -45,5 +52,28 @@ class ScheduleItemLogic extends ChangeNotifier {
     }
 
     return name;
+  }
+
+  /// Finds the name of the teacher for [fullLessonName].
+  ///
+  /// Full names should be provided in [lessonFullNames].
+  ///
+  /// Teachers should be provided in [teachers].
+  ///
+  /// [shortLessonName] is a name of the lesson to replace.
+  ///
+  ///
+  ///
+  /// The order of the items in [lessonFullNames] and [teachers]
+  /// should be the same.
+  static String? findTeacher({
+    required String fullLessonName,
+    required Map<String, dynamic> lessonFullNames,
+    required Map<String, dynamic> teachers,
+  }) {
+    return lessonFullNames.containsValue(fullLessonName)
+        ? teachers[lessonFullNames.keys
+            .firstWhere((k) => lessonFullNames[k] == fullLessonName)]
+        : null;
   }
 }
