@@ -54,6 +54,7 @@ class ScheduleLogic extends ChangeNotifier {
     return formatter.format(parsed);
   }
 
+  // TODO: uncomment when new schedule system is ready on the college's website
   /// Accepts date and converts to schedule URL
   // String _makeUrl(String date) => 'https://energocollege.ru/vec_assistant/'
   //     '%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5/'
@@ -216,7 +217,6 @@ class ScheduleLogic extends ChangeNotifier {
   /// Gets or updates timers for actual [fullSchedule]
   ///
   /// Timer - is a string format 'До конца: 28 минут'
-
   void getTimers() {
     if (fullSchedule != null) {
       DateTime now = DateTime.now();
