@@ -42,7 +42,12 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen>
 
   @override
   Widget build(BuildContext context) {
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Полное расписание занятий'),
+      ),
       body: Stack(
         children: [
           if (HolidayHelper.isNewYear)

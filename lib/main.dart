@@ -85,6 +85,7 @@ class _VPECAppState extends State<VPECApp> {
       themeMode: context.watch<ThemeNotifier>().themeMode,
       initialRoute: '/',
       onGenerateRoute: Routes.router.generator,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

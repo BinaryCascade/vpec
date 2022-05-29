@@ -6,6 +6,7 @@ import '../../models/full_schedule.dart';
 import '../../models/schedule/schedule_item.dart';
 import '../../utils/hive_helper.dart';
 import '../../utils/routes/routes.dart';
+import '../../utils/theme_helper.dart';
 import '../settings/settings_logic.dart';
 import 'schedule_item_logic.dart';
 import 'schedule_logic.dart';
@@ -218,8 +219,10 @@ class FABPanel extends StatelessWidget {
           mini: true,
           tooltip: 'Полное расписание',
           heroTag: null,
-          onPressed: () =>
-              Navigator.pushNamed(context, Routes.fullScheduleScreen),
+          onPressed: () async {
+            await Navigator.pushNamed(context, Routes.fullScheduleScreen);
+            ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
+          },
           child: const Icon(Icons.fullscreen_outlined),
         ),
         const SizedBox(
