@@ -16,6 +16,7 @@ class Routes {
   static String documentsScreen = '/documents';
   static String loginByURLScreen = '/loginByURL/:login/:password';
   static String fullScheduleScreen = '/full_schedule';
+  static String entrantInfoScreen = '/entrant';
 
   static void defineRoutes(FluroRouter router) {
     // router.notFoundHandler use for 404 page
@@ -74,6 +75,11 @@ class Routes {
     router.define(
       fullScheduleScreen,
       handler: fullScheduleScreenHandler,
+      transitionType: TransitionType.cupertino,
+    );
+    router.define(
+      entrantInfoScreen,
+      handler: entrantInfoHandler,
       transitionType: TransitionType.cupertino,
     );
   }

@@ -52,17 +52,16 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () async => await LoginLogic.openLogin(context),
                   ),
                 ),
-
                 /// Entrant mode is not fully complete
-                // SizedBox(
-                //   height: 42.0,
-                //   width: double.infinity,
-                //   child: OutlinedButton(
-                //     child: const Text('Я абитуриент'),
-                //     onPressed: () =>
-                //         Navigator.popAndPushNamed(context, '/entrant'),
-                //   ),
-                // ),
+                SizedBox(
+                  height: 42.0,
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    child: const Text('Я абитуриент'),
+                    onPressed: () async =>
+                        await LoginLogic.openEntrantScreen(context),
+                  ),
+                ),
                 GestureDetector(
                   onTap: () => LoginLogic.showAccountHelperDialog(context),
                   child: Padding(

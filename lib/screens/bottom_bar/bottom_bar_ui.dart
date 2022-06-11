@@ -40,46 +40,39 @@ class BottomBarUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<BottomBarLogic>(
-      builder: (context, storage, child) => BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        currentIndex: storage.bottomBarIndex,
-        onTap: (index) {
+      builder: (context, storage, child) => NavigationBar(
+        backgroundColor:
+            Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+        selectedIndex: storage.bottomBarIndex,
+        height: 65,
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        onDestinationSelected: (index) {
           storage.setIndex(index);
         },
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor:
-                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-            icon: const Icon(VpecIconPack.news_outline),
-            activeIcon: const Icon(VpecIconPack.news),
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(VpecIconPack.news_outline),
+            selectedIcon: Icon(VpecIconPack.news),
             label: 'События',
           ),
-          BottomNavigationBarItem(
-            backgroundColor:
-                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-            icon: const Icon(Icons.notifications_outlined),
-            activeIcon: const Icon(Icons.notifications),
+          NavigationDestination(
+            icon: Icon(Icons.notifications_outlined),
+            selectedIcon: Icon(Icons.notifications),
             label: 'Объявления',
           ),
-          BottomNavigationBarItem(
-            backgroundColor:
-                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-            icon: const Icon(Icons.schedule_outlined),
-            activeIcon: const Icon(Icons.watch_later),
+          NavigationDestination(
+            icon: Icon(Icons.schedule_outlined),
+            selectedIcon: Icon(Icons.watch_later),
             label: 'Расписание',
           ),
-          BottomNavigationBarItem(
-            backgroundColor:
-                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-            icon: const Icon(Icons.layers_outlined),
-            activeIcon: const Icon(Icons.layers),
+          NavigationDestination(
+            icon: Icon(Icons.layers_outlined),
+            selectedIcon: Icon(Icons.layers),
             label: 'Карта',
           ),
-          BottomNavigationBarItem(
-            backgroundColor:
-                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-            icon: const Icon(Icons.menu_outlined),
-            activeIcon: const Icon(Icons.menu),
+          NavigationDestination(
+            icon: Icon(Icons.menu_outlined),
+            selectedIcon: Icon(Icons.menu),
             label: 'Меню',
           ),
         ],
