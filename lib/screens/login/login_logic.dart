@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '/screens/settings/settings_logic.dart';
 import '/utils/hive_helper.dart';
+import '../../models/document_model.dart';
 import '../../utils/firebase_auth.dart';
 
 class LoginLogic extends ChangeNotifier {
@@ -63,5 +64,18 @@ class LoginLogic extends ChangeNotifier {
         .get();
 
     return entrant['url'];
+  }
+
+  static Future<void> openEntrantScreen(BuildContext context) async {
+    String url = await getEntrantUrl();
+    Navigator.pushNamed(
+      context,
+      '/entrant',
+      arguments: DocumentModel(
+        title: 'Об организации',
+        subtitle: '',
+        url: url,
+      ),
+    );
   }
 }
