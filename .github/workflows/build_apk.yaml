@@ -2,10 +2,10 @@ name: Build app
 on:
   push:
     branches:
-      - github_workflow
+      - master
   pull_request:
     branches:
-      - github_workflow
+      - master
 jobs:
   build_android_package:
     runs-on: ubuntu-latest
