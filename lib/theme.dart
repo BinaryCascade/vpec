@@ -38,6 +38,7 @@ ThemeData themeData() {
           color: states.contains(MaterialState.selected)
               ? secondLevelColor
               : highContrast)),
+      labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
     ),
     tabBarTheme: const TabBarTheme(
       labelColor: accentColor,
@@ -210,6 +211,7 @@ ThemeData darkThemeData() {
           color: states.contains(MaterialState.selected)
               ? secondLevelColor
               : highContrast)),
+      labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
     ),
     tabBarTheme: const TabBarTheme(
       labelColor: accentColor,

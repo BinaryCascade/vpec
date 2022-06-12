@@ -42,7 +42,6 @@ class BottomBarUI extends StatelessWidget {
     return Consumer<BottomBarLogic>(
       builder: (context, storage, child) => NavigationBar(
         selectedIndex: storage.bottomBarIndex,
-        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
         onDestinationSelected: (index) {
           storage.setIndex(index);
         },
