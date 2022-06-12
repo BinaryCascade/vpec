@@ -25,6 +25,20 @@ ThemeData themeData() {
   const lowContrast = Colors.black38;
 
   return ThemeData(
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: secondLevelColor,
+      height: 65,
+      indicatorColor: accentColor,
+      labelTextStyle: MaterialStateProperty.all(const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 12,
+          color: accentColor)),
+      iconTheme: MaterialStateProperty.resolveWith((states) => IconThemeData(
+          color: states.contains(MaterialState.selected)
+              ? secondLevelColor
+              : highContrast)),
+    ),
     tabBarTheme: const TabBarTheme(
       labelColor: accentColor,
       unselectedLabelColor: mediumContrast,
@@ -183,6 +197,20 @@ ThemeData darkThemeData() {
   const lowContrast = Color(0x61FFFFFF);
 
   return ThemeData.dark().copyWith(
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: secondLevelColor,
+      height: 65,
+      indicatorColor: accentColor,
+      labelTextStyle: MaterialStateProperty.all(const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 12,
+          color: accentColor)),
+      iconTheme: MaterialStateProperty.resolveWith((states) => IconThemeData(
+          color: states.contains(MaterialState.selected)
+              ? secondLevelColor
+              : highContrast)),
+    ),
     tabBarTheme: const TabBarTheme(
       labelColor: accentColor,
       unselectedLabelColor: mediumContrast,
