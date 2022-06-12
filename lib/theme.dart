@@ -30,14 +30,16 @@ ThemeData themeData() {
       height: 65,
       indicatorColor: accentColor,
       labelTextStyle: MaterialStateProperty.all(const TextStyle(
-          fontFamily: 'Montserrat',
-          fontWeight: semiBold,
-          fontSize: 12,
-          color: accentColor)),
+        fontFamily: 'Montserrat',
+        fontWeight: semiBold,
+        fontSize: 12,
+        color: accentColor,
+      )),
       iconTheme: MaterialStateProperty.resolveWith((states) => IconThemeData(
-          color: states.contains(MaterialState.selected)
-              ? secondLevelColor
-              : highContrast)),
+            color: states.contains(MaterialState.selected)
+                ? secondLevelColor
+                : highContrast,
+          )),
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
     ),
     tabBarTheme: const TabBarTheme(
@@ -203,14 +205,16 @@ ThemeData darkThemeData() {
       height: 65,
       indicatorColor: accentColor,
       labelTextStyle: MaterialStateProperty.all(const TextStyle(
-          fontFamily: 'Montserrat',
-          fontWeight: semiBold,
-          fontSize: 12,
-          color: accentColor)),
+        fontFamily: 'Montserrat',
+        fontWeight: semiBold,
+        fontSize: 12,
+        color: accentColor,
+      )),
       iconTheme: MaterialStateProperty.resolveWith((states) => IconThemeData(
-          color: states.contains(MaterialState.selected)
-              ? secondLevelColor
-              : highContrast)),
+            color: states.contains(MaterialState.selected)
+                ? secondLevelColor
+                : highContrast,
+          )),
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
     ),
     tabBarTheme: const TabBarTheme(
