@@ -52,7 +52,6 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () async => await LoginLogic.openLogin(context),
                   ),
                 ),
-                /// Entrant mode is not fully complete
                 SizedBox(
                   height: 42.0,
                   width: double.infinity,

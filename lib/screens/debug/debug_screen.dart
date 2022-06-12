@@ -7,7 +7,6 @@ import '/screens/login/login_screen.dart';
 import '../../utils/notifications/firebase_messaging.dart';
 import '../../utils/routes/routes.dart';
 import '../../widgets/loading_indicator.dart';
-import '../schedule/schedule_screen.dart';
 
 class DebugScreen extends StatelessWidget {
   const DebugScreen({Key? key}) : super(key: key);
@@ -54,18 +53,6 @@ class DebugScreen extends StatelessWidget {
                   ),
                 ),
                 child: const Text('LoginScreen'),
-              ),
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => const ScheduleScreen(),
-                  ),
-                ),
-                child: const Text('ScheduleScreen'),
               ),
             ),
             SizedBox(

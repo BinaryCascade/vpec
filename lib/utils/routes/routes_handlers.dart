@@ -106,7 +106,3 @@ Handler fullScheduleScreenHandler = Handler(
   handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
       const FullLessonsScheduleScreen(),
 );
-
-Handler entrantInfoHandler = Handler(
-  handlerFunc: (context, params) => const DocumentViewScreen(),
-);
