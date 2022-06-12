@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../schedule/schedule_screen.dart';
 import '/utils/hive_helper.dart';
 import '/utils/theme_helper.dart';
 import '/utils/utils.dart';
 import '../../utils/firebase_auth.dart';
 import '../../utils/routes/routes.dart';
 import '../../widgets/snackbars.dart';
+import '../schedule/schedule_screen.dart';
 import 'settings_ui.dart';
 
 class SettingsLogic extends ChangeNotifier {
