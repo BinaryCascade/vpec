@@ -35,8 +35,6 @@ dependencies:
   flutter_local_notifications: ^9.6.0
   provider: ^6.0.3
   duration: ^3.0.11 # print duration for timetable
-  dotted_line: ^3.1.0
-  dotted_decoration: ^2.0.0
   r_dotted_line_border: ^0.1.1
   hive: ^2.2.2 # db
   hive_flutter: ^1.1.0
