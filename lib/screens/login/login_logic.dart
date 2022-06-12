@@ -67,14 +67,14 @@ class LoginLogic extends ChangeNotifier {
   }
 
   static Future<void> openEntrantScreen(BuildContext context) async {
-    String url = await getEntrantUrl();
+    String docURL = await LoginLogic.getEntrantUrl();
     Navigator.pushNamed(
       context,
-      '/entrant',
+      '/view_document',
       arguments: DocumentModel(
-        title: 'Об организации',
+        title: 'Для абитуриента',
         subtitle: '',
-        url: url,
+        url: docURL,
       ),
     );
   }
