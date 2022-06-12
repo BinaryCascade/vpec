@@ -64,7 +64,7 @@ class ScheduleLogic extends ChangeNotifier {
   String _makeUrl(String date) =>
       'https://raw.githubusercontent.com/ShyroTeam/vpec/'
       'new_schedule_system/assets/'
-      '25-01-2022.json';
+      '20-06-2022.json';
 
   /// Switch schedule display to today or tomorrow
   Future<void> toggleShowingLesson() async {
