@@ -41,11 +41,7 @@ class BottomBarUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<BottomBarLogic>(
       builder: (context, storage, child) => NavigationBar(
-        backgroundColor:
-            Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         selectedIndex: storage.bottomBarIndex,
-        height: 65,
-        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
         onDestinationSelected: (index) {
           storage.setIndex(index);
         },
