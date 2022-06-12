@@ -3,9 +3,11 @@ on:
   push:
     branches:
       - master
+      - v*
   pull_request:
     branches:
       - master
+      - v*
 jobs:
   build_android_package:
     runs-on: ubuntu-latest
@@ -21,8 +23,8 @@ jobs:
           cache: true
           cache-key: key-android-20220611
       - run: flutter pub get
-      - run: flutter build apk --release --split-per-abi
-      - run: flutter build appbundle
+      - run: flutter build apk --release --split-per-abi --bundle-sksl-path flutter_01.sksl.json
+      - run: flutter build appbundle --bundle-sksl-path flutter_01.sksl.json
 
       - uses: actions/upload-artifact@v3
         with:
