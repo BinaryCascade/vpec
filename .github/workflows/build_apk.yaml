@@ -2,11 +2,9 @@ name: Build app
 on:
   push:
     branches:
-      - master
       - v*
   pull_request:
     branches:
-      - master
       - v*
 jobs:
   build_android_package:
@@ -24,7 +22,6 @@ jobs:
           cache-key: key-android-20220611
 
       - run: flutter build apk --release --split-per-abi --bundle-sksl-path flutter_01.sksl.json --release
-      - run: flutter build appbundle --bundle-sksl-path flutter_01.sksl.json
 
       - uses: r0adkll/sign-android-release@v1
         with:
