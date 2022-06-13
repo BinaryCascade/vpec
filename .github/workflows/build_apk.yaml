@@ -25,6 +25,7 @@ jobs:
 
       - run: flutter build apk --release --split-per-abi --bundle-sksl-path flutter_01.sksl.json --release
       - run: flutter build appbundle --bundle-sksl-path flutter_01.sksl.json
+
       - uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: build/app/outputs/flutter-apk
@@ -32,37 +33,23 @@ jobs:
           alias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-      #        env:
-#          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-#          STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-#          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-#          KEY_B64: ${{ secrets.KEYSTORE_BASE64 }}
-#      - run: echo "$KEY_B64" | base64 --decode > key.jks
-#      - run: flutter pub get
-#      - run: flutter build apk --release --split-per-abi --bundle-sksl-path flutter_01.sksl.json --release
-#      - run: flutter build appbundle --bundle-sksl-path flutter_01.sksl.json
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: app-key
-          path: key.jks
 
       - uses: actions/upload-artifact@v3
         with:
           name: app-release
-          path: build/app/outputs/flutter-apk/app.apk
+          path: build/app/outputs/flutter-apk/app-signed.apk
 
       - uses: actions/upload-artifact@v3
         with:
           name: app-arm64-v8
-          path: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+          path: build/app/outputs/flutter-apk/app-arm64-v8a-release-signed.apk
 
       - uses: actions/upload-artifact@v3
         with:
           name: app-armeabi-v7a
-          path: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
+          path: build/app/outputs/flutter-apk/app-armeabi-v7a-release-signed.apk
 
       - uses: actions/upload-artifact@v3
         with:
           name: app-x86_64
-          path: build/app/outputs/flutter-apk/app-x86_64-release.apk
+          path: build/app/outputs/flutter-apk/app-x86_64-release-signed.apk
