@@ -22,9 +22,12 @@ jobs:
           channel: 'stable'
           cache: true
           cache-key: key-android-20220611
-      - run: flutter pub get
-      - run: flutter build apk --release --split-per-abi --bundle-sksl-path flutter_01.sksl.json
-      - run: flutter build appbundle --bundle-sksl-path flutter_01.sksl.json
+        env:
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_B64: ${{ secrets.KEYSTORE_BASE64 }}
+          run: echo $KEY_JKS > key.jks && flutter pub get && flutter build apk --release --split-per-abi --bundle-sksl-path flutter_01.sksl.json --release && flutter build appbundle --bundle-sksl-path flutter_01.sksl.json
 
       - uses: actions/upload-artifact@v3
         with:

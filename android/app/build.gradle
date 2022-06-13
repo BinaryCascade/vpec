@@ -51,6 +51,11 @@ android {
 
     signingConfigs {
         release {
+            storeFile file("../key.jks")
+            storePassword = "$System.env.STORE_PASSWORD"
+            keyAlias = "$System.env.KEY_ALIAS"
+            keyPassword = "$System.env.KEY_PASSWORD"
+
 //            keyAlias keystoreProperties['keyAlias']
 //            keyPassword keystoreProperties['keyPassword']
 //            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
@@ -60,10 +65,10 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             applicationIdSuffix ".debug" // install debug version near release
