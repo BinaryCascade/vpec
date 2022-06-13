@@ -34,6 +34,11 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
+          name: app-key
+          path: key.jks
+
+      - uses: actions/upload-artifact@v3
+        with:
           name: app-release
           path: build/app/outputs/flutter-apk/app.apk
 
