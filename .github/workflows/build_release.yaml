@@ -25,10 +25,19 @@ jobs:
           cache-key: key-android-20220611
 
       - run: flutter build apk --release --split-per-abi --bundle-sksl-path flutter_01.sksl.json --release
+      - run: flutter build appbundle --bundle-sksl-path flutter_01.sksl.json
 
       - uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: build/app/outputs/flutter-apk
+          signingKeyBase64: ${{ secrets.KEYSTORE_BASE64 }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      - uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: build/app/outputs/bundle/release
           signingKeyBase64: ${{ secrets.KEYSTORE_BASE64 }}
           alias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -50,3 +59,4 @@ jobs:
             build/app/outputs/flutter-apk/app-arm64-v8a-release-signed.apk
             build/app/outputs/flutter-apk/app-armeabi-v7a-release-signed.apk
             build/app/outputs/flutter-apk/app-x86_64-release-signed.apk
+            build/app/outputs/bundle/release/app-release-signed.aab
