@@ -2,10 +2,10 @@ name: Create release version
 on:
   push:
     branches:
-      - add_build_release_workflow
+      - master
   pull_request:
     branches:
-      - add_build_release_workflow
+      - master
 
 jobs:
   create_release:
