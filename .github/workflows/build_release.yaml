@@ -24,7 +24,7 @@ jobs:
           cache: true
           cache-key: key-android-20220611
 
-      - run: flutter build apk --release --split-per-abi --bundle-sksl-path flutter_01.sksl.json --release
+      - run: flutter build apk --release --split-per-abi --bundle-sksl-path flutter_01.sksl.json
       - run: flutter build appbundle --bundle-sksl-path flutter_01.sksl.json
 
       - uses: r0adkll/sign-android-release@v1
