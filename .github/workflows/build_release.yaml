@@ -33,10 +33,15 @@ jobs:
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
+      - uses: hkusu/apk-info-action@v1.0.1
+        id: apk-info
+        with:
+          apk-path: 'build/app/outputs/flutter-apk/app-signed.apk'
+
       - uses: marvinpinto/action-automatic-releases@latest
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: ${{ steps.apk-info.outputs.version-name }}
           prerelease: false
           files: |
             build/app/outputs/flutter-apk/app-signed.apk
