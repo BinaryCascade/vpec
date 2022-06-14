@@ -42,7 +42,8 @@ jobs:
       - uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          automatic_release_tag: ВЭК - ${{ steps.apk-info.outputs.version-name }}
+          automatic_release_tag: ${{ steps.apk-info.outputs.version-name }}
+          title: ВЭК - ${{ steps.apk-info.outputs.version-name }}
           prerelease: false
           files: |
             build/app/outputs/flutter-apk/app-signed.apk
