@@ -64,14 +64,25 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                 // SizedBox(height: 6),
                 GestureDetector(
                   onTap: () async => await logic.chooseData(context),
-                  child: Text(
-                    logic.printCurrentDate,
-                    style: const TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w600,
-                      fontSize: 36.0,
-                      letterSpacing: 0.15,
-                    ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          logic.printCurrentDate,
+                          style: const TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 36.0,
+                            letterSpacing: 0.15,
+                          ),
+                        ),
+                      ),
+                      const FloatingActionButton(
+                        mini: true,
+                        onPressed: null,
+                        child: Icon(Icons.edit_calendar_outlined),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 15),
