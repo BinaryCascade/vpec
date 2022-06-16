@@ -1,0 +1,62 @@
+name: Create release version
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  create_release:
+    name: 'Create app release'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+          cache-key: key-android-20220611
+
+      - run: flutter build apk --release --split-per-abi --bundle-sksl-path flutter_01.sksl.json
+      - run: flutter build appbundle --bundle-sksl-path flutter_01.sksl.json
+
+      - uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: build/app/outputs/flutter-apk
+          signingKeyBase64: ${{ secrets.KEYSTORE_BASE64 }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      - uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: build/app/outputs/bundle/release
+          signingKeyBase64: ${{ secrets.KEYSTORE_BASE64 }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      - uses: hkusu/apk-info-action@v1.0.1
+        id: apk-info
+        with:
+          apk-path: 'build/app/outputs/flutter-apk/app-signed.apk'
+
+      - uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: ${{ steps.apk-info.outputs.version-name }}
+          title: ВЭК - ${{ steps.apk-info.outputs.version-name }}
+          prerelease: false
+          files: |
+            build/app/outputs/flutter-apk/app-signed.apk
+            build/app/outputs/flutter-apk/app-arm64-v8a-release-signed.apk
+            build/app/outputs/flutter-apk/app-armeabi-v7a-release-signed.apk
+            build/app/outputs/flutter-apk/app-x86_64-release-signed.apk
+            build/app/outputs/bundle/release/app-release-signed.aab
