@@ -49,7 +49,7 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                 top: 60,
                 bottom: 40,
                 left: 40,
-                right: 20,
+                right: 40,
               ),
               children: [
                 const Text(
