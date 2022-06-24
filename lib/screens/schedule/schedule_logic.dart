@@ -144,6 +144,7 @@ class ScheduleLogic extends ChangeNotifier {
           await http.get(Uri.parse(url)).timeout(const Duration(seconds: 90));
 
       if (response.statusCode == 200) {
+        DefaultCacheManager().putFile(url, response.bodyBytes);
         hasError = false;
         scheduleData = response.body;
       } else {
