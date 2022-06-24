@@ -642,7 +642,7 @@ class ChooseGroupUI extends StatelessWidget {
             activeColor: Theme.of(context).colorScheme.secondary,
             value: logic.isAccelerated,
             title: Text(
-              'Ускроенная форма обучения',
+              'Ускоренная форма обучения',
               style: Theme.of(context).textTheme.headline3,
             ),
             onChanged: (value) => logic.onValueChanged(
