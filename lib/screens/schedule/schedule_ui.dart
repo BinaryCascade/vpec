@@ -282,6 +282,7 @@ class AdditionalInfoPanelWidget extends StatelessWidget {
               controller: TextEditingController(text: notes),
               decoration: const InputDecoration(
                 labelText: 'Заметки',
+                helperText: 'Хранятся только на данном устройстве',
               ),
               maxLines: 6,
               style: Theme.of(context).textTheme.bodyText1,
@@ -289,10 +290,6 @@ class AdditionalInfoPanelWidget extends StatelessWidget {
                 HiveHelper.saveValue(key: 'note_$lessonName', value: text);
               },
             ),
-          ),
-          Text(
-            'Хранится только на данном устройстве',
-            style: Theme.of(context).textTheme.bodyText1,
           ),
         ],
       ),
