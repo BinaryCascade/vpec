@@ -62,7 +62,7 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                   ),
                 ),
                 // SizedBox(height: 6),
-                GestureDetector(
+                InkWell(
                   onTap: () async => await logic.chooseData(context),
                   child: Row(
                     children: [
