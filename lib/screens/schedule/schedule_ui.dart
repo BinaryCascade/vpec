@@ -63,7 +63,9 @@ class ScheduleItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${model.lessonNumber} пара - ${model.lessonName}',
+                      model.lessonName != ''
+                          ? '${model.lessonNumber} пара - ${model.lessonName}'
+                          : '${model.lessonNumber} пара',
                       style: TextStyle(
                         color: getItemColor(context),
                         fontFamily: 'Montserrat',
