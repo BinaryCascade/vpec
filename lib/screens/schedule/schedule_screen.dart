@@ -67,16 +67,21 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                   child: Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          logic.printCurrentDate,
-                          style: const TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 36.0,
-                            letterSpacing: 0.15,
+                        child: FittedBox(
+                          alignment: Alignment.centerLeft,
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            logic.printCurrentDate,
+                            style: const TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 36.0,
+                              letterSpacing: 0.15,
+                            ),
                           ),
                         ),
                       ),
+                      const SizedBox(width: 5),
                       const FloatingActionButton(
                         mini: true,
                         onPressed: null,

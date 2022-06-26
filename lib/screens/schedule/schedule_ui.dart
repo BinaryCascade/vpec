@@ -52,14 +52,17 @@ class ScheduleItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '${model.lessonBeginning} - ${model.lessonEnding}',
-                      style: TextStyle(
-                        color: getItemColor(context),
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 36.0,
-                        letterSpacing: 0.15,
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        '${model.lessonBeginning} - ${model.lessonEnding}',
+                        style: TextStyle(
+                          color: getItemColor(context),
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 36.0,
+                          letterSpacing: 0.15,
+                        ),
                       ),
                     ),
                     Text(
