@@ -263,15 +263,17 @@ class AdditionalInfoPanelWidget extends StatelessWidget {
             child: Row(
               children: [
                 Icon(
-                  Icons.people_outline,
+                  Icons.badge_outlined,
                   color: Theme.of(context).colorScheme.onBackground,
                 ),
                 const SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
-                Text(
-                  names,
-                  style: Theme.of(context).textTheme.bodyText1,
+                Expanded(
+                  child: Text(
+                    names,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
                 ),
               ],
             ),
