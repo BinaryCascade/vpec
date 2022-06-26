@@ -95,27 +95,28 @@ class ScheduleItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.only(left: 10, top: 9.5, bottom: 9),
-                decoration: BoxDecoration(
-                  border: RDottedLineBorder(
-                    // Меняй этой значение, чтобы дэши попали в расстояние нормально
-                    dottedLength: 3.5,
-                    dottedSpace: 3,
-                    left: BorderSide(width: 3, color: getItemColor(context)),
+              if (model.pauseAfterLesson != '')
+                Container(
+                  padding: const EdgeInsets.only(left: 10, top: 9.5, bottom: 9),
+                  decoration: BoxDecoration(
+                    border: RDottedLineBorder(
+                      // Меняй этой значение, чтобы дэши попали в расстояние нормально
+                      dottedLength: 3.5,
+                      dottedSpace: 3,
+                      left: BorderSide(width: 3, color: getItemColor(context)),
+                    ),
+                  ),
+                  child: Text(
+                    model.pauseAfterLesson,
+                    style: TextStyle(
+                      color: getItemColor(context),
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18.0,
+                      letterSpacing: 0.15,
+                    ),
                   ),
                 ),
-                child: Text(
-                  model.pauseAfterLesson,
-                  style: TextStyle(
-                    color: getItemColor(context),
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18.0,
-                    letterSpacing: 0.15,
-                  ),
-                ),
-              ),
             ],
           ),
         );
