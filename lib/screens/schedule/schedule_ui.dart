@@ -72,17 +72,20 @@ class ScheduleItem extends StatelessWidget {
                         letterSpacing: 0.15,
                       ),
                     ),
-                    const SizedBox(height: 6),
-                    Text(
-                      model.timer ?? '',
-                      style: TextStyle(
-                        color: getItemColor(context),
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.0,
-                        letterSpacing: 0.15,
+                    if (model.timer != null && model.timer! != '')
+                      Padding(
+                        padding: const EdgeInsets.only(top: 6),
+                        child: Text(
+                          model.timer ?? '',
+                          style: TextStyle(
+                            color: getItemColor(context),
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18.0,
+                            letterSpacing: 0.15,
+                          ),
+                        ),
                       ),
-                    ),
                     AdditionalInfo(
                       open: logic.open,
                       info: logic.infoWidget,
