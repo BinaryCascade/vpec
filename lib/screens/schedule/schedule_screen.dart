@@ -48,8 +48,8 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
               padding: const EdgeInsets.only(
                 top: 60,
                 bottom: 40,
-                left: 40,
-                right: 40,
+                left: 30,
+                right: 30,
               ),
               children: [
                 const Text(
