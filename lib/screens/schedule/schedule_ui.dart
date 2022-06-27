@@ -81,7 +81,7 @@ class ScheduleItem extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 6),
                         child: Text(
-                          model.timer ?? '',
+                          model.timer!,
                           style: TextStyle(
                             color: getItemColor(context),
                             fontFamily: 'Montserrat',
