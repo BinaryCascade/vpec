@@ -210,6 +210,7 @@ ThemeData darkThemeData() {
         fontWeight: semiBold,
         fontSize: 12,
         color: accentColor,
+        overflow: TextOverflow.ellipsis,
       )),
       iconTheme: MaterialStateProperty.resolveWith((states) => IconThemeData(
             color: states.contains(MaterialState.selected)
