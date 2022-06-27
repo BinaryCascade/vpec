@@ -591,8 +591,7 @@ class ChooseGroupUI extends StatelessWidget {
           ),
           Row(
             children: [
-              SizedBox(
-                width: 170,
+              Expanded(
                 child: DropdownButtonFormField<String>(
                   value: GroupsData.getCoursesNumbers.first,
                   items: GroupsData.getCoursesNumbers
@@ -612,9 +611,8 @@ class ChooseGroupUI extends StatelessWidget {
                   menuMaxHeight: 400,
                 ),
               ),
-              const Spacer(),
-              SizedBox(
-                width: 170,
+              const SizedBox(width: 20),
+              Expanded(
                 child: DropdownButtonFormField<String>(
                   value: GroupsData.getGroupNumbers.first,
                   items: GroupsData.getGroupNumbers
