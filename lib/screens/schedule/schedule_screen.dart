@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:r_dotted_line_border/r_dotted_line_border.dart';
 
+import '../../utils/theme_helper.dart';
 import 'schedule_logic.dart';
 import 'schedule_ui.dart';
 
@@ -47,9 +49,8 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
             child: ListView(
               padding: const EdgeInsets.only(
                 top: 60,
-                bottom: 40,
-                left: 40,
-                right: 40,
+                left: 30,
+                right: 30,
               ),
               children: [
                 const Text(
@@ -62,21 +63,26 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                   ),
                 ),
                 // SizedBox(height: 6),
-                GestureDetector(
+                InkWell(
                   onTap: () async => await logic.chooseData(context),
                   child: Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          logic.printCurrentDate,
-                          style: const TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 36.0,
-                            letterSpacing: 0.15,
+                        child: FittedBox(
+                          alignment: Alignment.centerLeft,
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            logic.printCurrentDate,
+                            style: const TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 36.0,
+                              letterSpacing: 0.15,
+                            ),
                           ),
                         ),
                       ),
+                      const SizedBox(width: 5),
                       const FloatingActionButton(
                         mini: true,
                         onPressed: null,
@@ -96,7 +102,29 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                                   Theme.of(context).scaffoldBackgroundColor,
                             ),
                           )
-                    : SchedulePanel(fullSchedule: logic.fullSchedule!),
+                    : Column(
+                        children: [
+                          SchedulePanel(fullSchedule: logic.fullSchedule!),
+                          // Отступ после расписания, чтобы FAB не перекрывал контент
+                          // Пунктир вместо отступа, чтобы не создавать вид обрыва
+                          Container(
+                            height: 130,
+                            decoration: BoxDecoration(
+                              border: RDottedLineBorder(
+                                // Меняй этой значение, чтобы дэши попали в расстояние нормально
+                                dottedLength: 3.5,
+                                dottedSpace: 3,
+                                left: BorderSide(
+                                  width: 3,
+                                  color: ThemeHelper.isDarkMode
+                                      ? Colors.white38
+                                      : Colors.black38,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
               ],
             ),
           ),

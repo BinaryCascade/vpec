@@ -34,6 +34,7 @@ ThemeData themeData() {
         fontWeight: semiBold,
         fontSize: 12,
         color: accentColor,
+        overflow: TextOverflow.ellipsis,
       )),
       iconTheme: MaterialStateProperty.resolveWith((states) => IconThemeData(
             color: states.contains(MaterialState.selected)
@@ -151,6 +152,7 @@ ThemeData themeData() {
         fontFamily: 'Montserrat',
         fontWeight: semiBold,
       ),
+      helperStyle: TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
       labelStyle: TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
       hintStyle: TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
       contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -209,6 +211,7 @@ ThemeData darkThemeData() {
         fontWeight: semiBold,
         fontSize: 12,
         color: accentColor,
+        overflow: TextOverflow.ellipsis,
       )),
       iconTheme: MaterialStateProperty.resolveWith((states) => IconThemeData(
             color: states.contains(MaterialState.selected)
@@ -326,6 +329,7 @@ ThemeData darkThemeData() {
         fontFamily: 'Montserrat',
         fontWeight: semiBold,
       ),
+      helperStyle: TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
       labelStyle: TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
       hintStyle: TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
       contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),

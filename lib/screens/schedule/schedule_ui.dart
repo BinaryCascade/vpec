@@ -52,29 +52,23 @@ class ScheduleItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '${model.lessonBeginning} - ${model.lessonEnding}',
-                      style: TextStyle(
-                        color: getItemColor(context),
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 36.0,
-                        letterSpacing: 0.15,
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        '${model.lessonBeginning} - ${model.lessonEnding}',
+                        style: TextStyle(
+                          color: getItemColor(context),
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 36.0,
+                          letterSpacing: 0.15,
+                        ),
                       ),
                     ),
                     Text(
-                      '${model.lessonNumber} пара - ${model.lessonName}',
-                      style: TextStyle(
-                        color: getItemColor(context),
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.0,
-                        letterSpacing: 0.15,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      model.timer ?? '',
+                      model.lessonName != ''
+                          ? '${model.lessonNumber} пара - ${model.lessonName}'
+                          : '${model.lessonNumber} пара',
                       style: TextStyle(
                         color: getItemColor(context),
                         fontFamily: 'Montserrat',
@@ -83,6 +77,20 @@ class ScheduleItem extends StatelessWidget {
                         letterSpacing: 0.15,
                       ),
                     ),
+                    if (model.timer != null && model.timer! != '')
+                      Padding(
+                        padding: const EdgeInsets.only(top: 6),
+                        child: Text(
+                          model.timer!,
+                          style: TextStyle(
+                            color: getItemColor(context),
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18.0,
+                            letterSpacing: 0.15,
+                          ),
+                        ),
+                      ),
                     AdditionalInfo(
                       open: logic.open,
                       info: logic.infoWidget,
@@ -90,27 +98,28 @@ class ScheduleItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.only(left: 10, top: 9.5, bottom: 9),
-                decoration: BoxDecoration(
-                  border: RDottedLineBorder(
-                    // Меняй этой значение, чтобы дэши попали в расстояние нормально
-                    dottedLength: 3.5,
-                    dottedSpace: 3,
-                    left: BorderSide(width: 3, color: getItemColor(context)),
+              if (model.pauseAfterLesson != '')
+                Container(
+                  padding: const EdgeInsets.only(left: 10, top: 9.5, bottom: 9),
+                  decoration: BoxDecoration(
+                    border: RDottedLineBorder(
+                      // Меняй этой значение, чтобы дэши попали в расстояние нормально
+                      dottedLength: 3.5,
+                      dottedSpace: 3,
+                      left: BorderSide(width: 3, color: getItemColor(context)),
+                    ),
+                  ),
+                  child: Text(
+                    model.pauseAfterLesson,
+                    style: TextStyle(
+                      color: getItemColor(context),
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18.0,
+                      letterSpacing: 0.15,
+                    ),
                   ),
                 ),
-                child: Text(
-                  model.pauseAfterLesson,
-                  style: TextStyle(
-                    color: getItemColor(context),
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18.0,
-                    letterSpacing: 0.15,
-                  ),
-                ),
-              ),
             ],
           ),
         );
@@ -263,15 +272,17 @@ class AdditionalInfoPanelWidget extends StatelessWidget {
             child: Row(
               children: [
                 Icon(
-                  Icons.people_outline,
+                  Icons.badge_outlined,
                   color: Theme.of(context).colorScheme.onBackground,
                 ),
                 const SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
-                Text(
-                  names,
-                  style: Theme.of(context).textTheme.bodyText1,
+                Expanded(
+                  child: Text(
+                    names,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
                 ),
               ],
             ),
@@ -282,6 +293,7 @@ class AdditionalInfoPanelWidget extends StatelessWidget {
               controller: TextEditingController(text: notes),
               decoration: const InputDecoration(
                 labelText: 'Заметки',
+                helperText: 'Хранятся только на данном устройстве',
               ),
               maxLines: 6,
               style: Theme.of(context).textTheme.bodyText1,
@@ -289,10 +301,6 @@ class AdditionalInfoPanelWidget extends StatelessWidget {
                 HiveHelper.saveValue(key: 'note_$lessonName', value: text);
               },
             ),
-          ),
-          Text(
-            'Хранится только на данном устройстве',
-            style: Theme.of(context).textTheme.bodyText1,
           ),
         ],
       ),
