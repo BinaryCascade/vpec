@@ -14,8 +14,6 @@ import 'utils/notifications/local_notifications.dart';
 import 'utils/routes/routes.dart';
 import 'utils/theme_helper.dart';
 
-GlobalKey<NavigatorState> navigatorKey = GlobalKey();
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy(); // remove # from url path
@@ -81,7 +79,6 @@ class _VPECAppState extends State<VPECApp> {
       ],
       theme: themeData(),
       darkTheme: darkThemeData(),
-      navigatorKey: navigatorKey,
       themeMode: context.watch<ThemeNotifier>().themeMode,
       initialRoute: '/',
       onGenerateRoute: Routes.router.generator,
