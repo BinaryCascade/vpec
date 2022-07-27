@@ -154,7 +154,6 @@ class SettingsLogic extends ChangeNotifier {
     await showRoundedModalSheet(
       context: context,
       title: 'Выберите группу',
-      isDismissible: false,
       child: ChangeNotifierProvider<GroupsData>(
         create: (_) => GroupsData(),
         child: const ChooseGroupUI(),
