@@ -14,6 +14,11 @@ class LocalNotifications {
   static Future<void> initializeNotifications() async {
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestPermission();
+
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(serverChannel);
   }
