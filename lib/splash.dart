@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -86,6 +87,11 @@ class _SplashScreenState extends State<SplashScreen> {
         int givenIndex = HiveHelper.getValue('launchOnStart');
         context.read<BottomBarLogic>().setIndex(givenIndex);
       }
+
+      FlutterLocalNotificationsPlugin()
+          .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+          ?.requestPermission();
     } else {
       quickActions.clearShortcutItems();
     }
