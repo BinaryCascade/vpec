@@ -267,7 +267,7 @@ class GroupsData extends ChangeNotifier {
     DateTime now = DateTime.now();
     // if month any until September, then year of admission
     // first course is prev, else this
-    int year = now.year < 9 ? now.year - 1 : now.year;
+    int year = now.month < 9 ? now.year : now.year + 1;
     // calculate year of admission of given course [inputCourse]
     year -= int.parse(inputCourse);
 
