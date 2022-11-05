@@ -1,5 +1,13 @@
 # ВЭК
+
+![основной функционал приложения](gh_assets/overview.png)
+
 Приложение для студентов и сотрудников [Волгоградского энергетического колледжа](https://energocollege.ru/).
+
+## Скачать
+* [Google Play](https://play.google.com/store/apps/details?id=tem.apps.vpec)
+* [GitHub](https://github.com/ShyroTeam/vpec/releases/latest)
+* [Telegram](https://t.me/ShyroTeam)
 
 ## Особенности
 * Быстрый и удобный доступ к всегда актуальному расписанию занятий и звонков
@@ -9,21 +17,13 @@
 * Светлая и тёмная тема
 * События колледжа
 
-## Скачать
-* [Google Play](https://play.google.com/store/apps/details?id=tem.apps.vpec)
+## Скриншоты
 
-## Принять участие в разработке
+### ![Индивидуальное расписание](gh_assets/schedule.png)
 
-### Как пользователь:
-* Присоединиться к бета-тестированию через [Telegram](https://t.me/Tembeon) или на странице 
-[Google Play](https://play.google.com/store/apps/details?id=tem.apps.vpec).
-* Предложить новую функцию, или сообщить об ошибке можно [здесь](https://github.com/ShyroTeam/vpec/issues/new/choose).
+### ![Карта колледжа](gh_assets/college_map.png)
 
-### Как разработчик:
-Принять участие в разработке можно, открыв свой Pull request с описанием, что данный PR приносит в проект.
-Мы будем рады любому Вашему вкладу, будь это Feature pull request, или Code improve.
 
-**Обратите внимание, что в проекте используется Flutter stable.**
 
 ## Дизайн приложения
 Дизайн приложения подготовлен [@Lazurit11](https://github.com/lazurit11).
