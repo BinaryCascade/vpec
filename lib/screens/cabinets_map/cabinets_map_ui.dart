@@ -17,6 +17,7 @@ class CabinetsMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InteractiveWidget(
+      onInteractionUpdate: onScaleUpdated,
       child: CachedNetworkImage(
         imageUrl: context.watch<CabinetsMapLogic>().nowImageUrl,
         useOldImageOnUrlChange: true,
@@ -36,7 +37,6 @@ class CabinetsMap extends StatelessWidget {
           );
         },
       ),
-      onInteractionUpdate: onScaleUpdated,
     );
   }
 }
@@ -50,75 +50,80 @@ class FloorChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Wrap(
-            direction: Axis.horizontal,
-            spacing: 6.0,
-            children: [
-              ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
-                label: const Text('1 этаж'),
-                selected: context.watch<CabinetsMapLogic>().selectedFloor == 1,
-                labelStyle: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    color: context.watch<CabinetsMapLogic>().selectedFloor == 1
-                        ? Theme.of(context).colorScheme.onSecondary
-                        : Theme.of(context).colorScheme.onBackground),
-                selectedColor: Theme.of(context).colorScheme.secondary,
-                onSelected: (_) =>
-                    context.read<CabinetsMapLogic>().setNewFloor(1),
+      scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Wrap(
+          direction: Axis.horizontal,
+          spacing: 6.0,
+          children: [
+            ChoiceChip(
+              backgroundColor: Theme.of(context).primaryColor,
+              label: const Text('1 этаж'),
+              selected: context.watch<CabinetsMapLogic>().selectedFloor == 1,
+              labelStyle: TextStyle(
+                fontSize: 14,
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w600,
+                color: context.watch<CabinetsMapLogic>().selectedFloor == 1
+                    ? Theme.of(context).colorScheme.onSecondary
+                    : Theme.of(context).colorScheme.onBackground,
               ),
-              ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
-                label: const Text('2 этаж'),
-                selected: context.watch<CabinetsMapLogic>().selectedFloor == 2,
-                labelStyle: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    color: context.watch<CabinetsMapLogic>().selectedFloor == 2
-                        ? Theme.of(context).colorScheme.onSecondary
-                        : Theme.of(context).colorScheme.onBackground),
-                selectedColor: Theme.of(context).colorScheme.secondary,
-                onSelected: (_) =>
-                    context.read<CabinetsMapLogic>().setNewFloor(2),
+              selectedColor: Theme.of(context).colorScheme.secondary,
+              onSelected: (_) =>
+                  context.read<CabinetsMapLogic>().setNewFloor(1),
+            ),
+            ChoiceChip(
+              backgroundColor: Theme.of(context).primaryColor,
+              label: const Text('2 этаж'),
+              selected: context.watch<CabinetsMapLogic>().selectedFloor == 2,
+              labelStyle: TextStyle(
+                fontSize: 14,
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w600,
+                color: context.watch<CabinetsMapLogic>().selectedFloor == 2
+                    ? Theme.of(context).colorScheme.onSecondary
+                    : Theme.of(context).colorScheme.onBackground,
               ),
-              ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
-                label: const Text('3 этаж'),
-                selected: context.watch<CabinetsMapLogic>().selectedFloor == 3,
-                labelStyle: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    color: context.watch<CabinetsMapLogic>().selectedFloor == 3
-                        ? Theme.of(context).colorScheme.onSecondary
-                        : Theme.of(context).colorScheme.onBackground),
-                selectedColor: Theme.of(context).colorScheme.secondary,
-                onSelected: (_) =>
-                    context.read<CabinetsMapLogic>().setNewFloor(3),
+              selectedColor: Theme.of(context).colorScheme.secondary,
+              onSelected: (_) =>
+                  context.read<CabinetsMapLogic>().setNewFloor(2),
+            ),
+            ChoiceChip(
+              backgroundColor: Theme.of(context).primaryColor,
+              label: const Text('3 этаж'),
+              selected: context.watch<CabinetsMapLogic>().selectedFloor == 3,
+              labelStyle: TextStyle(
+                fontSize: 14,
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w600,
+                color: context.watch<CabinetsMapLogic>().selectedFloor == 3
+                    ? Theme.of(context).colorScheme.onSecondary
+                    : Theme.of(context).colorScheme.onBackground,
               ),
-              ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
-                label: const Text('4 этаж'),
-                selected: context.watch<CabinetsMapLogic>().selectedFloor == 4,
-                labelStyle: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    color: context.watch<CabinetsMapLogic>().selectedFloor == 4
-                        ? Theme.of(context).colorScheme.onSecondary
-                        : Theme.of(context).colorScheme.onBackground),
-                selectedColor: Theme.of(context).colorScheme.secondary,
-                onSelected: (_) =>
-                    context.read<CabinetsMapLogic>().setNewFloor(4),
+              selectedColor: Theme.of(context).colorScheme.secondary,
+              onSelected: (_) =>
+                  context.read<CabinetsMapLogic>().setNewFloor(3),
+            ),
+            ChoiceChip(
+              backgroundColor: Theme.of(context).primaryColor,
+              label: const Text('4 этаж'),
+              selected: context.watch<CabinetsMapLogic>().selectedFloor == 4,
+              labelStyle: TextStyle(
+                fontSize: 14,
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w600,
+                color: context.watch<CabinetsMapLogic>().selectedFloor == 4
+                    ? Theme.of(context).colorScheme.onSecondary
+                    : Theme.of(context).colorScheme.onBackground,
               ),
-            ],
-          ),
-        ));
+              selectedColor: Theme.of(context).colorScheme.secondary,
+              onSelected: (_) =>
+                  context.read<CabinetsMapLogic>().setNewFloor(4),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

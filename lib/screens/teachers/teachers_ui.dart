@@ -57,13 +57,14 @@ class FilterChips extends StatelessWidget {
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Фамилия'),
                 labelStyle: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    color: context.watch<TeachersLogic>().currentMode ==
-                            SearchMode.familyName
-                        ? Theme.of(context).colorScheme.onSecondary
-                        : Theme.of(context).colorScheme.onBackground),
+                  fontSize: 14,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600,
+                  color: context.watch<TeachersLogic>().currentMode ==
+                          SearchMode.familyName
+                      ? Theme.of(context).colorScheme.onSecondary
+                      : Theme.of(context).colorScheme.onBackground,
+                ),
                 selectedColor: Theme.of(context).colorScheme.secondary,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.familyName,
@@ -75,13 +76,14 @@ class FilterChips extends StatelessWidget {
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Имя'),
                 labelStyle: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    color: context.watch<TeachersLogic>().currentMode ==
-                            SearchMode.firstName
-                        ? Theme.of(context).colorScheme.onSecondary
-                        : Theme.of(context).colorScheme.onBackground),
+                  fontSize: 14,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600,
+                  color: context.watch<TeachersLogic>().currentMode ==
+                          SearchMode.firstName
+                      ? Theme.of(context).colorScheme.onSecondary
+                      : Theme.of(context).colorScheme.onBackground,
+                ),
                 selectedColor: Theme.of(context).colorScheme.secondary,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.firstName,
@@ -93,13 +95,14 @@ class FilterChips extends StatelessWidget {
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Отчество'),
                 labelStyle: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    color: context.watch<TeachersLogic>().currentMode ==
-                            SearchMode.secondaryName
-                        ? Theme.of(context).colorScheme.onSecondary
-                        : Theme.of(context).colorScheme.onBackground),
+                  fontSize: 14,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600,
+                  color: context.watch<TeachersLogic>().currentMode ==
+                          SearchMode.secondaryName
+                      ? Theme.of(context).colorScheme.onSecondary
+                      : Theme.of(context).colorScheme.onBackground,
+                ),
                 selectedColor: Theme.of(context).colorScheme.secondary,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.secondaryName,
@@ -111,13 +114,14 @@ class FilterChips extends StatelessWidget {
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Предметы'),
                 labelStyle: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    color: context.watch<TeachersLogic>().currentMode ==
-                            SearchMode.lesson
-                        ? Theme.of(context).colorScheme.onSecondary
-                        : Theme.of(context).colorScheme.onBackground),
+                  fontSize: 14,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600,
+                  color: context.watch<TeachersLogic>().currentMode ==
+                          SearchMode.lesson
+                      ? Theme.of(context).colorScheme.onSecondary
+                      : Theme.of(context).colorScheme.onBackground,
+                ),
                 selectedColor: Theme.of(context).colorScheme.secondary,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.lesson,
@@ -129,13 +133,14 @@ class FilterChips extends StatelessWidget {
                 backgroundColor: Theme.of(context).primaryColor,
                 label: const Text('Кабинеты'),
                 labelStyle: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    color: context.watch<TeachersLogic>().currentMode ==
-                            SearchMode.cabinet
-                        ? Theme.of(context).colorScheme.onSecondary
-                        : Theme.of(context).colorScheme.onBackground),
+                  fontSize: 14,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600,
+                  color: context.watch<TeachersLogic>().currentMode ==
+                          SearchMode.cabinet
+                      ? Theme.of(context).colorScheme.onSecondary
+                      : Theme.of(context).colorScheme.onBackground,
+                ),
                 selectedColor: Theme.of(context).colorScheme.secondary,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.cabinet,
@@ -159,9 +164,12 @@ class BuildTeachersList extends StatelessWidget {
     return Expanded(
       child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: Provider.of<TeachersLogic>(context, listen: true).stream,
-        builder: (BuildContext context,
-            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+        builder: (
+          BuildContext context,
+          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
+        ) {
           if (!snapshot.hasData) return const LoadingIndicator();
+
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: ListView.builder(
@@ -172,8 +180,9 @@ class BuildTeachersList extends StatelessWidget {
               itemBuilder: (context, index) {
                 return TeacherCard(
                   teacher: TeacherModel.fromMap(
-                      snapshot.data!.docs[index].data(),
-                      snapshot.data!.docs[index].id),
+                    snapshot.data!.docs[index].data(),
+                    snapshot.data!.docs[index].id,
+                  ),
                 );
               },
             ),
@@ -190,11 +199,12 @@ class EditModeFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-        child: const Icon(
-          Icons.add_outlined,
-          size: 24.0,
-        ),
-        onPressed: () => TeachersLogicEditMode().openAddNewDialog(context));
+      child: const Icon(
+        Icons.add_outlined,
+        size: 24.0,
+      ),
+      onPressed: () => TeachersLogicEditMode().openAddNewDialog(context),
+    );
   }
 }
 
@@ -202,7 +212,7 @@ class AddNewTeacherDialogUI extends StatefulWidget {
   const AddNewTeacherDialogUI({Key? key}) : super(key: key);
 
   @override
-  _AddNewTeacherDialogUIState createState() => _AddNewTeacherDialogUIState();
+  State<AddNewTeacherDialogUI> createState() => _AddNewTeacherDialogUIState();
 }
 
 class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
@@ -265,19 +275,20 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
               child: const Text('Отмена'),
             ),
             ElevatedButton(
-                onPressed: () {
-                  TeachersLogicEditMode().addNewTeacher(TeacherModel(
-                    firstName: firstName.text,
-                    familyName: familyName.text,
-                    secondaryName: secondaryName.text,
-                    cabinet: cabinet.text,
-                    lesson: lessons.text,
-                  ));
-                  Navigator.pop(context);
-                },
-                child: const Text('Добавить')),
+              onPressed: () {
+                TeachersLogicEditMode().addNewTeacher(TeacherModel(
+                  firstName: firstName.text,
+                  familyName: familyName.text,
+                  secondaryName: secondaryName.text,
+                  cabinet: cabinet.text,
+                  lesson: lessons.text,
+                ));
+                Navigator.pop(context);
+              },
+              child: const Text('Добавить'),
+            ),
           ],
-        )
+        ),
       ],
     );
   }
@@ -287,7 +298,7 @@ class SearchButton extends StatefulWidget {
   const SearchButton({Key? key}) : super(key: key);
 
   @override
-  _SearchButtonState createState() => _SearchButtonState();
+  State<SearchButton> createState() => _SearchButtonState();
 }
 
 class _SearchButtonState extends State<SearchButton> {
@@ -296,10 +307,11 @@ class _SearchButtonState extends State<SearchButton> {
     return Consumer<TeachersLogic>(
       builder: (BuildContext context, value, Widget? child) {
         return IconButton(
-            onPressed: () => value.toggleSearch(),
-            icon: Icon(value.isSearchMode
-                ? Icons.close_outlined
-                : Icons.search_outlined));
+          onPressed: () => value.toggleSearch(),
+          icon: Icon(value.isSearchMode
+              ? Icons.close_outlined
+              : Icons.search_outlined),
+        );
       },
     );
   }

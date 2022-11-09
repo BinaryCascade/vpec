@@ -10,10 +10,7 @@ class MenuLogic {
     Timestamp timestamp = cabMap['date'];
     String dateOpenDoors = DateFormat('d-MM-yyyy').format(timestamp.toDate());
     String now = DateFormat('d-MM-yyyy').format(DateTime.now());
-    if (dateOpenDoors == now) {
-      return true;
-    } else {
-      return false;
-    }
+
+    return dateOpenDoors == now;
   }
 }

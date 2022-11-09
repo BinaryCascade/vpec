@@ -17,12 +17,12 @@ class TimeModel {
 
   TimeModel.fromMap(Map<String, dynamic> data, String id)
       : this(
-    name: data['name'],
-    startLesson: data['start'],
-    endLesson: data['end'],
-    pause: data['pause'],
-    id: id,
-  );
+          name: data['name'],
+          startLesson: data['start'],
+          endLesson: data['end'],
+          pause: data['pause'],
+          id: id,
+        );
 
   Map<String, dynamic> toMap(int docID) {
     return {

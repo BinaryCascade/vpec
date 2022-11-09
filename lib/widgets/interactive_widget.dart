@@ -11,7 +11,7 @@ class InteractiveWidget extends StatefulWidget {
   final Function(double)? onInteractionUpdate;
 
   @override
-  _InteractiveWidgetState createState() => _InteractiveWidgetState();
+  State<InteractiveWidget> createState() => _InteractiveWidgetState();
 }
 
 class _InteractiveWidgetState extends State<InteractiveWidget>
@@ -61,20 +61,20 @@ class _InteractiveWidgetState extends State<InteractiveWidget>
     required Matrix4 end,
     required AnimationController animationController,
   }) {
-    final _mapAnimation = Matrix4Tween(
+    final mapAnimation = Matrix4Tween(
       begin: transformationController.value,
       end: end,
     ).animate(animationController);
 
     void animationListener() {
-      transformationController.value = _mapAnimation.value;
+      transformationController.value = mapAnimation.value;
 
       if (transformationController.value == end) {
-        _mapAnimation.removeListener(animationListener);
+        mapAnimation.removeListener(animationListener);
       }
     }
 
-    _mapAnimation.addListener(animationListener);
+    mapAnimation.addListener(animationListener);
 
     animationController.forward();
   }
@@ -94,13 +94,25 @@ class _InteractiveWidgetState extends State<InteractiveWidget>
 
       final zoomedMatrix = Matrix4(
         // a0 a1 a2 a3
-        scaleMultiplier, 0.0, 0.0, 0,
+        scaleMultiplier,
+        0.0,
+        0.0,
+        0,
         // a0 a1 a2 a3
-        0.0, scaleMultiplier, 0.0, 0,
+        0.0,
+        scaleMultiplier,
+        0.0,
+        0,
         // a0 a1 a2 a3
-        0.0, 0.0, 1.0, 0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
         // a0 a1 a2 a3
-        x, y, 0.0, 1.0,
+        x,
+        y,
+        0.0,
+        1.0,
       );
 
       animateZoom(
@@ -111,7 +123,7 @@ class _InteractiveWidgetState extends State<InteractiveWidget>
   }
 
   /// Required for `onDoubleTapDown` to work
-  void onDoubleTap() {}
+  void onDoubleTap() {} //ignore: no-empty-block
 
   @override
   Widget build(BuildContext context) {

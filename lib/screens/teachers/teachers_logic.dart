@@ -41,7 +41,7 @@ class TeachersLogic extends ChangeNotifier {
       stream = FirebaseFirestore.instance
           .collection('teacher_list')
           .where(documentField, isGreaterThanOrEqualTo: searchKey)
-          .where(documentField, isLessThan: searchKey + "\uf8ff")
+          .where(documentField, isLessThan: "$searchKey\uf8ff")
           .snapshots();
     } else {
       stream = FirebaseFirestore.instance
@@ -87,9 +87,10 @@ class TeachersLogic extends ChangeNotifier {
 class TeachersLogicEditMode {
   void openAddNewDialog(BuildContext context) {
     showRoundedModalSheet(
-        context: context,
-        title: 'Добавить преподавателя',
-        child: const AddNewTeacherDialogUI());
+      context: context,
+      title: 'Добавить преподавателя',
+      child: const AddNewTeacherDialogUI(),
+    );
   }
 
   void addNewTeacher(TeacherModel model) {

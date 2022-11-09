@@ -26,13 +26,15 @@ class DebugScreen extends StatelessWidget {
               future: AppFirebaseMessaging.getToken(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) return const LoadingIndicator();
+
                 return Column(
                   children: [
                     SizedBox(
                       width: double.infinity,
                       child: OutlinedButton(
                         onPressed: () => Clipboard.setData(
-                            ClipboardData(text: snapshot.data!)),
+                          ClipboardData(text: snapshot.data!),
+                        ),
                         child: const Text('Copy FCM token'),
                       ),
                     ),

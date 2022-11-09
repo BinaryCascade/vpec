@@ -24,7 +24,6 @@ Future<void> main() async {
   AppFirebaseMessaging.startListening();
 
   runApp(MultiProvider(
-    child: const VPECApp(),
     providers: [
       ChangeNotifierProvider(create: (_) => FirebaseAppAuth()),
       ChangeNotifierProvider(
@@ -33,6 +32,7 @@ Future<void> main() async {
         ),
       ),
     ],
+    child: const VPECApp(),
   ));
 }
 
@@ -40,7 +40,7 @@ class VPECApp extends StatefulWidget {
   const VPECApp({Key? key}) : super(key: key);
 
   @override
-  _VPECAppState createState() => _VPECAppState();
+  State<VPECApp> createState() => _VPECAppState();
 }
 
 class _VPECAppState extends State<VPECApp> {
@@ -53,12 +53,13 @@ class _VPECAppState extends State<VPECApp> {
 
     Provider.of<FirebaseAppAuth>(context, listen: false).startListening();
 
-    final window = WidgetsBinding.instance!.window;
+    final window = WidgetsBinding.instance.window;
     window.onPlatformBrightnessChanged = () {
       // This callback gets invoked every time brightness changes
       setState(() {
         context.read<ThemeNotifier>().changeTheme(
-            ThemeHelper.isDarkMode ? ThemeMode.dark : ThemeMode.light);
+              ThemeHelper.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+            );
       });
     };
     super.initState();
@@ -81,6 +82,7 @@ class _VPECAppState extends State<VPECApp> {
       themeMode: context.watch<ThemeNotifier>().themeMode,
       initialRoute: '/',
       onGenerateRoute: Routes.router.generator,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

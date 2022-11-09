@@ -10,7 +10,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
 
-    List<Widget> _children = [
+    List<Widget> children = [
       Expanded(
         child: Image(
           width: 0.75 * MediaQuery.of(context).size.shortestSide,
@@ -52,17 +52,15 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () async => await LoginLogic.openLogin(context),
                   ),
                 ),
-
-                /// Entrant mode is not fully complete
-                // SizedBox(
-                //   height: 42.0,
-                //   width: double.infinity,
-                //   child: OutlinedButton(
-                //     child: const Text('Я абитуриент'),
-                //     onPressed: () =>
-                //         Navigator.popAndPushNamed(context, '/entrant'),
-                //   ),
-                // ),
+                SizedBox(
+                  height: 42.0,
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    child: const Text('Я абитуриент'),
+                    onPressed: () async =>
+                        await LoginLogic.openEntrantScreen(context),
+                  ),
+                ),
                 GestureDetector(
                   onTap: () => LoginLogic.showAccountHelperDialog(context),
                   child: Padding(
@@ -83,10 +81,11 @@ class LoginScreen extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-          minimum: const EdgeInsets.all(12.0),
-          child: MediaQuery.of(context).size.aspectRatio > 1
-              ? Row(children: _children)
-              : Column(children: _children)),
+        minimum: const EdgeInsets.all(12.0),
+        child: MediaQuery.of(context).size.aspectRatio > 1
+            ? Row(children: children)
+            : Column(children: children),
+      ),
     );
   }
 }

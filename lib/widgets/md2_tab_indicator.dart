@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-
 class MD2TabIndicator extends Decoration {
   final Color indicatorColor;
 
-/// Custom decoration for active tab indicator.
-///
-/// For intended look, the TabBar height should be 48 (default)
+  /// Custom decoration for active tab indicator.
+  ///
+  /// For intended look, the TabBar height should be 48 (default)
   const MD2TabIndicator(this.indicatorColor);
 
   @override
@@ -29,11 +28,12 @@ class _MD2Painter extends BoxPainter {
     paint.color = indicator.indicatorColor;
     paint.style = PaintingStyle.fill;
     canvas.drawRRect(
-        RRect.fromRectAndCorners(
-          rect,
-          bottomRight: const Radius.circular(4),
-          bottomLeft: const Radius.circular(4),
-        ),
-        paint);
+      RRect.fromRectAndCorners(
+        rect,
+        bottomRight: const Radius.circular(4),
+        bottomLeft: const Radius.circular(4),
+      ),
+      paint,
+    );
   }
 }

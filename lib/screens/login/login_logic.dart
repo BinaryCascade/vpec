@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '/screens/settings/settings_logic.dart';
 import '/utils/hive_helper.dart';
+import '../../models/document_model.dart';
 import '../../utils/firebase_auth.dart';
 
 class LoginLogic extends ChangeNotifier {
@@ -40,18 +41,19 @@ class LoginLogic extends ChangeNotifier {
         'Для быстрого входа в аккаунт можно просканировать QR код с плаката';
 
     showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: Text(dialogText),
-            actions: [
-              TextButton(
-                child: const Text('Закрыть'),
-                onPressed: () => Navigator.pop(context),
-              )
-            ],
-          );
-        });
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Text(dialogText),
+          actions: [
+            TextButton(
+              child: const Text('Закрыть'),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   /// Return URL for document, which need to display for entrant
@@ -60,6 +62,20 @@ class LoginLogic extends ChangeNotifier {
         .collection('entrant')
         .doc('main')
         .get();
+
     return entrant['url'];
+  }
+
+  static Future<void> openEntrantScreen(BuildContext context) async {
+    String docURL = await LoginLogic.getEntrantUrl();
+    Navigator.pushNamed(
+      context,
+      '/view_document',
+      arguments: DocumentModel(
+        title: 'Для абитуриента',
+        subtitle: '',
+        url: docURL,
+      ),
+    );
   }
 }

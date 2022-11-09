@@ -15,13 +15,17 @@ class AdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+
     return Scaffold(
       appBar: AppBar(title: const Text('Администрация')),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: stream,
-        builder: (BuildContext context,
-            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+        builder: (
+          BuildContext context,
+          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
+        ) {
           if (!snapshot.hasData) return const LoadingIndicator();
+
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: ListView(

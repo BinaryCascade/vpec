@@ -7,11 +7,23 @@ import '/widgets/snow_widget.dart';
 import 'lessons_schedule_logic.dart';
 import 'lessons_schedule_ui.dart';
 
+class FullLessonsScheduleScreen extends StatelessWidget {
+  const FullLessonsScheduleScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => LessonsScheduleLogic(),
+      builder: (_, __) => const LessonsScheduleScreen(),
+    );
+  }
+}
+
 class LessonsScheduleScreen extends StatefulWidget {
   const LessonsScheduleScreen({Key? key}) : super(key: key);
 
   @override
-  _LessonsScheduleScreenState createState() => _LessonsScheduleScreenState();
+  State<LessonsScheduleScreen> createState() => _LessonsScheduleScreenState();
 }
 
 class _LessonsScheduleScreenState extends State<LessonsScheduleScreen>
@@ -30,7 +42,12 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen>
 
   @override
   Widget build(BuildContext context) {
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Полное расписание занятий'),
+      ),
       body: Stack(
         children: [
           if (HolidayHelper.isNewYear)

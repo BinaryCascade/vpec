@@ -1,5 +1,6 @@
 // Snow by https://github.com/windwp/
 // Repo: https://github.com/windwp/flutter-snow-effect
+// Modified by ShyroTeam
 
 import 'dart:math';
 
@@ -11,12 +12,16 @@ class SnowWidget extends StatefulWidget {
   final bool? isRunning;
   final Color? snowColor;
 
-  const SnowWidget(
-      {Key? key, this.totalSnow, this.speed, this.isRunning, this.snowColor})
-      : super(key: key);
+  const SnowWidget({
+    Key? key,
+    this.totalSnow,
+    this.speed,
+    this.isRunning,
+    this.snowColor,
+  }) : super(key: key);
 
   @override
-  _SnowWidgetState createState() => _SnowWidgetState();
+  State<SnowWidget> createState() => _SnowWidgetState();
 }
 
 class _SnowWidgetState extends State<SnowWidget>
@@ -39,10 +44,11 @@ class _SnowWidgetState extends State<SnowWidget>
     _rnd = Random();
     if (controller == null) {
       controller = AnimationController(
-          lowerBound: 0,
-          upperBound: 1,
-          vsync: this,
-          duration: const Duration(milliseconds: 20000));
+        lowerBound: 0,
+        upperBound: 1,
+        vsync: this,
+        duration: const Duration(milliseconds: 20000),
+      );
       controller!.addListener(() {
         if (mounted) {
           setState(() {
@@ -68,10 +74,11 @@ class _SnowWidgetState extends State<SnowWidget>
     _snows = [];
     for (var i = 0; i < widget.totalSnow!; i++) {
       _snows!.add(Snow(
-          x: _rnd.nextDouble() * W,
-          y: _rnd.nextDouble() * H,
-          r: _rnd.nextDouble() * 4 + 1,
-          d: _rnd.nextDouble() * widget.speed!));
+        x: _rnd.nextDouble() * W,
+        y: _rnd.nextDouble() * H,
+        r: _rnd.nextDouble() * 4 + 1,
+        d: _rnd.nextDouble() * widget.speed!,
+      ));
     }
   }
 
@@ -123,13 +130,15 @@ class _SnowWidgetState extends State<SnowWidget>
           W = constraints.maxWidth;
           H = constraints.maxHeight;
         }
+
         return CustomPaint(
           willChange: widget.isRunning!,
           painter: SnowPainter(
-              // progress: controller.value,
-              isRunning: widget.isRunning,
-              snows: _snows,
-              snowColor: widget.snowColor),
+            // progress: controller.value,
+            isRunning: widget.isRunning,
+            snows: _snows,
+            snowColor: widget.snowColor,
+          ),
           size: Size.infinite,
         );
       },

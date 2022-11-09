@@ -36,7 +36,7 @@ class AnswersBlock extends StatefulWidget {
   final String firstAnswer, secondAnswer, thirdAnswer, fourthAnswer;
 
   @override
-  _AnswersBlockState createState() => _AnswersBlockState();
+  State<AnswersBlock> createState() => _AnswersBlockState();
 }
 
 class _AnswersBlockState extends State<AnswersBlock> {
@@ -45,41 +45,45 @@ class _AnswersBlockState extends State<AnswersBlock> {
     return Column(
       children: [
         AnswerListTile(
-            title: widget.firstAnswer,
-            value: 1,
-            groupValue: context.read<JobQuizStorage>().selectedAnswer,
-            onChanged: (newValue) {
-              setState(() {
-                context.read<JobQuizStorage>().setAnswer(newValue!);
-              });
-            }),
+          title: widget.firstAnswer,
+          value: 1,
+          groupValue: context.read<JobQuizStorage>().selectedAnswer,
+          onChanged: (newValue) {
+            setState(() {
+              context.read<JobQuizStorage>().setAnswer(newValue!);
+            });
+          },
+        ),
         AnswerListTile(
-            title: widget.secondAnswer,
-            value: 2,
-            groupValue: context.read<JobQuizStorage>().selectedAnswer,
-            onChanged: (newValue) {
-              setState(() {
-                context.read<JobQuizStorage>().setAnswer(newValue!);
-              });
-            }),
+          title: widget.secondAnswer,
+          value: 2,
+          groupValue: context.read<JobQuizStorage>().selectedAnswer,
+          onChanged: (newValue) {
+            setState(() {
+              context.read<JobQuizStorage>().setAnswer(newValue!);
+            });
+          },
+        ),
         AnswerListTile(
-            title: widget.thirdAnswer,
-            value: 3,
-            groupValue: context.read<JobQuizStorage>().selectedAnswer,
-            onChanged: (newValue) {
-              setState(() {
-                context.read<JobQuizStorage>().setAnswer(newValue!);
-              });
-            }),
+          title: widget.thirdAnswer,
+          value: 3,
+          groupValue: context.read<JobQuizStorage>().selectedAnswer,
+          onChanged: (newValue) {
+            setState(() {
+              context.read<JobQuizStorage>().setAnswer(newValue!);
+            });
+          },
+        ),
         AnswerListTile(
-            title: widget.fourthAnswer,
-            value: 4,
-            groupValue: context.read<JobQuizStorage>().selectedAnswer,
-            onChanged: (newValue) {
-              setState(() {
-                context.read<JobQuizStorage>().setAnswer(newValue!);
-              });
-            }),
+          title: widget.fourthAnswer,
+          value: 4,
+          groupValue: context.read<JobQuizStorage>().selectedAnswer,
+          onChanged: (newValue) {
+            setState(() {
+              context.read<JobQuizStorage>().setAnswer(newValue!);
+            });
+          },
+        ),
       ],
     );
   }
@@ -92,6 +96,7 @@ class JobQuizFAB extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool needShowResult =
         context.select((JobQuizStorage storage) => storage.showResults);
+
     return needShowResult
         ? Container()
         : FloatingActionButton.extended(
@@ -128,27 +133,29 @@ class JobQuizResults extends StatelessWidget {
           child: Wrap(
             children: [
               ListTile(
-                  title: Text(
-                    'Результаты теста',
-                    style: Theme.of(context).textTheme.headline4,
-                  ),
-                  subtitle: Text(
-                    context.read<JobQuizStorage>().resultText,
-                    style: Theme.of(context).textTheme.headline3,
-                  )),
+                title: Text(
+                  'Результаты теста',
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+                subtitle: Text(
+                  context.read<JobQuizStorage>().resultText,
+                  style: Theme.of(context).textTheme.headline3,
+                ),
+              ),
               ButtonBar(
                 children: [
                   IconButton(
-                      tooltip: 'Поделиться результатом',
-                      onPressed: () {
-                        Share.share(
-                          context.read<JobQuizStorage>().resultText,
-                        );
-                      },
-                      icon: Icon(
-                        Icons.share_outlined,
-                        color: Theme.of(context).colorScheme.secondary,
-                      ))
+                    tooltip: 'Поделиться результатом',
+                    onPressed: () {
+                      Share.share(
+                        context.read<JobQuizStorage>().resultText,
+                      );
+                    },
+                    icon: Icon(
+                      Icons.share_outlined,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
                 ],
               ),
             ],
@@ -164,25 +171,26 @@ class AnswerListTile extends StatelessWidget {
   final int? value, groupValue;
   final void Function(int?)? onChanged;
 
-  const AnswerListTile(
-      {Key? key,
-      this.title,
-      this.value,
-      this.groupValue,
-      required this.onChanged})
-      : super(key: key);
+  const AnswerListTile({
+    Key? key,
+    this.title,
+    this.value,
+    this.groupValue,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RadioListTile<int?>(
-        title: Text(
-          title!,
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-        activeColor: Theme.of(context).colorScheme.secondary,
-        controlAffinity: ListTileControlAffinity.trailing,
-        value: value,
-        groupValue: groupValue,
-        onChanged: onChanged);
+      title: Text(
+        title!,
+        style: Theme.of(context).textTheme.bodyText1,
+      ),
+      activeColor: Theme.of(context).colorScheme.secondary,
+      controlAffinity: ListTileControlAffinity.trailing,
+      value: value,
+      groupValue: groupValue,
+      onChanged: onChanged,
+    );
   }
 }

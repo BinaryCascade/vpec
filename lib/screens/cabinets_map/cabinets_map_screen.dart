@@ -6,15 +6,26 @@ import '/widgets/loading_indicator.dart';
 import 'cabinets_map_logic.dart';
 import 'cabinets_map_ui.dart';
 
-@immutable
-class CabinetsMapScreen extends StatefulWidget {
+class CabinetsMapScreen extends StatelessWidget {
   const CabinetsMapScreen({Key? key}) : super(key: key);
 
   @override
-  _CabinetsMapScreenState createState() => _CabinetsMapScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => CabinetsMapLogic(),
+      child: const CabinetsMapScreenUI(),
+    );
+  }
 }
 
-class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
+class CabinetsMapScreenUI extends StatefulWidget {
+  const CabinetsMapScreenUI({Key? key}) : super(key: key);
+
+  @override
+  State<CabinetsMapScreenUI> createState() => _CabinetsMapScreenUIState();
+}
+
+class _CabinetsMapScreenUIState extends State<CabinetsMapScreenUI> {
   @override
   void initState() {
     super.initState();
@@ -23,24 +34,26 @@ class _CabinetsMapScreenState extends State<CabinetsMapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Карта кабинетов'),
-      ),
       body: Consumer<CabinetsMapLogic>(
         builder: (context, storage, child) {
           return storage.nowImageUrl.isEmpty
               ? const LoadingIndicator()
-              : Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    CabinetsMap(
-                      onScaleUpdated: (scale) => storage.scaleListener(scale),
-                    ),
-                    FloorChips(),
-                  ],
+              : Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).padding.top * 1.5,
+                  ),
+                  child: Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      CabinetsMap(
+                        onScaleUpdated: (scale) => storage.scaleListener(scale),
+                      ),
+                      FloorChips(),
+                    ],
+                  ),
                 );
         },
       ),

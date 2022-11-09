@@ -44,22 +44,20 @@ class CabinetsMapLogic extends ChangeNotifier {
     }
 
     late String collectionPath;
-    if (ThemeHelper.isDarkMode) {
-      collectionPath = 'cabinets_map_dark';
-    } else {
-      collectionPath = 'cabinets_map_light';
-    }
+    collectionPath =
+        ThemeHelper.isDarkMode ? 'cabinets_map_dark' : 'cabinets_map_light';
 
     DocumentSnapshot cabMap = await FirebaseFirestore.instance
         .collection(collectionPath)
         .doc('map_0$selectedFloor')
         .get();
+
     return cabMap[fieldName].toString();
   }
 
   Future<void> initializeMap(BuildContext context) async {
-    nowImageUrl = await CabinetsMapLogic().getScaledImage();
     ThemeNotifier themeNotifier = context.read<ThemeNotifier>();
+    nowImageUrl = await getScaledImage();
     themeNotifier.addListener(() async {
       await updateImage();
       notifyListeners();

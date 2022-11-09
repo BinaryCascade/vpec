@@ -9,7 +9,7 @@ class EditTeacherDialogUI extends StatefulWidget {
   const EditTeacherDialogUI({Key? key, required this.model}) : super(key: key);
 
   @override
-  _EditTeacherDialogUIState createState() => _EditTeacherDialogUIState();
+  State<EditTeacherDialogUI> createState() => _EditTeacherDialogUIState();
 }
 
 class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
@@ -78,8 +78,10 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
         ButtonBar(
           children: [
             TextButton(
-              onPressed: () => TeacherEditorModeLogic
-                  .showConfirmDeleteDialog(context, widget.model.id!),
+              onPressed: () => TeacherEditorModeLogic.showConfirmDeleteDialog(
+                context,
+                widget.model.id!,
+              ),
               child: const Text('Удалить'),
             ),
             TextButton(
@@ -87,20 +89,21 @@ class _EditTeacherDialogUIState extends State<EditTeacherDialogUI> {
               child: const Text('Отмена'),
             ),
             ElevatedButton(
-                onPressed: () {
-                  TeacherEditorModeLogic.editTeacher(TeacherModel(
-                    firstName: firstName.text,
-                    familyName: familyName.text,
-                    secondaryName: secondaryName.text,
-                    cabinet: cabinet.text,
-                    lesson: lessons.text,
-                    id: widget.model.id,
-                  ));
-                  Navigator.pop(context);
-                },
-                child: const Text('Редактировать')),
+              onPressed: () {
+                TeacherEditorModeLogic.editTeacher(TeacherModel(
+                  firstName: firstName.text,
+                  familyName: familyName.text,
+                  secondaryName: secondaryName.text,
+                  cabinet: cabinet.text,
+                  lesson: lessons.text,
+                  id: widget.model.id,
+                ));
+                Navigator.pop(context);
+              },
+              child: const Text('Редактировать'),
+            ),
           ],
-        )
+        ),
       ],
     );
   }

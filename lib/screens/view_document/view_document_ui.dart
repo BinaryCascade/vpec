@@ -32,17 +32,19 @@ class DocumentViewer extends StatelessWidget {
   Widget buildPDFViewer() {
     return Center(
       child: FutureBuilder<Uint8List>(
-          initialData: null,
-          future: ViewDocumentLogic.getPDFData(document.url),
-          builder: (context, pdfData) {
-            if (!pdfData.hasData) return const LoadingIndicator();
-            return ColorFiltered(
-              colorFilter: ViewDocumentLogic.documentColorFilter,
-              child: UCPDFView(
-                pdfData: pdfData.data,
-              ),
-            );
-          }),
+        initialData: null,
+        future: ViewDocumentLogic.getPDFData(document.url),
+        builder: (context, pdfData) {
+          if (!pdfData.hasData) return const LoadingIndicator();
+
+          return ColorFiltered(
+            colorFilter: ViewDocumentLogic.documentColorFilter,
+            child: UCPDFView(
+              pdfData: pdfData.data,
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -53,6 +55,7 @@ class DocumentViewer extends StatelessWidget {
         initialData: null,
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
           if (!snapshot.hasData) return const LoadingIndicator();
+
           return MarkdownWidget(data: snapshot.data!);
         },
       ),
@@ -62,9 +65,8 @@ class DocumentViewer extends StatelessWidget {
   Widget buildError() {
     return Center(
       child: SelectableLinkify(
-        text: 'Неподдерживаемый тип файла: ' +
-            ViewDocumentLogic.getFileExtension(document.url) +
-            '\nИсходная ссылка:\n${document.url}',
+        text:
+            'Неподдерживаемый тип файла: ${ViewDocumentLogic.getFileExtension(document.url)}\nИсходная ссылка:\n${document.url}',
         textAlign: TextAlign.center,
         onOpen: (link) => openUrl(link.url),
       ),

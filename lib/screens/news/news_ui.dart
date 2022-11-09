@@ -29,9 +29,11 @@ class NewsListView extends StatelessWidget {
         if (item.description!.contains('src=') &&
             item.description!.contains('alt=')) {
           imgUrl = item.description!.substring(
-              item.description!.indexOf("src=") + 5,
-              item.description!.indexOf('alt=') - 2);
+            item.description!.indexOf("src=") + 5,
+            item.description!.indexOf('alt=') - 2,
+          );
         }
+
         return NewsItemCard(item: item, imgUrl: imgUrl);
       },
     );
@@ -71,13 +73,15 @@ class NewsItemCard extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   child: CachedNetworkImage(
-                      imageUrl: imgUrl,
-                      fit: BoxFit.fill,
-                      placeholder: (context, url) => SizedBox(
-                          height: 200,
-                          width: MediaQuery.of(context).size.width,
-                          child: Image.memory(kTransparentImage)),
-                      errorWidget: (context, url, error) => Container()),
+                    imageUrl: imgUrl,
+                    fit: BoxFit.fill,
+                    placeholder: (context, url) => SizedBox(
+                      height: 200,
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.memory(kTransparentImage),
+                    ),
+                    errorWidget: (context, url, error) => Container(),
+                  ),
                 ),
               ),
               Padding(
@@ -97,9 +101,10 @@ class NewsItemCard extends StatelessWidget {
                           const Spacer(),
                           Text(
                             DateFormat('d MMMM yyyy, HH:mm').format(
-                                NewsLogic.parseRfc822DateTime(item.pubDate!)!),
+                              NewsLogic.parseRfc822DateTime(item.pubDate!)!,
+                            ),
                             style: Theme.of(context).textTheme.subtitle1,
-                          )
+                          ),
                         ],
                       ),
                     ),

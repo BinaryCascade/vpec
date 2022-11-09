@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/firebase_auth.dart';
 import '/models/announcement_model.dart';
 import '/utils/icons.dart';
 import '/utils/utils.dart';
 import '/widgets/loading_indicator.dart';
+import '../../utils/firebase_auth.dart';
 import 'announcement_card.dart';
 
 /// ListView with data from Firestore
@@ -17,7 +17,7 @@ class AnnouncementsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScrollController _semicircleController = ScrollController();
+    ScrollController semicircleController = ScrollController();
     Stream<QuerySnapshot<Map<String, dynamic>>> stream = FirebaseFirestore
         .instance
         .collection(collectionPath)
@@ -29,8 +29,10 @@ class AnnouncementsList extends StatelessWidget {
         Expanded(
           child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
             stream: stream,
-            builder: (BuildContext context,
-                AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+            builder: (
+              BuildContext context,
+              AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
+            ) {
               if (snapshot.hasError) {
                 return Center(
                   child: Padding(
@@ -49,20 +51,22 @@ class AnnouncementsList extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 child: Scrollbar(
                   interactive: true,
-                  controller: _semicircleController,
+                  controller: semicircleController,
                   child: SingleChildScrollView(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
-                      controller: _semicircleController,
+                      controller: semicircleController,
                       shrinkWrap: true,
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
                         return AnnouncementCard(
-                            announcement: AnnouncementModel.fromMap(
-                                snapshot.data!.docs[index].data(),
-                                snapshot.data!.docs[index].id));
+                          announcement: AnnouncementModel.fromMap(
+                            snapshot.data!.docs[index].data(),
+                            snapshot.data!.docs[index].id,
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -129,21 +133,22 @@ class NewAnnouncementUI extends StatelessWidget {
                       await pickPhoto!();
                     } else {
                       showRoundedModalSheet(
-                          context: context,
-                          title: 'Ошибка',
-                          child: Column(
-                            children: [
-                              const Text('Фото уже добавлено'),
-                              ButtonBar(
-                                children: [
-                                  OutlinedButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    child: const Text('Закрыть'),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ));
+                        context: context,
+                        title: 'Ошибка',
+                        child: Column(
+                          children: [
+                            const Text('Фото уже добавлено'),
+                            ButtonBar(
+                              children: [
+                                OutlinedButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: const Text('Закрыть'),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
                     }
                   },
                 ),
@@ -165,34 +170,36 @@ class NewAnnouncementUI extends StatelessWidget {
                         confirmAnnouncementSend!();
                       } else {
                         showRoundedModalSheet(
-                            context: context,
-                            title: 'Внимание',
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Фото ещё загружается',
-                                  style: Theme.of(context).textTheme.bodyText1,
-                                ),
-                                ButtonBar(
-                                  children: [
-                                    OutlinedButton(
-                                      style: Theme.of(context)
-                                          .outlinedButtonTheme
-                                          .style,
-                                      onPressed: () => Navigator.pop(context),
-                                      child: Text(
-                                        'Закрыть',
-                                        style: TextStyle(
-                                            color: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1!
-                                                .color),
+                          context: context,
+                          title: 'Внимание',
+                          child: Column(
+                            children: [
+                              Text(
+                                'Фото ещё загружается',
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                              ButtonBar(
+                                children: [
+                                  OutlinedButton(
+                                    style: Theme.of(context)
+                                        .outlinedButtonTheme
+                                        .style,
+                                    onPressed: () => Navigator.pop(context),
+                                    child: Text(
+                                      'Закрыть',
+                                      style: TextStyle(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!
+                                            .color,
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ));
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
                       }
                     } else {
                       Navigator.pop(context);
@@ -201,7 +208,7 @@ class NewAnnouncementUI extends StatelessWidget {
                   },
                 ),
               ],
-            )
+            ),
           ],
         ),
       ],
@@ -215,16 +222,12 @@ class BottomTapBar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _BottomTapBarState createState() => _BottomTapBarState();
+  State<BottomTapBar> createState() => _BottomTapBarState();
 }
 
 class _BottomTapBarState extends State<BottomTapBar> {
   bool needMakeScrollable() {
-    if (AccountDetails.hasAccessToLevel(AccessLevel.admin)) {
-      return true;
-    } else {
-      return false;
-    }
+    return AccountDetails.hasAccessToLevel(AccessLevel.admin);
   }
 
   @override
@@ -271,7 +274,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
                         'Сотрудникам',
                         style: TextStyle(fontSize: 15),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -290,7 +293,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
                         'Преподавателям',
                         style: TextStyle(fontSize: 15),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

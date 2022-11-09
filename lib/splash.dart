@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,7 @@ class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key, required this.child}) : super(key: key);
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
@@ -35,23 +36,24 @@ class _SplashScreenState extends State<SplashScreen> {
     await initializeDateFormatting('ru');
     Intl.defaultLocale = 'ru';
 
+    const QuickActions quickActions = QuickActions();
+
     if (appAuth.accountInfo.isLoggedIn) {
       // if app running on Android or iOS, make QuickActions
       if (defaultTargetPlatform == TargetPlatform.android ||
           defaultTargetPlatform == TargetPlatform.iOS) {
-        const QuickActions quickActions = QuickActions();
         quickActions.initialize((shortcutType) {
           switch (shortcutType) {
             case 'action_news':
               context.read<BottomBarLogic>().setIndex(0);
               break;
-            case 'action_alerts':
+            case 'action_announcements':
               context.read<BottomBarLogic>().setIndex(1);
               break;
-            case 'action_timetable':
+            case 'action_schedule':
               context.read<BottomBarLogic>().setIndex(2);
               break;
-            case 'action_schedule':
+            case 'action_map':
               context.read<BottomBarLogic>().setIndex(3);
               break;
           }
@@ -59,28 +61,38 @@ class _SplashScreenState extends State<SplashScreen> {
 
         quickActions.setShortcutItems(<ShortcutItem>[
           const ShortcutItem(
-              type: 'action_news', localizedTitle: 'События', icon: 'ic_news'),
+            type: 'action_news',
+            localizedTitle: 'События',
+            icon: 'ic_news',
+          ),
           const ShortcutItem(
-              type: 'action_alerts',
-              localizedTitle: 'Объявления',
-              icon: 'ic_alerts'),
+            type: 'action_announcements',
+            localizedTitle: 'Объявления',
+            icon: 'ic_alerts',
+          ),
           const ShortcutItem(
-              type: 'action_timetable',
-              localizedTitle: 'Звонки',
-              icon: 'ic_timetable'),
+            type: 'action_schedule',
+            localizedTitle: 'Расписание занятий',
+            icon: 'ic_timetable',
+          ),
           const ShortcutItem(
-              type: 'action_schedule',
-              localizedTitle: 'Расписание',
-              icon: 'ic_schedule')
+            type: 'action_map',
+            localizedTitle: 'Карта кабинетов',
+            icon: 'ic_maps',
+          ),
         ]);
       }
       // open bottom bar index by setting "launch on start"
       if (HiveHelper.getValue('launchOnStart') != null) {
-        int? givenIndex = HiveHelper.getValue('launchOnStart');
-        context.read<BottomBarLogic>().setIndex(givenIndex!);
+        int givenIndex = HiveHelper.getValue('launchOnStart');
+        context.read<BottomBarLogic>().setIndex(givenIndex);
       }
+
+      FlutterLocalNotificationsPlugin()
+          .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+          ?.requestPermission();
     } else {
-      const QuickActions quickActions = QuickActions();
       quickActions.clearShortcutItems();
     }
   }
@@ -88,6 +100,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
+
     return appAuth.accountInfo.isLoggedIn ? widget.child : const LoginScreen();
   }
 }

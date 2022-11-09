@@ -124,37 +124,24 @@ class AccountDetails {
       case AccessLevel.admin:
         return true; // admin have access to anything
       case AccessLevel.student:
-        if (requiredLevel == AccessLevel.entrant ||
-            requiredLevel == AccessLevel.student) {
-          return true; // students can see stuffs for entrant and students
-        } else {
-          return false;
-        }
+        return requiredLevel == AccessLevel.entrant ||
+                requiredLevel == AccessLevel.student
+            ? true
+            : false;
       case AccessLevel.employee:
-        if (requiredLevel == AccessLevel.employee ||
-            requiredLevel == AccessLevel.student ||
-            requiredLevel == AccessLevel.entrant) {
-          return true;
-          // employee can see stuffs only for employee, not for teachers or admin
-        } else {
-          return false;
-        }
+        return requiredLevel == AccessLevel.employee ||
+                requiredLevel == AccessLevel.student ||
+                requiredLevel == AccessLevel.entrant
+            ? true
+            : false;
       case AccessLevel.teacher:
-        if (requiredLevel == AccessLevel.teacher ||
-            requiredLevel == AccessLevel.student ||
-            requiredLevel == AccessLevel.entrant) {
-          return true;
-          // teachers can see stuffs only for teachers, not for employee or admin
-        } else {
-          return false;
-        }
+        return requiredLevel == AccessLevel.teacher ||
+                requiredLevel == AccessLevel.student ||
+                requiredLevel == AccessLevel.entrant
+            ? true
+            : false;
       case AccessLevel.entrant:
-        if (requiredLevel == AccessLevel.entrant) {
-          return true;
-          // well... entrant can see something only for entrant
-        } else {
-          return false;
-        }
+        return requiredLevel == AccessLevel.entrant ? true : false;
     }
   }
 

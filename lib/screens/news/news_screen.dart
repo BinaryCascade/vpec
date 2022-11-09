@@ -42,12 +42,14 @@ class _NewsScreenState extends State<NewsScreen> {
     return Scaffold(body: Consumer<NewsLogic>(
       builder: (context, state, child) {
         if (state.rssFeed == null) return const LoadingIndicator();
+
         return SafeArea(
-            top: false,
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: NewsListView(feed: state.rssFeed),
-            ));
+          top: false,
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: NewsListView(feed: state.rssFeed),
+          ),
+        );
       },
     ));
   }

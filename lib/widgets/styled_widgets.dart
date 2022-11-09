@@ -11,14 +11,14 @@ class HivedListTile extends StatelessWidget {
   final void Function()? onTap;
   final Icon? icon;
 
-  const HivedListTile(
-      {Key? key,
-      required this.title,
-      required this.subtitleKey,
-      required this.defaultValue,
-      this.onTap,
-      this.icon})
-      : super(key: key);
+  const HivedListTile({
+    Key? key,
+    required this.title,
+    required this.subtitleKey,
+    required this.defaultValue,
+    this.onTap,
+    this.icon,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +45,15 @@ class StyledListTile extends StatelessWidget {
   final String? title, subtitle;
   final void Function()? onTap;
 
-  const StyledListTile(
-      {Key? key,
-      this.trailing,
-      this.icon,
-      this.title,
-      this.subtitle,
-      this.onTap,
-      this.subtitleWidget})
-      : super(key: key);
+  const StyledListTile({
+    Key? key,
+    this.trailing,
+    this.icon,
+    this.title,
+    this.subtitle,
+    this.onTap,
+    this.subtitleWidget,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 class HiveHelper {
   static dynamic getValue(String key) {
     Box settings = Hive.box('settings');
+
     return settings.get(key);
   }
 

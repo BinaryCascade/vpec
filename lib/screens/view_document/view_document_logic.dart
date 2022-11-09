@@ -25,16 +25,17 @@ class ViewDocumentLogic {
       0, 0, 0, 1, 0,
     ]);
 
-    if (HiveHelper.getValue('alwaysLightThemeDocument') ??
-        !ThemeHelper.isDarkMode) {
-      return lightThemeFilter;
-    } else {
-      return darkThemeFilter;
-    }
+    return HiveHelper.getValue('alwaysLightThemeDocument') ??
+            !ThemeHelper.isDarkMode
+        ? lightThemeFilter
+        : ThemeHelper.isDarkMode
+            ? darkThemeFilter
+            : lightThemeFilter;
   }
 
   static Future<String> getMDText(String url) async {
     String text = await http.read(Uri.parse(url));
+
     return utf8.decode(text.codeUnits);
   }
 
@@ -44,6 +45,7 @@ class ViewDocumentLogic {
 
   static bool isThisURLSupported(String url) {
     List<String> supportedExtensions = ['pdf', 'md'];
+
     return supportedExtensions.contains(getFileExtension(url));
   }
 

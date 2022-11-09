@@ -10,7 +10,7 @@ class TeacherScreen extends StatefulWidget {
   const TeacherScreen({Key? key}) : super(key: key);
 
   @override
-  _TeacherScreenState createState() => _TeacherScreenState();
+  State<TeacherScreen> createState() => _TeacherScreenState();
 }
 
 class _TeacherScreenState extends State<TeacherScreen>
@@ -18,19 +18,21 @@ class _TeacherScreenState extends State<TeacherScreen>
   @override
   Widget build(BuildContext context) {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+
     return Consumer<TeachersLogic>(
       builder: (BuildContext context, value, Widget? child) {
         return Scaffold(
           appBar: AppBar(
             title: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
-                child: value.isSearchMode
-                    ? const SearchBar()
-                    : Row(
-                        children: const <Widget>[
-                          Text('Преподаватели'),
-                        ],
-                      )),
+              duration: const Duration(milliseconds: 300),
+              child: value.isSearchMode
+                  ? const SearchBar()
+                  : Row(
+                      children: const <Widget>[
+                        Text('Преподаватели'),
+                      ],
+                    ),
+            ),
             actions: const <Widget>[SearchButton()],
           ),
           body: GestureDetector(
@@ -38,14 +40,15 @@ class _TeacherScreenState extends State<TeacherScreen>
             child: Column(
               children: [
                 AnimatedSize(
-                    curve: Curves.fastOutSlowIn,
-                    duration: const Duration(milliseconds: 400),
-                    reverseDuration: const Duration(milliseconds: 400),
-                    child: value.isSearchMode
-                        ? const FilterChips()
-                        : const SizedBox(
-                            width: double.infinity,
-                          )),
+                  curve: Curves.fastOutSlowIn,
+                  duration: const Duration(milliseconds: 400),
+                  reverseDuration: const Duration(milliseconds: 400),
+                  child: value.isSearchMode
+                      ? const FilterChips()
+                      : const SizedBox(
+                          width: double.infinity,
+                        ),
+                ),
                 const BuildTeachersList(),
               ],
             ),
