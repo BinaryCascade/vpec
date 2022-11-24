@@ -48,7 +48,7 @@ class _AccountBlockState extends State<AccountBlock> {
                 subtitle: 'Для показа расписания',
                 onTap: () => SettingsLogic.chooseGroup(context),
               ),
-              if (auth.accountInfo.level == AccessLevel.admin)
+              if (auth.accountInfo.level == AccountType.admin)
                 Column(
                   children: [
                     HivedListTile(

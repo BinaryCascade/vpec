@@ -8,7 +8,7 @@ class AnnouncementModel {
   final String pubDate;
   final String title;
   final String docId;
-  final AccessLevel accessLevel;
+  final AccountType accessLevel;
   final String? photoUrl;
 
   const AnnouncementModel({
@@ -28,12 +28,12 @@ class AnnouncementModel {
           content: data['content_body'],
           title: data['content_title'],
           accessLevel: data['visibility'] == 'all'
-              ? AccessLevel.entrant
+              ? AccountType.entrant
               : data['visibility'] == 'teachers'
-                  ? AccessLevel.teacher
+                  ? AccountType.teacher
                   : data['visibility'] == 'employee'
-                      ? AccessLevel.employee
-                      : AccessLevel.entrant,
+                      ? AccountType.employee
+                      : AccountType.entrant,
           photoUrl: data['photo'],
           docId: id,
         );

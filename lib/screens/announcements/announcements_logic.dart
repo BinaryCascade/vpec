@@ -43,13 +43,13 @@ class AnnouncementsLogic {
       }
     }
 
-    String collectionPath(AccessLevel accessLevel) {
+    String collectionPath(AccountType accessLevel) {
       switch (accessLevel) {
-        case AccessLevel.employee:
+        case AccountType.employee:
           return 'announcements_employee';
-        case AccessLevel.teacher:
+        case AccountType.teacher:
           return 'announcements_teachers';
-        case AccessLevel.entrant:
+        case AccountType.entrant:
           return 'announcements_all';
         default:
           return 'announcements_all';
@@ -58,7 +58,7 @@ class AnnouncementsLogic {
 
     void sendNewAlert({
       required BuildContext context,
-      required AccessLevel accessLevel,
+      required AccountType accessLevel,
     }) async {
       CollectionReference users =
           FirebaseFirestore.instance.collection(collectionPath(accessLevel));
@@ -71,9 +71,9 @@ class AnnouncementsLogic {
           .set({
             'author': HiveHelper.getValue('username'),
             'content_body': contentController.text,
-            'visibility': accessLevel == AccessLevel.employee
+            'visibility': accessLevel == AccountType.employee
                 ? 'employee'
-                : accessLevel == AccessLevel.teacher
+                : accessLevel == AccountType.teacher
                     ? 'teachers'
                     : 'all',
             'date': pubDate,
@@ -104,7 +104,7 @@ class AnnouncementsLogic {
               child: OutlinedButton(
                 onPressed: () => sendNewAlert(
                   context: context,
-                  accessLevel: AccessLevel.student,
+                  accessLevel: AccountType.student,
                 ),
                 child: const Text('Отправить всем'),
               ),
@@ -114,7 +114,7 @@ class AnnouncementsLogic {
               child: OutlinedButton(
                 onPressed: () => sendNewAlert(
                   context: context,
-                  accessLevel: AccessLevel.employee,
+                  accessLevel: AccountType.employee,
                 ),
                 child: const Text('Отправить сотрудникам'),
               ),
@@ -124,7 +124,7 @@ class AnnouncementsLogic {
               child: OutlinedButton(
                 onPressed: () => sendNewAlert(
                   context: context,
-                  accessLevel: AccessLevel.teacher,
+                  accessLevel: AccountType.teacher,
                 ),
                 child: const Text('Отправить преподавателям'),
               ),

@@ -95,7 +95,7 @@ class AnnouncementCard extends StatelessWidget {
     TextEditingController contentController = TextEditingController();
 
     if (context.read<FirebaseAppAuth>().accountInfo.level ==
-        AccessLevel.admin) {
+        AccountType.admin) {
       titleController.text = announcement.title;
       contentController.text = announcement.content;
 
@@ -226,11 +226,11 @@ class AnnouncementCard extends StatelessWidget {
 
   String collectionPath() {
     switch (announcement.accessLevel) {
-      case AccessLevel.employee:
+      case AccountType.employee:
         return 'announcements_employee';
-      case AccessLevel.teacher:
+      case AccountType.teacher:
         return 'announcements_teachers';
-      case AccessLevel.entrant:
+      case AccountType.entrant:
         return 'announcements_all';
       default:
         return 'announcements_all';

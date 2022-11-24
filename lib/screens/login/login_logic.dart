@@ -11,19 +11,19 @@ class LoginLogic extends ChangeNotifier {
   static Future<void> openLogin(BuildContext context) async {
     await SettingsLogic.accountLogin(context);
     switch (context.read<FirebaseAppAuth>().accountInfo.level) {
-      case AccessLevel.admin:
+      case AccountType.admin:
         continueToApp(context);
         break;
-      case AccessLevel.student:
+      case AccountType.student:
         continueToApp(context);
         break;
-      case AccessLevel.employee:
+      case AccountType.employee:
         continueToApp(context);
         break;
-      case AccessLevel.teacher:
+      case AccountType.teacher:
         continueToApp(context);
         break;
-      case AccessLevel.entrant:
+      case AccountType.entrant:
         // entrant can't login to account
         break;
       default:

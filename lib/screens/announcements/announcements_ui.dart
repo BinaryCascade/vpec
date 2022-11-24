@@ -227,7 +227,7 @@ class BottomTapBar extends StatefulWidget {
 
 class _BottomTapBarState extends State<BottomTapBar> {
   bool needMakeScrollable() {
-    return AccountDetails.hasAccessToLevel(AccessLevel.admin);
+    return AccountDetails.hasAccessToLevel(AccountType.admin);
   }
 
   @override
@@ -259,7 +259,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
                 ],
               ),
             ),
-            if (AccountDetails.hasAccessToLevel(AccessLevel.employee))
+            if (AccountDetails.hasAccessToLevel(AccountType.employee))
               Tab(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -278,7 +278,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
                   ],
                 ),
               ),
-            if (AccountDetails.hasAccessToLevel(AccessLevel.teacher))
+            if (AccountDetails.hasAccessToLevel(AccountType.teacher))
               Tab(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
