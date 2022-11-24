@@ -38,7 +38,7 @@ class AnnouncementsList extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Text(
-                      'Произошла ошибка при получении данных',
+                      'Произошла ошибка при получении данных\n${snapshot.error}',
                       style: Theme.of(context).textTheme.bodyText1,
                       textAlign: TextAlign.center,
                     ),
@@ -53,8 +53,10 @@ class AnnouncementsList extends StatelessWidget {
                   interactive: true,
                   controller: semicircleController,
                   child: SingleChildScrollView(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 5,
+                    ),
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       controller: semicircleController,
@@ -226,9 +228,7 @@ class BottomTapBar extends StatefulWidget {
 }
 
 class _BottomTapBarState extends State<BottomTapBar> {
-  bool needMakeScrollable() {
-    return AccountDetails.hasAccessToLevel(AccountType.admin);
-  }
+  bool get needMakeScrollable => AccountDetails.isAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -238,8 +238,8 @@ class _BottomTapBarState extends State<BottomTapBar> {
         color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         child: TabBar(
           padding:
-              EdgeInsets.symmetric(horizontal: needMakeScrollable() ? 24 : 0),
-          isScrollable: needMakeScrollable(),
+              EdgeInsets.symmetric(horizontal: needMakeScrollable ? 24 : 0),
+          isScrollable: needMakeScrollable,
           tabs: [
             Tab(
               child: Row(
@@ -259,44 +259,42 @@ class _BottomTapBarState extends State<BottomTapBar> {
                 ],
               ),
             ),
-            if (AccountDetails.hasAccessToLevel(AccountType.employee))
-              Tab(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
-                    Icon(
-                      VpecIconPack.account_cog_outline,
-                      size: 24,
+            Tab(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Icon(
+                    VpecIconPack.account_cog_outline,
+                    size: 24,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'Родителям',
+                      style: TextStyle(fontSize: 15),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        'Родителям',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            if (AccountDetails.hasAccessToLevel(AccountType.teacher))
-              Tab(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
-                    Icon(
-                      Icons.school_outlined,
-                      size: 24,
+            ),
+            Tab(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Icon(
+                    Icons.school_outlined,
+                    size: 24,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'Преподавателям',
+                      style: TextStyle(fontSize: 15),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        'Преподавателям',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+            ),
           ],
         ),
       ),
