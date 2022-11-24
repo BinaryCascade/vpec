@@ -252,7 +252,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
                   Padding(
                     padding: EdgeInsets.only(left: 8.0),
                     child: Text(
-                      'Всем',
+                      'Студентам',
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
@@ -271,7 +271,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
                     Padding(
                       padding: EdgeInsets.only(left: 8.0),
                       child: Text(
-                        'Сотрудникам',
+                        'Родителям',
                         style: TextStyle(fontSize: 15),
                       ),
                     ),
