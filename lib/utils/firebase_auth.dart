@@ -7,17 +7,21 @@ import '../models/account_info.dart';
 import 'hive_helper.dart';
 
 /// Types of access level.
-enum AccessLevel {
+enum AccountType {
   /// Have access to view all announcements and edit mode.
   admin,
 
-  /// can see only public announcements
+  /// can see announcements for students
   student,
 
   /// can see public and employee announcements
+  @Deprecated('Employee no more supported')
   employee,
 
-  /// can see public and teachers announcements
+  /// can see announcements for parents
+  parent,
+
+  /// can see announcements for teachers
   teacher,
 
   /// can't see anything except info about college
@@ -32,7 +36,7 @@ enum AccessLevel {
 class FirebaseAppAuth extends ChangeNotifier {
   AccountInfo accountInfo = AccountInfo(
     isLoggedIn: HiveHelper.getValue('isLoggedIn') ?? false,
-    level: AccessLevel.entrant,
+    level: AccountType.entrant,
   );
   late StreamSubscription<User?> authListener;
 
@@ -45,7 +49,7 @@ class FirebaseAppAuth extends ChangeNotifier {
         // user sign-out
         accountInfo = accountInfo.copyWith(
           isLoggedIn: false,
-          level: AccessLevel.entrant,
+          level: AccountType.entrant,
         );
 
         HiveHelper.removeValue('isLoggedIn');
@@ -57,8 +61,7 @@ class FirebaseAppAuth extends ChangeNotifier {
           email: user!.email,
           uid: user.uid,
           name: HiveHelper.getValue('username'),
-          level: AccountDetails.getAccountLevel(),
-          isLowLevel: AccountDetails.isAccountLowLevelAccess,
+          level: AccountDetails.getAccountLevel,
         );
 
         HiveHelper.saveValue(key: 'isLoggedIn', value: true);
@@ -80,9 +83,7 @@ class FirebaseAppAuth extends ChangeNotifier {
 class AccountEditorMode extends ChangeNotifier {
   bool isEditorModeActive = HiveHelper.getValue('isEditMode') ?? false;
 
-  bool get isInEditorMode =>
-      AccountDetails.getAccountLevel() == AccessLevel.admin &&
-      isEditorModeActive;
+  bool get isInEditorMode => AccountDetails.isAdmin && isEditorModeActive;
 
   /// Call this to on or off admin editor mode
   void toggleEditorMode() {
@@ -94,61 +95,66 @@ class AccountEditorMode extends ChangeNotifier {
 
 /// This class contains a functions for getting user's app-specific data
 class AccountDetails {
-  /// Call to get [AccessLevel] of current user.
-  /// If user didn't sign-in, returns [AccessLevel.entrant]
-  static AccessLevel getAccountLevel() {
+  static get isAdmin => getAccountLevel == AccountType.admin;
+
+  /// Call to get [AccountType] of current user.
+  /// If user didn't sign-in, returns [AccountType.entrant]
+  static AccountType get getAccountLevel {
     FirebaseAuth auth = FirebaseAuth.instance;
 
     if (auth.currentUser != null) {
       switch (auth.currentUser!.email) {
         case 'admin@energocollege.ru':
-          return AccessLevel.admin;
-        case 'employee@energocollege.ru':
-          return AccessLevel.employee;
+          return AccountType.admin;
+        case 'parent@energocollege.ru':
+          return AccountType.parent;
         case 'teacher@energocollege.ru':
-          return AccessLevel.teacher;
+          return AccountType.teacher;
         case 'student@energocollege.ru':
-          return AccessLevel.student;
+          return AccountType.student;
         default:
           throw 'Email of this account is not supported:\n${auth.currentUser!.email}';
       }
     } else {
-      return AccessLevel.entrant;
+      return AccountType.entrant;
     }
   }
 
   /// Call this function to find out
-  /// if the user has access to the required [AccessLevel].
-  static bool hasAccessToLevel(AccessLevel requiredLevel) {
-    switch (getAccountLevel()) {
-      case AccessLevel.admin:
+  /// if the user has access to the required [AccountType].
+  @Deprecated('Accounts no more uses different type of access levels')
+  static bool hasAccessToLevel(AccountType requiredLevel) {
+    switch (getAccountLevel) {
+      case AccountType.admin:
         return true; // admin have access to anything
-      case AccessLevel.student:
-        return requiredLevel == AccessLevel.entrant ||
-                requiredLevel == AccessLevel.student
+      case AccountType.student:
+        return requiredLevel == AccountType.entrant ||
+                requiredLevel == AccountType.student
             ? true
             : false;
-      case AccessLevel.employee:
-        return requiredLevel == AccessLevel.employee ||
-                requiredLevel == AccessLevel.student ||
-                requiredLevel == AccessLevel.entrant
+      case AccountType.employee:
+        return requiredLevel == AccountType.employee ||
+                requiredLevel == AccountType.student ||
+                requiredLevel == AccountType.entrant
             ? true
             : false;
-      case AccessLevel.teacher:
-        return requiredLevel == AccessLevel.teacher ||
-                requiredLevel == AccessLevel.student ||
-                requiredLevel == AccessLevel.entrant
-            ? true
-            : false;
-      case AccessLevel.entrant:
-        return requiredLevel == AccessLevel.entrant ? true : false;
+      case AccountType.teacher:
+        return requiredLevel == AccountType.teacher ||
+            requiredLevel == AccountType.student ||
+            requiredLevel == AccountType.entrant;
+
+      case AccountType.entrant:
+        return requiredLevel == AccountType.entrant;
+      case AccountType.parent:
+        return requiredLevel == AccountType.parent;
     }
   }
 
   /// Low level access account is account for students or entrant
+  @Deprecated('Accounts no more uses different type of access levels')
   static bool get isAccountLowLevelAccess =>
-      getAccountLevel() == AccessLevel.student ||
-              getAccountLevel() == AccessLevel.entrant
+      getAccountLevel == AccountType.student ||
+              getAccountLevel == AccountType.entrant
           ? true
           : false;
 }
