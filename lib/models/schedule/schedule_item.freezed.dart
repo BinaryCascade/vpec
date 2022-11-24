@@ -17,22 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ScheduleItemModel {
   int get lessonNumber => throw _privateConstructorUsedError;
-
   String get lessonBeginning => throw _privateConstructorUsedError;
-
   String get lessonEnding => throw _privateConstructorUsedError;
-
   String get lessonName => throw _privateConstructorUsedError;
-
   String get pauseAfterLesson => throw _privateConstructorUsedError;
-
   String? get timer => throw _privateConstructorUsedError;
-
   Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
-
   Map<String, dynamic> get lessonsShortNames =>
       throw _privateConstructorUsedError;
-
   Map<String, dynamic> get lessonsFullNames =>
       throw _privateConstructorUsedError;
 
@@ -45,8 +37,8 @@ mixin _$ScheduleItemModel {
 abstract class $ScheduleItemModelCopyWith<$Res> {
   factory $ScheduleItemModelCopyWith(
           ScheduleItemModel value, $Res Function(ScheduleItemModel) then) =
-      _$ScheduleItemModelCopyWithImpl<$Res>;
-
+      _$ScheduleItemModelCopyWithImpl<$Res, ScheduleItemModel>;
+  @useResult
   $Res call(
       {int lessonNumber,
       String lessonBeginning,
@@ -60,76 +52,77 @@ abstract class $ScheduleItemModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ScheduleItemModelCopyWithImpl<$Res>
+class _$ScheduleItemModelCopyWithImpl<$Res, $Val extends ScheduleItemModel>
     implements $ScheduleItemModelCopyWith<$Res> {
   _$ScheduleItemModelCopyWithImpl(this._value, this._then);
 
-  final ScheduleItemModel _value;
-
   // ignore: unused_field
-  final $Res Function(ScheduleItemModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lessonNumber = freezed,
-    Object? lessonBeginning = freezed,
-    Object? lessonEnding = freezed,
-    Object? lessonName = freezed,
-    Object? pauseAfterLesson = freezed,
+    Object? lessonNumber = null,
+    Object? lessonBeginning = null,
+    Object? lessonEnding = null,
+    Object? lessonName = null,
+    Object? pauseAfterLesson = null,
     Object? timer = freezed,
-    Object? teachers = freezed,
-    Object? lessonsShortNames = freezed,
-    Object? lessonsFullNames = freezed,
+    Object? teachers = null,
+    Object? lessonsShortNames = null,
+    Object? lessonsFullNames = null,
   }) {
     return _then(_value.copyWith(
-      lessonNumber: lessonNumber == freezed
+      lessonNumber: null == lessonNumber
           ? _value.lessonNumber
           : lessonNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      lessonBeginning: lessonBeginning == freezed
+      lessonBeginning: null == lessonBeginning
           ? _value.lessonBeginning
           : lessonBeginning // ignore: cast_nullable_to_non_nullable
               as String,
-      lessonEnding: lessonEnding == freezed
+      lessonEnding: null == lessonEnding
           ? _value.lessonEnding
           : lessonEnding // ignore: cast_nullable_to_non_nullable
               as String,
-      lessonName: lessonName == freezed
+      lessonName: null == lessonName
           ? _value.lessonName
           : lessonName // ignore: cast_nullable_to_non_nullable
               as String,
-      pauseAfterLesson: pauseAfterLesson == freezed
+      pauseAfterLesson: null == pauseAfterLesson
           ? _value.pauseAfterLesson
           : pauseAfterLesson // ignore: cast_nullable_to_non_nullable
               as String,
-      timer: timer == freezed
+      timer: freezed == timer
           ? _value.timer
           : timer // ignore: cast_nullable_to_non_nullable
               as String?,
-      teachers: teachers == freezed
+      teachers: null == teachers
           ? _value.teachers
           : teachers // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      lessonsShortNames: lessonsShortNames == freezed
+      lessonsShortNames: null == lessonsShortNames
           ? _value.lessonsShortNames
           : lessonsShortNames // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      lessonsFullNames: lessonsFullNames == freezed
+      lessonsFullNames: null == lessonsFullNames
           ? _value.lessonsFullNames
           : lessonsFullNames // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$ScheduleItemModelCopyWith<$Res>
+abstract class _$$_ScheduleItemModelCopyWith<$Res>
     implements $ScheduleItemModelCopyWith<$Res> {
-  factory _$ScheduleItemModelCopyWith(
-          _ScheduleItemModel value, $Res Function(_ScheduleItemModel) then) =
-      __$ScheduleItemModelCopyWithImpl<$Res>;
-
+  factory _$$_ScheduleItemModelCopyWith(_$_ScheduleItemModel value,
+          $Res Function(_$_ScheduleItemModel) then) =
+      __$$_ScheduleItemModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int lessonNumber,
       String lessonBeginning,
@@ -143,63 +136,61 @@ abstract class _$ScheduleItemModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ScheduleItemModelCopyWithImpl<$Res>
-    extends _$ScheduleItemModelCopyWithImpl<$Res>
-    implements _$ScheduleItemModelCopyWith<$Res> {
-  __$ScheduleItemModelCopyWithImpl(
-      _ScheduleItemModel _value, $Res Function(_ScheduleItemModel) _then)
-      : super(_value, (v) => _then(v as _ScheduleItemModel));
+class __$$_ScheduleItemModelCopyWithImpl<$Res>
+    extends _$ScheduleItemModelCopyWithImpl<$Res, _$_ScheduleItemModel>
+    implements _$$_ScheduleItemModelCopyWith<$Res> {
+  __$$_ScheduleItemModelCopyWithImpl(
+      _$_ScheduleItemModel _value, $Res Function(_$_ScheduleItemModel) _then)
+      : super(_value, _then);
 
-  @override
-  _ScheduleItemModel get _value => super._value as _ScheduleItemModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lessonNumber = freezed,
-    Object? lessonBeginning = freezed,
-    Object? lessonEnding = freezed,
-    Object? lessonName = freezed,
-    Object? pauseAfterLesson = freezed,
+    Object? lessonNumber = null,
+    Object? lessonBeginning = null,
+    Object? lessonEnding = null,
+    Object? lessonName = null,
+    Object? pauseAfterLesson = null,
     Object? timer = freezed,
-    Object? teachers = freezed,
-    Object? lessonsShortNames = freezed,
-    Object? lessonsFullNames = freezed,
+    Object? teachers = null,
+    Object? lessonsShortNames = null,
+    Object? lessonsFullNames = null,
   }) {
-    return _then(_ScheduleItemModel(
-      lessonNumber: lessonNumber == freezed
+    return _then(_$_ScheduleItemModel(
+      lessonNumber: null == lessonNumber
           ? _value.lessonNumber
           : lessonNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      lessonBeginning: lessonBeginning == freezed
+      lessonBeginning: null == lessonBeginning
           ? _value.lessonBeginning
           : lessonBeginning // ignore: cast_nullable_to_non_nullable
               as String,
-      lessonEnding: lessonEnding == freezed
+      lessonEnding: null == lessonEnding
           ? _value.lessonEnding
           : lessonEnding // ignore: cast_nullable_to_non_nullable
               as String,
-      lessonName: lessonName == freezed
+      lessonName: null == lessonName
           ? _value.lessonName
           : lessonName // ignore: cast_nullable_to_non_nullable
               as String,
-      pauseAfterLesson: pauseAfterLesson == freezed
+      pauseAfterLesson: null == pauseAfterLesson
           ? _value.pauseAfterLesson
           : pauseAfterLesson // ignore: cast_nullable_to_non_nullable
               as String,
-      timer: timer == freezed
+      timer: freezed == timer
           ? _value.timer
           : timer // ignore: cast_nullable_to_non_nullable
               as String?,
-      teachers: teachers == freezed
-          ? _value.teachers
+      teachers: null == teachers
+          ? _value._teachers
           : teachers // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      lessonsShortNames: lessonsShortNames == freezed
-          ? _value.lessonsShortNames
+      lessonsShortNames: null == lessonsShortNames
+          ? _value._lessonsShortNames
           : lessonsShortNames // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      lessonsFullNames: lessonsFullNames == freezed
-          ? _value.lessonsFullNames
+      lessonsFullNames: null == lessonsFullNames
+          ? _value._lessonsFullNames
           : lessonsFullNames // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
     ));
@@ -236,7 +227,6 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
   @override
   final String? timer;
   final Map<String, dynamic> _teachers;
-
   @override
   Map<String, dynamic> get teachers {
     // ignore: implicit_dynamic_type
@@ -244,7 +234,6 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
   }
 
   final Map<String, dynamic> _lessonsShortNames;
-
   @override
   Map<String, dynamic> get lessonsShortNames {
     // ignore: implicit_dynamic_type
@@ -252,7 +241,6 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
   }
 
   final Map<String, dynamic> _lessonsFullNames;
-
   @override
   Map<String, dynamic> get lessonsFullNames {
     // ignore: implicit_dynamic_type
@@ -268,42 +256,44 @@ class _$_ScheduleItemModel implements _ScheduleItemModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ScheduleItemModel &&
+            other is _$_ScheduleItemModel &&
+            (identical(other.lessonNumber, lessonNumber) ||
+                other.lessonNumber == lessonNumber) &&
+            (identical(other.lessonBeginning, lessonBeginning) ||
+                other.lessonBeginning == lessonBeginning) &&
+            (identical(other.lessonEnding, lessonEnding) ||
+                other.lessonEnding == lessonEnding) &&
+            (identical(other.lessonName, lessonName) ||
+                other.lessonName == lessonName) &&
+            (identical(other.pauseAfterLesson, pauseAfterLesson) ||
+                other.pauseAfterLesson == pauseAfterLesson) &&
+            (identical(other.timer, timer) || other.timer == timer) &&
+            const DeepCollectionEquality().equals(other._teachers, _teachers) &&
             const DeepCollectionEquality()
-                .equals(other.lessonNumber, lessonNumber) &&
+                .equals(other._lessonsShortNames, _lessonsShortNames) &&
             const DeepCollectionEquality()
-                .equals(other.lessonBeginning, lessonBeginning) &&
-            const DeepCollectionEquality()
-                .equals(other.lessonEnding, lessonEnding) &&
-            const DeepCollectionEquality()
-                .equals(other.lessonName, lessonName) &&
-            const DeepCollectionEquality()
-                .equals(other.pauseAfterLesson, pauseAfterLesson) &&
-            const DeepCollectionEquality().equals(other.timer, timer) &&
-            const DeepCollectionEquality().equals(other.teachers, teachers) &&
-            const DeepCollectionEquality()
-                .equals(other.lessonsShortNames, lessonsShortNames) &&
-            const DeepCollectionEquality()
-                .equals(other.lessonsFullNames, lessonsFullNames));
+                .equals(other._lessonsFullNames, _lessonsFullNames));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(lessonNumber),
-      const DeepCollectionEquality().hash(lessonBeginning),
-      const DeepCollectionEquality().hash(lessonEnding),
-      const DeepCollectionEquality().hash(lessonName),
-      const DeepCollectionEquality().hash(pauseAfterLesson),
-      const DeepCollectionEquality().hash(timer),
-      const DeepCollectionEquality().hash(teachers),
-      const DeepCollectionEquality().hash(lessonsShortNames),
-      const DeepCollectionEquality().hash(lessonsFullNames));
+      lessonNumber,
+      lessonBeginning,
+      lessonEnding,
+      lessonName,
+      pauseAfterLesson,
+      timer,
+      const DeepCollectionEquality().hash(_teachers),
+      const DeepCollectionEquality().hash(_lessonsShortNames),
+      const DeepCollectionEquality().hash(_lessonsFullNames));
 
   @JsonKey(ignore: true)
   @override
-  _$ScheduleItemModelCopyWith<_ScheduleItemModel> get copyWith =>
-      __$ScheduleItemModelCopyWithImpl<_ScheduleItemModel>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_ScheduleItemModelCopyWith<_$_ScheduleItemModel> get copyWith =>
+      __$$_ScheduleItemModelCopyWithImpl<_$_ScheduleItemModel>(
+          this, _$identity);
 }
 
 abstract class _ScheduleItemModel implements ScheduleItemModel {
@@ -320,36 +310,25 @@ abstract class _ScheduleItemModel implements ScheduleItemModel {
       _$_ScheduleItemModel;
 
   @override
-  int get lessonNumber => throw _privateConstructorUsedError;
-
+  int get lessonNumber;
   @override
-  String get lessonBeginning => throw _privateConstructorUsedError;
-
+  String get lessonBeginning;
   @override
-  String get lessonEnding => throw _privateConstructorUsedError;
-
+  String get lessonEnding;
   @override
-  String get lessonName => throw _privateConstructorUsedError;
-
+  String get lessonName;
   @override
-  String get pauseAfterLesson => throw _privateConstructorUsedError;
-
+  String get pauseAfterLesson;
   @override
-  String? get timer => throw _privateConstructorUsedError;
-
+  String? get timer;
   @override
-  Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
-
+  Map<String, dynamic> get teachers;
   @override
-  Map<String, dynamic> get lessonsShortNames =>
-      throw _privateConstructorUsedError;
-
+  Map<String, dynamic> get lessonsShortNames;
   @override
-  Map<String, dynamic> get lessonsFullNames =>
-      throw _privateConstructorUsedError;
-
+  Map<String, dynamic> get lessonsFullNames;
   @override
   @JsonKey(ignore: true)
-  _$ScheduleItemModelCopyWith<_ScheduleItemModel> get copyWith =>
+  _$$_ScheduleItemModelCopyWith<_$_ScheduleItemModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
