@@ -95,7 +95,7 @@ class AccountEditorMode extends ChangeNotifier {
 
 /// This class contains a functions for getting user's app-specific data
 class AccountDetails {
-  static get isAdmin => getAccountLevel == AccountType.admin;
+  static bool get isAdmin => getAccountLevel == AccountType.admin;
 
   /// Call to get [AccountType] of current user.
   /// If user didn't sign-in, returns [AccountType.entrant]
@@ -122,31 +122,23 @@ class AccountDetails {
 
   /// Call this function to find out
   /// if the user has access to the required [AccountType].
-  @Deprecated('Accounts no more uses different type of access levels')
-  static bool hasAccessToLevel(AccountType requiredLevel) {
+  static bool hasAccessToLevel(AccountType requestedType) {
+    // get user account type and compare with requested type
+    // admins always has access to something,
+    // students, teachers and parents has access only for their account type.
     switch (getAccountLevel) {
       case AccountType.admin:
-        return true; // admin have access to anything
+        return true;
       case AccountType.student:
-        return requiredLevel == AccountType.entrant ||
-                requiredLevel == AccountType.student
-            ? true
-            : false;
-      case AccountType.employee:
-        return requiredLevel == AccountType.employee ||
-                requiredLevel == AccountType.student ||
-                requiredLevel == AccountType.entrant
-            ? true
-            : false;
+        return requestedType == AccountType.student;
       case AccountType.teacher:
-        return requiredLevel == AccountType.teacher ||
-            requiredLevel == AccountType.student ||
-            requiredLevel == AccountType.entrant;
-
+        return requestedType == AccountType.teacher;
       case AccountType.entrant:
-        return requiredLevel == AccountType.entrant;
+        return requestedType == AccountType.entrant;
       case AccountType.parent:
-        return requiredLevel == AccountType.parent;
+        return requestedType == AccountType.parent;
+      default:
+        return false;
     }
   }
 
