@@ -27,14 +27,21 @@ class AnnouncementModel {
           author: data['author'],
           content: data['content_body'],
           title: data['content_title'],
-          accessLevel: data['visibility'] == 'all'
-              ? AccountType.entrant
-              : data['visibility'] == 'teachers'
-                  ? AccountType.teacher
-                  : data['visibility'] == 'employee'
-                      ? AccountType.employee
-                      : AccountType.entrant,
+          accessLevel: parseAccountType(data['visibility']),
           photoUrl: data['photo'],
           docId: id,
         );
+
+  static AccountType parseAccountType(String data) {
+    switch (data) {
+      case 'students':
+        return AccountType.student;
+      case 'teachers':
+        return AccountType.teacher;
+      case 'parents':
+        return AccountType.parent;
+      default:
+        return AccountType.entrant;
+    }
+  }
 }
