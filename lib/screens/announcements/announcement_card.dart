@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:provider/provider.dart';
@@ -220,6 +221,9 @@ class AnnouncementCard extends StatelessWidget {
   void deleteAnnouncement(BuildContext context) {
     CollectionReference alerts =
         FirebaseFirestore.instance.collection(collectionPath());
+    FirebaseStorage storage = FirebaseStorage.instance;
+
+    storage.ref('Announcements/${announcement.docId}').delete();
     alerts.doc(announcement.docId).delete();
     Navigator.pop(context);
   }
