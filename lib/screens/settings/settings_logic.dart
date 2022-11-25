@@ -84,8 +84,8 @@ class SettingsLogic extends ChangeNotifier {
         return 'Администратор';
       case AccountType.student:
         return 'Студент';
-      case AccountType.employee:
-        return 'Работник';
+      case AccountType.parent:
+        return 'Родитель';
       case AccountType.teacher:
         return 'Преподаватель';
       case AccountType.entrant:

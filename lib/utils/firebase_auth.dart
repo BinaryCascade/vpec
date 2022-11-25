@@ -14,10 +14,6 @@ enum AccountType {
   /// can see announcements for students
   student,
 
-  /// can see public and employee announcements
-  @Deprecated('Employee no more supported')
-  employee,
-
   /// can see announcements for parents
   parent,
 

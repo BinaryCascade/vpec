@@ -226,12 +226,12 @@ class AnnouncementCard extends StatelessWidget {
 
   String collectionPath() {
     switch (announcement.accessLevel) {
-      case AccountType.employee:
-        return 'announcements_employee';
+      case AccountType.parent:
+        return 'announcements_parents';
       case AccountType.teacher:
         return 'announcements_teachers';
-      case AccountType.entrant:
-        return 'announcements_all';
+      case AccountType.student:
+        return 'announcements_students';
       default:
         return 'announcements_all';
     }
