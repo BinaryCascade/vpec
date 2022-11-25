@@ -15,13 +15,18 @@ class EditorLogic extends ChangeNotifier {
   /// Shows, should publish button be active or disabled.
   bool publishButtonActive = false;
 
+  /// Stores user typed text for title and body
   TextEditingController announcementTitleController = TextEditingController();
   TextEditingController announcementBodyController = TextEditingController();
 
+  /// Stores url for uploaded image. Can be null, if image is not uploaded
   String? photoUrl;
 
+  /// Shows current progress image uploading. Can be null,
+  /// if nothing is uploading
   double? photoUploadProgress;
 
+  /// Used as document ID for Firestore document. Also used for photo name.
   int docID = DateTime.now().millisecondsSinceEpoch;
 
   /// List of publish privacy
@@ -46,6 +51,7 @@ class EditorLogic extends ChangeNotifier {
         announcementTitleController.text.trim().isNotEmpty &&
             announcementBodyController.text.trim().isNotEmpty;
 
+    // checks whether the user has selected a category or not
     publishFor.forEach((key, value) {
       if (value) publishCategoryWasSelected = true;
     });
@@ -54,7 +60,8 @@ class EditorLogic extends ChangeNotifier {
     notifyListeners();
   }
 
-  ///
+  /// Converts user typed data to [AnnouncementModel] and send it to
+  /// upload for every user selected category.
   Future<void> publishAnnouncement() async {
     DateFormat formatter = DateFormat('HH:mm, d MMM yyyy');
     String pubDate = formatter.format(DateTime.now());
@@ -77,6 +84,10 @@ class EditorLogic extends ChangeNotifier {
     });
   }
 
+  /// Uploads to the Firestore, depending on what the value of the [publishFor]
+  /// is equal to.
+  ///
+  /// Can throw an Exception, if unknown type was received.
   Future<void> _uploadArticle(String publishFor, AnnouncementModel article) async {
     String collectionPath() {
       switch (publishFor) {
@@ -105,7 +116,8 @@ class EditorLogic extends ChangeNotifier {
     });
   }
 
-  ///
+  /// Opens image picker and listening for picked photo. If photo was picked,
+  /// uploads it to Firebase Storage and stores photo link.
   Future<void> pickImage() async {
     final FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.image,
@@ -134,6 +146,8 @@ class EditorLogic extends ChangeNotifier {
     });
   }
 
+  /// Deletes uploaded image to Firebase Storage, if something was uploaded.
+  /// It is used if the user uploaded a photo and closed the editor.
   void cleanUp() {
     if (photoUrl == null) return;
 
