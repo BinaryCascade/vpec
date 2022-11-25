@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '/models/announcement_model.dart';
 import '/utils/icons.dart';
-import '/utils/utils.dart';
 import '/widgets/loading_indicator.dart';
 import '../../utils/firebase_auth.dart';
 import 'announcement_card.dart';
@@ -82,141 +81,7 @@ class AnnouncementsList extends StatelessWidget {
   }
 }
 
-class NewAnnouncementUI extends StatelessWidget {
-  const NewAnnouncementUI({
-    Key? key,
-    required this.titleController,
-    required this.contentController,
-    required this.isUserAddPhoto,
-    required this.userPhotoUrl,
-    this.pickPhoto,
-    this.confirmAnnouncementSend,
-  }) : super(key: key);
 
-  final TextEditingController titleController;
-  final TextEditingController contentController;
-  final bool isUserAddPhoto;
-  final String userPhotoUrl;
-  final Function? pickPhoto, confirmAnnouncementSend;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: TextFormField(
-            controller: titleController,
-            textInputAction: TextInputAction.next,
-            style: Theme.of(context).textTheme.headline4,
-            decoration: const InputDecoration(labelText: 'Введите заголовок'),
-          ),
-        ),
-        ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: 200, maxHeight: 200),
-          child: TextFormField(
-            controller: contentController,
-            keyboardType: TextInputType.multiline,
-            maxLines: null,
-            minLines: 10,
-            textAlign: TextAlign.start,
-            style: Theme.of(context).textTheme.bodyText1,
-            decoration: const InputDecoration(labelText: 'Введите сообщение'),
-          ),
-        ),
-        Row(
-          children: [
-            ButtonBar(
-              children: [
-                OutlinedButton(
-                  child: const Text('Фото'),
-                  onPressed: () async {
-                    if (!isUserAddPhoto) {
-                      await pickPhoto!();
-                    } else {
-                      showRoundedModalSheet(
-                        context: context,
-                        title: 'Ошибка',
-                        child: Column(
-                          children: [
-                            const Text('Фото уже добавлено'),
-                            ButtonBar(
-                              children: [
-                                OutlinedButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text('Закрыть'),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                  },
-                ),
-              ],
-            ),
-            const Spacer(),
-            ButtonBar(
-              children: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Отмена'),
-                ),
-                ElevatedButton(
-                  child: const Text('Отправить'),
-                  onPressed: () {
-                    if (isUserAddPhoto) {
-                      if (userPhotoUrl.isNotEmpty) {
-                        Navigator.pop(context);
-                        confirmAnnouncementSend!();
-                      } else {
-                        showRoundedModalSheet(
-                          context: context,
-                          title: 'Внимание',
-                          child: Column(
-                            children: [
-                              Text(
-                                'Фото ещё загружается',
-                                style: Theme.of(context).textTheme.bodyText1,
-                              ),
-                              ButtonBar(
-                                children: [
-                                  OutlinedButton(
-                                    style: Theme.of(context)
-                                        .outlinedButtonTheme
-                                        .style,
-                                    onPressed: () => Navigator.pop(context),
-                                    child: Text(
-                                      'Закрыть',
-                                      style: TextStyle(
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1!
-                                            .color,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
-                      }
-                    } else {
-                      Navigator.pop(context);
-                      confirmAnnouncementSend!();
-                    }
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
 
 class BottomTapBar extends StatefulWidget {
   const BottomTapBar({
