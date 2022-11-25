@@ -30,5 +30,9 @@ class EditorLogic extends ChangeNotifier {
     notifyListeners();
   }
 
+  ///
   void publishAnnouncement() {}
+
+  ///
+  void pickImage() {}
 }

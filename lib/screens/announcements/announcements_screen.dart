@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/firebase_auth.dart';
+import '../../utils/theme_helper.dart';
 import 'announcements_ui.dart';
 import 'editor/editor_screen.dart';
 
@@ -59,6 +60,10 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
       closedColor: Theme.of(context).scaffoldBackgroundColor,
       middleColor: Theme.of(context).scaffoldBackgroundColor,
       openColor: Theme.of(context).scaffoldBackgroundColor,
+      onClosed: (n) {
+        Future.delayed(const Duration(milliseconds: 100)).then((value) =>
+            ThemeHelper.colorStatusBar(context: context, haveAppbar: false));
+      },
       closedBuilder: (context, action) {
         return FloatingActionButton(
           onPressed: action,
