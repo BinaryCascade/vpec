@@ -48,7 +48,9 @@ class UploadAttachmentButton extends StatelessWidget {
       builder: (context, logic, _) {
         return DecoratedBox(
           decoration: BoxDecoration(
-            color: ThemeHelper.isDarkMode ? Colors.white.withOpacity(0.05) : Colors.black.withOpacity(0.05),
+            color: ThemeHelper.isDarkMode
+                ? Colors.white.withOpacity(0.05)
+                : Colors.black.withOpacity(0.05),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Material(
@@ -309,7 +311,11 @@ class DialogButtons extends StatelessWidget {
     return ButtonBar(
       children: [
         TextButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            context.read<EditorLogic>().cleanUp();
+
+            Navigator.pop(context);
+          },
           child: const Text('Закрыть'),
         ),
         ElevatedButton(

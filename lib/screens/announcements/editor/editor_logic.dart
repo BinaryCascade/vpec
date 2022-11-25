@@ -133,4 +133,11 @@ class EditorLogic extends ChangeNotifier {
       }
     });
   }
+
+  void cleanUp() {
+    if (photoUrl == null) return;
+
+    FirebaseStorage storage = FirebaseStorage.instance;
+    storage.ref('Announcements/$docID').delete();
+  }
 }
