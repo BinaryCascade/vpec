@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utils/theme_helper.dart';
 import '../../settings/settings_logic.dart';
 import 'editor_logic.dart';
 
@@ -21,60 +23,80 @@ class EditorHeader extends StatelessWidget {
   }
 }
 
+class ImagePreview extends StatelessWidget {
+  const ImagePreview({Key? key, required this.imagePath}) : super(key: key);
+  final String imagePath;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+      child: CachedNetworkImage(imageUrl: imagePath),
+    );
+  }
+}
+
 class UploadAttachmentButton extends StatelessWidget {
   const UploadAttachmentButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Material(
-        type: MaterialType.transparency,
-        borderRadius: BorderRadius.circular(20),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(20),
-          onTap: () {},
-          child: SizedBox(
-            height: 50,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
+    return Consumer<EditorLogic>(
+      builder: (context, logic, _) {
+        return DecoratedBox(
+          decoration: BoxDecoration(
+            color: ThemeHelper.isDarkMode ? Colors.white.withOpacity(0.05) : Colors.black.withOpacity(0.05),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Material(
+            type: MaterialType.transparency,
+            borderRadius: BorderRadius.circular(20),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(20),
+              onTap: logic.pickImage,
+              child: SizedBox(
+                height: 50,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.attachment_outlined,
-                        color: Theme.of(context).colorScheme.onSurface,
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.attachment_outlined,
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                          const SizedBox(width: 7),
+                          Text(
+                            'Прикрепить картинку',
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurface
+                                  .withOpacity(0.6),
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 7),
-                      Text(
-                        'Прикрепить картинку',
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onSurface
-                              .withOpacity(0.6),
+                      if (logic.photoUploadProgress != null)
+                        LinearProgressIndicator(
+                          value: logic.photoUploadProgress,
                         ),
-                      ),
                     ],
                   ),
-                  if (true)
-                    const LinearProgressIndicator(
-                      value: 0.8,
-                    ),
-                ],
+                ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
@@ -87,6 +109,9 @@ class TitleEditorField extends StatelessWidget {
     return TextField(
       minLines: 1,
       maxLines: 3,
+      controller: context.read<EditorLogic>().announcementTitleController,
+      onChanged: (_) =>
+          context.read<EditorLogic>().checkAndUpdatePublishButtonActiveStatus(),
       textInputAction: TextInputAction.next,
       keyboardType: TextInputType.text,
       style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 18),
@@ -113,6 +138,9 @@ class BodyEditorField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       maxLines: null,
+      controller: context.read<EditorLogic>().announcementBodyController,
+      onChanged: (_) =>
+          context.read<EditorLogic>().checkAndUpdatePublishButtonActiveStatus(),
       textInputAction: TextInputAction.newline,
       keyboardType: TextInputType.multiline,
       style: Theme.of(context).textTheme.headline3,
@@ -171,22 +199,28 @@ class EditorUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: const [
-            UploadAttachmentButton(),
-            TitleEditorField(),
-            BodyEditorField(),
-            AuthorName(),
-          ],
-        ),
-      ),
+    return Consumer<EditorLogic>(
+      builder: (context, logic, _) {
+        return DecoratedBox(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                logic.photoUrl == null
+                    ? const UploadAttachmentButton()
+                    : ImagePreview(imagePath: logic.photoUrl!),
+                const TitleEditorField(),
+                const BodyEditorField(),
+                const AuthorName(),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -207,6 +241,7 @@ class VisibilityPicker extends StatelessWidget {
             ),
             const SizedBox(height: 15),
             CheckboxListTile(
+              checkColor: Theme.of(context).scaffoldBackgroundColor,
               activeColor: Theme.of(context).colorScheme.secondary,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -224,6 +259,7 @@ class VisibilityPicker extends StatelessWidget {
               },
             ),
             CheckboxListTile(
+              checkColor: Theme.of(context).scaffoldBackgroundColor,
               activeColor: Theme.of(context).colorScheme.secondary,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -241,6 +277,7 @@ class VisibilityPicker extends StatelessWidget {
               },
             ),
             CheckboxListTile(
+              checkColor: Theme.of(context).scaffoldBackgroundColor,
               activeColor: Theme.of(context).colorScheme.secondary,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -277,7 +314,10 @@ class DialogButtons extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: context.watch<EditorLogic>().publishButtonActive
-              ? context.read<EditorLogic>().publishAnnouncement
+              ? () async {
+                  await context.read<EditorLogic>().publishAnnouncement();
+                  Navigator.pop(context);
+                }
               : null,
           child: const Text('Опубликовать'),
         ),

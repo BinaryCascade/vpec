@@ -57,6 +57,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
 
   Widget _buildFab(BuildContext context) {
     return OpenContainer(
+      closedShape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(40.0))),
       closedColor: Theme.of(context).scaffoldBackgroundColor,
       middleColor: Theme.of(context).scaffoldBackgroundColor,
       openColor: Theme.of(context).scaffoldBackgroundColor,
