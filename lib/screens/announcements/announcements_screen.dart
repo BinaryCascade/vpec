@@ -47,7 +47,10 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
     return DefaultTabController(
       length: tabBarChildren.length,
       child: Scaffold(
-        body: TabBarView(children: tabBarChildren),
+        body: TabBarView(
+          physics: const NeverScrollableScrollPhysics(),
+          children: tabBarChildren,
+        ),
         floatingActionButton:
             AccountDetails.isAdmin ? _buildFab(context) : null,
         bottomNavigationBar:

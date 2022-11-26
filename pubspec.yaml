@@ -33,6 +33,7 @@ dependencies:
   # used in announcement screen
   path_provider: ^2.0.11 # work with storage paths
   file_picker: ^5.2.2 # adding images to announcements
+  zoom_pinch_overlay: ^1.3.2
 
   # used in schedule screen
   r_dotted_line_border: ^0.1.1

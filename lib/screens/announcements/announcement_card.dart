@@ -4,12 +4,29 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:provider/provider.dart';
+import 'package:zoom_pinch_overlay/zoom_pinch_overlay.dart';
 
 import '/models/announcement_model.dart';
 import '/models/document_model.dart';
 import '/screens/view_document/view_document_logic.dart';
 import '/utils/utils.dart';
 import '../../utils/firebase_auth.dart';
+
+class AnnouncementImage extends StatelessWidget {
+  const AnnouncementImage({
+    Key? key,
+    required this.imageUrl,
+  }) : super(key: key);
+
+  final String imageUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return ZoomOverlay(
+      child: CachedNetworkImage(imageUrl: imageUrl),
+    );
+  }
+}
 
 class AnnouncementCard extends StatelessWidget {
   final AnnouncementModel announcement;
@@ -36,7 +53,7 @@ class AnnouncementCard extends StatelessWidget {
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
-                  child: CachedNetworkImage(imageUrl: announcement.photoUrl!),
+                  child: AnnouncementImage(imageUrl: announcement.photoUrl!),
                 ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
