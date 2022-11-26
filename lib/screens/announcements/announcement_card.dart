@@ -23,6 +23,7 @@ class AnnouncementImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ZoomOverlay(
+      twoTouchOnly: true,
       child: CachedNetworkImage(imageUrl: imageUrl),
     );
   }
