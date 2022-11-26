@@ -4,25 +4,37 @@ import 'package:flutter/material.dart';
 import '/models/announcement_model.dart';
 import '/utils/icons.dart';
 import '/widgets/loading_indicator.dart';
-import '../../utils/firebase_auth.dart';
 import 'announcement_card.dart';
 
 /// ListView with data from Firestore
-class AnnouncementsList extends StatelessWidget {
+class AnnouncementsList extends StatefulWidget {
   final String collectionPath;
 
-  const AnnouncementsList({Key? key, required this.collectionPath})
-      : super(key: key);
+  const AnnouncementsList({
+    Key? key,
+    required this.collectionPath,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    ScrollController semicircleController = ScrollController();
-    Stream<QuerySnapshot<Map<String, dynamic>>> stream = FirebaseFirestore
-        .instance
-        .collection(collectionPath)
+  State<AnnouncementsList> createState() => _AnnouncementsListState();
+}
+
+class _AnnouncementsListState extends State<AnnouncementsList> {
+  final ScrollController semicircleController = ScrollController();
+  late Stream<QuerySnapshot<Map<String, dynamic>>> stream;
+
+  @override
+  void initState() {
+    stream = FirebaseFirestore.instance
+        .collection(widget.collectionPath)
         .orderBy('id', descending: true)
         .snapshots();
 
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Expanded(
@@ -81,8 +93,6 @@ class AnnouncementsList extends StatelessWidget {
   }
 }
 
-
-
 class BottomTapBar extends StatefulWidget {
   const BottomTapBar({
     Key? key,
@@ -93,8 +103,6 @@ class BottomTapBar extends StatefulWidget {
 }
 
 class _BottomTapBarState extends State<BottomTapBar> {
-  bool get needMakeScrollable => AccountDetails.isAdmin;
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -102,9 +110,8 @@ class _BottomTapBarState extends State<BottomTapBar> {
       child: Container(
         color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         child: TabBar(
-          padding:
-              EdgeInsets.symmetric(horizontal: needMakeScrollable ? 24 : 0),
-          isScrollable: needMakeScrollable,
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          isScrollable: true,
           tabs: [
             Tab(
               child: Row(
@@ -129,7 +136,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const <Widget>[
                   Icon(
-                    VpecIconPack.account_cog_outline,
+                    VpecIconPack.parents,
                     size: 24,
                   ),
                   Padding(
@@ -154,6 +161,24 @@ class _BottomTapBarState extends State<BottomTapBar> {
                     padding: EdgeInsets.only(left: 8.0),
                     child: Text(
                       'Преподавателям',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Tab(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Icon(
+                    VpecIconPack.account_cog_outline,
+                    size: 24,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'Администрации',
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
