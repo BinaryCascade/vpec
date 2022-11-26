@@ -52,17 +52,23 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
           children: tabBarChildren,
         ),
         floatingActionButton:
-            AccountDetails.isAdmin ? _buildFab(context) : null,
+            AccountDetails.isAdmin ? const AnimatedFAB() : null,
         bottomNavigationBar:
             AccountDetails.isAdmin ? const BottomTapBar() : null,
       ),
     );
   }
+}
 
-  Widget _buildFab(BuildContext context) {
+class AnimatedFAB extends StatelessWidget {
+  const AnimatedFAB({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return OpenContainer(
       closedShape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(40.0))),
+        borderRadius: BorderRadius.all(Radius.circular(40.0)),
+      ),
       closedColor: Theme.of(context).scaffoldBackgroundColor,
       middleColor: Theme.of(context).scaffoldBackgroundColor,
       openColor: Theme.of(context).scaffoldBackgroundColor,
