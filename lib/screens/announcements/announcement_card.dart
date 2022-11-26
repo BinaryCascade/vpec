@@ -221,9 +221,12 @@ class AnnouncementCard extends StatelessWidget {
   void deleteAnnouncement(BuildContext context) {
     CollectionReference alerts =
         FirebaseFirestore.instance.collection(collectionPath());
-    FirebaseStorage storage = FirebaseStorage.instance;
 
-    storage.ref('Announcements/${announcement.docId}').delete();
+    if (announcement.photoUrl != null) {
+      FirebaseStorage storage = FirebaseStorage.instance;
+      storage.ref('Announcements/${announcement.docId}').delete();
+    }
+
     alerts.doc(announcement.docId).delete();
     Navigator.pop(context);
   }
