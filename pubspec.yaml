@@ -31,7 +31,6 @@ dependencies:
   transparent_image: ^2.0.0 # image placeholders
 
   # used in announcement screen
-  draggable_scrollbar: ^0.1.0
   path_provider: ^2.0.11 # work with storage paths
   file_picker: ^5.2.2 # adding images to announcements
 
