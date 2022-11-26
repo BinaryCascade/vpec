@@ -21,6 +21,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
           const AnnouncementsList(collectionPath: 'announcements_students'),
           const AnnouncementsList(collectionPath: 'announcements_parents'),
           const AnnouncementsList(collectionPath: 'announcements_teachers'),
+          const AnnouncementsList(collectionPath: 'announcements_admins'),
         ];
       case AccountType.student:
         return [
@@ -57,7 +58,8 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
 
   Widget _buildFab(BuildContext context) {
     return OpenContainer(
-      closedShape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(40.0))),
+      closedShape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(40.0))),
       closedColor: Theme.of(context).scaffoldBackgroundColor,
       middleColor: Theme.of(context).scaffoldBackgroundColor,
       openColor: Theme.of(context).scaffoldBackgroundColor,

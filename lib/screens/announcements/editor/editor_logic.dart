@@ -34,6 +34,7 @@ class EditorLogic extends ChangeNotifier {
     'students': false,
     'parents': false,
     'teachers': false,
+    'admins': false,
   };
 
   /// Use for update values from checkboxes in [publishFor]
@@ -88,7 +89,8 @@ class EditorLogic extends ChangeNotifier {
   /// is equal to.
   ///
   /// Can throw an Exception, if unknown type was received.
-  Future<void> _uploadArticle(String publishFor, AnnouncementModel article) async {
+  Future<void> _uploadArticle(
+      String publishFor, AnnouncementModel article) async {
     String collectionPath() {
       switch (publishFor) {
         case 'parents':
@@ -97,6 +99,8 @@ class EditorLogic extends ChangeNotifier {
           return 'announcements_students';
         case 'teachers':
           return 'announcements_teachers';
+        case 'admins':
+          return 'announcements_admins';
         default:
           throw Exception('Unknown account type');
       }

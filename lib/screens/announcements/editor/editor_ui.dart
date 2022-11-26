@@ -296,6 +296,24 @@ class VisibilityPicker extends StatelessWidget {
                 logic.updateCheckbox('teachers', value ?? false);
               },
             ),
+            CheckboxListTile(
+              checkColor: Theme.of(context).scaffoldBackgroundColor,
+              activeColor: Theme.of(context).colorScheme.secondary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              controlAffinity: ListTileControlAffinity.leading,
+              value: logic.publishFor['admins'],
+              title: Text(
+                'Администрации',
+                style: Theme.of(context).textTheme.headline3!.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
+              onChanged: (value) {
+                logic.updateCheckbox('admins', value ?? false);
+              },
+            ),
           ],
         );
       },

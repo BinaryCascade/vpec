@@ -40,6 +40,8 @@ class AnnouncementModel {
         return AccountType.teacher;
       case 'parents':
         return AccountType.parent;
+      case 'admins':
+        return AccountType.admin;
       default:
         return AccountType.entrant;
     }

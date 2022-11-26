@@ -239,6 +239,8 @@ class AnnouncementCard extends StatelessWidget {
         return 'announcements_teachers';
       case AccountType.student:
         return 'announcements_students';
+      case AccountType.admin:
+        return 'announcements_admins';
       default:
         return 'announcements_all';
     }
