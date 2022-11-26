@@ -18,7 +18,7 @@ class SettingsLogic extends ChangeNotifier {
   // show roundedModalSheet() for account login
   static Future<void> accountLogin(BuildContext context) async {
     if (context.read<FirebaseAppAuth>().accountInfo.level !=
-        AccessLevel.entrant) {
+        AccountType.entrant) {
       await showRoundedModalSheet(
         context: context,
         title: 'Выйти из аккаунта?',
@@ -80,15 +80,15 @@ class SettingsLogic extends ChangeNotifier {
 
   static String getAccountModeText(BuildContext context) {
     switch (context.read<FirebaseAppAuth>().accountInfo.level) {
-      case AccessLevel.admin:
+      case AccountType.admin:
         return 'Администратор';
-      case AccessLevel.student:
+      case AccountType.student:
         return 'Студент';
-      case AccessLevel.employee:
-        return 'Работник';
-      case AccessLevel.teacher:
+      case AccountType.parent:
+        return 'Родитель';
+      case AccountType.teacher:
         return 'Преподаватель';
-      case AccessLevel.entrant:
+      case AccountType.entrant:
         return 'Абитуриент';
       default:
         return 'Неизвестно';

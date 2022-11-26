@@ -25,7 +25,6 @@ mixin _$GroupDefinition {
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $GroupDefinitionCopyWith<GroupDefinition> get copyWith =>
       throw _privateConstructorUsedError;
@@ -35,67 +34,66 @@ mixin _$GroupDefinition {
 abstract class $GroupDefinitionCopyWith<$Res> {
   factory $GroupDefinitionCopyWith(
           GroupDefinition value, $Res Function(GroupDefinition) then) =
-      _$GroupDefinitionCopyWithImpl<$Res>;
-
+      _$GroupDefinitionCopyWithImpl<$Res, GroupDefinition>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'definition', required: true, disallowNullValue: true)
           Map<String, dynamic> groupDefinitionMap});
 }
 
 /// @nodoc
-class _$GroupDefinitionCopyWithImpl<$Res>
+class _$GroupDefinitionCopyWithImpl<$Res, $Val extends GroupDefinition>
     implements $GroupDefinitionCopyWith<$Res> {
   _$GroupDefinitionCopyWithImpl(this._value, this._then);
 
-  final GroupDefinition _value;
-
   // ignore: unused_field
-  final $Res Function(GroupDefinition) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? groupDefinitionMap = freezed,
+    Object? groupDefinitionMap = null,
   }) {
     return _then(_value.copyWith(
-      groupDefinitionMap: groupDefinitionMap == freezed
+      groupDefinitionMap: null == groupDefinitionMap
           ? _value.groupDefinitionMap
           : groupDefinitionMap // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$GroupDefinitionCopyWith<$Res>
+abstract class _$$_GroupDefinitionCopyWith<$Res>
     implements $GroupDefinitionCopyWith<$Res> {
-  factory _$GroupDefinitionCopyWith(
-          _GroupDefinition value, $Res Function(_GroupDefinition) then) =
-      __$GroupDefinitionCopyWithImpl<$Res>;
-
+  factory _$$_GroupDefinitionCopyWith(
+          _$_GroupDefinition value, $Res Function(_$_GroupDefinition) then) =
+      __$$_GroupDefinitionCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'definition', required: true, disallowNullValue: true)
           Map<String, dynamic> groupDefinitionMap});
 }
 
 /// @nodoc
-class __$GroupDefinitionCopyWithImpl<$Res>
-    extends _$GroupDefinitionCopyWithImpl<$Res>
-    implements _$GroupDefinitionCopyWith<$Res> {
-  __$GroupDefinitionCopyWithImpl(
-      _GroupDefinition _value, $Res Function(_GroupDefinition) _then)
-      : super(_value, (v) => _then(v as _GroupDefinition));
+class __$$_GroupDefinitionCopyWithImpl<$Res>
+    extends _$GroupDefinitionCopyWithImpl<$Res, _$_GroupDefinition>
+    implements _$$_GroupDefinitionCopyWith<$Res> {
+  __$$_GroupDefinitionCopyWithImpl(
+      _$_GroupDefinition _value, $Res Function(_$_GroupDefinition) _then)
+      : super(_value, _then);
 
-  @override
-  _GroupDefinition get _value => super._value as _GroupDefinition;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? groupDefinitionMap = freezed,
+    Object? groupDefinitionMap = null,
   }) {
-    return _then(_GroupDefinition(
-      groupDefinitionMap: groupDefinitionMap == freezed
-          ? _value.groupDefinitionMap
+    return _then(_$_GroupDefinition(
+      groupDefinitionMap: null == groupDefinitionMap
+          ? _value._groupDefinitionMap
           : groupDefinitionMap // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
     ));
@@ -113,9 +111,7 @@ class _$_GroupDefinition implements _GroupDefinition {
   factory _$_GroupDefinition.fromJson(Map<String, dynamic> json) =>
       _$$_GroupDefinitionFromJson(json);
 
-  @JsonKey(name: 'definition', required: true, disallowNullValue: true)
   final Map<String, dynamic> _groupDefinitionMap;
-
   @override
   @JsonKey(name: 'definition', required: true, disallowNullValue: true)
   Map<String, dynamic> get groupDefinitionMap {
@@ -132,24 +128,27 @@ class _$_GroupDefinition implements _GroupDefinition {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _GroupDefinition &&
+            other is _$_GroupDefinition &&
             const DeepCollectionEquality()
-                .equals(other.groupDefinitionMap, groupDefinitionMap));
+                .equals(other._groupDefinitionMap, _groupDefinitionMap));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(groupDefinitionMap));
+      runtimeType, const DeepCollectionEquality().hash(_groupDefinitionMap));
 
   @JsonKey(ignore: true)
   @override
-  _$GroupDefinitionCopyWith<_GroupDefinition> get copyWith =>
-      __$GroupDefinitionCopyWithImpl<_GroupDefinition>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_GroupDefinitionCopyWith<_$_GroupDefinition> get copyWith =>
+      __$$_GroupDefinitionCopyWithImpl<_$_GroupDefinition>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GroupDefinitionToJson(this);
+    return _$$_GroupDefinitionToJson(
+      this,
+    );
   }
 }
 
@@ -164,11 +163,9 @@ abstract class _GroupDefinition implements GroupDefinition {
 
   @override
   @JsonKey(name: 'definition', required: true, disallowNullValue: true)
-  Map<String, dynamic> get groupDefinitionMap =>
-      throw _privateConstructorUsedError;
-
+  Map<String, dynamic> get groupDefinitionMap;
   @override
   @JsonKey(ignore: true)
-  _$GroupDefinitionCopyWith<_GroupDefinition> get copyWith =>
+  _$$_GroupDefinitionCopyWith<_$_GroupDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }

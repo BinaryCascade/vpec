@@ -24,7 +24,6 @@ mixin _$Timetable {
   Map<String, dynamic> get timetableMap => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $TimetableCopyWith<Timetable> get copyWith =>
       throw _privateConstructorUsedError;
@@ -33,63 +32,65 @@ mixin _$Timetable {
 /// @nodoc
 abstract class $TimetableCopyWith<$Res> {
   factory $TimetableCopyWith(Timetable value, $Res Function(Timetable) then) =
-      _$TimetableCopyWithImpl<$Res>;
-
+      _$TimetableCopyWithImpl<$Res, Timetable>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'timetable', required: true, disallowNullValue: true)
           Map<String, dynamic> timetableMap});
 }
 
 /// @nodoc
-class _$TimetableCopyWithImpl<$Res> implements $TimetableCopyWith<$Res> {
+class _$TimetableCopyWithImpl<$Res, $Val extends Timetable>
+    implements $TimetableCopyWith<$Res> {
   _$TimetableCopyWithImpl(this._value, this._then);
 
-  final Timetable _value;
-
   // ignore: unused_field
-  final $Res Function(Timetable) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? timetableMap = freezed,
+    Object? timetableMap = null,
   }) {
     return _then(_value.copyWith(
-      timetableMap: timetableMap == freezed
+      timetableMap: null == timetableMap
           ? _value.timetableMap
           : timetableMap // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$TimetableCopyWith<$Res> implements $TimetableCopyWith<$Res> {
-  factory _$TimetableCopyWith(
-          _Timetable value, $Res Function(_Timetable) then) =
-      __$TimetableCopyWithImpl<$Res>;
-
+abstract class _$$_TimetableCopyWith<$Res> implements $TimetableCopyWith<$Res> {
+  factory _$$_TimetableCopyWith(
+          _$_Timetable value, $Res Function(_$_Timetable) then) =
+      __$$_TimetableCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'timetable', required: true, disallowNullValue: true)
           Map<String, dynamic> timetableMap});
 }
 
 /// @nodoc
-class __$TimetableCopyWithImpl<$Res> extends _$TimetableCopyWithImpl<$Res>
-    implements _$TimetableCopyWith<$Res> {
-  __$TimetableCopyWithImpl(_Timetable _value, $Res Function(_Timetable) _then)
-      : super(_value, (v) => _then(v as _Timetable));
+class __$$_TimetableCopyWithImpl<$Res>
+    extends _$TimetableCopyWithImpl<$Res, _$_Timetable>
+    implements _$$_TimetableCopyWith<$Res> {
+  __$$_TimetableCopyWithImpl(
+      _$_Timetable _value, $Res Function(_$_Timetable) _then)
+      : super(_value, _then);
 
-  @override
-  _Timetable get _value => super._value as _Timetable;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? timetableMap = freezed,
+    Object? timetableMap = null,
   }) {
-    return _then(_Timetable(
-      timetableMap: timetableMap == freezed
-          ? _value.timetableMap
+    return _then(_$_Timetable(
+      timetableMap: null == timetableMap
+          ? _value._timetableMap
           : timetableMap // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
     ));
@@ -107,9 +108,7 @@ class _$_Timetable implements _Timetable {
   factory _$_Timetable.fromJson(Map<String, dynamic> json) =>
       _$$_TimetableFromJson(json);
 
-  @JsonKey(name: 'timetable', required: true, disallowNullValue: true)
   final Map<String, dynamic> _timetableMap;
-
   @override
   @JsonKey(name: 'timetable', required: true, disallowNullValue: true)
   Map<String, dynamic> get timetableMap {
@@ -126,24 +125,27 @@ class _$_Timetable implements _Timetable {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Timetable &&
+            other is _$_Timetable &&
             const DeepCollectionEquality()
-                .equals(other.timetableMap, timetableMap));
+                .equals(other._timetableMap, _timetableMap));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(timetableMap));
+      runtimeType, const DeepCollectionEquality().hash(_timetableMap));
 
   @JsonKey(ignore: true)
   @override
-  _$TimetableCopyWith<_Timetable> get copyWith =>
-      __$TimetableCopyWithImpl<_Timetable>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_TimetableCopyWith<_$_Timetable> get copyWith =>
+      __$$_TimetableCopyWithImpl<_$_Timetable>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TimetableToJson(this);
+    return _$$_TimetableToJson(
+      this,
+    );
   }
 }
 
@@ -157,10 +159,9 @@ abstract class _Timetable implements Timetable {
 
   @override
   @JsonKey(name: 'timetable', required: true, disallowNullValue: true)
-  Map<String, dynamic> get timetableMap => throw _privateConstructorUsedError;
-
+  Map<String, dynamic> get timetableMap;
   @override
   @JsonKey(ignore: true)
-  _$TimetableCopyWith<_Timetable> get copyWith =>
+  _$$_TimetableCopyWith<_$_Timetable> get copyWith =>
       throw _privateConstructorUsedError;
 }

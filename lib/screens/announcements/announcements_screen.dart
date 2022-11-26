@@ -1,10 +1,10 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
-import '/screens/settings/settings_logic.dart';
-import '/utils/hive_helper.dart';
 import '../../utils/firebase_auth.dart';
-import 'announcements_logic.dart';
+import '../../utils/theme_helper.dart';
 import 'announcements_ui.dart';
+import 'editor/editor_screen.dart';
 
 class AnnouncementsScreen extends StatefulWidget {
   const AnnouncementsScreen({Key? key}) : super(key: key);
@@ -14,44 +14,77 @@ class AnnouncementsScreen extends StatefulWidget {
 }
 
 class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
-  int get tabLength {
-    return AccountDetails.hasAccessToLevel(AccessLevel.admin)
-        ? 3
-        : AccountDetails.isAccountLowLevelAccess
-            ? 1
-            : 2;
+  List<Widget> get tabBarChildren {
+    switch (AccountDetails.getAccountLevel) {
+      case AccountType.admin:
+        return [
+          const AnnouncementsList(collectionPath: 'announcements_students'),
+          const AnnouncementsList(collectionPath: 'announcements_parents'),
+          const AnnouncementsList(collectionPath: 'announcements_teachers'),
+          const AnnouncementsList(collectionPath: 'announcements_admins'),
+        ];
+      case AccountType.student:
+        return [
+          const AnnouncementsList(collectionPath: 'announcements_students'),
+        ];
+      case AccountType.parent:
+        return [
+          const AnnouncementsList(collectionPath: 'announcements_parents'),
+        ];
+      case AccountType.teacher:
+        return [
+          const AnnouncementsList(collectionPath: 'announcements_teachers'),
+        ];
+      default:
+        return [
+          const AnnouncementsList(collectionPath: 'announcements_students'),
+        ];
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: tabLength,
+      length: tabBarChildren.length,
       child: Scaffold(
         body: TabBarView(
-          children: [
-            const AnnouncementsList(collectionPath: 'announcements_all'),
-            if (AccountDetails.hasAccessToLevel(AccessLevel.employee))
-              const AnnouncementsList(collectionPath: 'announcements_employee'),
-            if (AccountDetails.hasAccessToLevel(AccessLevel.teacher))
-              const AnnouncementsList(collectionPath: 'announcements_teachers'),
-          ],
+          physics: const NeverScrollableScrollPhysics(),
+          children: tabBarChildren,
         ),
-        floatingActionButton: AccountDetails.hasAccessToLevel(AccessLevel.admin)
-            ? FloatingActionButton(
-                onPressed: () {
-                  if (HiveHelper.getValue('username') == null) {
-                    SettingsLogic.changeName(context);
-                  } else {
-                    AnnouncementsLogic().createNewAnnouncement(context);
-                  }
-                },
-                child: const Icon(Icons.rate_review_outlined),
-              )
-            : null,
-        bottomNavigationBar: AccountDetails.isAccountLowLevelAccess
-            ? null
-            : const BottomTapBar(),
+        floatingActionButton:
+            AccountDetails.isAdmin ? const AnimatedFAB() : null,
+        bottomNavigationBar:
+            AccountDetails.isAdmin ? const BottomTapBar() : null,
       ),
+    );
+  }
+}
+
+class AnimatedFAB extends StatelessWidget {
+  const AnimatedFAB({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return OpenContainer(
+      closedShape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(40.0)),
+      ),
+      closedColor: Theme.of(context).scaffoldBackgroundColor,
+      middleColor: Theme.of(context).scaffoldBackgroundColor,
+      openColor: Theme.of(context).scaffoldBackgroundColor,
+      onClosed: (n) {
+        Future.delayed(const Duration(milliseconds: 100)).then((value) =>
+            ThemeHelper.colorStatusBar(context: context, haveAppbar: false));
+      },
+      closedBuilder: (context, action) {
+        return FloatingActionButton(
+          onPressed: action,
+          child: const Icon(Icons.rate_review_outlined),
+        );
+      },
+      openBuilder: (context, action) {
+        return const AnnouncementEditor();
+      },
     );
   }
 }

@@ -17,16 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AccountInfo {
   bool get isLoggedIn => throw _privateConstructorUsedError;
-
   String? get email => throw _privateConstructorUsedError;
-
   String? get uid => throw _privateConstructorUsedError;
-
   String? get name => throw _privateConstructorUsedError;
-
-  AccessLevel get level => throw _privateConstructorUsedError;
-
-  bool? get isLowLevel => throw _privateConstructorUsedError;
+  AccountType get level => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AccountInfoCopyWith<AccountInfo> get copyWith =>
@@ -37,125 +31,114 @@ mixin _$AccountInfo {
 abstract class $AccountInfoCopyWith<$Res> {
   factory $AccountInfoCopyWith(
           AccountInfo value, $Res Function(AccountInfo) then) =
-      _$AccountInfoCopyWithImpl<$Res>;
-
+      _$AccountInfoCopyWithImpl<$Res, AccountInfo>;
+  @useResult
   $Res call(
       {bool isLoggedIn,
       String? email,
       String? uid,
       String? name,
-      AccessLevel level,
-      bool? isLowLevel});
+      AccountType level});
 }
 
 /// @nodoc
-class _$AccountInfoCopyWithImpl<$Res> implements $AccountInfoCopyWith<$Res> {
+class _$AccountInfoCopyWithImpl<$Res, $Val extends AccountInfo>
+    implements $AccountInfoCopyWith<$Res> {
   _$AccountInfoCopyWithImpl(this._value, this._then);
 
-  final AccountInfo _value;
-
   // ignore: unused_field
-  final $Res Function(AccountInfo) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoggedIn = freezed,
+    Object? isLoggedIn = null,
     Object? email = freezed,
     Object? uid = freezed,
     Object? name = freezed,
-    Object? level = freezed,
-    Object? isLowLevel = freezed,
+    Object? level = null,
   }) {
     return _then(_value.copyWith(
-      isLoggedIn: isLoggedIn == freezed
+      isLoggedIn: null == isLoggedIn
           ? _value.isLoggedIn
           : isLoggedIn // ignore: cast_nullable_to_non_nullable
               as bool,
-      email: email == freezed
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      uid: uid == freezed
+      uid: freezed == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      level: level == freezed
+      level: null == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as AccessLevel,
-      isLowLevel: isLowLevel == freezed
-          ? _value.isLowLevel
-          : isLowLevel // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+              as AccountType,
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$AccountInfoCopyWith<$Res>
+abstract class _$$_AccountInfoCopyWith<$Res>
     implements $AccountInfoCopyWith<$Res> {
-  factory _$AccountInfoCopyWith(
-          _AccountInfo value, $Res Function(_AccountInfo) then) =
-      __$AccountInfoCopyWithImpl<$Res>;
-
+  factory _$$_AccountInfoCopyWith(
+          _$_AccountInfo value, $Res Function(_$_AccountInfo) then) =
+      __$$_AccountInfoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {bool isLoggedIn,
       String? email,
       String? uid,
       String? name,
-      AccessLevel level,
-      bool? isLowLevel});
+      AccountType level});
 }
 
 /// @nodoc
-class __$AccountInfoCopyWithImpl<$Res> extends _$AccountInfoCopyWithImpl<$Res>
-    implements _$AccountInfoCopyWith<$Res> {
-  __$AccountInfoCopyWithImpl(
-      _AccountInfo _value, $Res Function(_AccountInfo) _then)
-      : super(_value, (v) => _then(v as _AccountInfo));
+class __$$_AccountInfoCopyWithImpl<$Res>
+    extends _$AccountInfoCopyWithImpl<$Res, _$_AccountInfo>
+    implements _$$_AccountInfoCopyWith<$Res> {
+  __$$_AccountInfoCopyWithImpl(
+      _$_AccountInfo _value, $Res Function(_$_AccountInfo) _then)
+      : super(_value, _then);
 
-  @override
-  _AccountInfo get _value => super._value as _AccountInfo;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoggedIn = freezed,
+    Object? isLoggedIn = null,
     Object? email = freezed,
     Object? uid = freezed,
     Object? name = freezed,
-    Object? level = freezed,
-    Object? isLowLevel = freezed,
+    Object? level = null,
   }) {
-    return _then(_AccountInfo(
-      isLoggedIn: isLoggedIn == freezed
+    return _then(_$_AccountInfo(
+      isLoggedIn: null == isLoggedIn
           ? _value.isLoggedIn
           : isLoggedIn // ignore: cast_nullable_to_non_nullable
               as bool,
-      email: email == freezed
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      uid: uid == freezed
+      uid: freezed == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      level: level == freezed
+      level: null == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as AccessLevel,
-      isLowLevel: isLowLevel == freezed
-          ? _value.isLowLevel
-          : isLowLevel // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as AccountType,
     ));
   }
 }
@@ -168,8 +151,7 @@ class _$_AccountInfo implements _AccountInfo {
       this.email,
       this.uid,
       this.name,
-      required this.level,
-      this.isLowLevel});
+      required this.level});
 
   @override
   final bool isLoggedIn;
@@ -180,44 +162,35 @@ class _$_AccountInfo implements _AccountInfo {
   @override
   final String? name;
   @override
-  final AccessLevel level;
-  @override
-  final bool? isLowLevel;
+  final AccountType level;
 
   @override
   String toString() {
-    return 'AccountInfo(isLoggedIn: $isLoggedIn, email: $email, uid: $uid, name: $name, level: $level, isLowLevel: $isLowLevel)';
+    return 'AccountInfo(isLoggedIn: $isLoggedIn, email: $email, uid: $uid, name: $name, level: $level)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AccountInfo &&
-            const DeepCollectionEquality()
-                .equals(other.isLoggedIn, isLoggedIn) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.uid, uid) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.level, level) &&
-            const DeepCollectionEquality()
-                .equals(other.isLowLevel, isLowLevel));
+            other is _$_AccountInfo &&
+            (identical(other.isLoggedIn, isLoggedIn) ||
+                other.isLoggedIn == isLoggedIn) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.level, level) || other.level == level));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(isLoggedIn),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(uid),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(level),
-      const DeepCollectionEquality().hash(isLowLevel));
+  int get hashCode =>
+      Object.hash(runtimeType, isLoggedIn, email, uid, name, level);
 
   @JsonKey(ignore: true)
   @override
-  _$AccountInfoCopyWith<_AccountInfo> get copyWith =>
-      __$AccountInfoCopyWithImpl<_AccountInfo>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_AccountInfoCopyWith<_$_AccountInfo> get copyWith =>
+      __$$_AccountInfoCopyWithImpl<_$_AccountInfo>(this, _$identity);
 }
 
 abstract class _AccountInfo implements AccountInfo {
@@ -226,29 +199,20 @@ abstract class _AccountInfo implements AccountInfo {
       final String? email,
       final String? uid,
       final String? name,
-      required final AccessLevel level,
-      final bool? isLowLevel}) = _$_AccountInfo;
+      required final AccountType level}) = _$_AccountInfo;
 
   @override
-  bool get isLoggedIn => throw _privateConstructorUsedError;
-
+  bool get isLoggedIn;
   @override
-  String? get email => throw _privateConstructorUsedError;
-
+  String? get email;
   @override
-  String? get uid => throw _privateConstructorUsedError;
-
+  String? get uid;
   @override
-  String? get name => throw _privateConstructorUsedError;
-
+  String? get name;
   @override
-  AccessLevel get level => throw _privateConstructorUsedError;
-
-  @override
-  bool? get isLowLevel => throw _privateConstructorUsedError;
-
+  AccountType get level;
   @override
   @JsonKey(ignore: true)
-  _$AccountInfoCopyWith<_AccountInfo> get copyWith =>
+  _$$_AccountInfoCopyWith<_$_AccountInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }

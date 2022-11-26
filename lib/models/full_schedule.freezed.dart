@@ -17,19 +17,13 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$FullSchedule {
   List<String?> get timers => throw _privateConstructorUsedError;
-
   String get groups => throw _privateConstructorUsedError;
-
   Map<String, dynamic> get schedule => throw _privateConstructorUsedError;
-
   Map<String, dynamic> get timetable => throw _privateConstructorUsedError;
-
   Map<String, dynamic> get shortLessonNames =>
       throw _privateConstructorUsedError;
-
   Map<String, dynamic> get fullLessonNames =>
       throw _privateConstructorUsedError;
-
   Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -41,8 +35,8 @@ mixin _$FullSchedule {
 abstract class $FullScheduleCopyWith<$Res> {
   factory $FullScheduleCopyWith(
           FullSchedule value, $Res Function(FullSchedule) then) =
-      _$FullScheduleCopyWithImpl<$Res>;
-
+      _$FullScheduleCopyWithImpl<$Res, FullSchedule>;
+  @useResult
   $Res call(
       {List<String?> timers,
       String groups,
@@ -54,65 +48,67 @@ abstract class $FullScheduleCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FullScheduleCopyWithImpl<$Res> implements $FullScheduleCopyWith<$Res> {
+class _$FullScheduleCopyWithImpl<$Res, $Val extends FullSchedule>
+    implements $FullScheduleCopyWith<$Res> {
   _$FullScheduleCopyWithImpl(this._value, this._then);
 
-  final FullSchedule _value;
-
   // ignore: unused_field
-  final $Res Function(FullSchedule) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? timers = freezed,
-    Object? groups = freezed,
-    Object? schedule = freezed,
-    Object? timetable = freezed,
-    Object? shortLessonNames = freezed,
-    Object? fullLessonNames = freezed,
-    Object? teachers = freezed,
+    Object? timers = null,
+    Object? groups = null,
+    Object? schedule = null,
+    Object? timetable = null,
+    Object? shortLessonNames = null,
+    Object? fullLessonNames = null,
+    Object? teachers = null,
   }) {
     return _then(_value.copyWith(
-      timers: timers == freezed
+      timers: null == timers
           ? _value.timers
           : timers // ignore: cast_nullable_to_non_nullable
               as List<String?>,
-      groups: groups == freezed
+      groups: null == groups
           ? _value.groups
           : groups // ignore: cast_nullable_to_non_nullable
               as String,
-      schedule: schedule == freezed
+      schedule: null == schedule
           ? _value.schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      timetable: timetable == freezed
+      timetable: null == timetable
           ? _value.timetable
           : timetable // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      shortLessonNames: shortLessonNames == freezed
+      shortLessonNames: null == shortLessonNames
           ? _value.shortLessonNames
           : shortLessonNames // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      fullLessonNames: fullLessonNames == freezed
+      fullLessonNames: null == fullLessonNames
           ? _value.fullLessonNames
           : fullLessonNames // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      teachers: teachers == freezed
+      teachers: null == teachers
           ? _value.teachers
           : teachers // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$FullScheduleCopyWith<$Res>
+abstract class _$$_FullScheduleCopyWith<$Res>
     implements $FullScheduleCopyWith<$Res> {
-  factory _$FullScheduleCopyWith(
-          _FullSchedule value, $Res Function(_FullSchedule) then) =
-      __$FullScheduleCopyWithImpl<$Res>;
-
+  factory _$$_FullScheduleCopyWith(
+          _$_FullSchedule value, $Res Function(_$_FullSchedule) then) =
+      __$$_FullScheduleCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {List<String?> timers,
       String groups,
@@ -124,52 +120,51 @@ abstract class _$FullScheduleCopyWith<$Res>
 }
 
 /// @nodoc
-class __$FullScheduleCopyWithImpl<$Res> extends _$FullScheduleCopyWithImpl<$Res>
-    implements _$FullScheduleCopyWith<$Res> {
-  __$FullScheduleCopyWithImpl(
-      _FullSchedule _value, $Res Function(_FullSchedule) _then)
-      : super(_value, (v) => _then(v as _FullSchedule));
+class __$$_FullScheduleCopyWithImpl<$Res>
+    extends _$FullScheduleCopyWithImpl<$Res, _$_FullSchedule>
+    implements _$$_FullScheduleCopyWith<$Res> {
+  __$$_FullScheduleCopyWithImpl(
+      _$_FullSchedule _value, $Res Function(_$_FullSchedule) _then)
+      : super(_value, _then);
 
-  @override
-  _FullSchedule get _value => super._value as _FullSchedule;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? timers = freezed,
-    Object? groups = freezed,
-    Object? schedule = freezed,
-    Object? timetable = freezed,
-    Object? shortLessonNames = freezed,
-    Object? fullLessonNames = freezed,
-    Object? teachers = freezed,
+    Object? timers = null,
+    Object? groups = null,
+    Object? schedule = null,
+    Object? timetable = null,
+    Object? shortLessonNames = null,
+    Object? fullLessonNames = null,
+    Object? teachers = null,
   }) {
-    return _then(_FullSchedule(
-      timers: timers == freezed
-          ? _value.timers
+    return _then(_$_FullSchedule(
+      timers: null == timers
+          ? _value._timers
           : timers // ignore: cast_nullable_to_non_nullable
               as List<String?>,
-      groups: groups == freezed
+      groups: null == groups
           ? _value.groups
           : groups // ignore: cast_nullable_to_non_nullable
               as String,
-      schedule: schedule == freezed
-          ? _value.schedule
+      schedule: null == schedule
+          ? _value._schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      timetable: timetable == freezed
-          ? _value.timetable
+      timetable: null == timetable
+          ? _value._timetable
           : timetable // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      shortLessonNames: shortLessonNames == freezed
-          ? _value.shortLessonNames
+      shortLessonNames: null == shortLessonNames
+          ? _value._shortLessonNames
           : shortLessonNames // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      fullLessonNames: fullLessonNames == freezed
-          ? _value.fullLessonNames
+      fullLessonNames: null == fullLessonNames
+          ? _value._fullLessonNames
           : fullLessonNames // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      teachers: teachers == freezed
-          ? _value.teachers
+      teachers: null == teachers
+          ? _value._teachers
           : teachers // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
     ));
@@ -195,7 +190,6 @@ class _$_FullSchedule implements _FullSchedule {
         _teachers = teachers;
 
   final List<String?> _timers;
-
   @override
   @JsonKey()
   List<String?> get timers {
@@ -206,7 +200,6 @@ class _$_FullSchedule implements _FullSchedule {
   @override
   final String groups;
   final Map<String, dynamic> _schedule;
-
   @override
   Map<String, dynamic> get schedule {
     // ignore: implicit_dynamic_type
@@ -214,7 +207,6 @@ class _$_FullSchedule implements _FullSchedule {
   }
 
   final Map<String, dynamic> _timetable;
-
   @override
   Map<String, dynamic> get timetable {
     // ignore: implicit_dynamic_type
@@ -222,7 +214,6 @@ class _$_FullSchedule implements _FullSchedule {
   }
 
   final Map<String, dynamic> _shortLessonNames;
-
   @override
   Map<String, dynamic> get shortLessonNames {
     // ignore: implicit_dynamic_type
@@ -230,7 +221,6 @@ class _$_FullSchedule implements _FullSchedule {
   }
 
   final Map<String, dynamic> _fullLessonNames;
-
   @override
   Map<String, dynamic> get fullLessonNames {
     // ignore: implicit_dynamic_type
@@ -238,7 +228,6 @@ class _$_FullSchedule implements _FullSchedule {
   }
 
   final Map<String, dynamic> _teachers;
-
   @override
   Map<String, dynamic> get teachers {
     // ignore: implicit_dynamic_type
@@ -254,33 +243,35 @@ class _$_FullSchedule implements _FullSchedule {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FullSchedule &&
-            const DeepCollectionEquality().equals(other.timers, timers) &&
-            const DeepCollectionEquality().equals(other.groups, groups) &&
-            const DeepCollectionEquality().equals(other.schedule, schedule) &&
-            const DeepCollectionEquality().equals(other.timetable, timetable) &&
+            other is _$_FullSchedule &&
+            const DeepCollectionEquality().equals(other._timers, _timers) &&
+            (identical(other.groups, groups) || other.groups == groups) &&
+            const DeepCollectionEquality().equals(other._schedule, _schedule) &&
             const DeepCollectionEquality()
-                .equals(other.shortLessonNames, shortLessonNames) &&
+                .equals(other._timetable, _timetable) &&
             const DeepCollectionEquality()
-                .equals(other.fullLessonNames, fullLessonNames) &&
-            const DeepCollectionEquality().equals(other.teachers, teachers));
+                .equals(other._shortLessonNames, _shortLessonNames) &&
+            const DeepCollectionEquality()
+                .equals(other._fullLessonNames, _fullLessonNames) &&
+            const DeepCollectionEquality().equals(other._teachers, _teachers));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(timers),
-      const DeepCollectionEquality().hash(groups),
-      const DeepCollectionEquality().hash(schedule),
-      const DeepCollectionEquality().hash(timetable),
-      const DeepCollectionEquality().hash(shortLessonNames),
-      const DeepCollectionEquality().hash(fullLessonNames),
-      const DeepCollectionEquality().hash(teachers));
+      const DeepCollectionEquality().hash(_timers),
+      groups,
+      const DeepCollectionEquality().hash(_schedule),
+      const DeepCollectionEquality().hash(_timetable),
+      const DeepCollectionEquality().hash(_shortLessonNames),
+      const DeepCollectionEquality().hash(_fullLessonNames),
+      const DeepCollectionEquality().hash(_teachers));
 
   @JsonKey(ignore: true)
   @override
-  _$FullScheduleCopyWith<_FullSchedule> get copyWith =>
-      __$FullScheduleCopyWithImpl<_FullSchedule>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FullScheduleCopyWith<_$_FullSchedule> get copyWith =>
+      __$$_FullScheduleCopyWithImpl<_$_FullSchedule>(this, _$identity);
 }
 
 abstract class _FullSchedule implements FullSchedule {
@@ -294,30 +285,21 @@ abstract class _FullSchedule implements FullSchedule {
       required final Map<String, dynamic> teachers}) = _$_FullSchedule;
 
   @override
-  List<String?> get timers => throw _privateConstructorUsedError;
-
+  List<String?> get timers;
   @override
-  String get groups => throw _privateConstructorUsedError;
-
+  String get groups;
   @override
-  Map<String, dynamic> get schedule => throw _privateConstructorUsedError;
-
+  Map<String, dynamic> get schedule;
   @override
-  Map<String, dynamic> get timetable => throw _privateConstructorUsedError;
-
+  Map<String, dynamic> get timetable;
   @override
-  Map<String, dynamic> get shortLessonNames =>
-      throw _privateConstructorUsedError;
-
+  Map<String, dynamic> get shortLessonNames;
   @override
-  Map<String, dynamic> get fullLessonNames =>
-      throw _privateConstructorUsedError;
-
+  Map<String, dynamic> get fullLessonNames;
   @override
-  Map<String, dynamic> get teachers => throw _privateConstructorUsedError;
-
+  Map<String, dynamic> get teachers;
   @override
   @JsonKey(ignore: true)
-  _$FullScheduleCopyWith<_FullSchedule> get copyWith =>
+  _$$_FullScheduleCopyWith<_$_FullSchedule> get copyWith =>
       throw _privateConstructorUsedError;
 }

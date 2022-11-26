@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../widgets/snackbars.dart';
 import '/screens/settings/settings_logic.dart';
 import '/utils/hive_helper.dart';
 import '../../models/document_model.dart';
@@ -10,24 +11,15 @@ import '../../utils/firebase_auth.dart';
 class LoginLogic extends ChangeNotifier {
   static Future<void> openLogin(BuildContext context) async {
     await SettingsLogic.accountLogin(context);
-    switch (context.read<FirebaseAppAuth>().accountInfo.level) {
-      case AccessLevel.admin:
-        continueToApp(context);
-        break;
-      case AccessLevel.student:
-        continueToApp(context);
-        break;
-      case AccessLevel.employee:
-        continueToApp(context);
-        break;
-      case AccessLevel.teacher:
-        continueToApp(context);
-        break;
-      case AccessLevel.entrant:
-        // entrant can't login to account
-        break;
-      default:
-        break;
+    if (context.read<FirebaseAppAuth>().accountInfo.level !=
+        AccountType.entrant) {
+      continueToApp(context);
+    } else {
+      showSnackBar(
+        context,
+        text: 'Неправильно введены данные, пожалуйста проверьте правильность '
+            'ввода данных или воспользуйтесь быстрым входом через QR',
+      );
     }
   }
 
