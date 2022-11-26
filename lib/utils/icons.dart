@@ -23,6 +23,8 @@ class VpecIconPack {
   static const _kFontFam = 'VpecIconPack';
   static const String? _kFontPkg = null;
 
+  static const IconData parents =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData account_cog_outline =
       IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData battery_saver_line =

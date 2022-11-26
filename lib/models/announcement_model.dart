@@ -8,7 +8,7 @@ class AnnouncementModel {
   final String pubDate;
   final String title;
   final String docId;
-  final AccessLevel accessLevel;
+  final AccountType accessLevel;
   final String? photoUrl;
 
   const AnnouncementModel({
@@ -27,14 +27,23 @@ class AnnouncementModel {
           author: data['author'],
           content: data['content_body'],
           title: data['content_title'],
-          accessLevel: data['visibility'] == 'all'
-              ? AccessLevel.entrant
-              : data['visibility'] == 'teachers'
-                  ? AccessLevel.teacher
-                  : data['visibility'] == 'employee'
-                      ? AccessLevel.employee
-                      : AccessLevel.entrant,
+          accessLevel: parseAccountType(data['visibility']),
           photoUrl: data['photo'],
           docId: id,
         );
+
+  static AccountType parseAccountType(String data) {
+    switch (data) {
+      case 'students':
+        return AccountType.student;
+      case 'teachers':
+        return AccountType.teacher;
+      case 'parents':
+        return AccountType.parent;
+      case 'admins':
+        return AccountType.admin;
+      default:
+        return AccountType.entrant;
+    }
+  }
 }

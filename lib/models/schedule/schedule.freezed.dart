@@ -24,7 +24,6 @@ mixin _$Schedule {
   Map<String, dynamic> get scheduleMap => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $ScheduleCopyWith<Schedule> get copyWith =>
       throw _privateConstructorUsedError;
@@ -33,62 +32,65 @@ mixin _$Schedule {
 /// @nodoc
 abstract class $ScheduleCopyWith<$Res> {
   factory $ScheduleCopyWith(Schedule value, $Res Function(Schedule) then) =
-      _$ScheduleCopyWithImpl<$Res>;
-
+      _$ScheduleCopyWithImpl<$Res, Schedule>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'schedule', required: true, disallowNullValue: true)
           Map<String, dynamic> scheduleMap});
 }
 
 /// @nodoc
-class _$ScheduleCopyWithImpl<$Res> implements $ScheduleCopyWith<$Res> {
+class _$ScheduleCopyWithImpl<$Res, $Val extends Schedule>
+    implements $ScheduleCopyWith<$Res> {
   _$ScheduleCopyWithImpl(this._value, this._then);
 
-  final Schedule _value;
-
   // ignore: unused_field
-  final $Res Function(Schedule) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? scheduleMap = freezed,
+    Object? scheduleMap = null,
   }) {
     return _then(_value.copyWith(
-      scheduleMap: scheduleMap == freezed
+      scheduleMap: null == scheduleMap
           ? _value.scheduleMap
           : scheduleMap // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$ScheduleCopyWith<$Res> implements $ScheduleCopyWith<$Res> {
-  factory _$ScheduleCopyWith(_Schedule value, $Res Function(_Schedule) then) =
-      __$ScheduleCopyWithImpl<$Res>;
-
+abstract class _$$_ScheduleCopyWith<$Res> implements $ScheduleCopyWith<$Res> {
+  factory _$$_ScheduleCopyWith(
+          _$_Schedule value, $Res Function(_$_Schedule) then) =
+      __$$_ScheduleCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'schedule', required: true, disallowNullValue: true)
           Map<String, dynamic> scheduleMap});
 }
 
 /// @nodoc
-class __$ScheduleCopyWithImpl<$Res> extends _$ScheduleCopyWithImpl<$Res>
-    implements _$ScheduleCopyWith<$Res> {
-  __$ScheduleCopyWithImpl(_Schedule _value, $Res Function(_Schedule) _then)
-      : super(_value, (v) => _then(v as _Schedule));
+class __$$_ScheduleCopyWithImpl<$Res>
+    extends _$ScheduleCopyWithImpl<$Res, _$_Schedule>
+    implements _$$_ScheduleCopyWith<$Res> {
+  __$$_ScheduleCopyWithImpl(
+      _$_Schedule _value, $Res Function(_$_Schedule) _then)
+      : super(_value, _then);
 
-  @override
-  _Schedule get _value => super._value as _Schedule;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? scheduleMap = freezed,
+    Object? scheduleMap = null,
   }) {
-    return _then(_Schedule(
-      scheduleMap: scheduleMap == freezed
-          ? _value.scheduleMap
+    return _then(_$_Schedule(
+      scheduleMap: null == scheduleMap
+          ? _value._scheduleMap
           : scheduleMap // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
     ));
@@ -106,9 +108,7 @@ class _$_Schedule implements _Schedule {
   factory _$_Schedule.fromJson(Map<String, dynamic> json) =>
       _$$_ScheduleFromJson(json);
 
-  @JsonKey(name: 'schedule', required: true, disallowNullValue: true)
   final Map<String, dynamic> _scheduleMap;
-
   @override
   @JsonKey(name: 'schedule', required: true, disallowNullValue: true)
   Map<String, dynamic> get scheduleMap {
@@ -125,24 +125,27 @@ class _$_Schedule implements _Schedule {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Schedule &&
+            other is _$_Schedule &&
             const DeepCollectionEquality()
-                .equals(other.scheduleMap, scheduleMap));
+                .equals(other._scheduleMap, _scheduleMap));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(scheduleMap));
+      runtimeType, const DeepCollectionEquality().hash(_scheduleMap));
 
   @JsonKey(ignore: true)
   @override
-  _$ScheduleCopyWith<_Schedule> get copyWith =>
-      __$ScheduleCopyWithImpl<_Schedule>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_ScheduleCopyWith<_$_Schedule> get copyWith =>
+      __$$_ScheduleCopyWithImpl<_$_Schedule>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ScheduleToJson(this);
+    return _$$_ScheduleToJson(
+      this,
+    );
   }
 }
 
@@ -155,10 +158,9 @@ abstract class _Schedule implements Schedule {
 
   @override
   @JsonKey(name: 'schedule', required: true, disallowNullValue: true)
-  Map<String, dynamic> get scheduleMap => throw _privateConstructorUsedError;
-
+  Map<String, dynamic> get scheduleMap;
   @override
   @JsonKey(ignore: true)
-  _$ScheduleCopyWith<_Schedule> get copyWith =>
+  _$$_ScheduleCopyWith<_$_Schedule> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -24,7 +24,6 @@ mixin _$GroupList {
   List<String> get groupList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $GroupListCopyWith<GroupList> get copyWith =>
       throw _privateConstructorUsedError;
@@ -33,63 +32,65 @@ mixin _$GroupList {
 /// @nodoc
 abstract class $GroupListCopyWith<$Res> {
   factory $GroupListCopyWith(GroupList value, $Res Function(GroupList) then) =
-      _$GroupListCopyWithImpl<$Res>;
-
+      _$GroupListCopyWithImpl<$Res, GroupList>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'groupList', required: true, disallowNullValue: true)
           List<String> groupList});
 }
 
 /// @nodoc
-class _$GroupListCopyWithImpl<$Res> implements $GroupListCopyWith<$Res> {
+class _$GroupListCopyWithImpl<$Res, $Val extends GroupList>
+    implements $GroupListCopyWith<$Res> {
   _$GroupListCopyWithImpl(this._value, this._then);
 
-  final GroupList _value;
-
   // ignore: unused_field
-  final $Res Function(GroupList) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? groupList = freezed,
+    Object? groupList = null,
   }) {
     return _then(_value.copyWith(
-      groupList: groupList == freezed
+      groupList: null == groupList
           ? _value.groupList
           : groupList // ignore: cast_nullable_to_non_nullable
               as List<String>,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$GroupListCopyWith<$Res> implements $GroupListCopyWith<$Res> {
-  factory _$GroupListCopyWith(
-          _GroupList value, $Res Function(_GroupList) then) =
-      __$GroupListCopyWithImpl<$Res>;
-
+abstract class _$$_GroupListCopyWith<$Res> implements $GroupListCopyWith<$Res> {
+  factory _$$_GroupListCopyWith(
+          _$_GroupList value, $Res Function(_$_GroupList) then) =
+      __$$_GroupListCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'groupList', required: true, disallowNullValue: true)
           List<String> groupList});
 }
 
 /// @nodoc
-class __$GroupListCopyWithImpl<$Res> extends _$GroupListCopyWithImpl<$Res>
-    implements _$GroupListCopyWith<$Res> {
-  __$GroupListCopyWithImpl(_GroupList _value, $Res Function(_GroupList) _then)
-      : super(_value, (v) => _then(v as _GroupList));
+class __$$_GroupListCopyWithImpl<$Res>
+    extends _$GroupListCopyWithImpl<$Res, _$_GroupList>
+    implements _$$_GroupListCopyWith<$Res> {
+  __$$_GroupListCopyWithImpl(
+      _$_GroupList _value, $Res Function(_$_GroupList) _then)
+      : super(_value, _then);
 
-  @override
-  _GroupList get _value => super._value as _GroupList;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? groupList = freezed,
+    Object? groupList = null,
   }) {
-    return _then(_GroupList(
-      groupList: groupList == freezed
-          ? _value.groupList
+    return _then(_$_GroupList(
+      groupList: null == groupList
+          ? _value._groupList
           : groupList // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ));
@@ -107,9 +108,7 @@ class _$_GroupList implements _GroupList {
   factory _$_GroupList.fromJson(Map<String, dynamic> json) =>
       _$$_GroupListFromJson(json);
 
-  @JsonKey(name: 'groupList', required: true, disallowNullValue: true)
   final List<String> _groupList;
-
   @override
   @JsonKey(name: 'groupList', required: true, disallowNullValue: true)
   List<String> get groupList {
@@ -126,23 +125,27 @@ class _$_GroupList implements _GroupList {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _GroupList &&
-            const DeepCollectionEquality().equals(other.groupList, groupList));
+            other is _$_GroupList &&
+            const DeepCollectionEquality()
+                .equals(other._groupList, _groupList));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(groupList));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_groupList));
 
   @JsonKey(ignore: true)
   @override
-  _$GroupListCopyWith<_GroupList> get copyWith =>
-      __$GroupListCopyWithImpl<_GroupList>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_GroupListCopyWith<_$_GroupList> get copyWith =>
+      __$$_GroupListCopyWithImpl<_$_GroupList>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GroupListToJson(this);
+    return _$$_GroupListToJson(
+      this,
+    );
   }
 }
 
@@ -156,10 +159,9 @@ abstract class _GroupList implements GroupList {
 
   @override
   @JsonKey(name: 'groupList', required: true, disallowNullValue: true)
-  List<String> get groupList => throw _privateConstructorUsedError;
-
+  List<String> get groupList;
   @override
   @JsonKey(ignore: true)
-  _$GroupListCopyWith<_GroupList> get copyWith =>
+  _$$_GroupListCopyWith<_$_GroupList> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,14 +1,32 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:provider/provider.dart';
+import 'package:zoom_pinch_overlay/zoom_pinch_overlay.dart';
 
 import '/models/announcement_model.dart';
 import '/models/document_model.dart';
 import '/screens/view_document/view_document_logic.dart';
 import '/utils/utils.dart';
 import '../../utils/firebase_auth.dart';
+
+class AnnouncementImage extends StatelessWidget {
+  const AnnouncementImage({
+    Key? key,
+    required this.imageUrl,
+  }) : super(key: key);
+
+  final String imageUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return ZoomOverlay(
+      child: CachedNetworkImage(imageUrl: imageUrl),
+    );
+  }
+}
 
 class AnnouncementCard extends StatelessWidget {
   final AnnouncementModel announcement;
@@ -35,7 +53,7 @@ class AnnouncementCard extends StatelessWidget {
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
-                  child: CachedNetworkImage(imageUrl: announcement.photoUrl!),
+                  child: AnnouncementImage(imageUrl: announcement.photoUrl!),
                 ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -95,7 +113,7 @@ class AnnouncementCard extends StatelessWidget {
     TextEditingController contentController = TextEditingController();
 
     if (context.read<FirebaseAppAuth>().accountInfo.level ==
-        AccessLevel.admin) {
+        AccountType.admin) {
       titleController.text = announcement.title;
       contentController.text = announcement.content;
 
@@ -220,18 +238,26 @@ class AnnouncementCard extends StatelessWidget {
   void deleteAnnouncement(BuildContext context) {
     CollectionReference alerts =
         FirebaseFirestore.instance.collection(collectionPath());
+
+    if (announcement.photoUrl != null) {
+      FirebaseStorage storage = FirebaseStorage.instance;
+      storage.ref('Announcements/${announcement.docId}').delete();
+    }
+
     alerts.doc(announcement.docId).delete();
     Navigator.pop(context);
   }
 
   String collectionPath() {
     switch (announcement.accessLevel) {
-      case AccessLevel.employee:
-        return 'announcements_employee';
-      case AccessLevel.teacher:
+      case AccountType.parent:
+        return 'announcements_parents';
+      case AccountType.teacher:
         return 'announcements_teachers';
-      case AccessLevel.entrant:
-        return 'announcements_all';
+      case AccountType.student:
+        return 'announcements_students';
+      case AccountType.admin:
+        return 'announcements_admins';
       default:
         return 'announcements_all';
     }
