@@ -353,6 +353,72 @@ class ScheduleTime {
     required Map<String, dynamic> lessonShortNames,
     required Map<String, dynamic> lessonFullNames,
   }) {
+    // если пары перечислены через "/", например "матем/физ", то разбиваем
+    // пары и ищем их полные названия
+    if (shortLessonName.contains('/')) {
+      List<String> lessons = shortLessonName.split('/');
+      String visibleName = 'Разделение: ';
+
+      var f = lessons[0].trim();
+      var s = lessons[1].trim();
+      var firstLesson = lessonShortNames.containsValue(f)
+          ? lessonFullNames[lessonShortNames.keys
+              .firstWhere((k) => lessonShortNames[k] == f)]
+          : f;
+
+      var secondLesson = lessonShortNames.containsValue(s)
+          ? lessonFullNames[lessonShortNames.keys
+              .firstWhere((k) => lessonShortNames[k] == s)]
+          : s;
+
+      visibleName += ('\n① $firstLesson\n② $secondLesson\n\n');
+
+      return visibleName;
+    }
+
+    // если пара для одной подгруппы, то убираем "(1)", ищем полное название
+    // пары и отображаем текст по новому
+    if (shortLessonName.contains('(1)') || shortLessonName.contains('(2)')) {
+      var trimmedShortName = shortLessonName.substring(
+        0,
+        shortLessonName.length - 3,
+      );
+
+      var trimmedNumber = shortLessonName.substring(
+        shortLessonName.length - 2,
+        shortLessonName.length - 1,
+      );
+
+      var textGroupNumber = trimmedNumber == '1'
+          ? 'Для первой подгруппы'
+          : 'Для второй подгруппы';
+
+      trimmedNumber = trimmedNumber == '1' ? '①' : '②';
+
+
+      var trimmedFullName = lessonShortNames.containsValue(trimmedShortName)
+          ? lessonFullNames[lessonShortNames.keys
+              .firstWhere((k) => lessonShortNames[k] == trimmedShortName)]
+          : trimmedShortName;
+
+      return '$textGroupNumber:\n$trimmedNumber $trimmedFullName';
+    }
+
+    // если пара для обеих подгрупп "пм.Х.Х(1.2)"
+    if (shortLessonName.contains('(1,2)')) {
+      var trimmedShortName = shortLessonName.substring(
+        0,
+        shortLessonName.length - 5,
+      );
+
+      var trimmedFullName = lessonShortNames.containsValue(trimmedShortName)
+          ? lessonFullNames[lessonShortNames.keys
+          .firstWhere((k) => lessonShortNames[k] == trimmedShortName)]
+          : trimmedShortName;
+
+      return 'Для обеих подгрупп:\n① ② $trimmedFullName';
+    }
+
     return lessonShortNames.containsValue(shortLessonName)
         ? lessonFullNames[lessonShortNames.keys
             .firstWhere((k) => lessonShortNames[k] == shortLessonName)]
