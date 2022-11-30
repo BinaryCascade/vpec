@@ -23,8 +23,8 @@ class ScheduleLogic extends ChangeNotifier {
   /// Indicates whether schedule is being shown for today or not
   bool showingForToday = true;
 
-  /// String of the format "dd-MM-yyyy", which shows the currently selected date
-  String showingData = DateFormat('dd-MM-yyyy').format(DateTime.now());
+  /// String of the format "d-MM-yyyy", which shows the currently selected date
+  String showingData = DateFormat('d-MM-yyyy').format(DateTime.now());
 
   /// Indicates active lesson
   int activeLessonIndex = 0;
@@ -78,7 +78,7 @@ class ScheduleLogic extends ChangeNotifier {
   /// Returns [true] if parse was successful
   Future<bool> loadSchedule() async {
     DateTime date = DateTime.now();
-    DateFormat formatter = DateFormat('dd-MM-yyyy');
+    DateFormat formatter = DateFormat('d-MM-yyyy');
 
     int plusDays = 0;
     int today = date.weekday;
@@ -122,7 +122,7 @@ class ScheduleLogic extends ChangeNotifier {
     );
 
     if (picked != null) {
-      DateFormat formatter = DateFormat('dd-MM-yyyy');
+      DateFormat formatter = DateFormat('d-MM-yyyy');
       showingData = formatter.format(picked);
       await _getActualData(_makeUrl(showingData));
     }
