@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:r_dotted_line_border/r_dotted_line_border.dart';
 
+import '../../utils/holiday_helper.dart';
 import '../../utils/theme_helper.dart';
+import '../../widgets/snow_widget.dart';
 import 'schedule_logic.dart';
 import 'schedule_ui.dart';
 
@@ -46,85 +48,99 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
         return Scaffold(
           body: SafeArea(
             top: false,
-            child: ListView(
-              padding: const EdgeInsets.only(
-                top: 60,
-                left: 30,
-                right: 30,
-              ),
+            child: Stack(
               children: [
-                const Text(
-                  'Расписание на',
-                  style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18.0,
-                    letterSpacing: 0.15,
+                if (HolidayHelper.isNewYear)
+                  SnowWidget(
+                    isRunning: true,
+                    totalSnow: 20,
+                    speed: 0.4,
+                    snowColor:
+                    ThemeHelper.isDarkMode ? Colors.white : const Color(0xFFD6D6D6),
                   ),
-                ),
-                // SizedBox(height: 6),
-                InkWell(
-                  onTap: () async => await logic.chooseData(context),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: FittedBox(
-                          alignment: Alignment.centerLeft,
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            logic.printCurrentDate,
-                            style: const TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 36.0,
-                              letterSpacing: 0.15,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 5),
-                      const FloatingActionButton(
-                        mini: true,
-                        onPressed: null,
-                        child: Icon(Icons.edit_calendar_outlined),
-                      ),
-                    ],
+                ListView(
+                  padding: const EdgeInsets.only(
+                    top: 60,
+                    left: 30,
+                    right: 30,
                   ),
-                ),
-                const SizedBox(height: 15),
-                logic.fullSchedule == null
-                    ? logic.hasError
-                        ? ScheduleErrorLoadingUI(errorText: logic.errorText)
-                        : Center(
-                            child: LinearProgressIndicator(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                            ),
-                          )
-                    : Column(
+                  children: [
+                    const Text(
+                      'Расписание на',
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18.0,
+                        letterSpacing: 0.15,
+                      ),
+                    ),
+                    // SizedBox(height: 6),
+                    InkWell(
+                      onTap: () async => await logic.chooseData(context),
+                      child: Row(
                         children: [
-                          SchedulePanel(fullSchedule: logic.fullSchedule!),
-                          // Отступ после расписания, чтобы FAB не перекрывал контент
-                          // Пунктир вместо отступа, чтобы не создавать вид обрыва
-                          Container(
-                            height: 130,
-                            decoration: BoxDecoration(
-                              border: RDottedLineBorder(
-                                // Меняй этой значение, чтобы дэши попали в расстояние нормально
-                                dottedLength: 3.5,
-                                dottedSpace: 3,
-                                left: BorderSide(
-                                  width: 3,
-                                  color: ThemeHelper.isDarkMode
-                                      ? Colors.white38
-                                      : Colors.black38,
+                          Expanded(
+                            child: FittedBox(
+                              alignment: Alignment.centerLeft,
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                logic.printCurrentDate,
+                                style: const TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 36.0,
+                                  letterSpacing: 0.15,
                                 ),
                               ),
                             ),
                           ),
+                          const SizedBox(width: 5),
+                          const FloatingActionButton(
+                            mini: true,
+                            onPressed: null,
+                            child: Icon(Icons.edit_calendar_outlined),
+                          ),
                         ],
                       ),
+                    ),
+                    const SizedBox(height: 15),
+                    logic.fullSchedule == null
+                        ? logic.hasError
+                            ? ScheduleErrorLoadingUI(errorText: logic.errorText)
+                            : Center(
+                                child: LinearProgressIndicator(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
+                                  backgroundColor:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                ),
+                              )
+                        : Column(
+                            children: [
+                              SchedulePanel(fullSchedule: logic.fullSchedule!),
+                              // Отступ после расписания, чтобы FAB не перекрывал контент
+                              // Пунктир вместо отступа, чтобы не создавать вид обрыва
+                              Container(
+                                height: 130,
+                                decoration: BoxDecoration(
+                                  border: RDottedLineBorder(
+                                    // Меняй этой значение, чтобы дэши попали в расстояние нормально
+                                    dottedLength: 3.5,
+                                    dottedSpace: 3,
+                                    left: BorderSide(
+                                      width: 3,
+                                      color: ThemeHelper.isDarkMode
+                                          ? Colors.white38
+                                          : Colors.black38,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                  ],
+                ),
               ],
             ),
           ),

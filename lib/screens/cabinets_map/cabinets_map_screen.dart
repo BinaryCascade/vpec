@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vpec/utils/holiday_helper.dart';
+import 'package:vpec/widgets/snow_widget.dart';
 
 import '/utils/theme_helper.dart';
 import '/widgets/loading_indicator.dart';
@@ -37,25 +39,37 @@ class _CabinetsMapScreenUIState extends State<CabinetsMapScreenUI> {
     ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
 
     return Scaffold(
-      body: Consumer<CabinetsMapLogic>(
-        builder: (context, storage, child) {
-          return storage.nowImageUrl.isEmpty
-              ? const LoadingIndicator()
-              : Padding(
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).padding.top * 1.5,
-                  ),
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      CabinetsMap(
-                        onScaleUpdated: (scale) => storage.scaleListener(scale),
+      body: Stack(
+        children: [
+          if (HolidayHelper.isNewYear)
+            SnowWidget(
+              isRunning: true,
+              totalSnow: 20,
+              speed: 0.4,
+              snowColor:
+              ThemeHelper.isDarkMode ? Colors.white : const Color(0xFFD6D6D6),
+            ),
+          Consumer<CabinetsMapLogic>(
+            builder: (context, storage, child) {
+              return storage.nowImageUrl.isEmpty
+                  ? const LoadingIndicator()
+                  : Padding(
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).padding.top * 1.5,
                       ),
-                      FloorChips(),
-                    ],
-                  ),
-                );
-        },
+                      child: Stack(
+                        alignment: Alignment.topCenter,
+                        children: [
+                          CabinetsMap(
+                            onScaleUpdated: (scale) => storage.scaleListener(scale),
+                          ),
+                          FloorChips(),
+                        ],
+                      ),
+                    );
+            },
+          ),
+        ],
       ),
     );
   }
