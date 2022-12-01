@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../widgets/snackbars.dart';
 import '/screens/settings/settings_logic.dart';
 import '/utils/hive_helper.dart';
 import '../../models/document_model.dart';
@@ -14,12 +13,6 @@ class LoginLogic extends ChangeNotifier {
     if (context.read<FirebaseAppAuth>().accountInfo.level !=
         AccountType.entrant) {
       continueToApp(context);
-    } else {
-      showSnackBar(
-        context,
-        text: 'Неправильно введены данные, пожалуйста проверьте правильность '
-            'ввода данных или воспользуйтесь быстрым входом через QR',
-      );
     }
   }
 
