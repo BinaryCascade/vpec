@@ -36,8 +36,9 @@ Future<void> shareFile(String? url) async {
         await File('${tempDir.path}/${url.split('/').last}').create();
     await file.writeAsBytes(bytes);
 
-    if (response.statusCode != 404) {
-      Share.shareFiles([file.path]);
+    if (response.statusCode == 200) {
+      await Share.shareXFiles([XFile(file.path)]);
+      await file.delete();
     } else {
       await file.delete();
     }
