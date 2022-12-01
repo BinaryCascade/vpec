@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 
 import '/utils/theme_helper.dart';
@@ -12,16 +13,20 @@ class LoginScreen extends StatelessWidget {
 
     List<Widget> children = [
       Expanded(
+        flex: 4,
         child: Image(
           width: 0.75 * MediaQuery.of(context).size.shortestSide,
           height: 0.75 * MediaQuery.of(context).size.shortestSide,
-          image: AssetImage(ThemeHelper.isDarkMode
-              ? 'assets/splash/dark.png'
-              : 'assets/splash/light.png'),
+          image: AssetImage(
+            ThemeHelper.isDarkMode
+                ? 'assets/splash/dark.png'
+                : 'assets/splash/light.png',
+          ),
         ),
       ),
       const SizedBox(width: 20, height: 20),
       Expanded(
+        flex: 3,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -73,6 +78,19 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.settings_outlined,
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
+                  tooltip: 'Открыть системные настройки',
+                  onPressed: () => AppSettings.openAppSettings(),
+                ),
+              ),
             ),
           ],
         ),
