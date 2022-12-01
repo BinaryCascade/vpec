@@ -364,7 +364,7 @@ class ScheduleTime {
               .firstWhere((k) => lessonShortNames[k] == s)]
           : s;
 
-      visibleName += ('\n① $firstLesson\n② $secondLesson\n\n');
+      visibleName += ('\n① $firstLesson\n② $secondLesson');
 
       return visibleName;
     }
