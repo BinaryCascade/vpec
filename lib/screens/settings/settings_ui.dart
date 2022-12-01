@@ -117,9 +117,7 @@ class AppThemeListTile extends StatelessWidget {
         color: Theme.of(context).colorScheme.secondary,
       ),
       onTap: () async {
-        await SettingsLogic()
-            .chooseTheme(context: context, isAppThemeSetting: true);
-        // ThemeHelper().colorStatusBar(context: context, haveAppbar: true);
+        await SettingsLogic.chooseTheme(context: context);
       },
     );
   }
@@ -229,12 +227,11 @@ class AccountLogoutUI extends StatelessWidget {
 }
 
 class EditNameUI extends StatelessWidget {
-  const EditNameUI({
+  EditNameUI({
     Key? key,
-    required this.nameController,
   }) : super(key: key);
 
-  final TextEditingController nameController;
+  final TextEditingController nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -258,7 +255,7 @@ class EditNameUI extends StatelessWidget {
               onPressed: () {
                 HiveHelper.saveValue(
                   key: 'username',
-                  value: nameController.value.text,
+                  value: nameController.value.text.trim(),
                 );
                 Navigator.pop(context);
               },

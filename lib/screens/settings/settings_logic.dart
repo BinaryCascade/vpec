@@ -69,12 +69,10 @@ class SettingsLogic extends ChangeNotifier {
   // show roundedModalSheet() for editing user's name
   // (name used for announcements post)
   static void changeName(BuildContext context) {
-    TextEditingController nameController = TextEditingController();
-
     showRoundedModalSheet(
       title: 'Изменить имя',
       context: context,
-      child: EditNameUI(nameController: nameController),
+      child: EditNameUI(),
     );
   }
 
@@ -95,30 +93,27 @@ class SettingsLogic extends ChangeNotifier {
     }
   }
 
-  Future<void> chooseTheme({
+  static Future<void> chooseTheme({
     required BuildContext context,
-    required bool isAppThemeSetting,
   }) async {
-    String hiveKey = isAppThemeSetting ? 'theme' : 'pdfTheme';
-
     await showRoundedModalSheet(
       context: context,
       title: 'Выберите тему',
       child: Consumer<ThemeNotifier>(
         builder: (BuildContext context, value, Widget? child) {
           return ThemeChooserUI(
-            hiveKey: hiveKey,
+            hiveKey: 'theme',
             lightThemeSelected: () {
-              HiveHelper.saveValue(key: hiveKey, value: 'Светлая тема');
-              if (isAppThemeSetting) value.changeTheme(ThemeMode.light);
+              HiveHelper.saveValue(key: 'theme', value: 'Светлая тема');
+              value.changeTheme(ThemeMode.light);
             },
             darkThemeSelected: () {
-              HiveHelper.saveValue(key: hiveKey, value: 'Тёмная тема');
-              if (isAppThemeSetting) value.changeTheme(ThemeMode.dark);
+              HiveHelper.saveValue(key: 'theme', value: 'Тёмная тема');
+              value.changeTheme(ThemeMode.dark);
             },
             defaultThemeSelected: () {
-              HiveHelper.removeValue(hiveKey);
-              if (isAppThemeSetting) value.changeTheme(ThemeMode.system);
+              HiveHelper.removeValue('theme');
+              value.changeTheme(ThemeMode.system);
             },
             alwaysLightThemeDocumentChanged: (value) {
               HiveHelper.saveValue(
