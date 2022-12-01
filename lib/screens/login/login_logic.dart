@@ -43,7 +43,7 @@ class LoginLogic extends ChangeNotifier {
 
   /// Return URL for document, which need to display for entrant
   static Future<String> getEntrantUrl() async {
-    DocumentSnapshot entrant = await FirebaseFirestore.instance
+    final DocumentSnapshot entrant = await FirebaseFirestore.instance
         .collection('entrant')
         .doc('main')
         .get();
@@ -51,8 +51,8 @@ class LoginLogic extends ChangeNotifier {
     return entrant['url'];
   }
 
-  static Future<void> openEntrantScreen(BuildContext context) async {
-    String docURL = await LoginLogic.getEntrantUrl();
+  static Future<void> openEntrantScreen(final BuildContext context) async {
+    final String docURL = await getEntrantUrl();
     Navigator.pushNamed(
       context,
       '/view_document',
