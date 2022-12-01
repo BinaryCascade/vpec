@@ -68,8 +68,8 @@ class SettingsLogic extends ChangeNotifier {
 
   // show roundedModalSheet() for editing user's name
   // (name used for announcements post)
-  static void changeName(BuildContext context) {
-    showRoundedModalSheet(
+  static Future<void> changeName(BuildContext context) async {
+    await showRoundedModalSheet(
       title: 'Изменить имя',
       context: context,
       child: EditNameUI(),

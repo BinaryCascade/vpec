@@ -57,7 +57,12 @@ class EditorLogic extends ChangeNotifier {
       if (value) publishCategoryWasSelected = true;
     });
 
-    publishButtonActive = publishCategoryWasSelected && titleAndBodyWasEntered;
+    bool isUsernameWasAdded = HiveHelper.getValue('username') != null &&
+        HiveHelper.getValue('username') != '';
+
+    publishButtonActive = publishCategoryWasSelected &&
+        titleAndBodyWasEntered &&
+        isUsernameWasAdded;
     notifyListeners();
   }
 
@@ -90,7 +95,9 @@ class EditorLogic extends ChangeNotifier {
   ///
   /// Can throw an Exception, if unknown type was received.
   Future<void> _uploadArticle(
-      String publishFor, AnnouncementModel article) async {
+    String publishFor,
+    AnnouncementModel article,
+  ) async {
     String collectionPath() {
       switch (publishFor) {
         case 'parents':

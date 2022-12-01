@@ -167,7 +167,10 @@ class AuthorName extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: GestureDetector(
-        onTap: () => SettingsLogic.changeName(context),
+        onTap: () async {
+          await SettingsLogic.changeName(context);
+          context.read<EditorLogic>().checkAndUpdatePublishButtonActiveStatus();
+        },
         child: Padding(
           padding: const EdgeInsets.only(right: 15.0, bottom: 13),
           child: Wrap(
@@ -178,8 +181,17 @@ class AuthorName extends StatelessWidget {
                 valueListenable:
                     Hive.box('settings').listenable(keys: ['username']),
                 builder: (context, Box box, child) {
+                  String userName = box.get(
+                    'username',
+                    defaultValue: 'Имя не указано',
+                  );
+
+                  if (userName.isEmpty) {
+                    userName = 'Нажмите, чтобы изменить имя';
+                  }
+
                   return Text(
-                    box.get('username', defaultValue: 'Имя не указано'),
+                    userName,
                     style: Theme.of(context).textTheme.subtitle1,
                   );
                 },
