@@ -25,7 +25,10 @@ class _EntrantButtonState extends State<EntrantButton> {
                 delayedAppears: false,
               ),
             )
-          : const Text('Я абитуриент'),
+          : const Text(
+              'Я абитуриент',
+              style: TextStyle(fontSize: 16),
+            ),
       onPressed: () async {
         if (_isLoading) {
           // do nothing if already loading
