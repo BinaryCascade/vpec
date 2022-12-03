@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '/utils/theme_helper.dart';
 import 'login_logic.dart';
+import 'login_ui.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -57,14 +58,10 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () async => await LoginLogic.openLogin(context),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 42.0,
                   width: double.infinity,
-                  child: OutlinedButton(
-                    child: const Text('Я абитуриент'),
-                    onPressed: () async =>
-                        await LoginLogic.openEntrantScreen(context),
-                  ),
+                  child: EntrantButton(),
                 ),
                 GestureDetector(
                   onTap: () => LoginLogic.showAccountHelperDialog(context),
