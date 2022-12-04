@@ -3,6 +3,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '/screens/scanner/scanner_screen.dart';
 import '/screens/about_app/about_app_screen.dart';
 import '/screens/bottom_bar/bottom_bar_logic.dart';
 import '/screens/bottom_bar/bottom_bar_screen.dart';
@@ -14,8 +15,8 @@ import '/screens/teachers/teachers_logic.dart';
 import '/screens/teachers/teachers_screen.dart';
 import '/screens/view_document/view_document_screen.dart';
 import '/splash.dart';
-import '../../screens/admins/admins_screen.dart';
-import '../../screens/lessons_schedule/lessons_schedule_screen.dart';
+import '/screens/admins/admins_screen.dart';
+import '/screens/lessons_schedule/lessons_schedule_screen.dart';
 import 'routes.dart';
 
 Handler homeScreenHandler = Handler(
@@ -106,3 +107,8 @@ Handler fullScheduleScreenHandler = Handler(
   handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
       const FullLessonsScheduleScreen(),
 );
+
+Handler scannerScreenHandler =
+    Handler(handlerFunc: (context, Map<String, List<String>> params) {
+  return const ScannerScreen();
+});

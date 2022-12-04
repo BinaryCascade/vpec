@@ -70,6 +70,7 @@ dependencies:
   breakpoint: ^1.2.0
   animations: ^2.0.7
   app_settings: ^4.1.8
+  mobile_scanner: ^2.1.0 # QR scanner
 
 flutter_native_splash:
   color: "#E8E8E8"

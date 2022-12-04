@@ -65,7 +65,8 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onPressed: () async => await LoginLogic.openLogin(context),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/loginByScan'),
                   ),
                 ),
                 const SizedBox(
