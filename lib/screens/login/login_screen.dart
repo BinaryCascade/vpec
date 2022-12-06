@@ -1,5 +1,5 @@
-import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '/utils/theme_helper.dart';
 import 'login_logic.dart';
@@ -65,8 +65,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onPressed: () =>
-                        Navigator.pushNamed(context, '/loginByScan'),
+                    onPressed: () => LoginLogic.openQrScanner(context),
                   ),
                 ),
                 const SizedBox(
@@ -100,7 +99,7 @@ class LoginScreen extends StatelessWidget {
                         : Colors.black38,
                   ),
                   tooltip: 'Открыть системные настройки',
-                  onPressed: () => AppSettings.openAppSettings(),
+                  onPressed: () => openAppSettings(),
                 ),
               ),
             ),
