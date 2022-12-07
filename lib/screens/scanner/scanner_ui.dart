@@ -28,13 +28,20 @@ class ManualLoginPrompt extends StatelessWidget {
   }
 }
 
-class ScannerWidget extends StatelessWidget {
+class ScannerWidget extends StatefulWidget {
   const ScannerWidget({
     super.key,
   });
 
   // formatted as https://example.com/
   static const String domainAddress = 'https://energocollege.web.app/';
+
+  @override
+  State<ScannerWidget> createState() => _ScannerWidgetState();
+}
+
+class _ScannerWidgetState extends State<ScannerWidget> {
+  bool didFindQr = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +51,16 @@ class ScannerWidget extends StatelessWidget {
         children: [
           MobileScanner(
             onDetect: (barcode, _) {
+              if (didFindQr) return;
+
               if (barcode.type == BarcodeType.url) {
                 String url = barcode.url!.url!;
-                if (url.startsWith(domainAddress)) {
+                if (url.startsWith(ScannerWidget.domainAddress)) {
+                  didFindQr = true;
+
                   Navigator.pushNamed(
                     context,
-                    url.replaceFirst(domainAddress, '/'),
+                    url.replaceFirst(ScannerWidget.domainAddress, '/'),
                   );
                 }
               }
