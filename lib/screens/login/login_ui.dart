@@ -46,3 +46,51 @@ class _EntrantButtonState extends State<EntrantButton> {
     );
   }
 }
+
+class CameraPermissionRequestUI extends StatelessWidget {
+  const CameraPermissionRequestUI({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          'Для сканирования QR кода входа необходим доступ к камере. '
+          'Вы можете предоставить доступ, или ввести логин и пароль вручную:',
+          style: Theme.of(context).textTheme.headline3,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Column(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 42,
+                child: ElevatedButton(
+                  onPressed: () => LoginLogic.requestPermissionForScanner(context),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.camera_alt_outlined),
+                      SizedBox(width: 8),
+                      Text('Предоставить доступ'),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              SizedBox(
+                width: double.infinity,
+                height: 42,
+                child: OutlinedButton(
+                  onPressed: () => LoginLogic.openLogin(context),
+                  child: const Text('Ввести данные вручную'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
