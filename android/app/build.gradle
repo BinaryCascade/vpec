@@ -42,7 +42,7 @@ android {
 
     defaultConfig {
         applicationId "tem.apps.vpec"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

@@ -1,8 +1,9 @@
-import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '/utils/theme_helper.dart';
 import 'login_logic.dart';
+import 'login_ui.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -38,9 +39,9 @@ class LoginScreen extends StatelessWidget {
                   .copyWith(fontSize: 24.0),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15),
+              padding: const EdgeInsets.only(top: 10, bottom: 25),
               child: Text(
-                'Чтобы продолжить, войдите в аккаунт',
+                'Чтобы продолжить, выберите один из вариантов',
                 style: Theme.of(context).textTheme.subtitle1!,
                 textAlign: TextAlign.end,
               ),
@@ -50,29 +51,37 @@ class LoginScreen extends StatelessWidget {
               runSpacing: 10,
               children: [
                 SizedBox(
-                  height: 42.0,
+                  height: 54.0,
                   width: double.infinity,
-                  child: OutlinedButton(
-                    child: const Text('Войти в аккаунт'),
-                    onPressed: () async => await LoginLogic.openLogin(context),
+                  child: ElevatedButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.qr_code, size: 28),
+                        SizedBox(width: 8),
+                        Text(
+                          'Войти в аккаунт',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                    onPressed: () => LoginLogic.openQrScanner(context),
                   ),
                 ),
-                SizedBox(
-                  height: 42.0,
+                const SizedBox(
+                  height: 46.0,
                   width: double.infinity,
-                  child: OutlinedButton(
-                    child: const Text('Я абитуриент'),
-                    onPressed: () async =>
-                        await LoginLogic.openEntrantScreen(context),
-                  ),
+                  child: EntrantButton(),
                 ),
                 GestureDetector(
                   onTap: () => LoginLogic.showAccountHelperDialog(context),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Где найти данные?',
-                      style: Theme.of(context).textTheme.subtitle1!,
+                      'Где найти данные для входа?',
+                      style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                            decoration: TextDecoration.underline,
+                          ),
                       textAlign: TextAlign.end,
                     ),
                   ),
@@ -85,10 +94,12 @@ class LoginScreen extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(
                     Icons.settings_outlined,
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: ThemeHelper.isDarkMode
+                        ? const Color(0x61FFFFFF)
+                        : Colors.black38,
                   ),
                   tooltip: 'Открыть системные настройки',
-                  onPressed: () => AppSettings.openAppSettings(),
+                  onPressed: () => openAppSettings(),
                 ),
               ),
             ),

@@ -17,6 +17,15 @@ class AboutAppScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Wrap(
           children: [
+            StyledListTile(
+              icon: Icon(
+                Icons.favorite_border_outlined,
+                color: Theme.of(context).colorScheme.error,
+                size: 32,
+              ),
+              title: 'Разработано студентами колледжа',
+              subtitle: 'в рамках дипломного проекта',
+            ),
             const AboutDeveloperCard(
               nickname: 'Tembeon',
               name: 'Рафиков Артур',

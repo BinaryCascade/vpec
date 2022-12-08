@@ -1,6 +1,6 @@
 # ВЭК
 
-![основной функционал приложения](gh_assets/overview.png)
+![основной функционал приложения](.github/assets/overview.png)
 
 Приложение для студентов и сотрудников [Волгоградского энергетического колледжа](https://energocollege.ru/).
 
@@ -19,9 +19,9 @@
 
 ## Скриншоты
 
-### ![Индивидуальное расписание](gh_assets/schedule.png)
+### ![Индивидуальное расписание](.github/assets/schedule.png)
 
-### ![Карта колледжа](gh_assets/college_map.png)
+### ![Карта колледжа](.github/assets/college_map.png)
 
 
 
