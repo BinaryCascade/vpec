@@ -165,7 +165,7 @@ ThemeData themeData() {
       subtitle1:
           TextStyle(fontSize: 15, color: mediumEmphasis, fontWeight: medium),
       bodyText1:
-          TextStyle(color: highEmphasis, fontSize: 17, fontWeight: regular),
+          TextStyle(color: highEmphasis, fontSize: 16, fontWeight: regular),
       headline3: TextStyle(
         //News Card Title
         color: highEmphasis,
@@ -355,7 +355,7 @@ ThemeData darkThemeData() {
       subtitle1:
           TextStyle(fontSize: 15, color: mediumEmphasis, fontWeight: medium),
       bodyText1:
-          TextStyle(color: highEmphasis, fontSize: 17, fontWeight: regular),
+          TextStyle(color: highEmphasis, fontSize: 16, fontWeight: regular),
       headline3: TextStyle(
         //News Card Title
         color: highEmphasis,
