@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '/utils/theme_helper.dart';
 import '/widgets/styled_widgets.dart';
+import '../../theme.dart';
 import '../../utils/firebase_auth.dart';
 import 'settings_logic.dart';
 import 'settings_ui.dart';
@@ -44,7 +45,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             icon: Icon(
               Icons.info_outlined,
               size: 32,
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).extension<ColorPalette>()!.accentColor,
             ),
             title: 'О приложении',
             subtitle: 'Просмотреть техническую информацию',

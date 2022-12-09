@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:r_dotted_line_border/r_dotted_line_border.dart';
 
+import '../../theme.dart';
 import '../../utils/holiday_helper.dart';
 import '../../utils/theme_helper.dart';
 import '../../widgets/snow_widget.dart';
@@ -55,8 +56,9 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                     isRunning: true,
                     totalSnow: 20,
                     speed: 0.4,
-                    snowColor:
-                    ThemeHelper.isDarkMode ? Colors.white : const Color(0xFFD6D6D6),
+                    snowColor: ThemeHelper.isDarkMode
+                        ? Colors.white
+                        : const Color(0xFFD6D6D6),
                   ),
                 ListView(
                   padding: const EdgeInsets.only(
@@ -112,8 +114,9 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                                   color: Theme.of(context)
                                       .colorScheme
                                       .onBackground,
-                                  backgroundColor:
-                                      Theme.of(context).scaffoldBackgroundColor,
+                                  backgroundColor: Theme.of(context)
+                                      .extension<ColorPalette>()!
+                                      .backgroundSurface,
                                 ),
                               )
                         : Column(
@@ -130,9 +133,9 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                                     dottedSpace: 3,
                                     left: BorderSide(
                                       width: 3,
-                                      color: ThemeHelper.isDarkMode
-                                          ? Colors.white38
-                                          : Colors.black38,
+                                      color: Theme.of(context)
+                                          .extension<ColorPalette>()!
+                                          .lowEmphasis,
                                     ),
                                   ),
                                 ),

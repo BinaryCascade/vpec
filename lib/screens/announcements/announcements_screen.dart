@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
+import '../../theme.dart';
 import '../../utils/firebase_auth.dart';
 import '../../utils/theme_helper.dart';
 import 'announcements_ui.dart';
@@ -69,9 +70,11 @@ class AnimatedFAB extends StatelessWidget {
       closedShape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(40.0)),
       ),
-      closedColor: Theme.of(context).scaffoldBackgroundColor,
-      middleColor: Theme.of(context).scaffoldBackgroundColor,
-      openColor: Theme.of(context).scaffoldBackgroundColor,
+      closedColor:
+          Theme.of(context).extension<ColorPalette>()!.backgroundSurface,
+      middleColor:
+          Theme.of(context).extension<ColorPalette>()!.backgroundSurface,
+      openColor: Theme.of(context).extension<ColorPalette>()!.backgroundSurface,
       onClosed: (n) {
         Future.delayed(const Duration(milliseconds: 100)).then((value) =>
             ThemeHelper.colorStatusBar(context: context, haveAppbar: false));

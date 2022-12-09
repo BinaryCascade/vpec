@@ -3,6 +3,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 
+import '../theme.dart';
+
 class ThemeHelper {
   /// return true, if system or user-chosen theme is dark
   static bool get isDarkMode {
@@ -31,12 +33,15 @@ class ThemeHelper {
       SystemUiOverlayStyle(
         statusBarColor: haveAppbar
             ? Colors.transparent
-            : Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
+            : Theme.of(context)
+                .extension<ColorPalette>()!
+                .backgroundSurface
+                .withOpacity(0.7),
         statusBarIconBrightness:
             isDarkMode ? Brightness.light : Brightness.dark,
         systemNavigationBarColor: haveAppbar
-            ? Theme.of(context).scaffoldBackgroundColor
-            : Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+            ? Theme.of(context).extension<ColorPalette>()!.backgroundSurface
+            : Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
         systemNavigationBarIconBrightness:
             isDarkMode ? Brightness.light : Brightness.dark,
       ),

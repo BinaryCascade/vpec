@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '/models/announcement_model.dart';
 import '/utils/icons.dart';
 import '/widgets/loading_indicator.dart';
+import '../../theme.dart';
 import 'announcement_card.dart';
 
 /// ListView with data from Firestore
@@ -108,7 +109,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
     return Material(
       elevation: 8.0,
       child: Container(
-        color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+        color: Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
         child: TabBar(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           isScrollable: true,

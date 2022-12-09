@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../../../theme.dart';
 import '../../../utils/theme_helper.dart';
 import '../../settings/settings_logic.dart';
 import 'editor_logic.dart';
@@ -70,7 +71,9 @@ class UploadAttachmentButton extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.attachment_outlined,
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: Theme.of(context)
+                                .extension<ColorPalette>()!
+                                .highEmphasis,
                           ),
                           const SizedBox(width: 7),
                           Text(
@@ -198,7 +201,8 @@ class AuthorName extends StatelessWidget {
               ),
               Icon(
                 Icons.edit_outlined,
-                color: Theme.of(context).colorScheme.onSurface,
+                color:
+                    Theme.of(context).extension<ColorPalette>()!.highEmphasis,
               ),
             ],
           ),
@@ -217,7 +221,7 @@ class EditorUI extends StatelessWidget {
       builder: (context, logic, _) {
         return DecoratedBox(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
+            color: Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
             borderRadius: BorderRadius.circular(20),
           ),
           child: SizedBox(
@@ -255,8 +259,11 @@ class VisibilityPicker extends StatelessWidget {
             ),
             const SizedBox(height: 15),
             CheckboxListTile(
-              checkColor: Theme.of(context).scaffoldBackgroundColor,
-              activeColor: Theme.of(context).colorScheme.secondary,
+              checkColor: Theme.of(context)
+                  .extension<ColorPalette>()!
+                  .backgroundSurface,
+              activeColor:
+                  Theme.of(context).extension<ColorPalette>()!.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -273,8 +280,11 @@ class VisibilityPicker extends StatelessWidget {
               },
             ),
             CheckboxListTile(
-              checkColor: Theme.of(context).scaffoldBackgroundColor,
-              activeColor: Theme.of(context).colorScheme.secondary,
+              checkColor: Theme.of(context)
+                  .extension<ColorPalette>()!
+                  .backgroundSurface,
+              activeColor:
+                  Theme.of(context).extension<ColorPalette>()!.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -291,8 +301,11 @@ class VisibilityPicker extends StatelessWidget {
               },
             ),
             CheckboxListTile(
-              checkColor: Theme.of(context).scaffoldBackgroundColor,
-              activeColor: Theme.of(context).colorScheme.secondary,
+              checkColor: Theme.of(context)
+                  .extension<ColorPalette>()!
+                  .backgroundSurface,
+              activeColor:
+                  Theme.of(context).extension<ColorPalette>()!.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -309,8 +322,11 @@ class VisibilityPicker extends StatelessWidget {
               },
             ),
             CheckboxListTile(
-              checkColor: Theme.of(context).scaffoldBackgroundColor,
-              activeColor: Theme.of(context).colorScheme.secondary,
+              checkColor: Theme.of(context)
+                  .extension<ColorPalette>()!
+                  .backgroundSurface,
+              activeColor:
+                  Theme.of(context).extension<ColorPalette>()!.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),

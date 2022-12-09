@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '/models/teacher_model.dart';
 import '/widgets/loading_indicator.dart';
+import '../../theme.dart';
 import 'teacher_card/teacher_card.dart';
 import 'teachers_logic.dart';
 
@@ -25,10 +26,8 @@ class SearchBar extends StatelessWidget {
         enabledBorder: InputBorder.none,
         focusedBorder: InputBorder.none,
         contentPadding: EdgeInsets.zero,
-        hintStyle: Theme.of(context)
-            .textTheme
-            .headline3!
-            .copyWith(color: Theme.of(context).textTheme.subtitle1!.color),
+        hintStyle: Theme.of(context).textTheme.headline3!.copyWith(
+            color: Theme.of(context).extension<ColorPalette>()!.mediumEmphasis),
       ),
       onChanged: (value) {
         Provider.of<TeachersLogic>(context, listen: false).search(value);
@@ -44,7 +43,7 @@ class FilterChips extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: Theme.of(context).cardColor,
+      color: Theme.of(context).extension<ColorPalette>()!.levelOneSurface,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Padding(
@@ -54,7 +53,9 @@ class FilterChips extends StatelessWidget {
             spacing: 4.0,
             children: [
               ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context)
+                    .extension<ColorPalette>()!
+                    .levelTwoSurface,
                 label: const Text('Фамилия'),
                 labelStyle: TextStyle(
                   fontSize: 14,
@@ -62,10 +63,15 @@ class FilterChips extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: context.watch<TeachersLogic>().currentMode ==
                           SearchMode.familyName
-                      ? Theme.of(context).colorScheme.onSecondary
-                      : Theme.of(context).colorScheme.onBackground,
+                      ? Theme.of(context)
+                          .extension<ColorPalette>()!
+                          .backgroundSurface
+                      : Theme.of(context)
+                          .extension<ColorPalette>()!
+                          .highEmphasis,
                 ),
-                selectedColor: Theme.of(context).colorScheme.secondary,
+                selectedColor:
+                    Theme.of(context).extension<ColorPalette>()!.accentColor,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.familyName,
                 onSelected: (_) =>
@@ -73,7 +79,9 @@ class FilterChips extends StatelessWidget {
                         .setMode(SearchMode.familyName),
               ),
               ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context)
+                    .extension<ColorPalette>()!
+                    .levelTwoSurface,
                 label: const Text('Имя'),
                 labelStyle: TextStyle(
                   fontSize: 14,
@@ -81,10 +89,15 @@ class FilterChips extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: context.watch<TeachersLogic>().currentMode ==
                           SearchMode.firstName
-                      ? Theme.of(context).colorScheme.onSecondary
-                      : Theme.of(context).colorScheme.onBackground,
+                      ? Theme.of(context)
+                          .extension<ColorPalette>()!
+                          .backgroundSurface
+                      : Theme.of(context)
+                          .extension<ColorPalette>()!
+                          .highEmphasis,
                 ),
-                selectedColor: Theme.of(context).colorScheme.secondary,
+                selectedColor:
+                    Theme.of(context).extension<ColorPalette>()!.accentColor,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.firstName,
                 onSelected: (_) =>
@@ -92,7 +105,9 @@ class FilterChips extends StatelessWidget {
                         .setMode(SearchMode.firstName),
               ),
               ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context)
+                    .extension<ColorPalette>()!
+                    .levelTwoSurface,
                 label: const Text('Отчество'),
                 labelStyle: TextStyle(
                   fontSize: 14,
@@ -100,10 +115,15 @@ class FilterChips extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: context.watch<TeachersLogic>().currentMode ==
                           SearchMode.secondaryName
-                      ? Theme.of(context).colorScheme.onSecondary
-                      : Theme.of(context).colorScheme.onBackground,
+                      ? Theme.of(context)
+                          .extension<ColorPalette>()!
+                          .backgroundSurface
+                      : Theme.of(context)
+                          .extension<ColorPalette>()!
+                          .highEmphasis,
                 ),
-                selectedColor: Theme.of(context).colorScheme.secondary,
+                selectedColor:
+                    Theme.of(context).extension<ColorPalette>()!.accentColor,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.secondaryName,
                 onSelected: (_) =>
@@ -111,7 +131,9 @@ class FilterChips extends StatelessWidget {
                         .setMode(SearchMode.secondaryName),
               ),
               ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context)
+                    .extension<ColorPalette>()!
+                    .levelTwoSurface,
                 label: const Text('Предметы'),
                 labelStyle: TextStyle(
                   fontSize: 14,
@@ -119,10 +141,15 @@ class FilterChips extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: context.watch<TeachersLogic>().currentMode ==
                           SearchMode.lesson
-                      ? Theme.of(context).colorScheme.onSecondary
-                      : Theme.of(context).colorScheme.onBackground,
+                      ? Theme.of(context)
+                          .extension<ColorPalette>()!
+                          .backgroundSurface
+                      : Theme.of(context)
+                          .extension<ColorPalette>()!
+                          .highEmphasis,
                 ),
-                selectedColor: Theme.of(context).colorScheme.secondary,
+                selectedColor:
+                    Theme.of(context).extension<ColorPalette>()!.accentColor,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.lesson,
                 onSelected: (_) =>
@@ -130,7 +157,9 @@ class FilterChips extends StatelessWidget {
                         .setMode(SearchMode.lesson),
               ),
               ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context)
+                    .extension<ColorPalette>()!
+                    .levelTwoSurface,
                 label: const Text('Кабинеты'),
                 labelStyle: TextStyle(
                   fontSize: 14,
@@ -138,10 +167,15 @@ class FilterChips extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: context.watch<TeachersLogic>().currentMode ==
                           SearchMode.cabinet
-                      ? Theme.of(context).colorScheme.onSecondary
-                      : Theme.of(context).colorScheme.onBackground,
+                      ? Theme.of(context)
+                          .extension<ColorPalette>()!
+                          .backgroundSurface
+                      : Theme.of(context)
+                          .extension<ColorPalette>()!
+                          .highEmphasis,
                 ),
-                selectedColor: Theme.of(context).colorScheme.secondary,
+                selectedColor:
+                    Theme.of(context).extension<ColorPalette>()!.accentColor,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.cabinet,
                 onSelected: (_) =>

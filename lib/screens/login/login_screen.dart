@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '/utils/theme_helper.dart';
+import '../../theme.dart';
 import 'login_logic.dart';
 import 'login_ui.dart';
 
@@ -94,9 +95,9 @@ class LoginScreen extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(
                     Icons.settings_outlined,
-                    color: ThemeHelper.isDarkMode
-                        ? const Color(0x61FFFFFF)
-                        : Colors.black38,
+                    color: Theme.of(context)
+                        .extension<ColorPalette>()!
+                        .lowEmphasis,
                   ),
                   tooltip: 'Открыть системные настройки',
                   onPressed: () => openAppSettings(),

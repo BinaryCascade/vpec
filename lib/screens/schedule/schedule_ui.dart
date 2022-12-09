@@ -4,6 +4,7 @@ import 'package:r_dotted_line_border/r_dotted_line_border.dart';
 
 import '../../models/full_schedule.dart';
 import '../../models/schedule/schedule_item.dart';
+import '../../theme.dart';
 import '../../utils/hive_helper.dart';
 import '../../utils/routes/routes.dart';
 import '../../utils/theme_helper.dart';
@@ -16,11 +17,16 @@ class ScheduleItem extends StatelessWidget {
   final ScheduleItemModel model;
 
   Color getItemColor(BuildContext context) {
-    if (model.lessonName.isEmpty) return Theme.of(context).disabledColor;
+    if (model.lessonName.isEmpty) {
+      return Theme.of(context).extension<ColorPalette>()!.lowEmphasis;
+    }
 
     return model.timer == null || model.timer!.isEmpty
-        ? Theme.of(context).colorScheme.onBackground.withOpacity(0.6)
-        : Theme.of(context).colorScheme.onBackground;
+        ? Theme.of(context)
+            .extension<ColorPalette>()!
+            .highEmphasis
+            .withOpacity(0.6)
+        : Theme.of(context).extension<ColorPalette>()!.highEmphasis;
   }
 
   @override
@@ -273,7 +279,8 @@ class AdditionalInfoPanelWidget extends StatelessWidget {
               children: [
                 Icon(
                   Icons.badge_outlined,
-                  color: Theme.of(context).colorScheme.onBackground,
+                  color:
+                      Theme.of(context).extension<ColorPalette>()!.highEmphasis,
                 ),
                 const SizedBox(
                   width: 10,

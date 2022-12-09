@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../theme.dart';
 import '../../../utils/hive_helper.dart';
 import '../../../utils/theme_helper.dart';
 import '../../settings/settings_logic.dart';
@@ -23,7 +24,8 @@ class _AnnouncementEditorState extends State<AnnouncementEditor> {
       if (HiveHelper.getValue('username') == null ||
           HiveHelper.getValue('username') == '') {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: Theme.of(context).colorScheme.surface,
+          backgroundColor:
+              Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
           behavior: SnackBarBehavior.floating,
           duration: const Duration(minutes: 1),
           action: SnackBarAction(
