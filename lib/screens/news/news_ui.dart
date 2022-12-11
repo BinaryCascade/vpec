@@ -56,10 +56,6 @@ class NewsItemCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Card(
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
         child: InkWell(
           onTap: () => openUrl(item.link!),
           child: Column(
@@ -68,6 +64,7 @@ class NewsItemCard extends StatelessWidget {
                 curve: Curves.fastOutSlowIn,
                 duration: const Duration(milliseconds: 400),
                 child: Container(
+                  margin: const EdgeInsets.all(1.0),
                   clipBehavior: Clip.antiAlias,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -79,7 +76,7 @@ class NewsItemCard extends StatelessWidget {
                       height: 200,
                       width: MediaQuery.of(context).size.width,
                       child: Image.memory(kTransparentImage),
-                    ),
+                        ),
                     errorWidget: (context, url, error) => Container(),
                   ),
                 ),

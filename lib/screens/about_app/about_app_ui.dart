@@ -23,10 +23,6 @@ class AboutDeveloperCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Card(
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

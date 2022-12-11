@@ -26,10 +26,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
         padding: const EdgeInsets.all(10),
         children: [
           Card(
-            clipBehavior: Clip.antiAlias,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
             child: MultiProvider(
               providers: [
                 ChangeNotifierProvider(create: (_) => AccountEditorMode()),

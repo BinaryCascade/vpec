@@ -142,7 +142,19 @@ ThemeData themeData() {
       backgroundColor: levelTwoSurface,
       foregroundColor: highEmphasis,
     ),
-    cardTheme: const CardTheme(margin: EdgeInsets.zero),
+    cardTheme: CardTheme(
+      elevation: 0,
+      margin: EdgeInsets.zero,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: const BorderSide(
+          color: outsideBorderColor,
+          width: 1.0,
+          strokeAlign: StrokeAlign.inside,
+        ),
+      ),
+    ),
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
@@ -334,7 +346,19 @@ ThemeData darkThemeData() {
       backgroundColor: levelTwoSurface,
       foregroundColor: highEmphasis,
     ),
-    cardTheme: const CardTheme(margin: EdgeInsets.zero),
+    cardTheme: CardTheme(
+      elevation: 0,
+      margin: EdgeInsets.zero,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: const BorderSide(
+          color: outsideBorderColor,
+          width: 1.0,
+          strokeAlign: StrokeAlign.inside,
+        ),
+      ),
+    ),
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),

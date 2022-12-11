@@ -125,10 +125,6 @@ class JobQuizResults extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
       child: Card(
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Wrap(

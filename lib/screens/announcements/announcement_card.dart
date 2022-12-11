@@ -40,16 +40,13 @@ class AnnouncementCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Card(
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
         child: GestureDetector(
           onDoubleTap: () => editAnnouncement(context),
           child: Column(
             children: [
               if (announcement.photoUrl != null)
                 Container(
+                  margin: const EdgeInsets.all(1.0),
                   clipBehavior: Clip.antiAlias,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
