@@ -115,7 +115,7 @@ ThemeData themeData() {
       ),
     ],
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: levelTwoSurface,
+      backgroundColor: Colors.transparent,
       height: 65,
       indicatorColor: accentColor,
       labelTextStyle: MaterialStateProperty.all(const TextStyle(
@@ -319,7 +319,7 @@ ThemeData darkThemeData() {
       ),
     ],
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: levelTwoSurface,
+      backgroundColor: Colors.transparent,
       height: 65,
       indicatorColor: accentColor,
       labelTextStyle: MaterialStateProperty.all(const TextStyle(
