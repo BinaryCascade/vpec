@@ -21,6 +21,7 @@ class ColorPalette extends ThemeExtension<ColorPalette> {
     required this.highEmphasis,
     required this.mediumEmphasis,
     required this.lowEmphasis,
+    required this.outsideBorderColor,
     required this.backgroundSurface,
     required this.levelOneSurface,
     required this.levelTwoSurface,
@@ -31,6 +32,7 @@ class ColorPalette extends ThemeExtension<ColorPalette> {
   final Color highEmphasis;
   final Color mediumEmphasis;
   final Color lowEmphasis;
+  final Color outsideBorderColor;
   final Color backgroundSurface;
   final Color levelOneSurface;
   final Color levelTwoSurface;
@@ -42,6 +44,7 @@ class ColorPalette extends ThemeExtension<ColorPalette> {
     Color? highEmphasis,
     Color? mediumEmphasis,
     Color? lowEmphasis,
+    Color? outsideBorderColor,
     Color? backgroundSurface,
     Color? levelOneSurface,
     Color? levelTwoSurface,
@@ -52,6 +55,7 @@ class ColorPalette extends ThemeExtension<ColorPalette> {
       highEmphasis: highEmphasis ?? this.highEmphasis,
       mediumEmphasis: mediumEmphasis ?? this.mediumEmphasis,
       lowEmphasis: lowEmphasis ?? this.lowEmphasis,
+      outsideBorderColor: outsideBorderColor ?? this.outsideBorderColor,
       backgroundSurface: backgroundSurface ?? this.backgroundSurface,
       levelOneSurface: levelOneSurface ?? this.levelOneSurface,
       levelTwoSurface: levelTwoSurface ?? this.levelTwoSurface,
@@ -71,6 +75,8 @@ class ColorPalette extends ThemeExtension<ColorPalette> {
       highEmphasis: Color.lerp(highEmphasis, other.highEmphasis, t)!,
       mediumEmphasis: Color.lerp(mediumEmphasis, other.mediumEmphasis, t)!,
       lowEmphasis: Color.lerp(lowEmphasis, other.lowEmphasis, t)!,
+      outsideBorderColor:
+          Color.lerp(outsideBorderColor, other.outsideBorderColor, t)!,
       backgroundSurface:
           Color.lerp(backgroundSurface, other.backgroundSurface, t)!,
       levelOneSurface: Color.lerp(levelOneSurface, other.levelOneSurface, t)!,
@@ -87,6 +93,7 @@ ThemeData themeData() {
   const highEmphasis = Color.fromRGBO(0, 0, 0, 0.87);
   const mediumEmphasis = Color.fromRGBO(0, 0, 0, 0.60);
   const lowEmphasis = Color.fromRGBO(0, 0, 0, 0.38);
+  const outsideBorderColor = Color.fromRGBO(0, 0, 0, 0.12);
   const surfaceIncrement = Color.fromRGBO(255, 255, 255, 0.40);
   const backgroundSurface = Color(0xFFE8E8E8);
   final levelOneSurface = Color.alphaBlend(surfaceIncrement, backgroundSurface);
@@ -100,6 +107,7 @@ ThemeData themeData() {
         highEmphasis: highEmphasis,
         mediumEmphasis: mediumEmphasis,
         lowEmphasis: lowEmphasis,
+        outsideBorderColor: outsideBorderColor,
         backgroundSurface: backgroundSurface,
         levelOneSurface: levelOneSurface,
         levelTwoSurface: levelTwoSurface,
@@ -277,6 +285,7 @@ ThemeData darkThemeData() {
   const highEmphasis = Color.fromRGBO(255, 255, 255, 0.87);
   const mediumEmphasis = Color.fromRGBO(255, 255, 255, 0.60);
   const lowEmphasis = Color.fromRGBO(255, 255, 255, 0.38);
+  const outsideBorderColor = Color.fromRGBO(255, 255, 255, 0.05);
   const surfaceIncrement = Color.fromRGBO(255, 255, 255, 0.04);
   const backgroundSurface = Color(0xFF121212);
   final levelOneSurface = Color.alphaBlend(surfaceIncrement, backgroundSurface);
@@ -290,6 +299,7 @@ ThemeData darkThemeData() {
         highEmphasis: highEmphasis,
         mediumEmphasis: mediumEmphasis,
         lowEmphasis: lowEmphasis,
+        outsideBorderColor: outsideBorderColor,
         backgroundSurface: backgroundSurface,
         levelOneSurface: levelOneSurface,
         levelTwoSurface: levelTwoSurface,
