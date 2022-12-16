@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../theme.dart';
 import '../../utils/firebase_auth.dart';
 import '../../utils/theme_helper.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'announcements_ui.dart';
 import 'editor/editor_screen.dart';
 
@@ -48,6 +49,10 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
     return DefaultTabController(
       length: tabBarChildren.length,
       child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: SystemBarCover(
+          height: MediaQuery.of(context).padding.top,
+        ),
         body: TabBarView(
           physics: const NeverScrollableScrollPhysics(),
           children: tabBarChildren,
@@ -76,8 +81,11 @@ class AnimatedFAB extends StatelessWidget {
           Theme.of(context).extension<ColorPalette>()!.backgroundSurface,
       openColor: Theme.of(context).extension<ColorPalette>()!.backgroundSurface,
       onClosed: (n) {
-        Future.delayed(const Duration(milliseconds: 100)).then((value) =>
-            ThemeHelper.colorStatusBar(context: context, haveAppbar: false));
+        Future.delayed(const Duration(milliseconds: 100)).then(
+          (value) => ThemeHelper.colorSystemChrome(
+            mode: ColoringMode.byCurrentTheme,
+          ),
+        );
       },
       closedBuilder: (context, action) {
         return FloatingActionButton(

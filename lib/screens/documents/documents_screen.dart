@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '/utils/theme_helper.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'documents_ui.dart';
 
 class DocumentsScreen extends StatelessWidget {
@@ -8,9 +9,13 @@ class DocumentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
 
     return Scaffold(
+      extendBody: true,
+      bottomNavigationBar: SystemBarCover(
+        height: MediaQuery.of(context).padding.bottom,
+      ),
       appBar: AppBar(
         title: const Text('Документы'),
       ),

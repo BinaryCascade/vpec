@@ -5,6 +5,7 @@ import '/utils/theme_helper.dart';
 import '/widgets/loading_indicator.dart';
 import '../../utils/holiday_helper.dart';
 import '../../widgets/snow_widget.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'cabinets_map_logic.dart';
 import 'cabinets_map_ui.dart';
 
@@ -36,9 +37,13 @@ class _CabinetsMapScreenUIState extends State<CabinetsMapScreenUI> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
+    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: SystemBarCover(
+        height: MediaQuery.of(context).padding.top,
+      ),
       body: Stack(
         children: [
           if (HolidayHelper.isNewYear)
@@ -54,20 +59,20 @@ class _CabinetsMapScreenUIState extends State<CabinetsMapScreenUI> {
             builder: (context, storage, child) {
               return storage.nowImageUrl.isEmpty
                   ? const LoadingIndicator()
-                  : Padding(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).padding.top * 1.5,
-                      ),
-                      child: Stack(
-                        alignment: Alignment.topCenter,
-                        children: [
-                          CabinetsMap(
-                            onScaleUpdated: (scale) =>
-                                storage.scaleListener(scale),
+                  : Stack(
+                      alignment: Alignment.topCenter,
+                      children: [
+                        CabinetsMap(
+                          onScaleUpdated: (scale) =>
+                              storage.scaleListener(scale),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).padding.top + 10,
                           ),
-                          FloorChips(),
-                        ],
-                      ),
+                          child: FloorChips(),
+                        ),
+                      ],
                     );
             },
           ),

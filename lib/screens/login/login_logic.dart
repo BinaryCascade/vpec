@@ -7,6 +7,7 @@ import '/screens/settings/settings_logic.dart';
 import '/utils/hive_helper.dart';
 import '../../models/document_model.dart';
 import '../../utils/firebase_auth.dart';
+import '../../utils/theme_helper.dart';
 import '../../utils/utils.dart';
 import 'login_ui.dart';
 

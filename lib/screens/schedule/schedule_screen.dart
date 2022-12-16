@@ -6,6 +6,7 @@ import '../../theme.dart';
 import '../../utils/holiday_helper.dart';
 import '../../utils/theme_helper.dart';
 import '../../widgets/snow_widget.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'schedule_logic.dart';
 import 'schedule_ui.dart';
 
@@ -47,6 +48,10 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
     return Consumer<ScheduleLogic>(
       builder: (context, logic, child) {
         return Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: SystemBarCover(
+            height: MediaQuery.of(context).padding.top,
+          ),
           body: SafeArea(
             top: false,
             child: Stack(
@@ -108,40 +113,40 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                     const SizedBox(height: 15),
                     logic.fullSchedule == null
                         ? logic.hasError
-                            ? ScheduleErrorLoadingUI(errorText: logic.errorText)
-                            : Center(
-                                child: LinearProgressIndicator(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground,
-                                  backgroundColor: Theme.of(context)
-                                      .extension<ColorPalette>()!
-                                      .backgroundSurface,
-                                ),
-                              )
+                        ? ScheduleErrorLoadingUI(errorText: logic.errorText)
+                        : Center(
+                      child: LinearProgressIndicator(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onBackground,
+                        backgroundColor: Theme.of(context)
+                            .extension<ColorPalette>()!
+                            .backgroundSurface,
+                      ),
+                    )
                         : Column(
-                            children: [
-                              SchedulePanel(fullSchedule: logic.fullSchedule!),
-                              // Отступ после расписания, чтобы FAB не перекрывал контент
-                              // Пунктир вместо отступа, чтобы не создавать вид обрыва
-                              Container(
-                                height: 130,
-                                decoration: BoxDecoration(
-                                  border: RDottedLineBorder(
-                                    // Меняй этой значение, чтобы дэши попали в расстояние нормально
-                                    dottedLength: 3.5,
-                                    dottedSpace: 3,
-                                    left: BorderSide(
-                                      width: 3,
-                                      color: Theme.of(context)
-                                          .extension<ColorPalette>()!
-                                          .lowEmphasis,
-                                    ),
-                                  ),
-                                ),
+                      children: [
+                        SchedulePanel(fullSchedule: logic.fullSchedule!),
+                        // Отступ после расписания, чтобы FAB не перекрывал контент
+                        // Пунктир вместо отступа, чтобы не создавать вид обрыва
+                        Container(
+                          height: 130,
+                          decoration: BoxDecoration(
+                            border: RDottedLineBorder(
+                              // Меняй этой значение, чтобы дэши попали в расстояние нормально
+                              dottedLength: 3.5,
+                              dottedSpace: 3,
+                              left: BorderSide(
+                                width: 3,
+                                color: Theme.of(context)
+                                    .extension<ColorPalette>()!
+                                    .lowEmphasis,
                               ),
-                            ],
+                            ),
                           ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ],

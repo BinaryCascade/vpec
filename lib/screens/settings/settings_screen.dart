@@ -22,7 +22,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
     ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Настройки')),
+      extendBody: true,
+      bottomNavigationBar: SystemBarCover(
+        height: MediaQuery.of(context).padding.bottom,
+      ),
+      appBar: AppBar(
+        title: const Text('Настройки'),
+      ),
       body: ListView(
         padding: const EdgeInsets.all(10),
         children: [

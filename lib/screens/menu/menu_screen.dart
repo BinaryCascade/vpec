@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '/utils/icons.dart';
-import '/utils/theme_helper.dart';
 import '/widgets/styled_widgets.dart';
 import '../../theme.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'menu_logic.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -17,8 +17,11 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: SystemBarCover(
+        height: MediaQuery.of(context).padding.top,
+      ),
       body: SafeArea(
-        top: false,
         child: SingleChildScrollView(
           padding: MediaQuery.of(context).padding.add(const EdgeInsets.all(10)),
           child: Column(

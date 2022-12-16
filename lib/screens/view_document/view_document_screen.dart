@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '/models/document_model.dart';
 import '/utils/theme_helper.dart';
 import '/utils/utils.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'view_document_logic.dart';
 import 'view_document_ui.dart';
 

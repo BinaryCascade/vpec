@@ -25,6 +25,12 @@ Future<void> main() async {
   AppFirebaseMessaging.startListening();
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarContrastEnforced: false,
+    systemStatusBarContrastEnforced: false,
+    statusBarColor: Colors.transparent,
+    systemNavigationBarColor: Colors.transparent,
+  ));
 
   runApp(MultiProvider(
     providers: [
