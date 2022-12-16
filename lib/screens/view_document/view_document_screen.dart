@@ -18,10 +18,14 @@ class DocumentViewScreen extends StatelessWidget {
     } else {
       Navigator.popAndPushNamed(context, '/');
     }
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
     bool isFilePDF = ViewDocumentLogic.getFileExtension(document.url) == 'pdf';
 
     return Scaffold(
+      // no extendBody due to documents being weird
+      bottomNavigationBar: SystemBarCover(
+        height: MediaQuery.of(context).padding.bottom,
+      ),
       appBar: AppBar(
         title: Text(document.title),
         actions: [

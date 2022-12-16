@@ -236,7 +236,7 @@ class FABPanel extends StatelessWidget {
           heroTag: null,
           onPressed: () async {
             await Navigator.pushNamed(context, Routes.fullScheduleScreen);
-            ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
+            ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
           },
           child: const Icon(Icons.fullscreen_outlined),
         ),

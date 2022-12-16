@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/utils/theme_helper.dart';
 import '/widgets/styled_widgets.dart';
 import '../../theme.dart';
 import '../../utils/firebase_auth.dart';
+import '../../utils/theme_helper.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'settings_logic.dart';
 import 'settings_ui.dart';
 
@@ -18,7 +19,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Настройки')),

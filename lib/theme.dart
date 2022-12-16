@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'widgets/md2_tab_indicator.dart';
 
@@ -149,6 +150,7 @@ ThemeData themeData() {
       ),
       backgroundColor: levelTwoSurface,
       foregroundColor: highEmphasis,
+      systemOverlayStyle: const SystemUiOverlayStyle(),
     ),
     cardTheme: CardTheme(
       elevation: 0,
@@ -376,6 +378,7 @@ ThemeData darkThemeData() {
       ),
       backgroundColor: levelTwoSurface,
       foregroundColor: highEmphasis,
+      systemOverlayStyle: const SystemUiOverlayStyle(),
     ),
     cardTheme: CardTheme(
       elevation: 0,

@@ -3,8 +3,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 
-import '../theme.dart';
-
 class ThemeHelper {
   /// return true, if system or user-chosen theme is dark
   static bool get isDarkMode {
@@ -22,28 +20,26 @@ class ThemeHelper {
     return isDarkMode;
   }
 
-  /// Color StatusBar and NavigationBar to theme colors
-  ///
-  /// Set [haveAppbar] to true if you use AppBar in page
-  static void colorStatusBar({
-    required BuildContext context,
-    required bool haveAppbar,
+  /// Color StatusBar and SystemNavigationBar icons to current theme brightness
+  static void colorSystemChrome({
+    required ColoringMode mode,
   }) {
+    Brightness brightness;
+    switch (mode) {
+      case ColoringMode.byCurrentTheme:
+        brightness = isDarkMode ? Brightness.light : Brightness.dark;
+        break;
+      case ColoringMode.lightIcons:
+        brightness = Brightness.light;
+        break;
+      case ColoringMode.darkIcons:
+        brightness = Brightness.dark;
+        break;
+    }
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        statusBarColor: haveAppbar
-            ? Colors.transparent
-            : Theme.of(context)
-                .extension<ColorPalette>()!
-                .backgroundSurface
-                .withOpacity(0.7),
-        statusBarIconBrightness:
-            isDarkMode ? Brightness.light : Brightness.dark,
-        systemNavigationBarColor: haveAppbar
-            ? Theme.of(context).extension<ColorPalette>()!.backgroundSurface
-            : Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
-        systemNavigationBarIconBrightness:
-            isDarkMode ? Brightness.light : Brightness.dark,
+        statusBarIconBrightness: brightness,
+        systemNavigationBarIconBrightness: brightness,
       ),
     );
   }
@@ -61,4 +57,16 @@ class ThemeNotifier with ChangeNotifier {
     themeMode = mode;
     notifyListeners();
   }
+}
+
+/// Coloring mode for status bar and system navigation icons
+enum ColoringMode {
+  /// Color system chrome based on current app theme
+  byCurrentTheme,
+
+  /// Color system chrome with light icons
+  lightIcons,
+
+  /// Color system chrome with dark icons
+  darkIcons
 }

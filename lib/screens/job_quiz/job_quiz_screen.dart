@@ -15,7 +15,7 @@ class JobQuizScreen extends StatefulWidget {
 class _JobQuizScreenState extends State<JobQuizScreen> {
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
 
     return ChangeNotifierProvider(
       create: (_) => JobQuizStorage(),
