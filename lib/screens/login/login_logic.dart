@@ -46,11 +46,11 @@ class LoginLogic extends ChangeNotifier {
     HiveHelper.saveValue(key: 'isUserEntrant', value: false);
   }
 
-  static void showAccountHelperDialog(BuildContext context) {
+  static Future<void> showAccountHelperDialog(BuildContext context) async {
     String dialogText = 'Данные для входа предоставляются в колледже. '
         'Для быстрого входа в аккаунт можно просканировать QR код с плаката';
-
-    showDialog(
+    ThemeHelper.colorSystemChrome(mode: ColoringMode.lightIcons);
+    await showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -64,6 +64,7 @@ class LoginLogic extends ChangeNotifier {
         );
       },
     );
+    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
   }
 
   /// Return URL for document, which need to display for entrant
