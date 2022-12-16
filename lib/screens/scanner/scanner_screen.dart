@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'scanner_ui.dart';
 
 
@@ -11,12 +12,14 @@ class ScannerScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Отсканируйте QR для входа'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          ScannerWidget(),
-          ManualLoginPrompt(),
-        ],
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: const [
+            ScannerWidget(),
+            ManualLoginPrompt(),
+          ],
+        ),
       ),
     );
   }
