@@ -139,6 +139,14 @@ ThemeData themeData() {
       indicatorSize: TabBarIndicatorSize.label,
     ),
     appBarTheme: AppBarTheme(
+      elevation: 0,
+      shape: const Border(
+        bottom: BorderSide(
+          color: outsideBorderColor,
+          width: 1.0,
+          strokeAlign: StrokeAlign.inside,
+        ),
+      ),
       backgroundColor: levelTwoSurface,
       foregroundColor: highEmphasis,
     ),
@@ -343,6 +351,14 @@ ThemeData darkThemeData() {
       indicatorSize: TabBarIndicatorSize.label,
     ),
     appBarTheme: AppBarTheme(
+      elevation: 0,
+      shape: const Border(
+        bottom: BorderSide(
+          color: outsideBorderColor,
+          width: 1.0,
+          strokeAlign: StrokeAlign.inside,
+        ),
+      ),
       backgroundColor: levelTwoSurface,
       foregroundColor: highEmphasis,
     ),
