@@ -236,7 +236,7 @@ ThemeData themeData() {
           fontSize: 15,
         ),
         shape: const StadiumBorder(),
-        primary: accentColor,
+        foregroundColor: accentColor,
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -265,8 +265,8 @@ ThemeData themeData() {
           fontSize: 15,
         ),
         shape: const StadiumBorder(),
-        primary: accentColor,
-        onPrimary: backgroundSurface,
+        backgroundColor: accentColor,
+        foregroundColor: backgroundSurface,
       ),
     ),
     inputDecorationTheme: const InputDecorationTheme(
@@ -463,7 +463,7 @@ ThemeData darkThemeData() {
           fontSize: 15,
         ),
         shape: const StadiumBorder(),
-        primary: accentColor,
+        foregroundColor: accentColor,
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -492,8 +492,8 @@ ThemeData darkThemeData() {
           fontSize: 15,
         ),
         shape: const StadiumBorder(),
-        primary: accentColor,
-        onPrimary: backgroundSurface,
+        backgroundColor: accentColor,
+        foregroundColor: backgroundSurface,
       ),
     ),
     inputDecorationTheme: const InputDecorationTheme(
