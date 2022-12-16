@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:device_info/device_info.dart';
 import 'package:flutter/foundation.dart';
@@ -6,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../theme.dart';
 
 /// Open in browser given [url]
 Future<void> openUrl(String url) async {
@@ -64,39 +67,70 @@ Future<T?> showRoundedModalSheet<T>({
     isDismissible: isDismissible,
     isScrollControlled: true,
     enableDrag: enableDrag,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(20),
-        topRight: Radius.circular(20),
-      ),
-    ),
+    backgroundColor: Colors.transparent,
     builder: (context) =>
         customLayout ??
         Container(
-          margin: EdgeInsets.only(
-            top: 15,
+          padding: const EdgeInsets.only(
+            top: 10,
+            bottom: 15,
             left: 15,
             right: 15,
-            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          decoration: BoxDecoration(
+            color: Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: Theme.of(context)
+                  .extension<ColorPalette>()!
+                  .outsideBorderColor,
+            ),
+          ),
+          margin: EdgeInsets.only(
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: [
+                  MediaQuery.of(context).viewInsets.bottom,
+                  MediaQuery.of(context).viewPadding.bottom,
+                ].reduce(max) +
+                10,
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 15),
-                child: Center(
-                  child: title != null
-                      ? Text(
-                          title,
-                          style: Theme.of(context).textTheme.headline4,
-                          textAlign: TextAlign.center,
-                        )
-                      : ErrorWidget('You need implement [title] if you want '
-                          'use styled layout, or [customLayout] if you need'
-                          ' your own layout'),
-                ),
+              isDismissible
+                  ? Column(
+                      children: [
+                        SizedBox(
+                          width: 70,
+                          height: 5,
+                          child: DecoratedBox(
+                            decoration: ShapeDecoration(
+                              shape: const StadiumBorder(),
+                              color: Theme.of(context)
+                                  .extension<ColorPalette>()!
+                                  .lowEmphasis,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                      ],
+                    )
+                  : const SizedBox(height: 5),
+              Center(
+                child: title != null
+                    ? Text(
+                        title,
+                        style: Theme.of(context).textTheme.headline4,
+                        textAlign: TextAlign.center,
+                      )
+                    : ErrorWidget('You need implement [title] if you want '
+                        'use styled layout, or [customLayout] if you need'
+                        ' your own layout'),
               ),
+              const SizedBox(height: 15),
               child ??
                   ErrorWidget('You need implement [child] if you want '
                       'use styled layout, or [customLayout] if you need your '

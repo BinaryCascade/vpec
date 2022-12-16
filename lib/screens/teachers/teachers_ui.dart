@@ -260,66 +260,65 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: TextFormField(
-            controller: familyName,
-            textInputAction: TextInputAction.next,
-            style: Theme.of(context).textTheme.headline3,
-            decoration: const InputDecoration(labelText: 'Фамилия'),
-          ),
+        TextFormField(
+          controller: familyName,
+          textInputAction: TextInputAction.next,
+          style: Theme.of(context).textTheme.headline3,
+          decoration: const InputDecoration(labelText: 'Фамилия'),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: TextFormField(
-            controller: firstName,
-            textInputAction: TextInputAction.next,
-            style: Theme.of(context).textTheme.headline3,
-            decoration: const InputDecoration(labelText: 'Имя'),
-          ),
+        const SizedBox(height: 10),
+        TextFormField(
+          controller: firstName,
+          textInputAction: TextInputAction.next,
+          style: Theme.of(context).textTheme.headline3,
+          decoration: const InputDecoration(labelText: 'Имя'),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: TextFormField(
-            controller: secondaryName,
-            textInputAction: TextInputAction.next,
-            style: Theme.of(context).textTheme.headline3,
-            decoration: const InputDecoration(labelText: 'Отчество'),
-          ),
+        const SizedBox(height: 10),
+        TextFormField(
+          controller: secondaryName,
+          textInputAction: TextInputAction.next,
+          style: Theme.of(context).textTheme.headline3,
+          decoration: const InputDecoration(labelText: 'Отчество'),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: TextFormField(
-            controller: lessons,
-            textInputAction: TextInputAction.next,
-            style: Theme.of(context).textTheme.headline3,
-            decoration: const InputDecoration(labelText: 'Занятия'),
-          ),
+        const SizedBox(height: 10),
+        TextFormField(
+          controller: lessons,
+          textInputAction: TextInputAction.next,
+          style: Theme.of(context).textTheme.headline3,
+          decoration: const InputDecoration(labelText: 'Занятия'),
         ),
+        const SizedBox(height: 10),
         TextFormField(
           controller: cabinet,
           textInputAction: TextInputAction.next,
           style: Theme.of(context).textTheme.headline3,
           decoration: const InputDecoration(labelText: 'Кабинет'),
         ),
-        ButtonBar(
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Отмена'),
+            Expanded(
+              child: TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Отмена'),
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                TeachersLogicEditMode().addNewTeacher(TeacherModel(
-                  firstName: firstName.text,
-                  familyName: familyName.text,
-                  secondaryName: secondaryName.text,
-                  cabinet: cabinet.text,
-                  lesson: lessons.text,
-                ));
-                Navigator.pop(context);
-              },
-              child: const Text('Добавить'),
+            const SizedBox(width: 10),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  TeachersLogicEditMode().addNewTeacher(TeacherModel(
+                    firstName: firstName.text,
+                    familyName: familyName.text,
+                    secondaryName: secondaryName.text,
+                    cabinet: cabinet.text,
+                    lesson: lessons.text,
+                  ));
+                  Navigator.pop(context);
+                },
+                child: const Text('Добавить'),
+              ),
             ),
           ],
         ),
