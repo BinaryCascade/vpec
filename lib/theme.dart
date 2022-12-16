@@ -228,16 +228,26 @@ ThemeData themeData() {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+        textStyle: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 15,
+        ),
         shape: const StadiumBorder(),
         primary: accentColor,
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        textStyle: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 15,
+        ),
         shape: const StadiumBorder(),
         side: const BorderSide(
           width: 1.5,
@@ -247,8 +257,13 @@ ThemeData themeData() {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        textStyle: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 15,
+        ),
         shape: const StadiumBorder(),
         primary: accentColor,
         onPrimary: backgroundSurface,
@@ -440,16 +455,26 @@ ThemeData darkThemeData() {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+        textStyle: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 15,
+        ),
         shape: const StadiumBorder(),
         primary: accentColor,
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        textStyle: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 15,
+        ),
         shape: const StadiumBorder(),
         side: const BorderSide(
           width: 1.5,
@@ -459,8 +484,13 @@ ThemeData darkThemeData() {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        textStyle: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 15,
+        ),
         shape: const StadiumBorder(),
         primary: accentColor,
         onPrimary: backgroundSurface,
