@@ -116,12 +116,9 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                             ? ScheduleErrorLoadingUI(errorText: logic.errorText)
                             : Center(
                                 child: LinearProgressIndicator(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground,
-                                  backgroundColor: Theme.of(context)
-                                      .extension<ColorPalette>()!
-                                      .backgroundSurface,
+                                  color: context.palette.highEmphasis,
+                                  backgroundColor:
+                                      context.palette.backgroundSurface,
                                 ),
                               )
                         : Column(
@@ -138,9 +135,7 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                                     dottedSpace: 3,
                                     left: BorderSide(
                                       width: 3,
-                                      color: Theme.of(context)
-                                          .extension<ColorPalette>()!
-                                          .lowEmphasis,
+                                      color: context.palette.lowEmphasis,
                                     ),
                                   ),
                                 ),

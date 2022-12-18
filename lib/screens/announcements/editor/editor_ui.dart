@@ -71,9 +71,7 @@ class UploadAttachmentButton extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.attachment_outlined,
-                            color: Theme.of(context)
-                                .extension<ColorPalette>()!
-                                .highEmphasis,
+                            color: context.palette.highEmphasis,
                           ),
                           const SizedBox(width: 7),
                           Text(
@@ -82,10 +80,7 @@ class UploadAttachmentButton extends StatelessWidget {
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurface
-                                  .withOpacity(0.6),
+                              color: context.palette.lowEmphasis,
                             ),
                           ),
                         ],
@@ -201,8 +196,7 @@ class AuthorName extends StatelessWidget {
               ),
               Icon(
                 Icons.edit_outlined,
-                color:
-                    Theme.of(context).extension<ColorPalette>()!.highEmphasis,
+                color: context.palette.highEmphasis,
               ),
             ],
           ),
@@ -221,7 +215,7 @@ class EditorUI extends StatelessWidget {
       builder: (context, logic, _) {
         return DecoratedBox(
           decoration: BoxDecoration(
-            color: Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
+            color: context.palette.levelTwoSurface,
             borderRadius: BorderRadius.circular(20),
           ),
           child: SizedBox(
@@ -259,11 +253,8 @@ class VisibilityPicker extends StatelessWidget {
             ),
             const SizedBox(height: 15),
             CheckboxListTile(
-              checkColor: Theme.of(context)
-                  .extension<ColorPalette>()!
-                  .backgroundSurface,
-              activeColor:
-                  Theme.of(context).extension<ColorPalette>()!.accentColor,
+              checkColor: context.palette.backgroundSurface,
+              activeColor: context.palette.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -280,11 +271,8 @@ class VisibilityPicker extends StatelessWidget {
               },
             ),
             CheckboxListTile(
-              checkColor: Theme.of(context)
-                  .extension<ColorPalette>()!
-                  .backgroundSurface,
-              activeColor:
-                  Theme.of(context).extension<ColorPalette>()!.accentColor,
+              checkColor: context.palette.backgroundSurface,
+              activeColor: context.palette.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -301,11 +289,8 @@ class VisibilityPicker extends StatelessWidget {
               },
             ),
             CheckboxListTile(
-              checkColor: Theme.of(context)
-                  .extension<ColorPalette>()!
-                  .backgroundSurface,
-              activeColor:
-                  Theme.of(context).extension<ColorPalette>()!.accentColor,
+              checkColor: context.palette.backgroundSurface,
+              activeColor: context.palette.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -322,11 +307,8 @@ class VisibilityPicker extends StatelessWidget {
               },
             ),
             CheckboxListTile(
-              checkColor: Theme.of(context)
-                  .extension<ColorPalette>()!
-                  .backgroundSurface,
-              activeColor:
-                  Theme.of(context).extension<ColorPalette>()!.accentColor,
+              checkColor: context.palette.backgroundSurface,
+              activeColor: context.palette.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),

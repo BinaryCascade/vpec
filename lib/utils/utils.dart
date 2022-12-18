@@ -81,12 +81,10 @@ Future<T?> showRoundedModalSheet<T>({
             right: 15,
           ),
           decoration: BoxDecoration(
-            color: Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
+            color: context.palette.levelTwoSurface,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: Theme.of(context)
-                  .extension<ColorPalette>()!
-                  .outsideBorderColor,
+              color: context.palette.outsideBorderColor,
             ),
           ),
           margin: EdgeInsets.only(
@@ -112,9 +110,7 @@ Future<T?> showRoundedModalSheet<T>({
                           child: DecoratedBox(
                             decoration: ShapeDecoration(
                               shape: const StadiumBorder(),
-                              color: Theme.of(context)
-                                  .extension<ColorPalette>()!
-                                  .lowEmphasis,
+                              color: context.palette.lowEmphasis,
                             ),
                           ),
                         ),

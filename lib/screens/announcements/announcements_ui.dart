@@ -109,7 +109,7 @@ class _BottomTapBarState extends State<BottomTapBar> {
     return Material(
       elevation: 8.0,
       child: Container(
-        color: Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
+        color: context.palette.levelTwoSurface,
         child: TabBar(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           isScrollable: true,

@@ -43,9 +43,7 @@ class AboutDeveloperCard extends StatelessWidget {
                       icon: Icon(
                         VpecIconPack.vk,
                         size: 32,
-                        color: Theme.of(context)
-                            .extension<ColorPalette>()!
-                            .accentColor,
+                        color: context.palette.accentColor,
                       ),
                       onPressed: () => openUrl(vkUrl!),
                     ),
@@ -55,9 +53,7 @@ class AboutDeveloperCard extends StatelessWidget {
                       icon: Icon(
                         VpecIconPack.telegram,
                         size: 32,
-                        color: Theme.of(context)
-                            .extension<ColorPalette>()!
-                            .accentColor,
+                        color: context.palette.accentColor,
                       ),
                       onPressed: () => openUrl(tgUrl!),
                     ),

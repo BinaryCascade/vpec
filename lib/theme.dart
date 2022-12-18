@@ -88,6 +88,11 @@ class ColorPalette extends ThemeExtension<ColorPalette> {
   }
 }
 
+extension ColorPaletteOnBuildContextExt on BuildContext {
+  /// Get [ColorPalette] of [context]
+  ColorPalette get palette => Theme.of(this).extension<ColorPalette>()!;
+}
+
 ThemeData themeData() {
   //light theme
   const accentColor = Color(0xFF133676);

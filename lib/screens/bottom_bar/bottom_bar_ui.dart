@@ -43,12 +43,10 @@ class BottomBarUI extends StatelessWidget {
     return Consumer<BottomBarLogic>(
       builder: (context, storage, child) => DecoratedBox(
         decoration: BoxDecoration(
-          color: Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
+          color: context.palette.levelTwoSurface,
           border: Border(
             top: BorderSide(
-              color: Theme.of(context)
-                  .extension<ColorPalette>()!
-                  .outsideBorderColor,
+              color: context.palette.outsideBorderColor,
               width: 1.0,
             ),
           ),

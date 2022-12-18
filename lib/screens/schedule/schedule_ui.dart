@@ -18,15 +18,12 @@ class ScheduleItem extends StatelessWidget {
 
   Color getItemColor(BuildContext context) {
     if (model.lessonName.isEmpty) {
-      return Theme.of(context).extension<ColorPalette>()!.lowEmphasis;
+      return context.palette.lowEmphasis;
     }
 
     return model.timer == null || model.timer!.isEmpty
-        ? Theme.of(context)
-            .extension<ColorPalette>()!
-            .highEmphasis
-            .withOpacity(0.6)
-        : Theme.of(context).extension<ColorPalette>()!.highEmphasis;
+        ? context.palette.mediumEmphasis
+        : context.palette.highEmphasis;
   }
 
   @override
@@ -279,8 +276,7 @@ class AdditionalInfoPanelWidget extends StatelessWidget {
               children: [
                 Icon(
                   Icons.badge_outlined,
-                  color:
-                      Theme.of(context).extension<ColorPalette>()!.highEmphasis,
+                  color: context.palette.highEmphasis,
                 ),
                 const SizedBox(
                   width: 10,

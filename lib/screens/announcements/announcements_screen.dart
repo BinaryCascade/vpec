@@ -75,11 +75,9 @@ class AnimatedFAB extends StatelessWidget {
       closedShape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(40.0)),
       ),
-      closedColor:
-          Theme.of(context).extension<ColorPalette>()!.backgroundSurface,
-      middleColor:
-          Theme.of(context).extension<ColorPalette>()!.backgroundSurface,
-      openColor: Theme.of(context).extension<ColorPalette>()!.backgroundSurface,
+      closedColor: context.palette.backgroundSurface,
+      middleColor: context.palette.backgroundSurface,
+      openColor: context.palette.backgroundSurface,
       onClosed: (n) {
         Future.delayed(const Duration(milliseconds: 100)).then(
           (value) => ThemeHelper.colorSystemChrome(

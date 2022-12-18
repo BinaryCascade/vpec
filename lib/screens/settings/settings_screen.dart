@@ -48,7 +48,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             icon: Icon(
               Icons.info_outlined,
               size: 32,
-              color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+              color: context.palette.accentColor,
             ),
             title: 'О приложении',
             subtitle: 'Просмотреть техническую информацию',

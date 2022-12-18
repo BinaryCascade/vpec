@@ -17,10 +17,7 @@ class SystemBarCover extends StatelessWidget implements PreferredSizeWidget {
     return SizedBox(
       height: height,
       child: ColoredBox(
-        color: Theme.of(context)
-            .extension<ColorPalette>()!
-            .backgroundSurface
-            .withOpacity(0.8),
+        color: context.palette.backgroundSurface.withOpacity(0.8),
       ),
     );
   }

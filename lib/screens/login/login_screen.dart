@@ -95,9 +95,7 @@ class LoginScreen extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(
                     Icons.settings_outlined,
-                    color: Theme.of(context)
-                        .extension<ColorPalette>()!
-                        .lowEmphasis,
+                    color: context.palette.lowEmphasis,
                   ),
                   tooltip: 'Открыть системные настройки',
                   onPressed: () => openAppSettings(),

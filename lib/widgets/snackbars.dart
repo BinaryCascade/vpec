@@ -9,8 +9,7 @@ void showSnackBar(
   Duration duration = const Duration(milliseconds: 4000),
 }) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    backgroundColor:
-        Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
+    backgroundColor: context.palette.levelTwoSurface,
     behavior: behavior,
     duration: duration,
     content: Text(text, style: Theme.of(context).textTheme.subtitle2),

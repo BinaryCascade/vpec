@@ -24,8 +24,7 @@ class _AnnouncementEditorState extends State<AnnouncementEditor> {
       if (HiveHelper.getValue('username') == null ||
           HiveHelper.getValue('username') == '') {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor:
-              Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
+          backgroundColor: context.palette.levelTwoSurface,
           behavior: SnackBarBehavior.floating,
           duration: const Duration(minutes: 1),
           action: SnackBarAction(

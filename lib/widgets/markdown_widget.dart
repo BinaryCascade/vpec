@@ -66,7 +66,7 @@ class MarkdownWidget extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ),
           h3: TextStyle(
-            color: Theme.of(context).extension<ColorPalette>()!.highEmphasis,
+            color: context.palette.highEmphasis,
             fontFamily: 'Montserrat',
             fontSize: 32,
             fontWeight: FontWeight.w400,
@@ -90,7 +90,7 @@ class MarkdownWidget extends StatelessWidget {
             letterSpacing: 0.2,
           ),
           p: TextStyle(
-            color: Theme.of(context).extension<ColorPalette>()!.highEmphasis,
+            color: context.palette.highEmphasis,
             fontFamily: 'Roboto',
             fontSize: 16,
             fontWeight: FontWeight.w400,

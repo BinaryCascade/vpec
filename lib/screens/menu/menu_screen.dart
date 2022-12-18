@@ -30,7 +30,7 @@ class _MenuScreenState extends State<MenuScreen> {
             StyledListTile(
               icon: Icon(
                 Icons.settings_outlined,
-                color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+                color: context.palette.accentColor,
                 size: 32,
               ),
               title: 'Настройки',
@@ -44,7 +44,7 @@ class _MenuScreenState extends State<MenuScreen> {
             StyledListTile(
               icon: Icon(
                 Icons.group_outlined,
-                color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+                color: context.palette.accentColor,
                 size: 32,
               ),
               title: 'Список преподавателей',
@@ -56,7 +56,7 @@ class _MenuScreenState extends State<MenuScreen> {
             StyledListTile(
               icon: Icon(
                 VpecIconPack.account_cog_outline,
-                color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+                color: context.palette.accentColor,
                 size: 32,
               ),
               title: 'Администрация колледжа',
@@ -74,9 +74,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     return StyledListTile(
                       icon: Icon(
                         Icons.rule_outlined,
-                        color: Theme.of(context)
-                            .extension<ColorPalette>()!
-                            .accentColor,
+                        color: context.palette.accentColor,
                         size: 32,
                       ),
                       title: 'Моя профессиональная направленность',
@@ -99,7 +97,7 @@ class _MenuScreenState extends State<MenuScreen> {
               icon: Icon(
                 Icons.description_outlined,
                 size: 32,
-                color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+                color: context.palette.accentColor,
               ),
               onTap: () async {
                 await Navigator.pushNamed(context, '/documents');

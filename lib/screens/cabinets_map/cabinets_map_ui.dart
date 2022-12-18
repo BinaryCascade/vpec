@@ -59,8 +59,7 @@ class FloorChips extends StatelessWidget {
           spacing: 6.0,
           children: [
             ChoiceChip(
-              backgroundColor:
-                  Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
+              backgroundColor: context.palette.levelTwoSurface,
               label: const Text('1 этаж'),
               selected: context.watch<CabinetsMapLogic>().selectedFloor == 1,
               labelStyle: TextStyle(
@@ -68,19 +67,15 @@ class FloorChips extends StatelessWidget {
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w600,
                 color: context.watch<CabinetsMapLogic>().selectedFloor == 1
-                    ? Theme.of(context)
-                        .extension<ColorPalette>()!
-                        .backgroundSurface
-                    : Theme.of(context).extension<ColorPalette>()!.highEmphasis,
+                    ? context.palette.backgroundSurface
+                    : context.palette.highEmphasis,
               ),
-              selectedColor:
-                  Theme.of(context).extension<ColorPalette>()!.accentColor,
+              selectedColor: context.palette.accentColor,
               onSelected: (_) =>
                   context.read<CabinetsMapLogic>().setNewFloor(1),
             ),
             ChoiceChip(
-              backgroundColor:
-                  Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
+              backgroundColor: context.palette.levelTwoSurface,
               label: const Text('2 этаж'),
               selected: context.watch<CabinetsMapLogic>().selectedFloor == 2,
               labelStyle: TextStyle(
@@ -88,19 +83,15 @@ class FloorChips extends StatelessWidget {
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w600,
                 color: context.watch<CabinetsMapLogic>().selectedFloor == 2
-                    ? Theme.of(context)
-                        .extension<ColorPalette>()!
-                        .backgroundSurface
-                    : Theme.of(context).extension<ColorPalette>()!.highEmphasis,
+                    ? context.palette.backgroundSurface
+                    : context.palette.highEmphasis,
               ),
-              selectedColor:
-                  Theme.of(context).extension<ColorPalette>()!.accentColor,
+              selectedColor: context.palette.accentColor,
               onSelected: (_) =>
                   context.read<CabinetsMapLogic>().setNewFloor(2),
             ),
             ChoiceChip(
-              backgroundColor:
-                  Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
+              backgroundColor: context.palette.levelTwoSurface,
               label: const Text('3 этаж'),
               selected: context.watch<CabinetsMapLogic>().selectedFloor == 3,
               labelStyle: TextStyle(
@@ -108,19 +99,15 @@ class FloorChips extends StatelessWidget {
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w600,
                 color: context.watch<CabinetsMapLogic>().selectedFloor == 3
-                    ? Theme.of(context)
-                        .extension<ColorPalette>()!
-                        .backgroundSurface
-                    : Theme.of(context).extension<ColorPalette>()!.highEmphasis,
+                    ? context.palette.backgroundSurface
+                    : context.palette.highEmphasis,
               ),
-              selectedColor:
-                  Theme.of(context).extension<ColorPalette>()!.accentColor,
+              selectedColor: context.palette.accentColor,
               onSelected: (_) =>
                   context.read<CabinetsMapLogic>().setNewFloor(3),
             ),
             ChoiceChip(
-              backgroundColor:
-                  Theme.of(context).extension<ColorPalette>()!.levelTwoSurface,
+              backgroundColor: context.palette.levelTwoSurface,
               label: const Text('4 этаж'),
               selected: context.watch<CabinetsMapLogic>().selectedFloor == 4,
               labelStyle: TextStyle(
@@ -128,13 +115,10 @@ class FloorChips extends StatelessWidget {
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w600,
                 color: context.watch<CabinetsMapLogic>().selectedFloor == 4
-                    ? Theme.of(context)
-                        .extension<ColorPalette>()!
-                        .backgroundSurface
-                    : Theme.of(context).extension<ColorPalette>()!.highEmphasis,
+                    ? context.palette.backgroundSurface
+                    : context.palette.highEmphasis,
               ),
-              selectedColor:
-                  Theme.of(context).extension<ColorPalette>()!.accentColor,
+              selectedColor: context.palette.accentColor,
               onSelected: (_) =>
                   context.read<CabinetsMapLogic>().setNewFloor(4),
             ),

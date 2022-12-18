@@ -31,8 +31,7 @@ class _AccountBlockState extends State<AccountBlock> {
                 onTap: () => SettingsLogic.accountLogin(context),
                 icon: Icon(
                   Icons.account_circle_outlined,
-                  color:
-                      Theme.of(context).extension<ColorPalette>()!.accentColor,
+                  color: context.palette.accentColor,
                   size: 32,
                 ),
                 title: 'Аккаунт',
@@ -43,8 +42,7 @@ class _AccountBlockState extends State<AccountBlock> {
               StyledListTile(
                 icon: Icon(
                   Icons.subject_outlined,
-                  color:
-                      Theme.of(context).extension<ColorPalette>()!.accentColor,
+                  color: context.palette.accentColor,
                   size: 32,
                 ),
                 title: 'Выбрать группу',
@@ -58,9 +56,7 @@ class _AccountBlockState extends State<AccountBlock> {
                       onTap: () => SettingsLogic.changeName(context),
                       icon: Icon(
                         Icons.edit_outlined,
-                        color: Theme.of(context)
-                            .extension<ColorPalette>()!
-                            .accentColor,
+                        color: context.palette.accentColor,
                         size: 32.0,
                       ),
                       title: 'Имя для объявлений',
@@ -70,9 +66,7 @@ class _AccountBlockState extends State<AccountBlock> {
                     StyledListTile(
                       icon: Icon(
                         Icons.tune_outlined,
-                        color: Theme.of(context)
-                            .extension<ColorPalette>()!
-                            .accentColor,
+                        color: context.palette.accentColor,
                         size: 32.0,
                       ),
                       title: 'Режим редактирования',
@@ -86,9 +80,7 @@ class _AccountBlockState extends State<AccountBlock> {
                     StyledListTile(
                       icon: Icon(
                         Icons.construction_outlined,
-                        color: Theme.of(context)
-                            .extension<ColorPalette>()!
-                            .accentColor,
+                        color: context.palette.accentColor,
                         size: 32.0,
                       ),
                       title: 'Экран тестирования',
@@ -123,7 +115,7 @@ class AppThemeListTile extends StatelessWidget {
       icon: Icon(
         Icons.brightness_6_outlined,
         size: 32.0,
-        color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+        color: context.palette.accentColor,
       ),
       onTap: () async {
         await SettingsLogic.chooseTheme(context: context);
@@ -144,7 +136,7 @@ class LaunchOnStartChooser extends StatelessWidget {
       title: 'Открывать при запуске',
       icon: Icon(
         Icons.launch_outlined,
-        color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+        color: context.palette.accentColor,
         size: 32.0,
       ),
     );
@@ -348,7 +340,7 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
               widthFactor: 1,
               child: Icon(
                 Icons.brightness_5_outlined,
-                color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+                color: context.palette.accentColor,
               ),
             ),
             title: Text(
@@ -356,8 +348,7 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 0,
-            activeColor:
-                Theme.of(context).extension<ColorPalette>()!.accentColor,
+            activeColor: context.palette.accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
@@ -376,7 +367,7 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
               widthFactor: 1,
               child: Icon(
                 Icons.brightness_2_outlined,
-                color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+                color: context.palette.accentColor,
               ),
             ),
             title: Text(
@@ -384,8 +375,7 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 1,
-            activeColor:
-                Theme.of(context).extension<ColorPalette>()!.accentColor,
+            activeColor: context.palette.accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
@@ -406,7 +396,7 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
               widthFactor: 1,
               child: Icon(
                 Icons.phonelink_setup_outlined,
-                color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+                color: context.palette.accentColor,
               ),
             ),
             title: Text(
@@ -414,8 +404,7 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 2,
-            activeColor:
-                Theme.of(context).extension<ColorPalette>()!.accentColor,
+            activeColor: context.palette.accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (dynamic value) {
@@ -432,13 +421,12 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             value: documentLightThemeSwitchState,
-            activeColor:
-                Theme.of(context).extension<ColorPalette>()!.accentColor,
+            activeColor: context.palette.accentColor,
             secondary: Center(
               widthFactor: 1,
               child: Icon(
                 Icons.description_outlined,
-                color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+                color: context.palette.accentColor,
               ),
             ),
             title: Text(
@@ -483,7 +471,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               widthFactor: 1,
               child: Icon(
                 VpecIconPack.news_outline,
-                color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+                color: context.palette.accentColor,
               ),
             ),
             title: Text(
@@ -491,8 +479,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 0,
-            activeColor:
-                Theme.of(context).extension<ColorPalette>()!.accentColor,
+            activeColor: context.palette.accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (int? value) {
@@ -515,7 +502,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               widthFactor: 1,
               child: Icon(
                 Icons.notifications_outlined,
-                color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+                color: context.palette.accentColor,
               ),
             ),
             title: Text(
@@ -523,8 +510,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 1,
-            activeColor:
-                Theme.of(context).extension<ColorPalette>()!.accentColor,
+            activeColor: context.palette.accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (int? value) {
@@ -547,7 +533,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               widthFactor: 1,
               child: Icon(
                 Icons.access_time_outlined,
-                color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+                color: context.palette.accentColor,
               ),
             ),
             title: Text(
@@ -555,8 +541,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 2,
-            activeColor:
-                Theme.of(context).extension<ColorPalette>()!.accentColor,
+            activeColor: context.palette.accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (int? value) {
@@ -579,7 +564,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               widthFactor: 1,
               child: Icon(
                 Icons.layers_outlined,
-                color: Theme.of(context).extension<ColorPalette>()!.accentColor,
+                color: context.palette.accentColor,
               ),
             ),
             title: Text(
@@ -587,8 +572,7 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
               style: Theme.of(context).textTheme.headline4,
             ),
             value: 3,
-            activeColor:
-                Theme.of(context).extension<ColorPalette>()!.accentColor,
+            activeColor: context.palette.accentColor,
             groupValue: selectedItem,
             controlAffinity: ListTileControlAffinity.trailing,
             onChanged: (int? value) {
@@ -693,8 +677,7 @@ class ChooseGroupUI extends StatelessWidget {
               visualDensity: VisualDensity.compact,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
-              activeColor:
-                  Theme.of(context).extension<ColorPalette>()!.accentColor,
+              activeColor: context.palette.accentColor,
               value: logic.isAccelerated,
               title: Text(
                 'Ускоренная форма обучения',
