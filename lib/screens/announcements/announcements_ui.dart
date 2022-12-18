@@ -94,16 +94,16 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
   }
 }
 
-class BottomTapBar extends StatefulWidget {
-  const BottomTapBar({
+class AnnouncementsTabBar extends StatefulWidget {
+  const AnnouncementsTabBar({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<BottomTapBar> createState() => _BottomTapBarState();
+  State<AnnouncementsTabBar> createState() => _AnnouncementsTabBarState();
 }
 
-class _BottomTapBarState extends State<BottomTapBar> {
+class _AnnouncementsTabBarState extends State<AnnouncementsTabBar> {
   @override
   Widget build(BuildContext context) {
     return Material(

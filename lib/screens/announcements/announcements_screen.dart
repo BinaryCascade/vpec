@@ -60,7 +60,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
         floatingActionButton:
             AccountDetails.isAdmin ? const AnimatedFAB() : null,
         bottomNavigationBar:
-            AccountDetails.isAdmin ? const BottomTapBar() : null,
+            AccountDetails.isAdmin ? const AnnouncementsTabBar() : null,
       ),
     );
   }
