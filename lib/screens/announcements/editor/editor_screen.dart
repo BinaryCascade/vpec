@@ -58,10 +58,9 @@ class _AnnouncementEditorState extends State<AnnouncementEditor> {
                     child: EditorHeader(),
                   ),
                   EditorUI(),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 15.0),
-                    child: VisibilityPicker(),
-                  ),
+                  SizedBox(height: 20),
+                  VisibilityPicker(),
+                  SizedBox(height: 10),
                   DialogButtons(),
                 ],
               ),
