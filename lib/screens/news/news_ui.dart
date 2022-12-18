@@ -76,7 +76,7 @@ class NewsItemCard extends StatelessWidget {
                       height: 200,
                       width: MediaQuery.of(context).size.width,
                       child: Image.memory(kTransparentImage),
-                        ),
+                    ),
                     errorWidget: (context, url, error) => Container(),
                   ),
                 ),

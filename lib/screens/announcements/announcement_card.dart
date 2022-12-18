@@ -180,12 +180,14 @@ class AnnouncementCard extends StatelessWidget {
     }
   }
 
-  void updateAnnouncement(BuildContext context,
-      String docId,
-      String titleText,
-      String contentText,) {
+  void updateAnnouncement(
+    BuildContext context,
+    String docId,
+    String titleText,
+    String contentText,
+  ) {
     CollectionReference alerts =
-    FirebaseFirestore.instance.collection(collectionPath());
+        FirebaseFirestore.instance.collection(collectionPath());
     alerts
         .doc(docId)
         .update({'content_title': titleText, 'content_body': contentText});
@@ -248,7 +250,7 @@ class AnnouncementCard extends StatelessWidget {
 
   void deleteAnnouncement(BuildContext context) {
     CollectionReference alerts =
-    FirebaseFirestore.instance.collection(collectionPath());
+        FirebaseFirestore.instance.collection(collectionPath());
 
     if (announcement.photoUrl != null) {
       FirebaseStorage storage = FirebaseStorage.instance;

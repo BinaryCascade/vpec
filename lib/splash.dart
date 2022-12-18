@@ -90,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       FlutterLocalNotificationsPlugin()
           .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
+              AndroidFlutterLocalNotificationsPlugin>()
           ?.requestPermission();
     } else {
       quickActions.clearShortcutItems();

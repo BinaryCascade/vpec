@@ -113,40 +113,40 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                     const SizedBox(height: 15),
                     logic.fullSchedule == null
                         ? logic.hasError
-                        ? ScheduleErrorLoadingUI(errorText: logic.errorText)
-                        : Center(
-                      child: LinearProgressIndicator(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onBackground,
-                        backgroundColor: Theme.of(context)
-                            .extension<ColorPalette>()!
-                            .backgroundSurface,
-                      ),
-                    )
+                            ? ScheduleErrorLoadingUI(errorText: logic.errorText)
+                            : Center(
+                                child: LinearProgressIndicator(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
+                                  backgroundColor: Theme.of(context)
+                                      .extension<ColorPalette>()!
+                                      .backgroundSurface,
+                                ),
+                              )
                         : Column(
-                      children: [
-                        SchedulePanel(fullSchedule: logic.fullSchedule!),
-                        // Отступ после расписания, чтобы FAB не перекрывал контент
-                        // Пунктир вместо отступа, чтобы не создавать вид обрыва
-                        Container(
-                          height: 130,
-                          decoration: BoxDecoration(
-                            border: RDottedLineBorder(
-                              // Меняй этой значение, чтобы дэши попали в расстояние нормально
-                              dottedLength: 3.5,
-                              dottedSpace: 3,
-                              left: BorderSide(
-                                width: 3,
-                                color: Theme.of(context)
-                                    .extension<ColorPalette>()!
-                                    .lowEmphasis,
+                            children: [
+                              SchedulePanel(fullSchedule: logic.fullSchedule!),
+                              // Отступ после расписания, чтобы FAB не перекрывал контент
+                              // Пунктир вместо отступа, чтобы не создавать вид обрыва
+                              Container(
+                                height: 130,
+                                decoration: BoxDecoration(
+                                  border: RDottedLineBorder(
+                                    // Меняй этой значение, чтобы дэши попали в расстояние нормально
+                                    dottedLength: 3.5,
+                                    dottedSpace: 3,
+                                    left: BorderSide(
+                                      width: 3,
+                                      color: Theme.of(context)
+                                          .extension<ColorPalette>()!
+                                          .lowEmphasis,
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
               ],

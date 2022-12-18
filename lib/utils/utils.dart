@@ -38,7 +38,7 @@ Future<void> shareFile(String? url) async {
     // get temp directory, write and share file
     final Directory tempDir = await getTemporaryDirectory();
     final File file =
-    await File('${tempDir.path}/${url.split('/').last}').create();
+        await File('${tempDir.path}/${url.split('/').last}').create();
     await file.writeAsBytes(bytes);
 
     if (response.statusCode == 200) {
@@ -94,9 +94,9 @@ Future<T?> showRoundedModalSheet<T>({
             left: 10,
             right: 10,
             bottom: [
-              MediaQuery.of(context).viewInsets.bottom,
-              MediaQuery.of(context).viewPadding.bottom,
-            ].reduce(max) +
+                  MediaQuery.of(context).viewInsets.bottom,
+                  MediaQuery.of(context).viewPadding.bottom,
+                ].reduce(max) +
                 10,
           ),
           child: Column(
@@ -105,33 +105,33 @@ Future<T?> showRoundedModalSheet<T>({
             children: [
               isDismissible
                   ? Column(
-                children: [
-                  SizedBox(
-                    width: 70,
-                    height: 5,
-                    child: DecoratedBox(
-                      decoration: ShapeDecoration(
-                        shape: const StadiumBorder(),
-                        color: Theme.of(context)
-                            .extension<ColorPalette>()!
-                            .lowEmphasis,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                ],
-              )
+                      children: [
+                        SizedBox(
+                          width: 70,
+                          height: 5,
+                          child: DecoratedBox(
+                            decoration: ShapeDecoration(
+                              shape: const StadiumBorder(),
+                              color: Theme.of(context)
+                                  .extension<ColorPalette>()!
+                                  .lowEmphasis,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                      ],
+                    )
                   : const SizedBox(height: 5),
               Center(
                 child: title != null
                     ? Text(
-                  title,
-                  style: Theme.of(context).textTheme.headline4,
-                  textAlign: TextAlign.center,
-                )
+                        title,
+                        style: Theme.of(context).textTheme.headline4,
+                        textAlign: TextAlign.center,
+                      )
                     : ErrorWidget('You need implement [title] if you want '
-                    'use styled layout, or [customLayout] if you need'
-                    ' your own layout'),
+                        'use styled layout, or [customLayout] if you need'
+                        ' your own layout'),
               ),
               const SizedBox(height: 15),
               child ??

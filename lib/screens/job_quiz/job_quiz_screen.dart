@@ -36,11 +36,11 @@ class _JobQuizScreenState extends State<JobQuizScreen> {
                       AnswersBlock(
                         firstAnswer: storage.firstAnswer,
                         secondAnswer: storage.secondAnswer,
-                  thirdAnswer: storage.thirdAnswer,
-                  fourthAnswer: storage.fourthAnswer,
-                ),
-              ],
-            );
+                        thirdAnswer: storage.thirdAnswer,
+                        fourthAnswer: storage.fourthAnswer,
+                      ),
+                    ],
+                  );
           },
         ),
         floatingActionButton: const JobQuizFAB(),
