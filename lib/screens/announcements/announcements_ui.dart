@@ -106,88 +106,90 @@ class AnnouncementsTabBar extends StatefulWidget {
 class _AnnouncementsTabBarState extends State<AnnouncementsTabBar> {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 8.0,
-      child: Container(
+    return DecoratedBox(
+      decoration: BoxDecoration(
         color: context.palette.levelTwoSurface,
-        child: TabBar(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          isScrollable: true,
-          tabs: [
-            Tab(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Icon(
-                    Icons.group_outlined,
-                    size: 24,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      'Студентам',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Tab(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Icon(
-                    VpecIconPack.parents,
-                    size: 24,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      'Родителям',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Tab(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Icon(
-                    Icons.school_outlined,
-                    size: 24,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      'Преподавателям',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Tab(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Icon(
-                    VpecIconPack.account_cog_outline,
-                    size: 24,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      'Администрации',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+        border: Border(
+          top: BorderSide(color: context.palette.outsideBorderColor),
         ),
+      ),
+      child: TabBar(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        isScrollable: true,
+        tabs: [
+          Tab(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                Icon(
+                  Icons.group_outlined,
+                  size: 24,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    'Студентам',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Tab(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                Icon(
+                  VpecIconPack.parents,
+                  size: 24,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    'Родителям',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Tab(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                Icon(
+                  Icons.school_outlined,
+                  size: 24,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    'Преподавателям',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Tab(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                Icon(
+                  VpecIconPack.account_cog_outline,
+                  size: 24,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    'Администрации',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
