@@ -182,6 +182,9 @@ ThemeData themeData() {
     primaryColor: levelTwoSurface,
     cardColor: levelOneSurface,
     splashColor: accentColor.withOpacity(0.2),
+    highlightColor: accentColor.withOpacity(0.15),
+    focusColor: accentColor.withOpacity(0.2),
+    splashFactory: InkRipple.splashFactory,
     colorScheme: ColorScheme(
       primary: accentColor,
       secondary: accentColor,
@@ -410,6 +413,9 @@ ThemeData darkThemeData() {
     primaryColor: levelTwoSurface,
     cardColor: levelOneSurface,
     splashColor: accentColor.withOpacity(0.2),
+    highlightColor: accentColor.withOpacity(0.15),
+    focusColor: accentColor.withOpacity(0.2),
+    splashFactory: InkRipple.splashFactory,
     colorScheme: ColorScheme(
       primary: accentColor,
       secondary: accentColor,
