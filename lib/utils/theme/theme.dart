@@ -236,8 +236,10 @@ ThemeData themeData() {
     ),
     scaffoldBackgroundColor: backgroundSurface,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: levelTwoSurface,
+      elevation: 0,
+      backgroundColor: levelThreeSurface,
       foregroundColor: accentColor,
+      shape: const CircleBorder(side: BorderSide(color: outsideBorderColor)),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: accentColor,
@@ -467,8 +469,10 @@ ThemeData darkThemeData() {
     ),
     scaffoldBackgroundColor: backgroundSurface,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: levelTwoSurface,
+      elevation: 0,
+      backgroundColor: levelThreeSurface,
       foregroundColor: accentColor,
+      shape: const CircleBorder(side: BorderSide(color: outsideBorderColor)),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: accentColor,
