@@ -20,6 +20,7 @@ Future<void> main() async {
   setPathUrlStrategy(); // remove # from url path
   await useHttpOverrides();
   await HiveHelper().initHive();
+  await ThemeHelper.initSdkVer();
   await Firebase.initializeApp();
   await LocalNotifications.initializeNotifications();
   AppFirebaseMessaging.startListening();
@@ -31,7 +32,6 @@ Future<void> main() async {
     statusBarColor: Colors.transparent,
     systemNavigationBarColor: Colors.transparent,
   ));
-  ThemeHelper.initSdkVer();
 
   runApp(MultiProvider(
     providers: [
