@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -71,72 +72,76 @@ Future<T?> showRoundedModalSheet<T>({
     isScrollControlled: true,
     enableDrag: enableDrag,
     backgroundColor: Colors.transparent,
-    builder: (context) =>
-        customLayout ??
-        Container(
-          padding: const EdgeInsets.only(
-            top: 10,
-            bottom: 15,
-            left: 15,
-            right: 15,
-          ),
-          decoration: BoxDecoration(
-            color: context.palette.levelTwoSurface,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: context.palette.outsideBorderColor,
+    builder: (context) => AnnotatedRegion<SystemUiOverlayStyle>(
+      value: ThemeHelper.overlayStyleHelper(
+        Color.alphaBlend(Colors.black54, context.palette.backgroundSurface),
+      ),
+      child: customLayout ??
+          Container(
+            padding: const EdgeInsets.only(
+              top: 10,
+              bottom: 15,
+              left: 15,
+              right: 15,
             ),
-          ),
-          margin: EdgeInsets.only(
-            top: 10,
-            left: 10,
-            right: 10,
-            bottom: [
-                  MediaQuery.of(context).viewInsets.bottom,
-                  MediaQuery.of(context).viewPadding.bottom,
-                ].reduce(max) +
-                10,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              isDismissible
-                  ? Column(
-                      children: [
-                        SizedBox(
-                          width: 70,
-                          height: 5,
-                          child: DecoratedBox(
-                            decoration: ShapeDecoration(
-                              shape: const StadiumBorder(),
-                              color: context.palette.lowEmphasis,
+            decoration: BoxDecoration(
+              color: context.palette.levelTwoSurface,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: context.palette.outsideBorderColor,
+              ),
+            ),
+            margin: EdgeInsets.only(
+              top: 10,
+              left: 10,
+              right: 10,
+              bottom: [
+                    MediaQuery.of(context).viewInsets.bottom,
+                    MediaQuery.of(context).viewPadding.bottom,
+                  ].reduce(max) +
+                  10,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                isDismissible
+                    ? Column(
+                        children: [
+                          SizedBox(
+                            width: 70,
+                            height: 5,
+                            child: DecoratedBox(
+                              decoration: ShapeDecoration(
+                                shape: const StadiumBorder(),
+                                color: context.palette.lowEmphasis,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 10),
-                      ],
-                    )
-                  : const SizedBox(height: 5),
-              Center(
-                child: title != null
-                    ? Text(
-                        title,
-                        style: Theme.of(context).textTheme.headline4,
-                        textAlign: TextAlign.center,
+                          const SizedBox(height: 10),
+                        ],
                       )
-                    : ErrorWidget('You need implement [title] if you want '
-                        'use styled layout, or [customLayout] if you need'
-                        ' your own layout'),
-              ),
-              const SizedBox(height: 15),
-              child ??
-                  ErrorWidget('You need implement [child] if you want '
-                      'use styled layout, or [customLayout] if you need your '
-                      'own layout'),
-            ],
+                    : const SizedBox(height: 5),
+                Center(
+                  child: title != null
+                      ? Text(
+                          title,
+                          style: Theme.of(context).textTheme.headline4,
+                          textAlign: TextAlign.center,
+                        )
+                      : ErrorWidget('You need implement [title] if you want '
+                          'use styled layout, or [customLayout] if you need'
+                          ' your own layout'),
+                ),
+                const SizedBox(height: 15),
+                child ??
+                    ErrorWidget('You need implement [child] if you want '
+                        'use styled layout, or [customLayout] if you need your '
+                        'own layout'),
+              ],
+            ),
           ),
-        ),
+    ),
   );
   ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
 

@@ -42,7 +42,7 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: SystemBarCover(
+      appBar: StatusBarCover(
         height: MediaQuery.of(context).padding.top,
       ),
       body: Consumer<NewsLogic>(

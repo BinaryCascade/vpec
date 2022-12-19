@@ -24,7 +24,7 @@ class DocumentViewScreen extends StatelessWidget {
 
     return Scaffold(
       // no extendBody due to documents being weird
-      bottomNavigationBar: SystemBarCover(
+      bottomNavigationBar: SystemNavBarCover(
         height: MediaQuery.of(context).padding.bottom,
       ),
       appBar: AppBar(

@@ -50,7 +50,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
       length: tabBarChildren.length,
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: SystemBarCover(
+        appBar: StatusBarCover(
           height: MediaQuery.of(context).padding.top,
         ),
         body: TabBarView(

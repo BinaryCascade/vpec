@@ -3,6 +3,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '/utils/theme_helper.dart';
 import '../../theme.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'login_logic.dart';
 import 'login_ui.dart';
 
@@ -108,6 +109,14 @@ class LoginScreen extends StatelessWidget {
     ];
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: StatusBarCover(
+        height: MediaQuery.of(context).padding.top,
+      ),
+      extendBody: true,
+      bottomNavigationBar: SystemNavBarCover(
+        height: MediaQuery.of(context).padding.bottom,
+      ),
       body: SafeArea(
         minimum: const EdgeInsets.all(12.0),
         child: MediaQuery.of(context).size.aspectRatio > 1

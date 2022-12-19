@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 import '/screens/settings/settings_logic.dart';
 import '/utils/hive_helper.dart';
 import '../../models/document_model.dart';
+import '../../theme.dart';
 import '../../utils/firebase_auth.dart';
 import '../../utils/theme_helper.dart';
 import '../../utils/utils.dart';
@@ -53,14 +55,19 @@ class LoginLogic extends ChangeNotifier {
     await showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          content: Text(dialogText),
-          actions: [
-            TextButton(
-              child: const Text('Закрыть'),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ],
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: ThemeHelper.overlayStyleHelper(
+            Color.alphaBlend(Colors.black54, context.palette.backgroundSurface),
+          ),
+          child: AlertDialog(
+            content: Text(dialogText),
+            actions: [
+              TextButton(
+                child: const Text('Закрыть'),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
         );
       },
     );

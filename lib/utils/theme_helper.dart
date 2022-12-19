@@ -1,9 +1,22 @@
+import 'dart:io';
+
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 
 class ThemeHelper {
+  static int _sdkVer = 0;
+
+  static Future<void> initSdkVer() async {
+    if (Platform.isAndroid) {
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      _sdkVer = androidInfo.version.sdkInt;
+    }
+  }
+
   /// return true, if system or user-chosen theme is dark
   static bool get isDarkMode {
     // get system theme
@@ -18,6 +31,15 @@ class ThemeHelper {
     }
 
     return isDarkMode;
+  }
+
+  static SystemUiOverlayStyle overlayStyleHelper(Color legacyColor) {
+    if (_sdkVer < 29) {
+      // less than Android 10
+      return SystemUiOverlayStyle(systemNavigationBarColor: legacyColor);
+    }
+
+    return const SystemUiOverlayStyle();
   }
 
   /// Color StatusBar and SystemNavigationBar icons to current theme brightness

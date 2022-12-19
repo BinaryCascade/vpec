@@ -41,7 +41,7 @@ class _CabinetsMapScreenUIState extends State<CabinetsMapScreenUI> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: SystemBarCover(
+      appBar: StatusBarCover(
         height: MediaQuery.of(context).padding.top,
       ),
       body: Stack(

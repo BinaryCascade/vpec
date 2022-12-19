@@ -19,7 +19,7 @@ class AdminScreen extends StatelessWidget {
 
     return Scaffold(
       extendBody: true,
-      bottomNavigationBar: SystemBarCover(
+      bottomNavigationBar: SystemNavBarCover(
         height: MediaQuery.of(context).padding.bottom,
       ),
       appBar: AppBar(title: const Text('Администрация')),

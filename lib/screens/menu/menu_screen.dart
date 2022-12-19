@@ -18,7 +18,7 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: SystemBarCover(
+      appBar: StatusBarCover(
         height: MediaQuery.of(context).padding.top,
       ),
       body: SingleChildScrollView(

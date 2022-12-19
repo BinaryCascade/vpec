@@ -49,7 +49,7 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
       builder: (context, logic, child) {
         return Scaffold(
           extendBodyBehindAppBar: true,
-          appBar: SystemBarCover(
+          appBar: StatusBarCover(
             height: MediaQuery.of(context).padding.top,
           ),
           body: SafeArea(

@@ -24,7 +24,7 @@ class _TeacherScreenState extends State<TeacherScreen>
       builder: (BuildContext context, value, Widget? child) {
         return Scaffold(
           extendBody: true,
-          bottomNavigationBar: SystemBarCover(
+          bottomNavigationBar: SystemNavBarCover(
             height: MediaQuery.of(context).padding.bottom,
           ),
           appBar: AppBar(

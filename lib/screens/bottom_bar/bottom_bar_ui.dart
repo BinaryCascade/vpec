@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '/utils/icons.dart';
 import '../../theme.dart';
+import '../../utils/theme_helper.dart';
 import '../announcements/announcements_screen.dart';
 import '../cabinets_map/cabinets_map_screen.dart';
 import '../menu/menu_screen.dart';
@@ -41,48 +43,52 @@ class BottomBarUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<BottomBarLogic>(
-      builder: (context, storage, child) => DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.palette.levelTwoSurface,
-          border: Border(
-            top: BorderSide(
-              color: context.palette.outsideBorderColor,
-              width: 1.0,
+      builder: (context, storage, child) =>
+          AnnotatedRegion<SystemUiOverlayStyle>(
+        value: ThemeHelper.overlayStyleHelper(context.palette.levelTwoSurface),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: context.palette.levelTwoSurface,
+            border: Border(
+              top: BorderSide(
+                color: context.palette.outsideBorderColor,
+                width: 1.0,
+              ),
             ),
           ),
-        ),
-        child: NavigationBar(
-          selectedIndex: storage.bottomBarIndex,
-          onDestinationSelected: (index) {
-            storage.setIndex(index);
-          },
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(VpecIconPack.news_outline),
-              selectedIcon: Icon(VpecIconPack.news),
-              label: 'События',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.notifications_outlined),
-              selectedIcon: Icon(Icons.notifications),
-              label: 'Объявления',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.schedule_outlined),
-              selectedIcon: Icon(Icons.watch_later),
-              label: 'Расписание',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.layers_outlined),
-              selectedIcon: Icon(Icons.layers),
-              label: 'Карта',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.menu_outlined),
-              selectedIcon: Icon(Icons.menu),
-              label: 'Меню',
-            ),
-          ],
+          child: NavigationBar(
+            selectedIndex: storage.bottomBarIndex,
+            onDestinationSelected: (index) {
+              storage.setIndex(index);
+            },
+            destinations: const [
+              NavigationDestination(
+                icon: Icon(VpecIconPack.news_outline),
+                selectedIcon: Icon(VpecIconPack.news),
+                label: 'События',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.notifications_outlined),
+                selectedIcon: Icon(Icons.notifications),
+                label: 'Объявления',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.schedule_outlined),
+                selectedIcon: Icon(Icons.watch_later),
+                label: 'Расписание',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.layers_outlined),
+                selectedIcon: Icon(Icons.layers),
+                label: 'Карта',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.menu_outlined),
+                selectedIcon: Icon(Icons.menu),
+                label: 'Меню',
+              ),
+            ],
+          ),
         ),
       ),
     );
