@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'widgets/md2_tab_indicator.dart';
+import '../../widgets/md2_tab_indicator.dart';
 
-part 'utils/color_palette.dart';
+part 'color_palette.dart';
 
 const FontWeight thin = FontWeight.w100;
 const FontWeight extraLight = FontWeight.w200;

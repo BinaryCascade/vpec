@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '/utils/theme_helper.dart';
-import '../../theme.dart';
+import '../../utils/theme/theme.dart';
 import '../../widgets/system_bar_cover.dart';
 import 'login_logic.dart';
 import 'login_ui.dart';

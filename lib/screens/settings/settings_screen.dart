@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/widgets/styled_widgets.dart';
-import '../../theme.dart';
 import '../../utils/firebase_auth.dart';
+import '../../utils/theme/theme.dart';
 import '../../utils/theme_helper.dart';
 import '../../widgets/system_bar_cover.dart';
 import 'settings_logic.dart';

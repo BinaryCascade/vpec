@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/widgets/loading_indicator.dart';
-import '../../theme.dart';
+import '../../utils/theme/theme.dart';
 import '../../widgets/interactive_widget.dart';
 import 'cabinets_map_logic.dart';
 

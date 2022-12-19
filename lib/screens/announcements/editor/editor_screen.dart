@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../theme.dart';
 import '../../../utils/hive_helper.dart';
+import '../../../utils/theme/theme.dart';
 import '../../../utils/theme_helper.dart';
 import '../../settings/settings_logic.dart';
 import 'editor_logic.dart';

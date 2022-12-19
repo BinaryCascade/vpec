@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '/utils/icons.dart';
 import '/utils/utils.dart';
 import '/widgets/styled_widgets.dart';
-import '../../theme.dart';
+import '../../utils/theme/theme.dart';
 
 class AboutDeveloperCard extends StatelessWidget {
   final String name, post, nickname;

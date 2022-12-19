@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '/models/announcement_model.dart';
 import '/utils/icons.dart';
 import '/widgets/loading_indicator.dart';
-import '../../theme.dart';
+import '../../utils/theme/theme.dart';
 import 'announcement_card.dart';
 
 /// ListView with data from Firestore

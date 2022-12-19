@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../theme.dart';
+import '../../utils/theme/theme.dart';
 import 'job_quiz_logic.dart';
 
 class QuestionBlock extends StatelessWidget {

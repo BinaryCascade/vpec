@@ -6,8 +6,8 @@ import '/screens/debug/debug_screen.dart';
 import '/utils/hive_helper.dart';
 import '/utils/icons.dart';
 import '/widgets/styled_widgets.dart';
-import '../../theme.dart';
 import '../../utils/firebase_auth.dart';
+import '../../utils/theme/theme.dart';
 import 'settings_logic.dart';
 
 class AccountBlock extends StatefulWidget {

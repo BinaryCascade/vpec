@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../theme.dart';
+import '../utils/theme/theme.dart';
 import '../utils/theme_helper.dart';
 
 /// Used to cover content under system status bar with semi-transparent fill.

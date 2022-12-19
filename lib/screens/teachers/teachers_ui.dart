@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '/models/teacher_model.dart';
 import '/widgets/loading_indicator.dart';
-import '../../theme.dart';
+import '../../utils/theme/theme.dart';
 import 'teacher_card/teacher_card.dart';
 import 'teachers_logic.dart';
 

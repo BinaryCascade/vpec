@@ -1,8 +1,8 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
-import '../../theme.dart';
 import '../../utils/firebase_auth.dart';
+import '../../utils/theme/theme.dart';
 import '../../utils/theme_helper.dart';
 import '../../widgets/system_bar_cover.dart';
 import 'announcements_ui.dart';

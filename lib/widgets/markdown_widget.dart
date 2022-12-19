@@ -4,7 +4,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import '/models/document_model.dart';
 import '/screens/view_document/view_document_logic.dart';
 import '/utils/utils.dart';
-import '../theme.dart';
+import '../utils/theme/theme.dart';
 
 /// Create markdown with branded colors and text style
 class MarkdownWidget extends StatelessWidget {

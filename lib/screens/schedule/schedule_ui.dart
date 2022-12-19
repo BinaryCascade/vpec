@@ -4,9 +4,9 @@ import 'package:r_dotted_line_border/r_dotted_line_border.dart';
 
 import '../../models/full_schedule.dart';
 import '../../models/schedule/schedule_item.dart';
-import '../../theme.dart';
 import '../../utils/hive_helper.dart';
 import '../../utils/routes/routes.dart';
+import '../../utils/theme/theme.dart';
 import '../../utils/theme_helper.dart';
 import '../settings/settings_logic.dart';
 import 'schedule_item_logic.dart';
