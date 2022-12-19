@@ -72,11 +72,15 @@ class AnimatedFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OpenContainer(
-      closedShape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(40.0)),
+      transitionDuration: const Duration(milliseconds: 600),
+      transitionType: ContainerTransitionType.fadeThrough,
+      closedElevation: 0,
+      closedShape: CircleBorder(
+        side: BorderSide(color: context.palette.outsideBorderColor),
       ),
-      closedColor: context.palette.backgroundSurface,
+      closedColor: context.palette.levelThreeSurface,
       middleColor: context.palette.backgroundSurface,
+      openElevation: 0,
       openColor: context.palette.backgroundSurface,
       onClosed: (n) {
         Future.delayed(const Duration(milliseconds: 100)).then(
@@ -87,6 +91,8 @@ class AnimatedFAB extends StatelessWidget {
       },
       closedBuilder: (context, action) {
         return FloatingActionButton(
+          backgroundColor: Colors.transparent,
+          shape: const CircleBorder(),
           onPressed: action,
           child: const Icon(Icons.rate_review_outlined),
         );
