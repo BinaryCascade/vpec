@@ -20,7 +20,7 @@ Future<void> main() async {
   setPathUrlStrategy(); // remove # from url path
   await AndroidSdkVersion.getAndSave();
   useHttpOverrides();
-  await HiveHelper().initHive();
+  await HiveHelper.initHive();
   await Firebase.initializeApp();
   await LocalNotifications.initializeNotifications();
   AppFirebaseMessaging.startListening();
