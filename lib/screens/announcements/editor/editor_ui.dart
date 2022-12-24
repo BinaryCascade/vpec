@@ -285,11 +285,11 @@ class AuthorName extends StatelessWidget {
             valueListenable:
                 Hive.box('settings').listenable(keys: ['username']),
             builder: (context, Box box, child) {
-              String userName = box.get(
+              final String userName = box.get(
                 'username',
                 defaultValue: 'Имя не указано',
               );
-              String field =
+              final String field =
                   userName.isEmpty ? 'Нажмите, чтобы задать имя' : userName;
 
               return Row(
