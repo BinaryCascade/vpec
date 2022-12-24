@@ -177,7 +177,7 @@ class SchedulePanel extends StatelessWidget {
 
       String lessonName() {
         String name = ScheduleTime.replaceLessonName(
-          shortLessonName: fullSchedule.schedule[lessonNum],
+          shortLessonName: fullSchedule.schedule[lessonNum].toString(),
           lessonShortNames: fullSchedule.shortLessonNames,
           lessonFullNames: fullSchedule.fullLessonNames,
         );
