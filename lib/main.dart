@@ -18,9 +18,9 @@ import 'utils/theme_helper.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy(); // remove # from url path
-  await useHttpOverrides();
+  await AndroidSdkVersion.getAndSave();
+  useHttpOverrides();
   await HiveHelper().initHive();
-  await ThemeHelper.initSdkVer();
   await Firebase.initializeApp();
   await LocalNotifications.initializeNotifications();
   AppFirebaseMessaging.startListening();

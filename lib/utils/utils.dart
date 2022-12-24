@@ -157,17 +157,23 @@ class LowAndroidHttpOverrides extends HttpOverrides {
   }
 }
 
-/// On Android 7.0 and lower bug:
-///
-/// `CERTIFICATE_VERIFY_FAILED: certificate has expired`
-///
-/// This method fix it.
-Future<void> useHttpOverrides() async {
-  if (Platform.isAndroid) {
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    if (androidInfo.version.sdkInt <= 24) {
-      HttpOverrides.global = LowAndroidHttpOverrides();
+/// Method that fixes
+/// "`CERTIFICATE_VERIFY_FAILED: certificate has expired`" bug,
+/// which appears on Android 7.0 and lower
+void useHttpOverrides() {
+  if (AndroidSdkVersion.version <= 24) {
+    HttpOverrides.global = LowAndroidHttpOverrides();
+  }
+}
+
+class AndroidSdkVersion {
+  static int version = 0;
+
+  static Future<void> getAndSave() async {
+    if (Platform.isAndroid) {
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      version = androidInfo.version.sdkInt;
     }
   }
 }
