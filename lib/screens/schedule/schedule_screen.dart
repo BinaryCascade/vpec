@@ -124,10 +124,8 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                         : Column(
                             children: [
                               SchedulePanel(fullSchedule: logic.fullSchedule!),
-                              // Отступ после расписания, чтобы FAB не перекрывал контент
-                              // Пунктир вместо отступа, чтобы не создавать вид обрыва
                               Container(
-                                height: 130,
+                                width: double.infinity,
                                 decoration: BoxDecoration(
                                   border: RDottedLineBorder(
                                     // Меняй этой значение, чтобы дэши попали в расстояние нормально
@@ -138,6 +136,14 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                                       color: context.palette.lowEmphasis,
                                     ),
                                   ),
+                                ),
+                                child: Column(
+                                  children: const [
+                                    ChosenGroupBadge(),
+                                    SizedBox(height: 130),
+                                    // Отступ после расписания, чтобы FAB не перекрывал контент
+                                    // Пунктир вместо отступа, чтобы не создавать вид обрыва
+                                  ],
                                 ),
                               ),
                             ],
