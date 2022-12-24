@@ -19,7 +19,7 @@ class DocumentViewScreen extends StatelessWidget {
     } else {
       Navigator.popAndPushNamed(context, '/');
     }
-    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
+    ThemeHelper.colorSystemChrome();
     bool isFilePDF = ViewDocumentLogic.getFileExtension(document.url) == 'pdf';
 
     return Scaffold(

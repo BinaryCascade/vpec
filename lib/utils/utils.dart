@@ -143,7 +143,7 @@ Future<T?> showRoundedModalSheet<T>({
           ),
     ),
   );
-  ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
+  ThemeHelper.colorSystemChrome();
 
   return toReturn;
 }

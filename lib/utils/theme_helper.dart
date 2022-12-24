@@ -33,7 +33,7 @@ class ThemeHelper {
 
   /// Color StatusBar and SystemNavigationBar icons to current theme brightness
   static void colorSystemChrome({
-    required ColoringMode mode,
+    ColoringMode mode = ColoringMode.byCurrentTheme,
   }) {
     Brightness brightness;
     switch (mode) {

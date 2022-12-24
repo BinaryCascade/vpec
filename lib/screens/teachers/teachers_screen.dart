@@ -18,7 +18,7 @@ class _TeacherScreenState extends State<TeacherScreen>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
+    ThemeHelper.colorSystemChrome();
 
     return Consumer<TeachersLogic>(
       builder: (BuildContext context, value, Widget? child) {

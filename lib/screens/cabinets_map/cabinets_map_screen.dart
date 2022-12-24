@@ -37,7 +37,7 @@ class _CabinetsMapScreenUIState extends State<CabinetsMapScreenUI> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
+    ThemeHelper.colorSystemChrome();
 
     return Scaffold(
       extendBodyBehindAppBar: true,

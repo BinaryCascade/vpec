@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
+    ThemeHelper.colorSystemChrome();
 
     List<Widget> children = [
       Expanded(

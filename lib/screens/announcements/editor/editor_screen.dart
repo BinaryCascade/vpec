@@ -42,7 +42,7 @@ class _AnnouncementEditorState extends State<AnnouncementEditor> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
+    ThemeHelper.colorSystemChrome();
 
     return ChangeNotifierProvider<EditorLogic>(
       create: (_) => EditorLogic(),

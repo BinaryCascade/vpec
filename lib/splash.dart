@@ -99,7 +99,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
+    ThemeHelper.colorSystemChrome();
 
     return appAuth.accountInfo.isLoggedIn ? widget.child : const LoginScreen();
   }

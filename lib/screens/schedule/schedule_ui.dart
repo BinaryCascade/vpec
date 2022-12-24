@@ -233,7 +233,7 @@ class FABPanel extends StatelessWidget {
           heroTag: null,
           onPressed: () async {
             await Navigator.pushNamed(context, Routes.fullScheduleScreen);
-            ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
+            ThemeHelper.colorSystemChrome();
           },
           child: const Icon(Icons.fullscreen_outlined),
         ),

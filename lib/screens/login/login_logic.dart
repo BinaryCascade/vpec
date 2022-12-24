@@ -71,7 +71,7 @@ class LoginLogic extends ChangeNotifier {
         );
       },
     );
-    ThemeHelper.colorSystemChrome(mode: ColoringMode.byCurrentTheme);
+    ThemeHelper.colorSystemChrome();
   }
 
   /// Return URL for document, which need to display for entrant
