@@ -22,6 +22,16 @@ class ThemeHelper {
     return isDarkMode;
   }
 
+  static void doInitialChrome() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      systemNavigationBarContrastEnforced: false,
+      systemStatusBarContrastEnforced: false,
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+    ));
+  }
+
   static SystemUiOverlayStyle overlayStyleHelper(Color legacyColor) {
     if (AndroidSdkVersion.version < 29) {
       // less than Android 10
