@@ -347,3 +347,45 @@ class ScheduleErrorLoadingUI extends StatelessWidget {
     );
   }
 }
+
+class ChosenGroupBadge extends StatelessWidget {
+  const ChosenGroupBadge({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () async {
+        await SettingsLogic.chooseGroup(context);
+        context.read<ScheduleLogic>().loadSchedule();
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, top: 9.5, bottom: 9),
+        child: Row(
+          children: [
+            Flexible(
+              child: Text(
+                'Для группы ${HiveHelper.getValue('chosenGroup')}',
+                style: TextStyle(
+                  color: context.palette.lowEmphasis,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18.0,
+                  letterSpacing: 0.15,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Icon(
+                Icons.edit_outlined,
+                color: context.palette.lowEmphasis,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
