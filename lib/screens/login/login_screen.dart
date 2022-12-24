@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '/utils/theme_helper.dart';
+import '../../utils/theme/theme.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'login_logic.dart';
 import 'login_ui.dart';
 
@@ -10,7 +12,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorSystemChrome();
 
     List<Widget> children = [
       Expanded(
@@ -94,9 +96,7 @@ class LoginScreen extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(
                     Icons.settings_outlined,
-                    color: ThemeHelper.isDarkMode
-                        ? const Color(0x61FFFFFF)
-                        : Colors.black38,
+                    color: context.palette.lowEmphasis,
                   ),
                   tooltip: 'Открыть системные настройки',
                   onPressed: () => openAppSettings(),
@@ -109,6 +109,14 @@ class LoginScreen extends StatelessWidget {
     ];
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: StatusBarCover(
+        height: MediaQuery.of(context).padding.top,
+      ),
+      extendBody: true,
+      bottomNavigationBar: SystemNavBarCover(
+        height: MediaQuery.of(context).padding.bottom,
+      ),
       body: SafeArea(
         minimum: const EdgeInsets.all(12.0),
         child: MediaQuery.of(context).size.aspectRatio > 1

@@ -355,13 +355,13 @@ class ScheduleTime {
       var f = lessons[0].trim();
       var s = lessons[1].trim();
       var firstLesson = lessonShortNames.containsValue(f)
-          ? lessonFullNames[lessonShortNames.keys
-              .firstWhere((k) => lessonShortNames[k] == f)]
+          ? lessonFullNames[
+              lessonShortNames.keys.firstWhere((k) => lessonShortNames[k] == f)]
           : f;
 
       var secondLesson = lessonShortNames.containsValue(s)
-          ? lessonFullNames[lessonShortNames.keys
-              .firstWhere((k) => lessonShortNames[k] == s)]
+          ? lessonFullNames[
+              lessonShortNames.keys.firstWhere((k) => lessonShortNames[k] == s)]
           : s;
 
       visibleName += ('\n① $firstLesson\n② $secondLesson');
@@ -388,7 +388,6 @@ class ScheduleTime {
 
       trimmedNumber = trimmedNumber == '1' ? '①' : '②';
 
-
       var trimmedFullName = lessonShortNames.containsValue(trimmedShortName)
           ? lessonFullNames[lessonShortNames.keys
               .firstWhere((k) => lessonShortNames[k] == trimmedShortName)]
@@ -406,7 +405,7 @@ class ScheduleTime {
 
       var trimmedFullName = lessonShortNames.containsValue(trimmedShortName)
           ? lessonFullNames[lessonShortNames.keys
-          .firstWhere((k) => lessonShortNames[k] == trimmedShortName)]
+              .firstWhere((k) => lessonShortNames[k] == trimmedShortName)]
           : trimmedShortName;
 
       return 'Для обеих подгрупп:\n① ② $trimmedFullName';

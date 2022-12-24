@@ -2,7 +2,9 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/firebase_auth.dart';
+import '../../utils/theme/theme.dart';
 import '../../utils/theme_helper.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'announcements_ui.dart';
 import 'editor/editor_screen.dart';
 
@@ -47,6 +49,10 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
     return DefaultTabController(
       length: tabBarChildren.length,
       child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: StatusBarCover(
+          height: MediaQuery.of(context).padding.top,
+        ),
         body: TabBarView(
           physics: const NeverScrollableScrollPhysics(),
           children: tabBarChildren,
@@ -54,7 +60,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
         floatingActionButton:
             AccountDetails.isAdmin ? const AnimatedFAB() : null,
         bottomNavigationBar:
-            AccountDetails.isAdmin ? const BottomTapBar() : null,
+            AccountDetails.isAdmin ? const AnnouncementsTabBar() : null,
       ),
     );
   }
@@ -66,18 +72,27 @@ class AnimatedFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OpenContainer(
-      closedShape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(40.0)),
+      transitionDuration: const Duration(milliseconds: 600),
+      transitionType: ContainerTransitionType.fadeThrough,
+      closedElevation: 0,
+      closedShape: CircleBorder(
+        side: BorderSide(color: context.palette.outsideBorderColor),
       ),
-      closedColor: Theme.of(context).scaffoldBackgroundColor,
-      middleColor: Theme.of(context).scaffoldBackgroundColor,
-      openColor: Theme.of(context).scaffoldBackgroundColor,
+      closedColor: context.palette.levelThreeSurface,
+      middleColor: context.palette.backgroundSurface,
+      openElevation: 0,
+      openColor: context.palette.backgroundSurface,
       onClosed: (n) {
-        Future.delayed(const Duration(milliseconds: 100)).then((value) =>
-            ThemeHelper.colorStatusBar(context: context, haveAppbar: false));
+        Future.delayed(const Duration(milliseconds: 100)).then(
+          (value) => ThemeHelper.colorSystemChrome(
+            mode: ColoringMode.byCurrentTheme,
+          ),
+        );
       },
       closedBuilder: (context, action) {
         return FloatingActionButton(
+          backgroundColor: Colors.transparent,
+          shape: const CircleBorder(),
           onPressed: action,
           child: const Icon(Icons.rate_review_outlined),
         );

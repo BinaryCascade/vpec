@@ -4,6 +4,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import '/models/document_model.dart';
 import '/screens/view_document/view_document_logic.dart';
 import '/utils/utils.dart';
+import '../utils/theme/theme.dart';
 
 /// Create markdown with branded colors and text style
 class MarkdownWidget extends StatelessWidget {
@@ -65,7 +66,7 @@ class MarkdownWidget extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ),
           h3: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
+            color: context.palette.highEmphasis,
             fontFamily: 'Montserrat',
             fontSize: 32,
             fontWeight: FontWeight.w400,
@@ -89,7 +90,7 @@ class MarkdownWidget extends StatelessWidget {
             letterSpacing: 0.2,
           ),
           p: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
+            color: context.palette.highEmphasis,
             fontFamily: 'Roboto',
             fontSize: 16,
             fontWeight: FontWeight.w400,

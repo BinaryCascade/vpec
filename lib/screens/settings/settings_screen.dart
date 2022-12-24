@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/utils/theme_helper.dart';
 import '/widgets/styled_widgets.dart';
 import '../../utils/firebase_auth.dart';
+import '../../utils/theme/theme.dart';
+import '../../utils/theme_helper.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'settings_logic.dart';
 import 'settings_ui.dart';
 
@@ -17,18 +19,20 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorSystemChrome();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Настройки')),
+      extendBody: true,
+      bottomNavigationBar: SystemNavBarCover(
+        height: MediaQuery.of(context).padding.bottom,
+      ),
+      appBar: AppBar(
+        title: const Text('Настройки'),
+      ),
       body: ListView(
         padding: const EdgeInsets.all(10),
         children: [
           Card(
-            clipBehavior: Clip.antiAlias,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
             child: MultiProvider(
               providers: [
                 ChangeNotifierProvider(create: (_) => AccountEditorMode()),
@@ -44,7 +48,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             icon: Icon(
               Icons.info_outlined,
               size: 32,
-              color: Theme.of(context).colorScheme.secondary,
+              color: context.palette.accentColor,
             ),
             title: 'О приложении',
             subtitle: 'Просмотреть техническую информацию',

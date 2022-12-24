@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '/models/document_model.dart';
 import '/utils/theme_helper.dart';
 import '/utils/utils.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'view_document_logic.dart';
 import 'view_document_ui.dart';
 
@@ -18,10 +19,14 @@ class DocumentViewScreen extends StatelessWidget {
     } else {
       Navigator.popAndPushNamed(context, '/');
     }
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorSystemChrome();
     bool isFilePDF = ViewDocumentLogic.getFileExtension(document.url) == 'pdf';
 
     return Scaffold(
+      // no extendBody due to documents being weird
+      bottomNavigationBar: SystemNavBarCover(
+        height: MediaQuery.of(context).padding.bottom,
+      ),
       appBar: AppBar(
         title: Text(document.title),
         actions: [

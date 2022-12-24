@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../utils/theme/theme.dart';
 import 'job_quiz_logic.dart';
 
 class QuestionBlock extends StatelessWidget {
@@ -124,10 +125,6 @@ class JobQuizResults extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6.5, vertical: 5.5),
       child: Card(
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Wrap(
@@ -153,7 +150,7 @@ class JobQuizResults extends StatelessWidget {
                     },
                     icon: Icon(
                       Icons.share_outlined,
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: context.palette.accentColor,
                     ),
                   ),
                 ],
@@ -186,7 +183,7 @@ class AnswerListTile extends StatelessWidget {
         title!,
         style: Theme.of(context).textTheme.bodyText1,
       ),
-      activeColor: Theme.of(context).colorScheme.secondary,
+      activeColor: context.palette.accentColor,
       controlAffinity: ListTileControlAffinity.trailing,
       value: value,
       groupValue: groupValue,

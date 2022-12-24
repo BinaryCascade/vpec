@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '/utils/icons.dart';
 import '/utils/utils.dart';
 import '/widgets/styled_widgets.dart';
+import '../../utils/theme/theme.dart';
 
 class AboutDeveloperCard extends StatelessWidget {
   final String name, post, nickname;
@@ -22,10 +23,6 @@ class AboutDeveloperCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Card(
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -46,7 +43,7 @@ class AboutDeveloperCard extends StatelessWidget {
                       icon: Icon(
                         VpecIconPack.vk,
                         size: 32,
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: context.palette.accentColor,
                       ),
                       onPressed: () => openUrl(vkUrl!),
                     ),
@@ -56,7 +53,7 @@ class AboutDeveloperCard extends StatelessWidget {
                       icon: Icon(
                         VpecIconPack.telegram,
                         size: 32,
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: context.palette.accentColor,
                       ),
                       onPressed: () => openUrl(tgUrl!),
                     ),

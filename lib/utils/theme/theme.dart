@@ -1,8 +1,11 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import 'widgets/md2_tab_indicator.dart';
+import '../../widgets/md2_tab_indicator.dart';
+
+part 'color_palette.dart';
 
 const FontWeight thin = FontWeight.w100;
 const FontWeight extraLight = FontWeight.w200;
@@ -16,17 +19,33 @@ const FontWeight black = FontWeight.w900;
 
 ThemeData themeData() {
   //light theme
-  const backgroundColor = Color(0xFFE8E8E8);
-  const firstLevelColor = Color(0xFFF5F5F5);
-  const secondLevelColor = Color(0xFFFFFFFF);
   const accentColor = Color(0xFF133676);
-  const highContrast = Colors.black87;
-  const mediumContrast = Color(0x99000000);
-  const lowContrast = Colors.black38;
+  const highEmphasis = Color.fromRGBO(0, 0, 0, 0.87);
+  const mediumEmphasis = Color.fromRGBO(0, 0, 0, 0.60);
+  const lowEmphasis = Color.fromRGBO(0, 0, 0, 0.38);
+  const outsideBorderColor = Color.fromRGBO(0, 0, 0, 0.12);
+  const surfaceIncrement = Color.fromRGBO(255, 255, 255, 0.40);
+  const backgroundSurface = Color(0xFFE8E8E8);
+  final levelOneSurface = Color.alphaBlend(surfaceIncrement, backgroundSurface);
+  final levelTwoSurface = Color.alphaBlend(surfaceIncrement, levelOneSurface);
+  final levelThreeSurface = Color.alphaBlend(surfaceIncrement, levelTwoSurface);
 
   return ThemeData(
+    extensions: [
+      ColorPalette(
+        accentColor: accentColor,
+        highEmphasis: highEmphasis,
+        mediumEmphasis: mediumEmphasis,
+        lowEmphasis: lowEmphasis,
+        outsideBorderColor: outsideBorderColor,
+        backgroundSurface: backgroundSurface,
+        levelOneSurface: levelOneSurface,
+        levelTwoSurface: levelTwoSurface,
+        levelThreeSurface: levelThreeSurface,
+      ),
+    ],
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: secondLevelColor,
+      backgroundColor: Colors.transparent,
       height: 65,
       indicatorColor: accentColor,
       labelTextStyle: MaterialStateProperty.all(const TextStyle(
@@ -38,22 +57,43 @@ ThemeData themeData() {
       )),
       iconTheme: MaterialStateProperty.resolveWith((states) => IconThemeData(
             color: states.contains(MaterialState.selected)
-                ? secondLevelColor
-                : highContrast,
+                ? levelTwoSurface
+                : highEmphasis,
           )),
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
     ),
     tabBarTheme: const TabBarTheme(
       labelColor: accentColor,
-      unselectedLabelColor: mediumContrast,
+      unselectedLabelColor: mediumEmphasis,
       indicator: MD2TabIndicator(accentColor),
       indicatorSize: TabBarIndicatorSize.label,
     ),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: secondLevelColor,
-      foregroundColor: highContrast,
+    appBarTheme: AppBarTheme(
+      elevation: 0,
+      shape: const Border(
+        bottom: BorderSide(
+          color: outsideBorderColor,
+          width: 1.0,
+          strokeAlign: StrokeAlign.inside,
+        ),
+      ),
+      backgroundColor: levelTwoSurface,
+      foregroundColor: highEmphasis,
+      systemOverlayStyle: const SystemUiOverlayStyle(),
     ),
-    cardTheme: const CardTheme(margin: EdgeInsets.zero),
+    cardTheme: CardTheme(
+      elevation: 0,
+      margin: EdgeInsets.zero,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: const BorderSide(
+          color: outsideBorderColor,
+          width: 1.0,
+          strokeAlign: StrokeAlign.inside,
+        ),
+      ),
+    ),
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
@@ -63,52 +103,55 @@ ThemeData themeData() {
       selectionColor: accentColor.withOpacity(0.5),
       selectionHandleColor: accentColor,
     ),
-    primaryColor: secondLevelColor,
-    cardColor: firstLevelColor,
+    primaryColor: levelTwoSurface,
+    cardColor: levelOneSurface,
     splashColor: accentColor.withOpacity(0.2),
-    colorScheme: const ColorScheme(
+    highlightColor: accentColor.withOpacity(0.15),
+    focusColor: accentColor.withOpacity(0.2),
+    splashFactory: InkRipple.splashFactory,
+    colorScheme: ColorScheme(
       primary: accentColor,
       secondary: accentColor,
-      surface: secondLevelColor,
+      surface: levelTwoSurface,
       background: accentColor,
       error: Colors.red,
-      onPrimary: backgroundColor,
-      onSecondary: backgroundColor,
-      onSurface: highContrast,
-      onBackground: highContrast,
-      onError: backgroundColor,
+      onPrimary: backgroundSurface,
+      onSecondary: backgroundSurface,
+      onSurface: highEmphasis,
+      onBackground: highEmphasis,
+      onError: backgroundSurface,
       brightness: Brightness.light,
     ),
-    dialogBackgroundColor: firstLevelColor,
+    dialogBackgroundColor: levelOneSurface,
     textTheme: const TextTheme(
       subtitle1:
-          TextStyle(fontSize: 15, color: mediumContrast, fontWeight: medium),
+          TextStyle(fontSize: 15, color: mediumEmphasis, fontWeight: medium),
       bodyText1:
-          TextStyle(color: highContrast, fontSize: 17, fontWeight: regular),
+          TextStyle(color: highEmphasis, fontSize: 16, fontWeight: regular),
       headline3: TextStyle(
         //News Card Title
-        color: highContrast,
+        color: highEmphasis,
         fontSize: 16,
         fontFamily: 'Montserrat',
         fontWeight: medium,
       ),
       headline4: TextStyle(
         //Alert Card Title
-        color: highContrast,
+        color: highEmphasis,
         fontSize: 17,
         fontFamily: 'Montserrat',
         fontWeight: semiBold,
       ),
       headline5: TextStyle(
         //used in time schedule for any time
-        color: highContrast,
+        color: highEmphasis,
         fontSize: 36,
         fontFamily: 'Montserrat',
         fontWeight: semiBold,
       ),
       headline6: TextStyle(
         //used in time schedule for any other
-        color: highContrast,
+        color: highEmphasis,
         fontSize: 18,
         fontFamily: 'Montserrat',
         fontWeight: semiBold,
@@ -119,16 +162,26 @@ ThemeData themeData() {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+        textStyle: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 15,
+        ),
         shape: const StadiumBorder(),
-        primary: accentColor,
+        foregroundColor: accentColor,
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        textStyle: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 15,
+        ),
         shape: const StadiumBorder(),
         side: const BorderSide(
           width: 1.5,
@@ -138,11 +191,16 @@ ThemeData themeData() {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        textStyle: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 15,
+        ),
         shape: const StadiumBorder(),
-        primary: accentColor,
-        onPrimary: backgroundColor,
+        backgroundColor: accentColor,
+        foregroundColor: backgroundSurface,
       ),
     ),
     inputDecorationTheme: const InputDecorationTheme(
@@ -176,34 +234,51 @@ ThemeData themeData() {
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
     ),
-    scaffoldBackgroundColor: backgroundColor,
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: secondLevelColor,
+    scaffoldBackgroundColor: backgroundSurface,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      elevation: 0,
+      backgroundColor: levelThreeSurface,
       foregroundColor: accentColor,
+      shape: const CircleBorder(side: BorderSide(color: outsideBorderColor)),
     ),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: accentColor,
-      unselectedItemColor: mediumContrast,
-      backgroundColor: secondLevelColor,
+      unselectedItemColor: mediumEmphasis,
+      backgroundColor: levelTwoSurface,
     ),
-    bottomSheetTheme:
-        const BottomSheetThemeData(backgroundColor: firstLevelColor),
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: levelOneSurface),
   );
 }
 
 ThemeData darkThemeData() {
   //dark theme
-  const backgroundColor = Color(0xFF121212);
-  const firstLevelColor = Color(0xFF1F1F1F);
-  const secondLevelColor = Color(0xFF292929);
   const accentColor = Color(0xFF7B9DDB);
-  const highContrast = Color(0xDEFFFFFF);
-  const mediumContrast = Colors.white60;
-  const lowContrast = Color(0x61FFFFFF);
+  const highEmphasis = Color.fromRGBO(255, 255, 255, 0.87);
+  const mediumEmphasis = Color.fromRGBO(255, 255, 255, 0.60);
+  const lowEmphasis = Color.fromRGBO(255, 255, 255, 0.38);
+  const outsideBorderColor = Color.fromRGBO(255, 255, 255, 0.05);
+  const surfaceIncrement = Color.fromRGBO(255, 255, 255, 0.04);
+  const backgroundSurface = Color(0xFF121212);
+  final levelOneSurface = Color.alphaBlend(surfaceIncrement, backgroundSurface);
+  final levelTwoSurface = Color.alphaBlend(surfaceIncrement, levelOneSurface);
+  final levelThreeSurface = Color.alphaBlend(surfaceIncrement, levelTwoSurface);
 
   return ThemeData.dark().copyWith(
+    extensions: [
+      ColorPalette(
+        accentColor: accentColor,
+        highEmphasis: highEmphasis,
+        mediumEmphasis: mediumEmphasis,
+        lowEmphasis: lowEmphasis,
+        outsideBorderColor: outsideBorderColor,
+        backgroundSurface: backgroundSurface,
+        levelOneSurface: levelOneSurface,
+        levelTwoSurface: levelTwoSurface,
+        levelThreeSurface: levelThreeSurface,
+      ),
+    ],
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: secondLevelColor,
+      backgroundColor: Colors.transparent,
       height: 65,
       indicatorColor: accentColor,
       labelTextStyle: MaterialStateProperty.all(const TextStyle(
@@ -215,22 +290,43 @@ ThemeData darkThemeData() {
       )),
       iconTheme: MaterialStateProperty.resolveWith((states) => IconThemeData(
             color: states.contains(MaterialState.selected)
-                ? secondLevelColor
-                : highContrast,
+                ? levelTwoSurface
+                : highEmphasis,
           )),
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
     ),
     tabBarTheme: const TabBarTheme(
       labelColor: accentColor,
-      unselectedLabelColor: mediumContrast,
+      unselectedLabelColor: mediumEmphasis,
       indicator: MD2TabIndicator(accentColor),
       indicatorSize: TabBarIndicatorSize.label,
     ),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: secondLevelColor,
-      foregroundColor: highContrast,
+    appBarTheme: AppBarTheme(
+      elevation: 0,
+      shape: const Border(
+        bottom: BorderSide(
+          color: outsideBorderColor,
+          width: 1.0,
+          strokeAlign: StrokeAlign.inside,
+        ),
+      ),
+      backgroundColor: levelTwoSurface,
+      foregroundColor: highEmphasis,
+      systemOverlayStyle: const SystemUiOverlayStyle(),
     ),
-    cardTheme: const CardTheme(margin: EdgeInsets.zero),
+    cardTheme: CardTheme(
+      elevation: 0,
+      margin: EdgeInsets.zero,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: const BorderSide(
+          color: outsideBorderColor,
+          width: 1.0,
+          strokeAlign: StrokeAlign.inside,
+        ),
+      ),
+    ),
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
@@ -240,52 +336,55 @@ ThemeData darkThemeData() {
       selectionColor: accentColor.withOpacity(0.5),
       selectionHandleColor: accentColor,
     ),
-    primaryColor: secondLevelColor,
-    cardColor: firstLevelColor,
+    primaryColor: levelTwoSurface,
+    cardColor: levelOneSurface,
     splashColor: accentColor.withOpacity(0.2),
-    colorScheme: const ColorScheme(
+    highlightColor: accentColor.withOpacity(0.15),
+    focusColor: accentColor.withOpacity(0.2),
+    splashFactory: InkRipple.splashFactory,
+    colorScheme: ColorScheme(
       primary: accentColor,
       secondary: accentColor,
-      surface: secondLevelColor,
-      background: backgroundColor,
+      surface: levelTwoSurface,
+      background: backgroundSurface,
       error: Colors.redAccent,
-      onPrimary: backgroundColor,
-      onSecondary: backgroundColor,
-      onSurface: highContrast,
-      onBackground: highContrast,
-      onError: backgroundColor,
+      onPrimary: backgroundSurface,
+      onSecondary: backgroundSurface,
+      onSurface: highEmphasis,
+      onBackground: highEmphasis,
+      onError: backgroundSurface,
       brightness: Brightness.dark,
     ),
-    dialogBackgroundColor: firstLevelColor,
+    dialogBackgroundColor: levelOneSurface,
     textTheme: const TextTheme(
       subtitle1:
-          TextStyle(fontSize: 15, color: mediumContrast, fontWeight: medium),
+          TextStyle(fontSize: 15, color: mediumEmphasis, fontWeight: medium),
       bodyText1:
-          TextStyle(color: highContrast, fontSize: 17, fontWeight: regular),
+          TextStyle(color: highEmphasis, fontSize: 16, fontWeight: regular),
       headline3: TextStyle(
         //News Card Title
-        color: highContrast,
+        color: highEmphasis,
         fontSize: 16,
         fontFamily: 'Montserrat',
         fontWeight: medium,
       ),
       headline4: TextStyle(
         //Alert Card Title
-        color: highContrast,
+        color: highEmphasis,
         fontSize: 17,
         fontFamily: 'Montserrat',
         fontWeight: semiBold,
       ),
       headline5: TextStyle(
         //used in time schedule for any time
-        color: highContrast,
+        color: highEmphasis,
         fontSize: 36,
         fontFamily: 'Montserrat',
         fontWeight: semiBold,
       ),
       headline6: TextStyle(
         //used in time schedule for any other
-        color: highContrast,
+        color: highEmphasis,
         fontSize: 18,
         fontFamily: 'Montserrat',
         fontWeight: semiBold,
@@ -296,16 +395,26 @@ ThemeData darkThemeData() {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+        textStyle: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 15,
+        ),
         shape: const StadiumBorder(),
-        primary: accentColor,
+        foregroundColor: accentColor,
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        textStyle: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 15,
+        ),
         shape: const StadiumBorder(),
         side: const BorderSide(
           width: 1.5,
@@ -315,11 +424,16 @@ ThemeData darkThemeData() {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        textStyle:
-            const TextStyle(fontFamily: 'Montserrat', fontWeight: semiBold),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        textStyle: const TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: semiBold,
+          fontSize: 15,
+        ),
         shape: const StadiumBorder(),
-        primary: accentColor,
-        onPrimary: backgroundColor,
+        backgroundColor: accentColor,
+        foregroundColor: backgroundSurface,
       ),
     ),
     inputDecorationTheme: const InputDecorationTheme(
@@ -353,17 +467,18 @@ ThemeData darkThemeData() {
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
     ),
-    scaffoldBackgroundColor: backgroundColor,
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: secondLevelColor,
+    scaffoldBackgroundColor: backgroundSurface,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      elevation: 0,
+      backgroundColor: levelThreeSurface,
       foregroundColor: accentColor,
+      shape: const CircleBorder(side: BorderSide(color: outsideBorderColor)),
     ),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: accentColor,
-      unselectedItemColor: mediumContrast,
-      backgroundColor: secondLevelColor,
+      unselectedItemColor: mediumEmphasis,
+      backgroundColor: levelTwoSurface,
     ),
-    bottomSheetTheme:
-        const BottomSheetThemeData(backgroundColor: firstLevelColor),
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: levelOneSurface),
   );
 }

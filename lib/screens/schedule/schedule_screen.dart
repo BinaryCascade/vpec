@@ -3,8 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:r_dotted_line_border/r_dotted_line_border.dart';
 
 import '../../utils/holiday_helper.dart';
+import '../../utils/theme/theme.dart';
 import '../../utils/theme_helper.dart';
 import '../../widgets/snow_widget.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'schedule_logic.dart';
 import 'schedule_ui.dart';
 
@@ -46,6 +48,10 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
     return Consumer<ScheduleLogic>(
       builder: (context, logic, child) {
         return Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: StatusBarCover(
+            height: MediaQuery.of(context).padding.top,
+          ),
           body: SafeArea(
             top: false,
             child: Stack(
@@ -55,8 +61,9 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                     isRunning: true,
                     totalSnow: 20,
                     speed: 0.4,
-                    snowColor:
-                    ThemeHelper.isDarkMode ? Colors.white : const Color(0xFFD6D6D6),
+                    snowColor: ThemeHelper.isDarkMode
+                        ? Colors.white
+                        : const Color(0xFFD6D6D6),
                   ),
                 ListView(
                   padding: const EdgeInsets.only(
@@ -109,20 +116,16 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                             ? ScheduleErrorLoadingUI(errorText: logic.errorText)
                             : Center(
                                 child: LinearProgressIndicator(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground,
+                                  color: context.palette.highEmphasis,
                                   backgroundColor:
-                                      Theme.of(context).scaffoldBackgroundColor,
+                                      context.palette.backgroundSurface,
                                 ),
                               )
                         : Column(
                             children: [
                               SchedulePanel(fullSchedule: logic.fullSchedule!),
-                              // Отступ после расписания, чтобы FAB не перекрывал контент
-                              // Пунктир вместо отступа, чтобы не создавать вид обрыва
                               Container(
-                                height: 130,
+                                width: double.infinity,
                                 decoration: BoxDecoration(
                                   border: RDottedLineBorder(
                                     // Меняй этой значение, чтобы дэши попали в расстояние нормально
@@ -130,11 +133,17 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                                     dottedSpace: 3,
                                     left: BorderSide(
                                       width: 3,
-                                      color: ThemeHelper.isDarkMode
-                                          ? Colors.white38
-                                          : Colors.black38,
+                                      color: context.palette.lowEmphasis,
                                     ),
                                   ),
+                                ),
+                                child: Column(
+                                  children: const [
+                                    ChosenGroupBadge(),
+                                    SizedBox(height: 130),
+                                    // Отступ после расписания, чтобы FAB не перекрывал контент
+                                    // Пунктир вместо отступа, чтобы не создавать вид обрыва
+                                  ],
                                 ),
                               ),
                             ],

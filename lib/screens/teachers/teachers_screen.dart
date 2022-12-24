@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '/screens/teachers/teachers_logic.dart';
 import '/utils/theme_helper.dart';
 import '../../utils/firebase_auth.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'teachers_ui.dart';
 
 class TeacherScreen extends StatefulWidget {
@@ -17,11 +18,15 @@ class _TeacherScreenState extends State<TeacherScreen>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorSystemChrome();
 
     return Consumer<TeachersLogic>(
       builder: (BuildContext context, value, Widget? child) {
         return Scaffold(
+          extendBody: true,
+          bottomNavigationBar: SystemNavBarCover(
+            height: MediaQuery.of(context).padding.bottom,
+          ),
           appBar: AppBar(
             title: AnimatedSwitcher(
               duration: const Duration(milliseconds: 300),
