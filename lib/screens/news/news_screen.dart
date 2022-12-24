@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/widgets/loading_indicator.dart';
+import '../../widgets/system_bar_cover.dart';
 import 'news_logic.dart';
 import 'news_ui.dart';
 
@@ -39,18 +40,24 @@ class _NewsScreenState extends State<NewsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Consumer<NewsLogic>(
-      builder: (context, state, child) {
-        if (state.rssFeed == null) return const LoadingIndicator();
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: StatusBarCover(
+        height: MediaQuery.of(context).padding.top,
+      ),
+      body: Consumer<NewsLogic>(
+        builder: (context, state, child) {
+          if (state.rssFeed == null) return const LoadingIndicator();
 
-        return SafeArea(
-          top: false,
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: NewsListView(feed: state.rssFeed),
-          ),
-        );
-      },
-    ));
+          return SafeArea(
+            top: false,
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: NewsListView(feed: state.rssFeed),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

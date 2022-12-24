@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../../../utils/theme_helper.dart';
+import '../../../utils/theme/theme.dart';
 import '../../settings/settings_logic.dart';
 import 'editor_logic.dart';
 
@@ -48,10 +48,11 @@ class UploadAttachmentButton extends StatelessWidget {
       builder: (context, logic, _) {
         return DecoratedBox(
           decoration: BoxDecoration(
-            color: ThemeHelper.isDarkMode
-                ? Colors.white.withOpacity(0.05)
-                : Colors.black.withOpacity(0.05),
+            color: context.palette.levelTwoSurface,
             borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: context.palette.outsideBorderColor,
+            ),
           ),
           child: Material(
             type: MaterialType.transparency,
@@ -62,7 +63,7 @@ class UploadAttachmentButton extends StatelessWidget {
               child: SizedBox(
                 height: 50,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -70,19 +71,16 @@ class UploadAttachmentButton extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.attachment_outlined,
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: context.palette.accentColor,
                           ),
-                          const SizedBox(width: 7),
+                          const SizedBox(width: 10),
                           Text(
                             'Прикрепить картинку',
                             style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurface
-                                  .withOpacity(0.6),
+                              color: context.palette.accentColor,
                             ),
                           ),
                         ],
@@ -103,58 +101,168 @@ class UploadAttachmentButton extends StatelessWidget {
   }
 }
 
-class TitleEditorField extends StatelessWidget {
+class TitleEditorField extends StatefulWidget {
   const TitleEditorField({Key? key}) : super(key: key);
 
   @override
+  State<TitleEditorField> createState() => _TitleEditorFieldState();
+}
+
+class _TitleEditorFieldState extends State<TitleEditorField> {
+  bool _isEmpty = true;
+  late FocusNode _focusNode;
+  bool _isFocused = false;
+
+  @override
+  void initState() {
+    _focusNode = FocusNode();
+    _focusNode.addListener(_onFocusChange);
+
+    super.initState();
+  }
+
+  void _onFocusChange() {
+    setState(() => _isFocused = _focusNode.hasPrimaryFocus);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return TextField(
-      minLines: 1,
-      maxLines: 3,
-      controller: context.read<EditorLogic>().announcementTitleController,
-      onChanged: (_) =>
-          context.read<EditorLogic>().checkAndUpdatePublishButtonActiveStatus(),
-      textInputAction: TextInputAction.next,
-      keyboardType: TextInputType.text,
-      style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 18),
-      decoration: const InputDecoration(
-        prefixIcon: Icon(Icons.edit_outlined),
-        hintText: 'Введите заголовок..',
-        hintStyle: TextStyle(
-          fontSize: 18,
+    return Row(
+      children: [
+        AnimatedContainer(
+          curve: Curves.easeOut,
+          foregroundDecoration: BoxDecoration(
+            color: _isEmpty ? null : context.palette.levelOneSurface,
+          ),
+          decoration: const BoxDecoration(),
+          clipBehavior: Clip.hardEdge,
+          alignment: Alignment.centerLeft,
+          height: 24,
+          width: _isEmpty ? 34 : 0,
+          duration: const Duration(milliseconds: 300),
+          child: Icon(
+            Icons.edit_outlined,
+            color: _isFocused
+                ? context.palette.accentColor
+                : context.palette.mediumEmphasis,
+          ),
         ),
-        border: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        errorBorder: InputBorder.none,
-        disabledBorder: InputBorder.none,
-      ),
+        Flexible(
+          child: TextField(
+            minLines: 1,
+            maxLines: 3,
+            controller: context.read<EditorLogic>().announcementTitleController,
+            focusNode: _focusNode,
+            onChanged: (text) {
+              context
+                  .read<EditorLogic>()
+                  .checkAndUpdatePublishButtonActiveStatus();
+              setState(() {
+                _isEmpty = text.isEmpty;
+              });
+            },
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            style: Theme.of(context).textTheme.headline4,
+            decoration: const InputDecoration(
+              isCollapsed: true,
+              contentPadding: EdgeInsets.symmetric(vertical: 8),
+              hintText: 'Введите заголовок..',
+              border: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
 
-class BodyEditorField extends StatelessWidget {
+class BodyEditorField extends StatefulWidget {
   const BodyEditorField({Key? key}) : super(key: key);
 
   @override
+  State<BodyEditorField> createState() => _BodyEditorFieldState();
+}
+
+class _BodyEditorFieldState extends State<BodyEditorField> {
+  bool _isEmpty = true;
+  late FocusNode _focusNode;
+  bool _isFocused = false;
+
+  @override
+  void initState() {
+    _focusNode = FocusNode();
+    _focusNode.addListener(_onFocusChange);
+
+    super.initState();
+  }
+
+  void _onFocusChange() {
+    setState(() => _isFocused = _focusNode.hasPrimaryFocus);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return TextField(
-      maxLines: null,
-      controller: context.read<EditorLogic>().announcementBodyController,
-      onChanged: (_) =>
-          context.read<EditorLogic>().checkAndUpdatePublishButtonActiveStatus(),
-      textInputAction: TextInputAction.newline,
-      keyboardType: TextInputType.multiline,
-      style: Theme.of(context).textTheme.headline3,
-      decoration: const InputDecoration(
-        prefixIcon: Icon(Icons.edit_outlined),
-        hintText: 'Введите сообщение..',
-        border: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        errorBorder: InputBorder.none,
-        disabledBorder: InputBorder.none,
-      ),
+    TextEditingController controller =
+        context.read<EditorLogic>().announcementBodyController;
+
+    return Row(
+      children: [
+        AnimatedContainer(
+          curve: Curves.easeOut,
+          foregroundDecoration: BoxDecoration(
+            color: _isEmpty ? null : context.palette.levelOneSurface,
+          ),
+          decoration: const BoxDecoration(),
+          clipBehavior: Clip.hardEdge,
+          alignment: Alignment.centerLeft,
+          height: 24,
+          width: _isEmpty ? 34 : 0,
+          duration: const Duration(milliseconds: 300),
+          child: Icon(
+            Icons.edit_outlined,
+            color: _isFocused
+                ? context.palette.accentColor
+                : context.palette.mediumEmphasis,
+          ),
+        ),
+        Flexible(
+          child: TextField(
+            maxLines: null,
+            controller: controller,
+            focusNode: _focusNode,
+            onChanged: (text) {
+              context
+                  .read<EditorLogic>()
+                  .checkAndUpdatePublishButtonActiveStatus();
+              setState(() {
+                _isEmpty = text.isEmpty;
+              });
+            },
+            textInputAction: TextInputAction.newline,
+            keyboardType: TextInputType.multiline,
+            style: Theme.of(context).textTheme.bodyText1,
+            decoration: InputDecoration(
+              isCollapsed: true,
+              contentPadding: const EdgeInsets.symmetric(vertical: 8),
+              hintText: 'Введите сообщение..',
+              hintStyle: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .copyWith(color: context.palette.mediumEmphasis),
+              border: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -172,35 +280,39 @@ class AuthorName extends StatelessWidget {
           context.read<EditorLogic>().checkAndUpdatePublishButtonActiveStatus();
         },
         child: Padding(
-          padding: const EdgeInsets.only(right: 15.0, bottom: 13),
-          child: Wrap(
-            crossAxisAlignment: WrapCrossAlignment.center,
-            spacing: 5,
-            children: [
-              ValueListenableBuilder(
-                valueListenable:
-                    Hive.box('settings').listenable(keys: ['username']),
-                builder: (context, Box box, child) {
-                  String userName = box.get(
-                    'username',
-                    defaultValue: 'Имя не указано',
-                  );
+          padding: const EdgeInsets.only(top: 7, right: 15.0, bottom: 13),
+          child: ValueListenableBuilder(
+            valueListenable:
+                Hive.box('settings').listenable(keys: ['username']),
+            builder: (context, Box box, child) {
+              final String userName = box.get(
+                'username',
+                defaultValue: 'Имя не указано',
+              );
+              final String field =
+                  userName.isEmpty ? 'Нажмите, чтобы задать имя' : userName;
 
-                  if (userName.isEmpty) {
-                    userName = 'Нажмите, чтобы изменить имя';
-                  }
-
-                  return Text(
-                    userName,
-                    style: Theme.of(context).textTheme.subtitle1,
-                  );
-                },
-              ),
-              Icon(
-                Icons.edit_outlined,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-            ],
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    field,
+                    style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                          color: userName.isEmpty
+                              ? context.palette.highEmphasis
+                              : context.palette.mediumEmphasis,
+                        ),
+                  ),
+                  const SizedBox(width: 5),
+                  Icon(
+                    Icons.edit_outlined,
+                    color: userName.isEmpty
+                        ? context.palette.highEmphasis
+                        : context.palette.mediumEmphasis,
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),
@@ -217,8 +329,9 @@ class EditorUI extends StatelessWidget {
       builder: (context, logic, _) {
         return DecoratedBox(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
+            color: context.palette.levelOneSurface,
             borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: context.palette.outsideBorderColor),
           ),
           child: SizedBox(
             width: double.infinity,
@@ -227,8 +340,16 @@ class EditorUI extends StatelessWidget {
                 logic.photoUrl == null
                     ? const UploadAttachmentButton()
                     : ImagePreview(imagePath: logic.photoUrl!),
-                const TitleEditorField(),
-                const BodyEditorField(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Column(
+                    children: const [
+                      SizedBox(height: 8),
+                      TitleEditorField(),
+                      BodyEditorField(),
+                    ],
+                  ),
+                ),
                 const AuthorName(),
               ],
             ),
@@ -253,10 +374,13 @@ class VisibilityPicker extends StatelessWidget {
               style: Theme.of(context).textTheme.headline6,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 10),
             CheckboxListTile(
-              checkColor: Theme.of(context).scaffoldBackgroundColor,
-              activeColor: Theme.of(context).colorScheme.secondary,
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              visualDensity: VisualDensity.compact,
+              checkColor: context.palette.backgroundSurface,
+              activeColor: context.palette.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -266,15 +390,18 @@ class VisibilityPicker extends StatelessWidget {
                 'Студентам',
                 style: Theme.of(context).textTheme.headline3!.copyWith(
                       fontWeight: FontWeight.w600,
-                    ),
+                ),
               ),
               onChanged: (value) {
                 logic.updateCheckbox('students', value ?? false);
               },
             ),
             CheckboxListTile(
-              checkColor: Theme.of(context).scaffoldBackgroundColor,
-              activeColor: Theme.of(context).colorScheme.secondary,
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              visualDensity: VisualDensity.compact,
+              checkColor: context.palette.backgroundSurface,
+              activeColor: context.palette.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -284,15 +411,18 @@ class VisibilityPicker extends StatelessWidget {
                 'Родителям',
                 style: Theme.of(context).textTheme.headline3!.copyWith(
                       fontWeight: FontWeight.w600,
-                    ),
+                ),
               ),
               onChanged: (value) {
                 logic.updateCheckbox('parents', value ?? false);
               },
             ),
             CheckboxListTile(
-              checkColor: Theme.of(context).scaffoldBackgroundColor,
-              activeColor: Theme.of(context).colorScheme.secondary,
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              visualDensity: VisualDensity.compact,
+              checkColor: context.palette.backgroundSurface,
+              activeColor: context.palette.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -302,15 +432,18 @@ class VisibilityPicker extends StatelessWidget {
                 'Преподавателям',
                 style: Theme.of(context).textTheme.headline3!.copyWith(
                       fontWeight: FontWeight.w600,
-                    ),
+                ),
               ),
               onChanged: (value) {
                 logic.updateCheckbox('teachers', value ?? false);
               },
             ),
             CheckboxListTile(
-              checkColor: Theme.of(context).scaffoldBackgroundColor,
-              activeColor: Theme.of(context).colorScheme.secondary,
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              visualDensity: VisualDensity.compact,
+              checkColor: context.palette.backgroundSurface,
+              activeColor: context.palette.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -320,7 +453,7 @@ class VisibilityPicker extends StatelessWidget {
                 'Администрации',
                 style: Theme.of(context).textTheme.headline3!.copyWith(
                       fontWeight: FontWeight.w600,
-                    ),
+                ),
               ),
               onChanged: (value) {
                 logic.updateCheckbox('admins', value ?? false);
@@ -338,24 +471,28 @@ class DialogButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonBar(
+    return Row(
       children: [
-        TextButton(
-          onPressed: () {
-            context.read<EditorLogic>().cleanUp();
-
-            Navigator.pop(context);
-          },
-          child: const Text('Закрыть'),
+        Expanded(
+          child: TextButton(
+            onPressed: () {
+              context.read<EditorLogic>().cleanUp();
+              Navigator.pop(context);
+            },
+            child: const Text('Закрыть'),
+          ),
         ),
-        ElevatedButton(
-          onPressed: context.watch<EditorLogic>().publishButtonActive
-              ? () async {
-                  await context.read<EditorLogic>().publishAnnouncement();
-                  Navigator.pop(context);
-                }
-              : null,
-          child: const Text('Опубликовать'),
+        const SizedBox(width: 10),
+        Expanded(
+          child: ElevatedButton(
+            onPressed: context.watch<EditorLogic>().publishButtonActive
+                ? () async {
+                    await context.read<EditorLogic>().publishAnnouncement();
+                    Navigator.pop(context);
+                  }
+                : null,
+            child: const Text('Опубликовать'),
+          ),
         ),
       ],
     );

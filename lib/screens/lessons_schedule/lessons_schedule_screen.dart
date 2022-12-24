@@ -42,7 +42,7 @@ class _LessonsScheduleScreenState extends State<LessonsScheduleScreen>
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: true);
+    ThemeHelper.colorSystemChrome();
 
     return Scaffold(
       appBar: AppBar(

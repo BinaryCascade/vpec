@@ -6,6 +6,7 @@ import '../../models/full_schedule.dart';
 import '../../models/schedule/schedule_item.dart';
 import '../../utils/hive_helper.dart';
 import '../../utils/routes/routes.dart';
+import '../../utils/theme/theme.dart';
 import '../../utils/theme_helper.dart';
 import '../settings/settings_logic.dart';
 import 'schedule_item_logic.dart';
@@ -16,11 +17,13 @@ class ScheduleItem extends StatelessWidget {
   final ScheduleItemModel model;
 
   Color getItemColor(BuildContext context) {
-    if (model.lessonName.isEmpty) return Theme.of(context).disabledColor;
+    if (model.lessonName.isEmpty) {
+      return context.palette.lowEmphasis;
+    }
 
     return model.timer == null || model.timer!.isEmpty
-        ? Theme.of(context).colorScheme.onBackground.withOpacity(0.6)
-        : Theme.of(context).colorScheme.onBackground;
+        ? context.palette.mediumEmphasis
+        : context.palette.highEmphasis;
   }
 
   @override
@@ -230,7 +233,7 @@ class FABPanel extends StatelessWidget {
           heroTag: null,
           onPressed: () async {
             await Navigator.pushNamed(context, Routes.fullScheduleScreen);
-            ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
+            ThemeHelper.colorSystemChrome();
           },
           child: const Icon(Icons.fullscreen_outlined),
         ),
@@ -273,7 +276,7 @@ class AdditionalInfoPanelWidget extends StatelessWidget {
               children: [
                 Icon(
                   Icons.badge_outlined,
-                  color: Theme.of(context).colorScheme.onBackground,
+                  color: context.palette.highEmphasis,
                 ),
                 const SizedBox(
                   width: 10,

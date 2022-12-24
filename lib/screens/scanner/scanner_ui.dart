@@ -15,6 +15,7 @@ class ManualLoginPrompt extends StatelessWidget {
       child: Column(
         children: [
           Text('или', style: Theme.of(context).textTheme.subtitle1),
+          const SizedBox(height: 10),
           OutlinedButton(
             child: const Text(
               'Введите данные вручную',

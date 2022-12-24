@@ -90,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       FlutterLocalNotificationsPlugin()
           .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
+              AndroidFlutterLocalNotificationsPlugin>()
           ?.requestPermission();
     } else {
       quickActions.clearShortcutItems();
@@ -99,7 +99,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeHelper.colorStatusBar(context: context, haveAppbar: false);
+    ThemeHelper.colorSystemChrome();
 
     return appAuth.accountInfo.isLoggedIn ? widget.child : const LoginScreen();
   }

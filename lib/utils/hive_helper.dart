@@ -17,7 +17,7 @@ class HiveHelper {
     settings.delete(key);
   }
 
-  Future<void> initHive() async {
+  static Future<void> initHive() async {
     await Hive.initFlutter();
     await Hive.openBox('settings');
   }

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '/models/teacher_model.dart';
 import '/widgets/loading_indicator.dart';
+import '../../utils/theme/theme.dart';
 import 'teacher_card/teacher_card.dart';
 import 'teachers_logic.dart';
 
@@ -28,7 +29,7 @@ class SearchBar extends StatelessWidget {
         hintStyle: Theme.of(context)
             .textTheme
             .headline3!
-            .copyWith(color: Theme.of(context).textTheme.subtitle1!.color),
+            .copyWith(color: context.palette.mediumEmphasis),
       ),
       onChanged: (value) {
         Provider.of<TeachersLogic>(context, listen: false).search(value);
@@ -44,7 +45,7 @@ class FilterChips extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: Theme.of(context).cardColor,
+      color: context.palette.levelOneSurface,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Padding(
@@ -54,7 +55,7 @@ class FilterChips extends StatelessWidget {
             spacing: 4.0,
             children: [
               ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: context.palette.levelTwoSurface,
                 label: const Text('Фамилия'),
                 labelStyle: TextStyle(
                   fontSize: 14,
@@ -62,10 +63,10 @@ class FilterChips extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: context.watch<TeachersLogic>().currentMode ==
                           SearchMode.familyName
-                      ? Theme.of(context).colorScheme.onSecondary
-                      : Theme.of(context).colorScheme.onBackground,
+                      ? context.palette.backgroundSurface
+                      : context.palette.highEmphasis,
                 ),
-                selectedColor: Theme.of(context).colorScheme.secondary,
+                selectedColor: context.palette.accentColor,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.familyName,
                 onSelected: (_) =>
@@ -73,7 +74,7 @@ class FilterChips extends StatelessWidget {
                         .setMode(SearchMode.familyName),
               ),
               ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: context.palette.levelTwoSurface,
                 label: const Text('Имя'),
                 labelStyle: TextStyle(
                   fontSize: 14,
@@ -81,10 +82,10 @@ class FilterChips extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: context.watch<TeachersLogic>().currentMode ==
                           SearchMode.firstName
-                      ? Theme.of(context).colorScheme.onSecondary
-                      : Theme.of(context).colorScheme.onBackground,
+                      ? context.palette.backgroundSurface
+                      : context.palette.highEmphasis,
                 ),
-                selectedColor: Theme.of(context).colorScheme.secondary,
+                selectedColor: context.palette.accentColor,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.firstName,
                 onSelected: (_) =>
@@ -92,7 +93,7 @@ class FilterChips extends StatelessWidget {
                         .setMode(SearchMode.firstName),
               ),
               ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: context.palette.levelTwoSurface,
                 label: const Text('Отчество'),
                 labelStyle: TextStyle(
                   fontSize: 14,
@@ -100,10 +101,10 @@ class FilterChips extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: context.watch<TeachersLogic>().currentMode ==
                           SearchMode.secondaryName
-                      ? Theme.of(context).colorScheme.onSecondary
-                      : Theme.of(context).colorScheme.onBackground,
+                      ? context.palette.backgroundSurface
+                      : context.palette.highEmphasis,
                 ),
-                selectedColor: Theme.of(context).colorScheme.secondary,
+                selectedColor: context.palette.accentColor,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.secondaryName,
                 onSelected: (_) =>
@@ -111,7 +112,7 @@ class FilterChips extends StatelessWidget {
                         .setMode(SearchMode.secondaryName),
               ),
               ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: context.palette.levelTwoSurface,
                 label: const Text('Предметы'),
                 labelStyle: TextStyle(
                   fontSize: 14,
@@ -119,10 +120,10 @@ class FilterChips extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: context.watch<TeachersLogic>().currentMode ==
                           SearchMode.lesson
-                      ? Theme.of(context).colorScheme.onSecondary
-                      : Theme.of(context).colorScheme.onBackground,
+                      ? context.palette.backgroundSurface
+                      : context.palette.highEmphasis,
                 ),
-                selectedColor: Theme.of(context).colorScheme.secondary,
+                selectedColor: context.palette.accentColor,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.lesson,
                 onSelected: (_) =>
@@ -130,7 +131,7 @@ class FilterChips extends StatelessWidget {
                         .setMode(SearchMode.lesson),
               ),
               ChoiceChip(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: context.palette.levelTwoSurface,
                 label: const Text('Кабинеты'),
                 labelStyle: TextStyle(
                   fontSize: 14,
@@ -138,10 +139,10 @@ class FilterChips extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: context.watch<TeachersLogic>().currentMode ==
                           SearchMode.cabinet
-                      ? Theme.of(context).colorScheme.onSecondary
-                      : Theme.of(context).colorScheme.onBackground,
+                      ? context.palette.backgroundSurface
+                      : context.palette.highEmphasis,
                 ),
-                selectedColor: Theme.of(context).colorScheme.secondary,
+                selectedColor: context.palette.accentColor,
                 selected: context.watch<TeachersLogic>().currentMode ==
                     SearchMode.cabinet,
                 onSelected: (_) =>
@@ -226,66 +227,65 @@ class _AddNewTeacherDialogUIState extends State<AddNewTeacherDialogUI> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: TextFormField(
-            controller: familyName,
-            textInputAction: TextInputAction.next,
-            style: Theme.of(context).textTheme.headline3,
-            decoration: const InputDecoration(labelText: 'Фамилия'),
-          ),
+        TextFormField(
+          controller: familyName,
+          textInputAction: TextInputAction.next,
+          style: Theme.of(context).textTheme.headline3,
+          decoration: const InputDecoration(labelText: 'Фамилия'),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: TextFormField(
-            controller: firstName,
-            textInputAction: TextInputAction.next,
-            style: Theme.of(context).textTheme.headline3,
-            decoration: const InputDecoration(labelText: 'Имя'),
-          ),
+        const SizedBox(height: 10),
+        TextFormField(
+          controller: firstName,
+          textInputAction: TextInputAction.next,
+          style: Theme.of(context).textTheme.headline3,
+          decoration: const InputDecoration(labelText: 'Имя'),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: TextFormField(
-            controller: secondaryName,
-            textInputAction: TextInputAction.next,
-            style: Theme.of(context).textTheme.headline3,
-            decoration: const InputDecoration(labelText: 'Отчество'),
-          ),
+        const SizedBox(height: 10),
+        TextFormField(
+          controller: secondaryName,
+          textInputAction: TextInputAction.next,
+          style: Theme.of(context).textTheme.headline3,
+          decoration: const InputDecoration(labelText: 'Отчество'),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: TextFormField(
-            controller: lessons,
-            textInputAction: TextInputAction.next,
-            style: Theme.of(context).textTheme.headline3,
-            decoration: const InputDecoration(labelText: 'Занятия'),
-          ),
+        const SizedBox(height: 10),
+        TextFormField(
+          controller: lessons,
+          textInputAction: TextInputAction.next,
+          style: Theme.of(context).textTheme.headline3,
+          decoration: const InputDecoration(labelText: 'Занятия'),
         ),
+        const SizedBox(height: 10),
         TextFormField(
           controller: cabinet,
           textInputAction: TextInputAction.next,
           style: Theme.of(context).textTheme.headline3,
           decoration: const InputDecoration(labelText: 'Кабинет'),
         ),
-        ButtonBar(
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Отмена'),
+            Expanded(
+              child: TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Отмена'),
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                TeachersLogicEditMode().addNewTeacher(TeacherModel(
-                  firstName: firstName.text,
-                  familyName: familyName.text,
-                  secondaryName: secondaryName.text,
-                  cabinet: cabinet.text,
-                  lesson: lessons.text,
-                ));
-                Navigator.pop(context);
-              },
-              child: const Text('Добавить'),
+            const SizedBox(width: 10),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  TeachersLogicEditMode().addNewTeacher(TeacherModel(
+                    firstName: firstName.text,
+                    familyName: familyName.text,
+                    secondaryName: secondaryName.text,
+                    cabinet: cabinet.text,
+                    lesson: lessons.text,
+                  ));
+                  Navigator.pop(context);
+                },
+                child: const Text('Добавить'),
+              ),
             ),
           ],
         ),

@@ -7,6 +7,7 @@ import '/utils/hive_helper.dart';
 import '/utils/icons.dart';
 import '/widgets/styled_widgets.dart';
 import '../../utils/firebase_auth.dart';
+import '../../utils/theme/theme.dart';
 import 'settings_logic.dart';
 
 class AccountBlock extends StatefulWidget {
@@ -30,7 +31,7 @@ class _AccountBlockState extends State<AccountBlock> {
                 onTap: () => SettingsLogic.accountLogin(context),
                 icon: Icon(
                   Icons.account_circle_outlined,
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: context.palette.accentColor,
                   size: 32,
                 ),
                 title: 'Аккаунт',
@@ -41,7 +42,7 @@ class _AccountBlockState extends State<AccountBlock> {
               StyledListTile(
                 icon: Icon(
                   Icons.subject_outlined,
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: context.palette.accentColor,
                   size: 32,
                 ),
                 title: 'Выбрать группу',
@@ -55,7 +56,7 @@ class _AccountBlockState extends State<AccountBlock> {
                       onTap: () => SettingsLogic.changeName(context),
                       icon: Icon(
                         Icons.edit_outlined,
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: context.palette.accentColor,
                         size: 32.0,
                       ),
                       title: 'Имя для объявлений',
@@ -65,7 +66,7 @@ class _AccountBlockState extends State<AccountBlock> {
                     StyledListTile(
                       icon: Icon(
                         Icons.tune_outlined,
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: context.palette.accentColor,
                         size: 32.0,
                       ),
                       title: 'Режим редактирования',
@@ -79,7 +80,7 @@ class _AccountBlockState extends State<AccountBlock> {
                     StyledListTile(
                       icon: Icon(
                         Icons.construction_outlined,
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: context.palette.accentColor,
                         size: 32.0,
                       ),
                       title: 'Экран тестирования',
@@ -114,7 +115,7 @@ class AppThemeListTile extends StatelessWidget {
       icon: Icon(
         Icons.brightness_6_outlined,
         size: 32.0,
-        color: Theme.of(context).colorScheme.secondary,
+        color: context.palette.accentColor,
       ),
       onTap: () async {
         await SettingsLogic.chooseTheme(context: context);
@@ -135,7 +136,7 @@ class LaunchOnStartChooser extends StatelessWidget {
       title: 'Открывать при запуске',
       icon: Icon(
         Icons.launch_outlined,
-        color: Theme.of(context).colorScheme.secondary,
+        color: context.palette.accentColor,
         size: 32.0,
       ),
     );
@@ -155,17 +156,15 @@ class AccountLoginUI extends StatelessWidget {
         AutofillGroup(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: TextFormField(
-                  controller: emailController,
-                  autofillHints: const <String>[AutofillHints.username],
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.emailAddress,
-                  style: Theme.of(context).textTheme.headline3,
-                  decoration: const InputDecoration(labelText: 'Введите email'),
-                ),
+              TextFormField(
+                controller: emailController,
+                autofillHints: const <String>[AutofillHints.username],
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.emailAddress,
+                style: Theme.of(context).textTheme.headline3,
+                decoration: const InputDecoration(labelText: 'Введите email'),
               ),
+              const SizedBox(height: 10),
               TextFormField(
                 controller: passwordController,
                 autofillHints: const <String>[AutofillHints.password],
@@ -178,21 +177,28 @@ class AccountLoginUI extends StatelessWidget {
             ],
           ),
         ),
-        ButtonBar(
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Отмена'),
+            Expanded(
+              child: TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Отмена'),
+              ),
             ),
-            ElevatedButton(
-              child: const Text('Войти'),
-              onPressed: () {
-                SettingsLogic().makeLogin(
-                  context,
-                  email: emailController.text,
-                  password: passwordController.text,
-                );
-              },
+            const SizedBox(width: 10),
+            Expanded(
+              child: ElevatedButton(
+                child: const Text('Войти'),
+                onPressed: () {
+                  SettingsLogic().makeLogin(
+                    context,
+                    email: emailController.text,
+                    password: passwordController.text,
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -208,16 +214,21 @@ class AccountLogoutUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ButtonBar(
-          alignment: MainAxisAlignment.center,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            OutlinedButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Отмена'),
+            Expanded(
+              child: OutlinedButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Отмена'),
+              ),
             ),
-            OutlinedButton(
-              child: const Text('Выйти'),
-              onPressed: () => SettingsLogic.accountLogout(context),
+            const SizedBox(width: 10),
+            Expanded(
+              child: OutlinedButton(
+                child: const Text('Выйти'),
+                onPressed: () => SettingsLogic.accountLogout(context),
+              ),
             ),
           ],
         ),
@@ -244,21 +255,28 @@ class EditNameUI extends StatelessWidget {
           style: Theme.of(context).textTheme.headline3,
           decoration: const InputDecoration(labelText: 'Введите имя'),
         ),
-        ButtonBar(
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Отмена'),
+            Expanded(
+              child: TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Отмена'),
+              ),
             ),
-            ElevatedButton(
-              child: const Text('Сохранить'),
-              onPressed: () {
-                HiveHelper.saveValue(
-                  key: 'username',
-                  value: nameController.value.text.trim(),
-                );
-                Navigator.pop(context);
-              },
+            const SizedBox(width: 10),
+            Expanded(
+              child: ElevatedButton(
+                child: const Text('Сохранить'),
+                onPressed: () {
+                  HiveHelper.saveValue(
+                    key: 'username',
+                    value: nameController.value.text.trim(),
+                  );
+                  Navigator.pop(context);
+                },
+              ),
             ),
           ],
         ),
@@ -309,111 +327,121 @@ class _ThemeChooserUIState extends State<ThemeChooserUI> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        RadioListTile(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          secondary: Center(
-            widthFactor: 1,
-            child: Icon(
-              Icons.brightness_5_outlined,
-              color: Theme.of(context).colorScheme.secondary,
+    return Padding(
+      padding: const EdgeInsets.only(left: 6),
+      child: Column(
+        children: [
+          RadioListTile(
+            contentPadding: EdgeInsets.zero,
+            visualDensity: VisualDensity.compact,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(
+                Icons.brightness_5_outlined,
+                color: context.palette.accentColor,
+              ),
             ),
-          ),
-          title: Text(
-            'Светлая тема',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          value: 0,
-          activeColor: Theme.of(context).colorScheme.secondary,
-          groupValue: selectedItem,
-          controlAffinity: ListTileControlAffinity.trailing,
-          onChanged: (dynamic value) {
-            widget.lightThemeSelected();
-            setState(() {
-              selectedItem = value;
-            });
-          },
-        ),
-        RadioListTile(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          secondary: Center(
-            widthFactor: 1,
-            child: Icon(
-              Icons.brightness_2_outlined,
-              color: Theme.of(context).colorScheme.secondary,
+            title: Text(
+              'Светлая тема',
+              style: Theme.of(context).textTheme.headline4,
             ),
-          ),
-          title: Text(
-            'Тёмная тема',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          value: 1,
-          activeColor: Theme.of(context).colorScheme.secondary,
-          groupValue: selectedItem,
-          controlAffinity: ListTileControlAffinity.trailing,
-          onChanged: (dynamic value) {
-            setState(() {
-              widget.darkThemeSelected();
+            value: 0,
+            activeColor: context.palette.accentColor,
+            groupValue: selectedItem,
+            controlAffinity: ListTileControlAffinity.trailing,
+            onChanged: (dynamic value) {
+              widget.lightThemeSelected();
               setState(() {
                 selectedItem = value;
               });
-            });
-          },
-        ),
-        RadioListTile(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          secondary: Center(
-            widthFactor: 1,
-            child: Icon(
-              Icons.phonelink_setup_outlined,
-              color: Theme.of(context).colorScheme.secondary,
+            },
+          ),
+          RadioListTile(
+            contentPadding: EdgeInsets.zero,
+            visualDensity: VisualDensity.compact,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(
+                Icons.brightness_2_outlined,
+                color: context.palette.accentColor,
+              ),
             ),
-          ),
-          title: Text(
-            'Системная тема',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          value: 2,
-          activeColor: Theme.of(context).colorScheme.secondary,
-          groupValue: selectedItem,
-          controlAffinity: ListTileControlAffinity.trailing,
-          onChanged: (dynamic value) {
-            widget.defaultThemeSelected();
-            setState(() {
-              selectedItem = value;
-            });
-          },
-        ),
-        const Divider(),
-        SwitchListTile(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          value: documentLightThemeSwitchState,
-          activeColor: Theme.of(context).colorScheme.secondary,
-          secondary: Center(
-            widthFactor: 1,
-            child: Icon(
-              Icons.description_outlined,
-              color: Theme.of(context).colorScheme.secondary,
+            title: Text(
+              'Тёмная тема',
+              style: Theme.of(context).textTheme.headline4,
             ),
+            value: 1,
+            activeColor: context.palette.accentColor,
+            groupValue: selectedItem,
+            controlAffinity: ListTileControlAffinity.trailing,
+            onChanged: (dynamic value) {
+              setState(() {
+                widget.darkThemeSelected();
+                setState(() {
+                  selectedItem = value;
+                });
+              });
+            },
           ),
-          title: Text(
-            'Всегда светлая тема для документов',
-            style: Theme.of(context).textTheme.headline4,
+          RadioListTile(
+            contentPadding: EdgeInsets.zero,
+            visualDensity: VisualDensity.compact,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(
+                Icons.phonelink_setup_outlined,
+                color: context.palette.accentColor,
+              ),
+            ),
+            title: Text(
+              'Системная тема',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            value: 2,
+            activeColor: context.palette.accentColor,
+            groupValue: selectedItem,
+            controlAffinity: ListTileControlAffinity.trailing,
+            onChanged: (dynamic value) {
+              widget.defaultThemeSelected();
+              setState(() {
+                selectedItem = value;
+              });
+            },
           ),
-          onChanged: (value) {
-            widget.alwaysLightThemeDocumentChanged(value);
-            setState(() {
-              documentLightThemeSwitchState = value;
-            });
-          },
-        ),
-        const SizedBox(height: 7),
-      ],
+          const Divider(),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            visualDensity: VisualDensity.compact,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            value: documentLightThemeSwitchState,
+            activeColor: context.palette.accentColor,
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(
+                Icons.description_outlined,
+                color: context.palette.accentColor,
+              ),
+            ),
+            title: Text(
+              'Всегда светлая тема для документов',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            onChanged: (value) {
+              widget.alwaysLightThemeDocumentChanged(value);
+              setState(() {
+                documentLightThemeSwitchState = value;
+              });
+            },
+          ),
+        ],
+      ),
     );
   }
 }
@@ -430,125 +458,136 @@ class _LaunchOnStartChooserUIState extends State<LaunchOnStartChooserUI> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        RadioListTile(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          secondary: Center(
-            widthFactor: 1,
-            child: Icon(
-              VpecIconPack.news_outline,
-              color: Theme.of(context).colorScheme.secondary,
+    return Padding(
+      padding: const EdgeInsets.only(left: 6),
+      child: Column(
+        children: [
+          RadioListTile(
+            contentPadding: EdgeInsets.zero,
+            visualDensity: VisualDensity.compact,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(
+                VpecIconPack.news_outline,
+                color: context.palette.accentColor,
+              ),
             ),
-          ),
-          title: Text(
-            'События',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          value: 0,
-          activeColor: Theme.of(context).colorScheme.secondary,
-          groupValue: selectedItem,
-          controlAffinity: ListTileControlAffinity.trailing,
-          onChanged: (int? value) {
-            setState(() {
-              HiveHelper.saveValue(key: 'launchOnStart', value: value);
-              HiveHelper.saveValue(
-                key: 'launchOnStartString',
-                value: 'События',
-              );
-              selectedItem = value!;
-            });
-          },
-        ),
-        RadioListTile(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          secondary: Center(
-            widthFactor: 1,
-            child: Icon(
-              Icons.notifications_outlined,
-              color: Theme.of(context).colorScheme.secondary,
+            title: Text(
+              'События',
+              style: Theme.of(context).textTheme.headline4,
             ),
+            value: 0,
+            activeColor: context.palette.accentColor,
+            groupValue: selectedItem,
+            controlAffinity: ListTileControlAffinity.trailing,
+            onChanged: (int? value) {
+              setState(() {
+                HiveHelper.saveValue(key: 'launchOnStart', value: value);
+                HiveHelper.saveValue(
+                  key: 'launchOnStartString',
+                  value: 'События',
+                );
+                selectedItem = value!;
+              });
+            },
           ),
-          title: Text(
-            'Объявления',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          value: 1,
-          activeColor: Theme.of(context).colorScheme.secondary,
-          groupValue: selectedItem,
-          controlAffinity: ListTileControlAffinity.trailing,
-          onChanged: (int? value) {
-            setState(() {
-              HiveHelper.saveValue(key: 'launchOnStart', value: value);
-              HiveHelper.saveValue(
-                key: 'launchOnStartString',
-                value: 'Объявления',
-              );
-              selectedItem = value!;
-            });
-          },
-        ),
-        RadioListTile(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          secondary: Center(
-            widthFactor: 1,
-            child: Icon(
-              Icons.access_time_outlined,
-              color: Theme.of(context).colorScheme.secondary,
+          RadioListTile(
+            contentPadding: EdgeInsets.zero,
+            visualDensity: VisualDensity.compact,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(
+                Icons.notifications_outlined,
+                color: context.palette.accentColor,
+              ),
             ),
-          ),
-          title: Text(
-            'Расписание занятий',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          value: 2,
-          activeColor: Theme.of(context).colorScheme.secondary,
-          groupValue: selectedItem,
-          controlAffinity: ListTileControlAffinity.trailing,
-          onChanged: (int? value) {
-            setState(() {
-              HiveHelper.saveValue(key: 'launchOnStart', value: value);
-              HiveHelper.saveValue(
-                key: 'launchOnStartString',
-                value: 'Расписание занятий',
-              );
-              selectedItem = value!;
-            });
-          },
-        ),
-        RadioListTile(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          secondary: Center(
-            widthFactor: 1,
-            child: Icon(
-              Icons.layers_outlined,
-              color: Theme.of(context).colorScheme.secondary,
+            title: Text(
+              'Объявления',
+              style: Theme.of(context).textTheme.headline4,
             ),
+            value: 1,
+            activeColor: context.palette.accentColor,
+            groupValue: selectedItem,
+            controlAffinity: ListTileControlAffinity.trailing,
+            onChanged: (int? value) {
+              setState(() {
+                HiveHelper.saveValue(key: 'launchOnStart', value: value);
+                HiveHelper.saveValue(
+                  key: 'launchOnStartString',
+                  value: 'Объявления',
+                );
+                selectedItem = value!;
+              });
+            },
           ),
-          title: Text(
-            'Карта кабинетов',
-            style: Theme.of(context).textTheme.headline4,
+          RadioListTile(
+            contentPadding: EdgeInsets.zero,
+            visualDensity: VisualDensity.compact,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(
+                Icons.access_time_outlined,
+                color: context.palette.accentColor,
+              ),
+            ),
+            title: Text(
+              'Расписание занятий',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            value: 2,
+            activeColor: context.palette.accentColor,
+            groupValue: selectedItem,
+            controlAffinity: ListTileControlAffinity.trailing,
+            onChanged: (int? value) {
+              setState(() {
+                HiveHelper.saveValue(key: 'launchOnStart', value: value);
+                HiveHelper.saveValue(
+                  key: 'launchOnStartString',
+                  value: 'Расписание занятий',
+                );
+                selectedItem = value!;
+              });
+            },
           ),
-          value: 3,
-          activeColor: Theme.of(context).colorScheme.secondary,
-          groupValue: selectedItem,
-          controlAffinity: ListTileControlAffinity.trailing,
-          onChanged: (int? value) {
-            setState(() {
-              HiveHelper.saveValue(key: 'launchOnStart', value: value);
-              HiveHelper.saveValue(
-                key: 'launchOnStartString',
-                value: 'Карта кабинетов',
-              );
-              selectedItem = value!;
-            });
-          },
-        ),
-      ],
+          RadioListTile(
+            contentPadding: EdgeInsets.zero,
+            visualDensity: VisualDensity.compact,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            secondary: Center(
+              widthFactor: 1,
+              child: Icon(
+                Icons.layers_outlined,
+                color: context.palette.accentColor,
+              ),
+            ),
+            title: Text(
+              'Карта кабинетов',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            value: 3,
+            activeColor: context.palette.accentColor,
+            groupValue: selectedItem,
+            controlAffinity: ListTileControlAffinity.trailing,
+            onChanged: (int? value) {
+              setState(() {
+                HiveHelper.saveValue(key: 'launchOnStart', value: value);
+                HiveHelper.saveValue(
+                  key: 'launchOnStartString',
+                  value: 'Карта кабинетов',
+                );
+                selectedItem = value!;
+              });
+            },
+          ),
+        ],
+      ),
     );
   }
 }
@@ -560,7 +599,7 @@ class ChooseGroupUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<GroupsData>(builder: (context, logic, _) {
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           DropdownButtonFormField<String>(
             borderRadius: const BorderRadius.all(Radius.circular(20.0)),
@@ -584,7 +623,7 @@ class ChooseGroupUI extends StatelessWidget {
             menuMaxHeight: 400,
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           Row(
             children: [
@@ -608,7 +647,7 @@ class ChooseGroupUI extends StatelessWidget {
                   menuMaxHeight: 400,
                 ),
               ),
-              const SizedBox(width: 20),
+              const SizedBox(width: 10),
               Expanded(
                 child: DropdownButtonFormField<String>(
                   value: GroupsData.getGroupNumbers.first,
@@ -631,40 +670,55 @@ class ChooseGroupUI extends StatelessWidget {
               ),
             ],
           ),
-          SwitchListTile(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            activeColor: Theme.of(context).colorScheme.secondary,
-            value: logic.isAccelerated,
-            title: Text(
-              'Ускоренная форма обучения',
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            onChanged: (value) => logic.onValueChanged(
-              value,
-              type: ChangedType.accelerated,
-            ),
-          ),
           Padding(
-            padding: const EdgeInsets.only(top: 15.0),
-            child: Builder(builder: (context) {
-              return Text(
-                'Будет выбрана группа: ${logic.formedGroup}',
+            padding: const EdgeInsets.only(left: 12),
+            child: SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              visualDensity: VisualDensity.compact,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              activeColor: context.palette.accentColor,
+              value: logic.isAccelerated,
+              title: Text(
+                'Ускоренная форма обучения',
                 style: Theme.of(context).textTheme.headline3,
-              );
-            }),
-          ),
-          ButtonBar(
-            children: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Закрыть'),
               ),
-              ElevatedButton(
-                onPressed: logic.isSaveButtonEnabled
-                    ? () => logic.saveFormedGroup(context)
-                    : null,
-                child: const Text('Сохранить'),
+              onChanged: (value) => logic.onValueChanged(
+                value,
+                type: ChangedType.accelerated,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'Будет выбрана группа:',
+            style: Theme.of(context).textTheme.headline3,
+          ),
+          Builder(builder: (context) {
+            return Text(
+              logic.formedGroup,
+              style: Theme.of(context).textTheme.headline6,
+              textAlign: TextAlign.center,
+            );
+          }),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Expanded(
+                child: TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Закрыть'),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: logic.isSaveButtonEnabled
+                      ? () => logic.saveFormedGroup(context)
+                      : null,
+                  child: const Text('Сохранить'),
+                ),
               ),
             ],
           ),

@@ -20,10 +20,6 @@ class TeacherCard extends StatelessWidget {
           }
         },
         child: Card(
-          clipBehavior: Clip.antiAlias,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
           child: Padding(
             padding: const EdgeInsets.all(14.0),
             child: Column(

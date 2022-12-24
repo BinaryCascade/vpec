@@ -1,11 +1,17 @@
+import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:device_info/device_info.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'theme/theme.dart';
+import 'theme_helper.dart';
 
 /// Open in browser given [url]
 Future<void> openUrl(String url) async {
@@ -59,33 +65,64 @@ Future<T?> showRoundedModalSheet<T>({
   Widget? child,
   Widget? customLayout,
 }) async {
-  return showModalBottomSheet<T>(
+  ThemeHelper.colorSystemChrome(mode: ColoringMode.lightIcons);
+  T? toReturn = await showModalBottomSheet<T>(
     context: context,
     isDismissible: isDismissible,
     isScrollControlled: true,
     enableDrag: enableDrag,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(20),
-        topRight: Radius.circular(20),
+    backgroundColor: Colors.transparent,
+    builder: (context) => AnnotatedRegion<SystemUiOverlayStyle>(
+      value: ThemeHelper.overlayStyleHelper(
+        Color.alphaBlend(Colors.black54, context.palette.backgroundSurface),
       ),
-    ),
-    builder: (context) =>
-        customLayout ??
-        Container(
-          margin: EdgeInsets.only(
-            top: 15,
-            left: 15,
-            right: 15,
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 15),
-                child: Center(
+      child: customLayout ??
+          Container(
+            padding: const EdgeInsets.only(
+              top: 10,
+              bottom: 15,
+              left: 15,
+              right: 15,
+            ),
+            decoration: BoxDecoration(
+              color: context.palette.levelTwoSurface,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: context.palette.outsideBorderColor,
+              ),
+            ),
+            margin: EdgeInsets.only(
+              top: 10,
+              left: 10,
+              right: 10,
+              bottom: [
+                    MediaQuery.of(context).viewInsets.bottom,
+                    MediaQuery.of(context).viewPadding.bottom,
+                  ].reduce(max) +
+                  10,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                isDismissible
+                    ? Column(
+                        children: [
+                          SizedBox(
+                            width: 70,
+                            height: 5,
+                            child: DecoratedBox(
+                              decoration: ShapeDecoration(
+                                shape: const StadiumBorder(),
+                                color: context.palette.lowEmphasis,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                        ],
+                      )
+                    : const SizedBox(height: 5),
+                Center(
                   child: title != null
                       ? Text(
                           title,
@@ -96,15 +133,19 @@ Future<T?> showRoundedModalSheet<T>({
                           'use styled layout, or [customLayout] if you need'
                           ' your own layout'),
                 ),
-              ),
-              child ??
-                  ErrorWidget('You need implement [child] if you want '
-                      'use styled layout, or [customLayout] if you need your '
-                      'own layout'),
-            ],
+                const SizedBox(height: 15),
+                child ??
+                    ErrorWidget('You need implement [child] if you want '
+                        'use styled layout, or [customLayout] if you need your '
+                        'own layout'),
+              ],
+            ),
           ),
-        ),
+    ),
   );
+  ThemeHelper.colorSystemChrome();
+
+  return toReturn;
 }
 
 class LowAndroidHttpOverrides extends HttpOverrides {
@@ -116,17 +157,23 @@ class LowAndroidHttpOverrides extends HttpOverrides {
   }
 }
 
-/// On Android 7.0 and lower bug:
-///
-/// `CERTIFICATE_VERIFY_FAILED: certificate has expired`
-///
-/// This method fix it.
-Future<void> useHttpOverrides() async {
-  if (Platform.isAndroid) {
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    if (androidInfo.version.sdkInt <= 24) {
-      HttpOverrides.global = LowAndroidHttpOverrides();
+/// Method that fixes
+/// "`CERTIFICATE_VERIFY_FAILED: certificate has expired`" bug,
+/// which appears on Android 7.0 and lower
+void useHttpOverrides() {
+  if (AndroidSdkVersion.version <= 24) {
+    HttpOverrides.global = LowAndroidHttpOverrides();
+  }
+}
+
+class AndroidSdkVersion {
+  static int version = 0;
+
+  static Future<void> getAndSave() async {
+    if (Platform.isAndroid) {
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      version = androidInfo.version.sdkInt;
     }
   }
 }

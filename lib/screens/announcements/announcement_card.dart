@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -40,16 +42,13 @@ class AnnouncementCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Card(
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
         child: GestureDetector(
           onDoubleTap: () => editAnnouncement(context),
           child: Column(
             children: [
               if (announcement.photoUrl != null)
                 Container(
+                  margin: const EdgeInsets.all(1.0),
                   clipBehavior: Clip.antiAlias,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -122,17 +121,15 @@ class AnnouncementCard extends StatelessWidget {
         context: context,
         title: 'Редактировать объявление',
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: TextFormField(
-                controller: titleController,
-                textInputAction: TextInputAction.next,
-                style: Theme.of(context).textTheme.headline4,
-                decoration:
-                    const InputDecoration(labelText: 'Введите заголовок'),
-              ),
+            TextFormField(
+              controller: titleController,
+              textInputAction: TextInputAction.next,
+              style: Theme.of(context).textTheme.headline4,
+              decoration: const InputDecoration(labelText: 'Введите заголовок'),
             ),
+            const SizedBox(height: 10),
             ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 200, maxHeight: 200),
               child: TextFormField(
@@ -146,23 +143,33 @@ class AnnouncementCard extends StatelessWidget {
                     const InputDecoration(labelText: 'Введите сообщение'),
               ),
             ),
-            ButtonBar(
+            const SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                child: const Text('Отредактировать'),
+                onPressed: () => updateAnnouncement(
+                  context,
+                  announcement.docId,
+                  titleController.text,
+                  contentController.text,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Row(
               children: <Widget>[
-                TextButton(
-                  onPressed: () => confirmDelete(context),
-                  child: const Text('Удалить'),
+                Expanded(
+                  child: TextButton(
+                    onPressed: () => confirmDelete(context),
+                    child: const Text('Удалить'),
+                  ),
                 ),
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Отмена'),
-                ),
-                ElevatedButton(
-                  child: const Text('Отредактировать'),
-                  onPressed: () => updateAnnouncement(
-                    context,
-                    announcement.docId,
-                    titleController.text,
-                    contentController.text,
+                const SizedBox(width: 10),
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Отмена'),
                   ),
                 ),
               ],
@@ -200,11 +207,15 @@ class AnnouncementCard extends StatelessWidget {
       ),
       builder: (context) => Container(
         padding: MediaQuery.of(context).viewInsets,
-        margin: const EdgeInsets.only(
-          top: 10,
+        margin: EdgeInsets.only(
+          top: 15,
           left: 15,
           right: 15,
-          bottom: 10,
+          bottom: [
+                MediaQuery.of(context).viewInsets.bottom,
+                MediaQuery.of(context).viewPadding.bottom,
+              ].reduce(max) +
+              15,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -213,22 +224,23 @@ class AnnouncementCard extends StatelessWidget {
               'Удалить объявление?',
               style: Theme.of(context).textTheme.headline4,
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Отмена'),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Отмена'),
+                  ),
                 ),
-              ),
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton(
-                onPressed: () => deleteAnnouncement(context),
-                child: const Text('Удалить'),
-              ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () => deleteAnnouncement(context),
+                    child: const Text('Удалить'),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
