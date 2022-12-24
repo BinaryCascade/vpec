@@ -39,15 +39,16 @@ class _AccountBlockState extends State<AccountBlock> {
                     ? SettingsLogic.getAccountModeText(context)
                     : 'Нажмите, чтобы войти в аккаунт',
               ),
-              StyledListTile(
+              HivedListTile(
+                onTap: () => SettingsLogic.chooseGroup(context),
                 icon: Icon(
                   Icons.subject_outlined,
                   color: context.palette.accentColor,
                   size: 32,
                 ),
                 title: 'Выбрать группу',
-                subtitle: 'Для показа расписания',
-                onTap: () => SettingsLogic.chooseGroup(context),
+                subtitleKey: 'chosenGroup',
+                defaultValue: 'Нажмите, чтобы выбрать группу',
               ),
               if (auth.accountInfo.level == AccountType.admin)
                 Column(
@@ -676,7 +677,8 @@ class ChooseGroupUI extends StatelessWidget {
               contentPadding: EdgeInsets.zero,
               visualDensity: VisualDensity.compact,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
+                borderRadius: BorderRadius.circular(20),
+              ),
               activeColor: context.palette.accentColor,
               value: logic.isAccelerated,
               title: Text(
