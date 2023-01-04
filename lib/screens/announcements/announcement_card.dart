@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -72,6 +73,11 @@ class AnnouncementCard extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodyText1,
                           options: const LinkifyOptions(humanize: true),
                           onOpen: (link) {
+                            FirebaseAnalytics.instance.logEvent(name: 'announcements_link_opened', parameters: {
+                              'url': link.url,
+                              'url_text' : link.text,
+                            });
+
                             if (ViewDocumentLogic.isThisURLSupported(
                               link.url,
                             )) {

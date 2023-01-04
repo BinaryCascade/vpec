@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -59,6 +60,9 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                 if (url.startsWith(ScannerWidget.domainAddress)) {
                   didFindQr = true;
 
+                  FirebaseAnalytics.instance.logEvent(name: 'login_by_qr', parameters: {
+                    'url': url,
+                  });
                   Navigator.pushNamed(
                     context,
                     url.replaceFirst(ScannerWidget.domainAddress, '/'),

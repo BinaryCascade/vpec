@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:r_dotted_line_border/r_dotted_line_border.dart';
@@ -34,6 +35,7 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
   void initState() {
     context.read<ScheduleLogic>().loadSchedule();
     context.read<ScheduleLogic>().startTimersUpdating();
+    FirebaseAnalytics.instance.setCurrentScreen(screenName: 'schedule_screen');
     super.initState();
   }
 
@@ -83,7 +85,7 @@ class _ScheduleScreenUIState extends State<ScheduleScreenUI> {
                     ),
                     // SizedBox(height: 6),
                     InkWell(
-                      onTap: () async => await logic.chooseData(context),
+                      onTap: () => logic.chooseData(context),
                       child: Row(
                         children: [
                           Expanded(

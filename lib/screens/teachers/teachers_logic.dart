@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 import '/models/teacher_model.dart';
@@ -38,6 +39,10 @@ class TeachersLogic extends ChangeNotifier {
   void search(String searchText) {
     if (searchText.isNotEmpty) {
       String searchKey = searchText.capitalize();
+      FirebaseAnalytics.instance.logEvent(name: 'teacher_search', parameters: {
+        'search_key' : searchKey,
+      });
+
       stream = FirebaseFirestore.instance
           .collection('teacher_list')
           .where(documentField, isGreaterThanOrEqualTo: searchKey)
@@ -55,6 +60,9 @@ class TeachersLogic extends ChangeNotifier {
   void setMode(SearchMode mode) {
     currentMode = mode;
     setVisibleText(mode);
+    FirebaseAnalytics.instance.logEvent(name: 'teachers_search_mode', parameters: {
+      'selected_mode' : mode.toString(),
+    });
     notifyListeners();
   }
 

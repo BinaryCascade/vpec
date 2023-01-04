@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -90,6 +91,9 @@ class LessonsScheduleLogic extends ChangeNotifier {
     }
     imgUrl = baseUrl + dateFromUrl + endUrl;
     notifyListeners();
+    FirebaseAnalytics.instance.logEvent(name: 'full_schedule_date_chosen', parameters: {
+      'date': dateFromUrl,
+    });
   }
 
   void handleDoubleTapDown(TapDownDetails details) {

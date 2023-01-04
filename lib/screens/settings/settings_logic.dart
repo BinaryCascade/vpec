@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -43,12 +44,18 @@ class SettingsLogic extends ChangeNotifier {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       Navigator.pop(context);
+
+      FirebaseAnalytics.instance.logEvent(name: 'login_successful');
     } on FirebaseAuthException {
       Navigator.pop(context);
       showSnackBar(context, text: 'Данные введены неверно');
+      FirebaseAnalytics.instance.logEvent(name: 'login_incorrect_data');
     } catch (e) {
       Navigator.pop(context);
       showSnackBar(context, text: e.toString());
+      FirebaseAnalytics.instance.logEvent(name: 'login_error', parameters: {
+        'code': e.toString(),
+      });
     }
   }
 
@@ -124,14 +131,22 @@ class SettingsLogic extends ChangeNotifier {
         },
       ),
     );
+
+    FirebaseAnalytics.instance.logEvent(name: 'settings_theme', parameters: {
+      'selected_theme' : context.read<ThemeNotifier>().themeMode.toString(),
+    });
   }
 
-  void chooseLaunchOnStart(BuildContext context) {
-    showRoundedModalSheet(
+  Future<void> chooseLaunchOnStart(BuildContext context) async {
+    await showRoundedModalSheet(
       context: context,
       title: 'Открывать при запуске',
       child: const LaunchOnStartChooserUI(),
     );
+
+    FirebaseAnalytics.instance.logEvent(name: 'settings_launch_on_start', parameters: {
+      'selected_item' : HiveHelper.getValue('launchOnStart') ?? 0,
+    });
   }
 
   static Future<void> chooseGroup(BuildContext context) async {
@@ -143,6 +158,10 @@ class SettingsLogic extends ChangeNotifier {
         child: const ChooseGroupUI(),
       ),
     );
+
+    FirebaseAnalytics.instance.logEvent(name: 'settings_group', parameters: {
+      'selected_group' : HiveHelper.getValue('chosenGroup'),
+    });
   }
 }
 

@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/firebase_auth.dart';
@@ -42,6 +43,12 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
           const AnnouncementsList(collectionPath: 'announcements_students'),
         ];
     }
+  }
+
+  @override
+  void initState() {
+    FirebaseAnalytics.instance.setCurrentScreen(screenName: 'announcements_screen');
+    super.initState();
   }
 
   @override
