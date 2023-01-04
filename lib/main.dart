@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
@@ -85,6 +86,11 @@ class _VPECAppState extends State<VPECApp> {
       initialRoute: '/',
       onGenerateRoute: Routes.router.generator,
       debugShowCheckedModeBanner: false,
+      navigatorObservers: <NavigatorObserver>[
+        FirebaseAnalyticsObserver(
+          analytics: FirebaseAnalytics.instance,
+        ),
+      ],
     );
   }
 }

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:device_info/device_info.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,6 +32,8 @@ Future<void> openUrl(String url) async {
 /// If [url] is null, then nothing will do
 Future<void> shareFile(String? url) async {
   if (url != null) {
+    FirebaseAnalytics.instance.logShare(contentType: 'schedule', itemId: url, method: 'system_dialog');
+
     // download file from given url
     HttpClientRequest request = await HttpClient().getUrl(Uri.parse(url));
     HttpClientResponse response = await request.close();
@@ -38,8 +41,7 @@ Future<void> shareFile(String? url) async {
 
     // get temp directory, write and share file
     final Directory tempDir = await getTemporaryDirectory();
-    final File file =
-        await File('${tempDir.path}/${url.split('/').last}').create();
+    final File file = await File('${tempDir.path}/${url.split('/').last}').create();
     await file.writeAsBytes(bytes);
 
     if (response.statusCode == 200) {
@@ -152,8 +154,7 @@ class LowAndroidHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
+      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
   }
 }
 

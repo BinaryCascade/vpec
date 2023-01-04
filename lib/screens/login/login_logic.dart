@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -15,6 +16,7 @@ import 'login_ui.dart';
 
 class LoginLogic extends ChangeNotifier {
   static Future<void> openLogin(BuildContext context) async {
+    FirebaseAnalytics.instance.logEvent(name: 'login_manual');
     await SettingsLogic.accountLogin(context);
     if (context.read<FirebaseAppAuth>().accountInfo.level !=
         AccountType.entrant) {
@@ -23,6 +25,7 @@ class LoginLogic extends ChangeNotifier {
   }
 
   static Future<void> openQrScanner(BuildContext context) async {
+    FirebaseAnalytics.instance.logEvent(name: 'login_qr_dialog');
     if (await Permission.camera.isGranted) {
       Navigator.pushNamed(context, '/loginByScan');
     } else {
@@ -49,6 +52,8 @@ class LoginLogic extends ChangeNotifier {
   }
 
   static Future<void> showAccountHelperDialog(BuildContext context) async {
+    FirebaseAnalytics.instance.logEvent(name: 'login_helper_dialog');
+
     String dialogText = 'Данные для входа предоставляются в колледже. '
         'Для быстрого входа в аккаунт можно просканировать QR код с плаката';
     ThemeHelper.colorSystemChrome(mode: ColoringMode.lightIcons);

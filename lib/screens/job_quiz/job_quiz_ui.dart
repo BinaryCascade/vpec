@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -95,8 +96,7 @@ class JobQuizFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool needShowResult =
-        context.select((JobQuizStorage storage) => storage.showResults);
+    final bool needShowResult = context.select((JobQuizStorage storage) => storage.showResults);
 
     return needShowResult
         ? Container()
@@ -117,8 +117,20 @@ class JobQuizFAB extends StatelessWidget {
   }
 }
 
-class JobQuizResults extends StatelessWidget {
+class JobQuizResults extends StatefulWidget {
   const JobQuizResults({Key? key}) : super(key: key);
+
+  @override
+  State<JobQuizResults> createState() => _JobQuizResultsState();
+}
+
+class _JobQuizResultsState extends State<JobQuizResults> {
+
+  @override
+  void initState() {
+    FirebaseAnalytics.instance.logEvent(name: 'job_quiz_completed');
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,6 +156,12 @@ class JobQuizResults extends StatelessWidget {
                   IconButton(
                     tooltip: 'Поделиться результатом',
                     onPressed: () {
+                      FirebaseAnalytics.instance.logShare(
+                        contentType: 'job_quiz_result',
+                        itemId: context.read<JobQuizStorage>().resultText,
+                        method: 'system_dialog',
+                      );
+
                       Share.share(
                         context.read<JobQuizStorage>().resultText,
                       );

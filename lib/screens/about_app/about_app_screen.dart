@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 import '/utils/utils.dart';
@@ -44,17 +45,25 @@ class AboutAppScreen extends StatelessWidget {
             StyledListTile(
               title: 'Исходный код приложения',
               subtitle: 'Нажмите, чтобы открыть GitHub',
-              onTap: () => openUrl('https://github.com/ShyroTeam/vpec'),
+              onTap: () {
+                FirebaseAnalytics.instance.logEvent(name: 'developer_group_opened');
+
+                openUrl('https://github.com/ShyroTeam/vpec');
+              },
             ),
             StyledListTile(
               title: 'Лицензии библиотек',
               subtitle: 'Нажмите, чтобы открыть список лицензий',
-              onTap: () => showLicensePage(
-                context: context,
-                applicationName: 'ВЭК',
-                applicationLegalese: 'Создано для студентов и работников '
-                    'Волгоградского энергетического колледжа',
-              ),
+              onTap: () {
+                FirebaseAnalytics.instance.logEvent(name: 'developer_licenses_opened');
+
+                showLicensePage(
+                  context: context,
+                  applicationName: 'ВЭК',
+                  applicationLegalese: 'Создано для студентов и работников '
+                      'Волгоградского энергетического колледжа',
+                );
+              },
             ),
           ],
         ),

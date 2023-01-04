@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -14,9 +15,7 @@ class ThemeHelper {
     // get user-chosen theme
     Box settings = Hive.box('settings');
     if (settings.get('theme') != null) {
-      settings.get('theme') == 'Тёмная тема'
-          ? isDarkMode = true
-          : isDarkMode = false;
+      settings.get('theme') == 'Тёмная тема' ? isDarkMode = true : isDarkMode = false;
     }
 
     return isDarkMode;
@@ -72,9 +71,11 @@ class ThemeNotifier with ChangeNotifier {
 
   ThemeNotifier(this.themeMode);
 
-  ThemeMode get getThemeMode => themeMode;
-
   void changeTheme(ThemeMode mode) {
+    FirebaseAnalytics.instance.logEvent(name: 'theme_changed', parameters: {
+      'theme_mode_used': mode,
+    });
+
     themeMode = mode;
     notifyListeners();
   }
