@@ -77,8 +77,34 @@ class ScheduleItemLogic extends ChangeNotifier {
     required Map<String, dynamic> lessonFullNames,
     required Map<String, dynamic> teachers,
   }) {
-    return lessonFullNames.containsValue(fullLessonName)
+    String toReturn = '';
+    // парсим первую пару из дележек
+    if (fullLessonName.contains('①')) {
+      int start = fullLessonName.indexOf('①') + 1;
+      int? end = fullLessonName.lastIndexOf('②');
+      if (end == -1) end = null;
+      String lesson = fullLessonName.substring(start, end).trim();
+      lesson = lessonFullNames.containsValue(lesson)
+          ? teachers[lessonFullNames.keys.firstWhere((k) => lessonFullNames[k] == lesson)]
+          : 'Нет данных о преподавателе';
+      toReturn = '① $lesson';
+    }
+
+    // парсим вторую пару из дележек
+    if (fullLessonName.contains('②')) {
+      int start = fullLessonName.indexOf('②') + 1;
+      String lesson = fullLessonName.substring(start).trim();
+      lesson = lessonFullNames.containsValue(lesson)
+          ? teachers[lessonFullNames.keys.firstWhere((k) => lessonFullNames[k] == lesson)]
+          : 'Нет данных о преподавателе';
+      toReturn =
+          '$toReturn\n② $lesson';
+    }
+
+    return toReturn.isEmpty
+        ? lessonFullNames.containsValue(fullLessonName)
         ? teachers[lessonFullNames.keys.firstWhere((k) => lessonFullNames[k] == fullLessonName)]
-        : 'Нет данных о преподавателе';
+        : 'Нет данных о преподавателе'
+        : toReturn.trim();
   }
 }
