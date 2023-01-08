@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 import '/utils/icons.dart';
@@ -14,6 +15,13 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+
+  @override
+  void initState() {
+    FirebaseAnalytics.instance.setCurrentScreen(screenName: 'menu_screen');
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

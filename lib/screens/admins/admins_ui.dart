@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 
@@ -40,7 +41,13 @@ class AdminCard extends StatelessWidget {
                     child: SelectableLinkify(
                       text: admin.contact!,
                       style: Theme.of(context).textTheme.subtitle1,
-                      onOpen: (value) => openUrl(value.url),
+                      onOpen: (value) {
+                        FirebaseAnalytics.instance.logEvent(name: 'administrator_link_opened', parameters: {
+                          'url': value.url,
+                        });
+
+                        openUrl(value.url);
+                      },
                     ),
                   ),
                   if (admin.cabinet != '')

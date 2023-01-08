@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,10 @@ class CabinetsMapLogic extends ChangeNotifier {
   String nowImageUrl = '';
 
   void setNewFloor(int newFloor) {
+    FirebaseAnalytics.instance.logEvent(name: 'cabinets_map_floor_selected', parameters: {
+      'floor' : newFloor,
+      'dark_theme': ThemeHelper.isDarkMode,
+    });
     _setFloor(newFloor);
     updateImage();
   }

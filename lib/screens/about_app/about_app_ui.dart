@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 import '/utils/icons.dart';
@@ -45,7 +46,13 @@ class AboutDeveloperCard extends StatelessWidget {
                         size: 32,
                         color: context.palette.accentColor,
                       ),
-                      onPressed: () => openUrl(vkUrl!),
+                      onPressed: () {
+                        FirebaseAnalytics.instance.logEvent(name: 'developer_vk_opened', parameters: {
+                          'url': vkUrl,
+                        });
+
+                        openUrl(vkUrl!);
+                      },
                     ),
                   if (tgUrl != null)
                     IconButton(
@@ -55,7 +62,12 @@ class AboutDeveloperCard extends StatelessWidget {
                         size: 32,
                         color: context.palette.accentColor,
                       ),
-                      onPressed: () => openUrl(tgUrl!),
+                      onPressed: () {
+                        FirebaseAnalytics.instance.logEvent(name: 'developer_tg_opened', parameters: {
+                          'url': tgUrl,
+                        });
+                        openUrl(tgUrl!);
+                      },
                     ),
                 ],
               ),

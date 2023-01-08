@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -40,8 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (appAuth.accountInfo.isLoggedIn) {
       // if app running on Android or iOS, make QuickActions
-      if (defaultTargetPlatform == TargetPlatform.android ||
-          defaultTargetPlatform == TargetPlatform.iOS) {
+      if (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS) {
         quickActions.initialize((shortcutType) {
           switch (shortcutType) {
             case 'action_news':
@@ -57,6 +57,9 @@ class _SplashScreenState extends State<SplashScreen> {
               context.read<BottomBarLogic>().setIndex(3);
               break;
           }
+          FirebaseAnalytics.instance.logEvent(name: 'quick_action_used', parameters: {
+            'shortcut_type': shortcutType,
+          });
         });
 
         quickActions.setShortcutItems(<ShortcutItem>[
@@ -89,12 +92,12 @@ class _SplashScreenState extends State<SplashScreen> {
       }
 
       FlutterLocalNotificationsPlugin()
-          .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
+          .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
           ?.requestPermission();
     } else {
       quickActions.clearShortcutItems();
     }
+    FirebaseAnalytics.instance.logAppOpen();
   }
 
   @override

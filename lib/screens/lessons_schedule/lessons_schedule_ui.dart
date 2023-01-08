@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -75,8 +76,7 @@ class FabMenu extends StatelessWidget {
             heroTag: null,
             mini: true,
             child: const Icon(Icons.share_outlined),
-            onPressed: () =>
-                shareFile(context.read<LessonsScheduleLogic>().imgUrl),
+            onPressed: () => shareFile(context.read<LessonsScheduleLogic>().imgUrl),
           ),
         Padding(
           padding: const EdgeInsets.only(bottom: 4),
@@ -84,8 +84,7 @@ class FabMenu extends StatelessWidget {
             heroTag: null,
             mini: true,
             child: const Icon(Icons.today_outlined),
-            onPressed: () =>
-                context.read<LessonsScheduleLogic>().chooseDate(context),
+            onPressed: () => context.read<LessonsScheduleLogic>().chooseDate(context),
           ),
         ),
         FloatingActionButton(
@@ -101,6 +100,10 @@ class FabMenu extends StatelessWidget {
             // this FAB used for switch between schedule for today or tomorrow
             logic.showForToday = !logic.showForToday;
             logic.updateImgUrl();
+
+            FirebaseAnalytics.instance.logEvent(name: 'full_schedule_today_fab', parameters: {
+              'today': logic.showForToday,
+            });
           },
         ),
       ],

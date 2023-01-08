@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,6 +34,7 @@ class _CabinetsMapScreenUIState extends State<CabinetsMapScreenUI> {
   void initState() {
     super.initState();
     context.read<CabinetsMapLogic>().initializeMap(context);
+    FirebaseAnalytics.instance.setCurrentScreen(screenName: 'cabinets_map_screen');
   }
 
   @override

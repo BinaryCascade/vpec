@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 import '/models/document_model.dart';
@@ -45,11 +46,18 @@ class DocumentCard extends StatelessWidget {
     return StyledListTile(
       title: document.title,
       subtitle: document.subtitle,
-      onTap: () => Navigator.pushNamed(
+      onTap: () {
+        FirebaseAnalytics.instance.logEvent(name: 'document_opened', parameters: {
+          'url': document.url,
+          'title': document.title,
+        });
+
+        Navigator.pushNamed(
         context,
         '/view_document',
         arguments: document,
-      ),
+      );
+      },
     );
   }
 }

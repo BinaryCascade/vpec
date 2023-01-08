@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +32,7 @@ class _NewsScreenState extends State<NewsScreen> {
   @override
   void initState() {
     loadFeed();
+    FirebaseAnalytics.instance.setCurrentScreen(screenName: 'news_screen');
     super.initState();
   }
 

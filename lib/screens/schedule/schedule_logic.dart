@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:duration/duration.dart';
 import 'package:duration/locale.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:http/http.dart' as http;
@@ -64,6 +65,9 @@ class ScheduleLogic extends ChangeNotifier {
     showingForToday = !showingForToday;
     notifyListeners();
     await loadSchedule();
+    FirebaseAnalytics.instance.logEvent(name: 'schedule_toggled', parameters: {
+      'today_schedule' : showingForToday,
+    });
   }
 
   /// Gets required date and parses schedule
@@ -118,6 +122,9 @@ class ScheduleLogic extends ChangeNotifier {
       DateFormat formatter = DateFormat('d-M-yyyy');
       showingData = formatter.format(picked);
       await _getActualData(_makeUrl(showingData));
+      FirebaseAnalytics.instance.logEvent(name: 'schedule_date_chosen', parameters: {
+        'date': showingData,
+      });
     }
   }
 
