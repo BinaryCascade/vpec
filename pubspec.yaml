@@ -17,30 +17,33 @@ dependencies:
     sdk: flutter
 
   # firebase
-  firebase_core: ^2.3.0
-  firebase_auth: ^4.1.3
-  cloud_firestore: ^4.1.0
-  firebase_storage: ^11.0.6
-  firebase_analytics: ^10.0.6
-  firebase_messaging: ^14.1.1
+  firebase_core: ^2.9.0
+  firebase_auth: ^4.4.1
+  cloud_firestore: ^4.5.1
+  firebase_storage: ^11.1.0
+  firebase_analytics: ^10.2.0
+  firebase_messaging: ^14.4.0
 
   # used in news screen
   dart_rss:
-    git: https://github.com/Tembeon/dart-rss # parse rss
+    git:
+      url: https://github.com/Tembeon/dart-rss # parse rss
+      ref: master
+
   http: ^0.13.5 # load data from web
-  transparent_image: ^2.0.0 # image placeholders
+  transparent_image: ^2.0.1 # image placeholders
 
   # used in announcement screen
-  path_provider: ^2.0.11 # work with storage paths
-  file_picker: ^5.2.2 # adding images to announcements
-  zoom_pinch_overlay: ^1.3.2
+  path_provider: ^2.0.14 # work with storage paths
+  file_picker: ^5.2.9 # adding images to announcements
+  zoom_pinch_overlay: ^1.4.1+3
 
   # used in schedule screen
   r_dotted_line_border: ^0.1.1
   duration: ^3.0.12 # convert Duration to a humanly understandable text
 
   # used in doc viewer screen
-  flutter_markdown: ^0.6.13
+  flutter_markdown: ^0.6.14
   uc_pdfview: ^0.0.3
 
   # local storage
@@ -48,28 +51,28 @@ dependencies:
   hive_flutter: ^1.1.0
 
   # routes
-  fluro: ^2.0.4
+  fluro: ^2.0.5
   url_strategy: ^0.2.0 # removes '#' from a path
 
   # generators
   freezed_annotation: ^2.2.0
-  json_annotation: ^4.7.0
+  json_annotation: ^4.8.0
 
   # other utils
-  intl: ^0.17.0 # work with locale
-  url_launcher: ^6.1.7 # open urls in external apps
+  intl: ^0.18.0 # work with locale
+  url_launcher: ^6.1.10 # open urls in external apps
   flutter_linkify: ^5.0.2 # make links in text tappable
-  share_plus: ^6.3.0
-  cached_network_image: ^3.2.2 # for display most images
+  share_plus: ^6.3.2
+  cached_network_image: ^3.2.3 # for display most images
   flutter_cache_manager: ^3.3.0 # for cached_network_image
-  xml: ^6.1.0 # for cached_network_image
-  quick_actions: ^1.0.1 # shortcuts from launcher
-  flutter_local_notifications: ^12.0.4
-  provider: ^6.0.4
+  xml: ^6.2.2 # for cached_network_image
+  quick_actions: ^1.0.2 # shortcuts from launcher
+  flutter_local_notifications: ^13.0.0
+  provider: ^6.0.5
   device_info: ^2.0.3
   breakpoint: ^1.2.0
   animations: ^2.0.7
-  mobile_scanner: ^2.1.0 # QR scanner
+  mobile_scanner: ^3.2.0 # QR scanner
   permission_handler: ^10.2.0
 
 flutter_native_splash:
@@ -100,13 +103,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   hive_generator: ^2.0.0
-  build_runner: ^2.3.2
-  flutter_launcher_icons: ^0.11.0 # launcher icons
-  flutter_native_splash: ^2.2.16 # splash
+  build_runner: ^2.3.3
+  flutter_launcher_icons: ^0.13.0 # launcher icons
+  flutter_native_splash: ^2.2.19 # splash
   flutter_lints: ^2.0.1
-  freezed: ^2.2.1
-  json_serializable: ^6.5.4
-  dart_code_metrics: ^5.0.1
+  freezed: ^2.3.2
+  json_serializable: ^6.6.1
+  dart_code_metrics: ^5.7.2
 
 flutter:
   uses-material-design: true
@@ -127,3 +130,6 @@ flutter:
     - family: VpecIconPack
       fonts:
         - asset: fonts/VpecIconPack.ttf
+
+dependency_overrides:
+  intl: 0.18.0

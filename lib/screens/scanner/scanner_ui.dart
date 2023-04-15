@@ -52,9 +52,10 @@ class _ScannerWidgetState extends State<ScannerWidget> {
         alignment: Alignment.center,
         children: [
           MobileScanner(
-            onDetect: (barcode, _) {
+            onDetect: (scannedBarcode) {
               if (didFindQr) return;
 
+              final barcode = scannedBarcode.barcodes.first;
               if (barcode.type == BarcodeType.url) {
                 String url = barcode.url!.url!;
                 if (url.startsWith(ScannerWidget.domainAddress)) {

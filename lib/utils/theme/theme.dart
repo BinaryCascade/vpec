@@ -70,11 +70,10 @@ ThemeData themeData() {
     ),
     appBarTheme: AppBarTheme(
       elevation: 0,
-      shape: const Border(
+      shape:  const Border(
         bottom: BorderSide(
           color: outsideBorderColor,
           width: 1.0,
-          strokeAlign: StrokeAlign.inside,
         ),
       ),
       backgroundColor: levelTwoSurface,
@@ -90,7 +89,6 @@ ThemeData themeData() {
         side: const BorderSide(
           color: outsideBorderColor,
           width: 1.0,
-          strokeAlign: StrokeAlign.inside,
         ),
       ),
     ),
@@ -307,7 +305,6 @@ ThemeData darkThemeData() {
         bottom: BorderSide(
           color: outsideBorderColor,
           width: 1.0,
-          strokeAlign: StrokeAlign.inside,
         ),
       ),
       backgroundColor: levelTwoSurface,
@@ -323,7 +320,6 @@ ThemeData darkThemeData() {
         side: const BorderSide(
           color: outsideBorderColor,
           width: 1.0,
-          strokeAlign: StrokeAlign.inside,
         ),
       ),
     ),
